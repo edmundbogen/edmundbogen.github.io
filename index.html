@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edmund Bogen - The Edmund Bogen Team at Douglas Elliman Real Estate</title>
+    <title>Bogen.ai - AI-Powered Real Estate Solutions</title>
     <style>
         * {
             margin: 0;
@@ -14,8 +14,8 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
-            color: #fff;
-            overflow-x: hidden;
+            color: #333;
+            background: #fff;
         }
 
         /* Header */
@@ -24,8 +24,9 @@
             width: 100%;
             top: 0;
             z-index: 1000;
-            background: rgba(29, 53, 71, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
             padding: 1rem 2rem;
         }
 
@@ -37,362 +38,417 @@
             align-items: center;
         }
 
-        .logo-section {
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        nav ul {
             display: flex;
-            align-items: center;
+            list-style: none;
             gap: 2rem;
         }
 
-        .eb-logo {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+        nav a {
+            color: #333;
             text-decoration: none;
-            color: white;
+            font-weight: 500;
+            transition: color 0.3s;
         }
 
-        .eb-circle {
-            width: 50px;
-            height: 50px;
-            border: 2px solid #fff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.2rem;
+        nav a:hover {
+            color: #667eea;
         }
 
-        .team-name {
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            line-height: 1.3;
-        }
-
-        .douglas-elliman {
-            font-size: 1.2rem;
-            color: #5fb7c9;
-            font-weight: 300;
-        }
-
-        .menu-btn {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            cursor: pointer;
-            text-transform: uppercase;
-        }
-
-        /* Hero Section with Background */
+        /* Hero Section */
         .hero {
-            position: relative;
             min-height: 100vh;
             display: flex;
             align-items: center;
-            background: linear-gradient(to right, rgba(29, 53, 71, 0.95), rgba(29, 53, 71, 0.85));
-            padding-top: 80px;
+            padding: 120px 2rem 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,144C960,149,1056,139,1152,122.7C1248,107,1344,85,1392,74.7L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+            opacity: 0.3;
         }
 
         .hero-content {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem;
-            width: 100%;
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .hero-text {
-            z-index: 2;
-        }
-
-        .hero-text h1 {
-            font-size: 3rem;
-            font-weight: 300;
-            margin-bottom: 2rem;
-            line-height: 1.2;
-        }
-
-        .hero-text .highlight {
-            font-weight: 600;
-        }
-
-        .hero-text p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            font-weight: 300;
-            line-height: 1.6;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 15px 40px;
-            background: transparent;
-            color: white;
-            text-decoration: none;
-            border: 2px solid white;
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            transition: all 0.3s;
-        }
-
-        .cta-button:hover {
-            background: white;
-            color: #1d3547;
-        }
-
-        .hero-image {
             position: relative;
             z-index: 2;
-        }
-
-        .hero-image img {
-            width: 100%;
-            max-width: 450px;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-
-        /* Social Sidebar */
-        .social-sidebar {
-            position: fixed;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(29, 53, 71, 0.95);
-            padding: 1rem 0;
-            z-index: 999;
-        }
-
-        .social-sidebar a {
-            display: block;
-            padding: 1rem;
             color: white;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            border-radius: 50px;
             text-decoration: none;
-            transition: background 0.3s;
-        }
-
-        .social-sidebar a:hover {
-            background: rgba(95, 183, 201, 0.3);
-        }
-
-        /* Mastermind Banner */
-        .mastermind-banner {
-            background: linear-gradient(135deg, #5fb7c9 0%, #1d3547 100%);
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-
-        .mastermind-content {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .mastermind-content h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            font-weight: 300;
-            color: #FFD700;
-        }
-
-        .mastermind-content h3 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
             font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
         }
 
-        .mastermind-content p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
+        .btn-primary {
+            background: white;
+            color: #667eea;
         }
 
-        /* About Section */
-        .about {
-            background: #1d3547;
-            padding: 5rem 2rem;
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
-        .about-content {
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #667eea;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 2rem;
+        }
+
+        .container {
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        .about h2 {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            text-align: center;
-            font-weight: 300;
-            letter-spacing: 2px;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .stat-card {
-            text-align: center;
-            padding: 2rem;
-            background: rgba(95, 183, 201, 0.1);
-            border-radius: 5px;
-        }
-
-        .stat-number {
+        h2 {
             font-size: 3rem;
-            font-weight: 600;
-            color: #5fb7c9;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            opacity: 0.9;
-        }
-
-        /* Services Section */
-        .services {
-            background: rgba(95, 183, 201, 0.1);
-            padding: 5rem 2rem;
-        }
-
-        .services-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .services h2 {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
+            margin-bottom: 1.5rem;
             text-align: center;
-            font-weight: 300;
-            letter-spacing: 2px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Services Grid */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
+            margin-top: 3rem;
         }
 
         .service-card {
-            background: rgba(29, 53, 71, 0.8);
-            padding: 2rem;
-            border-radius: 5px;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
             transition: transform 0.3s;
         }
 
         .service-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
         }
 
         .service-card h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            color: #5fb7c9;
+            color: #333;
+        }
+
+        .service-price {
+            font-size: 2rem;
+            color: #667eea;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .service-card ul {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .service-card li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .service-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        /* About Section */
+        .about {
+            background: #f8f9fa;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        }
+
+        /* Stats Section */
+        .stats {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Technologies Section */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .tech-item {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .tech-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .tech-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Team Section */
+        .team {
+            background: #f8f9fa;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .team-member {
+            text-align: center;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .team-member h3 {
+            margin: 1rem 0 0.5rem;
+            color: #333;
+        }
+
+        .team-member .role {
+            color: #667eea;
+            font-weight: 500;
+            margin-bottom: 1rem;
         }
 
         /* Contact Section */
         .contact {
-            background: #1d3547;
-            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
             text-align: center;
         }
 
-        .contact-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
         .contact h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            font-weight: 300;
+            color: white;
+            -webkit-text-fill-color: white;
         }
 
         .contact-info {
-            margin: 3rem 0;
+            margin-top: 3rem;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
         }
 
-        .contact-info a {
-            display: inline-block;
-            margin: 1rem 2rem;
-            color: #5fb7c9;
-            text-decoration: none;
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
             font-size: 1.2rem;
-            transition: color 0.3s;
         }
 
-        .contact-info a:hover {
+        .contact-item a {
             color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .contact-item a:hover {
+            opacity: 0.8;
         }
 
         /* Footer */
         footer {
-            background: #0d1f2d;
-            padding: 2rem;
-            text-align: center;
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        /* Accessibility */
-        .accessibility-btn {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background: #5fb7c9;
+            background: #1a1a1a;
             color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 1000;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 3rem 2rem 2rem;
+            text-align: center;
         }
 
-        /* Responsive */
-        @media (max-width: 968px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            margin: 2rem 0;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #667eea;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
             }
 
-            .hero-text h1 {
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            h2 {
                 font-size: 2rem;
             }
 
-            .hero-image {
-                max-width: 400px;
-                margin: 0 auto;
+            .about-content {
+                grid-template-columns: 1fr;
             }
 
-            .social-sidebar {
-                bottom: 0;
-                left: 0;
-                right: 0;
-                top: auto;
-                transform: none;
-                display: flex;
-                justify-content: center;
+            nav ul {
+                display: none;
             }
 
-            .social-sidebar a {
-                display: inline-block;
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
@@ -401,111 +457,183 @@
     <!-- Header -->
     <header>
         <div class="header-content">
-            <div class="logo-section">
-                <a href="#" class="eb-logo">
-                    <div class="eb-circle">EB</div>
-                    <div>
-                        <div class="team-name">THE EDMUND BOGEN TEAM</div>
-                    </div>
-                </a>
-                <div class="douglas-elliman">DouglasElliman</div>
-            </div>
-            <button class="menu-btn">MENU ☰</button>
+            <a href="#" class="logo">Bogen.ai</a>
+            <nav>
+                <ul>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#technology">Technology</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-btn">☰</button>
         </div>
     </header>
-
-    <!-- Social Sidebar -->
-    <div class="social-sidebar">
-        <a href="https://facebook.com/edmundbogen" target="_blank">f</a>
-        <a href="https://instagram.com/edmundbogen" target="_blank">📷</a>
-        <a href="https://youtube.com/edmundbogen" target="_blank">▶</a>
-        <a href="https://linkedin.com/in/edmundbogen" target="_blank">in</a>
-        <a href="#" target="_blank">🏠</a>
-    </div>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <div class="hero-text">
-                <h1>The <span class="highlight">"Edmund Bogen Team"</span> has a proven track record of success in selling homes throughout South Florida.</h1>
-                <p>From Palm Beach to Miami, we can help you get the most for your property!</p>
-                <a href="#about" class="cta-button">Learn More About Us →</a>
-            </div>
-            <div class="hero-image">
-                <img src="edmund-profile.png" alt="Edmund Bogen">
+            <h1>Welcome to Bogen.ai</h1>
+            <p class="subtitle">Revolutionizing Real Estate with AI-Powered Solutions</p>
+            <div class="cta-buttons">
+                <a href="#services" class="btn btn-primary">Explore Our Services</a>
+                <a href="#contact" class="btn btn-secondary">Get Started</a>
             </div>
         </div>
     </section>
 
-    <!-- Mastermind Banner -->
-    <section class="mastermind-banner">
-        <div class="mastermind-content">
-            <h2>🚀 UPCOMING MASTERMIND</h2>
-            <h3>Making AI Your Marketing Assistant</h3>
-            <p>Transform your real estate marketing with practical AI strategies that drive results</p>
-            <a href="#contact" class="cta-button">Reserve Your Spot</a>
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <p class="section-subtitle">Comprehensive AI solutions tailored for real estate professionals</p>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>AI Business Coaching</h3>
+                    <div class="service-price">$30/month</div>
+                    <p>Transform your real estate business with AI integration</p>
+                    <ul>
+                        <li>Weekly virtual coaching sessions</li>
+                        <li>AI tool implementation guides</li>
+                        <li>ChatGPT & Claude integration</li>
+                        <li>Template libraries</li>
+                        <li>Community access</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary" style="margin-top: 1.5rem;">Join Now</a>
+                </div>
+
+                <div class="service-card">
+                    <h3>Strategic Consulting</h3>
+                    <div class="service-price">Custom Pricing</div>
+                    <p>Personalized AI strategy for your business</p>
+                    <ul>
+                        <li>1:1 strategic planning</li>
+                        <li>Custom AI solutions</li>
+                        <li>Process optimization</li>
+                        <li>Team training</li>
+                        <li>Implementation support</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary" style="margin-top: 1.5rem;">Schedule Call</a>
+                </div>
+
+                <div class="service-card">
+                    <h3>Speaking Engagements</h3>
+                    <div class="service-price">Available Nationwide</div>
+                    <p>Inspire your audience with AI insights</p>
+                    <ul>
+                        <li>AI in Real Estate</li>
+                        <li>Digital Transformation</li>
+                        <li>Marketing Automation</li>
+                        <li>Future of Work</li>
+                        <li>Team Development</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary" style="margin-top: 1.5rem;">Book Speaker</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">$39.9M</div>
+                    <div class="stat-label">Annual Production</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Agents Trained</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">21</div>
+                    <div class="stat-label">AI Tools Integrated</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">Client Success Rate</div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="about">
-        <div class="about-content">
-            <h2>EXCELLENCE IN LUXURY REAL ESTATE</h2>
-
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number">$39.9M</div>
-                    <div class="stat-label">Annual Production</div>
+        <div class="container">
+            <h2>About Bogen.ai</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Edmund Bogen is a visionary entrepreneur at the intersection of luxury real estate and artificial intelligence. As the founder of Bogen.ai, he's pioneering the integration of AI tools into traditional real estate practices.</p>
+                    <br>
+                    <p>With an average transaction value of $1.9M and annual production exceeding $39.9M, Edmund brings real-world success to his coaching and consulting practice. He specializes in helping real estate professionals leverage AI while maintaining the personal relationships that drive business.</p>
+                    <br>
+                    <p>Edmund's unique approach combines cutting-edge technology with time-tested relationship-building strategies, creating a blueprint for success in the modern real estate landscape.</p>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-number">$1.9M</div>
-                    <div class="stat-label">Average Transaction</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">21</div>
-                    <div class="stat-label">Annual Transactions</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">#1</div>
-                    <div class="stat-label">Saint Andrews CC</div>
+                <div class="about-image">
+                    <img src="edmund-profile.png" alt="Edmund Bogen">
                 </div>
             </div>
-
-            <p style="font-size: 1.2rem; text-align: center; max-width: 800px; margin: 0 auto;">
-                As leader of The Edmund Bogen Team at Douglas Elliman Real Estate, Edmund specializes in the luxury market with particular expertise in Saint Andrews Country Club and prestigious gated communities throughout South Florida. His approach combines sophisticated market knowledge with deep community integration, focusing on relationship-building rather than transactional sales.
-            </p>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="services">
-        <div class="services-content">
-            <h2>SERVICES & EXPERTISE</h2>
+    <!-- Technology Section -->
+    <section id="technology">
+        <div class="container">
+            <h2>Our Technology Stack</h2>
+            <p class="section-subtitle">Leveraging the best AI tools for real estate success</p>
 
-            <div class="services-grid">
-                <div class="service-card">
-                    <h3>Luxury Real Estate</h3>
-                    <p>Specializing in properties $500K+ with expertise in Saint Andrews Country Club and South Florida's most prestigious gated communities.</p>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <div class="tech-icon">🤖</div>
+                    <h4>ChatGPT</h4>
                 </div>
-                <div class="service-card">
-                    <h3>Business Coaching</h3>
-                    <p>Group coaching at $30/month includes weekly sessions, AI tool integration, and proven strategies from $39.9M in annual production.</p>
+                <div class="tech-item">
+                    <div class="tech-icon">🧠</div>
+                    <h4>Claude AI</h4>
                 </div>
-                <div class="service-card">
-                    <h3>AI Integration</h3>
-                    <p>Leading the industry in practical AI implementation for real estate marketing, CRM optimization, and automated content creation.</p>
+                <div class="tech-item">
+                    <div class="tech-icon">🎥</div>
+                    <h4>Video AI</h4>
                 </div>
-                <div class="service-card">
-                    <h3>Speaking Engagements</h3>
-                    <p>Available nationwide for conferences on luxury market strategies, technology adoption, and systematic business development.</p>
+                <div class="tech-item">
+                    <div class="tech-icon">📊</div>
+                    <h4>Analytics</h4>
                 </div>
-                <div class="service-card">
-                    <h3>Market Analysis</h3>
-                    <p>Data-driven neighborhood selection, competitive positioning, and community engagement strategies that deliver results.</p>
+                <div class="tech-item">
+                    <div class="tech-icon">📧</div>
+                    <h4>Email Automation</h4>
                 </div>
-                <div class="service-card">
-                    <h3>Team Development</h3>
-                    <p>Strategic consulting for hiring, training systems, commission structures, and accountability frameworks.</p>
+                <div class="tech-item">
+                    <div class="tech-icon">📱</div>
+                    <h4>CRM Integration</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="team">
+        <div class="container">
+            <h2>Our Team</h2>
+            <p class="section-subtitle">Expert professionals dedicated to your success</p>
+
+            <div class="team-grid">
+                <div class="team-member">
+                    <h3>Edmund Bogen</h3>
+                    <div class="role">Founder & CEO</div>
+                    <p>Luxury real estate expert and AI integration pioneer with $39.9M in annual production.</p>
+                </div>
+                <div class="team-member">
+                    <h3>Eytan Benzeno</h3>
+                    <div class="role">Strategic Partner & Technology Advisor</div>
+                    <p>Technology integration specialist focusing on AI implementation and business development.</p>
+                </div>
+                <div class="team-member">
+                    <h3>Daniel Cruz</h3>
+                    <div class="role">Digital Operations Manager</div>
+                    <p>Expert in social media, content creation, and AI tool integration for real estate teams.</p>
                 </div>
             </div>
         </div>
@@ -513,33 +641,40 @@
 
     <!-- Contact Section -->
     <section id="contact" class="contact">
-        <div class="contact-content">
-            <h2>LET'S CONNECT</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Ready to elevate your real estate journey?</p>
+        <div class="container">
+            <h2>Let's Connect</h2>
+            <p class="section-subtitle" style="color: white;">Ready to transform your real estate business with AI?</p>
 
             <div class="contact-info">
-                <a href="mailto:edmund@bogenhomes.com">📧 edmund@bogenhomes.com</a>
-                <a href="tel:+15612357575">📱 (561) 235-7575</a>
-                <a href="https://bogenhomes.com" target="_blank">🌐 BogenHomes.com</a>
-            </div>
-
-            <div style="margin-top: 3rem; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.2);">
-                <p style="font-size: 0.9rem; opacity: 0.8;">
-                    Speaking Topics: AI Integration • Luxury Market Strategies • Systematic Business Development<br>
-                    Technology Adoption • Community-Based Marketing • Team Building
-                </p>
+                <div class="contact-item">
+                    <span>📧</span>
+                    <a href="mailto:edmund@bogen.ai">edmund@bogen.ai</a>
+                </div>
+                <div class="contact-item">
+                    <span>📱</span>
+                    <a href="tel:+15612357575">(561) 235-7575</a>
+                </div>
+                <div class="contact-item">
+                    <span>🌐</span>
+                    <a href="https://bogen.ai">bogen.ai</a>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2024 The Edmund Bogen Team at Douglas Elliman Real Estate. All rights reserved.</p>
-        <p style="margin-top: 1rem; font-size: 0.8rem;">Equal Housing Opportunity</p>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="https://linkedin.com/in/edmundbogen" target="_blank">💼</a>
+                <a href="https://facebook.com/edmundbogen" target="_blank">📘</a>
+                <a href="https://instagram.com/edmundbogen" target="_blank">📷</a>
+                <a href="https://youtube.com/edmundbogen" target="_blank">📺</a>
+            </div>
+            <p>&copy; 2024 Bogen.ai. All rights reserved.</p>
+            <p style="margin-top: 1rem; opacity: 0.8;">Revolutionizing Real Estate with Artificial Intelligence</p>
+        </div>
     </footer>
-
-    <!-- Accessibility Button -->
-    <button class="accessibility-btn" aria-label="Accessibility Tools">♿</button>
 
     <script>
         // Smooth scrolling
@@ -548,16 +683,26 @@
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
             });
         });
 
-        // Parallax effect on scroll
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
-            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            const nav = document.querySelector('nav ul');
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+            nav.style.position = 'absolute';
+            nav.style.top = '60px';
+            nav.style.right = '20px';
+            nav.style.background = 'white';
+            nav.style.flexDirection = 'column';
+            nav.style.padding = '1rem';
+            nav.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
+            nav.style.borderRadius = '10px';
         });
     </script>
 </body>
