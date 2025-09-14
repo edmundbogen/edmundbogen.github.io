@@ -120,33 +120,42 @@
             display: flex;
             align-items: center;
             overflow: hidden;
+            background: linear-gradient(to right, #1a3a52 0%, #1a3a52 55%, rgba(26, 58, 82, 0.8) 55%, rgba(26, 58, 82, 0.6) 100%);
         }
 
         .hero-bg {
             position: absolute;
             top: 0;
-            left: 0;
+            left: 55%;
             right: 0;
             bottom: 0;
             background: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=2000') center/cover;
-            filter: brightness(0.4);
             z-index: 0;
         }
 
-        .hero-content {
+        .hero-container {
             position: relative;
             z-index: 2;
-            max-width: 45%;
+            width: 100%;
+            max-width: 1600px;
+            margin: 0 auto;
             padding: 0 3rem;
-            margin-left: 3%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .hero-content {
+            width: 50%;
+            padding-right: 3rem;
         }
 
         .hero h1 {
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             font-weight: 300;
             margin-bottom: 1.5rem;
-            letter-spacing: 0.5px;
-            line-height: 1.4;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
             animation: fadeInUp 1s ease;
         }
 
@@ -155,11 +164,11 @@
         }
 
         .hero .subtitle {
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             margin-bottom: 2.5rem;
-            opacity: 0.95;
+            opacity: 0.9;
             font-weight: 300;
-            line-height: 1.7;
+            line-height: 1.6;
             animation: fadeInUp 1s ease 0.2s;
             animation-fill-mode: both;
         }
@@ -184,23 +193,16 @@
         }
 
         .hero-profile {
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            width: 50%;
-            height: 90%;
-            z-index: 1;
+            width: 45%;
+            height: 600px;
+            position: relative;
             animation: fadeIn 1.5s ease;
-            display: flex;
-            align-items: flex-end;
-            justify-content: flex-end;
         }
 
         .hero-profile img {
             height: 100%;
             width: auto;
             object-fit: contain;
-            max-width: 100%;
         }
 
         /* Social Sidebar */
@@ -669,13 +671,15 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-bg"></div>
-        <div class="hero-content">
-            <h1>The <strong>"BOGEN.AI"</strong> has a proven track record of success in revolutionizing real estate through artificial intelligence.</h1>
-            <p class="subtitle">From Palm Beach to Miami, we empower agents and teams to leverage AI for unprecedented growth and efficiency.</p>
-            <a href="#services" class="cta-button">EXPLORE OUR SOLUTIONS →</a>
-        </div>
-        <div class="hero-profile">
-            <img src="edmund-profile.png" alt="Edmund Bogen">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>The <strong>"BOGEN.AI"</strong> has a proven track record of success in revolutionizing real estate through artificial intelligence.</h1>
+                <p class="subtitle">From Palm Beach to Miami, we empower agents and teams to leverage AI for unprecedented growth and efficiency.</p>
+                <a href="#services" class="cta-button">EXPLORE OUR SOLUTIONS →</a>
+            </div>
+            <div class="hero-profile">
+                <img src="edmund-profile.png" alt="Edmund Bogen">
+            </div>
         </div>
         <div class="scroll-down">SCROLL DOWN</div>
     </section>
