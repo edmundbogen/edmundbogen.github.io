@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edmund Bogen - Professional Speaker</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        nav ul li a:hover {
+            opacity: 0.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 150px 20px 100px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s;
+            animation-fill-mode: both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 1s ease 0.4s;
+            animation-fill-mode: both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #667eea;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .profile-img {
+            width: 100%;
+            max-width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            margin: 0 auto;
+        }
+
+        /* Speaking Topics */
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .topic-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .topic-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: #f8f9fa;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial .author {
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        /* Contact */
+        .contact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .contact h2 {
+            color: white;
+        }
+
+        .contact-info {
+            margin-top: 2rem;
+        }
+
+        .contact-info a {
+            color: white;
+            font-size: 1.2rem;
+            text-decoration: none;
+            display: block;
+            margin: 1rem 0;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Edmund Bogen</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#topics">Topics</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <h1>Edmund Bogen</h1>
+        <p>Inspiring Speaker | Real Estate Expert | Technology Innovator</p>
+        <a href="#contact" class="cta-button">Book Me to Speak</a>
+    </section>
+
+    <section id="about">
+        <h2>About Edmund</h2>
+        <div class="about-content">
+            <div class="profile-img">EB</div>
+            <div>
+                <p>Edmund Bogen is a dynamic speaker who brings a unique blend of real estate expertise, technology innovation, and entrepreneurial insights to every presentation.</p>
+                <br>
+                <p>With years of experience in the real estate industry and a passion for leveraging technology to transform businesses, Edmund delivers engaging talks that inspire action and drive results.</p>
+                <br>
+                <p>Whether speaking to real estate professionals, entrepreneurs, or technology enthusiasts, Edmund's presentations are packed with practical insights, real-world examples, and actionable strategies that audiences can implement immediately.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="topics">
+        <h2>Speaking Topics</h2>
+        <div class="topics-grid">
+            <div class="topic-card">
+                <h3>Real Estate Innovation</h3>
+                <p>Discover how technology is revolutionizing the real estate industry and learn strategies to stay ahead of the curve.</p>
+            </div>
+            <div class="topic-card">
+                <h3>Digital Marketing for Realtors</h3>
+                <p>Master the art of social media marketing and digital presence to attract more clients and close more deals.</p>
+            </div>
+            <div class="topic-card">
+                <h3>Building Your Personal Brand</h3>
+                <p>Learn how to establish yourself as a thought leader in your industry and build a powerful personal brand.</p>
+            </div>
+            <div class="topic-card">
+                <h3>AI and Automation in Business</h3>
+                <p>Explore practical applications of AI and automation to streamline operations and boost productivity.</p>
+            </div>
+            <div class="topic-card">
+                <h3>Entrepreneurial Mindset</h3>
+                <p>Develop the mindset and strategies needed to succeed as an entrepreneur in today's competitive landscape.</p>
+            </div>
+            <div class="topic-card">
+                <h3>Future of Work</h3>
+                <p>Understand emerging trends and prepare for the future of work in an increasingly digital world.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <h2>What People Are Saying</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial">
+                <p>"Edmund's presentation was absolutely transformative for our team. His insights on digital marketing have revolutionized how we approach client acquisition."</p>
+                <div class="author">- Sarah Johnson, Real Estate Broker</div>
+            </div>
+            <div class="testimonial">
+                <p>"Engaging, informative, and incredibly practical. Edmund knows how to connect with his audience and deliver value that lasts long after the event."</p>
+                <div class="author">- Michael Chen, Tech Conference Organizer</div>
+            </div>
+            <div class="testimonial">
+                <p>"The best speaker we've had at our annual conference. Edmund's energy and expertise made complex topics accessible and actionable."</p>
+                <div class="author">- Lisa Martinez, Industry Association President</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Book Edmund for Your Next Event</h2>
+        <p>Ready to inspire your audience with actionable insights and transformative strategies?</p>
+        <div class="contact-info">
+            <a href="mailto:speaking@edmundbogen.com">📧 speaking@edmundbogen.com</a>
+            <a href="tel:+1234567890">📱 (123) 456-7890</a>
+            <a href="https://linkedin.com/in/edmundbogen" target="_blank">💼 LinkedIn</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Edmund Bogen. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(102, 126, 234, 0.95)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+            }
+        });
+    </script>
+</body>
+</html>
