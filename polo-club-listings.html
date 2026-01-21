@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polo Club - Current Listings | The Edmund Bogen Team</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+        }
+        .header {
+            border-bottom: 4px solid #00a8e1;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            color: #1a3e5c;
+            font-size: 2.5em;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        .header-subtitle {
+            color: #666;
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+        .summary-stats {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        .summary-stat {
+            background: #f8fbff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            border-left: 4px solid #00a8e1;
+        }
+        .summary-stat-label {
+            color: #666;
+            font-size: 0.85em;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        .summary-stat-value {
+            color: #1a3e5c;
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+        .listing-card {
+            background: white;
+            border: 1px solid #e8e8e8;
+            border-left: 4px solid #00a8e1;
+            padding: 25px 25px 25px 30px;
+            margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 20px;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        .listing-card:hover {
+            border-left-color: #1a3e5c;
+            box-shadow: 0 4px 20px rgba(26, 62, 92, 0.15);
+            transform: translateX(5px);
+        }
+        .listing-card.waterfront {
+            border-left-color: #28a745;
+        }
+        .listing-card.new-construction {
+            border-left-color: #dc3545;
+        }
+        .listing-address {
+            color: #1a3e5c;
+            font-size: 1.4em;
+            font-weight: 500;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+        .listing-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            font-size: 0.7em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border-radius: 3px;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+        .badge-waterfront {
+            background: #d4edda;
+            color: #155724;
+        }
+        .badge-new {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .listing-price {
+            color: #000000;
+            font-size: 2em;
+            font-weight: 300;
+            margin-bottom: 15px;
+        }
+        .listing-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .listing-detail-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .listing-detail-label {
+            color: #666;
+            font-size: 0.75em;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 5px;
+        }
+        .listing-detail-value {
+            color: #1a3e5c;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+        .listing-mls {
+            display: inline-block;
+            background: #f4f4f4;
+            color: #1a3e5c;
+            padding: 8px 15px;
+            font-size: 0.85em;
+            font-weight: 500;
+            margin-top: 10px;
+            letter-spacing: 0.05em;
+        }
+        .view-listing-btn {
+            background: #00a8e1;
+            color: white;
+            padding: 14px 30px;
+            text-decoration: none;
+            font-size: 0.95em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            display: inline-block;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+        }
+        .view-listing-btn:hover {
+            background: #0088b8;
+            transform: translateY(-2px);
+        }
+        .listing-dom {
+            display: block;
+            color: #666;
+            font-size: 0.85em;
+            margin-top: 10px;
+            text-align: center;
+        }
+        .back-button {
+            background: #1a3e5c;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            font-size: 0.9em;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            display: inline-block;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .back-button:hover {
+            background: #0d1f2d;
+        }
+        @media (max-width: 768px) {
+            .listing-card {
+                grid-template-columns: 1fr;
+            }
+            .listing-cta {
+                text-align: center;
+            }
+            .summary-stats {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">← Back to Market Dashboard</a>
+
+        <div class="header">
+            <h1>Polo Club - Available Listings</h1>
+            <p class="header-subtitle">Updated January 13, 2026 | 12 Active Listings</p>
+        </div>
+
+        <div class="summary-stats">
+            <div class="summary-stat">
+                <div class="summary-stat-label">Price Range</div>
+                <div class="summary-stat-value">$559K - $8.6M</div>
+            </div>
+            <div class="summary-stat">
+                <div class="summary-stat-label">Active Listings</div>
+                <div class="summary-stat-value">12</div>
+            </div>
+            <div class="summary-stat">
+                <div class="summary-stat-label">Sold YTD</div>
+                <div class="summary-stat-value">0</div>
+            </div>
+            <div class="summary-stat">
+                <div class="summary-stat-label">Absorption Rate</div>
+                <div class="summary-stat-value">N/A</div>
+            </div>
+        </div>
+
+        <!-- Listing 1: Highest Price -->
+        <div class="listing-card">
+            <div class="listing-info">
+                <div class="listing-address">16600 Senterra Drive, Delray Beach</div>
+                <div class="listing-price">$8,600,000</div>
+                <div class="listing-mls">MLS#: RX-11136515</div>
+            </div>
+            <div class="listing-cta">
+                <a href="https://bogenhomes.com/homes-for-sale-details/16600-SENTERRA-DRIVE-DELRAY-BEACH-FL-33446/RX-11136515/43/" target="_blank" class="view-listing-btn">View Details</a>
+            </div>
+        </div>
+
+        <!-- Listing 2 -->
+        <div class="listing-card">
+            <div class="listing-info">
+                <div class="listing-address">16670 Senterra Drive, Delray Beach</div>
+                <div class="listing-price">$7,775,000</div>
+                <div class="listing-mls">MLS#: RX-11129141</div>
+            </div>
+            <div class="listing-cta">
+                <a href="https://bogenhomes.com/homes-for-sale-details/16670-SENTERRA-DRIVE-DELRAY-BEACH-FL-33446/RX-11129141/43/" target="_blank" class="view-listing-btn">View Details</a>
+            </div>
+        </div>
+
+        <!-- Listing 3 -->
+        <div class="listing-card">
+            <div class="listing-info">
+                <div class="listing-address">16330 Vintage Oaks Lane, Delray Beach</div>
+                <div class="listing-price">$4,799,999</div>
+                <div class="listing-mls">MLS#: RX-11146172</div>
+            </div>
+            <div class="listing-cta">
+                <a href="https://bogenhomes.com/homes-for-sale-details/16330-VINTAGE-OAKS-LANE-DELRAY-BEACH-FL-33446/RX-11146172/43/" target="_blank" class="view-listing-btn">View Details</a>
+            </div>
+        </div>
+
+        <!-- Listing 4 -->
+        <div class="listing-card">
+            <div class="listing-info">
+                <div class="listing-address">5752 Vintage Oaks Circle, Delray Beach</div>
+                <div class="listing-price">$4,400,000</div>
+                <div class="listing-mls">MLS#: RX-11148998</div>
+            </div>
+            <div class="listing-cta">
+                <a href="https://bogenhomes.com/homes-for-sale-details/5752-VINTAGE-OAKS-CIRCLE-DELRAY-BEACH-FL-33446/RX-11148998/43/" target="_blank" class="view-listing-btn">View Details</a>
+            </div>
+        </div>
+
+        <!-- Listing 5 -->
+        <div class="listing-card">
+            <div class="listing-info">
+                <div class="listing-address">16283 Vintage Oaks Lane, Delray Beach</div>
+                <div class="listing-price">$4,299,000</div>
+                <div class="listing-mls">MLS#: RX-11115928</div>
+            </div>
+            <div class="listing-cta">
+                <a href="https://bogenhomes.com/homes-for-sale-details/16283-VINTAGE-OAKS-LANE-DELRAY-BEACH-FL-33446/RX-11115928/43/" target="_blank" class="view-listing-btn">View Details</a>
+            </div>
+        </div>
+
+        <!-- Listing 6 -->
+        <div class="listing-card">
+            <div class="listing-info">
+                <div class="listing-address">6468 Polo Pointe Way, Delray Beach</div>
+                <div class="listing-price">$1,899,000</div>
+                <div class="listing-mls">MLS#: RX-11148746</div>
+            </div>
+            <div class="listing-cta">
+                <a href="https://bogenhomes.com/homes-for-sale-details/6468-POLO-POINTE-WAY-DELRAY-BEACH-FL-33496/RX-11148746/43/" target="_blank" class="view-listing-btn">View Details</a>
+            </div>
+        </div>
+
+        <!-- Listing 7 -->
+        <div class="listing-card waterfront">
+            <div class="listing-info">
+                <div class="listing-address">5174 Windsor Parke Drive, Boca Raton <span class="listing-badge badge-waterfront">Waterfront</span></div>
+                <div class="listing-price">$1,199,000</div>
+                <div class="listing-mls">MLS#: RX-11149398</div>
+            </div>
+            <div class="listing-cta">
+                <a href="https://bogenhomes.com/homes-for-sale-details/5174-WINDSOR-PARKE-DRIVE-BOCA-RATON-FL-33496/RX-11149398/43/" target="_blank" class="view-listing-btn">View Details</a>
+            </div>
+        </div>
+
+        <!-- Listing 8 -->
+        <div class="listing-card">
+            <div class="listing-info">
+                <div class="listing-address">16898 Isle Of Palms Drive D, Delray Beach</div>
+                <div class="listing-price">$975,000</div>
+                <div class="listing-mls">MLS#: RX-11118815</div>
+            </div>
+            <div class="listing-cta">
+                <a href="https://bogenhomes.com/homes-for-sale-details/16898-ISLE-OF-PALMS-DRIVE-D-DELRAY-BEACH-FL-33484/RX-11118815/43/" target="_blank" class="view-listing-btn">View Details</a>
+            </div>
+        </div>
+
+        <!-- Listing 9 -->
+        <div class="listing-card">
+            <div class="listing-info">
+                <div class="listing-address">5158 Windsor Parke Drive, Boca Raton</div>
+                <div class="listing-price">$730,000</div>
+                <div class="listing-mls">MLS#: RX-11100001</div>
+            </div>
+            <div class="listing-cta">
+                <a href="https://bogenhomes.com/homes-for-sale-details/5158-WINDSOR-PARKE-DRIVE-BOCA-RATON-FL-33496/RX-11100001/43/" target="_blank" class="view-listing-btn">View Details</a>
+            </div>
+        </div>
+
+        <!-- Listing 10 -->
+        <div class="listing-card waterfront">
+            <div class="listing-info">
+                <div class="listing-address">5184 Lake Catalina Drive D, Boca Raton <span class="listing-badge badge-waterfront">Waterfront</span></div>
+                <div class="listing-price">$629,000</div>
+                <div class="listing-mls">MLS#: RX-11131133</div>
+            </div>
+            <div class="listing-cta">
+                <a href="https://bogenhomes.com/homes-for-sale-details/5184-LAKE-CATALINA-DRIVE-D-BOCA-RATON-FL-33496/RX-11131133/43/" target="_blank" class="view-listing-btn">View Details</a>
+            </div>
+        </div>
+
+        <!-- Listing 11 -->
+        <div class="listing-card waterfront">
+            <div class="listing-info">
+                <div class="listing-address">5070 Lake Catalina Drive C, Boca Raton <span class="listing-badge badge-waterfront">Waterfront</span></div>
+                <div class="listing-price">$599,000</div>
+                <div class="listing-mls">MLS#: RX-11152072</div>
+            </div>
+            <div class="listing-cta">
+                <a href="https://bogenhomes.com/homes-for-sale-details/5070-LAKE-CATALINA-DRIVE-C-BOCA-RATON-FL-33496/RX-11152072/43/" target="_blank" class="view-listing-btn">View Details</a>
+            </div>
+        </div>
+
+        <!-- Listing 12: Lowest Price / Entry Point -->
+        <div class="listing-card waterfront">
+            <div class="listing-info">
+                <div class="listing-address">5100 Lake Catalina Drive C, Boca Raton <span class="listing-badge badge-waterfront">Waterfront</span></div>
+                <div class="listing-price">$559,000</div>
+                <div class="listing-mls">MLS#: RX-11139065</div>
+            </div>
+            <div class="listing-cta">
+                <a href="https://bogenhomes.com/homes-for-sale-details/5100-LAKE-CATALINA-DRIVE-C-BOCA-RATON-FL-33496/RX-11139065/43/" target="_blank" class="view-listing-btn">View Details</a>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px; padding-top: 30px; border-top: 2px solid #e8e8e8;">
+            <p style="color: #666; font-size: 0.9em; margin-bottom: 15px;">Questions about Polo Club?</p>
+            <a href="https://bogenhomes.com/agents/samantha-gornstein/" target="_blank" style="display: inline-block; background: #1a3e5c; color: white; padding: 14px 40px; text-decoration: none; font-size: 1em; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; border-radius: 4px;">Contact Samantha Gornstein</a>
+            <p style="color: #999; font-size: 0.8em; margin-top: 20px;">Samantha Gornstein | The Edmund Bogen Team | Douglas Elliman Real Estate | (561) 707-6607</p>
+        </div>
+    </div>
+</body>
+</html>
