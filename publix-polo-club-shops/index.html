@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publix's $83 Million Polo Club Shops Acquisition: What It Means for Boca Raton | The Edmund Bogen Team</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+            color: #1a1a1a;
+            background-color: #ffffff;
+        }
+
+        /* Navigation */
+        .nav {
+            background-color: #1a3e5c;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #00a8e1;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 70vh;
+            min-height: 500px;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(26, 62, 92, 0.5) 0%, rgba(26, 62, 92, 0.85) 70%, rgba(26, 62, 92, 0.95) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 60px;
+        }
+
+        .article-category {
+            color: #00a8e1;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-title {
+            color: #ffffff;
+            font-size: 44px;
+            font-weight: 300;
+            letter-spacing: 1px;
+            line-height: 1.2;
+            max-width: 900px;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .article-meta {
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 500;
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .article-meta span {
+            margin-right: 20px;
+        }
+
+        /* Main Content */
+        .content-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        /* Key Stats Section */
+        .key-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 60px;
+            padding: 40px;
+            background-color: #f4f4f4;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 20px;
+            border-left: 3px solid #00a8e1;
+            background-color: #ffffff;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 300;
+            color: #1a3e5c;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #666;
+        }
+
+        /* Article Content */
+        .article-content h2 {
+            font-size: 26px;
+            font-weight: 300;
+            color: #1a3e5c;
+            letter-spacing: 1px;
+            margin: 50px 0 25px 0;
+            text-transform: uppercase;
+        }
+
+        .article-content p {
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        .article-content p:first-of-type {
+            font-size: 20px;
+            color: #1a3e5c;
+            font-weight: 400;
+        }
+
+        .article-content ul {
+            margin: 20px 0 30px 30px;
+            color: #333;
+        }
+
+        .article-content li {
+            margin-bottom: 12px;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        /* Pull Quote */
+        .pull-quote {
+            border-left: 4px solid #00a8e1;
+            padding: 30px 40px;
+            margin: 40px 0;
+            background-color: #f8f9fa;
+        }
+
+        .pull-quote p {
+            font-size: 22px;
+            font-weight: 300;
+            font-style: italic;
+            color: #1a3e5c;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .pull-quote cite {
+            font-size: 14px;
+            font-weight: 500;
+            color: #666;
+            font-style: normal;
+        }
+
+        /* Data Table */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+        }
+
+        .data-table th {
+            background-color: #1a3e5c;
+            color: #ffffff;
+            padding: 15px 20px;
+            text-align: left;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .data-table td {
+            padding: 15px 20px;
+            border-bottom: 1px solid #e8e8e8;
+            font-size: 15px;
+        }
+
+        .data-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        /* Info Box */
+        .info-box {
+            background-color: #1a3e5c;
+            color: #ffffff;
+            padding: 40px;
+            margin: 40px 0;
+        }
+
+        .info-box h3 {
+            font-size: 18px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            color: #00a8e1;
+        }
+
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .info-box li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 15px;
+            font-weight: 300;
+        }
+
+        .info-box li:last-child {
+            border-bottom: none;
+        }
+
+        .info-box li strong {
+            color: #00a8e1;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #1a3e5c 0%, #2a5a7c 100%);
+            padding: 60px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-section h3 {
+            color: #ffffff;
+            font-size: 28px;
+            font-weight: 300;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 16px;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #00a8e1;
+            color: #ffffff;
+            padding: 15px 40px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #0090c4;
+        }
+
+        /* Author Bio */
+        .author-bio {
+            display: flex;
+            gap: 40px;
+            padding: 50px;
+            background-color: #f4f4f4;
+            margin-top: 60px;
+        }
+
+        .author-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 0;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .author-info h3 {
+            font-size: 24px;
+            font-weight: 300;
+            color: #1a3e5c;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .author-title {
+            font-size: 14px;
+            color: #00a8e1;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .author-info p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .author-contact {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .author-contact a {
+            color: #1a3e5c;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .author-contact a:hover {
+            color: #00a8e1;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #1a3e5c;
+            color: #ffffff;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .footer-brand {
+            font-size: 16px;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .footer-disclaimer {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                height: 50vh;
+            }
+
+            .hero-overlay {
+                padding: 30px;
+            }
+
+            .hero-title {
+                font-size: 28px;
+            }
+
+            .content-wrapper {
+                padding: 40px 20px;
+            }
+
+            .key-stats {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 20px;
+            }
+
+            .author-bio {
+                flex-direction: column;
+                text-align: center;
+                padding: 30px;
+            }
+
+            .author-image {
+                margin: 0 auto;
+            }
+
+            .author-contact {
+                justify-content: center;
+            }
+
+            .nav {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .cta-section {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="https://bogenhomes.com" class="nav-logo">The Edmund Bogen Team</a>
+        <div class="nav-links">
+            <a href="https://bogenhomes.com/properties">Properties</a>
+            <a href="https://bogenhomes.com/contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="hero-image.png" alt="Polo Club Shops - Publix Acquisition" class="hero-image">
+        <div class="hero-overlay">
+            <span class="article-category">Commercial Real Estate Analysis</span>
+            <h1 class="hero-title">Publix's $83 Million Polo Club Shops Acquisition: What It Means for Boca Raton</h1>
+            <div class="article-meta">
+                <span>By Edmund Bogen</span>
+                <span>January 21, 2026</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="content-wrapper">
+        <!-- Key Stats -->
+        <div class="key-stats">
+            <div class="stat-card">
+                <div class="stat-number">$83M</div>
+                <div class="stat-label">Sale Price</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">64%</div>
+                <div class="stat-label">Seller Return</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">97%</div>
+                <div class="stat-label">Leased</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">$616</div>
+                <div class="stat-label">Per Sq Ft</div>
+            </div>
+        </div>
+
+        <!-- Article Content -->
+        <article class="article-content">
+            <p>If you live near Polo Club, St. Andrews, or anywhere along the Clint Moore Road corridor, you've likely noticed how essential Polo Club Shops has become to daily life in our community. Now, a major transaction has reshaped the ownership of this neighborhood retail center in ways that signal long-term stability for the area.</p>
+
+            <p>Publix Super Markets has purchased Polo Club Shops for $83 million, marking the latest move in what has become an aggressive shopping center acquisition strategy. The Lakeland-based grocer has spent over $560 million on Florida retail properties since 2024, systematically converting its tenant relationships into ownership positions across the state.</p>
+
+            <p>For Atlanta-based Jamestown Properties, the December 2025 transaction delivered a 64% return on their 2015 investment. For our community, it means something equally significant: the anchor tenant that serves thousands of local families each week now has permanent roots in the neighborhood.</p>
+
+            <h2>Why This Transaction Matters Locally</h2>
+
+            <p>The 134,832-square-foot shopping center at 5050 Champion Boulevard sits at the intersection of Military Trail and Clint Moore Road, directly adjacent to the Polo Club of Boca Raton. At $616 per square foot, the sale price significantly exceeds the South Florida retail average of $340 per square foot for 2024 transactions.</p>
+
+            <p>That premium reflects several factors I've observed in my work with buyers and sellers in this market: recent renovation including Publix's complete store reconstruction in 2022, exceptionally high occupancy at 97% leased, and proximity to some of Palm Beach County's most affluent gated communities.</p>
+
+            <div class="pull-quote">
+                <p>"Publix is really a real estate company that sells groceries."</p>
+                <cite>Professor Suzanne Hollander, Florida International University</cite>
+            </div>
+
+            <p>The current tenant roster reads like a carefully curated neighborhood amenity package: First Watch, Pet Supermarket, Bolay, Manhattan Joe's Pizzeria, Chase Bank, AT&T, The UPS Store, Phenix Salon Suites, and SPENGA fitness. An incoming tenant, Beignets & Brew, will add a trendy New Orleans-style beignet and coffee concept that has expanded to 18+ locations since launching in 2023.</p>
+
+            <h2>The Broader Publix Strategy</h2>
+
+            <p>This acquisition fits a pattern I've been tracking for clients interested in commercial real estate fundamentals. Since May 2024, Publix has acquired shopping centers across Florida totaling approximately $560 million:</p>
+
+            <div class="info-box">
+                <h3>Recent Publix Acquisitions</h3>
+                <ul>
+                    <li><strong>Hammocks Town Center</strong> (Kendall): $71.9 million, October 2025</li>
+                    <li><strong>Polo Club Shops</strong> (Boca Raton): $83 million, December 2025</li>
+                    <li><strong>North Miami Shopping Center</strong>: $40 million, January 2025</li>
+                    <li><strong>Key Plaza Shopping Center</strong> (Key West): $74.5 million, March 2024</li>
+                    <li><strong>Ramblewood Square</strong> (Coral Springs): $58.5 million, May 2024</li>
+                    <li><strong>Maury L. Carter Portfolio</strong> (6 centers): $130.4 million, January 2026</li>
+                </ul>
+            </div>
+
+            <p>Store ownership has climbed from 11.2% in 2007 to nearly 35% today, with Publix now controlling over 545 stores and shopping centers. The strategy delivers multiple advantages: eliminated rent expense, rental income from co-tenants (which grew from $95 million in 2015 to $158 million by 2017), significant tax benefits, and complete control over the tenant mix surrounding their stores.</p>
+
+            <h2>Impact on Polo Club Home Values</h2>
+
+            <p>For homeowners in the Polo Club community, this transaction provides meaningful reassurance about long-term retail stability. The community's median home price reached $1.157 million in December 2024, up 20.6% year-over-year, with homes selling in an average of just 8 days.</p>
+
+            <p>Academic research supports what we observe locally. ATTOM Data's "Grocery Store Wars" analysis found homes near premium grocers appreciate faster than national averages. Yale University research confirmed supermarkets positively affect home values at 1-mile, 3-mile, and 5-mile radii.</p>
+
+            <table class="data-table">
+                <tr>
+                    <th>Property</th>
+                    <th>Sale Price</th>
+                    <th>Price/SF</th>
+                    <th>Date</th>
+                </tr>
+                <tr>
+                    <td>Polo Club Shops (Boca Raton)</td>
+                    <td>$83.0M</td>
+                    <td>$616</td>
+                    <td>Dec 2025</td>
+                </tr>
+                <tr>
+                    <td>Uptown Boca (Whole Foods)</td>
+                    <td>$118.5M</td>
+                    <td>$608</td>
+                    <td>Sep 2025</td>
+                </tr>
+                <tr>
+                    <td>Boynton Beach Marketplace</td>
+                    <td>$49.2M</td>
+                    <td>$712</td>
+                    <td>Jan 2025</td>
+                </tr>
+                <tr>
+                    <td>Shadowwood Square (Boca Raton)</td>
+                    <td>$88.4M</td>
+                    <td>$365</td>
+                    <td>Aug 2023</td>
+                </tr>
+            </table>
+
+            <h2>South Florida Retail Market Context</h2>
+
+            <p>The transaction occurs against a backdrop of exceptional retail fundamentals. South Florida retail vacancy rates hover at just 3.2%, well below the national average of 5.8%, and have held below 4% for eleven consecutive quarters. Palm Beach County retail rents average $29-38 per square foot with year-over-year growth exceeding 5%.</p>
+
+            <p>Cap rates for premium grocery-anchored retail have compressed to approximately 5.8% for Publix, Whole Foods, and Trader Joe's locations compared to 7.1% for mid-tier grocers. Palm Beach/Boca Raton specifically shows 4.98% cap rates, representing the highest profitability among major South Florida markets.</p>
+
+            <p>Grocery-anchored retail has become what industry analysts call the "bulletproof class" of commercial real estate investment. Kevin Fryman of Hanley Investment Group summarized institutional sentiment: "Investor demand for grocery-anchored retail centers remains exceptionally strong, driven by the stability and daily traffic that grocers like Publix generate."</p>
+
+            <h2>What This Means for Our Community</h2>
+
+            <p>The Polo Club Shops acquisition represents more than a commercial real estate transaction. By converting their tenant relationship into an ownership position, Publix has made a long-term commitment to this location that provides stability for the surrounding residential communities.</p>
+
+            <p>For Polo Club, St. Andrews, and nearby neighborhood residents, Publix ownership effectively guarantees anchor tenant stability for the foreseeable future. Combined with the shopping center's strong tenant mix and recent improvements, this transaction reinforces the area's position as one of South Florida's most desirable residential corridors.</p>
+
+            <p>As always, I'm happy to discuss how these commercial developments affect residential property values in our luxury communities. The relationship between quality retail amenities and home values is something I track closely for clients throughout the West Boca market.</p>
+        </article>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h3>Questions About the Boca Raton Market?</h3>
+            <p>Whether you're considering buying, selling, or simply want to understand how developments like this affect your property value, I'm here to help.</p>
+            <a href="https://bogenhomes.com/contact" class="cta-button">Contact Edmund Bogen</a>
+        </div>
+
+        <!-- Author Bio -->
+        <div class="author-bio">
+            <img src="https://edmundbogen.github.io/edmund-profile.png" alt="Edmund Bogen" class="author-image">
+            <div class="author-info">
+                <h3>Edmund Bogen</h3>
+                <p class="author-title">Luxury Real Estate Specialist | Douglas Elliman</p>
+                <p>Edmund Bogen leads The Edmund Bogen Team at Douglas Elliman, specializing in luxury properties throughout South Florida's most prestigious communities including St. Andrew's Country Club, The Polo Club, and Boca West. With deep expertise in the West Boca Raton market, Edmund provides clients with data-driven insights and white-glove service for their most significant real estate decisions.</p>
+                <p>A recognized authority on South Florida luxury real estate, Edmund hosts Edmund's Mastermind, a community of over 14,000 real estate professionals dedicated to excellence in the industry.</p>
+                <div class="author-contact">
+                    <a href="tel:561-235-7575">561-235-7575</a>
+                    <a href="mailto:edmund@bogenhomes.com">edmund@bogenhomes.com</a>
+                    <a href="https://bogenhomes.com">bogenhomes.com</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-brand">The Edmund Bogen Team | Douglas Elliman</div>
+        <p class="footer-disclaimer">© 2026 The Edmund Bogen Team. All rights reserved. Douglas Elliman Real Estate. Equal Housing Opportunity. This article is provided for general informational purposes only and should not be construed as legal, financial, or professional advice. All real estate transactions are subject to applicable laws and regulations.</p>
+    </footer>
+</body>
+</html>
