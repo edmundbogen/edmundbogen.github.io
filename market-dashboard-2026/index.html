@@ -206,110 +206,67 @@
             color: #666666;
         }
 
-        /* Featured Listing */
-        .featured-listing {
-            background-color: #ffffff;
-            margin-bottom: 40px;
-            overflow: hidden;
-        }
-
-        .featured-listing-header {
-            background-color: #1a3e5c;
-            padding: 25px 40px;
-            text-align: center;
-        }
-
-        .featured-listing-header h2 {
-            color: #ffffff;
-            font-size: 20px;
-            font-weight: 300;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 5px;
-        }
-
-        .featured-listing-header p {
-            color: rgba(255,255,255,0.8);
-            font-size: 14px;
-            font-style: italic;
-        }
-
-        .featured-listing-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-        }
-
-        .featured-listing-image {
-            width: 100%;
-            height: 100%;
-            min-height: 400px;
-            object-fit: cover;
-        }
-
-        .featured-listing-details {
-            padding: 40px;
-        }
-
-        .listing-badge {
+        .stat-status {
             display: inline-block;
             background-color: #00a8e1;
             color: #ffffff;
-            padding: 5px 12px;
-            font-size: 11px;
+            padding: 4px 12px;
+            font-size: 10px;
             font-weight: 600;
             letter-spacing: 1px;
             text-transform: uppercase;
-            margin-bottom: 15px;
+            margin-top: 15px;
         }
 
-        .listing-address {
-            color: #1a3e5c;
-            font-size: 24px;
-            font-weight: 400;
-            margin-bottom: 5px;
+        /* Charts Section */
+        .charts-section {
+            background-color: #ffffff;
+            padding: 40px;
+            margin-bottom: 40px;
         }
 
-        .listing-location {
-            color: #666666;
-            font-size: 14px;
-            margin-bottom: 15px;
-        }
-
-        .listing-price {
-            color: #1a3e5c;
-            font-size: 36px;
-            font-weight: 300;
-            margin-bottom: 25px;
-        }
-
-        .listing-specs {
-            border-top: 1px solid #e8e8e8;
-            padding-top: 20px;
-            margin-bottom: 20px;
-        }
-
-        .listing-spec {
+        .chart-tabs {
             display: flex;
-            justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px solid #e8e8e8;
-            font-size: 14px;
+            justify-content: center;
+            gap: 0;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e8e8e8;
         }
 
-        .listing-spec-label {
+        .chart-tab {
+            padding: 12px 30px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
             color: #666666;
+            background: none;
+            border: none;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .listing-spec-value {
-            color: #333333;
-            font-weight: 500;
+        .chart-tab:hover {
+            color: #1a3e5c;
         }
 
-        .listing-description {
-            color: #555555;
-            font-size: 14px;
-            line-height: 1.7;
-            margin-bottom: 25px;
+        .chart-tab.active {
+            color: #1a3e5c;
+            border-bottom-color: #00a8e1;
+        }
+
+        .chart-container {
+            display: none;
+            position: relative;
+            height: 450px;
+            width: 100%;
+        }
+
+        .chart-container.active {
+            display: block;
         }
 
         /* Community Grid */
@@ -392,6 +349,13 @@
             margin-right: auto;
         }
 
+        .mastermind-cta .mastermind-image {
+            display: block;
+            max-width: 400px;
+            margin: 0 auto 25px auto;
+            border-radius: 4px;
+        }
+
         /* Author Bio */
         .author-bio {
             background-color: #ffffff;
@@ -460,6 +424,12 @@
             font-weight: 300;
             letter-spacing: 2px;
             text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .footer-address {
+            color: rgba(255,255,255,0.8);
+            font-size: 12px;
             margin-bottom: 15px;
         }
 
@@ -475,10 +445,6 @@
         @media (max-width: 1024px) {
             .community-grid {
                 grid-template-columns: repeat(2, 1fr);
-            }
-
-            .featured-listing-content {
-                grid-template-columns: 1fr;
             }
         }
 
@@ -512,6 +478,19 @@
             .featured-article-title {
                 font-size: 22px;
             }
+
+            .chart-tabs {
+                flex-wrap: wrap;
+            }
+
+            .chart-tab {
+                padding: 10px 20px;
+                font-size: 11px;
+            }
+
+            .chart-container {
+                height: 350px;
+            }
         }
     </style>
 </head>
@@ -519,15 +498,16 @@
 
     <!-- Header -->
     <header class="header">
+        <img src="https://edmundbogen.github.io/market-dashboard-2026/EBT-Logo-WHITE-V.png" alt="The Edmund Bogen Team" style="height: 60px; margin-bottom: 15px;">
         <p class="header-logo">The Edmund Bogen Team</p>
         <h1 class="header-title">Luxury Communities Market Intelligence Dashboard</h1>
         <p class="header-subtitle">South Florida's Premier Real Estate Analytics</p>
-        <p class="header-date">Updated January 21, 2026 | Market Data Current</p>
+        <p class="header-date">Updated February 18, 2026 | Market Data Current</p>
     </header>
 
     <!-- St. Andrews CTA -->
     <div class="st-andrews-cta">
-        <a href="st-andrews.html">View All St. Andrews Country Club Listings →</a>
+        <a href="https://edmundbogen.github.io/weekly-email-february-18-2026/st-andrews-listings.html">View All St. Andrews Country Club Listings &rarr;</a>
     </div>
 
     <!-- Main Container -->
@@ -535,17 +515,17 @@
 
         <!-- Featured Article -->
         <section class="featured-article">
-            <a href="https://edmundbogen.github.io/publix-polo-club-shops/">
-                <img src="https://edmundbogen.github.io/publix-polo-club-shops/hero-image.png" alt="Publix Acquires Polo Club Shops for $83 Million" class="featured-article-image">
+            <a href="https://edmundbogen.github.io/weekly-email-february-18-2026/ny-tax-crisis-article.html">
+                <img src="https://edmundbogen.github.io/weekly-email-february-18-2026/ny-tax-crisis-hero.png" alt="New York's Tax Crisis Is South Florida's Gain" class="featured-article-image">
             </a>
             <div class="featured-article-content">
-                <p class="featured-article-category">Commercial Real Estate Analysis</p>
+                <p class="featured-article-category">Tax Policy &amp; Migration Analysis</p>
                 <h2 class="featured-article-title">
-                    <a href="https://edmundbogen.github.io/publix-polo-club-shops/">Publix's $83 Million Polo Club Shops Acquisition: What It Means for Boca Raton</a>
+                    <a href="https://edmundbogen.github.io/weekly-email-february-18-2026/ny-tax-crisis-article.html">New York's Tax Crisis Is South Florida's Gain &mdash; And It's Just Getting Started</a>
                 </h2>
-                <p class="featured-article-meta">By Edmund Bogen | January 21, 2026</p>
-                <p class="featured-article-summary">Publix Super Markets has purchased Polo Club Shops for $83 million, delivering a 64% return to seller Jamestown Properties and transforming Publix from tenant to landlord at one of southern Palm Beach County's most stable retail centers.</p>
-                <a href="https://edmundbogen.github.io/publix-polo-club-shops/" class="btn-primary">Read Full Analysis</a>
+                <p class="featured-article-meta">By Edmund Bogen | February 18, 2026</p>
+                <p class="featured-article-summary">New York City Mayor Zohran Mamdani has proposed a 9.5% property tax increase &mdash; the largest since post-9/11. Whether it passes or not, every path leads to Florida. Edmund Bogen breaks down the tax math, the migration data, and what it means for luxury real estate in Palm Beach County.</p>
+                <a href="https://edmundbogen.github.io/weekly-email-february-18-2026/ny-tax-crisis-article.html" class="btn-primary">Read Full Analysis</a>
             </div>
         </section>
 
@@ -554,67 +534,39 @@
             <h2 class="section-title">Executive Market Summary</h2>
             <div class="stats-grid">
                 <div class="stat-card">
-                    <p class="stat-number">$1.9M-$16.2M</p>
+                    <p class="stat-number">$1.9M&ndash;$16.16M</p>
                     <p class="stat-label">St. Andrews Range</p>
                 </div>
                 <div class="stat-card">
-                    <p class="stat-number">10</p>
+                    <p class="stat-number">9</p>
                     <p class="stat-label">St. Andrews Active</p>
                 </div>
                 <div class="stat-card">
-                    <p class="stat-number">295</p>
+                    <p class="stat-number">275</p>
                     <p class="stat-label">Total Active</p>
                 </div>
                 <div class="stat-card">
-                    <p class="stat-number">33</p>
+                    <p class="stat-number">83</p>
                     <p class="stat-label">Sold YTD</p>
                 </div>
             </div>
+            <div style="text-align: center;">
+                <span class="stat-status">Migration Surge</span>
+            </div>
         </section>
 
-        <!-- Featured Listing: The World Beyond St. Andrews -->
-        <section class="featured-listing">
-            <div class="featured-listing-header">
-                <h2>The World Beyond St. Andrews</h2>
-                <p>A stunning luxury listing outside the gates of St. Andrews Country Club</p>
+        <!-- Interactive Charts Section -->
+        <section class="charts-section">
+            <h2 class="section-title">Market Analytics</h2>
+            <div class="chart-tabs">
+                <button class="chart-tab active" onclick="switchTab('absorption')">Absorption Rates</button>
+                <button class="chart-tab" onclick="switchTab('inventory')">Inventory Analysis</button>
             </div>
-            <div class="featured-listing-content">
-                <a href="https://bogenhomes.com/homes-for-sale-details/200-E-PALMETTO-PARK-ROAD-712-BOCA-RATON-FL-33432/RX-11134333/43/">
-                    <img src="https://cdn.photos.sparkplatform.com/fl/20251022005343078366000000-o.jpg" alt="200 E Palmetto Park Road #712" class="featured-listing-image">
-                </a>
-                <div class="featured-listing-details">
-                    <span class="listing-badge">Edmund's Listing</span>
-                    <h3 class="listing-address">200 E Palmetto Park Road #712</h3>
-                    <p class="listing-location">Boca Raton, FL 33432</p>
-                    <p class="listing-price">$2,795,000</p>
-
-                    <div class="listing-specs">
-                        <div class="listing-spec">
-                            <span class="listing-spec-label">Bedrooms</span>
-                            <span class="listing-spec-value">2</span>
-                        </div>
-                        <div class="listing-spec">
-                            <span class="listing-spec-label">Bathrooms</span>
-                            <span class="listing-spec-value">2.5</span>
-                        </div>
-                        <div class="listing-spec">
-                            <span class="listing-spec-label">Living SqFt</span>
-                            <span class="listing-spec-value">2,265</span>
-                        </div>
-                        <div class="listing-spec">
-                            <span class="listing-spec-label">Year Built</span>
-                            <span class="listing-spec-value">2009</span>
-                        </div>
-                        <div class="listing-spec">
-                            <span class="listing-spec-label">MLS#</span>
-                            <span class="listing-spec-value">RX-11134333</span>
-                        </div>
-                    </div>
-
-                    <p class="listing-description">Newly completed, high-design renovation featuring split-bedroom layout, European kitchen, custom walk-in closets, and an expansive balcony with city views. 7th floor luxury living with 24-hour concierge, valet parking, pool deck, and fitness center.</p>
-
-                    <a href="https://bogenhomes.com/homes-for-sale-details/200-E-PALMETTO-PARK-ROAD-712-BOCA-RATON-FL-33432/RX-11134333/43/" class="btn-primary">View Details</a>
-                </div>
+            <div class="chart-container active" id="chart-absorption">
+                <canvas id="absorptionChart"></canvas>
+            </div>
+            <div class="chart-container" id="chart-inventory">
+                <canvas id="inventoryChart"></canvas>
             </div>
         </section>
 
@@ -626,11 +578,11 @@
                     <p class="community-name">St. Andrews Country Club</p>
                     <div class="community-stats">
                         <div class="community-stat">
-                            <p class="community-stat-number">10</p>
+                            <p class="community-stat-number">9</p>
                             <p class="community-stat-label">Active</p>
                         </div>
                         <div class="community-stat">
-                            <p class="community-stat-number">0</p>
+                            <p class="community-stat-number">1</p>
                             <p class="community-stat-label">Sold YTD</p>
                         </div>
                     </div>
@@ -639,11 +591,11 @@
                     <p class="community-name">Addison Reserve</p>
                     <div class="community-stats">
                         <div class="community-stat">
-                            <p class="community-stat-number">16</p>
+                            <p class="community-stat-number">13</p>
                             <p class="community-stat-label">Active</p>
                         </div>
                         <div class="community-stat">
-                            <p class="community-stat-number">3</p>
+                            <p class="community-stat-number">5</p>
                             <p class="community-stat-label">Sold YTD</p>
                         </div>
                     </div>
@@ -652,11 +604,11 @@
                     <p class="community-name">The Oaks</p>
                     <div class="community-stats">
                         <div class="community-stat">
-                            <p class="community-stat-number">10</p>
+                            <p class="community-stat-number">9</p>
                             <p class="community-stat-label">Active</p>
                         </div>
                         <div class="community-stat">
-                            <p class="community-stat-number">3</p>
+                            <p class="community-stat-number">8</p>
                             <p class="community-stat-label">Sold YTD</p>
                         </div>
                     </div>
@@ -678,11 +630,11 @@
                     <p class="community-name">The Bridges</p>
                     <div class="community-stats">
                         <div class="community-stat">
-                            <p class="community-stat-number">11</p>
+                            <p class="community-stat-number">10</p>
                             <p class="community-stat-label">Active</p>
                         </div>
                         <div class="community-stat">
-                            <p class="community-stat-number">1</p>
+                            <p class="community-stat-number">2</p>
                             <p class="community-stat-label">Sold YTD</p>
                         </div>
                     </div>
@@ -691,11 +643,11 @@
                     <p class="community-name">Seven Bridges</p>
                     <div class="community-stats">
                         <div class="community-stat">
-                            <p class="community-stat-number">11</p>
+                            <p class="community-stat-number">9</p>
                             <p class="community-stat-label">Active</p>
                         </div>
                         <div class="community-stat">
-                            <p class="community-stat-number">1</p>
+                            <p class="community-stat-number">3</p>
                             <p class="community-stat-label">Sold YTD</p>
                         </div>
                     </div>
@@ -704,24 +656,24 @@
                     <p class="community-name">Boca Grove</p>
                     <div class="community-stats">
                         <div class="community-stat">
-                            <p class="community-stat-number">14</p>
+                            <p class="community-stat-number">16</p>
                             <p class="community-stat-label">Active</p>
                         </div>
                         <div class="community-stat">
-                            <p class="community-stat-number">0</p>
+                            <p class="community-stat-number">2</p>
                             <p class="community-stat-label">Sold YTD</p>
                         </div>
                     </div>
                 </div>
                 <div class="community-card">
-                    <p class="community-name">Boca West</p>
+                    <p class="community-name">Boca West Country Club</p>
                     <div class="community-stats">
                         <div class="community-stat">
-                            <p class="community-stat-number">49</p>
+                            <p class="community-stat-number">39</p>
                             <p class="community-stat-label">Active</p>
                         </div>
                         <div class="community-stat">
-                            <p class="community-stat-number">10</p>
+                            <p class="community-stat-number">16</p>
                             <p class="community-stat-label">Sold YTD</p>
                         </div>
                     </div>
@@ -743,11 +695,11 @@
                     <p class="community-name">Lotus</p>
                     <div class="community-stats">
                         <div class="community-stat">
-                            <p class="community-stat-number">22</p>
+                            <p class="community-stat-number">18</p>
                             <p class="community-stat-label">Active</p>
                         </div>
                         <div class="community-stat">
-                            <p class="community-stat-number">2</p>
+                            <p class="community-stat-number">6</p>
                             <p class="community-stat-label">Sold YTD</p>
                         </div>
                     </div>
@@ -756,11 +708,11 @@
                     <p class="community-name">Bocaire Country Club</p>
                     <div class="community-stats">
                         <div class="community-stat">
-                            <p class="community-stat-number">12</p>
+                            <p class="community-stat-number">9</p>
                             <p class="community-stat-label">Active</p>
                         </div>
                         <div class="community-stat">
-                            <p class="community-stat-number">1</p>
+                            <p class="community-stat-number">5</p>
                             <p class="community-stat-label">Sold YTD</p>
                         </div>
                     </div>
@@ -782,11 +734,11 @@
                     <p class="community-name">Polo Club</p>
                     <div class="community-stats">
                         <div class="community-stat">
-                            <p class="community-stat-number">16</p>
+                            <p class="community-stat-number">11</p>
                             <p class="community-stat-label">Active</p>
                         </div>
                         <div class="community-stat">
-                            <p class="community-stat-number">3</p>
+                            <p class="community-stat-number">8</p>
                             <p class="community-stat-label">Sold YTD</p>
                         </div>
                     </div>
@@ -799,7 +751,7 @@
                             <p class="community-stat-label">Active</p>
                         </div>
                         <div class="community-stat">
-                            <p class="community-stat-number">1</p>
+                            <p class="community-stat-number">3</p>
                             <p class="community-stat-label">Sold YTD</p>
                         </div>
                     </div>
@@ -821,7 +773,20 @@
                     <p class="community-name">Broken Sound</p>
                     <div class="community-stats">
                         <div class="community-stat">
-                            <p class="community-stat-number">29</p>
+                            <p class="community-stat-number">27</p>
+                            <p class="community-stat-label">Active</p>
+                        </div>
+                        <div class="community-stat">
+                            <p class="community-stat-number">11</p>
+                            <p class="community-stat-label">Sold YTD</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="community-card">
+                    <p class="community-name">Royal Palm Yacht Club</p>
+                    <div class="community-stats">
+                        <div class="community-stat">
+                            <p class="community-stat-number">38</p>
                             <p class="community-stat-label">Active</p>
                         </div>
                         <div class="community-stat">
@@ -831,23 +796,10 @@
                     </div>
                 </div>
                 <div class="community-card">
-                    <p class="community-name">Royal Palm Yacht Club</p>
-                    <div class="community-stats">
-                        <div class="community-stat">
-                            <p class="community-stat-number">37</p>
-                            <p class="community-stat-label">Active</p>
-                        </div>
-                        <div class="community-stat">
-                            <p class="community-stat-number">0</p>
-                            <p class="community-stat-label">Sold YTD</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="community-card">
                     <p class="community-name">Le Lac</p>
                     <div class="community-stats">
                         <div class="community-stat">
-                            <p class="community-stat-number">1</p>
+                            <p class="community-stat-number">0</p>
                             <p class="community-stat-label">Active</p>
                         </div>
                         <div class="community-stat">
@@ -860,11 +812,11 @@
                     <p class="community-name">Seasons</p>
                     <div class="community-stats">
                         <div class="community-stat">
-                            <p class="community-stat-number">8</p>
+                            <p class="community-stat-number">5</p>
                             <p class="community-stat-label">Active</p>
                         </div>
                         <div class="community-stat">
-                            <p class="community-stat-number">0</p>
+                            <p class="community-stat-number">1</p>
                             <p class="community-stat-label">Sold YTD</p>
                         </div>
                     </div>
@@ -873,11 +825,11 @@
                     <p class="community-name">Woodfield</p>
                     <div class="community-stats">
                         <div class="community-stat">
-                            <p class="community-stat-number">9</p>
+                            <p class="community-stat-number">13</p>
                             <p class="community-stat-label">Active</p>
                         </div>
                         <div class="community-stat">
-                            <p class="community-stat-number">4</p>
+                            <p class="community-stat-number">7</p>
                             <p class="community-stat-label">Sold YTD</p>
                         </div>
                     </div>
@@ -890,7 +842,7 @@
                             <p class="community-stat-label">Active</p>
                         </div>
                         <div class="community-stat">
-                            <p class="community-stat-number">0</p>
+                            <p class="community-stat-number">1</p>
                             <p class="community-stat-label">Sold YTD</p>
                         </div>
                     </div>
@@ -900,6 +852,7 @@
 
         <!-- Mastermind CTA -->
         <section class="mastermind-cta">
+            <img src="https://edmundbogen.github.io/mastermind-thumbnail.png" alt="Edmund's Mastermind" class="mastermind-image">
             <h2>Edmund's Mastermind</h2>
             <p>Join 14,000+ real estate professionals dedicated to excellence in the industry.</p>
             <a href="https://www.bogen.ai/contact?tab=client" class="btn-primary">Join the Community</a>
@@ -911,7 +864,7 @@
             <div class="author-info">
                 <h3>Edmund Bogen</h3>
                 <p class="author-title">Luxury Real Estate Specialist | Douglas Elliman</p>
-                <p>Edmund Bogen leads The Edmund Bogen Team at Douglas Elliman, specializing in luxury properties throughout South Florida's most prestigious communities including St. Andrew's Country Club, The Polo Club, and Boca West. With deep expertise in the West Boca Raton market, Edmund provides clients with data-driven insights and white-glove service for their most significant real estate decisions.</p>
+                <p>Edmund Bogen leads The Edmund Bogen Team at Douglas Elliman, specializing in luxury properties throughout South Florida's most prestigious communities including St. Andrews Country Club, The Polo Club, and Boca West. With deep expertise in the West Boca Raton market, Edmund provides clients with data-driven insights and white-glove service for their most significant real estate decisions.</p>
                 <div class="author-contact">
                     <a href="tel:561-235-7575">561-235-7575</a>
                     <a href="mailto:edmund@bogenhomes.com">edmund@bogenhomes.com</a>
@@ -925,8 +878,184 @@
     <!-- Footer -->
     <footer class="footer">
         <p class="footer-brand">The Edmund Bogen Team | Douglas Elliman</p>
-        <p class="footer-disclaimer">© 2026 The Edmund Bogen Team. All rights reserved. Douglas Elliman Real Estate. Equal Housing Opportunity. This dashboard is provided for general informational purposes only and should not be construed as legal, financial, or professional advice.</p>
+        <p class="footer-address">1111 LINCOLN RD, MIAMI BEACH, FL 33139 | 305.695.6300</p>
+        <p class="footer-disclaimer">&copy; 2018 DOUGLAS ELLIMAN REAL ESTATE. ALL MATERIAL PRESENTED HEREIN IS INTENDED FOR INFORMATION PURPOSES ONLY. WHILE, THIS INFORMATION IS BELIEVED TO BE CORRECT, IT IS REPRESENTED SUBJECT TO ERRORS, OMISSIONS, CHANGES OR WITHDRAWAL WITHOUT NOTICE. ALL PROPERTY INFORMATION, INCLUDING, BUT NOT LIMITED TO SQUARE FOOTAGE, ROOM COUNT, NUMBER OF BEDROOMS AND THE SCHOOL DISTRICT IN PROPERTY LISTINGS SHOULD BE VERIFIED BY YOUR OWN ATTORNEY, ARCHITECT OR ZONING EXPERT. IF YOUR PROPERTY IS CURRENTLY LISTED WITH ANOTHER REAL ESTATE BROKER, PLEASE DISREGARD THIS OFFER. IT IS NOT OUR INTENTION TO SOLICIT THE OFFERINGS OF OTHER REAL ESTATE BROKERS. WE COOPERATE WITH THEM FULLY. EQUAL HOUSING OPPORTUNITY.</p>
     </footer>
+
+    <!-- Chart.js Scripts -->
+    <script>
+        // Tab switching
+        function switchTab(tabName) {
+            // Update tab buttons
+            document.querySelectorAll('.chart-tab').forEach(function(tab) {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Update chart containers
+            document.querySelectorAll('.chart-container').forEach(function(container) {
+                container.classList.remove('active');
+            });
+            document.getElementById('chart-' + tabName).classList.add('active');
+        }
+
+        // Community data
+        var communities = [
+            'The Oaks', 'Polo Club', 'Bocaire', 'Woodfield', 'Mizner CC',
+            'Boca West', 'Broken Sound', 'Addison Reserve', 'Lotus',
+            'Seven Bridges', 'The Bridges', 'Seasons', 'Boca Grove',
+            'St. Andrews', 'Royal Palm YC', 'Stonebridge'
+        ];
+        var absorptionRates = [89, 73, 56, 54, 43, 41, 41, 38, 33, 33, 20, 20, 13, 11, 11, 8];
+
+        // Color coding based on absorption rate
+        var absorptionColors = absorptionRates.map(function(rate) {
+            if (rate >= 50) return '#00a8e1';
+            if (rate >= 25) return '#1a3e5c';
+            return '#a0aec0';
+        });
+
+        // Absorption Rates Chart
+        var absorptionCtx = document.getElementById('absorptionChart').getContext('2d');
+        new Chart(absorptionCtx, {
+            type: 'bar',
+            data: {
+                labels: communities,
+                datasets: [{
+                    label: 'Absorption Rate (%)',
+                    data: absorptionRates,
+                    backgroundColor: absorptionColors,
+                    borderWidth: 0,
+                    borderRadius: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: '#1a3e5c',
+                        titleFont: { family: 'Montserrat', size: 13, weight: '500' },
+                        bodyFont: { family: 'Montserrat', size: 12 },
+                        padding: 12,
+                        callbacks: {
+                            label: function(context) {
+                                return 'Absorption Rate: ' + context.raw + '%';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            font: { family: 'Montserrat', size: 11 },
+                            color: '#666666',
+                            callback: function(value) { return value + '%'; }
+                        },
+                        grid: {
+                            color: '#e8e8e8'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            font: { family: 'Montserrat', size: 10 },
+                            color: '#666666',
+                            maxRotation: 45,
+                            minRotation: 45
+                        },
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
+
+        // Inventory Analysis Chart
+        var inventoryCommunities = [
+            'Boca West', 'Royal Palm YC', 'Broken Sound', 'Lotus', 'Boca Grove',
+            'Addison Reserve', 'Woodfield', 'Boca Bridges', 'Stonebridge',
+            'Polo Club', 'The Bridges', 'The Sanctuary', 'St. Andrews',
+            'The Oaks', 'Bocaire', 'Seven Bridges', 'Mizner CC',
+            'Long Lake', 'Seasons', 'Delaire', 'Le Lac'
+        ];
+        var activeListings = [39, 38, 27, 18, 16, 13, 13, 12, 12, 11, 10, 10, 9, 9, 9, 9, 7, 5, 5, 4, 0];
+        var soldYTD = [16, 4, 11, 6, 2, 5, 7, 0, 1, 8, 2, 0, 1, 8, 5, 3, 3, 0, 1, 0, 0];
+
+        var inventoryCtx = document.getElementById('inventoryChart').getContext('2d');
+        new Chart(inventoryCtx, {
+            type: 'bar',
+            data: {
+                labels: inventoryCommunities,
+                datasets: [
+                    {
+                        label: 'Active Listings',
+                        data: activeListings,
+                        backgroundColor: '#1a3e5c',
+                        borderWidth: 0,
+                        borderRadius: 2
+                    },
+                    {
+                        label: 'Sold YTD',
+                        data: soldYTD,
+                        backgroundColor: '#00a8e1',
+                        borderWidth: 0,
+                        borderRadius: 2
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            font: { family: 'Montserrat', size: 12, weight: '500' },
+                            color: '#333333',
+                            padding: 20,
+                            usePointStyle: true,
+                            pointStyle: 'rect'
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: '#1a3e5c',
+                        titleFont: { family: 'Montserrat', size: 13, weight: '500' },
+                        bodyFont: { family: 'Montserrat', size: 12 },
+                        padding: 12
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            font: { family: 'Montserrat', size: 11 },
+                            color: '#666666'
+                        },
+                        grid: {
+                            color: '#e8e8e8'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            font: { family: 'Montserrat', size: 10 },
+                            color: '#666666',
+                            maxRotation: 45,
+                            minRotation: 45
+                        },
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
+    </script>
 
 </body>
 </html>

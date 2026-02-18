@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New York's Tax Crisis Is South Florida's Gain — And It's Just Getting Started | The Edmund Bogen Team</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            font-size: 17px;
+            line-height: 1.75;
+            color: #333333;
+            background-color: #ffffff;
+        }
+
+        /* ── Navigation ── */
+        .nav-header {
+            background-color: #1a3e5c;
+            padding: 16px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .nav-logo {
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: none;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .nav-logo span {
+            font-weight: 300;
+            font-size: 12px;
+            display: block;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #00a8e1;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 560px;
+            margin-top: 72px;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(26, 62, 92, 0.45) 0%,
+                rgba(26, 62, 92, 0.60) 60%,
+                rgba(26, 62, 92, 0.85) 100%
+            );
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 60px 80px;
+        }
+
+        .hero-title {
+            color: #ffffff;
+            font-weight: 300;
+            font-size: 42px;
+            line-height: 1.2;
+            letter-spacing: 1px;
+            max-width: 800px;
+        }
+
+        /* ── Article Header ── */
+        .article-header {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 48px 24px 0;
+        }
+
+        .category-label {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #00a8e1;
+            border-bottom: 2px solid #00a8e1;
+            padding-bottom: 4px;
+            margin-bottom: 20px;
+        }
+
+        .article-title {
+            font-weight: 300;
+            font-size: 36px;
+            line-height: 1.25;
+            color: #1a3e5c;
+            letter-spacing: 0.5px;
+            margin-bottom: 24px;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 14px;
+            color: #666666;
+            padding-bottom: 32px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        .article-meta .author-name {
+            font-weight: 600;
+            color: #1a3e5c;
+        }
+
+        .article-meta .divider {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background-color: #cccccc;
+        }
+
+        /* ── Key Stats ── */
+        .key-stats {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        .key-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            border: 1px solid #e8e8e8;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 32px 20px;
+            background-color: #f4f4f4;
+        }
+
+        .stat-card:nth-child(2) {
+            border-left: 1px solid #e8e8e8;
+            border-right: 1px solid #e8e8e8;
+        }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: #1a3e5c;
+            line-height: 1.1;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #666666;
+            line-height: 1.4;
+        }
+
+        /* ── Article Body ── */
+        .article-body {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+        }
+
+        .article-body p {
+            margin-bottom: 24px;
+            font-size: 17px;
+            line-height: 1.78;
+            color: #333333;
+        }
+
+        .article-body h2 {
+            font-weight: 300;
+            font-size: 26px;
+            color: #1a3e5c;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 48px;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e8e8e8;
+        }
+
+        .article-body strong {
+            font-weight: 600;
+            color: #1a3e5c;
+        }
+
+        /* ── Pull Quote ── */
+        .pull-quote {
+            border-left: 4px solid #00a8e1;
+            margin: 40px 0;
+            padding: 24px 32px;
+            background-color: #f4f4f4;
+        }
+
+        .pull-quote p {
+            font-size: 20px;
+            font-weight: 500;
+            font-style: italic;
+            color: #1a3e5c;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* ── Data Table ── */
+        .data-table-wrapper {
+            margin: 32px 0;
+            overflow-x: auto;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 15px;
+        }
+
+        .data-table thead th {
+            background-color: #1a3e5c;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 14px 20px;
+            text-align: left;
+        }
+
+        .data-table tbody td {
+            padding: 14px 20px;
+            border-bottom: 1px solid #e8e8e8;
+            color: #333333;
+        }
+
+        .data-table tbody tr:nth-child(even) {
+            background-color: #f4f4f4;
+        }
+
+        .data-table tbody tr:hover {
+            background-color: #eaf6fc;
+        }
+
+        .data-table .number {
+            font-weight: 600;
+            color: #1a3e5c;
+            text-align: right;
+        }
+
+        /* ── Tax Savings List ── */
+        .tax-savings-list {
+            margin: 24px 0 32px;
+            padding: 24px 32px;
+            background-color: #f4f4f4;
+            border-left: 4px solid #1a3e5c;
+        }
+
+        .tax-savings-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tax-savings-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .tax-savings-list li:last-child {
+            border-bottom: none;
+        }
+
+        .tax-savings-list li strong {
+            font-weight: 700;
+        }
+
+        /* ── CTA Section ── */
+        .cta-section {
+            background-color: #1a3e5c;
+            padding: 60px 24px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .cta-section h2 {
+            color: #ffffff;
+            font-weight: 300;
+            font-size: 30px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 16px;
+        }
+
+        .cta-section p {
+            color: rgba(255,255,255,0.75);
+            font-size: 16px;
+            max-width: 600px;
+            margin: 0 auto 32px;
+            line-height: 1.7;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 14px 36px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 3px;
+            transition: all 0.2s;
+        }
+
+        .cta-btn-primary {
+            background-color: #00a8e1;
+            color: #ffffff;
+        }
+
+        .cta-btn-primary:hover {
+            background-color: #008ec0;
+        }
+
+        .cta-btn-secondary {
+            background-color: transparent;
+            color: #ffffff;
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+
+        .cta-btn-secondary:hover {
+            border-color: #ffffff;
+        }
+
+        /* ── Author Bio ── */
+        .author-bio {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 48px 24px;
+            display: flex;
+            gap: 32px;
+            align-items: flex-start;
+        }
+
+        .author-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+            border: 3px solid #1a3e5c;
+        }
+
+        .author-info h3 {
+            font-weight: 700;
+            font-size: 18px;
+            color: #1a3e5c;
+            margin-bottom: 4px;
+        }
+
+        .author-info .author-title-text {
+            font-size: 13px;
+            font-weight: 500;
+            color: #00a8e1;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+
+        .author-info .author-desc {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #666666;
+            margin-bottom: 16px;
+        }
+
+        .author-contact-btns {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .author-contact-btn {
+            display: inline-block;
+            padding: 8px 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 3px;
+            transition: all 0.2s;
+        }
+
+        .author-contact-btn.phone {
+            background-color: #1a3e5c;
+            color: #ffffff;
+        }
+
+        .author-contact-btn.phone:hover {
+            background-color: #14304a;
+        }
+
+        .author-contact-btn.email {
+            background-color: #00a8e1;
+            color: #ffffff;
+        }
+
+        .author-contact-btn.email:hover {
+            background-color: #008ec0;
+        }
+
+        /* ── Footer ── */
+        .site-footer {
+            background-color: #1a3e5c;
+            padding: 40px 24px;
+            text-align: center;
+        }
+
+        .footer-brand {
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .footer-sub-brand {
+            color: rgba(255,255,255,0.5);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .footer-divider {
+            width: 60px;
+            height: 1px;
+            background-color: rgba(255,255,255,0.2);
+            margin: 0 auto 24px;
+        }
+
+        .footer-disclaimer {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 10px;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 0.3px;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .nav-header {
+                padding: 14px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                height: 400px;
+                margin-top: 60px;
+            }
+
+            .hero-overlay {
+                padding: 32px 24px;
+            }
+
+            .hero-title {
+                font-size: 28px;
+            }
+
+            .article-title {
+                font-size: 26px;
+            }
+
+            .key-stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-card:nth-child(2) {
+                border-left: none;
+                border-right: none;
+                border-top: 1px solid #e8e8e8;
+                border-bottom: 1px solid #e8e8e8;
+            }
+
+            .stat-value {
+                font-size: 30px;
+            }
+
+            .article-body h2 {
+                font-size: 20px;
+            }
+
+            .pull-quote p {
+                font-size: 17px;
+            }
+
+            .author-bio {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .author-contact-btns {
+                justify-content: center;
+            }
+
+            .data-table {
+                font-size: 13px;
+            }
+
+            .data-table thead th,
+            .data-table tbody td {
+                padding: 10px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header class="nav-header">
+        <a href="https://edmundbogen.github.io/market-dashboard-2026/" class="nav-logo">
+            The Edmund Bogen Team
+            <span>at Douglas Elliman Real Estate</span>
+        </a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="https://edmundbogen.github.io/market-dashboard-2026/">Dashboard</a></li>
+                <li><a href="https://www.bogenhomes.com">Listings</a></li>
+                <li><a href="mailto:edmund@bogenhomes.com">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <img src="https://edmundbogen.github.io/weekly-email-february-18-2026/ny-tax-crisis-hero.png" alt="New York City skyline with financial district — tax policy and migration analysis" class="hero-image">
+        <div class="hero-overlay">
+            <h1 class="hero-title">New York's Tax Crisis Is South Florida's Gain &mdash; And It's Just Getting Started</h1>
+        </div>
+    </section>
+
+    <!-- Article Header -->
+    <div class="article-header">
+        <span class="category-label">Tax Policy &amp; Migration Analysis</span>
+        <h2 class="article-title">New York's Tax Crisis Is South Florida's Gain &mdash; And It's Just Getting Started</h2>
+        <div class="article-meta">
+            <span class="author-name">Edmund Bogen</span>
+            <span class="divider"></span>
+            <span>February 18, 2026</span>
+            <span class="divider"></span>
+            <span>12 min read</span>
+        </div>
+    </div>
+
+    <!-- Key Stats -->
+    <div class="key-stats">
+        <div class="key-stats-grid">
+            <div class="stat-card">
+                <div class="stat-value">$127B</div>
+                <div class="stat-label">NYC Proposed Budget</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">125,000+</div>
+                <div class="stat-label">New Yorkers Relocated to FL</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">$14B</div>
+                <div class="stat-label">Adjusted Gross Income Migrated</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Article Body -->
+    <article class="article-body">
+
+        <p>Last Monday, New York City's new mayor, Zohran Mamdani, dropped a bombshell on every property owner in the five boroughs: a proposed 9.5% across-the-board property tax increase &mdash; the first hike of this magnitude since Mayor Bloomberg raised rates 18.5% in the aftermath of 9/11.</p>
+
+        <p>If you live here at St. Andrews or anywhere in South Florida, you might wonder why you should care about what's happening 1,200 miles north. The answer is simple: what happens to taxes in New York doesn't stay in New York. It comes here. It's been coming here for years. And this proposal &mdash; whether it passes or not &mdash; is about to accelerate that trend in ways that will directly affect our property values, our buyer pool, and the future of luxury real estate in Palm Beach County.</p>
+
+        <p>Let me break down what's actually happening and why it matters to you.</p>
+
+        <h2>What Mayor Mamdani Is Proposing</h2>
+
+        <p>On February 17th, Mamdani released a $127 billion preliminary budget for New York City &mdash; the largest in the city's history. The problem: he inherited a $5.4 billion two-year budget gap from the previous administration.</p>
+
+        <p>His solution is framed as an ultimatum with two paths.</p>
+
+        <p><strong>Path One</strong> is his preference: get Albany to authorize a 2% income tax surcharge on New Yorkers earning over $1 million and raise the state corporate tax rate from 7.25% to 11.5%. Together, his team estimates these would generate roughly $9 billion a year. But Governor Hochul &mdash; who's running for reelection this November &mdash; has firmly and repeatedly said no to any tax increases.</p>
+
+        <p><strong>Path Two</strong> is the fallback: a 9.5% property tax rate increase across every property class in the city. This would generate approximately $3.7 billion in the first year alone, hitting more than 3 million residential units and over 100,000 commercial buildings.</p>
+
+        <p>Here's what that looks like in real dollars:</p>
+
+        <div class="data-table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Property Type</th>
+                        <th>Location / Description</th>
+                        <th style="text-align:right;">Annual Tax Increase</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Homeowner</td>
+                        <td>Queens, $700K home</td>
+                        <td class="number">+$792</td>
+                    </tr>
+                    <tr>
+                        <td>Co-op Owner</td>
+                        <td>Typical Manhattan unit</td>
+                        <td class="number">+$1,140</td>
+                    </tr>
+                    <tr>
+                        <td>Small Landlord</td>
+                        <td>6-unit building, Brooklyn</td>
+                        <td class="number">+$10,635</td>
+                    </tr>
+                    <tr>
+                        <td>Commercial Office</td>
+                        <td>Mid-size, $10M valuation</td>
+                        <td class="number">+$46,395</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>The City Council Speaker has already called this "a non-starter." The Comptroller called it "regressive." Borough presidents are calling it "tone-deaf." The political reality is that the full 9.5% increase almost certainly won't pass as proposed.</p>
+
+        <p>But here's what most people are missing:</p>
+
+        <div class="pull-quote">
+            <p>"It doesn't matter which path New York chooses. Both roads lead to Florida."</p>
+        </div>
+
+        <h2>Both Paths Push Wealth South</h2>
+
+        <p>Think about this from the perspective of a successful New Yorker earning $2 million a year.</p>
+
+        <p>If the millionaire's tax passes, New York's combined state-plus-city top marginal income tax rate jumps from roughly 14.8% to approximately 16.8% &mdash; the highest in the nation by a wide margin. That same person living in Florida pays zero state income tax. The annual savings: approximately $250,000 to $280,000. That's enough to cover the carrying costs on a $5 million waterfront home down here.</p>
+
+        <p>If the property tax hike passes instead, every property class in New York faces an immediate cost increase on a base that's already at record highs. The average co-op tax per unit in New York is already at an all-time high of $9,578. Condos average $15,134. A 9.5% jump on top of those numbers changes the math for anyone weighing whether to stay.</p>
+
+        <p>And if both happen in some combination &mdash; which is the most likely outcome, a compromise involving a smaller property tax increase plus some form of wealth tax &mdash; the cumulative effect is even more persuasive for anyone with the flexibility to relocate.</p>
+
+        <p>This isn't speculation. Fox Business reported that real estate inquiries from wealthy New Yorkers about Florida properties jumped 50% after Mamdani won his primary last June. The signal was sent before he even took office. Now he's governing exactly the way people feared he would, and the phone lines are going to get busier.</p>
+
+        <h2>The Migration Numbers Tell the Story</h2>
+
+        <p>New York to Florida is already the single largest interstate migration corridor in the country. The numbers are staggering.</p>
+
+        <p>Over 125,000 New Yorkers have relocated to Florida in recent years, carrying an estimated $14 billion in adjusted gross income with them. In a single tax year (2021-22), nearly 52,000 households made the move &mdash; with an average income of approximately $185,000.</p>
+
+        <p>Roughly 41,000 of those New York transplants between 2018 and 2022 landed specifically in Miami-Dade, Palm Beach, and Broward counties, bringing an estimated $10 billion in adjusted gross income to our tri-county area.</p>
+
+        <p>New York arrivals to Florida surged 48% from 2020 to 2025 based on driver's license exchange data. And these aren't just retirees anymore. The demographic has shifted. Pre-retirees in the 55-64 bracket are the fastest-growing segment, along with remote workers and business owners who now have location flexibility that didn't exist five years ago.</p>
+
+        <p>Over the past decade, New York has lost $111 billion in net adjusted gross income to interstate migration. Florida gained $196 billion during that same period. These are not small numbers.</p>
+
+        <div class="pull-quote">
+            <p>"This is a structural shift in where American wealth lives, works, and invests."</p>
+        </div>
+
+        <h2>What This Means for Our Market</h2>
+
+        <p>The impact is already visible in our backyard. Miami-Fort Lauderdale-West Palm Beach officially surpassed New York City as the region with the most million-dollar listings in the country last December. Total dollar volume across the tri-county area jumped 13% year-over-year to $4.3 billion last September. Ultra-luxury sales of $10 million and above are on pace to approach the 2021 record.</p>
+
+        <p>Palm Beach County has earned the nickname "Wall Street South" for good reason. More than 250 financial firms have established a presence here since 2020 &mdash; Goldman Sachs, Citadel, BlackRock, Elliott Management, Point72. Stephen Ross of Related Companies has committed an estimated $10 billion to downtown West Palm Beach alone. When those firms move, their executives, their families, and their housing budgets move with them.</p>
+
+        <p>And the origin data confirms what we see on the ground: Manhattan, Nassau County, and Suffolk County were the top out-of-state sources for Southeast Florida buyers in the second quarter of 2025.</p>
+
+        <p>For those of us at St. Andrews and in the surrounding Boca Raton luxury market, this trend has real implications. Our community represents exactly what these relocating families are looking for &mdash; world-class golf, resort-level amenities, excellent schools nearby, and a lifestyle that rivals anything they had in the Northeast, without the tax burden that was paying for it.</p>
+
+        <h2>The Tax Arbitrage in Plain English</h2>
+
+        <p>Let me put the comparison in terms that hit home.</p>
+
+        <p>In New York City, the property tax system is notoriously complex, but the bottom line is this: effective tax rates vary wildly, but the overall burden is heavy and getting heavier. The city's total property tax levy for this fiscal year is approximately $38 billion &mdash; the largest single revenue source for the city at roughly 44% of all tax revenue. That's before the proposed increase.</p>
+
+        <p>In Florida, our effective property tax rate averages 0.80% to 0.98%. We have the Save Our Homes amendment that caps annual assessed value increases at 3% or CPI &mdash; whichever is lower. We have no state income tax. No estate tax. No inheritance tax.</p>
+
+        <p>Here's what the annual savings look like at different income levels when someone relocates from New York City to Florida:</p>
+
+        <div class="tax-savings-list">
+            <ul>
+                <li>At <strong>$500,000</strong> in annual income: approximately <strong>$45,000 to $55,000</strong> in annual savings</li>
+                <li>At <strong>$1 million</strong> in annual income: approximately <strong>$120,000 to $140,000</strong> in annual savings</li>
+                <li>At <strong>$2 million</strong> in annual income: approximately <strong>$250,000 to $280,000</strong> in annual savings</li>
+            </ul>
+        </div>
+
+        <p>And with the federal SALT deduction still capped at $10,000, New Yorkers can't even write off most of what they're paying. The math has never been more lopsided.</p>
+
+        <h2>A Word of Balance</h2>
+
+        <p>I wouldn't be doing my job if I didn't mention the other side of the ledger. Florida has its own cost considerations. Homeowners insurance here remains among the highest in the nation, with coastal South Florida premiums running substantially higher than the statewide average. Flood insurance costs are rising under FEMA's Risk Rating 2.0 system. And we've had 36 presidential disaster declarations since 2000 &mdash; climate risk is real and it's priced into our market.</p>
+
+        <p>But here's the distinction that matters: the ultra-luxury segment, which is where most of these relocating New Yorkers are buying, operates almost independently of those headwinds. Forty-three percent of Miami-area purchases in early 2025 were all-cash transactions. These buyers aren't sensitive to insurance premiums or mortgage rates in the same way. They're making a lifestyle and tax-optimization decision, and the numbers overwhelmingly favor Florida.</p>
+
+        <h2>Looking Ahead</h2>
+
+        <p>The most likely outcome in New York is some version of a compromise &mdash; a smaller 3-5% property tax increase combined with modest state-level wealth tax changes. Budget analysts put this scenario at roughly a 40-50% probability. But even this middle-ground outcome keeps the pressure on. The structural deficit in New York City doesn't go away. Budget projections show gaps of $6.7 to $7.1 billion persisting through 2030 regardless of what they do this year. This fight is going to repeat itself annually.</p>
+
+        <p>Every time it does, every headline about a New York tax increase functions as a reminder to high-net-worth households that there's a better option 1,200 miles south.</p>
+
+        <p>For sellers in our community: your buyer pool is expanding. The demand drivers that have fueled South Florida luxury real estate are not temporary &mdash; they're structural and they're intensifying. Pricing your home strategically in this environment means understanding that your next buyer may very well be someone doing this exact tax calculation right now.</p>
+
+        <p>For buyers: the window to purchase in premier South Florida communities before the next wave of demand arrives is worth paying attention to. The $14 billion in adjusted gross income that has already migrated from New York to South Florida is the opening chapter of this story, not the conclusion.</p>
+
+        <p>If you'd like to discuss what this means for your specific situation &mdash; whether you're considering selling, buying, or simply want to understand how these macro trends affect your property value &mdash; I'm always available for a conversation.</p>
+
+    </article>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>Questions About South Florida?</h2>
+        <p>Whether you're relocating from the Northeast or evaluating your current position in the South Florida luxury market, I'm here to provide data-driven guidance tailored to your goals.</p>
+        <div class="cta-buttons">
+            <a href="tel:5612357575" class="cta-btn cta-btn-primary">Call 561-235-7575</a>
+            <a href="mailto:edmund@bogenhomes.com" class="cta-btn cta-btn-secondary">Email Edmund</a>
+        </div>
+    </section>
+
+    <!-- Author Bio -->
+    <div class="author-bio">
+        <img src="https://edmundbogen.github.io/edmund-profile.png" alt="Edmund Bogen" class="author-photo">
+        <div class="author-info">
+            <h3>Edmund Bogen</h3>
+            <div class="author-title-text">Luxury Real Estate Advisor</div>
+            <p class="author-desc">Edmund Bogen is a luxury real estate advisor with The Edmund Bogen Team at Douglas Elliman Real Estate, specializing in South Florida's premier communities from Miami Beach to Palm Beach.</p>
+            <div class="author-contact-btns">
+                <a href="tel:5612357575" class="author-contact-btn phone">561-235-7575</a>
+                <a href="mailto:edmund@bogenhomes.com" class="author-contact-btn email">edmund@bogenhomes.com</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-brand">The Edmund Bogen Team</div>
+        <div class="footer-sub-brand">at Douglas Elliman Real Estate</div>
+        <div class="footer-divider"></div>
+        <p class="footer-disclaimer">&copy; 2018 DOUGLAS ELLIMAN REAL ESTATE. ALL MATERIAL PRESENTED HEREIN IS INTENDED FOR INFORMATION PURPOSES ONLY. WHILE, THIS INFORMATION IS BELIEVED TO BE CORRECT, IT IS REPRESENTED SUBJECT TO ERRORS, OMISSIONS, CHANGES OR WITHDRAWAL WITHOUT NOTICE. ALL PROPERTY INFORMATION, INCLUDING, BUT NOT LIMITED TO SQUARE FOOTAGE, ROOM COUNT, NUMBER OF BEDROOMS AND THE SCHOOL DISTRICT IN PROPERTY LISTINGS SHOULD BE VERIFIED BY YOUR OWN ATTORNEY, ARCHITECT OR ZONING EXPERT. IF YOUR PROPERTY IS CURRENTLY LISTED WITH ANOTHER REAL ESTATE BROKER, PLEASE DISREGARD THIS OFFER. IT IS NOT OUR INTENTION TO SOLICIT THE OFFERINGS OF OTHER REAL ESTATE BROKERS. WE COOPERATE WITH THEM FULLY. EQUAL HOUSING OPPORTUNITY.</p>
+    </footer>
+
+</body>
+</html>
