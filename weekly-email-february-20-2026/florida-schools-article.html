@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Florida's Public Schools Outperform High-Spending States Like New York and California | The Edmund Bogen Team</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            font-size: 17px;
+            line-height: 1.75;
+            color: #333333;
+            background-color: #ffffff;
+        }
+
+        /* ── Navigation ── */
+        .nav-header {
+            background-color: #1a3e5c;
+            padding: 16px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .nav-logo {
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: none;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .nav-logo span {
+            font-weight: 300;
+            font-size: 12px;
+            display: block;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #00a8e1;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 560px;
+            margin-top: 72px;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(26, 62, 92, 0.40) 0%,
+                rgba(26, 62, 92, 0.55) 60%,
+                rgba(26, 62, 92, 0.85) 100%
+            );
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 60px 80px;
+        }
+
+        .hero-title {
+            color: #ffffff;
+            font-weight: 300;
+            font-size: 42px;
+            line-height: 1.2;
+            letter-spacing: 1px;
+            max-width: 800px;
+        }
+
+        /* ── Article Header ── */
+        .article-header {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 48px 24px 0;
+        }
+
+        .category-label {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #00a8e1;
+            border-bottom: 2px solid #00a8e1;
+            padding-bottom: 4px;
+            margin-bottom: 20px;
+        }
+
+        .article-title {
+            font-weight: 300;
+            font-size: 36px;
+            line-height: 1.25;
+            color: #1a3e5c;
+            letter-spacing: 0.5px;
+            margin-bottom: 24px;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 14px;
+            color: #666666;
+            padding-bottom: 32px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        .article-meta .author-name {
+            font-weight: 600;
+            color: #1a3e5c;
+        }
+
+        .article-meta .divider {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background-color: #cccccc;
+        }
+
+        /* ── Key Stats ── */
+        .key-stats {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        .key-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            border: 1px solid #e8e8e8;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 32px 20px;
+            background-color: #f4f4f4;
+        }
+
+        .stat-card:nth-child(2) {
+            border-left: 1px solid #e8e8e8;
+            border-right: 1px solid #e8e8e8;
+        }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: #1a3e5c;
+            line-height: 1.1;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #666666;
+            line-height: 1.4;
+        }
+
+        /* ── Article Body ── */
+        .article-body {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+        }
+
+        .article-body p {
+            margin-bottom: 24px;
+            font-size: 17px;
+            line-height: 1.78;
+            color: #333333;
+        }
+
+        .article-body h2 {
+            font-weight: 300;
+            font-size: 26px;
+            color: #1a3e5c;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 48px;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e8e8e8;
+        }
+
+        .article-body strong {
+            font-weight: 600;
+            color: #1a3e5c;
+        }
+
+        /* ── Pull Quote ── */
+        .pull-quote {
+            border-left: 4px solid #00a8e1;
+            margin: 40px 0;
+            padding: 24px 32px;
+            background-color: #f4f4f4;
+        }
+
+        .pull-quote p {
+            font-size: 20px;
+            font-weight: 500;
+            font-style: italic;
+            color: #1a3e5c;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* ── Data Table ── */
+        .data-table-wrapper {
+            margin: 32px 0;
+            overflow-x: auto;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 15px;
+        }
+
+        .data-table thead th {
+            background-color: #1a3e5c;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 14px 20px;
+            text-align: left;
+        }
+
+        .data-table tbody td {
+            padding: 14px 20px;
+            border-bottom: 1px solid #e8e8e8;
+            color: #333333;
+        }
+
+        .data-table tbody tr:nth-child(even) {
+            background-color: #f4f4f4;
+        }
+
+        .data-table tbody tr:hover {
+            background-color: #eaf6fc;
+        }
+
+        .data-table .number {
+            font-weight: 600;
+            color: #1a3e5c;
+            text-align: right;
+        }
+
+        /* ── Info List Box ── */
+        .info-list-box {
+            margin: 24px 0 32px;
+            padding: 24px 32px;
+            background-color: #f4f4f4;
+            border-left: 4px solid #1a3e5c;
+        }
+
+        .info-list-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-list-box li {
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .info-list-box li:last-child {
+            border-bottom: none;
+        }
+
+        .info-list-box li strong {
+            font-weight: 700;
+        }
+
+        /* ── CTA Section ── */
+        .cta-section {
+            background-color: #1a3e5c;
+            padding: 60px 24px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .cta-section h2 {
+            color: #ffffff;
+            font-weight: 300;
+            font-size: 30px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 16px;
+        }
+
+        .cta-section p {
+            color: rgba(255,255,255,0.75);
+            font-size: 16px;
+            max-width: 600px;
+            margin: 0 auto 32px;
+            line-height: 1.7;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 14px 36px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 3px;
+            transition: all 0.2s;
+        }
+
+        .cta-btn-primary {
+            background-color: #00a8e1;
+            color: #ffffff;
+        }
+
+        .cta-btn-primary:hover {
+            background-color: #008ec0;
+        }
+
+        .cta-btn-secondary {
+            background-color: transparent;
+            color: #ffffff;
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+
+        .cta-btn-secondary:hover {
+            border-color: #ffffff;
+        }
+
+        /* ── Author Bio ── */
+        .author-bio {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 48px 24px;
+            display: flex;
+            gap: 32px;
+            align-items: flex-start;
+        }
+
+        .author-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+            border: 3px solid #1a3e5c;
+        }
+
+        .author-info h3 {
+            font-weight: 700;
+            font-size: 18px;
+            color: #1a3e5c;
+            margin-bottom: 4px;
+        }
+
+        .author-info .author-title-text {
+            font-size: 13px;
+            font-weight: 500;
+            color: #00a8e1;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+
+        .author-info .author-desc {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #666666;
+            margin-bottom: 16px;
+        }
+
+        .author-contact-btns {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .author-contact-btn {
+            display: inline-block;
+            padding: 8px 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 3px;
+            transition: all 0.2s;
+        }
+
+        .author-contact-btn.phone {
+            background-color: #1a3e5c;
+            color: #ffffff;
+        }
+
+        .author-contact-btn.phone:hover {
+            background-color: #14304a;
+        }
+
+        .author-contact-btn.email {
+            background-color: #00a8e1;
+            color: #ffffff;
+        }
+
+        .author-contact-btn.email:hover {
+            background-color: #008ec0;
+        }
+
+        /* ── Footer ── */
+        .site-footer {
+            background-color: #1a3e5c;
+            padding: 40px 24px;
+            text-align: center;
+        }
+
+        .footer-brand {
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .footer-sub-brand {
+            color: rgba(255,255,255,0.5);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .footer-divider {
+            width: 60px;
+            height: 1px;
+            background-color: rgba(255,255,255,0.2);
+            margin: 0 auto 24px;
+        }
+
+        .footer-disclaimer {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 10px;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 0.3px;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .nav-header {
+                padding: 14px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                height: 400px;
+                margin-top: 60px;
+            }
+
+            .hero-overlay {
+                padding: 32px 24px;
+            }
+
+            .hero-title {
+                font-size: 28px;
+            }
+
+            .article-title {
+                font-size: 26px;
+            }
+
+            .key-stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-card:nth-child(2) {
+                border-left: none;
+                border-right: none;
+                border-top: 1px solid #e8e8e8;
+                border-bottom: 1px solid #e8e8e8;
+            }
+
+            .stat-value {
+                font-size: 30px;
+            }
+
+            .article-body h2 {
+                font-size: 20px;
+            }
+
+            .pull-quote p {
+                font-size: 17px;
+            }
+
+            .author-bio {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .author-contact-btns {
+                justify-content: center;
+            }
+
+            .data-table {
+                font-size: 13px;
+            }
+
+            .data-table thead th,
+            .data-table tbody td {
+                padding: 10px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header class="nav-header">
+        <a href="https://edmundbogen.github.io/market-dashboard-2026/" class="nav-logo">
+            The Edmund Bogen Team
+            <span>at Douglas Elliman Real Estate</span>
+        </a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="https://edmundbogen.github.io/market-dashboard-2026/">Dashboard</a></li>
+                <li><a href="https://www.bogenhomes.com">Listings</a></li>
+                <li><a href="mailto:edmund@bogenhomes.com">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <img src="https://edmundbogen.github.io/weekly-email-february-20-2026/florida-schools-hero.png" alt="Edmund Bogen — Florida public schools outperform high-spending states, comparing costs versus results" class="hero-image">
+        <div class="hero-overlay">
+            <h1 class="hero-title">Why Florida&rsquo;s Public Schools Outperform High&#8209;Spending States Like New York and California</h1>
+        </div>
+    </section>
+
+    <!-- Article Header -->
+    <div class="article-header">
+        <span class="category-label">Education Policy &amp; Quality of Life</span>
+        <h2 class="article-title">Why Florida&rsquo;s Public Schools Outperform High&#8209;Spending States Like New York and California</h2>
+        <div class="article-meta">
+            <span class="author-name">Edmund Bogen</span>
+            <span class="divider"></span>
+            <span>February 20, 2026</span>
+            <span class="divider"></span>
+            <span>14 min read</span>
+        </div>
+    </div>
+
+    <!-- Key Stats -->
+    <div class="key-stats">
+        <div class="key-stats-grid">
+            <div class="stat-card">
+                <div class="stat-value">~$12,700</div>
+                <div class="stat-label">Florida Per-Pupil Spending</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">3rd</div>
+                <div class="stat-label">Florida Rank (Adjusted NAEP)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">~$34,700</div>
+                <div class="stat-label">NYC Per-Pupil Spending</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Article Body -->
+    <article class="article-body">
+
+        <p>New York City and California are among the nation's biggest spenders on public education. New York State spends roughly <strong>$30,000 per student</strong> and New York City's education department budgets more than <strong>$34,000 per student</strong>. California, buoyed by a booming economy and a progressive funding formula, still spends about <strong>$20,000 per student</strong>. Florida, by contrast, spends around <strong>$12,000 per student</strong>&mdash;less than half of New York's outlay and thousands below California's.</p>
+
+        <p>Yet in the most recent Nation's Report Card (NAEP) assessments, Florida's fourth-grade students ranked among the top states in reading and math, while New York and California posted mid-pack results. This paradox invites a question: if it isn't just about money, what is Florida doing differently?</p>
+
+        <p>The purpose of this analysis is to unpack that paradox for parents, voters and business owners. We will compare per-pupil spending in Florida, California and New York City/New York State, evaluate their academic outcomes, explore the policies that set Florida apart, diagnose why high-spending states are not getting better results, and draw practical lessons that leaders elsewhere can adopt without mimicking Florida's politics. All statistics are approximate and directional; where precise numbers are not available, the emphasis is on relative differences.</p>
+
+        <h2>The Money: How Much Each System Spends</h2>
+
+        <p>Public-school budgets cover salaries, benefits, facilities, transportation and central administration&mdash;not just classroom instruction. Comparing spending levels is tricky because different sources treat capital costs and pension contributions differently. The table below summarises approximate per-pupil spending using FY 2024 data from the Education Data Initiative and local budgets.</p>
+
+        <div class="data-table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Jurisdiction</th>
+                        <th style="text-align:right;">Per-Pupil Spending</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Florida</strong> (state)</td>
+                        <td class="number">&asymp;$12,700</td>
+                        <td>Ranked 46th in spending; total public K&ndash;12 funding &asymp; 2.16% of taxpayer income</td>
+                    </tr>
+                    <tr>
+                        <td><strong>California</strong> (state)</td>
+                        <td class="number">&asymp;$20,200</td>
+                        <td>3.21% of taxpayer income; about 60% higher than Florida</td>
+                    </tr>
+                    <tr>
+                        <td><strong>New York</strong> (state)</td>
+                        <td class="number">&asymp;$30,000</td>
+                        <td>Per-pupil spending 91% above the national average; nearly 2&frac12;&times; Florida's level</td>
+                    </tr>
+                    <tr>
+                        <td><strong>New York City</strong> (district)</td>
+                        <td class="number">&asymp;$34,700</td>
+                        <td>Local operating spending rose from &asymp;$25,800 in FY 2019 to $34,717 in FY 2026</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>Florida's per-pupil spending is so low that states like New York and California could effectively fund two students for every Florida pupil with the same dollars. Despite this, Florida often outperforms the high-spending states on key academic measures.</p>
+
+        <h2>The Results: How Kids Are Actually Doing</h2>
+
+        <p>The National Assessment of Educational Progress (NAEP) is the only nationwide exam that allows apples-to-apples comparisons across states and large districts.</p>
+
+        <p>In 2024, Florida's fourth-grade students scored <strong>218 in reading</strong> and <strong>243 in math</strong>. Both figures were higher than the national averages of 214 and 237, respectively. About <strong>33% of Florida's fourth-graders reached reading proficiency</strong>, and <strong>45% reached math proficiency</strong>. By eighth grade, Florida slipped below national averages: eighth-grade reading scored 253 versus a national 257; eighth-grade math scored 267 against a national 272. Roughly 25% of Florida eighth-graders were proficient in reading and 21% were proficient in math.</p>
+
+        <p>California's NAEP results were middling. Fourth-grade reading averaged 212&mdash;about the national average&mdash;and 56% of students were at or above the basic level. Fourth-grade math averaged 233 and 35% were proficient. Eighth-grade reading scored 254, roughly matching national performance, and about 28% were proficient. Eighth-grade math scored 269 (slightly below the national average) with 25% proficient.</p>
+
+        <div class="pull-quote">
+            <p>"In a demographically-adjusted ranking using NAEP data, the Urban Institute found that Florida ranked 3rd overall while New York ranked 18th and California 19th."</p>
+        </div>
+
+        <p>New York's statewide data are not as easily accessible for 2024, but local and national analyses put the state in the middle of the pack. A Citizens Budget Commission summary noted that New York's NAEP performance in 2024 ranked <strong>32nd in fourth-grade reading</strong> and <strong>46th in fourth-grade math</strong> and 9th and 22nd in eighth-grade reading and math, respectively. Florida's strong elementary results contrast sharply with New York's middling outcomes despite spending twice as much per student.</p>
+
+        <p>Within New York City, the 2024 snapshot tells a similar story. Fourth-grade students in New York City scored 209 in reading&mdash;on par with large urban districts&mdash;and just 28% were proficient. In math, the city's fourth-grade score of 230 still lagged the national average, with 33% meeting the proficient benchmark. Eighth-grade proficiency rates were roughly 23% in math and 29% in reading.</p>
+
+        <h2>Performance of Disadvantaged Students</h2>
+
+        <p>Florida's policies appear especially beneficial for low-income and minority students. A 2024 American Enterprise Institute report on "Grading Florida's Schools" concluded that Florida delivers the best educational return on investment in the nation and is <strong>"the single best state in which to be a low-income public school student."</strong></p>
+
+        <div class="pull-quote">
+            <p>"Florida delivers the best educational return on investment in the nation and is the single best state in which to be a low-income public school student."</p>
+        </div>
+
+        <p>The report emphasised that Florida's fourth-grade students ranked third nationally in reading and fourth in math and that at-risk subgroups maintained high performance during the pandemic.</p>
+
+        <p>Florida's success also shows up in post-secondary outcomes. An EdChoice research review noted that participation in Florida's low-income tax-credit scholarship program increased college enrollment by <strong>12% for elementary and middle school</strong> scholarship recipients and by <strong>19% for high-school recipients</strong>. A separate study found that the program improved math and reading scores and reduced absenteeism and suspensions among students who remained in public schools.</p>
+
+        <h2>What Florida Is Doing Differently</h2>
+
+        <p>Florida's relatively strong outcomes come from deliberate policy choices rather than luck. Four themes&mdash;accountability and transparency, early literacy, school choice and funding equity&mdash;distinguish the Sunshine State.</p>
+
+        <h2>Accountability Through A&ndash;F School Grades</h2>
+
+        <p>Florida pioneered an A&ndash;F school grading system in the late 1990s. Schools receive a letter grade based on student achievement and growth, with extra weight for the lowest-performing students. ExcelinEd's policy playbook explains that such grading systems provide parents with simple, transparent information and create powerful incentives for improvement. Evidence from Florida shows that low-performing schools responded to the threat of a failing grade by making real gains&mdash;not just "teaching to the test"&mdash;and that accountability systems correlate with improved test scores. Unlike vague labels or descriptors used elsewhere, an A-to-F scale forces administrators and communities to confront underperformance and rewards progress.</p>
+
+        <h2>Early Literacy: Reading by Third Grade</h2>
+
+        <p>Florida invests heavily in early reading. The state's "Read by Grade 3" policy requires schools to screen K&ndash;3 pupils, provide intensive interventions for struggling readers and retain students who cannot demonstrate adequate reading skills by the end of third grade. Florida law states that if a third-grade student's reading deficiency is not remediated, the child must be retained unless a "good cause" exemption applies. The same statute eliminates social promotion: students may not be promoted beyond third grade without demonstrating reading proficiency.</p>
+
+        <p>This strong stance aims to ensure that virtually all students are reading proficiently before moving into upper elementary grades. An implementation review notes that Florida's comprehensive early literacy strategy&mdash;supporting K&ndash;3 interventions and retention&mdash;has been key to its gains in reading.</p>
+
+        <h2>A Robust School Choice Ecosystem</h2>
+
+        <p>Florida has one of the most extensive school-choice landscapes in the country. More than <strong>524,000 students attend private schools on scholarships</strong> and another <strong>155,000 are homeschooled</strong>&mdash;numbers that dwarf many states' entire K&ndash;12 enrollment. Florida offers tax-credit scholarships, education savings accounts, charter schools and open enrollment options. Recent legislation made scholarships universal, removing most income restrictions while prioritising lower-income families.</p>
+
+        <p>Parents enthusiastically support these programs; an EdChoice survey reported that <strong>95% of Florida parents</strong> using the scholarship program said their children now try their best, stay out of trouble, pay attention and feel safe at their chosen schools. Research also suggests that the competitive pressure from vouchers and charters improves public-school outcomes: the Florida Tax Credit Scholarship program led to better math and reading scores and reduced absenteeism among students who remained in public schools.</p>
+
+        <h2>Funding Equity: Targeting Dollars to Students</h2>
+
+        <p>Unlike many states, Florida's main funding formula&mdash;the Florida Education Finance Program (FEFP)&mdash;aims to equalise opportunities across districts. Enacted in 1973, the FEFP recognizes differences in local property wealth, program costs and sparsity. It funds students based on a <strong>weighted full-time equivalent (FTE) calculation</strong> rather than on teacher headcount or district budgets. Weighted FTE are multiplied by a base student allocation and adjusted for local cost-of-living to determine state and local funding.</p>
+
+        <p>This design ensures that districts with weak tax bases or high concentrations of special-needs students receive additional aid while preventing wealthy districts from hoarding resources. In practice, Florida's formula channels dollars to interventions such as reading coaches, intensive tutoring and extended learning time rather than to administrative overhead.</p>
+
+        <h2>Culture and Consistency</h2>
+
+        <p>Florida's reforms have persisted across administrations. Since Jeb Bush's governorship in the late 1990s, successive governors and legislatures have maintained an outcomes-driven agenda focusing on early literacy, progress monitoring and school choice. The AEI report credits this continuity for Florida's sustained improvement, noting that at-risk subgroups weathered the pandemic better than those in most other states. A culture of measuring results and acting on them&mdash;rather than simply increasing budgets&mdash;has taken root.</p>
+
+        <h2>Why New York and California Aren't Getting the Same Return</h2>
+
+        <p>The largest cost in any education budget is people. In New York and California, salaries and benefits dwarf Florida's.</p>
+
+        <div class="data-table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th style="text-align:right;">Florida</th>
+                        <th style="text-align:right;">California</th>
+                        <th style="text-align:right;">New York</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Average teacher salary</td>
+                        <td class="number">&asymp;$55,000</td>
+                        <td class="number">&asymp;$101,000</td>
+                        <td class="number">&asymp;$95,000</td>
+                    </tr>
+                    <tr>
+                        <td>Benefits per pupil</td>
+                        <td class="number">&mdash;</td>
+                        <td class="number">&mdash;</td>
+                        <td class="number">$7,949</td>
+                    </tr>
+                    <tr>
+                        <td>Salary cost per pupil</td>
+                        <td class="number">&mdash;</td>
+                        <td class="number">&mdash;</td>
+                        <td class="number">$9,098</td>
+                    </tr>
+                    <tr>
+                        <td>Nat'l benefit cost increase (2002&ndash;23)</td>
+                        <td class="number" colspan="3" style="text-align:center;">+81% (inflation-adjusted) to $4,022/student</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>Because many of these benefit costs finance legacy pension debt, they do little to improve current students' education.</p>
+
+        <p>High-spending states have not just higher pay; they also employ more adults. The Reason Foundation notes that many states, including New York, added non-teaching staff even as enrollment declined. Large central offices and complex collective-bargaining agreements limit flexibility. A Cato Institute analysis observed that New York spent $29,284 per pupil yet achieved no better results than lower-spending states like Utah or Idaho, blaming the disparity on bloated bureaucracies and rigid union rules. The Citizens Budget Commission found that despite spending 91% above the national average, New York's NAEP performance remained mediocre.</p>
+
+        <p>California faces similar cost pressures. The Public Policy Institute of California reports that per-pupil current spending was roughly $20,496 in 2022&ndash;23, and <strong>80% of that went to staffing</strong>. Rising pension contributions consumed about <strong>25% of the pre-pandemic spending increase</strong> between 2013&ndash;14 and 2019&ndash;20. Once labor costs are adjusted for the state's high cost of living, California drops from 16th to 31st in per-pupil spending ranking&mdash;meaning the extra dollars mainly cover higher prices rather than more services.</p>
+
+        <p>The physical environments in New York City and California also drive costs higher. The Citizens Budget Commission found that building new schools in New York City cost about <strong>$100,000 per seat</strong> and that the city spent $9.1 billion constructing new schools between 2005 and 2018. California faces high construction costs driven by seismic standards, labor rules and a housing market that inflates land prices. Florida, by contrast, relies on horizontal, campus-style buildings that are cheaper to construct and maintain.</p>
+
+        <p>Both New York and California have layered governance structures&mdash;state departments, city districts, county offices&mdash;and frequent political swings. Negotiating reforms requires coordination across school boards, teachers' unions and multiple levels of government. This complexity can water down accountability initiatives. In contrast, Florida's state-centric model allows for more direct policy implementation and consistency over time.</p>
+
+        <h2>What New York and California Could Learn</h2>
+
+        <p>No two states are alike&mdash;Florida's demographics, politics and labor markets differ from those of California and New York. Still, several principles emerge from Florida's experience.</p>
+
+        <div class="info-list-box">
+            <ul>
+                <li><strong>Focus on measurable outcomes, not just inputs.</strong> Replace opaque accountability systems with clear, public ratings. Florida's A&ndash;F grades show that transparency can spur improvement.</li>
+                <li><strong>Strengthen early literacy policies.</strong> Adopt "reading by third grade" statutes that require screening, evidence-based interventions and retention only when necessary.</li>
+                <li><strong>Expand meaningful school choice.</strong> Allow charter schools, tax-credit scholarships and education savings accounts to create competition and give families options.</li>
+                <li><strong>Target dollars to students rather than systems.</strong> Move toward student-weighted funding formulas that account for poverty, disability and English-learner status.</li>
+                <li><strong>Provide consistent leadership.</strong> Develop bipartisan consensus around goals to avoid seesaw reforms.</li>
+                <li><strong>Reform pensions and benefits.</strong> Address unsustainable pension liabilities so more dollars reach classrooms.</li>
+                <li><strong>Increase transparency for parents and taxpayers.</strong> Publish easy-to-understand report cards and dashboards showing school performance, spending and outcomes.</li>
+            </ul>
+        </div>
+
+        <p>Adopting these principles does not mean copying Florida wholesale. Each state must adapt reforms to local conditions and legal frameworks. But the evidence suggests that focusing on policy design, incentives and execution delivers greater returns than simply spending more.</p>
+
+        <h2>It's Not Just About Money</h2>
+
+        <p>Florida's public schools illustrate that <strong>how money is spent matters more than how much</strong>. The state invests less per pupil than high-spending jurisdictions yet outperforms them in elementary grades and provides strong returns for low-income students. Its success is rooted in policies that emphasise accountability, early literacy, choice, equitable funding and consistent leadership.</p>
+
+        <p>In contrast, New York City and California spend enormous sums but face high labor costs, pension burdens, costly facilities and fragmented governance, leaving them with middling outcomes. For policymakers and taxpayers, the lesson is clear: more dollars alone will not fix schools. The challenge is to design systems that align incentives with student learning and invest in what works.</p>
+
+        <p>For families considering a move to South Florida&mdash;whether from New York, California, or anywhere else&mdash;the education story reinforces what the tax story, the lifestyle story, and the real estate story have been saying for years: Florida isn't just a place to save money. It's a place where your children can thrive.</p>
+
+        <p>If you'd like to discuss what this means for your family's relocation plans&mdash;including the communities with top-rated schools, the neighborhoods where New York transplants are settling, and the properties that are moving fastest&mdash;I'm always available for a conversation.</p>
+
+    </article>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>Relocating to South Florida?</h2>
+        <p>From top-rated schools to world-class communities, South Florida offers families more than sunshine. Let's discuss which neighborhoods align with your priorities.</p>
+        <div class="cta-buttons">
+            <a href="tel:5612357575" class="cta-btn cta-btn-primary">Call 561-235-7575</a>
+            <a href="mailto:edmund@bogenhomes.com" class="cta-btn cta-btn-secondary">Email Edmund</a>
+        </div>
+    </section>
+
+    <!-- Author Bio -->
+    <div class="author-bio">
+        <img src="https://edmundbogen.github.io/edmund-profile.png" alt="Edmund Bogen" class="author-photo">
+        <div class="author-info">
+            <h3>Edmund Bogen</h3>
+            <div class="author-title-text">Luxury Real Estate Advisor</div>
+            <p class="author-desc">Edmund Bogen is a luxury real estate advisor with The Edmund Bogen Team at Douglas Elliman Real Estate, specializing in South Florida's premier communities from Miami Beach to Palm Beach.</p>
+            <div class="author-contact-btns">
+                <a href="tel:5612357575" class="author-contact-btn phone">561-235-7575</a>
+                <a href="mailto:edmund@bogenhomes.com" class="author-contact-btn email">edmund@bogenhomes.com</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-brand">The Edmund Bogen Team</div>
+        <div class="footer-sub-brand">at Douglas Elliman Real Estate</div>
+        <div class="footer-divider"></div>
+        <p class="footer-disclaimer">&copy; 2018 DOUGLAS ELLIMAN REAL ESTATE. ALL MATERIAL PRESENTED HEREIN IS INTENDED FOR INFORMATION PURPOSES ONLY. WHILE, THIS INFORMATION IS BELIEVED TO BE CORRECT, IT IS REPRESENTED SUBJECT TO ERRORS, OMISSIONS, CHANGES OR WITHDRAWAL WITHOUT NOTICE. ALL PROPERTY INFORMATION, INCLUDING, BUT NOT LIMITED TO SQUARE FOOTAGE, ROOM COUNT, NUMBER OF BEDROOMS AND THE SCHOOL DISTRICT IN PROPERTY LISTINGS SHOULD BE VERIFIED BY YOUR OWN ATTORNEY, ARCHITECT OR ZONING EXPERT. IF YOUR PROPERTY IS CURRENTLY LISTED WITH ANOTHER REAL ESTATE BROKER, PLEASE DISREGARD THIS OFFER. IT IS NOT OUR INTENTION TO SOLICIT THE OFFERINGS OF OTHER REAL ESTATE BROKERS. WE COOPERATE WITH THEM FULLY. EQUAL HOUSING OPPORTUNITY.</p>
+    </footer>
+
+</body>
+</html>
