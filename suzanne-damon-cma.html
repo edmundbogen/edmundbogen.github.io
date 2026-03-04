@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Suzanne Damon | CMA Generator</title>
+<title>Suzanne Damon | CMA Tools</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -36,6 +36,11 @@
   /* Save indicator */
   .save-indicator { position: fixed; bottom: 20px; right: 20px; background: var(--blue); color: var(--gold); padding: 8px 16px; border-radius: 20px; font-size: 12px; font-weight: 600; z-index: 200; opacity: 0; transition: opacity 0.3s; pointer-events: none; border: 1px solid var(--gold); }
   .save-indicator.show { opacity: 1; }
+  /* Top-level tool nav */
+  .tool-nav { display: flex; justify-content: center; gap: 0; background: rgba(0,0,0,0.3); border-bottom: 1px solid rgba(201,168,76,0.2); }
+  .tool-nav-btn { flex: 1; max-width: 280px; padding: 14px 24px; border: none; background: none; font-family: 'Source Sans 3', sans-serif; font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.5); cursor: pointer; text-align: center; border-bottom: 3px solid transparent; transition: all 0.2s; letter-spacing: 0.3px; }
+  .tool-nav-btn:hover { color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.05); }
+  .tool-nav-btn.active { color: var(--gold); border-bottom-color: var(--gold); background: rgba(201,168,76,0.08); }
   .progress-wrap { display: flex; gap: 6px; margin-bottom: 28px; align-items: center; justify-content: center; }
   .step-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.2); transition: all 0.3s; cursor: pointer; }
   .step-dot.active { background: var(--gold); transform: scale(1.4); }
@@ -192,6 +197,11 @@
   </div>
 </header>
 
+<nav class="tool-nav" id="tool-nav">
+  <button class="tool-nav-btn active" onclick="switchTool('cma')">CMA Generator</button>
+  <button class="tool-nav-btn" onclick="switchTool('closingcosts')">Closing Costs Calculator</button>
+</nav>
+
 <div class="save-indicator" id="save-indicator">Draft saved</div>
 
 <div class="app-container">
@@ -274,8 +284,7 @@
     <div class="step-dot" onclick="goToStep(2)" title="Comps"></div>
     <div class="step-dot" onclick="goToStep(3)" title="Market"></div>
     <div class="step-dot" onclick="goToStep(4)" title="Your Notes"></div>
-    <div class="step-dot" onclick="goToStep(5)" title="Closing Costs"></div>
-    <span class="progress-label" id="step-label">1 of 6</span>
+    <span class="progress-label" id="step-label">1 of 5</span>
   </div>
 
   <!-- STEP 0: PROPERTY -->
@@ -482,18 +491,30 @@
         </div>
       </div>
     </div>
-    <div class="nav-buttons"><button class="btn btn-secondary" onclick="prevStep()">&larr; Back</button><button class="btn btn-primary" onclick="nextStep()">Closing Costs &rarr;</button></div>
+    <div style="text-align:center;margin-top:24px;">
+      <button class="btn btn-gold" onclick="generateCMA()">Generate CMA Report</button>
+      <p style="color:rgba(255,255,255,0.5);font-size:12px;margin-top:10px;">Powered by Claude &middot; Suzanne Damon's voice baked in</p>
+    </div>
+    <div class="nav-buttons"><button class="btn btn-secondary" onclick="prevStep()">&larr; Back</button></div>
   </div>
 
-  <!-- STEP 5: CLOSING COSTS CALCULATOR -->
-  <div id="step-5" class="step-panel" style="display:none;">
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!-- CLOSING COSTS CALCULATOR (standalone tool) -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <div id="closing-costs-tool" style="display:none;">
+    <div class="page-title">
+      <h1>Seller Closing Costs Calculator</h1>
+      <div class="gold-line"></div>
+      <p>NH-specific estimates by municipality. No API key required.</p>
+    </div>
+
     <div class="card">
       <div class="card-header">
-        <div class="step-num">6</div>
-        <div class="step-info"><h2>Estimated Seller Closing Costs</h2><p>NH-specific calculator - estimates are approximate and vary by municipality</p></div>
+        <div class="step-num" style="font-size:16px;">$</div>
+        <div class="step-info"><h2>Estimated Seller Net Sheet</h2><p>Enter the sale price to calculate — estimates vary by municipality</p></div>
       </div>
       <div class="card-body">
-        <div class="info-tip">These are estimates based on standard NH rates. Actual costs vary by municipality, attorney, and title company. Toggle "Include in CMA" to add this breakdown to the generated report.</div>
+        <div class="info-tip">These are estimates based on standard NH rates. Actual costs vary by municipality, attorney, and title company. Print or export the results for your listing presentation.</div>
 
         <div class="field-grid">
           <div class="field-wrap">
@@ -627,22 +648,14 @@
           </table>
           <p style="font-size:11px;color:#6b7280;font-style:italic;margin-top:8px;">* NH Real Estate Transfer Tax: $7.50 per $1,000 of sale price (seller's portion). Title insurance and attorney fees are estimates and may vary. Municipal lien certificate fees vary by town. This is not a guarantee of actual costs.</p>
 
-          <div style="margin-top:16px;">
-            <label style="cursor:pointer;display:flex;align-items:center;gap:8px;">
-              <input type="checkbox" id="cc-include-in-cma" checked style="width:18px;height:18px;accent-color:#1B3A6B;">
-              <span style="font-size:13px;color:#1B3A6B;font-weight:600;">Include closing cost estimate in CMA report</span>
-            </label>
+          <div style="margin-top:16px;display:flex;gap:10px;">
+            <button class="btn btn-primary" onclick="printClosingCosts()">Print / Save PDF</button>
+            <button class="btn btn-secondary" onclick="emailClosingCosts()">Email to Client</button>
           </div>
         </div>
 
       </div>
     </div>
-
-    <div style="text-align:center;margin-top:24px;">
-      <button class="btn btn-gold" onclick="generateCMA()">Generate CMA Report</button>
-      <p style="color:rgba(255,255,255,0.5);font-size:12px;margin-top:10px;">Powered by Claude &middot; Suzanne Damon's voice baked in</p>
-    </div>
-    <div class="nav-buttons"><button class="btn btn-secondary" onclick="prevStep()">&larr; Back</button></div>
   </div>
 
   <!-- LOADING -->
@@ -692,13 +705,14 @@
 
 <script>
 let currentStep = 0;
-const TOTAL_STEPS = 6;
+const TOTAL_STEPS = 5;
+let currentTool = 'cma'; // 'cma' or 'closingcosts'
 const compData = { sold:{csv:'',paste:''}, active:{csv:'',paste:''}, 'sold-both':{csv:'',paste:''}, 'active-both':{csv:'',paste:''} };
 let pendingGenerate = false;
 let propertyPhotoData = '';
 let autoSaveTimer = null;
 
-const FORM_FIELDS = ['address','city','proptype','condition','beds','fullbaths','halfbaths','sqft','yearbuilt','lotsize','garage','basement','school','hoa','updates','issues','timeline','target-price','reason','prior-listing','objections','med-price','avg-dom','l2s','active-count','monthly-sales','months-supply','market-trend','seasonal','instinct','strengths','headwinds','extra-notes','sold-paste','active-paste','sold-both-paste','active-both-paste','cc-sale-price','cc-mortgage','cc-municipality','cc-commission-rate','cc-custom-commission','cc-tax-proration','cc-hoa-proration','cc-concessions','cc-warranty'];
+const FORM_FIELDS = ['address','city','proptype','condition','beds','fullbaths','halfbaths','sqft','yearbuilt','lotsize','garage','basement','school','hoa','updates','issues','timeline','target-price','reason','prior-listing','objections','med-price','avg-dom','l2s','active-count','monthly-sales','months-supply','market-trend','seasonal','instinct','strengths','headwinds','extra-notes','sold-paste','active-paste','sold-both-paste','active-both-paste'];
 
 // ── INIT ──────────────────────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', function() {
@@ -1065,7 +1079,7 @@ function buildPrompt(){
   }
   brandingNote += 'Arrange the header with logo on left, property info center, headshot on right. Include Suzanne\'s contact: suzanne@damonteam.com | (603) 493-5561 | www.suzannedamon.com | 4 Bell Hill Road, Bedford, NH 03110';
 
-  return 'You are generating a Competitive Market Analysis (CMA) for Suzanne Damon, The Damon Home Team at eXp Realty, New Hampshire.\n\nABOUT SUZANNE:\n- 35+ years of NH real estate experience, top 1% in New England\n- 1,700+ career transactions, $696,000,000+ in career sales volume\n- 82 successful sales in the past 12 months across Greater Manchester\n- Manchester\'s #1 real estate agent, 2025 Top Agent (FastExpert), Top 15 in all of NH\n- CLHMS (Certified Luxury Home Marketing Specialist), Wall Street Journal & Barron\'s recognized\n- "America\'s Best Realtor" 2018-2020\n- President of the 1628 Group - new construction and development experience\n- 350+ five-star reviews\n- Headquartered at 4 Bell Hill Road, Bedford, NH 03110, active statewide\n- Specializes in luxury residential, new construction development, and multi-family investment\n- Primary market: Manchester. Secondary markets: Bedford, Goffstown, Hooksett, Londonderry, Merrimack, Amherst, Auburn, Derry, Litchfield, Nashua, New Boston, Suncook, Bow\n- Her approach: No-pressure, consultative, data-driven. "Preparation wins." Honest valuations - she does NOT inflate prices to win listings. Three decades of local data to maximize value.\n- Voice: Direct, confident, warm. She educates sellers. She speaks like a 35-year local expert who has seen every market cycle.\n- She writes in first person: "Based on my 35 years in this market..." / "What I\'m seeing in the data is..." / "My recommendation..."\n\nSHORT BIO (use in report footer):\nSuzanne Damon is the leader of The Damon Home Team at eXp Realty, based at 4 Bell Hill Road, Bedford, NH 03110. As Manchester\'s #1 real estate agent and a top 1% producer in New England, Suzanne Damon has secured over 1700 career transactions and $696,000,000 in total sales volume. She completed 82 successful sales in the past year alone, specializing in luxury homes, new construction, and investment properties. With 350+ five-star reviews and 35 years of experience, Suzanne Damon provides elite real estate guidance across New Hampshire.\n\nNH REGIONAL CONTEXT - '+region+':\n- No state income tax, no sales tax - major draw for MA/CT/NY buyers\n- Boston proximity drives Southern NH demand (commuter belt: Manchester/Nashua/Bedford/Derry/Salem)\n- Waterfront premiums: lake/riverfront commands 40-100% above comparable inland homes\n- School districts are a major value driver - top districts (Bedford, Exeter, Portsmouth) command 10-50% premiums\n- Four-season recreation is a core amenity signal in NH (skiing, hiking, foliage tourism, water sports)\n- Seasonal markets: Lakes Region and White Mountains have peak spring/summer and winter ski cycles\n- Seacoast (Portsmouth, Rye, Hampton) = NH\'s highest price-per-square-foot market\n- Property tax rates vary significantly by municipality\n- Current Use land enrollments (RSA 79-A) affect valuation of larger parcels\n- NH market has been consistently competitive post-COVID with sustained MA buyer migration\n\nSUBJECT PROPERTY:\nAddress: '+(g('address')||'Not provided')+'\nCity/Town/ZIP: '+(g('city')||'Not provided')+'\nRegion: '+region+'\nProperty Type: '+(g('proptype')||'Not specified')+'\nBedrooms: '+(g('beds')||'Not specified')+'\nFull Baths: '+(g('fullbaths')||'Not specified')+'\nHalf Baths: '+(g('halfbaths')||'Not specified')+'\nFinished Sq Ft: '+(g('sqft')||'Not specified')+'\nYear Built: '+(g('yearbuilt')||'Not specified')+'\nLot Size: '+(g('lotsize')||'Not specified')+'\nGarage: '+(g('garage')||'Not specified')+'\nBasement: '+(g('basement')||'Not specified')+'\nSchool District: '+(g('school')||'Not specified')+'\nHOA: '+(g('hoa')||'None noted')+'\nCondition: '+(g('condition')||'Not specified')+'\nKey Amenities: '+(amenities.length>0?amenities.join(', '):'None selected')+'\nUpdates/Renovations: '+(g('updates')||'Not provided')+'\nKnown Issues: '+(g('issues')||'None noted')+'\n\nSELLER CONTEXT:\nTimeline: '+(g('timeline')||'Not specified')+'\nTarget Price: '+(g('target-price')||'No target given')+'\nReason for Selling: '+(g('reason')||'Not specified')+'\nPrior Listing History: '+(g('prior-listing')||'None')+'\nSeller Objections/Concerns: '+(g('objections')||'None noted')+'\n\nSOLD COMPARABLES:\n'+soldRows+'\n\nACTIVE COMPETITION:\n'+activeRows+'\n\nLOCAL MARKET STATS:\n'+(stats||'Not provided - use NH regional and Suzanne\'s market expertise.')+'\n\nSUZANNE\'S NOTES:\nPricing Instinct: '+(g('instinct')||'Not provided')+'\nNeighborhood Strengths: '+(g('strengths')||'Not provided')+'\nChallenges/Headwinds: '+(g('headwinds')||'Not provided')+'\nAdditional Notes: '+(g('extra-notes')||'None')+'\n\nINSTRUCTIONS:\nGenerate a complete, professional CMA report in HTML format (no code fences, just clean HTML). Structure:\n\n1. HEADER - Property address, Suzanne\'s name/team/contact (suzanne@damonteam.com | 603-493-5561), report date' + brandingNote + '\n2. EXECUTIVE SUMMARY - Subject property overview in 2-3 sentences, then the recommended price range prominently displayed using a styled box with class="price-range"\n3. PROPERTY OVERVIEW - Key details in a clean table\n4. MARKET CONDITIONS - Use provided stats or NH regional knowledge. Calculate/infer absorption rate and market type. Write 2-3 sentences as Suzanne.\n5. SOLD COMPARABLES ANALYSIS - Table of comps if provided, with adjustment narrative. Apply standard NH adjustments: sq ft diff ~$100-150/sqft, bedroom +/-$7,500, full bath +/-$10,000, half bath +/-$4,000, garage stall +/-$12,000, finished basement +/-$20,000, kitchen update +/-$15,000, roof +/-$7,500, HVAC +/-$5,000. Waterfront: +40-100%. School district premium: note if top-tier.\n6. ACTIVE COMPETITION - Table if provided, narrative on competitive positioning\n7. PRICING RECOMMENDATION - Three tiers: Conservative (fastest sale), Recommended (optimal), Aggressive (tests market).\n8. AMENITY VALUE ANALYSIS - Address the specific amenities checked. Be specific about NH value drivers.\n9. SUZANNE\'S STRATEGIC COMMENTARY - 3-4 paragraphs in first-person as Suzanne. Warm, expert, no-pressure. Address the seller\'s context. Give honest pricing counsel.\n10. ABOUT SUZANNE - Include the short bio text provided above, with her contact info and credentials.\n11. LEGAL DISCLAIMER - Standard NH CMA disclaimer including RSA 331-A reference\n\nOutput only the HTML content that goes inside a div - no html/head/body tags. Use h1, h2, h3, p, table, strong tags. Use class="price-range" for the price display box with inner divs class="rec-price" and class="rec-label".' + getClosingCostsSummary();
+  return 'You are generating a Competitive Market Analysis (CMA) for Suzanne Damon, The Damon Home Team at eXp Realty, New Hampshire.\n\nABOUT SUZANNE:\n- 35+ years of NH real estate experience, top 1% in New England\n- 1,700+ career transactions, $696,000,000+ in career sales volume\n- 82 successful sales in the past 12 months across Greater Manchester\n- Manchester\'s #1 real estate agent, 2025 Top Agent (FastExpert), Top 15 in all of NH\n- CLHMS (Certified Luxury Home Marketing Specialist), Wall Street Journal & Barron\'s recognized\n- "America\'s Best Realtor" 2018-2020\n- President of the 1628 Group - new construction and development experience\n- 350+ five-star reviews\n- Headquartered at 4 Bell Hill Road, Bedford, NH 03110, active statewide\n- Specializes in luxury residential, new construction development, and multi-family investment\n- Primary market: Manchester. Secondary markets: Bedford, Goffstown, Hooksett, Londonderry, Merrimack, Amherst, Auburn, Derry, Litchfield, Nashua, New Boston, Suncook, Bow\n- Her approach: No-pressure, consultative, data-driven. "Preparation wins." Honest valuations - she does NOT inflate prices to win listings. Three decades of local data to maximize value.\n- Voice: Direct, confident, warm. She educates sellers. She speaks like a 35-year local expert who has seen every market cycle.\n- She writes in first person: "Based on my 35 years in this market..." / "What I\'m seeing in the data is..." / "My recommendation..."\n\nSHORT BIO (use in report footer):\nSuzanne Damon is the leader of The Damon Home Team at eXp Realty, based at 4 Bell Hill Road, Bedford, NH 03110. As Manchester\'s #1 real estate agent and a top 1% producer in New England, Suzanne Damon has secured over 1700 career transactions and $696,000,000 in total sales volume. She completed 82 successful sales in the past year alone, specializing in luxury homes, new construction, and investment properties. With 350+ five-star reviews and 35 years of experience, Suzanne Damon provides elite real estate guidance across New Hampshire.\n\nNH REGIONAL CONTEXT - '+region+':\n- No state income tax, no sales tax - major draw for MA/CT/NY buyers\n- Boston proximity drives Southern NH demand (commuter belt: Manchester/Nashua/Bedford/Derry/Salem)\n- Waterfront premiums: lake/riverfront commands 40-100% above comparable inland homes\n- School districts are a major value driver - top districts (Bedford, Exeter, Portsmouth) command 10-50% premiums\n- Four-season recreation is a core amenity signal in NH (skiing, hiking, foliage tourism, water sports)\n- Seasonal markets: Lakes Region and White Mountains have peak spring/summer and winter ski cycles\n- Seacoast (Portsmouth, Rye, Hampton) = NH\'s highest price-per-square-foot market\n- Property tax rates vary significantly by municipality\n- Current Use land enrollments (RSA 79-A) affect valuation of larger parcels\n- NH market has been consistently competitive post-COVID with sustained MA buyer migration\n\nSUBJECT PROPERTY:\nAddress: '+(g('address')||'Not provided')+'\nCity/Town/ZIP: '+(g('city')||'Not provided')+'\nRegion: '+region+'\nProperty Type: '+(g('proptype')||'Not specified')+'\nBedrooms: '+(g('beds')||'Not specified')+'\nFull Baths: '+(g('fullbaths')||'Not specified')+'\nHalf Baths: '+(g('halfbaths')||'Not specified')+'\nFinished Sq Ft: '+(g('sqft')||'Not specified')+'\nYear Built: '+(g('yearbuilt')||'Not specified')+'\nLot Size: '+(g('lotsize')||'Not specified')+'\nGarage: '+(g('garage')||'Not specified')+'\nBasement: '+(g('basement')||'Not specified')+'\nSchool District: '+(g('school')||'Not specified')+'\nHOA: '+(g('hoa')||'None noted')+'\nCondition: '+(g('condition')||'Not specified')+'\nKey Amenities: '+(amenities.length>0?amenities.join(', '):'None selected')+'\nUpdates/Renovations: '+(g('updates')||'Not provided')+'\nKnown Issues: '+(g('issues')||'None noted')+'\n\nSELLER CONTEXT:\nTimeline: '+(g('timeline')||'Not specified')+'\nTarget Price: '+(g('target-price')||'No target given')+'\nReason for Selling: '+(g('reason')||'Not specified')+'\nPrior Listing History: '+(g('prior-listing')||'None')+'\nSeller Objections/Concerns: '+(g('objections')||'None noted')+'\n\nSOLD COMPARABLES:\n'+soldRows+'\n\nACTIVE COMPETITION:\n'+activeRows+'\n\nLOCAL MARKET STATS:\n'+(stats||'Not provided - use NH regional and Suzanne\'s market expertise.')+'\n\nSUZANNE\'S NOTES:\nPricing Instinct: '+(g('instinct')||'Not provided')+'\nNeighborhood Strengths: '+(g('strengths')||'Not provided')+'\nChallenges/Headwinds: '+(g('headwinds')||'Not provided')+'\nAdditional Notes: '+(g('extra-notes')||'None')+'\n\nINSTRUCTIONS:\nGenerate a complete, professional CMA report in HTML format (no code fences, just clean HTML). Structure:\n\n1. HEADER - Property address, Suzanne\'s name/team/contact (suzanne@damonteam.com | 603-493-5561), report date' + brandingNote + '\n2. EXECUTIVE SUMMARY - Subject property overview in 2-3 sentences, then the recommended price range prominently displayed using a styled box with class="price-range"\n3. PROPERTY OVERVIEW - Key details in a clean table\n4. MARKET CONDITIONS - Use provided stats or NH regional knowledge. Calculate/infer absorption rate and market type. Write 2-3 sentences as Suzanne.\n5. SOLD COMPARABLES ANALYSIS - Table of comps if provided, with adjustment narrative. Apply standard NH adjustments: sq ft diff ~$100-150/sqft, bedroom +/-$7,500, full bath +/-$10,000, half bath +/-$4,000, garage stall +/-$12,000, finished basement +/-$20,000, kitchen update +/-$15,000, roof +/-$7,500, HVAC +/-$5,000. Waterfront: +40-100%. School district premium: note if top-tier.\n6. ACTIVE COMPETITION - Table if provided, narrative on competitive positioning\n7. PRICING RECOMMENDATION - Three tiers: Conservative (fastest sale), Recommended (optimal), Aggressive (tests market).\n8. AMENITY VALUE ANALYSIS - Address the specific amenities checked. Be specific about NH value drivers.\n9. SUZANNE\'S STRATEGIC COMMENTARY - 3-4 paragraphs in first-person as Suzanne. Warm, expert, no-pressure. Address the seller\'s context. Give honest pricing counsel.\n10. ABOUT SUZANNE - Include the short bio text provided above, with her contact info and credentials.\n11. LEGAL DISCLAIMER - Standard NH CMA disclaimer including RSA 331-A reference\n\nOutput only the HTML content that goes inside a div - no html/head/body tags. Use h1, h2, h3, p, table, strong tags. Use class="price-range" for the price display box with inner divs class="rec-price" and class="rec-label".';
 }
 
 // ── GENERATE ─────────────────────────────────────────────────────
@@ -1331,6 +1345,88 @@ function getMunicipalityData(muni) {
     recordingFees: o.recordingFees || base.recordingFees,
     lienCert: o.lienCert !== undefined ? o.lienCert : base.lienCert
   };
+}
+
+// ── TOOL NAVIGATION ──────────────────────────────────────────────
+function switchTool(tool) {
+  currentTool = tool;
+  // Update nav buttons
+  document.querySelectorAll('.tool-nav-btn').forEach((btn, i) => {
+    btn.classList.toggle('active', (i === 0 && tool === 'cma') || (i === 1 && tool === 'closingcosts'));
+  });
+
+  // CMA sections
+  const cmaSections = ['main-title','progress-bar','draft-banner','history-panel','settings-panel','loading-panel','output-panel'];
+  for (let i = 0; i < TOTAL_STEPS; i++) cmaSections.push('step-' + i);
+
+  if (tool === 'cma') {
+    // Show CMA
+    document.getElementById('closing-costs-tool').style.display = 'none';
+    document.getElementById('main-title').style.display = 'block';
+    document.getElementById('progress-bar').style.display = 'flex';
+    document.getElementById('step-' + currentStep).style.display = 'block';
+    checkForDraft();
+  } else {
+    // Show Closing Costs - hide all CMA stuff
+    for (let i = 0; i < TOTAL_STEPS; i++) {
+      const el = document.getElementById('step-' + i);
+      if (el) el.style.display = 'none';
+    }
+    document.getElementById('main-title').style.display = 'none';
+    document.getElementById('progress-bar').style.display = 'none';
+    document.getElementById('draft-banner').style.display = 'none';
+    document.getElementById('history-panel').style.display = 'none';
+    document.getElementById('settings-panel').style.display = 'none';
+    document.getElementById('loading-panel').style.display = 'none';
+    document.getElementById('output-panel').style.display = 'none';
+    document.getElementById('closing-costs-tool').style.display = 'block';
+  }
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function printClosingCosts() {
+  const resultsEl = document.getElementById('cc-results');
+  if (!resultsEl || resultsEl.style.display === 'none') { alert('Enter a sale price first.'); return; }
+  const tableHTML = document.getElementById('cc-table').outerHTML;
+  const muniName = getMunicipalityData(g('cc-municipality')).name;
+  const pw = window.open('', '_blank');
+  pw.document.write('<!DOCTYPE html><html><head><title>Seller Net Sheet - ' + muniName + '</title>');
+  pw.document.write('<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">');
+  pw.document.write('<style>body{font-family:"Source Sans 3",Arial,sans-serif;color:#1a1a2e;padding:40px;max-width:700px;margin:0 auto;}');
+  pw.document.write('h1{font-family:"Playfair Display",serif;color:#1B3A6B;font-size:24px;margin-bottom:4px;}');
+  pw.document.write('h2{font-family:"Playfair Display",serif;color:#1B3A6B;font-size:18px;margin:20px 0 12px;}');
+  pw.document.write('.subtitle{color:#6b7280;font-size:13px;margin-bottom:20px;}');
+  pw.document.write('.gold-line{width:50px;height:2px;background:#C9A84C;margin:10px 0 20px;}');
+  pw.document.write('table{width:100%;border-collapse:collapse;font-size:13px;}');
+  pw.document.write('th{background:#1B3A6B;color:white;padding:9px 12px;text-align:left;font-size:12px;}');
+  pw.document.write('td{padding:8px 12px;border-bottom:1px solid #d1d5db;}');
+  pw.document.write('tr:nth-child(even) td{background:#f4f7fc;}');
+  pw.document.write('.disclaimer{font-size:11px;color:#6b7280;font-style:italic;margin-top:16px;border-top:1px solid #d1d5db;padding-top:12px;}');
+  pw.document.write('.footer{margin-top:30px;padding-top:16px;border-top:2px solid #C9A84C;font-size:12px;color:#1B3A6B;}');
+  pw.document.write('.footer strong{font-size:14px;}</style></head><body>');
+  pw.document.write('<h1>Estimated Seller Net Sheet</h1>');
+  pw.document.write('<div class="subtitle">Municipality: ' + muniName + ' | Prepared: ' + new Date().toLocaleDateString() + '</div>');
+  pw.document.write('<div class="gold-line"></div>');
+  pw.document.write(tableHTML);
+  pw.document.write('<p class="disclaimer">* NH Real Estate Transfer Tax: $7.50 per $1,000 of sale price (seller\'s portion). Title insurance, attorney fees, and municipal lien certificate fees are estimates and may vary. This is not a guarantee of actual costs. Consult your attorney for exact figures.</p>');
+  pw.document.write('<div class="footer"><strong>Suzanne Damon | The Damon Home Team</strong><br>eXp Realty | 4 Bell Hill Road, Bedford, NH 03110<br>(603) 493-5561 | suzanne@damonteam.com | www.suzannedamon.com</div>');
+  pw.document.write('</body></html>');
+  pw.document.close();
+  setTimeout(function() { pw.print(); }, 600);
+}
+
+function emailClosingCosts() {
+  const salePrice = parseDollar(g('cc-sale-price'));
+  if (!salePrice) { alert('Enter a sale price first.'); return; }
+  const net = document.getElementById('cc-net-total').textContent;
+  const muniName = getMunicipalityData(g('cc-municipality')).name;
+  let body = 'Dear Homeowner,\n\n';
+  body += 'Thank you for the opportunity to provide you with an estimated seller closing costs breakdown.\n\n';
+  body += 'Based on an estimated sale price of $' + salePrice.toLocaleString() + ' in ' + muniName + ', your estimated net proceeds would be approximately ' + net + '.\n\n';
+  body += 'Please note that these are estimates. Actual costs may vary based on your specific attorney, title company, and any negotiated terms. I would be happy to walk through these numbers with you in detail.\n\n';
+  body += 'Warm regards,\n\n';
+  body += 'Suzanne Damon\nThe Damon Home Team | eXp Realty\n4 Bell Hill Road, Bedford, NH 03110\n(603) 493-5561 | suzanne@damonteam.com\nwww.suzannedamon.com';
+  navigator.clipboard.writeText(body).then(() => alert('Email text copied to clipboard. Paste into your email client.'));
 }
 
 function getClosingCostsSummary() {
