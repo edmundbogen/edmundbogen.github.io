@@ -274,7 +274,8 @@
     <div class="step-dot" onclick="goToStep(2)" title="Comps"></div>
     <div class="step-dot" onclick="goToStep(3)" title="Market"></div>
     <div class="step-dot" onclick="goToStep(4)" title="Your Notes"></div>
-    <span class="progress-label" id="step-label">1 of 5</span>
+    <div class="step-dot" onclick="goToStep(5)" title="Closing Costs"></div>
+    <span class="progress-label" id="step-label">1 of 6</span>
   </div>
 
   <!-- STEP 0: PROPERTY -->
@@ -481,6 +482,162 @@
         </div>
       </div>
     </div>
+    <div class="nav-buttons"><button class="btn btn-secondary" onclick="prevStep()">&larr; Back</button><button class="btn btn-primary" onclick="nextStep()">Closing Costs &rarr;</button></div>
+  </div>
+
+  <!-- STEP 5: CLOSING COSTS CALCULATOR -->
+  <div id="step-5" class="step-panel" style="display:none;">
+    <div class="card">
+      <div class="card-header">
+        <div class="step-num">6</div>
+        <div class="step-info"><h2>Estimated Seller Closing Costs</h2><p>NH-specific calculator - estimates are approximate and vary by municipality</p></div>
+      </div>
+      <div class="card-body">
+        <div class="info-tip">These are estimates based on standard NH rates. Actual costs vary by municipality, attorney, and title company. Toggle "Include in CMA" to add this breakdown to the generated report.</div>
+
+        <div class="field-grid">
+          <div class="field-wrap">
+            <label>Estimated Sale Price <span class="req">*</span></label>
+            <input type="text" id="cc-sale-price" placeholder="$450,000" oninput="calculateClosingCosts()">
+            <span class="hint">Used for all percentage-based calculations</span>
+          </div>
+          <div class="field-wrap">
+            <label>Existing Mortgage Balance <span class="opt">(optional)</span></label>
+            <input type="text" id="cc-mortgage" placeholder="$280,000" oninput="calculateClosingCosts()">
+            <span class="hint">Remaining payoff amount</span>
+          </div>
+        </div>
+
+        <div class="field-grid" style="margin-top:14px;">
+          <div class="field-wrap">
+            <label>Municipality / Town</label>
+            <select id="cc-municipality" onchange="calculateClosingCosts()">
+              <option value="standard">Standard NH Rates</option>
+              <optgroup label="Southern NH">
+                <option value="manchester">Manchester</option>
+                <option value="nashua">Nashua</option>
+                <option value="bedford">Bedford</option>
+                <option value="goffstown">Goffstown</option>
+                <option value="hooksett">Hooksett</option>
+                <option value="londonderry">Londonderry</option>
+                <option value="derry">Derry</option>
+                <option value="salem">Salem</option>
+                <option value="merrimack">Merrimack</option>
+                <option value="amherst">Amherst</option>
+                <option value="auburn">Auburn</option>
+                <option value="litchfield">Litchfield</option>
+                <option value="new-boston">New Boston</option>
+              </optgroup>
+              <optgroup label="Merrimack Valley / Capital">
+                <option value="concord">Concord</option>
+                <option value="bow">Bow</option>
+                <option value="suncook">Suncook / Pembroke</option>
+                <option value="hopkinton">Hopkinton</option>
+              </optgroup>
+              <optgroup label="Seacoast">
+                <option value="portsmouth">Portsmouth</option>
+                <option value="exeter">Exeter</option>
+                <option value="dover">Dover</option>
+                <option value="hampton">Hampton</option>
+                <option value="rye">Rye</option>
+              </optgroup>
+              <optgroup label="Lakes Region">
+                <option value="laconia">Laconia</option>
+                <option value="wolfeboro">Wolfeboro</option>
+                <option value="meredith">Meredith</option>
+                <option value="gilford">Gilford</option>
+              </optgroup>
+              <optgroup label="White Mountains / North">
+                <option value="conway">Conway</option>
+                <option value="lincoln">Lincoln / Woodstock</option>
+                <option value="littleton">Littleton</option>
+              </optgroup>
+              <optgroup label="Monadnock / Southwest">
+                <option value="keene">Keene</option>
+                <option value="peterborough">Peterborough</option>
+              </optgroup>
+            </select>
+          </div>
+          <div class="field-wrap">
+            <label>Commission Rate</label>
+            <select id="cc-commission-rate" onchange="calculateClosingCosts()">
+              <option value="0">Not included in estimate</option>
+              <option value="5">5%</option>
+              <option value="5.5">5.5%</option>
+              <option value="6" selected>6%</option>
+              <option value="custom">Custom %</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field-wrap" id="cc-custom-commission-wrap" style="display:none;margin-top:14px;">
+          <label>Custom Commission %</label>
+          <input type="number" id="cc-custom-commission" placeholder="5.25" step="0.25" min="0" max="10" oninput="calculateClosingCosts()">
+        </div>
+
+        <div class="field-grid" style="margin-top:14px;">
+          <div class="field-wrap">
+            <label>Property Tax Proration <span class="opt">(optional)</span></label>
+            <input type="text" id="cc-tax-proration" placeholder="$0" oninput="calculateClosingCosts()">
+            <span class="hint">Estimated seller credit for unpaid taxes at closing</span>
+          </div>
+          <div class="field-wrap">
+            <label>HOA Proration <span class="opt">(optional)</span></label>
+            <input type="text" id="cc-hoa-proration" placeholder="$0" oninput="calculateClosingCosts()">
+            <span class="hint">Prepaid dues to be prorated</span>
+          </div>
+        </div>
+
+        <div class="field-grid" style="margin-top:14px;">
+          <div class="field-wrap">
+            <label>Seller Concessions <span class="opt">(optional)</span></label>
+            <input type="text" id="cc-concessions" placeholder="$0" oninput="calculateClosingCosts()">
+            <span class="hint">Any agreed credits to buyer</span>
+          </div>
+          <div class="field-wrap">
+            <label>Home Warranty <span class="opt">(optional)</span></label>
+            <select id="cc-warranty" onchange="calculateClosingCosts()">
+              <option value="0">None</option>
+              <option value="500">Basic ($500)</option>
+              <option value="650">Standard ($650)</option>
+              <option value="800">Premium ($800)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- RESULTS TABLE -->
+        <div id="cc-results" style="display:none;">
+          <h3 style="font-family:'Playfair Display',serif;color:#1B3A6B;font-size:16px;margin-bottom:12px;">Estimated Seller Net Sheet</h3>
+          <table style="width:100%;border-collapse:collapse;font-size:13px;" id="cc-table">
+            <thead>
+              <tr style="background:#1B3A6B;color:white;">
+                <th style="padding:9px 12px;text-align:left;font-size:12px;">Item</th>
+                <th style="padding:9px 12px;text-align:right;font-size:12px;">Amount</th>
+              </tr>
+            </thead>
+            <tbody id="cc-tbody"></tbody>
+            <tfoot>
+              <tr style="background:#fdf6e3;border-top:2px solid #C9A84C;">
+                <td style="padding:12px;font-weight:700;color:#1B3A6B;font-size:15px;">Estimated Net to Seller</td>
+                <td style="padding:12px;text-align:right;font-weight:700;color:#1B3A6B;font-size:18px;font-family:'Playfair Display',serif;" id="cc-net-total">$0</td>
+              </tr>
+            </tfoot>
+          </table>
+          <p style="font-size:11px;color:#6b7280;font-style:italic;margin-top:8px;">* NH Real Estate Transfer Tax: $7.50 per $1,000 of sale price (seller's portion). Title insurance and attorney fees are estimates and may vary. Municipal lien certificate fees vary by town. This is not a guarantee of actual costs.</p>
+
+          <div style="margin-top:16px;">
+            <label style="cursor:pointer;display:flex;align-items:center;gap:8px;">
+              <input type="checkbox" id="cc-include-in-cma" checked style="width:18px;height:18px;accent-color:#1B3A6B;">
+              <span style="font-size:13px;color:#1B3A6B;font-weight:600;">Include closing cost estimate in CMA report</span>
+            </label>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
     <div style="text-align:center;margin-top:24px;">
       <button class="btn btn-gold" onclick="generateCMA()">Generate CMA Report</button>
       <p style="color:rgba(255,255,255,0.5);font-size:12px;margin-top:10px;">Powered by Claude &middot; Suzanne Damon's voice baked in</p>
@@ -535,13 +692,13 @@
 
 <script>
 let currentStep = 0;
-const TOTAL_STEPS = 5;
+const TOTAL_STEPS = 6;
 const compData = { sold:{csv:'',paste:''}, active:{csv:'',paste:''}, 'sold-both':{csv:'',paste:''}, 'active-both':{csv:'',paste:''} };
 let pendingGenerate = false;
 let propertyPhotoData = '';
 let autoSaveTimer = null;
 
-const FORM_FIELDS = ['address','city','proptype','condition','beds','fullbaths','halfbaths','sqft','yearbuilt','lotsize','garage','basement','school','hoa','updates','issues','timeline','target-price','reason','prior-listing','objections','med-price','avg-dom','l2s','active-count','monthly-sales','months-supply','market-trend','seasonal','instinct','strengths','headwinds','extra-notes','sold-paste','active-paste','sold-both-paste','active-both-paste'];
+const FORM_FIELDS = ['address','city','proptype','condition','beds','fullbaths','halfbaths','sqft','yearbuilt','lotsize','garage','basement','school','hoa','updates','issues','timeline','target-price','reason','prior-listing','objections','med-price','avg-dom','l2s','active-count','monthly-sales','months-supply','market-trend','seasonal','instinct','strengths','headwinds','extra-notes','sold-paste','active-paste','sold-both-paste','active-both-paste','cc-sale-price','cc-mortgage','cc-municipality','cc-commission-rate','cc-custom-commission','cc-tax-proration','cc-hoa-proration','cc-concessions','cc-warranty'];
 
 // ── INIT ──────────────────────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', function() {
@@ -908,7 +1065,7 @@ function buildPrompt(){
   }
   brandingNote += 'Arrange the header with logo on left, property info center, headshot on right. Include Suzanne\'s contact: suzanne@damonteam.com | (603) 493-5561 | www.suzannedamon.com | 4 Bell Hill Road, Bedford, NH 03110';
 
-  return 'You are generating a Competitive Market Analysis (CMA) for Suzanne Damon, The Damon Home Team at eXp Realty, New Hampshire.\n\nABOUT SUZANNE:\n- 35+ years of NH real estate experience, top 1% in New England\n- 1,700+ career transactions, $696,000,000+ in career sales volume\n- 82 successful sales in the past 12 months across Greater Manchester\n- Manchester\'s #1 real estate agent, 2025 Top Agent (FastExpert), Top 15 in all of NH\n- CLHMS (Certified Luxury Home Marketing Specialist), Wall Street Journal & Barron\'s recognized\n- "America\'s Best Realtor" 2018-2020\n- President of the 1628 Group - new construction and development experience\n- 350+ five-star reviews\n- Headquartered at 4 Bell Hill Road, Bedford, NH 03110, active statewide\n- Specializes in luxury residential, new construction development, and multi-family investment\n- Primary market: Manchester. Secondary markets: Bedford, Goffstown, Hooksett, Londonderry, Merrimack, Amherst, Auburn, Derry, Litchfield, Nashua, New Boston, Suncook, Bow\n- Her approach: No-pressure, consultative, data-driven. "Preparation wins." Honest valuations - she does NOT inflate prices to win listings. Three decades of local data to maximize value.\n- Voice: Direct, confident, warm. She educates sellers. She speaks like a 35-year local expert who has seen every market cycle.\n- She writes in first person: "Based on my 35 years in this market..." / "What I\'m seeing in the data is..." / "My recommendation..."\n\nSHORT BIO (use in report footer):\nSuzanne Damon is the leader of The Damon Home Team at eXp Realty, based at 4 Bell Hill Road, Bedford, NH 03110. As Manchester\'s #1 real estate agent and a top 1% producer in New England, Suzanne Damon has secured over 1700 career transactions and $696,000,000 in total sales volume. She completed 82 successful sales in the past year alone, specializing in luxury homes, new construction, and investment properties. With 350+ five-star reviews and 35 years of experience, Suzanne Damon provides elite real estate guidance across New Hampshire.\n\nNH REGIONAL CONTEXT - '+region+':\n- No state income tax, no sales tax - major draw for MA/CT/NY buyers\n- Boston proximity drives Southern NH demand (commuter belt: Manchester/Nashua/Bedford/Derry/Salem)\n- Waterfront premiums: lake/riverfront commands 40-100% above comparable inland homes\n- School districts are a major value driver - top districts (Bedford, Exeter, Portsmouth) command 10-50% premiums\n- Four-season recreation is a core amenity signal in NH (skiing, hiking, foliage tourism, water sports)\n- Seasonal markets: Lakes Region and White Mountains have peak spring/summer and winter ski cycles\n- Seacoast (Portsmouth, Rye, Hampton) = NH\'s highest price-per-square-foot market\n- Property tax rates vary significantly by municipality\n- Current Use land enrollments (RSA 79-A) affect valuation of larger parcels\n- NH market has been consistently competitive post-COVID with sustained MA buyer migration\n\nSUBJECT PROPERTY:\nAddress: '+(g('address')||'Not provided')+'\nCity/Town/ZIP: '+(g('city')||'Not provided')+'\nRegion: '+region+'\nProperty Type: '+(g('proptype')||'Not specified')+'\nBedrooms: '+(g('beds')||'Not specified')+'\nFull Baths: '+(g('fullbaths')||'Not specified')+'\nHalf Baths: '+(g('halfbaths')||'Not specified')+'\nFinished Sq Ft: '+(g('sqft')||'Not specified')+'\nYear Built: '+(g('yearbuilt')||'Not specified')+'\nLot Size: '+(g('lotsize')||'Not specified')+'\nGarage: '+(g('garage')||'Not specified')+'\nBasement: '+(g('basement')||'Not specified')+'\nSchool District: '+(g('school')||'Not specified')+'\nHOA: '+(g('hoa')||'None noted')+'\nCondition: '+(g('condition')||'Not specified')+'\nKey Amenities: '+(amenities.length>0?amenities.join(', '):'None selected')+'\nUpdates/Renovations: '+(g('updates')||'Not provided')+'\nKnown Issues: '+(g('issues')||'None noted')+'\n\nSELLER CONTEXT:\nTimeline: '+(g('timeline')||'Not specified')+'\nTarget Price: '+(g('target-price')||'No target given')+'\nReason for Selling: '+(g('reason')||'Not specified')+'\nPrior Listing History: '+(g('prior-listing')||'None')+'\nSeller Objections/Concerns: '+(g('objections')||'None noted')+'\n\nSOLD COMPARABLES:\n'+soldRows+'\n\nACTIVE COMPETITION:\n'+activeRows+'\n\nLOCAL MARKET STATS:\n'+(stats||'Not provided - use NH regional and Suzanne\'s market expertise.')+'\n\nSUZANNE\'S NOTES:\nPricing Instinct: '+(g('instinct')||'Not provided')+'\nNeighborhood Strengths: '+(g('strengths')||'Not provided')+'\nChallenges/Headwinds: '+(g('headwinds')||'Not provided')+'\nAdditional Notes: '+(g('extra-notes')||'None')+'\n\nINSTRUCTIONS:\nGenerate a complete, professional CMA report in HTML format (no code fences, just clean HTML). Structure:\n\n1. HEADER - Property address, Suzanne\'s name/team/contact (suzanne@damonteam.com | 603-493-5561), report date' + brandingNote + '\n2. EXECUTIVE SUMMARY - Subject property overview in 2-3 sentences, then the recommended price range prominently displayed using a styled box with class="price-range"\n3. PROPERTY OVERVIEW - Key details in a clean table\n4. MARKET CONDITIONS - Use provided stats or NH regional knowledge. Calculate/infer absorption rate and market type. Write 2-3 sentences as Suzanne.\n5. SOLD COMPARABLES ANALYSIS - Table of comps if provided, with adjustment narrative. Apply standard NH adjustments: sq ft diff ~$100-150/sqft, bedroom +/-$7,500, full bath +/-$10,000, half bath +/-$4,000, garage stall +/-$12,000, finished basement +/-$20,000, kitchen update +/-$15,000, roof +/-$7,500, HVAC +/-$5,000. Waterfront: +40-100%. School district premium: note if top-tier.\n6. ACTIVE COMPETITION - Table if provided, narrative on competitive positioning\n7. PRICING RECOMMENDATION - Three tiers: Conservative (fastest sale), Recommended (optimal), Aggressive (tests market).\n8. AMENITY VALUE ANALYSIS - Address the specific amenities checked. Be specific about NH value drivers.\n9. SUZANNE\'S STRATEGIC COMMENTARY - 3-4 paragraphs in first-person as Suzanne. Warm, expert, no-pressure. Address the seller\'s context. Give honest pricing counsel.\n10. ABOUT SUZANNE - Include the short bio text provided above, with her contact info and credentials.\n11. LEGAL DISCLAIMER - Standard NH CMA disclaimer including RSA 331-A reference\n\nOutput only the HTML content that goes inside a div - no html/head/body tags. Use h1, h2, h3, p, table, strong tags. Use class="price-range" for the price display box with inner divs class="rec-price" and class="rec-label".';
+  return 'You are generating a Competitive Market Analysis (CMA) for Suzanne Damon, The Damon Home Team at eXp Realty, New Hampshire.\n\nABOUT SUZANNE:\n- 35+ years of NH real estate experience, top 1% in New England\n- 1,700+ career transactions, $696,000,000+ in career sales volume\n- 82 successful sales in the past 12 months across Greater Manchester\n- Manchester\'s #1 real estate agent, 2025 Top Agent (FastExpert), Top 15 in all of NH\n- CLHMS (Certified Luxury Home Marketing Specialist), Wall Street Journal & Barron\'s recognized\n- "America\'s Best Realtor" 2018-2020\n- President of the 1628 Group - new construction and development experience\n- 350+ five-star reviews\n- Headquartered at 4 Bell Hill Road, Bedford, NH 03110, active statewide\n- Specializes in luxury residential, new construction development, and multi-family investment\n- Primary market: Manchester. Secondary markets: Bedford, Goffstown, Hooksett, Londonderry, Merrimack, Amherst, Auburn, Derry, Litchfield, Nashua, New Boston, Suncook, Bow\n- Her approach: No-pressure, consultative, data-driven. "Preparation wins." Honest valuations - she does NOT inflate prices to win listings. Three decades of local data to maximize value.\n- Voice: Direct, confident, warm. She educates sellers. She speaks like a 35-year local expert who has seen every market cycle.\n- She writes in first person: "Based on my 35 years in this market..." / "What I\'m seeing in the data is..." / "My recommendation..."\n\nSHORT BIO (use in report footer):\nSuzanne Damon is the leader of The Damon Home Team at eXp Realty, based at 4 Bell Hill Road, Bedford, NH 03110. As Manchester\'s #1 real estate agent and a top 1% producer in New England, Suzanne Damon has secured over 1700 career transactions and $696,000,000 in total sales volume. She completed 82 successful sales in the past year alone, specializing in luxury homes, new construction, and investment properties. With 350+ five-star reviews and 35 years of experience, Suzanne Damon provides elite real estate guidance across New Hampshire.\n\nNH REGIONAL CONTEXT - '+region+':\n- No state income tax, no sales tax - major draw for MA/CT/NY buyers\n- Boston proximity drives Southern NH demand (commuter belt: Manchester/Nashua/Bedford/Derry/Salem)\n- Waterfront premiums: lake/riverfront commands 40-100% above comparable inland homes\n- School districts are a major value driver - top districts (Bedford, Exeter, Portsmouth) command 10-50% premiums\n- Four-season recreation is a core amenity signal in NH (skiing, hiking, foliage tourism, water sports)\n- Seasonal markets: Lakes Region and White Mountains have peak spring/summer and winter ski cycles\n- Seacoast (Portsmouth, Rye, Hampton) = NH\'s highest price-per-square-foot market\n- Property tax rates vary significantly by municipality\n- Current Use land enrollments (RSA 79-A) affect valuation of larger parcels\n- NH market has been consistently competitive post-COVID with sustained MA buyer migration\n\nSUBJECT PROPERTY:\nAddress: '+(g('address')||'Not provided')+'\nCity/Town/ZIP: '+(g('city')||'Not provided')+'\nRegion: '+region+'\nProperty Type: '+(g('proptype')||'Not specified')+'\nBedrooms: '+(g('beds')||'Not specified')+'\nFull Baths: '+(g('fullbaths')||'Not specified')+'\nHalf Baths: '+(g('halfbaths')||'Not specified')+'\nFinished Sq Ft: '+(g('sqft')||'Not specified')+'\nYear Built: '+(g('yearbuilt')||'Not specified')+'\nLot Size: '+(g('lotsize')||'Not specified')+'\nGarage: '+(g('garage')||'Not specified')+'\nBasement: '+(g('basement')||'Not specified')+'\nSchool District: '+(g('school')||'Not specified')+'\nHOA: '+(g('hoa')||'None noted')+'\nCondition: '+(g('condition')||'Not specified')+'\nKey Amenities: '+(amenities.length>0?amenities.join(', '):'None selected')+'\nUpdates/Renovations: '+(g('updates')||'Not provided')+'\nKnown Issues: '+(g('issues')||'None noted')+'\n\nSELLER CONTEXT:\nTimeline: '+(g('timeline')||'Not specified')+'\nTarget Price: '+(g('target-price')||'No target given')+'\nReason for Selling: '+(g('reason')||'Not specified')+'\nPrior Listing History: '+(g('prior-listing')||'None')+'\nSeller Objections/Concerns: '+(g('objections')||'None noted')+'\n\nSOLD COMPARABLES:\n'+soldRows+'\n\nACTIVE COMPETITION:\n'+activeRows+'\n\nLOCAL MARKET STATS:\n'+(stats||'Not provided - use NH regional and Suzanne\'s market expertise.')+'\n\nSUZANNE\'S NOTES:\nPricing Instinct: '+(g('instinct')||'Not provided')+'\nNeighborhood Strengths: '+(g('strengths')||'Not provided')+'\nChallenges/Headwinds: '+(g('headwinds')||'Not provided')+'\nAdditional Notes: '+(g('extra-notes')||'None')+'\n\nINSTRUCTIONS:\nGenerate a complete, professional CMA report in HTML format (no code fences, just clean HTML). Structure:\n\n1. HEADER - Property address, Suzanne\'s name/team/contact (suzanne@damonteam.com | 603-493-5561), report date' + brandingNote + '\n2. EXECUTIVE SUMMARY - Subject property overview in 2-3 sentences, then the recommended price range prominently displayed using a styled box with class="price-range"\n3. PROPERTY OVERVIEW - Key details in a clean table\n4. MARKET CONDITIONS - Use provided stats or NH regional knowledge. Calculate/infer absorption rate and market type. Write 2-3 sentences as Suzanne.\n5. SOLD COMPARABLES ANALYSIS - Table of comps if provided, with adjustment narrative. Apply standard NH adjustments: sq ft diff ~$100-150/sqft, bedroom +/-$7,500, full bath +/-$10,000, half bath +/-$4,000, garage stall +/-$12,000, finished basement +/-$20,000, kitchen update +/-$15,000, roof +/-$7,500, HVAC +/-$5,000. Waterfront: +40-100%. School district premium: note if top-tier.\n6. ACTIVE COMPETITION - Table if provided, narrative on competitive positioning\n7. PRICING RECOMMENDATION - Three tiers: Conservative (fastest sale), Recommended (optimal), Aggressive (tests market).\n8. AMENITY VALUE ANALYSIS - Address the specific amenities checked. Be specific about NH value drivers.\n9. SUZANNE\'S STRATEGIC COMMENTARY - 3-4 paragraphs in first-person as Suzanne. Warm, expert, no-pressure. Address the seller\'s context. Give honest pricing counsel.\n10. ABOUT SUZANNE - Include the short bio text provided above, with her contact info and credentials.\n11. LEGAL DISCLAIMER - Standard NH CMA disclaimer including RSA 331-A reference\n\nOutput only the HTML content that goes inside a div - no html/head/body tags. Use h1, h2, h3, p, table, strong tags. Use class="price-range" for the price display box with inner divs class="rec-price" and class="rec-label".' + getClosingCostsSummary();
 }
 
 // ── GENERATE ─────────────────────────────────────────────────────
@@ -1047,6 +1204,177 @@ function copyEmail() {
     alert('Email copied to clipboard. Paste into your email client.');
     closeEmailModal();
   });
+}
+
+// ── CLOSING COSTS CALCULATOR ─────────────────────────────────────
+function parseDollar(val) {
+  if (!val) return 0;
+  return parseFloat(val.replace(/[^0-9.\-]/g, '')) || 0;
+}
+
+function calculateClosingCosts() {
+  const salePrice = parseDollar(g('cc-sale-price'));
+  if (!salePrice) { document.getElementById('cc-results').style.display = 'none'; return; }
+
+  // Commission rate
+  const commSelect = g('cc-commission-rate');
+  const customWrap = document.getElementById('cc-custom-commission-wrap');
+  let commRate = 0;
+  if (commSelect === 'custom') {
+    customWrap.style.display = 'block';
+    commRate = parseFloat(g('cc-custom-commission')) || 0;
+  } else {
+    customWrap.style.display = 'none';
+    commRate = parseFloat(commSelect) || 0;
+  }
+
+  // Municipality-specific fees
+  const muni = g('cc-municipality');
+  const muniData = getMunicipalityData(muni);
+
+  // Calculate each line item
+  const commission = salePrice * (commRate / 100);
+  const transferTax = salePrice * 0.0075; // NH seller portion: $7.50 per $1,000
+  const titleInsurance = muniData.titleInsurance(salePrice);
+  const titleSearch = muniData.titleSearch;
+  const attorneyFee = muniData.attorneyFee;
+  const recordingFees = muniData.recordingFees;
+  const lienCert = muniData.lienCert;
+  const mortgage = parseDollar(g('cc-mortgage'));
+  const taxProration = parseDollar(g('cc-tax-proration'));
+  const hoaProration = parseDollar(g('cc-hoa-proration'));
+  const concessions = parseDollar(g('cc-concessions'));
+  const warranty = parseFloat(g('cc-warranty')) || 0;
+
+  // Build table rows
+  const items = [];
+  items.push({ label: 'Sale Price', amount: salePrice, type: 'credit' });
+  if (commission > 0) items.push({ label: 'Real Estate Commission (' + commRate + '%)', amount: -commission });
+  items.push({ label: 'NH Transfer Tax (Seller - $7.50/$1,000)', amount: -transferTax });
+  items.push({ label: 'Title Insurance (Owner\'s Policy)', amount: -titleInsurance });
+  items.push({ label: 'Title Search & Exam', amount: -titleSearch });
+  items.push({ label: 'Attorney / Closing Fee', amount: -attorneyFee });
+  items.push({ label: 'Recording Fees (Deed, Discharge)', amount: -recordingFees });
+  items.push({ label: 'Municipal Lien Certificate (' + muniData.name + ')', amount: -lienCert });
+  if (mortgage > 0) items.push({ label: 'Mortgage Payoff', amount: -mortgage });
+  if (taxProration > 0) items.push({ label: 'Property Tax Proration', amount: -taxProration });
+  if (hoaProration > 0) items.push({ label: 'HOA Proration', amount: -hoaProration });
+  if (concessions > 0) items.push({ label: 'Seller Concessions', amount: -concessions });
+  if (warranty > 0) items.push({ label: 'Home Warranty', amount: -warranty });
+
+  // Render
+  const tbody = document.getElementById('cc-tbody');
+  tbody.innerHTML = items.map(item => {
+    const isCredit = item.type === 'credit';
+    const formatted = (item.amount < 0 ? '-' : '') + '$' + Math.abs(item.amount).toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+    const color = isCredit ? '#059669' : '#dc2626';
+    return '<tr><td style="padding:8px 12px;border-bottom:1px solid #d1d5db;">' + item.label + '</td><td style="padding:8px 12px;border-bottom:1px solid #d1d5db;text-align:right;color:' + color + ';font-weight:600;">' + formatted + '</td></tr>';
+  }).join('');
+
+  const net = items.reduce((sum, i) => sum + i.amount, 0);
+  const netFormatted = (net < 0 ? '-' : '') + '$' + Math.abs(net).toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+  document.getElementById('cc-net-total').textContent = netFormatted;
+  document.getElementById('cc-results').style.display = 'block';
+}
+
+function getMunicipalityData(muni) {
+  // Base NH rates with municipality-specific overrides
+  const base = {
+    name: 'Standard NH',
+    titleInsurance: function(price) { return Math.max(price * 0.003, 500); }, // ~$3 per $1,000, min $500
+    titleSearch: 350,
+    attorneyFee: 800,
+    recordingFees: 50,
+    lienCert: 25
+  };
+
+  const overrides = {
+    'manchester': { name: 'Manchester', lienCert: 50, attorneyFee: 750 },
+    'nashua': { name: 'Nashua', lienCert: 50, attorneyFee: 800 },
+    'bedford': { name: 'Bedford', lienCert: 25, attorneyFee: 850 },
+    'goffstown': { name: 'Goffstown', lienCert: 25 },
+    'hooksett': { name: 'Hooksett', lienCert: 25 },
+    'londonderry': { name: 'Londonderry', lienCert: 25 },
+    'derry': { name: 'Derry', lienCert: 25 },
+    'salem': { name: 'Salem', lienCert: 25 },
+    'merrimack': { name: 'Merrimack', lienCert: 25 },
+    'amherst': { name: 'Amherst', lienCert: 25, attorneyFee: 900 },
+    'auburn': { name: 'Auburn', lienCert: 25 },
+    'litchfield': { name: 'Litchfield', lienCert: 25 },
+    'new-boston': { name: 'New Boston', lienCert: 25 },
+    'concord': { name: 'Concord', lienCert: 35, attorneyFee: 800 },
+    'bow': { name: 'Bow', lienCert: 25 },
+    'suncook': { name: 'Suncook / Pembroke', lienCert: 25 },
+    'hopkinton': { name: 'Hopkinton', lienCert: 25 },
+    'portsmouth': { name: 'Portsmouth', lienCert: 50, attorneyFee: 1000, titleSearch: 400 },
+    'exeter': { name: 'Exeter', lienCert: 25, attorneyFee: 900 },
+    'dover': { name: 'Dover', lienCert: 35, attorneyFee: 850 },
+    'hampton': { name: 'Hampton', lienCert: 25, attorneyFee: 900 },
+    'rye': { name: 'Rye', lienCert: 25, attorneyFee: 950 },
+    'laconia': { name: 'Laconia', lienCert: 35 },
+    'wolfeboro': { name: 'Wolfeboro', lienCert: 25, attorneyFee: 900 },
+    'meredith': { name: 'Meredith', lienCert: 25 },
+    'gilford': { name: 'Gilford', lienCert: 25 },
+    'conway': { name: 'Conway', lienCert: 25 },
+    'lincoln': { name: 'Lincoln / Woodstock', lienCert: 25 },
+    'littleton': { name: 'Littleton', lienCert: 25 },
+    'keene': { name: 'Keene', lienCert: 35, attorneyFee: 800 },
+    'peterborough': { name: 'Peterborough', lienCert: 25 }
+  };
+
+  const o = overrides[muni] || {};
+  return {
+    name: o.name || base.name,
+    titleInsurance: o.titleInsurance || base.titleInsurance,
+    titleSearch: o.titleSearch || base.titleSearch,
+    attorneyFee: o.attorneyFee || base.attorneyFee,
+    recordingFees: o.recordingFees || base.recordingFees,
+    lienCert: o.lienCert !== undefined ? o.lienCert : base.lienCert
+  };
+}
+
+function getClosingCostsSummary() {
+  const salePrice = parseDollar(g('cc-sale-price'));
+  if (!salePrice || !document.getElementById('cc-include-in-cma').checked) return '';
+
+  const commSelect = g('cc-commission-rate');
+  let commRate = commSelect === 'custom' ? (parseFloat(g('cc-custom-commission')) || 0) : (parseFloat(commSelect) || 0);
+  const muni = g('cc-municipality');
+  const muniData = getMunicipalityData(muni);
+  const commission = salePrice * (commRate / 100);
+  const transferTax = salePrice * 0.0075;
+  const titleInsurance = muniData.titleInsurance(salePrice);
+  const titleSearch = muniData.titleSearch;
+  const attorneyFee = muniData.attorneyFee;
+  const recordingFees = muniData.recordingFees;
+  const lienCert = muniData.lienCert;
+  const mortgage = parseDollar(g('cc-mortgage'));
+  const taxProration = parseDollar(g('cc-tax-proration'));
+  const hoaProration = parseDollar(g('cc-hoa-proration'));
+  const concessions = parseDollar(g('cc-concessions'));
+  const warranty = parseFloat(g('cc-warranty')) || 0;
+
+  const totalCosts = commission + transferTax + titleInsurance + titleSearch + attorneyFee + recordingFees + lienCert + mortgage + taxProration + hoaProration + concessions + warranty;
+  const net = salePrice - totalCosts;
+
+  let text = '\n\nESTIMATED SELLER CLOSING COSTS (include as a section in the report):\n';
+  text += 'Municipality: ' + muniData.name + '\n';
+  text += 'Sale Price: $' + salePrice.toLocaleString() + '\n';
+  if (commRate > 0) text += 'Commission (' + commRate + '%): -$' + Math.round(commission).toLocaleString() + '\n';
+  text += 'NH Transfer Tax (Seller $7.50/$1,000): -$' + Math.round(transferTax).toLocaleString() + '\n';
+  text += 'Title Insurance: -$' + Math.round(titleInsurance).toLocaleString() + '\n';
+  text += 'Title Search: -$' + titleSearch.toLocaleString() + '\n';
+  text += 'Attorney Fee: -$' + attorneyFee.toLocaleString() + '\n';
+  text += 'Recording Fees: -$' + recordingFees.toLocaleString() + '\n';
+  text += 'Municipal Lien Certificate: -$' + lienCert.toLocaleString() + '\n';
+  if (mortgage > 0) text += 'Mortgage Payoff: -$' + Math.round(mortgage).toLocaleString() + '\n';
+  if (taxProration > 0) text += 'Property Tax Proration: -$' + Math.round(taxProration).toLocaleString() + '\n';
+  if (hoaProration > 0) text += 'HOA Proration: -$' + Math.round(hoaProration).toLocaleString() + '\n';
+  if (concessions > 0) text += 'Seller Concessions: -$' + Math.round(concessions).toLocaleString() + '\n';
+  if (warranty > 0) text += 'Home Warranty: -$' + warranty.toLocaleString() + '\n';
+  text += 'ESTIMATED NET TO SELLER: $' + Math.round(net).toLocaleString() + '\n';
+  text += 'Note: Present this as a clean table in the CMA. Add a disclaimer that these are estimates and actual costs may vary by attorney, title company, and municipality.\n';
+  return text;
 }
 
 function resetApp(){
