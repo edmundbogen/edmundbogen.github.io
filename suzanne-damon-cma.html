@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suzanne Damon | CMA Generator</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C; --gold-light: #e8c97a; --gold-pale: #fdf6e3;
+    --blue: #1B3A6B; --blue-mid: #2a5298; --blue-light: #EAF0F8; --blue-pale: #f4f7fc;
+    --cream: #FFFEF5; --text: #1a1a2e; --muted: #6b7280; --border: #d1d5db;
+    --success: #059669; --white: #ffffff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Source Sans 3', sans-serif; background: #0d1b35; color: var(--text); min-height: 100vh; }
+  .site-header { background: linear-gradient(135deg, #0d1b35 0%, #1B3A6B 60%, #0d1b35 100%); padding: 24px 40px; display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid var(--gold); position: sticky; top: 0; z-index: 100; }
+  .header-brand { display: flex; flex-direction: column; }
+  .header-brand .name { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--white); letter-spacing: 0.5px; }
+  .header-brand .tagline { font-size: 12px; color: var(--gold); letter-spacing: 1.5px; text-transform: uppercase; margin-top: 2px; }
+  .header-badge { background: rgba(201,168,76,0.15); border: 1px solid var(--gold); color: var(--gold); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; padding: 5px 12px; border-radius: 20px; }
+  .app-container { max-width: 960px; margin: 0 auto; padding: 32px 20px 60px; }
+  .page-title { text-align: center; margin-bottom: 32px; }
+  .page-title h1 { font-family: 'Playfair Display', serif; font-size: 36px; color: var(--white); margin-bottom: 8px; }
+  .page-title p { color: rgba(255,255,255,0.6); font-size: 15px; }
+  .gold-line { width: 60px; height: 2px; background: var(--gold); margin: 14px auto; }
+  .progress-wrap { display: flex; gap: 6px; margin-bottom: 28px; align-items: center; justify-content: center; }
+  .step-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.2); transition: all 0.3s; cursor: pointer; }
+  .step-dot.active { background: var(--gold); transform: scale(1.4); }
+  .step-dot.done { background: rgba(201,168,76,0.5); }
+  .progress-label { color: rgba(255,255,255,0.5); font-size: 12px; letter-spacing: 1px; text-transform: uppercase; margin: 0 8px; }
+  .card { background: var(--white); border-radius: 12px; box-shadow: 0 4px 32px rgba(0,0,0,0.3); overflow: hidden; margin-bottom: 20px; }
+  .card-header { background: linear-gradient(135deg, var(--blue) 0%, var(--blue-mid) 100%); padding: 18px 28px; display: flex; align-items: center; gap: 14px; }
+  .card-header .step-num { width: 32px; height: 32px; border-radius: 50%; background: var(--gold); color: var(--blue); font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .card-header .step-info h2 { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--white); }
+  .card-header .step-info p { font-size: 12px; color: rgba(255,255,255,0.65); margin-top: 2px; }
+  .card-body { padding: 24px 28px; }
+  .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .field-grid.three { grid-template-columns: 1fr 1fr 1fr; }
+  .field-grid.single { grid-template-columns: 1fr; }
+  .field-wrap { display: flex; flex-direction: column; gap: 5px; }
+  .field-wrap.full { grid-column: 1 / -1; }
+  label { font-size: 12px; font-weight: 600; color: var(--blue); letter-spacing: 0.5px; text-transform: uppercase; display: flex; align-items: center; gap: 5px; }
+  label .opt { font-weight: 400; color: var(--muted); text-transform: none; font-size: 11px; letter-spacing: 0; }
+  label .req { color: var(--gold); font-size: 14px; line-height: 1; }
+  input[type="text"], input[type="number"], select, textarea { width: 100%; padding: 10px 13px; border: 1.5px solid var(--border); border-radius: 7px; font-family: 'Source Sans 3', sans-serif; font-size: 14px; color: var(--text); background: var(--white); transition: border-color 0.2s, box-shadow 0.2s; outline: none; }
+  input:focus, select:focus, textarea:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(27,58,107,0.08); }
+  textarea { resize: vertical; min-height: 80px; }
+  .hint { font-size: 11px; color: var(--muted); margin-top: -2px; font-style: italic; }
+  .amenity-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .amenity-chip { display: flex; align-items: center; gap: 6px; padding: 6px 12px; border: 1.5px solid var(--border); border-radius: 20px; cursor: pointer; font-size: 13px; background: var(--white); transition: all 0.2s; user-select: none; }
+  .amenity-chip:hover { border-color: var(--blue); color: var(--blue); }
+  .amenity-chip.selected { background: var(--blue); border-color: var(--blue); color: var(--white); }
+  .amenity-chip .icon { font-size: 15px; }
+  .region-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 8px; }
+  .region-card { border: 1.5px solid var(--border); border-radius: 8px; padding: 12px 14px; cursor: pointer; transition: all 0.2s; text-align: center; }
+  .region-card:hover { border-color: var(--blue); background: var(--blue-pale); }
+  .region-card.selected { border-color: var(--gold); background: var(--gold-pale); }
+  .region-card .region-icon { font-size: 22px; margin-bottom: 4px; }
+  .region-card .region-name { font-weight: 600; font-size: 13px; color: var(--blue); }
+  .region-card .region-desc { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .nav-buttons { display: flex; gap: 12px; justify-content: flex-end; margin-top: 20px; padding: 0 0 4px; }
+  .btn { padding: 11px 24px; border-radius: 8px; font-family: 'Source Sans 3', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; border: none; transition: all 0.2s; letter-spacing: 0.3px; }
+  .btn-secondary { background: var(--blue-pale); color: var(--blue); border: 1.5px solid var(--blue); }
+  .btn-secondary:hover { background: var(--blue-light); }
+  .btn-primary { background: linear-gradient(135deg, var(--blue) 0%, var(--blue-mid) 100%); color: var(--white); box-shadow: 0 2px 12px rgba(27,58,107,0.35); }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 18px rgba(27,58,107,0.45); }
+  .btn-gold { background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%); color: var(--blue); box-shadow: 0 2px 12px rgba(201,168,76,0.4); font-size: 15px; padding: 13px 32px; }
+  .btn-gold:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(201,168,76,0.5); }
+  .btn-gold:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+  .loading-state { text-align: center; padding: 60px 30px; background: var(--white); border-radius: 12px; box-shadow: 0 4px 32px rgba(0,0,0,0.3); }
+  .loading-spinner { width: 48px; height: 48px; border: 3px solid var(--blue-light); border-top-color: var(--blue); border-radius: 50%; animation: spin 0.9s linear infinite; margin: 0 auto 16px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-state h3 { font-family: 'Playfair Display', serif; color: var(--blue); font-size: 20px; margin-bottom: 8px; }
+  .loading-state p { color: var(--muted); font-size: 14px; }
+  #cma-output { background: var(--white); border-radius: 12px; box-shadow: 0 4px 32px rgba(0,0,0,0.3); overflow: hidden; }
+  .output-actions { display: flex; gap: 10px; padding: 16px 28px; background: var(--blue-pale); border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+  .output-actions .btn { font-size: 13px; padding: 8px 18px; }
+  #cma-content { padding: 32px; font-size: 14px; line-height: 1.7; color: var(--text); }
+  #cma-content h1 { font-family: 'Playfair Display', serif; color: var(--blue); font-size: 26px; border-bottom: 2px solid var(--gold); padding-bottom: 10px; margin-bottom: 20px; }
+  #cma-content h2 { font-family: 'Playfair Display', serif; color: var(--blue); font-size: 19px; margin: 26px 0 10px; padding-left: 10px; border-left: 3px solid var(--gold); }
+  #cma-content h3 { font-weight: 700; color: var(--blue-mid); font-size: 15px; margin: 16px 0 6px; }
+  #cma-content p { margin-bottom: 10px; }
+  #cma-content table { width: 100%; border-collapse: collapse; margin: 14px 0 20px; font-size: 13px; }
+  #cma-content table th { background: var(--blue); color: var(--white); padding: 9px 12px; text-align: left; font-size: 12px; font-weight: 600; }
+  #cma-content table td { padding: 8px 12px; border-bottom: 1px solid var(--border); }
+  #cma-content table tr:nth-child(even) td { background: var(--blue-pale); }
+  #cma-content .price-range { background: linear-gradient(135deg, var(--blue-pale) 0%, var(--gold-pale) 100%); border: 1.5px solid var(--gold); border-radius: 10px; padding: 20px 24px; margin: 16px 0; text-align: center; }
+  #cma-content .price-range .rec-price { font-family: 'Playfair Display', serif; font-size: 32px; color: var(--blue); font-weight: 700; }
+  #cma-content .price-range .rec-label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--gold); font-weight: 600; margin-top: 4px; }
+  #cma-content .disclaimer { font-size: 11px; color: var(--muted); border-top: 1px solid var(--border); padding-top: 14px; margin-top: 28px; font-style: italic; }
+  #cma-content strong { color: var(--blue); }
+  .info-tip { background: var(--gold-pale); border-left: 3px solid var(--gold); padding: 10px 14px; border-radius: 0 6px 6px 0; font-size: 13px; color: #6b5a2a; margin-bottom: 16px; }
+  .section-divider { height: 1px; background: var(--border); margin: 22px 0; }
+  .input-tabs { display: flex; gap: 6px; margin-bottom: 16px; border-bottom: 2px solid var(--border); padding-bottom: 0; }
+  .tab-btn { padding: 8px 18px; border: none; background: none; font-family: 'Source Sans 3', sans-serif; font-size: 13px; font-weight: 600; color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.2s; border-radius: 6px 6px 0 0; }
+  .tab-btn:hover { color: var(--blue); background: var(--blue-pale); }
+  .tab-btn.active { color: var(--blue); border-bottom-color: var(--gold); background: var(--blue-pale); }
+  .upload-zone { border: 2px dashed var(--border); border-radius: 10px; padding: 32px 20px; text-align: center; cursor: pointer; transition: all 0.2s; background: var(--blue-pale); margin-bottom: 10px; }
+  .upload-zone:hover, .upload-zone.dragover { border-color: var(--blue); background: var(--blue-light); }
+  .upload-zone.compact { padding: 14px 20px; }
+  .upload-zone.has-file { border-color: #059669; background: #f0fdf4; }
+  .upload-icon { font-size: 32px; margin-bottom: 8px; }
+  .upload-label { font-weight: 600; color: var(--blue); font-size: 14px; }
+  .upload-hint { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .csv-status { padding: 8px 14px; border-radius: 6px; font-size: 13px; font-weight: 600; margin-bottom: 10px; }
+  .csv-status.success { background: #f0fdf4; color: #059669; border: 1px solid #86efac; }
+  .csv-status.error { background: #fef2f2; color: #dc2626; border: 1px solid #fca5a5; }
+  .csv-preview { overflow-x: auto; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 8px; max-height: 220px; overflow-y: auto; }
+  .csv-preview table { width: 100%; border-collapse: collapse; font-size: 11px; }
+  .csv-preview table th { background: var(--blue); color: white; padding: 6px 10px; text-align: left; white-space: nowrap; position: sticky; top: 0; }
+  .csv-preview table td { padding: 5px 10px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  .csv-preview table tr:nth-child(even) td { background: var(--blue-pale); }
+  .clear-btn { background: none; border: 1px solid #fca5a5; color: #dc2626; font-size: 12px; padding: 4px 12px; border-radius: 5px; cursor: pointer; font-family: 'Source Sans 3', sans-serif; margin-bottom: 6px; }
+  .clear-btn:hover { background: #fef2f2; }
+  /* API Key Modal */
+  .api-modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); z-index: 1000; display: flex; align-items: center; justify-content: center; }
+  .api-modal { background: var(--white); border-radius: 12px; padding: 32px; max-width: 500px; width: 90%; box-shadow: 0 8px 40px rgba(0,0,0,0.4); }
+  .api-modal h3 { font-family: 'Playfair Display', serif; color: var(--blue); font-size: 20px; margin-bottom: 12px; }
+  .api-modal p { font-size: 13px; color: var(--muted); margin-bottom: 16px; line-height: 1.6; }
+  .api-modal input { width: 100%; padding: 12px; border: 1.5px solid var(--border); border-radius: 7px; font-size: 14px; font-family: monospace; margin-bottom: 16px; }
+  .api-modal .btn-row { display: flex; gap: 10px; justify-content: flex-end; }
+  @media (max-width: 640px) {
+    .field-grid { grid-template-columns: 1fr; }
+    .field-grid.three { grid-template-columns: 1fr 1fr; }
+    .region-grid { grid-template-columns: 1fr 1fr; }
+    .site-header { padding: 16px 20px; }
+    .card-body { padding: 18px 18px; }
+    .app-container { padding: 20px 12px 40px; }
+  }
+  @media print {
+    .site-header, .nav-buttons, .output-actions, .progress-wrap, .page-title { display: none !important; }
+    body { background: white; }
+    #cma-output { box-shadow: none; }
+    #cma-content { padding: 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-brand">
+    <span class="name">Suzanne Damon | The Damon Home Team</span>
+    <span class="tagline">eXp Realty &middot; New Hampshire Statewide &middot; CLHMS</span>
+  </div>
+  <div class="header-badge">CMA Generator</div>
+</header>
+
+<div class="app-container">
+
+  <div class="page-title" id="main-title">
+    <h1>Competitive Market Analysis</h1>
+    <div class="gold-line"></div>
+    <p>Fill in what you know. Skip what you don't. Your CMA will be generated instantly.</p>
+  </div>
+
+  <div class="progress-wrap" id="progress-bar">
+    <span class="progress-label">Step</span>
+    <div class="step-dot active" onclick="goToStep(0)" title="Property"></div>
+    <div class="step-dot" onclick="goToStep(1)" title="Seller"></div>
+    <div class="step-dot" onclick="goToStep(2)" title="Comps"></div>
+    <div class="step-dot" onclick="goToStep(3)" title="Market"></div>
+    <div class="step-dot" onclick="goToStep(4)" title="Your Notes"></div>
+    <span class="progress-label" id="step-label">1 of 5</span>
+  </div>
+
+  <!-- STEP 0: PROPERTY -->
+  <div id="step-0" class="step-panel">
+    <div class="card">
+      <div class="card-header">
+        <div class="step-num">1</div>
+        <div class="step-info">
+          <h2>NH Region & Property Details</h2>
+          <p>Select the region — it shapes amenity weights and comp adjustments</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <label>NH Region <span class="req">*</span></label>
+        <div class="region-grid" id="region-grid">
+          <div class="region-card" data-region="Southern NH / Manchester-Nashua Corridor" onclick="selectRegion(this)">
+            <div class="region-icon">&#127961;</div>
+            <div class="region-name">Southern NH</div>
+            <div class="region-desc">Manchester, Nashua, Bedford, Derry, Salem</div>
+          </div>
+          <div class="region-card" data-region="Seacoast" onclick="selectRegion(this)">
+            <div class="region-icon">&#127754;</div>
+            <div class="region-name">Seacoast</div>
+            <div class="region-desc">Portsmouth, Rye, Hampton, Exeter, Dover</div>
+          </div>
+          <div class="region-card" data-region="Lakes Region" onclick="selectRegion(this)">
+            <div class="region-icon">&#9973;</div>
+            <div class="region-name">Lakes Region</div>
+            <div class="region-desc">Laconia, Wolfeboro, Meredith, Gilford</div>
+          </div>
+          <div class="region-card" data-region="White Mountains / North Country" onclick="selectRegion(this)">
+            <div class="region-icon">&#9975;</div>
+            <div class="region-name">White Mountains</div>
+            <div class="region-desc">Conway, Lincoln, Littleton, Franconia</div>
+          </div>
+          <div class="region-card" data-region="Merrimack Valley / Capital Area" onclick="selectRegion(this)">
+            <div class="region-icon">&#127963;</div>
+            <div class="region-name">Merrimack Valley</div>
+            <div class="region-desc">Concord, Merrimack, Hooksett, Bow</div>
+          </div>
+          <div class="region-card" data-region="Monadnock / Southwest NH" onclick="selectRegion(this)">
+            <div class="region-icon">&#127807;</div>
+            <div class="region-name">Monadnock</div>
+            <div class="region-desc">Keene, Peterborough, Jaffrey, Dublin</div>
+          </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="field-grid">
+          <div class="field-wrap"><label>Property Address <span class="req">*</span></label><input type="text" id="address" placeholder="123 Main Street"></div>
+          <div class="field-wrap"><label>City / Town / ZIP <span class="req">*</span></label><input type="text" id="city" placeholder="Manchester, NH 03103"></div>
+          <div class="field-wrap"><label>Property Type <span class="req">*</span></label><select id="proptype"><option value="">Select type...</option><option>Single Family</option><option>Condo / Townhouse</option><option>Multi-Family (2-4 units)</option><option>Waterfront / Lake Property</option><option>Vacation / Seasonal</option><option>Luxury / Estate</option><option>New Construction</option></select></div>
+          <div class="field-wrap"><label>Current Condition <span class="req">*</span></label><select id="condition"><option value="">Select...</option><option>Excellent - move-in ready, recent updates</option><option>Good - well maintained, minor updates</option><option>Average - functional but dated</option><option>Fair - needs work / deferred maintenance</option></select></div>
+        </div>
+
+        <div class="field-grid three" style="margin-top:14px;">
+          <div class="field-wrap"><label>Bedrooms <span class="req">*</span></label><input type="number" id="beds" placeholder="3" min="1" max="20"></div>
+          <div class="field-wrap"><label>Full Baths <span class="req">*</span></label><input type="number" id="fullbaths" placeholder="2" min="0" max="20"></div>
+          <div class="field-wrap"><label>Half Baths <span class="opt">(optional)</span></label><input type="number" id="halfbaths" placeholder="1" min="0" max="10"></div>
+          <div class="field-wrap"><label>Total Finished Sq Ft <span class="req">*</span></label><input type="number" id="sqft" placeholder="1850" min="100"></div>
+          <div class="field-wrap"><label>Year Built <span class="opt">(optional)</span></label><input type="number" id="yearbuilt" placeholder="1998" min="1700" max="2026"></div>
+          <div class="field-wrap"><label>Lot Size <span class="opt">(optional)</span></label><input type="text" id="lotsize" placeholder="0.35 acres or 15,000 sf"></div>
+        </div>
+
+        <div class="field-grid" style="margin-top:14px;">
+          <div class="field-wrap"><label>Garage <span class="opt">(optional)</span></label><select id="garage"><option value="">Select...</option><option>No Garage</option><option>1-Car Attached</option><option>1-Car Detached</option><option>2-Car Attached</option><option>2-Car Detached</option><option>3+ Car</option><option>Carport</option></select></div>
+          <div class="field-wrap"><label>Basement <span class="opt">(optional)</span></label><select id="basement"><option value="">Select...</option><option>No Basement</option><option>Unfinished</option><option>Partially Finished</option><option>Fully Finished</option><option>Walk-Out Finished</option></select></div>
+          <div class="field-wrap"><label>School District <span class="opt">(optional)</span></label><input type="text" id="school" placeholder="e.g. Bedford School District"><span class="hint">Strong districts add measurable value in NH</span></div>
+          <div class="field-wrap"><label>HOA <span class="opt">(optional)</span></label><input type="text" id="hoa" placeholder="None - or $350/mo (includes...)"></div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <label>Key Amenities & Value Drivers</label>
+        <span class="hint" style="display:block;margin:4px 0 10px;">Select all that apply - these drive significant value in NH</span>
+        <div class="amenity-grid" id="amenity-grid">
+          <div class="amenity-chip" data-val="Waterfront / Lake Frontage" onclick="toggleAmenity(this)"><span class="icon">&#127958;</span>Waterfront / Lake</div>
+          <div class="amenity-chip" data-val="Private Dock" onclick="toggleAmenity(this)"><span class="icon">&#9875;</span>Private Dock</div>
+          <div class="amenity-chip" data-val="Sandy Beach" onclick="toggleAmenity(this)"><span class="icon">&#127946;</span>Sandy Beach</div>
+          <div class="amenity-chip" data-val="Mountain / Long Range Views" onclick="toggleAmenity(this)"><span class="icon">&#9968;</span>Mountain Views</div>
+          <div class="amenity-chip" data-val="Ski-In / Ski-Out or Near Ski Area" onclick="toggleAmenity(this)"><span class="icon">&#9975;</span>Ski Access</div>
+          <div class="amenity-chip" data-val="Ocean / Coastal Views" onclick="toggleAmenity(this)"><span class="icon">&#127754;</span>Ocean Views</div>
+          <div class="amenity-chip" data-val="Private Pool" onclick="toggleAmenity(this)"><span class="icon">&#127946;</span>Pool</div>
+          <div class="amenity-chip" data-val="Short-Term Rental / Airbnb Income Potential" onclick="toggleAmenity(this)"><span class="icon">&#127969;</span>STR Potential</div>
+          <div class="amenity-chip" data-val="In-Law Suite / ADU" onclick="toggleAmenity(this)"><span class="icon">&#127960;</span>In-Law Suite</div>
+          <div class="amenity-chip" data-val="Smart Home Technology" onclick="toggleAmenity(this)"><span class="icon">&#128241;</span>Smart Home</div>
+          <div class="amenity-chip" data-val="Solar Panels / EV Charger" onclick="toggleAmenity(this)"><span class="icon">&#9728;</span>Solar / EV</div>
+          <div class="amenity-chip" data-val="Generator" onclick="toggleAmenity(this)"><span class="icon">&#9889;</span>Generator</div>
+          <div class="amenity-chip" data-val="Large Acreage / Privacy" onclick="toggleAmenity(this)"><span class="icon">&#127794;</span>Large Lot / Privacy</div>
+          <div class="amenity-chip" data-val="Cul-de-Sac / Low Traffic" onclick="toggleAmenity(this)"><span class="icon">&#128309;</span>Cul-de-Sac</div>
+          <div class="amenity-chip" data-val="Walk to Town / Downtown" onclick="toggleAmenity(this)"><span class="icon">&#128694;</span>Walk to Town</div>
+          <div class="amenity-chip" data-val="4-Season Recreation Access" onclick="toggleAmenity(this)"><span class="icon">&#127810;</span>4-Season Recreation</div>
+          <div class="amenity-chip" data-val="Boston Commuter-Friendly" onclick="toggleAmenity(this)"><span class="icon">&#128642;</span>Boston Commuter</div>
+          <div class="amenity-chip" data-val="New Construction / Recent Major Renovation" onclick="toggleAmenity(this)"><span class="icon">&#128296;</span>New / Major Reno</div>
+        </div>
+
+        <div style="margin-top:16px;">
+          <label>Updates & Renovations <span class="opt">(optional)</span></label>
+          <textarea id="updates" placeholder="List any significant updates with approximate year completed. E.g.: New roof 2022, Kitchen remodel 2021 (quartz + appliances), HVAC replaced 2020..."></textarea>
+        </div>
+        <div style="margin-top:12px;">
+          <label>Known Issues / Deferred Maintenance <span class="opt">(optional)</span></label>
+          <textarea id="issues" placeholder="Anything buyers may flag - affects comp adjustments and pricing strategy." style="min-height:60px;"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="nav-buttons"><button class="btn btn-primary" onclick="nextStep()">Seller Context &rarr;</button></div>
+  </div>
+
+  <!-- STEP 1: SELLER -->
+  <div id="step-1" class="step-panel" style="display:none;">
+    <div class="card">
+      <div class="card-header">
+        <div class="step-num">2</div>
+        <div class="step-info"><h2>Seller Goals & Context</h2><p>All fields optional - fill in what you know</p></div>
+      </div>
+      <div class="card-body">
+        <div class="info-tip">This section shapes the strategic narrative and pricing recommendation. The more context, the more on-point the CMA.</div>
+        <div class="field-grid">
+          <div class="field-wrap"><label>Seller's Timeline <span class="opt">(optional)</span></label><select id="timeline"><option value="">Select...</option><option>ASAP - price to sell fast</option><option>30 days</option><option>60-90 days</option><option>Flexible - open to waiting for the right buyer</option><option>Testing the market</option></select></div>
+          <div class="field-wrap"><label>Seller's Target Price <span class="opt">(optional)</span></label><input type="text" id="target-price" placeholder="e.g. $450,000 or 'around $500K'"><span class="hint">If they have a number in mind</span></div>
+          <div class="field-wrap"><label>Reason for Selling <span class="opt">(optional)</span></label><select id="reason"><option value="">Select...</option><option>Relocating out of state</option><option>Upsizing</option><option>Downsizing</option><option>Estate sale / inherited property</option><option>Divorce / separation</option><option>Financial reasons</option><option>Retiring / moving closer to family</option><option>Investment property sale</option><option>New construction / new home purchase</option></select></div>
+          <div class="field-wrap"><label>Prior Listing History? <span class="opt">(optional)</span></label><input type="text" id="prior-listing" placeholder="e.g. Listed at $475K in 2024, didn't sell - overpriced"></div>
+        </div>
+        <div style="margin-top:14px;"><label>Known Objections or Concerns <span class="opt">(optional)</span></label><textarea id="objections" placeholder="e.g. Seller believes their home is worth more than the data shows. They've done significant updates and feel the market hasn't caught up..."></textarea></div>
+      </div>
+    </div>
+    <div class="nav-buttons">
+      <button class="btn btn-secondary" onclick="prevStep()">&larr; Back</button>
+      <button class="btn btn-primary" onclick="nextStep()">Comparable Sales &rarr;</button>
+    </div>
+  </div>
+
+  <!-- STEP 2: COMPS -->
+  <div id="step-2" class="step-panel" style="display:none;">
+    <div class="card">
+      <div class="card-header">
+        <div class="step-num">3</div>
+        <div class="step-info"><h2>Sold Comparables</h2><p>Upload a CSV from PrimeMLS, paste raw data, or both</p></div>
+      </div>
+      <div class="card-body">
+        <div class="info-tip">Export from PrimeMLS as CSV, or copy/paste the grid directly. Prefer last 6 months, within 1 mile, same property type. Claude handles messy or partial data.</div>
+        <div class="input-tabs" id="sold-tabs">
+          <button class="tab-btn active" onclick="switchTab('sold','csv')">Upload CSV</button>
+          <button class="tab-btn" onclick="switchTab('sold','paste')">Paste Text</button>
+          <button class="tab-btn" onclick="switchTab('sold','both')">Both</button>
+        </div>
+        <div id="sold-csv-panel" class="tab-panel">
+          <div class="upload-zone" id="sold-upload-zone" onclick="document.getElementById('sold-csv-input').click()" ondragover="dragOver(event)" ondrop="dropCSV(event,'sold')">
+            <div class="upload-icon">&#128194;</div>
+            <div class="upload-label">Click to upload or drag &amp; drop</div>
+            <div class="upload-hint">PrimeMLS CSV export &middot; .csv files only</div>
+            <input type="file" id="sold-csv-input" accept=".csv" style="display:none" onchange="handleCSV(event,'sold')">
+          </div>
+          <div id="sold-csv-status" class="csv-status" style="display:none;"></div>
+          <div id="sold-csv-preview" class="csv-preview" style="display:none;"></div>
+          <button id="sold-csv-clear" class="clear-btn" style="display:none;" onclick="clearCSV('sold')">Remove file</button>
+        </div>
+        <div id="sold-paste-panel" class="tab-panel" style="display:none;">
+          <label style="margin-bottom:6px;display:block;">Paste MLS data below <span class="opt">(tab-separated, comma-separated, or any grid format)</span></label>
+          <textarea id="sold-paste" placeholder="Paste your PrimeMLS comp data here. Works with any format." style="min-height:180px;font-family:monospace;font-size:12px;"></textarea>
+        </div>
+        <div id="sold-both-panel" class="tab-panel" style="display:none;">
+          <div class="upload-zone compact" id="sold-both-upload-zone" onclick="document.getElementById('sold-both-csv-input').click()" ondragover="dragOver(event)" ondrop="dropCSV(event,'sold-both')">
+            <div class="upload-label">Upload CSV file</div>
+            <input type="file" id="sold-both-csv-input" accept=".csv" style="display:none" onchange="handleCSV(event,'sold-both')">
+          </div>
+          <div id="sold-both-csv-status" class="csv-status" style="display:none;"></div>
+          <div id="sold-both-csv-preview" class="csv-preview" style="display:none;"></div>
+          <button id="sold-both-csv-clear" class="clear-btn" style="display:none;" onclick="clearCSV('sold-both')">Remove file</button>
+          <label style="margin:14px 0 6px;display:block;">Also paste any additional comps</label>
+          <textarea id="sold-both-paste" placeholder="Paste any additional comps not in the CSV..." style="min-height:100px;font-family:monospace;font-size:12px;"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:0;">
+      <div class="card-header">
+        <div class="step-num" style="background:rgba(201,168,76,0.3);color:var(--gold);">+</div>
+        <div class="step-info"><h2>Active Competition <span style="font-weight:400;font-size:14px;opacity:0.7;">(optional)</span></h2><p>Current listings competing with your subject property</p></div>
+      </div>
+      <div class="card-body">
+        <div class="input-tabs" id="active-tabs">
+          <button class="tab-btn active" onclick="switchTab('active','csv')">Upload CSV</button>
+          <button class="tab-btn" onclick="switchTab('active','paste')">Paste Text</button>
+          <button class="tab-btn" onclick="switchTab('active','both')">Both</button>
+        </div>
+        <div id="active-csv-panel" class="tab-panel">
+          <div class="upload-zone" id="active-upload-zone" onclick="document.getElementById('active-csv-input').click()" ondragover="dragOver(event)" ondrop="dropCSV(event,'active')">
+            <div class="upload-icon">&#128194;</div>
+            <div class="upload-label">Click to upload or drag &amp; drop</div>
+            <div class="upload-hint">Active listings CSV from PrimeMLS</div>
+            <input type="file" id="active-csv-input" accept=".csv" style="display:none" onchange="handleCSV(event,'active')">
+          </div>
+          <div id="active-csv-status" class="csv-status" style="display:none;"></div>
+          <div id="active-csv-preview" class="csv-preview" style="display:none;"></div>
+          <button id="active-csv-clear" class="clear-btn" style="display:none;" onclick="clearCSV('active')">Remove file</button>
+        </div>
+        <div id="active-paste-panel" class="tab-panel" style="display:none;">
+          <textarea id="active-paste" placeholder="Paste active listing data here..." style="min-height:140px;font-family:monospace;font-size:12px;"></textarea>
+        </div>
+        <div id="active-both-panel" class="tab-panel" style="display:none;">
+          <div class="upload-zone compact" id="active-both-upload-zone" onclick="document.getElementById('active-both-csv-input').click()" ondragover="dragOver(event)" ondrop="dropCSV(event,'active-both')">
+            <div class="upload-label">Upload CSV file</div>
+            <input type="file" id="active-both-csv-input" accept=".csv" style="display:none" onchange="handleCSV(event,'active-both')">
+          </div>
+          <div id="active-both-csv-status" class="csv-status" style="display:none;"></div>
+          <div id="active-both-csv-preview" class="csv-preview" style="display:none;"></div>
+          <button id="active-both-csv-clear" class="clear-btn" style="display:none;" onclick="clearCSV('active-both')">Remove file</button>
+          <textarea id="active-both-paste" placeholder="Paste any additional active listings..." style="min-height:80px;font-family:monospace;font-size:12px;margin-top:12px;"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="nav-buttons">
+      <button class="btn btn-secondary" onclick="prevStep()">&larr; Back</button>
+      <button class="btn btn-primary" onclick="nextStep()">Market Data &rarr;</button>
+    </div>
+  </div>
+
+  <!-- STEP 3: MARKET -->
+  <div id="step-3" class="step-panel" style="display:none;">
+    <div class="card">
+      <div class="card-header">
+        <div class="step-num">4</div>
+        <div class="step-info"><h2>Local Market Snapshot</h2><p>All optional - paste from PrimeMLS if available</p></div>
+      </div>
+      <div class="card-body">
+        <div class="info-tip">These stats power the market conditions narrative. Leave blank and Claude will rely on NH regional knowledge for context.</div>
+        <div class="field-grid three">
+          <div class="field-wrap"><label>Median Sale Price <span class="opt">(last 90 days)</span></label><input type="text" id="med-price" placeholder="$432,500"></div>
+          <div class="field-wrap"><label>Average DOM</label><input type="number" id="avg-dom" placeholder="26"></div>
+          <div class="field-wrap"><label>List-to-Sale Ratio</label><input type="text" id="l2s" placeholder="100.7%"></div>
+          <div class="field-wrap"><label>Active Listings <span class="opt">(same type)</span></label><input type="number" id="active-count" placeholder="12"></div>
+          <div class="field-wrap"><label>Sales Last 30 Days <span class="opt">(same type)</span></label><input type="number" id="monthly-sales" placeholder="8"></div>
+          <div class="field-wrap"><label>Months of Supply</label><input type="text" id="months-supply" placeholder="1.5"></div>
+        </div>
+        <div class="field-grid" style="margin-top:14px;">
+          <div class="field-wrap"><label>Market Trend</label><select id="market-trend"><option value="">Select...</option><option>Strong Seller's Market - low inventory, multiple offers</option><option>Moderate Seller's Market - lean inventory, competitive</option><option>Balanced Market - normal supply and demand</option><option>Softening - rising inventory, longer DOM</option><option>Buyer's Market - high inventory, price reductions common</option></select></div>
+          <div class="field-wrap"><label>Any Seasonal Notes <span class="opt">(optional)</span></label><input type="text" id="seasonal" placeholder="e.g. Lakefront activity peaks May-Sept; ski properties surge Oct-Mar"></div>
+        </div>
+      </div>
+    </div>
+    <div class="nav-buttons">
+      <button class="btn btn-secondary" onclick="prevStep()">&larr; Back</button>
+      <button class="btn btn-primary" onclick="nextStep()">Your Notes &rarr;</button>
+    </div>
+  </div>
+
+  <!-- STEP 4: NOTES -->
+  <div id="step-4" class="step-panel" style="display:none;">
+    <div class="card">
+      <div class="card-header">
+        <div class="step-num">5</div>
+        <div class="step-info"><h2>Your Voice & Strategy</h2><p>This becomes your personal commentary in the CMA - written as Suzanne Damon</p></div>
+      </div>
+      <div class="card-body">
+        <div class="info-tip">29 years, 1,200+ transactions, Top 15 NH Agent - your instincts matter. Share what the data can't fully capture.</div>
+        <div class="field-grid single">
+          <div class="field-wrap"><label>Your Pricing Instinct <span class="opt">(optional)</span></label><textarea id="instinct" placeholder="What's your gut before looking at comps? Where does this property feel like it belongs in the market?"></textarea></div>
+          <div class="field-wrap"><label>Neighborhood Strengths to Highlight <span class="opt">(optional)</span></label><textarea id="strengths" placeholder="What makes this location desirable? What will resonate with buyers looking in this area?"></textarea></div>
+          <div class="field-wrap"><label>Pricing Challenges or Headwinds <span class="opt">(optional)</span></label><textarea id="headwinds" placeholder="What could push price down? Busy road, dated interiors, competing new listings, seasonal market, etc."></textarea></div>
+          <div class="field-wrap"><label>Anything Else Claude Should Know <span class="opt">(optional)</span></label><textarea id="extra-notes" placeholder="Unique circumstances, off-market activity, seller concessions, local knowledge not captured above..."></textarea></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:24px;">
+      <button class="btn btn-gold" onclick="generateCMA()">Generate CMA Report</button>
+      <p style="color:rgba(255,255,255,0.5);font-size:12px;margin-top:10px;">Powered by Claude &middot; Suzanne Damon's voice baked in</p>
+    </div>
+    <div class="nav-buttons"><button class="btn btn-secondary" onclick="prevStep()">&larr; Back</button></div>
+  </div>
+
+  <!-- LOADING -->
+  <div id="loading-panel" style="display:none;">
+    <div class="loading-state">
+      <div class="loading-spinner"></div>
+      <h3>Generating Your CMA...</h3>
+      <p>Analyzing comps, applying NH market intelligence, writing in your voice.</p>
+    </div>
+  </div>
+
+  <!-- OUTPUT -->
+  <div id="output-panel" style="display:none;">
+    <div id="cma-output">
+      <div class="output-actions">
+        <button class="btn btn-primary" onclick="window.print()">Print / Save PDF</button>
+        <button class="btn btn-secondary" onclick="copyToClipboard()">Copy HTML</button>
+        <button class="btn btn-secondary" onclick="resetApp()">&larr; New CMA</button>
+      </div>
+      <div id="cma-content"></div>
+    </div>
+  </div>
+
+  <!-- API KEY MODAL -->
+  <div id="api-modal" class="api-modal-overlay" style="display:none;">
+    <div class="api-modal">
+      <h3>Enter Your Claude API Key</h3>
+      <p>Your API key is stored locally in your browser only. It is never sent anywhere except directly to Claude's API to generate your CMA.</p>
+      <input type="password" id="api-key-input" placeholder="sk-ant-...">
+      <div class="btn-row">
+        <button class="btn btn-secondary" onclick="closeApiModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="saveApiKey()">Save & Generate</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+let currentStep = 0;
+const TOTAL_STEPS = 5;
+const compData = { sold:{csv:'',paste:''}, active:{csv:'',paste:''}, 'sold-both':{csv:'',paste:''}, 'active-both':{csv:'',paste:''} };
+let pendingGenerate = false;
+
+// API Key management
+function getApiKey() { return localStorage.getItem('suzanne_cma_api_key') || ''; }
+function showApiModal() { document.getElementById('api-modal').style.display = 'flex'; document.getElementById('api-key-input').focus(); pendingGenerate = true; }
+function closeApiModal() { document.getElementById('api-modal').style.display = 'none'; pendingGenerate = false; }
+function saveApiKey() {
+  const key = document.getElementById('api-key-input').value.trim();
+  if (!key) return;
+  localStorage.setItem('suzanne_cma_api_key', key);
+  closeApiModal();
+  if (pendingGenerate) generateCMA();
+}
+
+// Tab switcher
+function switchTab(section, mode) {
+  ['csv','paste','both'].forEach(p => {
+    const el = document.getElementById(section+'-'+p+'-panel');
+    if(el) el.style.display = p===mode ? 'block' : 'none';
+  });
+  document.querySelectorAll('#'+section+'-tabs .tab-btn').forEach((b,i) => {
+    b.classList.toggle('active', ['csv','paste','both'][i]===mode);
+  });
+}
+
+// CSV parsing
+function parseCSV(text) {
+  const lines = text.trim().split(/\r?\n/);
+  if(lines.length < 2) return {headers:[],rows:[]};
+  const headers = lines[0].split(',').map(h => h.replace(/^"|"$/g,'').trim());
+  const rows = lines.slice(1).map(line => {
+    const cols=[]; let cur='', inQ=false;
+    for(let ch of line) { if(ch==='"'){inQ=!inQ;} else if(ch===','&&!inQ){cols.push(cur.trim());cur='';} else cur+=ch; }
+    cols.push(cur.trim());
+    return cols;
+  }).filter(r=>r.some(c=>c.length>0));
+  return {headers,rows};
+}
+
+function renderCSVPreview(parsed, previewId, statusId, clearId, zoneId) {
+  const status=document.getElementById(statusId), preview=document.getElementById(previewId), clearBtn=document.getElementById(clearId), zone=document.getElementById(zoneId);
+  if(!parsed||parsed.rows.length===0){ status.className='csv-status error'; status.textContent='Could not parse CSV - check the file format.'; status.style.display='block'; return; }
+  status.className='csv-status success'; status.textContent=parsed.rows.length+' properties loaded ('+parsed.headers.length+' columns)'; status.style.display='block';
+  if(zone) zone.classList.add('has-file');
+  let html='<table><thead><tr>'+parsed.headers.map(h=>'<th>'+h+'</th>').join('')+'</tr></thead><tbody>';
+  parsed.rows.forEach(row=>{ html+='<tr>'+parsed.headers.map((_,i)=>'<td>'+(row[i]||'')+'</td>').join('')+'</tr>'; });
+  html+='</tbody></table>'; preview.innerHTML=html; preview.style.display='block';
+  if(clearBtn) clearBtn.style.display='inline-block';
+}
+
+function handleCSV(event, section) {
+  const file=event.target.files[0]; if(!file) return;
+  const reader=new FileReader();
+  reader.onload=e=>{ compData[section].csv=e.target.result; renderCSVPreview(parseCSV(e.target.result), section+'-csv-preview', section+'-csv-status', section+'-csv-clear', section===('sold')?'sold-upload-zone':section==='active'?'active-upload-zone':section+'-upload-zone'); };
+  reader.readAsText(file);
+}
+
+function clearCSV(section) {
+  compData[section].csv='';
+  ['csv-preview','csv-status','csv-clear'].forEach(s=>{ const el=document.getElementById(section+'-'+s); if(el) el.style.display='none'; });
+}
+
+function dragOver(e){e.preventDefault();e.currentTarget.classList.add('dragover');}
+function dropCSV(e,section){
+  e.preventDefault(); e.currentTarget.classList.remove('dragover');
+  const file=e.dataTransfer.files[0]; if(!file||!file.name.endsWith('.csv')) return;
+  const reader=new FileReader();
+  reader.onload=ev=>{ compData[section].csv=ev.target.result; renderCSVPreview(parseCSV(ev.target.result), section+'-csv-preview', section+'-csv-status', section+'-csv-clear', e.currentTarget.id); };
+  reader.readAsText(file);
+}
+
+function selectRegion(el){document.querySelectorAll('.region-card').forEach(c=>c.classList.remove('selected'));el.classList.add('selected');}
+function toggleAmenity(el){el.classList.toggle('selected');}
+
+function goToStep(n){ document.getElementById('step-'+currentStep).style.display='none'; currentStep=n; document.getElementById('step-'+currentStep).style.display='block'; updateProgress(); window.scrollTo({top:0,behavior:'smooth'}); }
+function nextStep(){if(currentStep<TOTAL_STEPS-1)goToStep(currentStep+1);}
+function prevStep(){if(currentStep>0)goToStep(currentStep-1);}
+function updateProgress(){ document.querySelectorAll('.step-dot').forEach((d,i)=>{ d.classList.remove('active','done'); if(i===currentStep)d.classList.add('active'); else if(i<currentStep)d.classList.add('done'); }); document.getElementById('step-label').textContent=(currentStep+1)+' of '+TOTAL_STEPS; }
+
+function getCompText(section){
+  const csvPanel=document.getElementById(section+'-csv-panel'), pastePanel=document.getElementById(section+'-paste-panel'), bothPanel=document.getElementById(section+'-both-panel');
+  let csvText='', pasteText='';
+  if(csvPanel&&csvPanel.style.display!=='none'){ csvText=compData[section].csv||''; }
+  else if(pastePanel&&pastePanel.style.display!=='none'){ const ta=document.getElementById(section+'-paste'); pasteText=ta?ta.value.trim():''; }
+  else if(bothPanel&&bothPanel.style.display!=='none'){ csvText=compData[section+'-both']?compData[section+'-both'].csv||'':''; const ta=document.getElementById(section+'-both-paste'); pasteText=ta?ta.value.trim():''; }
+  const parts=[]; if(csvText) parts.push('=== CSV DATA ===\n'+csvText); if(pasteText) parts.push('=== ADDITIONAL PASTED DATA ===\n'+pasteText);
+  return parts.join('\n\n');
+}
+
+function g(id){const el=document.getElementById(id);return el?el.value||'':'';}
+
+function buildPrompt(){
+  const amenities=Array.from(document.querySelectorAll('.amenity-chip.selected')).map(e=>e.dataset.val);
+  const region=(document.querySelector('.region-card.selected')||{}).dataset?.region||'New Hampshire';
+  const soldRows=getCompText('sold')||'No sold comps provided - use your NH regional knowledge to inform pricing guidance.';
+  const activeRows=getCompText('active')||'No active listings provided.';
+  const stats=[g('med-price')&&'Median Sale Price: '+g('med-price'),g('avg-dom')&&'Avg DOM: '+g('avg-dom'),g('l2s')&&'List-to-Sale Ratio: '+g('l2s'),g('active-count')&&'Active Listings: '+g('active-count'),g('monthly-sales')&&'Monthly Sales: '+g('monthly-sales'),g('months-supply')&&'Months of Supply: '+g('months-supply'),g('market-trend')&&'Trend: '+g('market-trend'),g('seasonal')&&'Seasonal Notes: '+g('seasonal')].filter(Boolean).join('\n');
+
+  return 'You are generating a Competitive Market Analysis (CMA) for Suzanne Damon, The Damon Home Team at eXp Realty, New Hampshire.\n\nABOUT SUZANNE:\n- 29+ years of NH real estate experience, top 1% New England, 1,200+ career transactions\n- CLHMS (Certified Luxury Home Marketing Specialist), Wall Street Journal & Barron\'s recognized\n- 2025 Top 15 NH Agent (FastExpert), "America\'s Best Realtor" 2018-2020\n- President of the 1628 Group - direct new construction and development experience\n- Headquartered in Bedford NH, active statewide\n- Her approach: No-pressure, consultative, data-driven. "Preparation wins." Clean pricing strategy, honest valuations - she does NOT inflate prices to win listings\n- Voice: Direct, confident, warm. She educates sellers. She speaks like a trusted local expert who has seen every market cycle.\n- She writes in first person: "Based on my 29 years in this market..." / "What I\'m seeing in the data is..." / "My recommendation..."\n\nNH REGIONAL CONTEXT - '+region+':\n- No state income tax, no sales tax - major draw for MA/CT/NY buyers\n- Boston proximity drives Southern NH demand (commuter belt: Manchester/Nashua/Bedford/Derry/Salem)\n- Waterfront premiums: lake/riverfront commands 40-100% above comparable inland homes\n- School districts are a major value driver - top districts (Bedford, Exeter, Portsmouth) command 10-50% premiums\n- Four-season recreation is a core amenity signal in NH (skiing, hiking, foliage tourism, water sports)\n- Seasonal markets: Lakes Region and White Mountains have peak spring/summer and winter ski cycles\n- Seacoast (Portsmouth, Rye, Hampton) = NH\'s highest price-per-square-foot market\n- Property tax rates vary significantly by municipality\n- Current Use land enrollments (RSA 79-A) affect valuation of larger parcels\n- NH market has been consistently competitive post-COVID with sustained MA buyer migration\n\nSUBJECT PROPERTY:\nAddress: '+(g('address')||'Not provided')+'\nCity/Town/ZIP: '+(g('city')||'Not provided')+'\nRegion: '+region+'\nProperty Type: '+(g('proptype')||'Not specified')+'\nBedrooms: '+(g('beds')||'Not specified')+'\nFull Baths: '+(g('fullbaths')||'Not specified')+'\nHalf Baths: '+(g('halfbaths')||'Not specified')+'\nFinished Sq Ft: '+(g('sqft')||'Not specified')+'\nYear Built: '+(g('yearbuilt')||'Not specified')+'\nLot Size: '+(g('lotsize')||'Not specified')+'\nGarage: '+(g('garage')||'Not specified')+'\nBasement: '+(g('basement')||'Not specified')+'\nSchool District: '+(g('school')||'Not specified')+'\nHOA: '+(g('hoa')||'None noted')+'\nCondition: '+(g('condition')||'Not specified')+'\nKey Amenities: '+(amenities.length>0?amenities.join(', '):'None selected')+'\nUpdates/Renovations: '+(g('updates')||'Not provided')+'\nKnown Issues: '+(g('issues')||'None noted')+'\n\nSELLER CONTEXT:\nTimeline: '+(g('timeline')||'Not specified')+'\nTarget Price: '+(g('target-price')||'No target given')+'\nReason for Selling: '+(g('reason')||'Not specified')+'\nPrior Listing History: '+(g('prior-listing')||'None')+'\nSeller Objections/Concerns: '+(g('objections')||'None noted')+'\n\nSOLD COMPARABLES:\n'+soldRows+'\n\nACTIVE COMPETITION:\n'+activeRows+'\n\nLOCAL MARKET STATS:\n'+(stats||'Not provided - use NH regional and Suzanne\'s market expertise.')+'\n\nSUZANNE\'S NOTES:\nPricing Instinct: '+(g('instinct')||'Not provided')+'\nNeighborhood Strengths: '+(g('strengths')||'Not provided')+'\nChallenges/Headwinds: '+(g('headwinds')||'Not provided')+'\nAdditional Notes: '+(g('extra-notes')||'None')+'\n\nINSTRUCTIONS:\nGenerate a complete, professional CMA report in HTML format (no code fences, just clean HTML). Structure:\n\n1. HEADER - Property address, Suzanne\'s name/team/contact, report date\n2. EXECUTIVE SUMMARY - Subject property overview in 2-3 sentences, then the recommended price range prominently displayed using a styled box with class="price-range"\n3. PROPERTY OVERVIEW - Key details in a clean table\n4. MARKET CONDITIONS - Use provided stats or NH regional knowledge. Calculate/infer absorption rate and market type. Write 2-3 sentences as Suzanne.\n5. SOLD COMPARABLES ANALYSIS - Table of comps if provided, with adjustment narrative. Apply standard NH adjustments: sq ft diff ~$100-150/sqft, bedroom +/-$7,500, full bath +/-$10,000, half bath +/-$4,000, garage stall +/-$12,000, finished basement +/-$20,000, kitchen update +/-$15,000, roof +/-$7,500, HVAC +/-$5,000. Waterfront: +40-100%. School district premium: note if top-tier.\n6. ACTIVE COMPETITION - Table if provided, narrative on competitive positioning\n7. PRICING RECOMMENDATION - Three tiers: Conservative (fastest sale), Recommended (optimal), Aggressive (tests market).\n8. AMENITY VALUE ANALYSIS - Address the specific amenities checked. Be specific about NH value drivers.\n9. SUZANNE\'S STRATEGIC COMMENTARY - 3-4 paragraphs in first-person as Suzanne. Warm, expert, no-pressure. Address the seller\'s context. Give honest pricing counsel.\n10. LEGAL DISCLAIMER - Standard NH CMA disclaimer including RSA 331-A reference\n\nOutput only the HTML content that goes inside a div - no html/head/body tags. Use h1, h2, h3, p, table, strong tags. Use class="price-range" for the price display box with inner divs class="rec-price" and class="rec-label".';
+}
+
+async function generateCMA(){
+  const apiKey = getApiKey();
+  if(!apiKey){ showApiModal(); return; }
+
+  for(let i=0;i<TOTAL_STEPS;i++){const el=document.getElementById('step-'+i);if(el)el.style.display='none';}
+  document.getElementById('progress-bar').style.display='none';
+  document.getElementById('main-title').style.display='none';
+  document.getElementById('loading-panel').style.display='block';
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:4000,
+        system:"You are Suzanne Damon's CMA assistant. Generate professional, branded HTML CMA content. Never include code fences. Output only the inner HTML content.",
+        messages:[{role:'user',content:buildPrompt()}]})
+    });
+
+    if(!response.ok){
+      const err = await response.json().catch(()=>({}));
+      throw new Error(err.error?.message || 'API error '+response.status);
+    }
+
+    const data = await response.json();
+    const html = data.content&&data.content[0]?data.content[0].text:'<p>Unable to generate CMA. Please try again.</p>';
+    document.getElementById('loading-panel').style.display='none';
+    document.getElementById('cma-content').innerHTML=html;
+    document.getElementById('output-panel').style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  } catch(err){
+    document.getElementById('loading-panel').style.display='none';
+    if(err.message.includes('401')||err.message.includes('invalid')||err.message.includes('authentication')){
+      localStorage.removeItem('suzanne_cma_api_key');
+      document.getElementById('cma-content').innerHTML='<p style="color:red;">Invalid API key. Please try again with a valid key.</p>';
+    } else {
+      document.getElementById('cma-content').innerHTML='<p style="color:red;">Error: '+err.message+'. Please try again.</p>';
+    }
+    document.getElementById('output-panel').style.display='block';
+  }
+}
+
+function copyToClipboard(){
+  const content = document.getElementById('cma-content').innerHTML;
+  navigator.clipboard.writeText(content).then(()=>alert('HTML copied to clipboard.'));
+}
+
+function resetApp(){
+  document.getElementById('output-panel').style.display='none';
+  document.getElementById('progress-bar').style.display='flex';
+  document.getElementById('main-title').style.display='block';
+  goToStep(0);
+}
+</script>
+</body>
+</html>
