@@ -71,7 +71,7 @@
             display: grid;
             grid-template-columns: 1fr auto;
             gap: 20px;
-            align-items: center;
+            align-items: start;
             transition: all 0.3s ease;
         }
         .listing-card:hover {
@@ -82,8 +82,9 @@
         .listing-card.waterfront {
             border-left-color: #28a745;
         }
-        .listing-card.new-listing {
-            border-left-color: #dc3545;
+        .listing-card.sold {
+            border-left-color: #999;
+            opacity: 0.85;
         }
         .listing-address {
             color: #1a3e5c;
@@ -108,15 +109,47 @@
             background: #d4edda;
             color: #155724;
         }
-        .badge-new {
-            background: #f8d7da;
-            color: #721c24;
+        .badge-sold {
+            background: #e2e3e5;
+            color: #383d41;
+        }
+        .badge-reduced {
+            background: #fff3cd;
+            color: #856404;
         }
         .listing-price {
             color: #000000;
             font-size: 2em;
             font-weight: 300;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
+        }
+        .listing-details {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+        .listing-detail-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .listing-detail-label {
+            color: #666;
+            font-size: 0.75em;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 3px;
+        }
+        .listing-detail-value {
+            color: #1a3e5c;
+            font-size: 1em;
+            font-weight: 600;
+        }
+        .listing-description {
+            color: #555;
+            font-size: 0.9em;
+            line-height: 1.6;
+            margin-bottom: 12px;
         }
         .listing-mls {
             display: inline-block;
@@ -212,147 +245,375 @@
             </div>
         </div>
 
-        <!-- Listing 1: Highest Price -->
+        <!-- Listing 1: $8,600,000 -->
         <div class="listing-card">
             <div class="listing-info">
                 <div class="listing-address">16600 Senterra Drive, Delray Beach</div>
                 <div class="listing-price">$8,600,000</div>
+                <div class="listing-details">
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Beds</div>
+                        <div class="listing-detail-value">5</div>
+                    </div>
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Baths</div>
+                        <div class="listing-detail-value">6 Full / 1 Half</div>
+                    </div>
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Sq Ft</div>
+                        <div class="listing-detail-value">6,069</div>
+                    </div>
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Built</div>
+                        <div class="listing-detail-value">2026</div>
+                    </div>
+                </div>
+                <div class="listing-description">A once-in-a-generation custom estate in Hidden Cove. Modern architectural icon featuring soaring 23-ft entry ceilings, dramatic floating staircase, oversized elevator, gallery loft platform, gourmet Wolf/Sub-Zero kitchen, infinity pool with spa, 4-car garage with double-stack lift capacity, and rooftop terraces.</div>
                 <div class="listing-mls">MLS#: RX-11136515</div>
             </div>
             <div class="listing-cta">
-                <a href="https://bogenhomes.com/homes-for-sale-details/16600-SENTERRA-DRIVE-DELRAY-BEACH-FL-33446/RX-11136515/43/" target="_blank" class="view-listing-btn">View Details</a>
+                <a href="https://bogenhomes.com/homes-for-sale-details/16600-SENTERRA-DRIVE-DELRAY-BEACH-FL-33446/R11136515/43/" target="_blank" class="view-listing-btn">View Details</a>
             </div>
         </div>
 
-        <!-- Listing 2 -->
+        <!-- Listing 2: $7,775,000 -->
         <div class="listing-card">
             <div class="listing-info">
                 <div class="listing-address">16670 Senterra Drive, Delray Beach</div>
                 <div class="listing-price">$7,775,000</div>
+                <div class="listing-details">
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Beds</div>
+                        <div class="listing-detail-value">4</div>
+                    </div>
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Baths</div>
+                        <div class="listing-detail-value">5 Full / 1 Half</div>
+                    </div>
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Sq Ft</div>
+                        <div class="listing-detail-value">4,394</div>
+                    </div>
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Built</div>
+                        <div class="listing-detail-value">1991</div>
+                    </div>
+                </div>
+                <div class="listing-description">Rare, totally private courtyard estate on a coveted double cul-de-sac on a .55-acre lake/golf point lot. Grand travertine drive, custom glass entry, 20-ft ceilings, soaring wall of windows, main-level primary suite with private guest house, gourmet kitchen, pool, spa, summer kitchen, and cabana bath overlooking lake and fountain views.</div>
                 <div class="listing-mls">MLS#: RX-11129141</div>
             </div>
             <div class="listing-cta">
-                <a href="https://bogenhomes.com/homes-for-sale-details/16670-SENTERRA-DRIVE-DELRAY-BEACH-FL-33446/RX-11129141/43/" target="_blank" class="view-listing-btn">View Details</a>
+                <a href="https://bogenhomes.com/homes-for-sale-details/16670-SENTERRA-DRIVE-DELRAY-BEACH-FL-33446/R11129141/43/" target="_blank" class="view-listing-btn">View Details</a>
             </div>
         </div>
 
-        <!-- Listing 3 -->
+        <!-- Listing 3: $4,799,999 -->
         <div class="listing-card">
             <div class="listing-info">
                 <div class="listing-address">16330 Vintage Oaks Lane, Delray Beach</div>
                 <div class="listing-price">$4,799,999</div>
+                <div class="listing-details">
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Beds</div>
+                        <div class="listing-detail-value">5</div>
+                    </div>
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Baths</div>
+                        <div class="listing-detail-value">7 Full / 1 Half</div>
+                    </div>
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Sq Ft</div>
+                        <div class="listing-detail-value">5,512</div>
+                    </div>
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Built</div>
+                        <div class="listing-detail-value">1995</div>
+                    </div>
+                </div>
+                <div class="listing-description">Showstopping estate being completely reimagined with clean lines, grand proportions, soaring volume ceilings, architectural LED lighting, and an open great room/dining/kitchen layout. Impact glass sliders, long golf-course views, refinished pool and spillover spa, primary suite with dual oversized closets, and a full upper-level apartment suite. Three-car garage with circular driveway.</div>
                 <div class="listing-mls">MLS#: RX-11146172</div>
             </div>
             <div class="listing-cta">
-                <a href="https://bogenhomes.com/homes-for-sale-details/16330-VINTAGE-OAKS-LANE-DELRAY-BEACH-FL-33446/RX-11146172/43/" target="_blank" class="view-listing-btn">View Details</a>
+                <a href="https://bogenhomes.com/homes-for-sale-details/16330-VINTAGE-OAKS-LANE-DELRAY-BEACH-FL-33446/R11146172/43/" target="_blank" class="view-listing-btn">View Details</a>
             </div>
         </div>
 
-        <!-- Listing 4 -->
+        <!-- Listing 4: $4,400,000 -->
         <div class="listing-card">
             <div class="listing-info">
                 <div class="listing-address">5752 Vintage Oaks Circle, Delray Beach</div>
                 <div class="listing-price">$4,400,000</div>
+                <div class="listing-details">
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Beds</div>
+                        <div class="listing-detail-value">4</div>
+                    </div>
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Baths</div>
+                        <div class="listing-detail-value">5 Full / 1 Half</div>
+                    </div>
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Sq Ft</div>
+                        <div class="listing-detail-value">5,774</div>
+                    </div>
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Built</div>
+                        <div class="listing-detail-value">2006</div>
+                    </div>
+                </div>
+                <div class="listing-description">Exquisite estate on one of the largest lots in The Polo Club (0.64 acres) on a serene cul-de-sac. Private electric gate, spacious motor court, 17-ft coffered ceilings, gas fireplace, custom wet bar, chef's kitchen, primary suite with sitting area and dual custom closets, wood-paneled office, three ensuite guest bedrooms, and resort-style outdoor lanai with summer kitchen and private pool.</div>
                 <div class="listing-mls">MLS#: RX-11148998</div>
             </div>
             <div class="listing-cta">
-                <a href="https://bogenhomes.com/homes-for-sale-details/5752-VINTAGE-OAKS-CIRCLE-DELRAY-BEACH-FL-33446/RX-11148998/43/" target="_blank" class="view-listing-btn">View Details</a>
+                <a href="https://bogenhomes.com/homes-for-sale-details/5752-VINTAGE-OAKS-CIRCLE-DELRAY-BEACH-FL-33446/R11148998/43/" target="_blank" class="view-listing-btn">View Details</a>
             </div>
         </div>
 
-        <!-- Listing 5 -->
+        <!-- Listing 5: $4,299,000 -->
         <div class="listing-card">
             <div class="listing-info">
                 <div class="listing-address">16283 Vintage Oaks Lane, Delray Beach</div>
                 <div class="listing-price">$4,299,000</div>
+                <div class="listing-details">
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Beds</div>
+                        <div class="listing-detail-value">4</div>
+                    </div>
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Baths</div>
+                        <div class="listing-detail-value">5 Full / 1 Half</div>
+                    </div>
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Sq Ft</div>
+                        <div class="listing-detail-value">5,222</div>
+                    </div>
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Built</div>
+                        <div class="listing-detail-value">1995</div>
+                    </div>
+                </div>
+                <div class="listing-description">Charming and updated estate at the end of a cul-de-sac. Grand foyer opens into a light-filled living room with soaring ceilings, floor-to-ceiling windows, and lake views. Renovated kitchen with Wolf appliances and large island, pool and spa with West-facing sunsets, primary suite wing with two walk-in closets, richly appointed office with rolling library ladder, and hurricane impact windows. Three-car garage.</div>
                 <div class="listing-mls">MLS#: RX-11115928</div>
             </div>
             <div class="listing-cta">
-                <a href="https://bogenhomes.com/homes-for-sale-details/16283-VINTAGE-OAKS-LANE-DELRAY-BEACH-FL-33446/RX-11115928/43/" target="_blank" class="view-listing-btn">View Details</a>
+                <a href="https://bogenhomes.com/homes-for-sale-details/16283-VINTAGE-OAKS-LANE-DELRAY-BEACH-FL-33446/R11115928/43/" target="_blank" class="view-listing-btn">View Details</a>
             </div>
         </div>
 
-        <!-- Listing 6 -->
+        <!-- Listing 6: $1,649,000 (reduced from $1,899,000) -->
         <div class="listing-card">
             <div class="listing-info">
-                <div class="listing-address">6468 Polo Pointe Way, Delray Beach</div>
-                <div class="listing-price">$1,899,000</div>
+                <div class="listing-address">6468 Polo Pointe Way, Delray Beach <span class="listing-badge badge-reduced">Price Reduced</span></div>
+                <div class="listing-price">$1,649,000</div>
+                <div class="listing-details">
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Beds</div>
+                        <div class="listing-detail-value">4</div>
+                    </div>
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Baths</div>
+                        <div class="listing-detail-value">3 Full / 1 Half</div>
+                    </div>
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Sq Ft</div>
+                        <div class="listing-detail-value">3,202</div>
+                    </div>
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Built</div>
+                        <div class="listing-detail-value">2002</div>
+                    </div>
+                </div>
+                <div class="listing-description">Elegant courtyard home in Crystal Bay offering serene lake views, open floor plan with volume ceilings, crown molding, arched windows, and wood flooring in all bedrooms. Gourmet kitchen with quartz waterfall countertops, custom wood cabinetry, gas cooktop, and breakfast bar. Polished marble in main living areas and private courtyard with pool.</div>
                 <div class="listing-mls">MLS#: RX-11148746</div>
             </div>
             <div class="listing-cta">
-                <a href="https://bogenhomes.com/homes-for-sale-details/6468-POLO-POINTE-WAY-DELRAY-BEACH-FL-33496/RX-11148746/43/" target="_blank" class="view-listing-btn">View Details</a>
+                <a href="https://bogenhomes.com/homes-for-sale-details/6468-POLO-POINTE-WAY-DELRAY-BEACH-FL-33496/R11148746/43/" target="_blank" class="view-listing-btn">View Details</a>
             </div>
         </div>
 
-        <!-- Listing 7 -->
-        <div class="listing-card waterfront">
+        <!-- Listing 7: $1,199,000 (SOLD 02/27/2026) -->
+        <div class="listing-card sold">
             <div class="listing-info">
-                <div class="listing-address">5174 Windsor Parke Drive, Boca Raton <span class="listing-badge badge-waterfront">Waterfront</span></div>
+                <div class="listing-address">5174 Windsor Parke Drive, Boca Raton <span class="listing-badge badge-sold">Sold 02/27/2026</span></div>
                 <div class="listing-price">$1,199,000</div>
+                <div class="listing-details">
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Beds</div>
+                        <div class="listing-detail-value">3</div>
+                    </div>
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Baths</div>
+                        <div class="listing-detail-value">3 Full</div>
+                    </div>
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Sq Ft</div>
+                        <div class="listing-detail-value">2,317</div>
+                    </div>
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Built</div>
+                        <div class="listing-detail-value">1989</div>
+                    </div>
+                </div>
+                <div class="listing-description">Beautifully renovated two-story townhouse in Windsor Parke offering modern elegance with a serene private backyard. Volume ceilings, wood flooring, high-end custom kitchen cabinets with granite island and stainless appliances, main-level bedroom/bath, upstairs primary suite, and expansive screened patio with rare front lake view. New roof 2019, new AC 2015.</div>
                 <div class="listing-mls">MLS#: RX-11149398</div>
             </div>
             <div class="listing-cta">
-                <a href="https://bogenhomes.com/homes-for-sale-details/5174-WINDSOR-PARKE-DRIVE-BOCA-RATON-FL-33496/RX-11149398/43/" target="_blank" class="view-listing-btn">View Details</a>
+                <a href="https://bogenhomes.com/agents/samantha-gornstein/" target="_blank" class="view-listing-btn">Contact Samantha</a>
             </div>
         </div>
 
-        <!-- Listing 8 -->
+        <!-- Listing 8: $859,000 (reduced from $975,000) -->
         <div class="listing-card">
             <div class="listing-info">
-                <div class="listing-address">16898 Isle Of Palms Drive D, Delray Beach</div>
-                <div class="listing-price">$975,000</div>
+                <div class="listing-address">16898 Isle of Palms Drive D, Delray Beach <span class="listing-badge badge-reduced">Price Reduced</span></div>
+                <div class="listing-price">$859,000</div>
+                <div class="listing-details">
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Beds</div>
+                        <div class="listing-detail-value">3</div>
+                    </div>
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Baths</div>
+                        <div class="listing-detail-value">2 Full / 1 Half</div>
+                    </div>
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Sq Ft</div>
+                        <div class="listing-detail-value">2,379</div>
+                    </div>
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Built</div>
+                        <div class="listing-detail-value">1989</div>
+                    </div>
+                </div>
+                <div class="listing-description">Beautifully updated first-floor condo in Cypress Isle featuring breathtaking panoramic lake views, fully enclosed patio with impact-resistant bi-fold doors, 2 bedrooms plus versatile den, and 1-car garage. Hurricane-impact windows throughout, designed for comfortable indoor-outdoor living. Access to two championship golf courses, pickleball, fitness/spa, and dining.</div>
                 <div class="listing-mls">MLS#: RX-11118815</div>
             </div>
             <div class="listing-cta">
-                <a href="https://bogenhomes.com/homes-for-sale-details/16898-ISLE-OF-PALMS-DRIVE-D-DELRAY-BEACH-FL-33484/RX-11118815/43/" target="_blank" class="view-listing-btn">View Details</a>
+                <a href="https://bogenhomes.com/homes-for-sale-details/16898-ISLE-OF-PALMS-DRIVE-D-DELRAY-BEACH-FL-33484/R11118815/43/" target="_blank" class="view-listing-btn">View Details</a>
             </div>
         </div>
 
-        <!-- Listing 9 -->
+        <!-- Listing 9: $730,000 -->
         <div class="listing-card">
             <div class="listing-info">
                 <div class="listing-address">5158 Windsor Parke Drive, Boca Raton</div>
                 <div class="listing-price">$730,000</div>
+                <div class="listing-details">
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Beds</div>
+                        <div class="listing-detail-value">3</div>
+                    </div>
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Baths</div>
+                        <div class="listing-detail-value">2 Full</div>
+                    </div>
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Sq Ft</div>
+                        <div class="listing-detail-value">1,760</div>
+                    </div>
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Built</div>
+                        <div class="listing-detail-value">1989</div>
+                    </div>
+                </div>
+                <div class="listing-description">Beautiful and inviting one-story townhome in Windsor Parke, a short walk from the clubhouse. Volume ceilings, tastefully designed kitchen, primary suite with custom walk-in closet and soaking tub, tile flooring, crown molding, plantation shutters, and screen-enclosed patio. 2019 new tile roof and A/C, 2021 water heater. Two-car garage.</div>
                 <div class="listing-mls">MLS#: RX-11100001</div>
             </div>
             <div class="listing-cta">
-                <a href="https://bogenhomes.com/homes-for-sale-details/5158-WINDSOR-PARKE-DRIVE-BOCA-RATON-FL-33496/RX-11100001/43/" target="_blank" class="view-listing-btn">View Details</a>
+                <a href="https://bogenhomes.com/homes-for-sale-details/5158-WINDSOR-PARKE-DRIVE-BOCA-RATON-FL-33496/R11100001/43/" target="_blank" class="view-listing-btn">View Details</a>
             </div>
         </div>
 
-        <!-- Listing 10 -->
+        <!-- Listing 10: $629,000 -->
         <div class="listing-card waterfront">
             <div class="listing-info">
                 <div class="listing-address">5184 Lake Catalina Drive D, Boca Raton <span class="listing-badge badge-waterfront">Waterfront</span></div>
                 <div class="listing-price">$629,000</div>
+                <div class="listing-details">
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Beds</div>
+                        <div class="listing-detail-value">3</div>
+                    </div>
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Baths</div>
+                        <div class="listing-detail-value">2 Full / 1 Half</div>
+                    </div>
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Sq Ft</div>
+                        <div class="listing-detail-value">2,053</div>
+                    </div>
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Built</div>
+                        <div class="listing-detail-value">1989</div>
+                    </div>
+                </div>
+                <div class="listing-description">Bright and airy 2-bedroom + den condo showcasing panoramic lake and golf course views with gorgeous sunset vistas. Open floor plan with high ceilings, wet bar, L-shaped screened-in patio, spacious primary suite with walk-in closet, and 1-car garage. Steps from private community pool and walking distance to Clubhouse. Currently rented through 4/14/26.</div>
                 <div class="listing-mls">MLS#: RX-11131133</div>
             </div>
             <div class="listing-cta">
-                <a href="https://bogenhomes.com/homes-for-sale-details/5184-LAKE-CATALINA-DRIVE-D-BOCA-RATON-FL-33496/RX-11131133/43/" target="_blank" class="view-listing-btn">View Details</a>
+                <a href="https://bogenhomes.com/homes-for-sale-details/5184-LAKE-CATALINA-DRIVE-D-BOCA-RATON-FL-33496/R11131133/43/" target="_blank" class="view-listing-btn">View Details</a>
             </div>
         </div>
 
-        <!-- Listing 11 -->
+        <!-- Listing 11: $599,000 -->
         <div class="listing-card waterfront">
             <div class="listing-info">
                 <div class="listing-address">5070 Lake Catalina Drive C, Boca Raton <span class="listing-badge badge-waterfront">Waterfront</span></div>
                 <div class="listing-price">$599,000</div>
+                <div class="listing-details">
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Beds</div>
+                        <div class="listing-detail-value">3</div>
+                    </div>
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Baths</div>
+                        <div class="listing-detail-value">2 Full</div>
+                    </div>
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Sq Ft</div>
+                        <div class="listing-detail-value">1,751</div>
+                    </div>
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Built</div>
+                        <div class="listing-detail-value">1989</div>
+                    </div>
+                </div>
+                <div class="listing-description">Gorgeous ground-level condo with picturesque panoramic lake and golf views. 2 bedrooms plus den, 2 screened patios, and single-car garage. Updated kitchen with GE stainless steel appliances, glistening backsplash, and granite countertops. Newer roof and AC. Steps from private community pool, close to Clubhouse and Polo Club Shoppes. Lease in place 11/1/25 - 3/31/26.</div>
                 <div class="listing-mls">MLS#: RX-11152072</div>
             </div>
             <div class="listing-cta">
-                <a href="https://bogenhomes.com/homes-for-sale-details/5070-LAKE-CATALINA-DRIVE-C-BOCA-RATON-FL-33496/RX-11152072/43/" target="_blank" class="view-listing-btn">View Details</a>
+                <a href="https://bogenhomes.com/homes-for-sale-details/5070-LAKE-CATALINA-DRIVE-C-BOCA-RATON-FL-33496/R11152072/43/" target="_blank" class="view-listing-btn">View Details</a>
             </div>
         </div>
 
-        <!-- Listing 12 -->
+        <!-- Listing 12: $479,000 (reduced from $559,000) -->
         <div class="listing-card waterfront">
             <div class="listing-info">
-                <div class="listing-address">5100 Lake Catalina Drive C, Boca Raton <span class="listing-badge badge-waterfront">Waterfront</span></div>
-                <div class="listing-price">$559,000</div>
+                <div class="listing-address">5100 Lake Catalina Drive C, Boca Raton <span class="listing-badge badge-waterfront">Waterfront</span> <span class="listing-badge badge-reduced">Price Reduced</span></div>
+                <div class="listing-price">$479,000</div>
+                <div class="listing-details">
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Beds</div>
+                        <div class="listing-detail-value">3</div>
+                    </div>
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Baths</div>
+                        <div class="listing-detail-value">2 Full</div>
+                    </div>
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Sq Ft</div>
+                        <div class="listing-detail-value">2,107</div>
+                    </div>
+                    <div class="listing-detail-item">
+                        <div class="listing-detail-label">Built</div>
+                        <div class="listing-detail-value">1989</div>
+                    </div>
+                </div>
+                <div class="listing-description">Lovely 3-bed, 2-bath first-floor condo offering effortless one-level living with golf and lake views. Open kitchen flowing into living and dining zones, completely renovated guest bath, and expansive wrap-around terrace ideal for morning coffee. New roof and 1-car garage. Polo Club membership is $250,000.</div>
                 <div class="listing-mls">MLS#: RX-11139065</div>
             </div>
             <div class="listing-cta">
-                <a href="https://bogenhomes.com/homes-for-sale-details/5100-LAKE-CATALINA-DRIVE-C-BOCA-RATON-FL-33496/RX-11139065/43/" target="_blank" class="view-listing-btn">View Details</a>
+                <a href="https://bogenhomes.com/homes-for-sale-details/5100-LAKE-CATALINA-DRIVE-C-BOCA-RATON-FL-33496/R11139065/43/" target="_blank" class="view-listing-btn">View Details</a>
             </div>
         </div>
 
