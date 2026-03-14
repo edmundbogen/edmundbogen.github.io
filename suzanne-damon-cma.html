@@ -193,6 +193,7 @@
   <div class="header-right">
     <button class="header-btn" onclick="toggleHistory()" id="history-toggle">History</button>
     <button class="header-btn" onclick="toggleSettings()" id="settings-toggle">Settings</button>
+    <button class="header-btn" onclick="logout()" style="color:#fca5a5;border-color:rgba(252,165,165,0.3);">Log Out</button>
     <div class="header-badge">CMA Generator</div>
   </div>
 </header>
@@ -991,6 +992,12 @@ function showPasswordGate() {
   document.getElementById('gate-error').style.display = 'none';
   document.getElementById('gate-password').value = '';
   document.getElementById('gate-password').focus();
+}
+function logout() {
+  localStorage.removeItem('damon_team_password');
+  document.getElementById('password-gate').style.display = 'flex';
+  document.getElementById('gate-error').style.display = 'none';
+  document.getElementById('gate-password').value = '';
 }
 
 // ── TABS & CSV ───────────────────────────────────────────────────
