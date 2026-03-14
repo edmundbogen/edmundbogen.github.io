@@ -309,7 +309,7 @@
           <div class="field-wrap"><label>Property Address <span class="req">*</span></label><input type="text" id="address" placeholder="123 Main Street"></div>
           <div class="field-wrap"><label>City / Town / ZIP <span class="req">*</span></label><input type="text" id="city" placeholder="Manchester, NH 03103"></div>
           <div class="field-wrap"><label>Property Type <span class="req">*</span></label><select id="proptype"><option value="">Select type...</option><option>Single Family</option><option>Condo / Townhouse</option><option>Multi-Family (2-4 units)</option><option>Waterfront / Lake Property</option><option>Vacation / Seasonal</option><option>Luxury / Estate</option><option>New Construction</option></select></div>
-          <div class="field-wrap"><label>Current Condition <span class="req">*</span></label><select id="condition"><option value="">Select...</option><option>Excellent - move-in ready, recent updates</option><option>Good - well maintained, minor updates</option><option>Average - functional but dated</option><option>Fair - needs work / deferred maintenance</option></select></div>
+          <div class="field-wrap"><label>Current Condition <span class="req">*</span></label><select id="condition"><option value="">Select...</option><option>Excellent - move-in ready, recent updates</option><option>Good - well maintained, minor updates</option><option>Average - functional but dated</option><option>Fair - needs work / deferred maintenance</option><option>Poor - investor grade property</option></select></div>
         </div>
         <div class="field-grid three" style="margin-top:14px;">
           <div class="field-wrap"><label>Bedrooms <span class="req">*</span></label><input type="number" id="beds" placeholder="3" min="1" max="20"></div>
@@ -359,6 +359,7 @@
           <div class="amenity-chip" data-val="4-Season Recreation Access" onclick="toggleAmenity(this)"><span class="icon">&#127810;</span>4-Season Recreation</div>
           <div class="amenity-chip" data-val="Boston Commuter-Friendly" onclick="toggleAmenity(this)"><span class="icon">&#128642;</span>Boston Commuter</div>
           <div class="amenity-chip" data-val="New Construction / Recent Major Renovation" onclick="toggleAmenity(this)"><span class="icon">&#128296;</span>New / Major Reno</div>
+          <div class="amenity-chip" data-val="Central Air Conditioning" onclick="toggleAmenity(this)"><span class="icon">&#10052;</span>Central Air</div>
         </div>
         <div style="margin-top:16px;"><label>Updates & Renovations <span class="opt">(optional)</span></label><textarea id="updates" placeholder="List any significant updates with approximate year completed. E.g.: New roof 2022, Kitchen remodel 2021 (quartz + appliances), HVAC replaced 2020..."></textarea></div>
         <div style="margin-top:12px;"><label>Known Issues / Deferred Maintenance <span class="opt">(optional)</span></label><textarea id="issues" placeholder="Anything buyers may flag - affects comp adjustments and pricing strategy." style="min-height:60px;"></textarea></div>
@@ -583,9 +584,10 @@
             <label>Commission Rate</label>
             <select id="cc-commission-rate" onchange="calculateClosingCosts()">
               <option value="0">Not included in estimate</option>
+              <option value="3" selected>3%</option>
               <option value="5">5%</option>
               <option value="5.5">5.5%</option>
-              <option value="6" selected>6%</option>
+              <option value="6">6%</option>
               <option value="custom">Custom %</option>
             </select>
           </div>
@@ -646,7 +648,7 @@
               </tr>
             </tfoot>
           </table>
-          <p style="font-size:11px;color:#6b7280;font-style:italic;margin-top:8px;">* NH Real Estate Transfer Tax: $7.50 per $1,000 of sale price (seller's portion). Title insurance and attorney fees are estimates and may vary. Municipal lien certificate fees vary by town. This is not a guarantee of actual costs.</p>
+          <p style="font-size:11px;color:#6b7280;font-style:italic;margin-top:8px;">* NH Real Estate Transfer Tax: $7.50 per $1,000 of sale price (seller's portion). Attorney fees are estimates and may vary. This is not a guarantee of actual costs.</p>
 
           <div style="margin-top:16px;display:flex;gap:10px;">
             <button class="btn btn-primary" onclick="printClosingCosts()">Print / Save PDF</button>
@@ -1265,11 +1267,9 @@ function calculateClosingCosts() {
   items.push({ label: 'Sale Price', amount: salePrice, type: 'credit' });
   if (commission > 0) items.push({ label: 'Real Estate Commission (' + commRate + '%)', amount: -commission });
   items.push({ label: 'NH Transfer Tax (Seller - $7.50/$1,000)', amount: -transferTax });
-  items.push({ label: 'Title Insurance (Owner\'s Policy)', amount: -titleInsurance });
   items.push({ label: 'Title Search & Exam', amount: -titleSearch });
   items.push({ label: 'Attorney / Closing Fee', amount: -attorneyFee });
   items.push({ label: 'Recording Fees (Deed, Discharge)', amount: -recordingFees });
-  items.push({ label: 'Municipal Lien Certificate (' + muniData.name + ')', amount: -lienCert });
   if (mortgage > 0) items.push({ label: 'Mortgage Payoff', amount: -mortgage });
   if (taxProration > 0) items.push({ label: 'Property Tax Proration', amount: -taxProration });
   if (hoaProration > 0) items.push({ label: 'HOA Proration', amount: -hoaProration });
@@ -1297,8 +1297,8 @@ function getMunicipalityData(muni) {
     name: 'Standard NH',
     titleInsurance: function(price) { return Math.max(price * 0.003, 500); }, // ~$3 per $1,000, min $500
     titleSearch: 350,
-    attorneyFee: 800,
-    recordingFees: 50,
+    attorneyFee: 400,
+    recordingFees: 100,
     lienCert: 25
   };
 
@@ -1408,7 +1408,7 @@ function printClosingCosts() {
   pw.document.write('<div class="subtitle">Municipality: ' + muniName + ' | Prepared: ' + new Date().toLocaleDateString() + '</div>');
   pw.document.write('<div class="gold-line"></div>');
   pw.document.write(tableHTML);
-  pw.document.write('<p class="disclaimer">* NH Real Estate Transfer Tax: $7.50 per $1,000 of sale price (seller\'s portion). Title insurance, attorney fees, and municipal lien certificate fees are estimates and may vary. This is not a guarantee of actual costs. Consult your attorney for exact figures.</p>');
+  pw.document.write('<p class="disclaimer">* NH Real Estate Transfer Tax: $7.50 per $1,000 of sale price (seller\'s portion). Attorney fees are estimates and may vary. This is not a guarantee of actual costs. Consult your attorney for exact figures.</p>');
   pw.document.write('<div class="footer"><strong>Suzanne Damon | The Damon Home Team</strong><br>eXp Realty | 4 Bell Hill Road, Bedford, NH 03110<br>(603) 493-5561 | suzanne@damonteam.com | www.suzannedamon.com</div>');
   pw.document.write('</body></html>');
   pw.document.close();
@@ -1450,7 +1450,7 @@ function getClosingCostsSummary() {
   const concessions = parseDollar(g('cc-concessions'));
   const warranty = parseFloat(g('cc-warranty')) || 0;
 
-  const totalCosts = commission + transferTax + titleInsurance + titleSearch + attorneyFee + recordingFees + lienCert + mortgage + taxProration + hoaProration + concessions + warranty;
+  const totalCosts = commission + transferTax + titleSearch + attorneyFee + recordingFees + mortgage + taxProration + hoaProration + concessions + warranty;
   const net = salePrice - totalCosts;
 
   let text = '\n\nESTIMATED SELLER CLOSING COSTS (include as a section in the report):\n';
@@ -1458,11 +1458,9 @@ function getClosingCostsSummary() {
   text += 'Sale Price: $' + salePrice.toLocaleString() + '\n';
   if (commRate > 0) text += 'Commission (' + commRate + '%): -$' + Math.round(commission).toLocaleString() + '\n';
   text += 'NH Transfer Tax (Seller $7.50/$1,000): -$' + Math.round(transferTax).toLocaleString() + '\n';
-  text += 'Title Insurance: -$' + Math.round(titleInsurance).toLocaleString() + '\n';
   text += 'Title Search: -$' + titleSearch.toLocaleString() + '\n';
   text += 'Attorney Fee: -$' + attorneyFee.toLocaleString() + '\n';
   text += 'Recording Fees: -$' + recordingFees.toLocaleString() + '\n';
-  text += 'Municipal Lien Certificate: -$' + lienCert.toLocaleString() + '\n';
   if (mortgage > 0) text += 'Mortgage Payoff: -$' + Math.round(mortgage).toLocaleString() + '\n';
   if (taxProration > 0) text += 'Property Tax Proration: -$' + Math.round(taxProration).toLocaleString() + '\n';
   if (hoaProration > 0) text += 'HOA Proration: -$' + Math.round(hoaProration).toLocaleString() + '\n';
