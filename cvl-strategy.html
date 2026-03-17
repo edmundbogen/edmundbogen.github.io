@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bogen.ai | Internal Strategy Brief</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: #0d1b2a;
+    color: #ffffff;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── PASSWORD GATE ── */
+  #gate {
+    position: fixed; inset: 0;
+    background: #0d1b2a;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 9999;
+    flex-direction: column;
+  }
+  #gate.hidden { display: none; }
+  #content { display: none; }
+  #content.visible { display: block; }
+
+  .gate-inner {
+    text-align: center;
+    max-width: 400px;
+    padding: 40px;
+  }
+  .gate-inner .brand-mark {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #00a8e1;
+    margin-bottom: 40px;
+  }
+  .gate-inner h2 {
+    font-size: 22px;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .gate-inner p {
+    font-size: 14px;
+    color: #8899aa;
+    margin-bottom: 30px;
+  }
+  .gate-inner input {
+    width: 100%;
+    padding: 14px 20px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 4px;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    text-align: center;
+    letter-spacing: 0.1em;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  .gate-inner input:focus {
+    border-color: #00a8e1;
+  }
+  .gate-inner input::placeholder {
+    color: #556677;
+    letter-spacing: 0.05em;
+  }
+  .gate-inner button {
+    margin-top: 16px;
+    width: 100%;
+    padding: 14px;
+    background: #00a8e1;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .gate-inner button:hover { background: #0090c0; }
+  .gate-error {
+    color: #ff6b6b;
+    font-size: 13px;
+    margin-top: 12px;
+    display: none;
+  }
+
+  /* ── MAIN CONTENT ── */
+  .top-bar {
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .top-bar .logo {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #00a8e1;
+  }
+  .top-bar .meta {
+    font-size: 12px;
+    color: #667788;
+    letter-spacing: 0.05em;
+  }
+
+  .hero {
+    padding: 80px 40px 60px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .hero .label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #00a8e1;
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-size: 36px;
+    font-weight: 300;
+    letter-spacing: 0.03em;
+    line-height: 1.3;
+    margin-bottom: 16px;
+  }
+  .hero h1 strong {
+    font-weight: 600;
+    color: #00a8e1;
+  }
+  .hero .subtitle {
+    font-size: 16px;
+    color: #8899aa;
+    font-weight: 400;
+    max-width: 600px;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 40px 80px;
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    margin-bottom: 56px;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .section-header .accent-bar {
+    width: 4px;
+    height: 28px;
+    background: #00a8e1;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .section-header h2 {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 8px;
+    padding: 28px 32px;
+    margin-bottom: 16px;
+  }
+  .card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #00a8e1;
+    letter-spacing: 0.03em;
+  }
+  .card .card-subtitle {
+    font-size: 13px;
+    color: #8899aa;
+    margin-bottom: 16px;
+    font-style: italic;
+  }
+  .card ul {
+    list-style: none;
+    padding: 0;
+  }
+  .card ul li {
+    padding: 6px 0;
+    font-size: 14px;
+    color: #ccd4dc;
+    padding-left: 18px;
+    position: relative;
+  }
+  .card ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 6px;
+    height: 6px;
+    background: #00a8e1;
+    border-radius: 50%;
+  }
+  .card p {
+    font-size: 14px;
+    color: #ccd4dc;
+    line-height: 1.7;
+  }
+
+  /* ── NEEDS TABLE ── */
+  .needs-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+  }
+  .needs-table th {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #667788;
+    text-align: left;
+    padding: 10px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .needs-table td {
+    font-size: 14px;
+    color: #ccd4dc;
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .badge.critical { background: rgba(255,90,90,0.15); color: #ff6b6b; }
+  .badge.high { background: rgba(0,168,225,0.15); color: #00a8e1; }
+  .badge.medium { background: rgba(255,200,60,0.12); color: #e0b840; }
+
+  /* ── PRICING OPTIONS ── */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+  }
+  .pricing-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 8px;
+    padding: 28px 24px;
+    text-align: center;
+    position: relative;
+    transition: border-color 0.3s;
+  }
+  .pricing-card.recommended {
+    border-color: #00a8e1;
+    background: rgba(0,168,225,0.05);
+  }
+  .pricing-card.recommended::after {
+    content: 'RECOMMENDED';
+    position: absolute;
+    top: -11px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #00a8e1;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    padding: 3px 14px;
+    border-radius: 20px;
+  }
+  .pricing-card .option-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #667788;
+    margin-bottom: 8px;
+  }
+  .pricing-card h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  .pricing-card .price {
+    font-size: 28px;
+    font-weight: 300;
+    color: #00a8e1;
+    margin-bottom: 4px;
+  }
+  .pricing-card .price-note {
+    font-size: 12px;
+    color: #667788;
+    margin-bottom: 20px;
+  }
+  .pricing-card ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+  }
+  .pricing-card ul li {
+    font-size: 13px;
+    color: #99aabb;
+    padding: 5px 0;
+    padding-left: 16px;
+    position: relative;
+  }
+  .pricing-card ul li::before {
+    content: '+';
+    position: absolute;
+    left: 0;
+    color: #00a8e1;
+    font-weight: 600;
+  }
+
+  /* ── TALKING POINTS ── */
+  .talk-point {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .talk-point .num {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    background: rgba(0,168,225,0.12);
+    color: #00a8e1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .talk-point .text {
+    font-size: 14px;
+    color: #ccd4dc;
+    line-height: 1.7;
+  }
+  .talk-point .text strong {
+    color: #fff;
+  }
+
+  /* ── DRAFT EMAIL ── */
+  .email-draft {
+    background: rgba(255,255,255,0.04);
+    border-left: 4px solid #00a8e1;
+    border-radius: 0 8px 8px 0;
+    padding: 28px 32px;
+    font-size: 14px;
+    color: #ccd4dc;
+    line-height: 1.8;
+  }
+  .email-draft strong {
+    color: #fff;
+  }
+  .email-draft .placeholder {
+    color: #00a8e1;
+    font-style: italic;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    padding: 40px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    font-size: 12px;
+    color: #445566;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .hero { padding: 50px 24px 40px; }
+    .hero h1 { font-size: 26px; }
+    .container { padding: 0 24px 60px; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .top-bar { padding: 16px 24px; }
+    .needs-table { font-size: 13px; }
+    .needs-table th, .needs-table td { padding: 8px 10px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- PASSWORD GATE -->
+<div id="gate">
+  <div class="gate-inner">
+    <div class="brand-mark">Bogen.ai</div>
+    <h2>Internal Brief</h2>
+    <p>This document is confidential. Enter the access code to continue.</p>
+    <input type="password" id="pw" placeholder="Access Code" autofocus
+      onkeydown="if(event.key==='Enter')unlock()">
+    <button onclick="unlock()">Enter</button>
+    <div class="gate-error" id="err">Incorrect code. Try again.</div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="content">
+
+  <div class="top-bar">
+    <div class="logo">Bogen.ai</div>
+    <div class="meta">Confidential | March 17, 2026</div>
+  </div>
+
+  <div class="hero">
+    <div class="label">Prospect Strategy Brief</div>
+    <h1>David May / <strong>Cloud Value Lab</strong></h1>
+    <div class="subtitle">Prepared for Edmund + Eytan pre-call alignment. Not for distribution to the client.</div>
+  </div>
+
+  <div class="container">
+
+    <!-- BACKGROUND -->
+    <div class="section">
+      <div class="section-header">
+        <div class="accent-bar"></div>
+        <h2>Who Is David May</h2>
+      </div>
+      <div class="card">
+        <ul>
+          <li>20 years in IT: Oracle, IBM, SAP, Microsoft (most recently)</li>
+          <li>Specialty: infrastructure economics &mdash; helping companies understand ROI on IT/cloud spend</li>
+          <li>Typical consulting engagement: $20K&ndash;$30K (winding this down)</li>
+          <li>Starting a full-time SaaS job next month &mdash; consulting is over</li>
+          <li>Personal connection: Edmund sold David and wife Bayt multiple properties</li>
+          <li>French-born, married to an Israeli, 3 boys</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- CLOUD VALUE LAB -->
+    <div class="section">
+      <div class="section-header">
+        <div class="accent-bar"></div>
+        <h2>Cloud Value Lab &mdash; The Opportunity</h2>
+      </div>
+      <div class="card">
+        <h3>What It Is</h3>
+        <p>A community and media platform for FinOps practitioners &mdash; the ~50,000 people worldwide whose job is managing how companies spend money on cloud infrastructure.</p>
+      </div>
+      <div class="card">
+        <h3>Current State</h3>
+        <ul>
+          <li>~1,000 subscribers (all organic, growing 10% week-on-week)</li>
+          <li>Content: expert interviews transcribed into written articles</li>
+          <li>Brand positioning: "Spotlight the experts. Vendor neutral."</li>
+          <li>CRM: HubSpot, leads from LinkedIn</li>
+          <li>Website: vibe-coded in Canva &mdash; David admits "it's ugly"</li>
+          <li>Revenue: zero. Pre-monetization by design</li>
+          <li>Time investment: 170% &mdash; must drop to 4&ndash;5 hrs/week when job starts</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Competitor: FinOps Weekly</h3>
+        <ul>
+          <li>Powered by SmartClouds (smartclouds.ai) &mdash; a B2B media company</li>
+          <li>~6,000&ndash;9,000 subscribers, 2&ndash;3 years running</li>
+          <li>Revenue model: vendor sponsorships, webinars, annual summit, advertising</li>
+          <li>Content quality: David says "it's shit" &mdash; recycled, surface-level, no personal touch</li>
+          <li>Key personality: Corey Quinn &mdash; natural-born speaker, huge following</li>
+        </ul>
+        <p style="margin-top: 12px; color: #00a8e1; font-weight: 500;">SmartClouds powers FinOps Weekly. Bogen.ai could power Cloud Value Lab. Same model, better execution.</p>
+      </div>
+    </div>
+
+    <!-- NEEDS ASSESSMENT -->
+    <div class="section">
+      <div class="section-header">
+        <div class="accent-bar"></div>
+        <h2>What David Needs</h2>
+      </div>
+      <table class="needs-table">
+        <thead>
+          <tr>
+            <th>Need</th>
+            <th>Urgency</th>
+            <th>Complexity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Content pipeline (transcript &rarr; article &rarr; published)</td>
+            <td><span class="badge critical">Critical</span></td>
+            <td>Medium</td>
+          </tr>
+          <tr>
+            <td>Website rebuild (replace Canva)</td>
+            <td><span class="badge high">High</span></td>
+            <td>Low&ndash;Medium</td>
+          </tr>
+          <tr>
+            <td>CMS (archives, tags, related articles, cross-links)</td>
+            <td><span class="badge high">High</span></td>
+            <td>Medium</td>
+          </tr>
+          <tr>
+            <td>Analytics (Google Analytics + scroll tracking)</td>
+            <td><span class="badge medium">Medium</span></td>
+            <td>Low</td>
+          </tr>
+          <tr>
+            <td>Video clip extraction from interviews</td>
+            <td><span class="badge medium">Medium</span></td>
+            <td>Low</td>
+          </tr>
+          <tr>
+            <td>SEO optimization</td>
+            <td><span class="badge medium">Medium</span></td>
+            <td>Low&ndash;Medium</td>
+          </tr>
+          <tr>
+            <td>Email / newsletter automation</td>
+            <td><span class="badge medium">Medium</span></td>
+            <td>Low</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- WHAT WE PROPOSE -->
+    <div class="section">
+      <div class="section-header">
+        <div class="accent-bar"></div>
+        <h2>What We Propose</h2>
+      </div>
+      <div class="card">
+        <h3>Tier 1: The Automation Engine</h3>
+        <div class="card-subtitle">The thing he literally cannot function without. Lead with this.</div>
+        <ul>
+          <li>Ingest Otter / Zoom transcript</li>
+          <li>AI processing (Claude) into formatted article with his brand DNA + style guide</li>
+          <li>Output: publish-ready HTML or WordPress-compatible post</li>
+          <li>Auto-generate related article links, SEO metadata, social media snippets</li>
+          <li>Extract 2&ndash;3 video clips from raw recording for LinkedIn / social</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Tier 2: Website + CMS</h3>
+        <div class="card-subtitle">Replace the Canva site with a real platform.</div>
+        <ul>
+          <li>Clean, professional design matching his new prototype direction</li>
+          <li>Built-in content management: archives, tags, categories, search</li>
+          <li>Expert profile pages (the "spotlight" is his whole brand)</li>
+          <li>Subscriber capture / newsletter signup</li>
+          <li>Google Analytics + engagement tracking baked in</li>
+          <li>Mobile responsive</li>
+        </ul>
+        <p style="margin-top: 12px;"><strong>Recommendation:</strong> Custom build, not WordPress. His WordPress instinct comes from not knowing what's possible. Show him.</p>
+      </div>
+      <div class="card">
+        <h3>Tier 3: Growth Tools (Phase 2 &mdash; Don't Pitch Yet)</h3>
+        <div class="card-subtitle">The upsell once he's generating revenue.</div>
+        <ul>
+          <li>SEO optimization platform (Eytan already built one)</li>
+          <li>Social media automation (auto-post clips + promos to LinkedIn)</li>
+          <li>Advanced analytics dashboard (engagement heatmaps, subscriber behavior)</li>
+          <li>Event / meetup registration system</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- PRICING -->
+    <div class="section">
+      <div class="section-header">
+        <div class="accent-bar"></div>
+        <h2>Pricing Options</h2>
+      </div>
+      <p style="font-size: 14px; color: #8899aa; margin-bottom: 24px;">David has no CVL revenue. He said "maybe I'm not at a stage where I can afford your services." He understands value ($20&ndash;30K engagements) but has no budget. Don't give it away. Don't scare him off.</p>
+      <div class="pricing-grid">
+        <div class="pricing-card recommended">
+          <div class="option-label">Option A</div>
+          <h3>Fixed Fee + Revenue Share</h3>
+          <div class="price">$5K&ndash;$7.5K</div>
+          <div class="price-note">one-time for Tier 1 + Tier 2</div>
+          <ul>
+            <li>Automation engine build</li>
+            <li>Website + CMS build</li>
+            <li>10&ndash;15% of CVL revenue for 24 months</li>
+            <li>$150&ndash;250/mo maintenance</li>
+            <li>Aligned incentives &mdash; we win when he wins</li>
+          </ul>
+        </div>
+        <div class="pricing-card">
+          <div class="option-label">Option B</div>
+          <h3>Monthly Retainer</h3>
+          <div class="price">$500/mo</div>
+          <div class="price-note">6-month commitment ($3K total)</div>
+          <ul>
+            <li>Full pipeline + website build included</li>
+            <li>First 3 months maintenance covered</li>
+            <li>Renegotiate at month 6</li>
+            <li>Lower barrier to entry</li>
+            <li>Fallback if Option A gets pushback</li>
+          </ul>
+        </div>
+        <div class="pricing-card">
+          <div class="option-label">Option C</div>
+          <h3>Partnership / Equity</h3>
+          <div class="price">15&ndash;25%</div>
+          <div class="price-note">equity stake in CVL</div>
+          <ul>
+            <li>Build everything at cost or free</li>
+            <li>Equity in Cloud Value Lab</li>
+            <li>Risk: may never monetize</li>
+            <li>Risk: David may lose steam once employed</li>
+            <li>Only if Eytan sees strategic value in FinOps</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- TALKING POINTS -->
+    <div class="section">
+      <div class="section-header">
+        <div class="accent-bar"></div>
+        <h2>Talking Points for 3:00 PM Call</h2>
+      </div>
+      <div class="talk-point">
+        <div class="num">1</div>
+        <div class="text"><strong>Lead with the automation engine.</strong> That's what saves his business. Everything else is secondary. If he can't automate, CVL dies when the job starts.</div>
+      </div>
+      <div class="talk-point">
+        <div class="num">2</div>
+        <div class="text"><strong>Don't compete with WordPress.</strong> Show him that what we build IS the CMS. No middleware, no legacy friction. He only wants WordPress because he doesn't know what's possible.</div>
+      </div>
+      <div class="talk-point">
+        <div class="num">3</div>
+        <div class="text"><strong>The SmartClouds comparison is our best sales tool.</strong> SmartClouds powers FinOps Weekly. Bogen.ai powers Cloud Value Lab. Same model, better content, vendor-neutral positioning.</div>
+      </div>
+      <div class="talk-point">
+        <div class="num">4</div>
+        <div class="text"><strong>Video clips are the quick win.</strong> If we can show a demo of transcript-to-clips, that's a "holy shit" moment. David already loved the idea.</div>
+      </div>
+      <div class="talk-point">
+        <div class="num">5</div>
+        <div class="text"><strong>Don't oversell community features yet.</strong> He's pre-revenue. He needs plumbing, not strategy. Meetups, events, premium content come after the engine works.</div>
+      </div>
+      <div class="talk-point">
+        <div class="num">6</div>
+        <div class="text"><strong>Timeline is the urgency lever.</strong> New job starts next month. If we deliver the automation engine in 2 weeks, we're the reason CVL survives. That's not a hard sell &mdash; that's a rescue mission.</div>
+      </div>
+    </div>
+
+    <!-- DRAFT EMAIL -->
+    <div class="section">
+      <div class="section-header">
+        <div class="accent-bar"></div>
+        <h2>Draft Email to David (Send Wed/Thu)</h2>
+      </div>
+      <div class="email-draft">
+        <p>David &mdash; great call today. Here's what we're thinking:</p>
+        <br>
+        <p><strong>Phase 1 (2&ndash;3 weeks):</strong> Content automation pipeline &mdash; you feed in a transcript, out comes a publish-ready article in your brand format, plus 2&ndash;3 social clips. This is what keeps CVL running when your new job starts.</p>
+        <br>
+        <p><strong>Phase 2 (concurrent or immediately after):</strong> Replace the Canva site with a real platform &mdash; CMS, analytics, SEO, expert profiles, the works.</p>
+        <br>
+        <p><strong>Investment:</strong> <span class="placeholder">[price based on what Edmund + Eytan decide]</span></p>
+        <br>
+        <p>Let's talk Thursday to walk through it.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    Bogen.ai &mdash; Internal Use Only &mdash; March 2026
+  </div>
+
+</div>
+
+<script>
+  // Simple client-side password gate
+  // Password: bogen2026
+  const hash = s => {
+    let h = 0;
+    for (let i = 0; i < s.length; i++) {
+      h = ((h << 5) - h) + s.charCodeAt(i);
+      h |= 0;
+    }
+    return h;
+  };
+  const KEY = -1494096498;
+  function unlock() {
+    const v = document.getElementById('pw').value.trim().toLowerCase();
+    if (hash(v) === KEY) {
+      document.getElementById('gate').classList.add('hidden');
+      document.getElementById('content').classList.add('visible');
+    } else {
+      document.getElementById('err').style.display = 'block';
+      document.getElementById('pw').value = '';
+      document.getElementById('pw').focus();
+    }
+  }
+</script>
+
+</body>
+</html>
