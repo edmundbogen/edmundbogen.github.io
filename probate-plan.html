@@ -220,7 +220,7 @@
   }
   .check-box.checked { background: var(--cyan); }
   .check-box.checked::after {
-    content: '✓'; color: var(--white); font-size: 13px; font-weight: 700;
+    content: '\2713'; color: var(--white); font-size: 13px; font-weight: 700;
   }
   .check-text { font-size: 14px; line-height: 1.6; }
   .check-text strong { color: var(--navy); }
@@ -398,7 +398,7 @@
   <section class="hero">
     <div class="hero-badge">Coaching Resource — Bogen.ai</div>
     <h1>Your <strong>Probate Real Estate</strong> Business Plan</h1>
-    <p class="hero-sub">Exclusively produced for Delaney Morgan, The Highland Company — Columbia, SC. A low-cost, high-impact roadmap for building a probate niche built around a community-first Facebook group strategy that costs you nothing but time.</p>
+    <p class="hero-sub">Exclusively produced for Delaney Morgan, CPRES + SRES, The Highland Company — Columbia, SC. A low-cost, high-impact roadmap for building a probate niche built around two targeted Facebook groups and a 90-day action plan that costs you nothing but time.</p>
     <div class="hero-meta">
       <div class="hero-meta-item">
         <div class="num">~3,000</div>
@@ -424,11 +424,13 @@
     <div class="sticky-nav-inner">
       <a href="#opportunity">Opportunity</a>
       <a href="#process">How Probate Works</a>
-      <a href="#fb-group">Facebook Group</a>
-      <a href="#content">Content Library</a>
-      <a href="#playbook">Playbook</a>
+      <a href="#fb-groups">Facebook Groups</a>
+      <a href="#content-plan">Content Plan</a>
+      <a href="#playbook">90-Day Playbook</a>
+      <a href="#networking">Networking</a>
       <a href="#budget">Budget</a>
-      <a href="#timeline">Timeline</a>
+      <a href="#metrics">Success Metrics</a>
+      <a href="#agent-guide">Agent Guide</a>
       <a href="#edmund">Need Help?</a>
     </div>
   </nav>
@@ -438,7 +440,7 @@
     <div class="section-label">Section 1</div>
     <h2>Why <strong>Probate</strong> Is Your Next Niche</h2>
     <p>Delaney, you mentioned wanting to go after probate deals — and the data backs you up in a major way. Richland County alone records roughly 3,500 deaths per year, generating approximately 3,000 new probate estate filings annually. About 70% of those estates involve real property, and roughly half of those properties are vacant — meaning the families <em>need</em> to sell.</p>
-    <p>That translates to an estimated 2,100 real estate opportunities per year in your backyard. At a median property value of $242,800, this is a deep, recurring pipeline that most agents completely ignore because it requires patience and specialized knowledge. You already have both.</p>
+    <p>That translates to an estimated 2,100 real estate opportunities per year in your backyard. At a median property value of $242,800, this is a deep, recurring pipeline that most agents completely ignore because it requires patience and specialized knowledge. You already have both — plus you're already credentialed with your CPRES and SRES designations, giving you an edge no other agent in the market can match right now.</p>
 
     <div class="stat-row">
       <div class="stat-card">
@@ -458,10 +460,6 @@
         <div class="desc">Typical timeline for a simple SC probate estate</div>
       </div>
     </div>
-
-    <h3>The Cross-Border Opportunity</h3>
-    <p>Because you're near the South Carolina-Georgia border, there's a massive adjacent market. Columbia County, GA (Evans, Martinez, Grovetown) has a median home value of $319,000, with Evans commanding $460,000+ medians — right in the price-point range you're targeting. The combined three-county opportunity across Columbia County (GA), Aiken County (SC), and Edgefield County (SC) exceeds $208 million in annual probate property transactions — roughly 690 deals per year.</p>
-    <p><strong>No agent in the Augusta metro is actively marketing probate specialization.</strong> No CPRES or CPS-certified agents appear in the market. No dedicated probate real estate websites exist for the CSRA region. This is a true first-mover opportunity.</p>
   </section>
 
   <div class="divider"></div>
@@ -472,12 +470,9 @@
     <h2>How <strong>Probate</strong> Works — What You Need to Know</h2>
     <p>Understanding the process is what separates you from every other agent. Here's what matters for you as the listing agent.</p>
 
-    <h3>South Carolina (Your Primary Market)</h3>
+    <h3>South Carolina Probate Law</h3>
     <p>Estates with real property or assets exceeding $45,000 must go through full probate. The personal representative (PR) — also called the executor — is court-appointed and is the <em>only</em> person who can sign listing agreements and sale documents on behalf of the estate. Key milestones: the will must be filed within 30 days of death, the PR must file an inventory within 90 days, and creditors have 8 months to file claims. Most PRs won't be ready to list until 6-8 months after the death — your marketing needs to nurture leads during that entire window.</p>
-    <p>Critical detail: under SC law (§ 62-3-711), the PR cannot sell real property unless the will specifically authorizes the sale, the sale is court-authorized under supervised administration, or court-ordered sale procedures are followed. Always confirm power of sale before taking the listing.</p>
-
-    <h3>Georgia (Cross-Border Opportunity)</h3>
-    <p>Georgia moves faster — the creditor claim period is only 3 months versus SC's 8. However, Georgia has a unique "Year's Support" provision that allows a surviving spouse to petition the court to set apart estate property for their support, taking priority over nearly all other claims. Always check whether a Year's Support petition has been filed before listing any Georgia probate property. Title companies generally won't insure title from Common Form probate until 4 years have passed — Solemn Form is strongly preferred.</p>
+    <p>Critical detail: under SC law (&sect; 62-3-711), the PR cannot sell real property unless the will specifically authorizes the sale, the sale is court-authorized under supervised administration, or court-ordered sale procedures are followed. Always confirm power of sale before taking the listing.</p>
 
     <h3>What You Need Before Listing Any Probate Property</h3>
     <div class="checklist">
@@ -495,10 +490,6 @@
       </div>
       <div class="check-item">
         <div class="check-box" onclick="this.classList.toggle('checked')"></div>
-        <div class="check-text"><strong>GA only:</strong> Confirmation that no Year's Support petition is pending</div>
-      </div>
-      <div class="check-item">
-        <div class="check-box" onclick="this.classList.toggle('checked')"></div>
         <div class="check-text"><strong>Seller listed as</strong> "The Estate of [Decedent's Full Name]" — signed by the PR in fiduciary capacity</div>
       </div>
     </div>
@@ -506,267 +497,386 @@
 
   <div class="divider"></div>
 
-  <!-- ═══ SECTION 3: THE FACEBOOK GROUP ═══ -->
-  <section class="section" id="fb-group">
+  <!-- ═══ SECTION 3: FACEBOOK GROUPS ═══ -->
+  <section class="section" id="fb-groups">
     <div class="section-label">Section 3 — The Core Strategy</div>
-    <h2>Build a <strong>Facebook Group</strong> That Does Your Marketing For You</h2>
+    <h2>Two <strong>Facebook Groups</strong> That Do Your Marketing For You</h2>
 
-    <p>Delaney, this is where I want you to really pay attention. Forget paid ads for now. The highest-ROI move you can make is building a community-first Facebook group — one that attracts the exact people who eventually need your services, without spending a dollar on advertising.</p>
+    <p>Delaney, this is where I want you to really pay attention. Forget paid ads for now. The highest-ROI move you can make is building two targeted Facebook groups — one consumer-facing that attracts families who need your services, and one agent-facing that builds a statewide referral network. Together, they create a lead generation system that costs you nothing but time.</p>
 
     <div class="proof-box">
       <div class="proof-num">~15K</div>
       <div class="proof-text">
         <h4>This Is Proven — I've Done It Myself</h4>
-        <p>My Facebook group "New to Boca Raton, Delray Beach, and the Surrounding Areas" has grown to nearly 15,000 members. It costs me nothing to run. When people request to join, I ask screening questions — including whether they rent, own, or are planning to buy. That single question tells me who my future clients are before I've ever spoken to them. This is the model I want you to replicate for Columbia.</p>
+        <p>My Facebook group "New to Boca Raton, Delray Beach, and the Surrounding Areas" has grown to nearly 15,000 members. It costs me nothing to run. Screening questions qualify every lead before I've ever spoken to them. Your two-group strategy takes this model further — one group for consumers, one for agent referrals — giving you both direct leads and a statewide pipeline.</p>
       </div>
     </div>
 
-    <h3>Step-by-Step: Setting Up Your Group</h3>
+    <h3>Group 1: Consumer-Facing — "Inheriting a Home in SC — Now What?"</h3>
+    <p><strong>Who:</strong> Anyone inheriting or expecting to inherit an SC home, Personal Representatives/Executors, families with aging parents planning ahead.</p>
+    <p><strong>Goal:</strong> Build trust and position you as the expert. Leads come when they're ready — no pressure, no pitch.</p>
+    <p><strong>Content ratio:</strong> 80% education, 20% services. Weekly posts minimum. Pin your free PDF: "Inherited a Home in SC? Here's What to Do First."</p>
+    <p><strong>Polls:</strong> Use polls regularly to learn what members want and to drive engagement.</p>
+    <p><strong>Protection:</strong> Review join requests manually. Decline investors and wholesalers. Use 3 screening questions to filter:</p>
+
+    <div class="q-cards">
+      <div class="q-card">
+        <div class="q-icon">Q1</div>
+        <div>
+          <p><strong>"Are you currently dealing with an inherited home, serving as a Personal Representative, or helping a family member through this process?"</strong></p>
+          <p style="font-size:13px; color:#777; margin-top:6px;">Options: Yes / No / Not yet but planning ahead. Tells you where they are in the process.</p>
+        </div>
+      </div>
+      <div class="q-card">
+        <div class="q-icon">Q2</div>
+        <div>
+          <p><strong>"Are you a licensed real estate agent, investor, or wholesaler?"</strong></p>
+          <p style="font-size:13px; color:#777; margin-top:6px;">If yes, this group is not the right fit. Decline and redirect to the agent group if applicable.</p>
+        </div>
+      </div>
+      <div class="q-card">
+        <div class="q-icon">Q3</div>
+        <div>
+          <p><strong>"What email address can we send your free copy of 'Inherited a Home in SC? Here's What to Do First' to?"</strong></p>
+          <p style="font-size:13px; color:#777; margin-top:6px;">Captures their email and delivers immediate value. Builds your list for free.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3>Group 2: Agent Referral Network — "Probate Real Estate Agents — South Carolina"</h3>
+    <p><strong>Who:</strong> Licensed SC agents outside the Midlands who specialize in probate or estate sales.</p>
+    <p><strong>Goal:</strong> Build a reciprocal referral network — send Charleston, Greenville, Myrtle Beach, Hilton Head, Spartanburg, and Florence leads their way. Receive Columbia leads in return.</p>
+    <p><strong>Content:</strong> Market updates, referral intros, case studies, best practices.</p>
+    <p><strong>How to grow it:</strong> Instagram outreach — find probate agents via hashtags, engage with their content, DM to introduce and invite. Also search LinkedIn for SC probate agents outside the Midlands.</p>
 
     <div class="step-grid">
       <div class="step-item">
         <div class="step-num-fixed">1</div>
         <div class="step-body">
-          <h4>Choose a Name That Sticks</h4>
-          <p>The name should feel like a community hub, not a real estate page. It needs to be something people would actually search for and want to join — not "Delaney Morgan's Listings." Here are some strong options:</p>
+          <h4>Launch Both Groups in Week 1</h4>
+          <p>Set both to approval-only with screening questions. Pin welcome posts and group rules. Update all your social bios with CPRES + SRES credentials and links to both groups.</p>
         </div>
       </div>
-    </div>
 
-    <div class="content-grid" style="margin-top:0;">
-      <div class="content-card">
-        <div class="card-num">RECOMMENDED</div>
-        <h4>New to Columbia, SC &amp; the Midlands</h4>
-        <p>Mirrors the proven "New to Boca Raton" model. Attracts relocators, newcomers, and people exploring the area — all potential buyers and sellers.</p>
-      </div>
-      <div class="content-card">
-        <div class="card-num">ALTERNATIVE</div>
-        <h4>Living in Columbia, SC — Insider Tips &amp; Community</h4>
-        <p>Broader net. Captures existing residents who may be selling, downsizing, or dealing with family property transitions.</p>
-      </div>
-      <div class="content-card">
-        <div class="card-num">ALTERNATIVE</div>
-        <h4>Columbia SC Homeowners &amp; Neighbors</h4>
-        <p>Positions the group around homeownership — naturally attracts people who own, rent, or are considering buying. Estate/probate questions surface organically.</p>
-      </div>
-    </div>
-
-    <div class="step-grid">
       <div class="step-item">
         <div class="step-num-fixed">2</div>
         <div class="step-body">
-          <h4>Set It to Approval-Only</h4>
-          <p>This is critical. Set the group to <strong>require membership approval</strong> with screening questions. This keeps quality high by filtering spam, and — more importantly — gives you a built-in lead qualification system. Every person who requests to join hands you data before you've ever spoken to them. Start public until you hit ~500 members for maximum discovery in search, then switch to private to improve engagement quality.</p>
+          <h4>Set Up Meta Business Suite</h4>
+          <p>Schedule posts in advance. Build an 8-week content calendar for both groups. This lets you batch content creation and maintain consistency without daily scrambling.</p>
         </div>
       </div>
 
       <div class="step-item">
         <div class="step-num-fixed">3</div>
         <div class="step-body">
-          <h4>Set Your Screening Questions (This Is the Gold)</h4>
-          <p>Facebook lets you ask up to 3 questions when people request to join. These are your free lead qualification system:</p>
+          <h4>Seed With Your Network</h4>
+          <p>You have 1,200 contacts in Follow Up Boss. Invite your sphere, past clients, and local connections to the consumer group. For the agent group, begin with agents you already know, then expand via Instagram and LinkedIn outreach.</p>
         </div>
       </div>
-    </div>
 
-    <div class="q-cards">
-      <div class="q-card">
-        <div class="q-icon">Q1</div>
-        <div>
-          <p><strong>"Welcome! What neighborhood or area of Columbia do you live in (or are you moving to)?"</strong></p>
-          <p style="font-size:13px; color:#777; margin-top:6px;">Tells you their location and whether they're relocating — a huge buying signal.</p>
-        </div>
-      </div>
-      <div class="q-card">
-        <div class="q-icon">Q2</div>
-        <div>
-          <p><strong>"Do you currently rent, own your home, or are you planning to buy?"</strong></p>
-          <p style="font-size:13px; color:#777; margin-top:6px;">This is the money question. "Planning to buy" or "own" goes straight into Follow Up Boss for follow-up. Renters may convert later — they go on your future newsletter list.</p>
-        </div>
-      </div>
-      <div class="q-card">
-        <div class="q-icon">Q3</div>
-        <div>
-          <p><strong>"What's your email? (Optional — we send a welcome guide with local tips!)"</strong></p>
-          <p style="font-size:13px; color:#777; margin-top:6px;">Not everyone will answer, but those who do give you permission to add them to your email list. Over time this builds your newsletter audience for free.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="step-grid">
       <div class="step-item">
         <div class="step-num-fixed">4</div>
         <div class="step-body">
-          <h4>Set Group Rules and Pin Them</h4>
-          <p>Keep it simple: no spam, no self-promotion without admin approval, be respectful, keep it relevant to the Columbia/Midlands area. Pin the rules as the first post. This keeps the group clean and positions you as the trusted moderator.</p>
+          <h4>Commit to 15-30 Minutes a Day</h4>
+          <p>Post content, approve members, review screening answers, and respond to comments across both groups. Your VA can help with approval processing and logging screening data into your CRM. Once groups gain momentum, daily time drops significantly.</p>
         </div>
       </div>
 
       <div class="step-item">
         <div class="step-num-fixed">5</div>
         <div class="step-body">
-          <h4>Seed It With Your Existing Network</h4>
-          <p>You have 1,200 contacts in Follow Up Boss. Invite your sphere, past clients, and local connections. Have your VAs help cross-promote in existing Columbia-area Facebook groups. Share the group link on your personal page and Instagram. Growth target: 100 members in 30 days, 500 in 90 days.</p>
-        </div>
-      </div>
-
-      <div class="step-item">
-        <div class="step-num-fixed">6</div>
-        <div class="step-body">
-          <h4>Commit to 15–30 Minutes a Day</h4>
-          <p>This is a real commitment — but it's not forever at this intensity. Once the group gains momentum and members start posting on their own, your daily time drops. For now: 15-30 minutes a day to post content, approve members, review screening answers, and respond to comments. Your VA can help with approval processing and logging the screening data into your CRM.</p>
-        </div>
-      </div>
-
-      <div class="step-item">
-        <div class="step-num-fixed">7</div>
-        <div class="step-body">
-          <h4>Export and Process Screening Answers Weekly</h4>
-          <p>Every week, review the screening answers from new member requests. Anyone who says "planning to buy" or "own" gets added to Follow Up Boss with a "Facebook Group" tag. Anyone who provides an email gets added to your future newsletter list. This is your lead pipeline — it fills itself as the group grows.</p>
+          <h4>Process Screening Answers Weekly</h4>
+          <p>Review answers from new member requests. Consumer group: anyone dealing with an inherited home goes into Follow Up Boss with a "Probate Lead" tag. Anyone who provides an email gets the free PDF and goes on your list. Agent group: log new agents and their markets for referral tracking.</p>
         </div>
       </div>
     </div>
 
     <div class="callout">
-      <h4>The Key Insight: This Is NOT a Real Estate Page</h4>
-      <p>No "just listed" posts. No "just sold" posts. No open house announcements. Those belong on your business page. This group is about the <em>community</em> — and because you're the trusted person running it, when someone in the group (or someone they know) needs to sell an inherited property, deal with a family estate, or buy their next home, you're the first person they think of.</p>
-      <p>Probate leads will surface organically. Someone will post "my mom passed away and I'm not sure what to do with her house." Someone will ask about estate sales. Someone will mention they're helping a family member settle an estate. You'll already be in the room because you <em>built</em> the room.</p>
+      <h4>The Key Insight: Two Groups, Two Purposes</h4>
+      <p>The consumer group is about trust. No "just listed" posts. No open house announcements. It's education and empathy — and when someone in the group needs to sell an inherited property, you're the first person they think of because you <em>built</em> the room.</p>
+      <p>The agent group is about reciprocity. You send leads to agents in Charleston, Greenville, and beyond. They send Columbia leads to you. Everyone wins, and your pipeline grows statewide without you ever leaving the Midlands.</p>
     </div>
   </section>
 
   <div class="divider"></div>
 
-  <!-- ═══ SECTION 4: CONTENT LIBRARY ═══ -->
-  <section class="section" id="content">
+  <!-- ═══ SECTION 4: CONTENT PLAN ═══ -->
+  <section class="section" id="content-plan">
     <div class="section-label">Section 4</div>
-    <h2>Your <strong>Content Library</strong> — 10 Topics People Actually Want to Read</h2>
-    <p>The group lives or dies on whether people find it <em>useful</em>. The 80/20 rule applies — 80% pure community value, 20% or less anything related to real estate. Here are 10 recurring themes to rotate weekly. Build a library of these and you'll never run out of things to post.</p>
+    <h2>Your <strong>Content Plan</strong> for Both Groups</h2>
+    <p>Consistency beats creativity. Here are the content categories for each group — rotate through them weekly and you'll never run out of things to post.</p>
+
+    <h3>Consumer Group: "Inheriting a Home in SC — Now What?"</h3>
 
     <div class="content-grid">
       <div class="content-card">
-        <div class="card-num">TOPIC 01</div>
-        <h4>Local Restaurant &amp; Business Spotlights</h4>
-        <p>"Have you tried [restaurant]? Here's what makes it a Columbia hidden gem." Feature a different local business each week. Owners will share your post, bringing their followers into your group.</p>
+        <div class="card-num">EDUCATION SERIES</div>
+        <h4>Core Probate Topics</h4>
+        <p>PR responsibilities, the SC probate process step-by-step, typical probate timeline, power of attorney, vacant home guidance, estate sale vs. heir sale, liens and title issues, out-of-state heir considerations.</p>
       </div>
       <div class="content-card">
-        <div class="card-num">TOPIC 02</div>
-        <h4>Weekend Events &amp; Things to Do</h4>
-        <p>Post a weekly roundup — farmers markets, festivals, concerts, family events. Become the community calendar. People will check the group every week just for this.</p>
+        <div class="card-num">STORY-BASED</div>
+        <h4>Real Lessons (Anonymized)</h4>
+        <p>Share anonymized lessons from real situations. Surprises families encountered. Why your CPRES designation matters. What PRs wish they'd known. These build credibility and make the content relatable.</p>
       </div>
       <div class="content-card">
-        <div class="card-num">TOPIC 03</div>
-        <h4>Neighborhood Deep-Dives</h4>
-        <p>"What's it really like to live in [Shandon / Forest Acres / Irmo / Lexington]?" Schools, walkability, vibes, what locals love. High-value for newcomers, positions you as the area expert — no listing pitch required.</p>
+        <div class="card-num">MARKET UPDATES</div>
+        <h4>Monthly Richland County Data</h4>
+        <p>Simple, conversational market updates — not data dumps. "Inherited homes in [area] are selling faster this month — here's what that means if you're a PR." No charts. No jargon.</p>
       </div>
       <div class="content-card">
-        <div class="card-num">TOPIC 04</div>
-        <h4>Polls &amp; "This or That" Questions</h4>
-        <p>"Best pizza in Columbia — go!" or "Lake Murray or downtown living?" Polls drive massive engagement. Every comment boosts your post in the algorithm and grows the group.</p>
+        <div class="card-num">ENGAGEMENT</div>
+        <h4>Polls and Questions</h4>
+        <p>Use polls to discover what members want to learn. "What's your biggest concern about inheriting a home?" Drives engagement and tells you what content to create next.</p>
       </div>
       <div class="content-card">
-        <div class="card-num">TOPIC 05</div>
-        <h4>Homeowner Tips &amp; Seasonal Maintenance</h4>
-        <p>"5 things every SC homeowner should do before hurricane season." Practical, non-salesy, genuinely useful. Homeowners save these posts — that signals to Facebook your group is valuable.</p>
+        <div class="card-num">RESOURCES</div>
+        <h4>Free Downloads and Links</h4>
+        <p>Pin the free PDF. Share the SC Probate Seller Checklist. Link to your e-book. Post the "5 Common Mistakes" list. Every resource post delivers value and captures leads.</p>
+      </div>
+    </div>
+
+    <h3>Agent Group: "Probate Real Estate Agents — South Carolina"</h3>
+
+    <div class="content-grid">
+      <div class="content-card">
+        <div class="card-num">INTRODUCTIONS</div>
+        <h4>Welcome New Agents</h4>
+        <p>Encourage new members to introduce themselves, share their market, and describe their probate experience. Builds community from day one.</p>
       </div>
       <div class="content-card">
-        <div class="card-num">TOPIC 06</div>
-        <h4>Local Market Updates (Plain English)</h4>
-        <p>Once a month, share a simple market update — conversational, not a data dump. "Homes are moving faster in [area] this month — here's what that means if you're thinking about a move." No charts. No jargon.</p>
+        <div class="card-num">MARKET UPDATES</div>
+        <h4>Reciprocal Sharing</h4>
+        <p>Share Richland County probate market data. Ask agents to share theirs. Creates value for everyone and keeps the group active.</p>
       </div>
       <div class="content-card">
-        <div class="card-num">TOPIC 07</div>
-        <h4>"Ask Me Anything" Threads</h4>
-        <p>Monthly open Q&A: "I'm a local broker — ask me anything about buying, selling, property taxes, or navigating real estate in Columbia. No judgment, no pitch." The probate questions will come.</p>
+        <div class="card-num">REFERRAL CALL-OUTS</div>
+        <h4>Active Referral Requests</h4>
+        <p>"I have a family in Charleston dealing with an inherited home — who's my go-to agent there?" The whole point of the group in one post.</p>
       </div>
       <div class="content-card">
-        <div class="card-num">TOPIC 08</div>
-        <h4>Vendor &amp; Contractor Recommendations</h4>
-        <p>"Need a good plumber / electrician / estate sale company?" Post it as a question: "Who's your go-to handyman?" These threads get massive engagement and bookmarks — and they build your vendor network for probate work.</p>
+        <div class="card-num">BEST PRACTICES</div>
+        <h4>Tips and Templates</h4>
+        <p>Share PR letter templates, attorney outreach scripts, seller checklists. Position yourself as the thought leader in the group.</p>
       </div>
       <div class="content-card">
-        <div class="card-num">TOPIC 09</div>
-        <h4>Family &amp; Parenting in Columbia</h4>
-        <p>You're a new mom — this is your superpower. "Best parks for toddlers," "daycare recommendations," "family-friendly restaurants." This taps into your mommy network sphere and attracts young families who are buyers.</p>
-      </div>
-      <div class="content-card">
-        <div class="card-num">TOPIC 10</div>
-        <h4>Estate &amp; Life Transition Resources</h4>
-        <p>"If you're helping a family member settle an estate, here's a simple checklist." or "5 things most people don't know about inheriting a home in SC." Post these 1-2 times a month. Educational, empathetic, and they position you as the probate expert — woven naturally into a community group, not shouted from a billboard.</p>
+        <div class="card-num">WINS + QUESTIONS</div>
+        <h4>Community Learning</h4>
+        <p>Share anonymized closed deals. Post questions for group discussion. Celebrate wins. This keeps engagement high and members coming back.</p>
       </div>
     </div>
 
     <div class="callout">
-      <h4>The Content Ratio</h4>
-      <p>Out of every 10 posts, 8-9 should be pure community value (Topics 1-9 above). Only 1-2 should touch real estate — and even those should be educational, not promotional. If the group feels like a sales funnel, people leave. If it feels like the best community page in Columbia, people invite their friends. That's how you grow to 5,000, 10,000, 15,000 members — the same way I did.</p>
+      <h4>The Content Ratio for the Consumer Group</h4>
+      <p>Out of every 10 posts, 8-9 should be pure education and empathy. Only 1-2 should touch your services — and even those should be helpful, not promotional. If the group feels like a sales funnel, people leave. If it feels like the most helpful resource for anyone dealing with an inherited home in SC, people invite their friends and family.</p>
     </div>
   </section>
 
   <div class="divider"></div>
 
-  <!-- ═══ SECTION 5: THE FULL PLAYBOOK ═══ -->
+  <!-- ═══ SECTION 5: THE 90-DAY PLAYBOOK ═══ -->
   <section class="section" id="playbook">
     <div class="section-label">Section 5</div>
-    <h2>The Rest of Your <strong>Playbook</strong></h2>
-    <p>The Facebook group is your engine. These are the supporting pieces that make the probate niche work.</p>
+    <h2>Your <strong>90-Day Playbook</strong></h2>
+    <p>The Facebook groups are your engine. These are the supporting pieces that make the probate niche work — organized into a clear 90-day action plan.</p>
 
-    <h3>Get Certified</h3>
+    <h3>Your Credentials — Already in Place</h3>
+    <p>You already hold two of the most important designations in this niche:</p>
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="val" style="font-size:20px;">CPRES</div>
+        <div class="desc">Certified Probate Real Estate Specialist — establishes instant credibility with attorneys, PRs, and families. Put this on every piece of marketing, every business card, every bio.</div>
+      </div>
+      <div class="stat-card">
+        <div class="val" style="font-size:20px;">SRES</div>
+        <div class="desc">Seniors Real Estate Specialist — signals expertise with aging families, downsizing, and life transitions. Complements your probate niche perfectly.</div>
+      </div>
+    </div>
+    <p>These are a competitive advantage no other agent in the Columbia market has right now. Lead with them everywhere — social bios, e-book cover, attorney one-pagers, group descriptions, email signatures. If you want to go even deeper, consider <strong>CPE (Certified Probate Expert)</strong> from Probate Mastery (Chad Corbett) — comprehensive training plus a coaching community and weekly mastermind calls.</p>
+
+    <h3>Free PDF Lead Magnet</h3>
+    <p><strong>Title:</strong> "Inherited a Home in SC? Here's What to Do First"</p>
+    <p>This is your anchor piece — pinned in the consumer group, handed to attorneys, included in PR outreach letters, linked across all platforms. Design it in Canva, 5-8 pages, clean and professional.</p>
     <div class="checklist">
       <div class="check-item">
         <div class="check-box" onclick="this.classList.toggle('checked')"></div>
-        <div class="check-text"><strong>CPRES Certification</strong> (Certified Probate Real Estate Specialist) from MTI Education — $497. Covers executor appointment-setting, marketing strategies, and attorney relationship building.</div>
+        <div class="check-text"><strong>SC probate process overview</strong> — simple, plain-English walkthrough</div>
       </div>
       <div class="check-item">
         <div class="check-box" onclick="this.classList.toggle('checked')"></div>
-        <div class="check-text"><strong>Alternative: CPE</strong> (Certified Probate Expert) from Probate Mastery (Chad Corbett) — comprehensive training + coaching community + weekly mastermind.</div>
+        <div class="check-text"><strong>Probate vs. non-probate assets</strong> — what goes through court and what doesn't</div>
       </div>
       <div class="check-item">
         <div class="check-box" onclick="this.classList.toggle('checked')"></div>
-        <div class="check-text"><strong>Within 6 months: SRES Designation</strong> (Seniors Real Estate Specialist) from NAR — $310 for members.</div>
+        <div class="check-text"><strong>PR responsibilities</strong> — what the Personal Representative actually has to do</div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="this.classList.toggle('checked')"></div>
+        <div class="check-text"><strong>5 common mistakes</strong> families make when selling inherited property</div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="this.classList.toggle('checked')"></div>
+        <div class="check-text"><strong>Vacant home guidance</strong> — insurance, maintenance, security</div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="this.classList.toggle('checked')"></div>
+        <div class="check-text"><strong>Your contact info + CPRES credential</strong> — subtle CTA on every page</div>
       </div>
     </div>
 
-    <h3>Build Your Referral Network</h3>
-    <p>Attorneys are the highest-value referral source. When a family asks their attorney "do you know a good realtor?", you want to be the only name.</p>
+    <h3>E-Book Strategy — Publish on Amazon KDP</h3>
+    <p>Turn your knowledge into a published book. This establishes authority that no business card can match — and it gives you a physical asset to hand attorneys during in-person visits.</p>
     <div class="checklist">
       <div class="check-item">
         <div class="check-box" onclick="this.classList.toggle('checked')"></div>
-        <div class="check-text"><strong>Meet 5–10 probate attorneys in the first 90 days.</strong> Your pitch: "I handle the real estate side so you and your clients don't have to worry about it — I understand probate timelines, court requirements, and can provide free CMAs for estate properties."</div>
+        <div class="check-text"><strong>Cover design with CPRES credential visible</strong> — professional, trustworthy look</div>
       </div>
       <div class="check-item">
         <div class="check-box" onclick="this.classList.toggle('checked')"></div>
-        <div class="check-text"><strong>Key SC contacts:</strong> Richland County Probate Court (Judge Amy McCulloch), Collins Family & Elder Law, local estate planning firms.</div>
+        <div class="check-text"><strong>Publish on Amazon KDP</strong> — available as both e-book and paperback</div>
       </div>
       <div class="check-item">
         <div class="check-box" onclick="this.classList.toggle('checked')"></div>
-        <div class="check-text"><strong>Key GA contacts (if expanding):</strong> Hull Barrett PC (Brian S. Coursey — cross-border powerhouse), Plunkett Hamilton Manton & Graves, Garrett Murphy Law LLC, Rhodes Law Firm.</div>
+        <div class="check-text"><strong>Order printed copies</strong> for in-person attorney visits and networking events</div>
       </div>
       <div class="check-item">
         <div class="check-box" onclick="this.classList.toggle('checked')"></div>
-        <div class="check-text"><strong>Connect with estate sale companies.</strong> After the estate sale, the house needs to be sold — you become their go-to referral. Attend local estate sales to meet operators and families.</div>
+        <div class="check-text"><strong>Share link across all platforms</strong> and both Facebook groups</div>
       </div>
       <div class="check-item">
         <div class="check-box" onclick="this.classList.toggle('checked')"></div>
-        <div class="check-text"><strong>Join the Augusta Estate Planning Council</strong> (augustaepc.org) — attorneys, CPAs, trust officers, and financial planners in one organization.</div>
+        <div class="check-text"><strong>Book Promotion Network:</strong> Give 10 sphere contacts free copies, ask them to post and share on social media</div>
       </div>
     </div>
 
-    <h3>Create Educational Content (Free)</h3>
+    <h3>Attorney Outreach</h3>
+    <p>Attorneys are the highest-value referral source. When a family asks their attorney "do you know a good realtor?", you want to be the only name. Here's how to make that happen systematically.</p>
     <div class="checklist">
       <div class="check-item">
         <div class="check-box" onclick="this.classList.toggle('checked')"></div>
-        <div class="check-text"><strong>Build a probate page on your website</strong> — optimized for "selling inherited property Columbia SC" and related searches.</div>
+        <div class="check-text"><strong>Google search + LinkedIn</strong> for "probate attorney Columbia SC," "estate attorney Columbia SC," "elder law attorney Columbia SC"</div>
       </div>
       <div class="check-item">
         <div class="check-box" onclick="this.classList.toggle('checked')"></div>
-        <div class="check-text"><strong>Create 8–12 YouTube videos in 90 days.</strong> Record on your phone. "How to Sell an Inherited House in Columbia, SC," "5 Mistakes Executors Make," "Probate Timeline in SC." Consistency beats production quality.</div>
+        <div class="check-text"><strong>Send cold emails:</strong> Subject line "Local CPRES — Would love to drop off a resource for your clients." Keep the body to 4 sentences — who you are, what you do, what you're offering, and a soft ask for a brief meeting.</div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="this.classList.toggle('checked')"></div>
+        <div class="check-text"><strong>10 personalized LinkedIn connection requests</strong> to probate, estate, and elder law attorneys in Richland and Lexington County</div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="this.classList.toggle('checked')"></div>
+        <div class="check-text"><strong>Map 10 probate/estate/elder law offices</strong> in Richland and Lexington County for in-person visits</div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="this.classList.toggle('checked')"></div>
+        <div class="check-text"><strong>In-person visits:</strong> Keep to 5 minutes. Drop off your e-book + free PDF. Introduce yourself as the local CPRES. Leave your card.</div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="this.classList.toggle('checked')"></div>
+        <div class="check-text"><strong>Schedule coffee</strong> with your strongest attorney contact. Ask for introductions to 2 colleagues.</div>
+      </div>
+    </div>
+
+    <h3>Elder Law Attorneys — A Separate Referral Category</h3>
+    <p>Elder law attorneys are an upstream referral source most agents miss entirely. They help families with power of attorney, guardianship, Medicaid planning, and long-term care transitions. These are families actively managing a parent's affairs — often <em>before</em> death. When the time comes to sell Mom's house, the elder law attorney is the one making the referral. Build relationships with these attorneys separately from your probate attorney outreach.</p>
+
+    <h3>Senior Care Referral Partners</h3>
+    <p>Senior care advisors, aging life care managers, and admissions directors at senior living communities encounter "What do we do with Mom's house?" every single day. These are warm, upstream referrals from people who trust you because you showed up and left value.</p>
+    <div class="checklist">
+      <div class="check-item">
+        <div class="check-box" onclick="this.classList.toggle('checked')"></div>
+        <div class="check-text"><strong>Leave your free PDF</strong> at every senior living community, memory care facility, and elder care office in the area</div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="this.classList.toggle('checked')"></div>
+        <div class="check-text"><strong>Introduce yourself to admissions directors</strong> — they're the ones families talk to first about housing transitions</div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="this.classList.toggle('checked')"></div>
+        <div class="check-text"><strong>Connect with senior care advisors and aging life care managers</strong> — they coordinate everything and can refer you directly</div>
+      </div>
+    </div>
+
+    <h3>Professional Networking Events</h3>
+    <div class="checklist">
+      <div class="check-item">
+        <div class="check-box" onclick="this.classList.toggle('checked')"></div>
+        <div class="check-text"><strong>SC Bar Foundation "Cocktails in the Courtyard"</strong> — casual attorney networking events</div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="this.classList.toggle('checked')"></div>
+        <div class="check-text"><strong>CLE events open to non-attorneys</strong> — check scbar.org for upcoming events</div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="this.classList.toggle('checked')"></div>
+        <div class="check-text"><strong>Columbia Chamber of Commerce</strong> — broad networking that includes attorneys, financial planners, and senior care professionals</div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="this.classList.toggle('checked')"></div>
+        <div class="check-text"><strong>Senior care industry events and conferences</strong> — get in the room with care advisors and facility directors</div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="this.classList.toggle('checked')"></div>
+        <div class="check-text"><strong>Richland County Probate Court</strong> — visit, ask about PR workshops, and offer to speak as a CPRES on the real estate side of estate settlement</div>
+      </div>
+    </div>
+
+    <h3>Instagram Agent Outreach</h3>
+    <p>This is how you grow the agent referral group. The agents you want are already posting about probate on Instagram — you just need to find them and invite them.</p>
+    <div class="checklist">
+      <div class="check-item">
+        <div class="check-box" onclick="this.classList.toggle('checked')"></div>
+        <div class="check-text"><strong>Search hashtags:</strong> #probaterealestate #estatesale #inheritedproperty #probaterealtor</div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="this.classList.toggle('checked')"></div>
+        <div class="check-text"><strong>Follow 10-15 probate agents,</strong> engage with their content first — comments, not just likes</div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="this.classList.toggle('checked')"></div>
+        <div class="check-text"><strong>DM to introduce and invite</strong> to the private agent referral group</div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="this.classList.toggle('checked')"></div>
+        <div class="check-text"><strong>Also search LinkedIn</strong> for SC probate agents outside the Midlands</div>
+      </div>
+    </div>
+
+    <h3>Probate Records Direct Outreach</h3>
+    <p>This is proactive lead generation from public records — reaching out directly to Personal Representatives who may need help.</p>
+    <div class="checklist">
+      <div class="check-item">
+        <div class="check-box" onclick="this.classList.toggle('checked')"></div>
+        <div class="check-text"><strong>Review Richland County probate records</strong> — publicindex.sccourts.org</div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="this.classList.toggle('checked')"></div>
+        <div class="check-text"><strong>Flag cases where PR address differs from property address</strong> — high probability of a vacant property that needs to be sold</div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="this.classList.toggle('checked')"></div>
+        <div class="check-text"><strong>Send batches of 5-10 PR outreach letters</strong> — lead with the free PDF, empathetic tone, no pressure</div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="this.classList.toggle('checked')"></div>
+        <div class="check-text"><strong>Second batch in month 3,</strong> refined based on responses from the first round</div>
+      </div>
+    </div>
+
+    <h3>Create Educational Video Content</h3>
+    <div class="checklist">
+      <div class="check-item">
+        <div class="check-box" onclick="this.classList.toggle('checked')"></div>
+        <div class="check-text"><strong>Record 8+ videos in 90 days.</strong> Use your phone. Topics: "What is a Personal Representative?", "5 Mistakes Executors Make," "SC Probate Timeline," "How to Sell an Inherited House," "What CPRES Means for You," and more.</div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="this.classList.toggle('checked')"></div>
+        <div class="check-text"><strong>Post videos in the consumer group,</strong> on YouTube, and across your social channels. Repurpose as Instagram Reels and LinkedIn posts.</div>
       </div>
       <div class="check-item">
         <div class="check-box" onclick="this.classList.toggle('checked')"></div>
         <div class="check-text"><strong>Record a video interview with a local probate attorney.</strong> Provides content AND often leads to attorney referrals.</div>
-      </div>
-      <div class="check-item">
-        <div class="check-box" onclick="this.classList.toggle('checked')"></div>
-        <div class="check-text"><strong>Create an "Executor's Guide" PDF</strong> — share in your group, email to leads, offer to attorneys to hand to their clients.</div>
       </div>
     </div>
 
@@ -784,11 +894,237 @@
 
   <div class="divider"></div>
 
-  <!-- ═══ SECTION 6: BUDGET ═══ -->
-  <section class="section" id="budget">
+  <!-- ═══ SECTION 6: NETWORKING TARGETS ═══ -->
+  <section class="section" id="networking">
     <div class="section-label">Section 6</div>
+    <h2>Key <strong>Networking</strong> Targets</h2>
+    <p>These are the people and organizations that will feed your pipeline. Prioritize the legal partners first — they're the most direct referral source — then expand into senior care and community.</p>
+
+    <h3>Legal Partners</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Who</th>
+          <th>How to Connect</th>
+          <th>Why It Matters</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Probate attorneys (Richland + Lexington)</td>
+          <td>Google search + cold email + book drop</td>
+          <td>Primary referral source — families ask attorneys first</td>
+        </tr>
+        <tr>
+          <td>Estate planning attorneys</td>
+          <td>LinkedIn + in-person</td>
+          <td>Upstream referrals before death — long-term pipeline</td>
+        </tr>
+        <tr>
+          <td>Elder law attorneys</td>
+          <td>Separate outreach — POA + care transition focus</td>
+          <td>Refer families managing parent's home and affairs</td>
+        </tr>
+        <tr>
+          <td>Richland County Bar Association</td>
+          <td>richbar.org — attend events</td>
+          <td>1,900+ attorneys in one organization</td>
+        </tr>
+        <tr>
+          <td>SC Bar Foundation</td>
+          <td>Cocktails in the Courtyard events</td>
+          <td>Casual networking with attorneys statewide</td>
+        </tr>
+        <tr>
+          <td>Richland County Probate Court</td>
+          <td>Visit, ask about PR workshops</td>
+          <td>Access to filings + speaking opportunity as CPRES</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Senior Care + Community Partners</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Who</th>
+          <th>How to Connect</th>
+          <th>Why It Matters</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Senior care advisors / aging life care managers</td>
+          <td>In-person visits + free PDF drop-off</td>
+          <td>Handle "What do we do with Mom's house?" daily</td>
+        </tr>
+        <tr>
+          <td>Private senior living / memory care communities</td>
+          <td>Visit admissions directors</td>
+          <td>Families in housing transition — warm upstream referrals</td>
+        </tr>
+        <tr>
+          <td>Estate sale companies</td>
+          <td>Attend local estate sales, meet operators</td>
+          <td>After the estate sale, the house needs to be sold</td>
+        </tr>
+        <tr>
+          <td>Columbia Chamber of Commerce</td>
+          <td>Join and attend events</td>
+          <td>Broad networking — attorneys, planners, senior care pros</td>
+        </tr>
+        <tr>
+          <td>Senior care industry events</td>
+          <td>Attend conferences and meetups</td>
+          <td>Build relationships with care coordinators and directors</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ SECTION 7: TIMELINE ═══ -->
+  <section class="section" id="timeline">
+    <div class="section-label">Section 7</div>
+    <h2>Your 90-Day <strong>Timeline</strong> + Beyond</h2>
+
+    <h3>Phase 1: Foundation (Weeks 1-2)</h3>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-phase">Week 1<br>Launch</div>
+        <div class="tl-body">
+          <h4>Get Everything Live</h4>
+          <p>Launch both Facebook groups with screening questions and welcome posts. Update all social bios with CPRES + SRES credentials. Optimize LinkedIn profile and Google Business Profile. Search for probate agents to invite to the agent group. Begin designing the free PDF lead magnet. Draft your attorney one-pager.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-phase">Week 2<br>Publish</div>
+        <div class="tl-body">
+          <h4>E-Book and Content Calendar</h4>
+          <p>Finalize and publish your e-book on Amazon KDP. Order printed copies. Share the link across all platforms. Activate your Book Promotion Network — give 10 sphere contacts free copies and ask them to post and share. Build your 8-week content calendar. Set up Meta Business Suite. Record Video 1: "What is a Personal Representative?" Post your first poll in the consumer group.</p>
+        </div>
+      </div>
+    </div>
+    <div class="callout">
+      <h4>Phase 1 Checkpoint</h4>
+      <p>Both groups live with pinned welcome posts. All bios updated with CPRES + SRES. Google Business Profile set up. E-book submitted to KDP. Free PDF designed and pinned in consumer group. 8-week content calendar built. Video 1 posted. First poll live.</p>
+    </div>
+
+    <h3>Phase 2: Visibility (Weeks 3-6)</h3>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-phase">Week 3<br>Attorneys</div>
+        <div class="tl-body">
+          <h4>Attorney Outreach Begins</h4>
+          <p>Google search for probate, estate, and elder law attorneys. Send cold emails with your CPRES intro. Send 10 personalized LinkedIn connection requests. Map 10 attorney offices in Richland and Lexington County for in-person visits.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-phase">Week 4<br>Agents</div>
+        <div class="tl-body">
+          <h4>Agent Group Growth</h4>
+          <p>Instagram outreach — search hashtags, follow 10-15 probate agents, engage with content, DM and invite. LinkedIn search for SC probate agents outside the Midlands. Post market updates and referral call-outs in agent group. Run second poll in consumer group.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-phase">Week 5<br>In Person</div>
+        <div class="tl-body">
+          <h4>Face-to-Face Outreach</h4>
+          <p>In-person attorney visits — 3-5 offices. Keep to 5 minutes each, drop off e-book + free PDF. Begin elder law attorney outreach separately. Visit senior care referral partners — leave free PDF at senior living and care locations. Record Video 2.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-phase">Week 6<br>Network</div>
+        <div class="tl-body">
+          <h4>Professional Networking</h4>
+          <p>Attend first professional networking event (SC Bar Foundation, Chamber, or CLE event). Visit Richland County Probate Court — ask about PR workshops and offer to speak as CPRES. Phase 2 checkpoint: review what's working.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3>Phase 3: Momentum (Weeks 7-12)</h3>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-phase">Week 7<br>Content</div>
+        <div class="tl-body">
+          <h4>LinkedIn Article + Repurpose</h4>
+          <p>Write and publish a LinkedIn article on probate real estate. Repurpose to carousel and text posts. Email the article to your attorney contacts. Create book promotion content. Record Video 3.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-phase">Week 8<br>Outreach</div>
+        <div class="tl-body">
+          <h4>Probate Records + Attorney Coffee</h4>
+          <p>First batch of 5-10 PR outreach letters from probate records — lead with free PDF, empathetic tone. Schedule coffee with your strongest attorney contact, ask for introductions to 2 colleagues. Send market update to your attorney network. Post reciprocal engagement content in agent group.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-phase">Week 9<br>Batch</div>
+        <div class="tl-body">
+          <h4>Content Batching + Systems</h4>
+          <p>Batch the next 4 weeks of content for both groups. Create your SC Probate Seller Checklist. Set up a welcome DM routine for new consumer group members. Review poll results and adjust content. Record Video 4.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-phase">Week 10<br>Expand</div>
+        <div class="tl-body">
+          <h4>Second Wave Agent Outreach</h4>
+          <p>Invite 10-15 more agents to the agent group. Check SC Association of Realtors for probate-focused members. Post a referral call-out in the agent group. Record Video 5.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-phase">Week 11<br>Follow Up</div>
+        <div class="tl-body">
+          <h4>Second PR Outreach + Follow-Up</h4>
+          <p>Send second batch of PR outreach letters (refined from first round). Follow up with first batch responders — offer a free 15-minute call. Compile your "what's working" document. Record Video 6.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-phase">Week 12<br>Review</div>
+        <div class="tl-body">
+          <h4>Measure and Plan</h4>
+          <p>Full 90-day review. Measure against success metrics. Identify top-performing content, strongest referral partners, and best lead sources. Plan the next 90 days based on what's actually working.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3>Beyond 90 Days</h3>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-phase">Months 4–6<br>Cultivate</div>
+        <div class="tl-body">
+          <h4>First Deals Start Closing</h4>
+          <p>Consumer group builds engagement. First deals close from early leads and attorney referrals. Ramp video content to 2 per week. Host first AMA in the consumer group. Optionally add a probate lead service. Build your vendor network. Probate questions start surfacing organically.</p>
+          <p><strong>Expected:</strong> 2-4 listings, 1-3 closed transactions. Revenue: $7,500-$27,000.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-phase">Months 7–12<br>Harvest</div>
+        <div class="tl-body">
+          <h4>Pipeline Self-Sustains</h4>
+          <p>Consumer group generates engagement without daily heavy lifting. 3-5 attorneys actively referring. Content library and SEO compounding. 1-2 closings per month. Agent referral group producing reciprocal leads. Group maintenance drops to 15 minutes/day or less.</p>
+          <p><strong>Expected:</strong> 8-15 closed transactions for year one. Revenue: $60,000-$135,000 GCI.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-phase">Year 2+<br>Scale</div>
+        <div class="tl-body">
+          <h4>Market Dominance</h4>
+          <p>15-25 transactions annually. Referral percentage rises to 40-50%, lowering costs. Consumer group exceeds 2,000+ members. Agent referral network covers all major SC markets. Launch your Agent Business Guide for secondary revenue.</p>
+          <p><strong>Expected:</strong> $112,500-$225,000 GCI annually.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ SECTION 8: BUDGET ═══ -->
+  <section class="section" id="budget">
+    <div class="section-label">Section 8</div>
     <h2>A <strong>Minimal Budget</strong> That Actually Works</h2>
-    <p>You don't need to spend thousands on paid ads. The Facebook group is free. YouTube is free. Attorney meetings cost two lattes. Here's a lean startup budget that gets you in the door without financial risk.</p>
+    <p>You don't need to spend thousands on paid ads. Both Facebook groups are free. YouTube is free. Attorney meetings cost two lattes. And you've already invested in your CPRES and SRES certifications — that's done. Here's a lean startup budget that gets you in the door without financial risk.</p>
 
     <table class="data-table">
       <thead>
@@ -800,17 +1136,22 @@
       </thead>
       <tbody>
         <tr>
-          <td>CPRES or CPE Certification</td>
-          <td>$497 (one-time)</td>
-          <td>Establishes credibility with attorneys and families</td>
-        </tr>
-        <tr>
-          <td>Facebook Group</td>
+          <td>Facebook Groups (2)</td>
           <td>$0</td>
           <td>Your primary lead generation engine — costs only time</td>
         </tr>
         <tr>
-          <td>YouTube Channel</td>
+          <td>E-Book (Amazon KDP)</td>
+          <td>$0</td>
+          <td>Free to publish. Printed copies ~$5-8 each for attorney visits.</td>
+        </tr>
+        <tr>
+          <td>Free PDF Lead Magnet</td>
+          <td>$0</td>
+          <td>Canva-designed, 5-8 pages. Free with Canva account.</td>
+        </tr>
+        <tr>
+          <td>YouTube / Video Content</td>
           <td>$0</td>
           <td>Record on your phone, post consistently</td>
         </tr>
@@ -825,69 +1166,110 @@
           <td>2-3 meetings a month. Best ROI dollar-for-dollar.</td>
         </tr>
         <tr>
+          <td>PR Outreach Letters</td>
+          <td>~$20/mo</td>
+          <td>Stamps + printing for 10-20 letters per month</td>
+        </tr>
+        <tr>
           <td>Probate Lead Service (optional, later)</td>
-          <td>$200–$500/mo</td>
+          <td>$200-$500/mo</td>
           <td>All The Leads — add when you're ready to accelerate.</td>
         </tr>
         <tr>
-          <td>Direct Mail (optional, later)</td>
-          <td>$150–$300/mo</td>
-          <td>Letters to PRs from filings. Add after first 90 days.</td>
-        </tr>
-        <tr>
-          <td><strong>Months 1–3 Total</strong></td>
-          <td><strong>~$50/mo + cert</strong></td>
-          <td><strong>Start free. Add paid tools only after the foundation is built.</strong></td>
+          <td><strong>Months 1-3 Total</strong></td>
+          <td><strong>~$70/mo</strong></td>
+          <td><strong>Start nearly free. Add paid tools only after the foundation is built.</strong></td>
         </tr>
       </tbody>
     </table>
 
     <div class="callout">
       <h4>The Math Still Works</h4>
-      <p>At $242K median and 3% listing commission, one probate closing generates ~$7,284 in GCI. Close just 2 probate deals in months 4-6 and that pays for your certification and any future marketing many times over — while the group keeps generating leads at $0. By month 12, the research projects 8-15 closed transactions, generating $60,000-$135,000 in GCI from this niche alone.</p>
+      <p>At $242K median and 3% listing commission, one probate closing generates ~$7,284 in GCI. Close just 2 probate deals in months 4-6 and that pays for any future marketing many times over — while both groups keep generating leads at $0. By month 12, the research projects 8-15 closed transactions, generating $60,000-$135,000 in GCI from this niche alone.</p>
     </div>
   </section>
 
   <div class="divider"></div>
 
-  <!-- ═══ SECTION 7: TIMELINE ═══ -->
-  <section class="section" id="timeline">
-    <div class="section-label">Section 7</div>
-    <h2>Your 12-Month <strong>Timeline</strong></h2>
+  <!-- ═══ SECTION 9: SUCCESS METRICS ═══ -->
+  <section class="section" id="metrics">
+    <div class="section-label">Section 9</div>
+    <h2>Day 90 <strong>Success Metrics</strong></h2>
+    <p>At the end of 90 days, measure yourself against these benchmarks. You don't need to hit every one perfectly — but if you're in the ballpark on most of them, you've built a foundation that will produce deals for years.</p>
 
-    <div class="timeline">
-      <div class="tl-item">
-        <div class="tl-phase">Months 1–3<br>Plant Seeds</div>
-        <div class="tl-body">
-          <h4>Build the Foundation (Mostly Free)</h4>
-          <p>Get certified. Launch your Facebook group and post daily. Create 8-12 YouTube videos. Meet 5-10 probate attorneys. Build your probate website page. Create the "Executor's Guide" PDF. Mine public probate court records. Cross-promote in existing Columbia community groups. Log screening answers into Follow Up Boss weekly.</p>
-          <p><strong>Expected:</strong> 0-1 listings, 100+ group members, 50-100 leads identified. Revenue: $0-$9,000.</p>
-        </div>
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="val">3+</div>
+        <div class="desc">Attorney referral partners actively sending you leads</div>
       </div>
-      <div class="tl-item">
-        <div class="tl-phase">Months 4–6<br>Cultivate</div>
-        <div class="tl-body">
-          <h4>First Deals Start Closing</h4>
-          <p>Group reaches 300-500 members. First deals close from early leads and attorney referrals. Ramp YouTube to 2 videos/week. Host first AMA in the group. Optionally add a probate lead service. Build your vendor network. Probate questions start surfacing organically in the group.</p>
-          <p><strong>Expected:</strong> 2-4 listings, 1-3 closed transactions. Revenue: $7,500-$27,000.</p>
-        </div>
+      <div class="stat-card">
+        <div class="val">8+</div>
+        <div class="desc">Videos published across YouTube and social</div>
       </div>
-      <div class="tl-item">
-        <div class="tl-phase">Months 7–12<br>Harvest</div>
-        <div class="tl-body">
-          <h4>Pipeline Self-Sustains</h4>
-          <p>Group crosses 1,000+ members and generates engagement without daily heavy lifting. 3-5 attorneys actively referring. Content library and SEO compounding. 1-2 closings per month. Group maintenance drops to 15 minutes/day or less as members drive their own discussions.</p>
-          <p><strong>Expected:</strong> 8-15 closed transactions for year one. Revenue: $60,000-$135,000 GCI.</p>
-        </div>
+      <div class="stat-card">
+        <div class="val">2</div>
+        <div class="desc">Facebook groups live and active</div>
       </div>
-      <div class="tl-item">
-        <div class="tl-phase">Year 2+<br>Scale</div>
-        <div class="tl-body">
-          <h4>Market Dominance</h4>
-          <p>15-25 transactions annually. Referral percentage rises to 40-50%, lowering costs. Group exceeds 2,000+ members and runs largely on its own. Consider a GA license to double your serviceable market.</p>
-          <p><strong>Expected:</strong> $112,500-$225,000 GCI annually.</p>
-        </div>
+      <div class="stat-card">
+        <div class="val">5+</div>
+        <div class="desc">Agents in your referral network group</div>
       </div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="val">20+</div>
+        <div class="desc">PR outreach letters sent from probate records</div>
+      </div>
+      <div class="stat-card">
+        <div class="val">10</div>
+        <div class="desc">Sphere contacts promoting your e-book</div>
+      </div>
+      <div class="stat-card">
+        <div class="val">5+</div>
+        <div class="desc">Referral venues visited (senior care, courts, offices)</div>
+      </div>
+      <div class="stat-card">
+        <div class="val">1</div>
+        <div class="desc">E-book live on Amazon KDP</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ SECTION 10: AGENT BUSINESS GUIDE ═══ -->
+  <section class="section" id="agent-guide">
+    <div class="section-label">Section 10 — Secondary Revenue</div>
+    <h2>The <strong>Agent Business Guide</strong></h2>
+    <p>Here's a play most agents never think about: turn your own 90-day journey into a product. As you build your probate niche from scratch, you're creating a replicable system that agents in other markets would pay for.</p>
+
+    <h3>The Product</h3>
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="val" style="font-size:18px;">Title</div>
+        <div class="desc">"How to Build a Probate Real Estate Niche from Scratch"</div>
+      </div>
+      <div class="stat-card">
+        <div class="val" style="font-size:18px;">Price</div>
+        <div class="desc">$97-$147 per download</div>
+      </div>
+      <div class="stat-card">
+        <div class="val" style="font-size:18px;">Format</div>
+        <div class="desc">PDF / digital workbook, Canva-designed, market-agnostic</div>
+      </div>
+    </div>
+
+    <p><strong>Platforms:</strong> Etsy, Canva Marketplace, direct link in your bio and the agent group.</p>
+    <p><strong>Built-in audience:</strong> Your agent referral group is already full of agents interested in probate. They're your first buyers.</p>
+    <p><strong>Timeline:</strong> Document your process during months 1-3 alongside your 90-day plan. Compile and launch the guide in months 4-5.</p>
+    <p><strong>Content source:</strong> Your real 90-day debrief — what worked, what didn't, actual results, templates, and scripts. Authenticity sells because it's rare.</p>
+
+    <h3>Upsell: Canva Template Pack</h3>
+    <p>Price: $27-$37. Include your attorney one-pager template, PR outreach letter template, SC Probate Seller Checklist, and free PDF template. Agents will buy the guide for the strategy and the template pack to skip the design work.</p>
+
+    <div class="callout">
+      <h4>Why This Works</h4>
+      <p>You're already doing the work. The guide is just documentation of what you're building. The agent referral group gives you a captive audience. And because you built it in a real market with real results, it has credibility that generic courses can't match. This is passive income that compounds — you create it once and it sells while you're closing deals.</p>
     </div>
   </section>
 
@@ -900,36 +1282,23 @@
 
     <div class="accordion">
       <div class="acc-item">
-        <div class="acc-header">Certification Programs <span class="acc-arrow">▾</span></div>
+        <div class="acc-header">Certification Programs <span class="acc-arrow">&#9662;</span></div>
         <div class="acc-body"><div class="acc-body-inner">
-          <strong>CPRES</strong> — MTI Education, $497. 15,000+ agents trained. mtieducation.com.<br><br>
-          <strong>CPE</strong> — Probate Mastery (Chad Corbett). Comprehensive training + coaching + community. probatemastery.com.<br><br>
-          <strong>SRES</strong> — NAR designation, $310 for members.
+          <strong>CPRES</strong> — MTI Education. You already hold this. mtieducation.com.<br><br>
+          <strong>SRES</strong> — NAR designation. You already hold this.<br><br>
+          <strong>CPE</strong> — Probate Mastery (Chad Corbett). Optional additional training + coaching + community. probatemastery.com.
         </div></div>
       </div>
       <div class="acc-item">
-        <div class="acc-header">Court Records &amp; Lead Sources <span class="acc-arrow">▾</span></div>
+        <div class="acc-header">Court Records &amp; Lead Sources <span class="acc-arrow">&#9662;</span></div>
         <div class="acc-body"><div class="acc-body-inner">
           <strong>SC Public Records:</strong> publicindex.sccourts.org<br>
-          <strong>Richland County Probate:</strong> richlandcountysc.gov/Courts-Safety/Probate-Court/Estates<br>
-          <strong>GA Records:</strong> Tyler Technologies Portal, GSCCCA (gsccca.org/search)<br>
-          <strong>Columbia County Probate Court:</strong> 640 Ronald Reagan Dr, Evans, GA 30809 — (706) 312-7254<br><br>
+          <strong>Richland County Probate:</strong> richlandcountysc.gov/Courts-Safety/Probate-Court/Estates<br><br>
           <strong>All The Leads (optional paid service):</strong> $200-$500+/mo. alltheleads.com.
         </div></div>
       </div>
       <div class="acc-item">
-        <div class="acc-header">Key Attorney Contacts <span class="acc-arrow">▾</span></div>
-        <div class="acc-body"><div class="acc-body-inner">
-          <strong>Hull Barrett, PC</strong> — Brian S. Coursey (CPA + attorney), Evans/Augusta/Aiken.<br>
-          <strong>Plunkett Hamilton Manton &amp; Graves</strong> — Jason R. Graves, probate + elder law.<br>
-          <strong>Garrett Murphy Law LLC</strong> — Evans, estate planning.<br>
-          <strong>Rhodes Law Firm</strong> — Augusta + North Augusta, 30+ years.<br>
-          <strong>Johnson, Johnson, Whittle, Lancer &amp; Staggs</strong> — Aiken.<br>
-          <strong>Austin and Pethick Law Firm</strong> — Multi-state (SC, GA, TN).
-        </div></div>
-      </div>
-      <div class="acc-item">
-        <div class="acc-header">Common Challenges <span class="acc-arrow">▾</span></div>
+        <div class="acc-header">Common Challenges <span class="acc-arrow">&#9662;</span></div>
         <div class="acc-body"><div class="acc-body-inner">
           <strong>Title &amp; Lien Issues:</strong> Order preliminary title searches early. Work with the attorney.<br><br>
           <strong>Heir Disagreements:</strong> Stay neutral. Communicate market facts. Suggest mediation.<br><br>
@@ -942,11 +1311,11 @@
 
   <div class="divider"></div>
 
-  <!-- ═══ SECTION 8: EDMUND ═══ -->
+  <!-- ═══ NEED HELP ═══ -->
   <section class="section" id="edmund">
     <div class="section-label">A Note from Edmund</div>
     <h2>You Have the <strong>Power</strong> To Do All of This — Right Now</h2>
-    <p>Delaney, everything in this plan is within your reach today. The Facebook group costs nothing but 15-30 minutes a day. YouTube videos can be recorded on your phone. Attorney meetings cost coffee. The market data is clear, the playbook is laid out, and you've already demonstrated the production skills, patience, and empathy that this niche rewards. I genuinely hope you go all in.</p>
+    <p>Delaney, everything in this plan is within your reach today. You already hold the CPRES and SRES designations — credentials no other agent in your market has. Both Facebook groups cost nothing but 15-30 minutes a day. Videos can be recorded on your phone. Attorney meetings cost coffee. The market data is clear, the 90-day playbook is laid out, and you've already demonstrated the production skills, patience, and empathy that this niche rewards. I genuinely hope you go all in.</p>
     <p>That said, you don't have to figure it all out alone:</p>
 
     <div class="stat-row">
@@ -956,7 +1325,7 @@
       </div>
       <div class="stat-card">
         <div class="val" style="font-size:20px;">Facebook Group Help</div>
-        <div class="desc">If you want to explore having my team help build, maintain, or manage a probate-focused Facebook group or page — the way this plan describes — I'm happy to talk through what that looks like and how it fits your budget.</div>
+        <div class="desc">If you want to explore having my team help build, maintain, or manage your two probate-focused Facebook groups — the way this plan describes — I'm happy to talk through what that looks like and how it fits your budget.</div>
       </div>
       <div class="stat-card">
         <div class="val" style="font-size:20px;">AI &amp; Automation</div>
@@ -974,14 +1343,14 @@
   <!-- CTA -->
   <section class="cta-section">
     <h2>Pick One Thing and Start This Week</h2>
-    <p>Create the group. Post your first piece of content. Schedule one attorney meeting. The compound effect takes care of the rest.</p>
+    <p>Launch the groups. Design the free PDF. Schedule one attorney meeting. The compound effect takes care of the rest.</p>
     <a href="tel:+15613050484" class="cta-btn">CALL EDMUND</a>
     <p style="margin-top:20px; font-size:12px; opacity:0.4;">Edmund Bogen — Bogen.ai Coaching</p>
   </section>
 
   <div class="footer">
     <p>Exclusively Produced for Delaney Morgan, The Highland Company — Columbia, SC<br>
-    Research compiled March 2026 • Sources: SC Dept. of Public Health, SC Judicial Branch, Data USA, Richland County Probate Court, Georgia Probate Courts, ProbateData.com, MTI Education, Probate Mastery<br><br>
+    Research compiled March 2026 &bull; Sources: SC Dept. of Public Health, SC Judicial Branch, Data USA, Richland County Probate Court, ProbateData.com, MTI Education, Probate Mastery<br><br>
     &copy; 2026 Edmund Bogen &bull; Bogen.ai</p>
   </div>
 
