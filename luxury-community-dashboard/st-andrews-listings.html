@@ -1,511 +1,423 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>St. Andrews Country Club - Current Listings | The Edmund Bogen Team</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background-color: #f5f5f5;
-            padding: 20px;
-        }
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            background: white;
-            padding: 40px;
-        }
-        .header {
-            border-bottom: 4px solid #00a8e1;
-            padding-bottom: 20px;
-            margin-bottom: 30px;
-        }
-        .header h1 {
-            color: #1a3e5c;
-            font-size: 2.5em;
-            font-weight: 300;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-        .header-subtitle {
-            color: #666;
-            font-size: 1.1em;
-            margin-top: 10px;
-        }
-        .summary-stats {
-            display: flex;
-            gap: 30px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
-        .summary-stat {
-            background: #f8fbff;
-            padding: 20px 30px;
-            border-radius: 8px;
-            border-left: 4px solid #00a8e1;
-        }
-        .summary-stat-label {
-            color: #666;
-            font-size: 0.85em;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-        .summary-stat-value {
-            color: #1a3e5c;
-            font-size: 1.8em;
-            font-weight: 600;
-            margin-top: 5px;
-        }
-        .listing-card {
-            background: white;
-            border: 1px solid #e8e8e8;
-            border-left: 4px solid #00a8e1;
-            padding: 25px 25px 25px 30px;
-            margin-bottom: 20px;
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 20px;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-        .listing-card:hover {
-            border-left-color: #1a3e5c;
-            box-shadow: 0 4px 20px rgba(26, 62, 92, 0.15);
-            transform: translateX(5px);
-        }
-        .listing-card.waterfront {
-            border-left-color: #28a745;
-        }
-        .listing-card.new-construction {
-            border-left-color: #dc3545;
-        }
-        .listing-address {
-            color: #1a3e5c;
-            font-size: 1.4em;
-            font-weight: 500;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
-        }
-        .listing-badge {
-            display: inline-block;
-            padding: 3px 10px;
-            font-size: 0.7em;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            border-radius: 3px;
-            margin-left: 10px;
-            vertical-align: middle;
-        }
-        .badge-waterfront {
-            background: #d4edda;
-            color: #155724;
-        }
-        .badge-new {
-            background: #f8d7da;
-            color: #721c24;
-        }
-        .listing-price {
-            color: #000000;
-            font-size: 2em;
-            font-weight: 300;
-            margin-bottom: 15px;
-        }
-        .listing-details {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-        .listing-detail-item {
-            display: flex;
-            flex-direction: column;
-        }
-        .listing-detail-label {
-            color: #666;
-            font-size: 0.75em;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 5px;
-        }
-        .listing-detail-value {
-            color: #1a3e5c;
-            font-size: 1.1em;
-            font-weight: 600;
-        }
-        .listing-mls {
-            display: inline-block;
-            background: #f4f4f4;
-            color: #1a3e5c;
-            padding: 8px 15px;
-            font-size: 0.85em;
-            font-weight: 500;
-            margin-top: 10px;
-            letter-spacing: 0.05em;
-        }
-        .view-listing-btn {
-            background: #00a8e1;
-            color: white;
-            padding: 14px 30px;
-            text-decoration: none;
-            font-size: 0.95em;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            display: inline-block;
-            transition: all 0.3s ease;
-            border-radius: 4px;
-        }
-        .view-listing-btn:hover {
-            background: #0088b8;
-            transform: translateY(-2px);
-        }
-        .listing-dom {
-            display: block;
-            color: #666;
-            font-size: 0.85em;
-            margin-top: 10px;
-            text-align: center;
-        }
-        .back-button {
-            background: #1a3e5c;
-            color: white;
-            padding: 12px 25px;
-            text-decoration: none;
-            font-size: 0.9em;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            display: inline-block;
-            margin-bottom: 20px;
-            border-radius: 4px;
-        }
-        .back-button:hover {
-            background: #0d1f2d;
-        }
-        @media (max-width: 768px) {
-            .listing-card {
-                grid-template-columns: 1fr;
-            }
-            .listing-cta {
-                text-align: center;
-            }
-            .summary-stats {
-                flex-direction: column;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>St. Andrews Country Club - Available Listings | The Edmund Bogen Team</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f4f4f4; color: #333;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* BACK NAV */
+    .back-nav {
+      background: #1a3e5c;
+      padding: 14px 40px;
+    }
+    .back-nav a {
+      color: #c8dce8; text-decoration: none;
+      font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+      font-weight: 500; transition: color 0.2s;
+    }
+    .back-nav a:hover { color: #00a8e1; }
+
+    /* HEADER */
+    .page-header {
+      background: #1a3e5c;
+      padding: 40px 40px 50px;
+      text-align: center;
+    }
+    .page-header .label {
+      font-size: 11px; font-weight: 600; color: #00a8e1;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .page-header h1 {
+      font-size: 32px; font-weight: 300; color: #ffffff;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .page-header .meta {
+      font-size: 13px; color: #8bb8d4;
+    }
+
+    /* CONTENT */
+    .content { max-width: 1100px; margin: 0 auto; padding: 30px 40px; }
+
+    /* STAT SUMMARY */
+    .stat-summary {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 16px; margin-bottom: 30px;
+    }
+    .stat-box {
+      background: #fff; border-radius: 6px; padding: 20px;
+      border-left: 4px solid #00a8e1; text-align: center;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .stat-box .value {
+      font-size: 24px; font-weight: 300; color: #1a3e5c;
+    }
+    .stat-box .label {
+      font-size: 10px; font-weight: 600; color: #7a8fa0;
+      letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px;
+    }
+
+    /* PROPERTY CARDS */
+    .property-card {
+      background: #ffffff; border-radius: 6px;
+      padding: 28px 32px; margin-bottom: 16px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      transition: transform 0.15s, box-shadow 0.15s;
+      position: relative;
+    }
+    .property-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .property-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-bottom: 16px; flex-wrap: wrap; gap: 10px;
+    }
+    .property-address {
+      font-size: 18px; font-weight: 600; color: #1a3e5c;
+      letter-spacing: 0.02em;
+    }
+    .property-price {
+      font-size: 22px; font-weight: 300; color: #00a8e1;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 4px 12px; border-radius: 20px;
+      margin-top: 6px;
+    }
+    .badge-new { background: #e8f7ef; color: #1a8c52; }
+    .badge-waterfront { background: #e3f2fd; color: #0d6ebc; }
+    .badge-reduced { background: #fff3e0; color: #d47800; }
+
+    .property-grid {
+      display: grid; grid-template-columns: repeat(6, 1fr);
+      gap: 12px; margin-bottom: 16px;
+    }
+    .property-attr {
+      text-align: center; padding: 10px 0;
+      border-right: 1px solid #f0f0f0;
+    }
+    .property-attr:last-child { border-right: none; }
+    .property-attr .val {
+      font-size: 16px; font-weight: 500; color: #1a3e5c;
+    }
+    .property-attr .lbl {
+      font-size: 9px; font-weight: 600; color: #7a8fa0;
+      letter-spacing: 0.08em; text-transform: uppercase; margin-top: 2px;
+    }
+
+    .property-footer {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-top: 14px; border-top: 1px solid #f0f0f0;
+    }
+    .mls-number {
+      font-size: 12px; color: #999; letter-spacing: 0.05em;
+    }
+    .dom-badge {
+      font-size: 11px; font-weight: 600; color: #7a8fa0;
+      letter-spacing: 0.08em;
+    }
+    .view-btn {
+      display: inline-block; background: #00a8e1; color: #fff;
+      text-decoration: none; font-size: 11px; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 10px 24px; border-radius: 2px;
+      transition: background 0.2s;
+    }
+    .view-btn:hover { background: #0090c4; }
+
+    /* CONTACT CTA */
+    .contact-cta {
+      background: #1a3e5c; border-radius: 6px;
+      padding: 40px; text-align: center;
+      margin-top: 20px; margin-bottom: 30px;
+    }
+    .contact-cta h3 {
+      font-size: 20px; font-weight: 300; color: #fff;
+      letter-spacing: 0.03em; margin-bottom: 12px;
+    }
+    .contact-cta p {
+      font-size: 14px; color: #c8dce8; margin-bottom: 20px;
+    }
+    .contact-cta a {
+      display: inline-block; background: #00a8e1; color: #fff;
+      text-decoration: none; font-size: 12px; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 12px 32px; border-radius: 2px;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: #0f2a3e;
+      padding: 24px 40px; text-align: center;
+    }
+    .footer p { font-size: 11px; color: #5a7a8f; line-height: 1.6; }
+
+    @media (max-width: 768px) {
+      .content { padding: 20px; }
+      .stat-summary { grid-template-columns: repeat(2, 1fr); }
+      .property-grid { grid-template-columns: repeat(3, 1fr); }
+      .property-header { flex-direction: column; }
+      .page-header { padding: 30px 20px 40px; }
+      .page-header h1 { font-size: 24px; }
+      .back-nav { padding: 14px 20px; }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <a href="index.html" class="back-button">&larr; Back to Market Dashboard</a>
 
-        <div class="header">
-            <h1>St. Andrews Country Club - Available Listings</h1>
-            <p class="header-subtitle">Updated March 19, 2026 | 8 Active Listings | Market Current</p>
-        </div>
+<!-- BACK NAV -->
+<div class="back-nav">
+  <a href="index.html">&larr; Back to Market Dashboard</a>
+</div>
 
-        <div class="summary-stats">
-            <div class="summary-stat">
-                <div class="summary-stat-label">Price Range</div>
-                <div class="summary-stat-value">$1.9M - $10.5M</div>
-            </div>
-            <div class="summary-stat">
-                <div class="summary-stat-label">Active Listings</div>
-                <div class="summary-stat-value">8</div>
-            </div>
-            <div class="summary-stat">
-                <div class="summary-stat-label">Sold YTD</div>
-                <div class="summary-stat-value">12</div>
-            </div>
-            <div class="summary-stat">
-                <div class="summary-stat-label">Absorption Rate</div>
-                <div class="summary-stat-value">N/A</div>
-            </div>
-        </div>
+<!-- HEADER -->
+<div class="page-header">
+  <p class="label">Luxury Community Listings</p>
+  <h1>St. Andrews Country Club</h1>
+  <p class="meta">8 Active Listings &bull; Updated March 26, 2026</p>
+</div>
 
-        <!-- Listing 1: New Construction -->
-        <div class="listing-card new-construction">
-            <div class="listing-info">
-                <div class="listing-address">17903 Foxborough Lane <span class="listing-badge badge-new">New Construction 2026</span></div>
-                <div class="listing-price">$10,500,000</div>
-                <div class="listing-details">
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Bedrooms</span>
-                        <span class="listing-detail-value">6</span>
-                    </div>
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Bathrooms</span>
-                        <span class="listing-detail-value">6.2</span>
-                    </div>
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Living SqFt</span>
-                        <span class="listing-detail-value">7,616</span>
-                    </div>
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Year Built</span>
-                        <span class="listing-detail-value">2026</span>
-                    </div>
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Lot SqFt</span>
-                        <span class="listing-detail-value">14,030</span>
-                    </div>
-                </div>
-                <div class="listing-mls">MLS#: RX-11087609</div>
-            </div>
-            <div class="listing-cta">
-                <a href="https://bogenhomes.com/homes-for-sale-details/17903-FOXBOROUGH-LANE-BOCA-RATON-FL-33496/RX-11087609/43/" target="_blank" class="view-listing-btn">View Details</a>
-                <span class="listing-dom">318 Days on Market</span>
-            </div>
-        </div>
+<!-- CONTENT -->
+<div class="content">
 
-        <!-- Listing 2: New Construction -->
-        <div class="listing-card new-construction">
-            <div class="listing-info">
-                <div class="listing-address">17842 Scarsdale Way <span class="listing-badge badge-new">New Construction 2026</span></div>
-                <div class="listing-price">$8,950,000</div>
-                <div class="listing-details">
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Bedrooms</span>
-                        <span class="listing-detail-value">5</span>
-                    </div>
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Bathrooms</span>
-                        <span class="listing-detail-value">6.1</span>
-                    </div>
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Living SqFt</span>
-                        <span class="listing-detail-value">6,278</span>
-                    </div>
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Year Built</span>
-                        <span class="listing-detail-value">2026</span>
-                    </div>
-                </div>
-                <div class="listing-mls">MLS#: B26000227</div>
-            </div>
-            <div class="listing-cta">
-                <a href="https://bogenhomes.com/homes-for-sale-details/17842-SCARSDALE-WAY-BOCA-RATON-FL-33496/B26000227/43/" target="_blank" class="view-listing-btn">View Details</a>
-                <span class="listing-dom">8 Days on Market</span>
-            </div>
-        </div>
-
-        <!-- Listing 3 -->
-        <div class="listing-card">
-            <div class="listing-info">
-                <div class="listing-address">17615 Foxborough Lane</div>
-                <div class="listing-price">$7,495,000</div>
-                <div class="listing-details">
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Bedrooms</span>
-                        <span class="listing-detail-value">4</span>
-                    </div>
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Bathrooms</span>
-                        <span class="listing-detail-value">5.1</span>
-                    </div>
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Living SqFt</span>
-                        <span class="listing-detail-value">5,800</span>
-                    </div>
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Year Built</span>
-                        <span class="listing-detail-value">2024</span>
-                    </div>
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Lot SqFt</span>
-                        <span class="listing-detail-value">13,957</span>
-                    </div>
-                </div>
-                <div class="listing-mls">MLS#: RX-11123890</div>
-            </div>
-            <div class="listing-cta">
-                <a href="https://bogenhomes.com/homes-for-sale-details/17615-FOXBOROUGH-LANE-BOCA-RATON-FL-33496/RX-11123890/43/" target="_blank" class="view-listing-btn">View Details</a>
-                <span class="listing-dom">185 Days on Market</span>
-            </div>
-        </div>
-
-        <!-- Listing 4 -->
-        <div class="listing-card">
-            <div class="listing-info">
-                <div class="listing-address">7536 Fenwick Place</div>
-                <div class="listing-price">$3,699,000</div>
-                <div class="listing-details">
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Bedrooms</span>
-                        <span class="listing-detail-value">5</span>
-                    </div>
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Bathrooms</span>
-                        <span class="listing-detail-value">5.1</span>
-                    </div>
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Living SqFt</span>
-                        <span class="listing-detail-value">3,725</span>
-                    </div>
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Year Built</span>
-                        <span class="listing-detail-value">1983</span>
-                    </div>
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Lot SqFt</span>
-                        <span class="listing-detail-value">14,000</span>
-                    </div>
-                </div>
-                <div class="listing-mls">MLS#: RX-11154759</div>
-            </div>
-            <div class="listing-cta">
-                <a href="https://bogenhomes.com/homes-for-sale-details/7536-FENWICK-PLACE-BOCA-RATON-FL-33496/RX-11154759/43/" target="_blank" class="view-listing-btn">View Details</a>
-                <span class="listing-dom">63 Days on Market</span>
-            </div>
-        </div>
-
-        <!-- Listing 5: Fully Renovated -->
-        <div class="listing-card">
-            <div class="listing-info">
-                <div class="listing-address">17829 Scarsdale Way <span class="listing-badge badge-waterfront">Fully Renovated</span></div>
-                <div class="listing-price">$3,395,000</div>
-                <div class="listing-details">
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Bedrooms</span>
-                        <span class="listing-detail-value">3</span>
-                    </div>
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Bathrooms</span>
-                        <span class="listing-detail-value">2.2</span>
-                    </div>
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Living SqFt</span>
-                        <span class="listing-detail-value">3,121</span>
-                    </div>
-                </div>
-                <div class="listing-mls">MLS#: R11161466</div>
-            </div>
-            <div class="listing-cta">
-                <a href="https://bogenhomes.com/homes-for-sale-details/17829-SCARSDALE-WAY-BOCA-RATON-FL-33496/R11161466/43/" target="_blank" class="view-listing-btn">View Details</a>
-                <span class="listing-dom">41 Days on Market</span>
-            </div>
-        </div>
-
-        <!-- Listing 6 -->
-        <div class="listing-card">
-            <div class="listing-info">
-                <div class="listing-address">17844 Scarsdale Way</div>
-                <div class="listing-price">$3,200,000</div>
-                <div class="listing-details">
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Bedrooms</span>
-                        <span class="listing-detail-value">4</span>
-                    </div>
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Bathrooms</span>
-                        <span class="listing-detail-value">4</span>
-                    </div>
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Living SqFt</span>
-                        <span class="listing-detail-value">3,797</span>
-                    </div>
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Year Built</span>
-                        <span class="listing-detail-value">1984</span>
-                    </div>
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Lot SqFt</span>
-                        <span class="listing-detail-value">13,991</span>
-                    </div>
-                </div>
-                <div class="listing-mls">MLS#: FX-10528126</div>
-            </div>
-            <div class="listing-cta">
-                <a href="https://bogenhomes.com/homes-for-sale-details/17844-SCARSDALE-WAY-BOCA-RATON-FL-33496/FX-10528126/43/" target="_blank" class="view-listing-btn">View Details</a>
-                <span class="listing-dom">163 Days on Market</span>
-            </div>
-        </div>
-
-        <!-- Listing 7: Price Reduced -->
-        <div class="listing-card">
-            <div class="listing-info">
-                <div class="listing-address">7946 Shelby Circle <span class="listing-badge badge-new">Price Reduced</span></div>
-                <div class="listing-price">$2,100,000</div>
-                <div class="listing-details">
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Bedrooms</span>
-                        <span class="listing-detail-value">3</span>
-                    </div>
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Bathrooms</span>
-                        <span class="listing-detail-value">2.1</span>
-                    </div>
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Living SqFt</span>
-                        <span class="listing-detail-value">2,656</span>
-                    </div>
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Year Built</span>
-                        <span class="listing-detail-value">1991</span>
-                    </div>
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Lot SqFt</span>
-                        <span class="listing-detail-value">13,493</span>
-                    </div>
-                </div>
-                <div class="listing-mls">MLS#: R11148303</div>
-            </div>
-            <div class="listing-cta">
-                <a href="https://bogenhomes.com/homes-for-sale-details/7946-SHELBY-CIRCLE-BOCA-RATON-FL-33496/R11148303/43/" target="_blank" class="view-listing-btn">View Details</a>
-                <span class="listing-dom">92 Days on Market</span>
-            </div>
-        </div>
-
-        <!-- Listing 8: Lowest Price -->
-        <div class="listing-card">
-            <div class="listing-info">
-                <div class="listing-address">17651 Foxborough Lane</div>
-                <div class="listing-price">$1,900,000</div>
-                <div class="listing-details">
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Bedrooms</span>
-                        <span class="listing-detail-value">4</span>
-                    </div>
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Bathrooms</span>
-                        <span class="listing-detail-value">3</span>
-                    </div>
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Living SqFt</span>
-                        <span class="listing-detail-value">2,456</span>
-                    </div>
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Year Built</span>
-                        <span class="listing-detail-value">1984</span>
-                    </div>
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Lot SqFt</span>
-                        <span class="listing-detail-value">14,044</span>
-                    </div>
-                </div>
-                <div class="listing-mls">MLS#: FX-10540973</div>
-            </div>
-            <div class="listing-cta">
-                <a href="https://bogenhomes.com/homes-for-sale-details/17651-FOXBOROUGH-LANE-BOCA-RATON-FL-33496/FX-10540973/43/" target="_blank" class="view-listing-btn">View Details</a>
-                <span class="listing-dom">92 Days on Market</span>
-            </div>
-        </div>
-
-        <div style="text-align: center; margin-top: 40px; padding-top: 30px; border-top: 2px solid #e8e8e8;">
-            <p style="color: #666; font-size: 0.9em; margin-bottom: 15px;">Questions about St. Andrews Country Club?</p>
-            <a href="https://bogenhomes.com/contact/" target="_blank" style="display: inline-block; background: #1a3e5c; color: white; padding: 14px 40px; text-decoration: none; font-size: 1em; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; border-radius: 4px;">Contact Edmund Bogen</a>
-            <p style="color: #999; font-size: 0.8em; margin-top: 20px;">The Edmund Bogen Team | Douglas Elliman Real Estate | 561-235-7575</p>
-            <p style="color: #bbb; font-size: 0.7em; margin-top: 10px;">Market data courtesy of BeachesMLS. Information is deemed reliable but not guaranteed.</p>
-        </div>
+  <!-- STAT SUMMARY -->
+  <div class="stat-summary">
+    <div class="stat-box">
+      <div class="value">$1.9M&ndash;$10.5M</div>
+      <div class="label">Price Range</div>
     </div>
+    <div class="stat-box">
+      <div class="value">8</div>
+      <div class="label">Active Listings</div>
+    </div>
+    <div class="stat-box">
+      <div class="value">12</div>
+      <div class="label">Sold YTD</div>
+    </div>
+    <div class="stat-box">
+      <div class="value">60%</div>
+      <div class="label">Absorption Rate</div>
+    </div>
+  </div>
+
+  <!-- LISTING 1 -->
+  <div class="property-card">
+    <div class="property-header">
+      <div>
+        <div class="property-address">17844 Scarsdale Way, Boca Raton, FL 33496</div>
+      </div>
+      <div class="property-price">$3,200,000</div>
+    </div>
+    <div class="property-grid">
+      <div class="property-attr"><div class="val">4</div><div class="lbl">Beds</div></div>
+      <div class="property-attr"><div class="val">4</div><div class="lbl">Full Baths</div></div>
+      <div class="property-attr"><div class="val">3,797</div><div class="lbl">Living Sq Ft</div></div>
+      <div class="property-attr"><div class="val">1984</div><div class="lbl">Year Built</div></div>
+      <div class="property-attr"><div class="val">13,991</div><div class="lbl">Lot Sq Ft</div></div>
+      <div class="property-attr"><div class="val">$842</div><div class="lbl">$/Sq Ft</div></div>
+    </div>
+    <div class="property-footer">
+      <span class="mls-number">MLS# F10528126</span>
+      <span class="dom-badge">171 Days on Market</span>
+      <a href="https://www.bogenhomes.com/homes/17844-Scarsdale-Way-Boca-Raton-FL-33496/F10528126" class="view-btn">View Details</a>
+    </div>
+  </div>
+
+  <!-- LISTING 2 -->
+  <div class="property-card">
+    <div class="property-header">
+      <div>
+        <div class="property-address">17651 Foxborough Lane, Boca Raton, FL 33496</div>
+      </div>
+      <div class="property-price">$1,900,000</div>
+    </div>
+    <div class="property-grid">
+      <div class="property-attr"><div class="val">4</div><div class="lbl">Beds</div></div>
+      <div class="property-attr"><div class="val">3</div><div class="lbl">Full Baths</div></div>
+      <div class="property-attr"><div class="val">2,456</div><div class="lbl">Living Sq Ft</div></div>
+      <div class="property-attr"><div class="val">1984</div><div class="lbl">Year Built</div></div>
+      <div class="property-attr"><div class="val">14,044</div><div class="lbl">Lot Sq Ft</div></div>
+      <div class="property-attr"><div class="val">$774</div><div class="lbl">$/Sq Ft</div></div>
+    </div>
+    <div class="property-footer">
+      <span class="mls-number">MLS# F10540973</span>
+      <span class="dom-badge">100 Days on Market</span>
+      <a href="https://www.bogenhomes.com/homes/17651-Foxborough-Lane-Boca-Raton-FL-33496/F10540973" class="view-btn">View Details</a>
+    </div>
+  </div>
+
+  <!-- LISTING 3 - NEW CONSTRUCTION -->
+  <div class="property-card">
+    <div class="property-header">
+      <div>
+        <div class="property-address">17903 Foxborough Lane, Boca Raton, FL 33496</div>
+        <span class="badge badge-new">New Construction 2026</span>
+      </div>
+      <div class="property-price">$10,500,000</div>
+    </div>
+    <div class="property-grid">
+      <div class="property-attr"><div class="val">6</div><div class="lbl">Beds</div></div>
+      <div class="property-attr"><div class="val">6/2</div><div class="lbl">Full/Half Baths</div></div>
+      <div class="property-attr"><div class="val">7,616</div><div class="lbl">Living Sq Ft</div></div>
+      <div class="property-attr"><div class="val">2026</div><div class="lbl">Year Built</div></div>
+      <div class="property-attr"><div class="val">14,030</div><div class="lbl">Lot Sq Ft</div></div>
+      <div class="property-attr"><div class="val">$1,379</div><div class="lbl">$/Sq Ft</div></div>
+    </div>
+    <div class="property-footer">
+      <span class="mls-number">MLS# RX-11087609</span>
+      <span class="dom-badge">326 Days on Market</span>
+      <a href="https://www.bogenhomes.com/homes/17903-Foxborough-Lane-Boca-Raton-FL-33496/RX-11087609" class="view-btn">View Details</a>
+    </div>
+  </div>
+
+  <!-- LISTING 4 -->
+  <div class="property-card">
+    <div class="property-header">
+      <div>
+        <div class="property-address">17615 Foxborough Lane, Boca Raton, FL 33496</div>
+      </div>
+      <div class="property-price">$7,495,000</div>
+    </div>
+    <div class="property-grid">
+      <div class="property-attr"><div class="val">4</div><div class="lbl">Beds</div></div>
+      <div class="property-attr"><div class="val">5/1</div><div class="lbl">Full/Half Baths</div></div>
+      <div class="property-attr"><div class="val">5,800</div><div class="lbl">Living Sq Ft</div></div>
+      <div class="property-attr"><div class="val">2024</div><div class="lbl">Year Built</div></div>
+      <div class="property-attr"><div class="val">13,957</div><div class="lbl">Lot Sq Ft</div></div>
+      <div class="property-attr"><div class="val">$1,292</div><div class="lbl">$/Sq Ft</div></div>
+    </div>
+    <div class="property-footer">
+      <span class="mls-number">MLS# RX-11123890</span>
+      <span class="dom-badge">193 Days on Market</span>
+      <a href="https://www.bogenhomes.com/homes/17615-Foxborough-Lane-Boca-Raton-FL-33496/RX-11123890" class="view-btn">View Details</a>
+    </div>
+  </div>
+
+  <!-- LISTING 5 -->
+  <div class="property-card">
+    <div class="property-header">
+      <div>
+        <div class="property-address">7946 Shelby Circle, Boca Raton, FL 33496</div>
+      </div>
+      <div class="property-price">$2,100,000</div>
+    </div>
+    <div class="property-grid">
+      <div class="property-attr"><div class="val">3</div><div class="lbl">Beds</div></div>
+      <div class="property-attr"><div class="val">2/1</div><div class="lbl">Full/Half Baths</div></div>
+      <div class="property-attr"><div class="val">2,656</div><div class="lbl">Living Sq Ft</div></div>
+      <div class="property-attr"><div class="val">1991</div><div class="lbl">Year Built</div></div>
+      <div class="property-attr"><div class="val">13,493</div><div class="lbl">Lot Sq Ft</div></div>
+      <div class="property-attr"><div class="val">$791</div><div class="lbl">$/Sq Ft</div></div>
+    </div>
+    <div class="property-footer">
+      <span class="mls-number">MLS# RX-11148303</span>
+      <span class="dom-badge">100 Days on Market</span>
+      <a href="https://www.bogenhomes.com/homes/7946-Shelby-Circle-Boca-Raton-FL-33496/RX-11148303" class="view-btn">View Details</a>
+    </div>
+  </div>
+
+  <!-- LISTING 6 -->
+  <div class="property-card">
+    <div class="property-header">
+      <div>
+        <div class="property-address">7536 Fenwick Place, Boca Raton, FL 33496</div>
+      </div>
+      <div class="property-price">$3,699,000</div>
+    </div>
+    <div class="property-grid">
+      <div class="property-attr"><div class="val">5</div><div class="lbl">Beds</div></div>
+      <div class="property-attr"><div class="val">5/1</div><div class="lbl">Full/Half Baths</div></div>
+      <div class="property-attr"><div class="val">3,725</div><div class="lbl">Living Sq Ft</div></div>
+      <div class="property-attr"><div class="val">1983</div><div class="lbl">Year Built</div></div>
+      <div class="property-attr"><div class="val">14,000</div><div class="lbl">Lot Sq Ft</div></div>
+      <div class="property-attr"><div class="val">$993</div><div class="lbl">$/Sq Ft</div></div>
+    </div>
+    <div class="property-footer">
+      <span class="mls-number">MLS# RX-11154759</span>
+      <span class="dom-badge">71 Days on Market</span>
+      <a href="https://www.bogenhomes.com/homes/7536-Fenwick-Place-Boca-Raton-FL-33496/RX-11154759" class="view-btn">View Details</a>
+    </div>
+  </div>
+
+  <!-- LISTING 7 - PRICE INDICATOR -->
+  <div class="property-card">
+    <div class="property-header">
+      <div>
+        <div class="property-address">17829 Scarsdale Way, Boca Raton, FL 33496</div>
+      </div>
+      <div class="property-price">$3,295,000</div>
+    </div>
+    <div class="property-grid">
+      <div class="property-attr"><div class="val">3</div><div class="lbl">Beds</div></div>
+      <div class="property-attr"><div class="val">2/2</div><div class="lbl">Full/Half Baths</div></div>
+      <div class="property-attr"><div class="val">3,121</div><div class="lbl">Living Sq Ft</div></div>
+      <div class="property-attr"><div class="val">1985</div><div class="lbl">Year Built</div></div>
+      <div class="property-attr"><div class="val">13,939</div><div class="lbl">Lot Sq Ft</div></div>
+      <div class="property-attr"><div class="val">$1,056</div><div class="lbl">$/Sq Ft</div></div>
+    </div>
+    <div class="property-footer">
+      <span class="mls-number">MLS# RX-11161466</span>
+      <span class="dom-badge">49 Days on Market</span>
+      <a href="https://www.bogenhomes.com/homes/17829-Scarsdale-Way-Boca-Raton-FL-33496/RX-11161466" class="view-btn">View Details</a>
+    </div>
+  </div>
+
+  <!-- LISTING 8 - WATERFRONT -->
+  <div class="property-card">
+    <div class="property-header">
+      <div>
+        <div class="property-address">7000 Lions Head Lane, Boca Raton, FL 33496</div>
+        <span class="badge badge-waterfront">Waterfront</span>
+      </div>
+      <div class="property-price">$5,949,000</div>
+    </div>
+    <div class="property-grid">
+      <div class="property-attr"><div class="val">5</div><div class="lbl">Beds</div></div>
+      <div class="property-attr"><div class="val">7/1</div><div class="lbl">Full/Half Baths</div></div>
+      <div class="property-attr"><div class="val">7,116</div><div class="lbl">Living Sq Ft</div></div>
+      <div class="property-attr"><div class="val">1994</div><div class="lbl">Year Built</div></div>
+      <div class="property-attr"><div class="val">14,375</div><div class="lbl">Lot Sq Ft</div></div>
+      <div class="property-attr"><div class="val">$836</div><div class="lbl">$/Sq Ft</div></div>
+    </div>
+    <div class="property-footer">
+      <span class="mls-number">MLS# RX-11162159</span>
+      <span class="dom-badge">46 Days on Market</span>
+      <a href="https://www.bogenhomes.com/homes/7000-Lions-Head-Lane-Boca-Raton-FL-33496/RX-11162159" class="view-btn">View Details</a>
+    </div>
+  </div>
+
+  <!-- CONTACT CTA -->
+  <div class="contact-cta">
+    <h3>Questions About St. Andrews Country Club?</h3>
+    <p>The Edmund Bogen Team specializes in South Florida's most prestigious gated communities. Let us help you find your perfect home.</p>
+    <a href="mailto:edmund@bogenhomes.com">CONTACT EDMUND BOGEN</a>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>The Edmund Bogen Team at Douglas Elliman Real Estate<br>
+  900 East Atlantic Avenue, Suite 18, Delray Beach, FL 33483 &bull; (561) 306-9100</p>
+  <p style="margin-top: 8px;">Market data sourced from Southeast Florida MLS. Deemed reliable but not guaranteed. Equal Housing Opportunity.</p>
+  <p style="margin-top: 8px;">&copy; 2026 The Edmund Bogen Team. All rights reserved.</p>
+</footer>
+
 </body>
 </html>
-<!-- v2026-03-19 -->
