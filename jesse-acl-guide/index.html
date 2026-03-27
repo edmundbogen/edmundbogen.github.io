@@ -1,0 +1,2044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duke's ACL Recovery Guide | Research by Bogen.ai</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+    <style>
+        :root {
+            --navy: #1a3e5c;
+            --navy-dark: #0f2a40;
+            --cyan: #00a8e1;
+            --cyan-hover: #0090c2;
+            --white: #ffffff;
+            --light-gray: #f4f6f8;
+            --mid-gray: #e8e8e8;
+            --text-dark: #1a1a2e;
+            --text-muted: #5a6a7a;
+            --green: #28a745;
+            --amber: #ffc107;
+            --red: #dc3545;
+            --orange: #fd7e14;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.7;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* HEADER */
+        .site-header {
+            background: var(--navy);
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+        }
+
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--cyan);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1px;
+            flex-shrink: 0;
+        }
+
+        .logo-text {
+            color: white;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .logo-text span {
+            display: block;
+            font-size: 10px;
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            opacity: 0.7;
+            margin-top: 2px;
+        }
+
+        /* NAV */
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 4px 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 6px 10px;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 60%, #1a5a7c 100%);
+            color: white;
+            padding: 80px 24px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0,168,225,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(0,168,225,0.2);
+            color: var(--cyan);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 6vw, 56px);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 em {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--cyan);
+        }
+
+        .hero p {
+            font-size: 18px;
+            font-weight: 300;
+            max-width: 640px;
+            margin: 0 auto 24px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat .number {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--cyan);
+            display: block;
+        }
+
+        .hero-stat .label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.7;
+            font-weight: 500;
+        }
+
+        /* SECTIONS */
+        .section {
+            padding: 60px 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-alt {
+            background: var(--light-gray);
+        }
+
+        .section-alt .section {
+            padding: 60px 24px;
+        }
+
+        .section-dark {
+            background: var(--navy);
+            color: white;
+        }
+
+        .section-dark .section {
+            padding: 60px 24px;
+        }
+
+        .section-title {
+            font-size: clamp(24px, 4vw, 36px);
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.01em;
+            color: var(--navy);
+        }
+
+        .section-dark .section-title {
+            color: white;
+        }
+
+        .section-subtitle {
+            font-size: 16px;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            max-width: 640px;
+            font-weight: 400;
+        }
+
+        .section-dark .section-subtitle {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .accent-bar {
+            width: 40px;
+            height: 4px;
+            background: var(--cyan);
+            border-radius: 2px;
+            margin-bottom: 20px;
+        }
+
+        /* CARDS */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 24px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 28px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border: 1px solid rgba(0,0,0,0.04);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--navy);
+        }
+
+        .card p {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .card-tag {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 3px 10px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+
+        .tag-recommended {
+            background: rgba(40,167,69,0.12);
+            color: var(--green);
+        }
+
+        .tag-alternative {
+            background: rgba(255,193,7,0.15);
+            color: #b38600;
+        }
+
+        .tag-limited {
+            background: rgba(220,53,69,0.1);
+            color: var(--red);
+        }
+
+        .tag-info {
+            background: rgba(0,168,225,0.1);
+            color: var(--cyan);
+        }
+
+        /* COMPARISON TABLE */
+        .table-wrap {
+            overflow-x: auto;
+            margin: 24px 0;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            min-width: 640px;
+        }
+
+        thead {
+            background: var(--navy);
+            color: white;
+        }
+
+        th {
+            padding: 14px 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--mid-gray);
+            vertical-align: top;
+        }
+
+        tbody tr:nth-child(even) {
+            background: var(--light-gray);
+        }
+
+        tbody tr:hover {
+            background: rgba(0,168,225,0.04);
+        }
+
+        .highlight-row {
+            background: rgba(0,168,225,0.08) !important;
+            border-left: 4px solid var(--cyan);
+        }
+
+        /* CHARTS */
+        .chart-container {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            margin: 24px 0;
+        }
+
+        .chart-container h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--navy);
+        }
+
+        .chart-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* TIMELINE */
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 24px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--cyan), var(--green));
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 60px;
+            margin-bottom: 32px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 14px;
+            top: 4px;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--cyan);
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px var(--cyan);
+        }
+
+        .timeline-dot.phase-2 { background: #4dabf7; }
+        .timeline-dot.phase-3 { background: var(--amber); }
+        .timeline-dot.phase-4 { background: var(--orange); }
+        .timeline-dot.phase-5 { background: var(--green); }
+
+        .timeline-item h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 4px;
+        }
+
+        .timeline-item .time-label {
+            font-size: 12px;
+            color: var(--cyan);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 8px;
+        }
+
+        .timeline-item p {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .timeline-item ul {
+            margin-top: 8px;
+            padding-left: 18px;
+        }
+
+        .timeline-item li {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+            line-height: 1.5;
+        }
+
+        /* PROVIDER CARDS */
+        .provider-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border-left: 4px solid var(--cyan);
+        }
+
+        .provider-card h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 4px;
+        }
+
+        .provider-card .location {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .provider-card .phone {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--cyan);
+            text-decoration: none;
+        }
+
+        .provider-card .details {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 8px;
+            line-height: 1.5;
+        }
+
+        .provider-badge {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 3px 8px;
+            border-radius: 4px;
+            background: rgba(0,168,225,0.1);
+            color: var(--cyan);
+            margin-bottom: 8px;
+        }
+
+        /* CHECKLIST */
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+
+        .checklist li {
+            padding: 12px 0 12px 36px;
+            position: relative;
+            border-bottom: 1px solid var(--mid-gray);
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .checklist li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 14px;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--cyan);
+            border-radius: 4px;
+        }
+
+        /* CALLOUT BOXES */
+        .callout {
+            padding: 20px 24px;
+            border-radius: 12px;
+            margin: 24px 0;
+        }
+
+        .callout-warning {
+            background: rgba(255,193,7,0.1);
+            border-left: 4px solid var(--amber);
+        }
+
+        .callout-danger {
+            background: rgba(220,53,69,0.08);
+            border-left: 4px solid var(--red);
+        }
+
+        .callout-success {
+            background: rgba(40,167,69,0.08);
+            border-left: 4px solid var(--green);
+        }
+
+        .callout-info {
+            background: rgba(0,168,225,0.08);
+            border-left: 4px solid var(--cyan);
+        }
+
+        .callout h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .callout p {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* COST METER */
+        .cost-range {
+            margin: 20px 0;
+        }
+
+        .cost-bar-wrap {
+            background: var(--mid-gray);
+            border-radius: 8px;
+            height: 28px;
+            position: relative;
+            overflow: hidden;
+            margin: 8px 0;
+        }
+
+        .cost-bar {
+            height: 100%;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 12px;
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+            transition: width 1s ease;
+        }
+
+        .cost-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* INSURANCE GRID */
+        .insurance-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            text-align: center;
+        }
+
+        .insurance-card h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+
+        .insurance-card .wait {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--cyan);
+            margin: 8px 0;
+        }
+
+        .insurance-card .wait-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .insurance-card .reimburse {
+            font-size: 14px;
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        /* TIPS GRID */
+        .tip-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--cyan);
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        /* FOOTER */
+        .site-footer {
+            background: var(--navy-dark);
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            padding: 40px 24px;
+            font-size: 13px;
+        }
+
+        .site-footer a {
+            color: var(--cyan);
+            text-decoration: none;
+        }
+
+        .footer-brand {
+            font-size: 14px;
+            font-weight: 600;
+            color: white;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        /* PRINT */
+        @media print {
+            .site-header, .nav-toggle { display: none; }
+            .hero { padding: 40px 20px; }
+            .section { padding: 30px 20px; }
+            .card { break-inside: avoid; }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-toggle { display: block; }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--navy-dark);
+                flex-direction: column;
+                padding: 16px;
+                gap: 4px;
+            }
+
+            .nav-links.open { display: flex; }
+
+            .nav-links a {
+                padding: 10px 16px;
+                font-size: 13px;
+            }
+
+            .hero { padding: 60px 20px 40px; }
+            .hero-stats { gap: 24px; }
+            .hero-stat .number { font-size: 28px; }
+
+            .section { padding: 40px 16px; }
+
+            .chart-row {
+                grid-template-columns: 1fr;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before { left: 16px; }
+            .timeline-item { padding-left: 48px; }
+            .timeline-dot { left: 6px; }
+
+            table { font-size: 13px; }
+            th, td { padding: 10px 12px; }
+        }
+
+        @media (max-width: 480px) {
+            .logo-text { font-size: 11px; }
+            .logo-text span { font-size: 9px; }
+            .hero h1 { font-size: 28px; }
+            .hero p { font-size: 15px; }
+        }
+
+        /* SCROLL ANIMATION */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+    <div class="logo-group">
+        <div class="logo-circle" style="background: linear-gradient(135deg, #00a8e1, #1a3e5c); font-size: 12px; letter-spacing: 0;">AI</div>
+        <div class="logo-text">
+            Bogen.ai
+            <span>AI-Powered Research & Consulting</span>
+        </div>
+    </div>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle navigation">&#9776;</button>
+    <nav class="nav-links">
+        <a href="#overview">Overview</a>
+        <a href="#options">Options</a>
+        <a href="#costs">Costs</a>
+        <a href="#recovery">Recovery</a>
+        <a href="#surgeons">Surgeons</a>
+        <a href="#insurance">Insurance</a>
+        <a href="#tips">Tips</a>
+        <a href="#shopping">Prep List</a>
+        <a href="#questions">Questions</a>
+    </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-badge">Research by Bogen.ai &mdash; Prepared for Jesse Litvack</div>
+    <h1>Duke's ACL <em>Recovery</em> Guide</h1>
+    <p>A comprehensive, research-backed guide to CCL surgery options, costs, recovery timelines, and local surgeons for your 50-lb Labradoodle in South Florida.</p>
+    <div class="hero-stats">
+        <div class="hero-stat">
+            <span class="number">90-95%</span>
+            <span class="label">TPLO Success Rate</span>
+        </div>
+        <div class="hero-stat">
+            <span class="number">$5,500-$9K</span>
+            <span class="label">Total Cost Per Knee</span>
+        </div>
+        <div class="hero-stat">
+            <span class="number">12-16 Wks</span>
+            <span class="label">Recovery Timeline</span>
+        </div>
+        <div class="hero-stat">
+            <span class="number">40-60%</span>
+            <span class="label">Other Knee Risk</span>
+        </div>
+    </div>
+</section>
+
+<!-- UNDERSTANDING CCL -->
+<section id="overview">
+    <div class="section fade-in">
+        <div class="accent-bar"></div>
+        <h2 class="section-title">Understanding CCL Disease in Dogs</h2>
+        <p class="section-subtitle">The cranial cruciate ligament (CCL) is the canine equivalent of the human ACL. Here's what's happening in Duke's knee.</p>
+
+        <div class="card-grid">
+            <div class="card">
+                <span class="card-tag tag-info">What It Is</span>
+                <h3>The CCL Stabilizes the Knee</h3>
+                <p>The cranial cruciate ligament prevents the tibia from sliding forward relative to the femur and limits hyperextension and rotation. When it tears, the knee becomes unstable and painful, causing limping, difficulty rising, and decreased activity.</p>
+            </div>
+            <div class="card">
+                <span class="card-tag tag-info">Why It Happens</span>
+                <h3>80% Degenerative, Not Traumatic</h3>
+                <p>Unlike human ACL tears that are often sports injuries, canine CCL disease is overwhelmingly degenerative. The ligament weakens over time, with partial tears progressing to complete ruptures. CCL disease is the single most common orthopedic condition in dogs and the leading cause of hindlimb lameness.</p>
+            </div>
+            <div class="card">
+                <span class="card-tag tag-limited">Genetic Risk</span>
+                <h3>Labradoodles Face Compounded Risk</h3>
+                <p>Labrador Retrievers are among the highest-risk breeds, with a significant portion of CCL rupture risk attributed to genetics (heritability estimates of 0.27-0.55+). Specific gene variants affecting collagen and ligament elasticity have been identified. As a Labradoodle, Duke inherits this elevated risk profile.</p>
+            </div>
+        </div>
+
+        <div class="callout callout-danger" style="margin-top: 32px;">
+            <h4>The Other Knee: Plan for Both</h4>
+            <p>40-60% of dogs that tear one CCL will tear the other knee. Labrador-specific studies show an even more concerning 48% bilateral rupture rate with a median interval of just 5.5 months. Budgeting for two surgeries from the outset is prudent financial planning, not pessimism.</p>
+        </div>
+    </div>
+</section>
+
+<!-- SURGICAL OPTIONS -->
+<div class="section-alt" id="options">
+    <div class="section fade-in">
+        <div class="accent-bar"></div>
+        <h2 class="section-title">Surgical Options Compared</h2>
+        <p class="section-subtitle">Four surgical approaches exist. For a 50-lb Labradoodle like Duke, the choice is clear.</p>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Procedure</th>
+                        <th>How It Works</th>
+                        <th>Success Rate</th>
+                        <th>Best For</th>
+                        <th>Cost/Knee</th>
+                        <th>Recovery</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="highlight-row">
+                        <td><strong>TPLO</strong></td>
+                        <td>Cuts and rotates tibia; plate and screws change knee biomechanics so torn ligament is irrelevant</td>
+                        <td><strong>90-95%</strong></td>
+                        <td>Medium-large, active dogs (Duke's category)</td>
+                        <td>$4,500-$7,000</td>
+                        <td>12-16 weeks</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TTA</strong></td>
+                        <td>Advances tibial tuberosity forward; changes patellar tendon angle to neutralize shear forces</td>
+                        <td>~85-90%</td>
+                        <td>Large dogs; surgeon preference dependent</td>
+                        <td>$3,000-$6,000</td>
+                        <td>10-14 weeks</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TightRope</strong></td>
+                        <td>FiberTape through bone tunnels with toggle-button fixation; mimics ligament function</td>
+                        <td>~94.9%</td>
+                        <td>Select cases; newer technique with less long-term data</td>
+                        <td>$2,000-$4,000</td>
+                        <td>8-12 weeks</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Lateral Suture</strong></td>
+                        <td>Nylon suture placed outside joint; relies on scar tissue formation over 2-12 months</td>
+                        <td>~85%</td>
+                        <td>Small, sedentary dogs (&lt;30 lbs); less reliable for Duke's size</td>
+                        <td>$1,500-$3,000</td>
+                        <td>6-8 weeks</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="chart-row" style="margin-top: 24px;">
+            <div class="chart-container">
+                <h3>Success Rates by Procedure</h3>
+                <canvas id="successChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h3>Surgeon Preference (VOS Members)</h3>
+                <canvas id="preferenceChart"></canvas>
+            </div>
+        </div>
+
+        <div class="callout callout-success" style="margin-top: 24px;">
+            <h4>The Recommendation for Duke: TPLO</h4>
+            <p>At 50 lbs, Duke is too heavy and too active for a reliable lateral suture repair. TPLO delivers the best long-term biomechanical outcomes, the most predictable recovery, and the slowest arthritis progression. 78.6% of Veterinary Orthopedic Society members prefer it for dogs over 33 lbs.</p>
+        </div>
+    </div>
+</div>
+
+<!-- COSTS -->
+<section id="costs">
+    <div class="section fade-in">
+        <div class="accent-bar"></div>
+        <h2 class="section-title">The Full Financial Picture</h2>
+        <p class="section-subtitle">What TPLO actually costs in South Florida when you account for everything from consultation through full recovery.</p>
+
+        <div class="chart-row">
+            <div class="chart-container">
+                <h3>Cost Breakdown: One TPLO Knee</h3>
+                <canvas id="costPieChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h3>Cost by Surgery Type (South FL)</h3>
+                <canvas id="costCompareChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Itemized Cost Table -->
+        <div class="table-wrap" style="margin-top: 24px;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cost Component</th>
+                        <th>Estimated Range</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Initial Consultation + Exam</td>
+                        <td>$50 - $150</td>
+                        <td>Often excluded from surgery pricing</td>
+                    </tr>
+                    <tr>
+                        <td>Pre-Op X-Rays (2-4 views) + Sedation</td>
+                        <td>$250 - $700</td>
+                        <td>Required for surgical planning</td>
+                    </tr>
+                    <tr>
+                        <td>Pre-Anesthetic Bloodwork</td>
+                        <td>$100 - $200</td>
+                        <td>CBC/chemistry panel</td>
+                    </tr>
+                    <tr style="background: rgba(0,168,225,0.08);">
+                        <td><strong>TPLO Surgery (anesthesia, implants, procedure)</strong></td>
+                        <td><strong>$4,500 - $7,000</strong></td>
+                        <td>Ft. Lauderdale center: $5,298 for 50-89 lb dogs</td>
+                    </tr>
+                    <tr>
+                        <td>Overnight Hospitalization (1-2 nights)</td>
+                        <td>$200 - $500/night</td>
+                        <td>May be included at some facilities</td>
+                    </tr>
+                    <tr>
+                        <td>Post-Op Medications</td>
+                        <td>$90 - $240</td>
+                        <td>NSAIDs, gabapentin, antibiotics, sedatives</td>
+                    </tr>
+                    <tr>
+                        <td>Follow-Up Visits (2-week + 8-week)</td>
+                        <td>$100 - $200</td>
+                        <td>Staple removal + progress checks</td>
+                    </tr>
+                    <tr>
+                        <td>Recheck X-Rays at 8 Weeks</td>
+                        <td>$150 - $400</td>
+                        <td>Confirms bone healing before activity increase</td>
+                    </tr>
+                    <tr>
+                        <td>Physical Rehabilitation (6-12 sessions)</td>
+                        <td>$400 - $2,400</td>
+                        <td>Underwater treadmill: $40-$75/session</td>
+                    </tr>
+                    <tr>
+                        <td>Equipment (E-collar, mats, supplements)</td>
+                        <td>$60 - $200</td>
+                        <td>Non-slip mats, ramps, puzzle toys</td>
+                    </tr>
+                    <tr style="background: var(--navy); color: white;">
+                        <td><strong>TOTAL: One Knee</strong></td>
+                        <td><strong>$5,500 - $9,000</strong></td>
+                        <td></td>
+                    </tr>
+                    <tr style="background: rgba(220,53,69,0.08);">
+                        <td><strong>TOTAL: Both Knees (if needed)</strong></td>
+                        <td><strong>$10,000 - $18,000+</strong></td>
+                        <td>40-60% chance of contralateral rupture</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Local Pricing References -->
+        <h3 style="margin-top: 32px; font-size: 18px; color: var(--navy);">South Florida Price References</h3>
+        <div class="card-grid" style="margin-top: 12px;">
+            <div class="card">
+                <span class="card-tag tag-info">Published Pricing</span>
+                <h3>Pet Surgery Center of Ft. Lauderdale</h3>
+                <p><strong>TPLO:</strong> $5,298 (50-89 lbs)<br>
+                <strong>Consult:</strong> $82<br>
+                <strong>Bloodwork:</strong> $165<br>
+                <strong>X-Rays (2 views):</strong> $165<br>
+                <em>Excludes e-collar, additional meds, emergency fees</em></p>
+            </div>
+            <div class="card">
+                <span class="card-tag tag-info">Bundled Pricing</span>
+                <h3>Good Care Animal Clinic (Miami)</h3>
+                <p><strong>TPLO:</strong> $4,300-$5,350<br>
+                <strong>TTA:</strong> $3,100-$4,300<br>
+                <em>Includes bloodwork, anesthesia, fluids, pain meds, antibiotics, suture removal</em></p>
+            </div>
+            <div class="card">
+                <span class="card-tag tag-info">Regional Benchmark</span>
+                <h3>Tampa Bay Animal Hospitals</h3>
+                <p><strong>TPLO:</strong> $5,000-$7,000<br>
+                <strong>Consult:</strong> $76<br>
+                <em>Useful as a Florida-wide comparison point</em></p>
+            </div>
+        </div>
+
+        <!-- Cost Range Visualization -->
+        <div style="margin-top: 32px;">
+            <h3 style="font-size: 18px; color: var(--navy); margin-bottom: 16px;">Total Cost Ranges by Procedure</h3>
+            <div class="cost-range">
+                <div class="cost-label"><span><strong>TPLO</strong></span><span>$5,500 - $9,000</span></div>
+                <div class="cost-bar-wrap"><div class="cost-bar" style="width: 100%; background: linear-gradient(90deg, var(--cyan), var(--navy));">$9,000</div></div>
+            </div>
+            <div class="cost-range">
+                <div class="cost-label"><span><strong>TTA</strong></span><span>$4,000 - $6,500</span></div>
+                <div class="cost-bar-wrap"><div class="cost-bar" style="width: 72%; background: linear-gradient(90deg, #4dabf7, var(--cyan));">$6,500</div></div>
+            </div>
+            <div class="cost-range">
+                <div class="cost-label"><span><strong>TightRope</strong></span><span>$2,000 - $4,000</span></div>
+                <div class="cost-bar-wrap"><div class="cost-bar" style="width: 44%; background: linear-gradient(90deg, var(--amber), var(--orange));">$4,000</div></div>
+            </div>
+            <div class="cost-range">
+                <div class="cost-label"><span><strong>Lateral Suture</strong></span><span>$2,000 - $4,500</span></div>
+                <div class="cost-bar-wrap"><div class="cost-bar" style="width: 50%; background: linear-gradient(90deg, var(--green), #20c997);">$4,500</div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- RECOVERY TIMELINE -->
+<div class="section-alt" id="recovery">
+    <div class="section fade-in">
+        <div class="accent-bar"></div>
+        <h2 class="section-title">Duke's Recovery Timeline</h2>
+        <p class="section-subtitle">16 weeks of patience. The single biggest challenge with a Labradoodle will be enforcing rest in an inherently energetic dog.</p>
+
+        <div class="chart-container" style="margin-bottom: 32px;">
+            <h3>Recovery Progress Over Time</h3>
+            <canvas id="recoveryChart"></canvas>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <span class="time-label">Days 1-3: Immediate Post-Op</span>
+                <h4>Strict Confinement</h4>
+                <ul>
+                    <li>Crate rest or very small confined area only</li>
+                    <li>5-minute leash walks for bathroom breaks, 3-5 times daily</li>
+                    <li>Belly-sling support for walking</li>
+                    <li>E-collar mandatory at all times</li>
+                    <li>Cold therapy and gentle passive range-of-motion if prescribed</li>
+                    <li>Pain management: NSAIDs + gabapentin + trazodone for energy management</li>
+                    <li>Monitor incision for redness, swelling, or discharge</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot phase-2"></div>
+                <span class="time-label">Weeks 1-2: Early Recovery</span>
+                <h4>Short Controlled Walks</h4>
+                <ul>
+                    <li>Continue strict confinement between walks</li>
+                    <li>Gentle passive range-of-motion exercises: 10 reps, 2-3 times daily</li>
+                    <li>Most dogs begin toe-touching within 7-10 days</li>
+                    <li>Sutures/staples removed at days 10-14</li>
+                    <li>Contact surgeon if no weight bearing by week 2</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot phase-3"></div>
+                <span class="time-label">Weeks 3-6: Building Strength</span>
+                <h4>Gradual Progress</h4>
+                <ul>
+                    <li>Walks increase to 10-15 minutes by week 4</li>
+                    <li>Sit-to-stand exercises and gentle balance work begin</li>
+                    <li>Hydrotherapy (underwater treadmill) can start weeks 3-4 once incision healed</li>
+                    <li>Underwater treadmill reduces joint loading by 40-60% while building muscle</li>
+                    <li>Continue strict leash-only activity, no off-leash time</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot phase-4"></div>
+                <span class="time-label">Weeks 7-8: Critical Milestone</span>
+                <h4>X-Ray Checkpoint</h4>
+                <ul>
+                    <li>Surgeon takes X-rays to confirm bone healing</li>
+                    <li>Walks extend to 18-30 minutes</li>
+                    <li>Controlled, supervised stair use begins</li>
+                    <li>Dog should be consistently weight-bearing with mild intermittent limping</li>
+                    <li>"Feels better" is NOT clearance -- follow the plan</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot phase-4"></div>
+                <span class="time-label">Weeks 9-12: Transition</span>
+                <h4>Approaching Freedom</h4>
+                <ul>
+                    <li>After X-ray clearance: brief off-leash in fenced area (5 min, building to 20 min)</li>
+                    <li>Short jogs (~20 feet) incorporated into walks</li>
+                    <li>Advanced balance exercises: wobble boards, cavaletti poles</li>
+                    <li>Figure-eight walking for proprioception</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot phase-5"></div>
+                <span class="time-label">Weeks 13-16+: Return to Normal</span>
+                <h4>Full Activity Cleared</h4>
+                <ul>
+                    <li>Running, hiking, jumping, playing typically cleared around week 15</li>
+                    <li>Full muscular recovery takes 6 months</li>
+                    <li>Some dogs develop mild arthritis requiring ongoing management</li>
+                    <li>Maintain lean body weight -- the #1 modifiable factor for joint health</li>
+                    <li>Joint supplements may continue long-term</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="callout callout-warning">
+            <h4>Managing Duke's Labradoodle Energy</h4>
+            <p>Labradoodles typically need 60+ minutes of daily exercise. 12 weeks of confinement requires a strategy: prescribed sedatives (trazodone, gabapentin -- not addictive), puzzle feeders, snuffle mats, frozen Kongs, scent games, and baby gates everywhere. Get Duke's coat trimmed to a short puppy cut before surgery -- curly coats mat badly around E-collars and slings.</p>
+        </div>
+    </div>
+</div>
+
+<!-- SURGEONS -->
+<section id="surgeons">
+    <div class="section fade-in">
+        <div class="accent-bar"></div>
+        <h2 class="section-title">Board-Certified Surgeons Near Boca Raton</h2>
+        <p class="section-subtitle">Several excellent options within 30 minutes. Schedule consultations with 2-3 surgeons to compare approaches and rapport.</p>
+
+        <div class="card-grid">
+            <div class="provider-card">
+                <span class="provider-badge">Closest to Boca</span>
+                <h4>PEAK Veterinary Surgery</h4>
+                <p class="location">14610 S Military Trail, Suite G4, Delray Beach</p>
+                <a href="tel:5615212000" class="phone">(561) 521-2000</a>
+                <p class="details"><strong>Dr. Jared Baum, DACVS-SA</strong> -- Boca native, trained at Columbia, University of Florida, and Cornell. New boutique facility (Feb 2026) with 64-slice CT scanner, digital radiography, and intraoperative fluoroscopy. TPLO is a listed specialty. Personalized approach.</p>
+            </div>
+
+            <div class="provider-card">
+                <span class="provider-badge">Mobile / Comes to You</span>
+                <h4>COR Veterinary Surgery</h4>
+                <p class="location">Mobile service across South Florida</p>
+                <a href="#" class="phone">Contact through your primary vet</a>
+                <p class="details"><strong>Dr. Jennifer Bibevski, DACVS</strong> -- Ohio State trained, 4-year specialty residency. Performs procedures at your primary vet's office. Outstanding TPLO reviews. Recommended by Boca Veterinary Clinic. Clients travel 2.5 hours for her care. Can be more affordable than corporate hospitals.</p>
+            </div>
+
+            <div class="provider-card">
+                <span class="provider-badge">Most Comprehensive</span>
+                <h4>ACCESS Specialty Animal Hospital</h4>
+                <p class="location">Royal Palm Beach (25-30 min from Boca)</p>
+                <a href="#" class="phone">Contact for appointment</a>
+                <p class="details"><strong>Drs. Marcos Unis, Patrick Flynn, Scott Goett</strong> (all DACVS-SA). 3+ board-certified surgeons. Five operating rooms, 1.5T MRI, 64-slice CT, 24/7 ICU. Dr. Flynn praised for TPLO outcomes. Privately owned (not corporate).</p>
+            </div>
+
+            <div class="provider-card">
+                <span class="provider-badge">Largest in PBC</span>
+                <h4>VCA Palm Beach Veterinary Specialists</h4>
+                <p class="location">West Palm Beach (25-30 min north)</p>
+                <a href="#" class="phone">Contact for appointment</a>
+                <p class="details"><strong>Dr. Robert G. Roy, DACVS, MS</strong> -- Director since 1998. Offers TPLO, extracapsular repair, total hip replacement, arthroscopy. Provides care to Palm Beach County Sheriff's K-9 units.</p>
+            </div>
+
+            <div class="provider-card">
+                <span class="provider-badge">24/7 Emergency</span>
+                <h4>BluePearl Pet Hospital</h4>
+                <p class="location">Fort Lauderdale (25 min south)</p>
+                <a href="#" class="phone">Contact for appointment</a>
+                <p class="details"><strong>Dr. Kevin Frame</strong> -- Board-certified with specific interest in cruciate ligament disease and arthroscopy. 24/7 emergency and specialty care.</p>
+            </div>
+
+            <div class="provider-card">
+                <span class="provider-badge">Published TPLO Pricing</span>
+                <h4>Pet Surgery Center of Fort Lauderdale</h4>
+                <p class="location">16 SE 18th St, Fort Lauderdale</p>
+                <a href="tel:9542668823" class="phone">(954) 266-8823</a>
+                <p class="details">Published TPLO pricing: $5,298 for 50-89 lb dogs. Separate charges for consult ($82), bloodwork ($165), X-rays ($165). ~20 miles from Boca.</p>
+            </div>
+        </div>
+
+        <h3 style="margin-top: 32px; font-size: 18px; color: var(--navy);">Local Veterinary Clinics (Referral Starting Points)</h3>
+        <div class="card-grid" style="margin-top: 12px;">
+            <div class="card">
+                <h3>Boca Veterinary Clinic</h3>
+                <p>22191 Powerline Rd, Suite 14B<br><a href="tel:5613926540" style="color: var(--cyan);">(561) 392-6540</a><br>Lists TPLO; recommends Dr. Bibevski at COR</p>
+            </div>
+            <div class="card">
+                <h3>Pet Medical Center of Boca Raton</h3>
+                <p>8903 Glades Road, Suite L2/L3<br><a href="tel:5619238255" style="color: var(--cyan);">(561) 923-8255</a><br>Orthopedic surgery including TPLO</p>
+            </div>
+            <div class="card">
+                <h3>Boca Village Animal Hospital</h3>
+                <p>SW 18th Street, Boca Raton<br>Hosts visiting orthopedic specialist Dr. Gorostiza for cruciate repair</p>
+            </div>
+            <div class="card">
+                <h3>West Delray Veterinary</h3>
+                <p>15065 S State Rd 7, Suite 750<br><a href="tel:5617777173" style="color: var(--cyan);">(561) 777-7173</a><br>ACL repair options with board-certified surgeon collaboration</p>
+            </div>
+        </div>
+
+        <h3 style="margin-top: 32px; font-size: 18px; color: var(--navy);">Rehabilitation & Hydrotherapy</h3>
+        <div class="card-grid" style="margin-top: 12px;">
+            <div class="card">
+                <h3>Jessie's Pool (Dog Hydrotherapy)</h3>
+                <p>222 W Boynton Beach Blvd<br><a href="tel:5615096319" style="color: var(--cyan);">(561) 509-6319</a><br>Dog swim sessions for recovery. Published session pricing available.</p>
+            </div>
+            <div class="card">
+                <h3>Calusa Veterinary Center</h3>
+                <p>6900 Congress Ave, Boca Raton<br><a href="tel:5617861100" style="color: var(--cyan);">(561) 786-1100</a><br>Underwater treadmill, therapeutic exercises, pain management</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- INSURANCE & FINANCING -->
+<div class="section-dark" id="insurance">
+    <div class="section fade-in">
+        <div class="accent-bar" style="background: white;"></div>
+        <h2 class="section-title">Insurance & Financing Options</h2>
+        <p class="section-subtitle">Pet insurance can reduce a $5,000-$7,000 TPLO bill to under $1,000 out of pocket -- but only if the policy was in place before any injury.</p>
+
+        <h3 style="font-size: 18px; margin-bottom: 16px;">Pet Insurance Comparison</h3>
+        <div class="card-grid">
+            <div class="insurance-card">
+                <h4>Trupanion</h4>
+                <div class="wait">30 days</div>
+                <div class="wait-label">Waiting Period</div>
+                <div class="reimburse">90% Reimbursement</div>
+                <p style="font-size: 13px; color: var(--text-muted); margin-top: 8px;">Per-condition deductibles (paid once). No annual/lifetime limits. Direct payment to vet.</p>
+            </div>
+            <div class="insurance-card">
+                <h4>Embrace</h4>
+                <div class="wait">6 months</div>
+                <div class="wait-label">Orthopedic Wait</div>
+                <div class="reimburse">Up to 90% Reimbursement</div>
+                <p style="font-size: 13px; color: var(--text-muted); margin-top: 8px;">Waivable with qualifying vet exam. Diminishing deductible rewards claim-free years.</p>
+            </div>
+            <div class="insurance-card">
+                <h4>ASPCA / Pumpkin / Spot</h4>
+                <div class="wait">14 days</div>
+                <div class="wait-label">Cruciate Wait</div>
+                <div class="reimburse">Up to 90% Reimbursement</div>
+                <p style="font-size: 13px; color: var(--text-muted); margin-top: 8px;">Shortest waiting periods. If Duke hasn't been injured yet, these deserve serious consideration for the other knee.</p>
+            </div>
+        </div>
+
+        <div class="callout callout-warning" style="margin-top: 24px;">
+            <h4>Act Now on the Uninjured Knee</h4>
+            <p>Pre-existing conditions are universally excluded. If one knee tears before enrollment, many insurers will exclude the second knee as well. Get a policy in place NOW for the uninjured knee -- with a 40-60% chance of contralateral rupture, this is the surgery insurance can still cover.</p>
+        </div>
+
+        <h3 style="font-size: 18px; margin-top: 32px; margin-bottom: 16px;">Financing Options</h3>
+        <div class="card-grid">
+            <div class="card" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+                <h3 style="color: white;">CareCredit</h3>
+                <p style="color: rgba(255,255,255,0.7);">Accepted at most South FL vet specialists. 0% interest if paid within 6 months on purchases over $200. Longer 12-24 month promotional periods available.</p>
+            </div>
+            <div class="card" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+                <h3 style="color: white;">Scratchpay</h3>
+                <p style="color: rgba(255,255,255,0.7);">Payment plans $200-$10,000. No hard credit check to see options. APRs from 0-36% based on credit profile. Most specialty hospitals accept.</p>
+            </div>
+        </div>
+
+        <h3 style="font-size: 18px; margin-top: 32px; margin-bottom: 16px;">Financial Assistance (Nonprofits)</h3>
+        <div class="card-grid">
+            <div class="card" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+                <h3 style="color: white;">Save-A-Pet</h3>
+                <p style="color: rgba(255,255,255,0.7);">Palm Beach County residents on social security, disability, or meeting federal poverty guidelines.</p>
+            </div>
+            <div class="card" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+                <h3 style="color: white;">Frankie's Friends</h3>
+                <p style="color: rgba(255,255,255,0.7);">Statewide grants for life-saving veterinary care. Must apply before treatment.</p>
+            </div>
+            <div class="card" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+                <h3 style="color: white;">Paws 4 A Cure</h3>
+                <p style="color: rgba(255,255,255,0.7);">National grants up to $500.</p>
+            </div>
+            <div class="card" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+                <h3 style="color: white;">Brown Dog Foundation</h3>
+                <p style="color: rgba(255,255,255,0.7);">Up to $1,500 for emergency specialty care.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- TIPS FOR DUKE -->
+<section id="tips">
+    <div class="section fade-in">
+        <div class="accent-bar"></div>
+        <h2 class="section-title">Practical Tips for Duke's Recovery</h2>
+        <p class="section-subtitle">Actionable advice specifically for a 50-lb Labradoodle recovering from TPLO surgery.</p>
+
+        <div class="card-grid">
+            <div class="card">
+                <div class="tip-number">1</div>
+                <h3>Pre-Surgery Prep</h3>
+                <p>Trim Duke's coat to a short puppy cut. Curly Labradoodle coats mat badly around E-collars and slings, and the shaved surgical site takes months to regrow. Set up a recovery area with crate, non-slip mats, and baby gates.</p>
+            </div>
+            <div class="card">
+                <div class="tip-number">2</div>
+                <h3>Weight Management</h3>
+                <p>Reduce food intake by 25-30% during recovery to compensate for dramatically reduced activity. At 50 lbs, Duke is at a healthy weight -- keep him there. You should easily feel ribs without seeing them, observe a visible waist from above, and see a belly tuck from the side.</p>
+            </div>
+            <div class="card">
+                <div class="tip-number">3</div>
+                <h3>Mental Stimulation Plan</h3>
+                <p>Stock up BEFORE surgery: puzzle feeders, snuffle mats, frozen Kong toys (stuff with peanut butter and freeze), lick mats, and scent games. Rotate toys daily to prevent boredom. This is how you survive 12 weeks of confinement.</p>
+            </div>
+            <div class="card">
+                <div class="tip-number">4</div>
+                <h3>Home Environment</h3>
+                <p>Baby gates on every stairway. Non-slip mats or rugs on all hard floors (tile and hardwood are dangerous). Block access to furniture Duke might jump on/off. A ramp for getting in/out of the car.</p>
+            </div>
+            <div class="card">
+                <div class="tip-number">5</div>
+                <h3>Medication Strategy</h3>
+                <p>Trazodone and gabapentin are not addictive and are adjustable. Don't be afraid to use prescribed sedatives -- a calm Labradoodle recovers better than one who re-injures themselves. NSAIDs manage inflammation, not just pain.</p>
+            </div>
+            <div class="card">
+                <div class="tip-number">6</div>
+                <h3>Supplements for Joint Health</h3>
+                <p>Glucosamine, chondroitin, and omega-3 fatty acids are commonly prescribed and support long-term joint health. Ask the surgeon for specific brand and dosage recommendations for a 50-lb dog. May continue long-term.</p>
+            </div>
+            <div class="card">
+                <div class="tip-number">7</div>
+                <h3>Invest in Rehab</h3>
+                <p>Physical therapy is optional but meaningfully improves outcomes. Underwater treadmill sessions ($40-$75 each) reduce joint loading by 40-60% while building muscle. Dogs with structured rehab return to function faster and more completely.</p>
+            </div>
+            <div class="card">
+                <div class="tip-number">8</div>
+                <h3>Watch for Red Flags</h3>
+                <p><strong>Call the surgeon immediately if:</strong> Sudden worsening of limp after improvement, excessive swelling, heat or discharge from incision, refusal to eat for 24+ hours, fever, or if Duke completely stops using the leg after initial improvement.</p>
+            </div>
+            <div class="card">
+                <div class="tip-number">9</div>
+                <h3>The Long Game</h3>
+                <p>Lean body weight is the #1 modifiable factor for joint health. The landmark Purina Life Span Study showed dogs with controlled caloric intake lived ~2 years longer and developed arthritis approximately 3 years later than freely-fed dogs. This isn't just recovery advice -- it's life advice for Duke.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PRE-SURGERY SHOPPING LIST & PRACTICAL GUIDES -->
+<section id="shopping">
+    <div class="section fade-in">
+        <div class="accent-bar"></div>
+        <h2 class="section-title">Pre-Surgery Shopping List</h2>
+        <p class="section-subtitle">Get everything ready before surgery day. You won't want to be shopping while Duke is recovering.</p>
+
+        <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+            <div class="card">
+                <span class="card-tag tag-info">Confinement</span>
+                <h3>Crate & Recovery Space</h3>
+                <ul style="font-size: 14px; color: var(--text-muted); padding-left: 18px; line-height: 1.8;">
+                    <li><strong>42" wire crate</strong> (MidWest iCrate or Petmate Navigator) -- must be big enough to stand, turn, lie flat</li>
+                    <li><strong>Exercise pen</strong> (MidWest 36-42" height) -- many owners prefer this for multi-week recovery</li>
+                    <li><strong>Orthopedic memory foam bed</strong> with washable cover (Big Barker or FurHaven)</li>
+                    <li><strong>Baby gates</strong> for every stairway (Regalo Easy Step Walk-Through)</li>
+                </ul>
+            </div>
+            <div class="card">
+                <span class="card-tag tag-info">Safety</span>
+                <h3>Non-Slip & Mobility</h3>
+                <ul style="font-size: 14px; color: var(--text-muted); padding-left: 18px; line-height: 1.8;">
+                    <li><strong>Dr. Buzby's ToeGrips</strong> -- rubber nail rings that grip floors (~$25-30)</li>
+                    <li><strong>Rubber-backed carpet runners</strong> for all hallways and walking paths</li>
+                    <li><strong>Yoga mats</strong> around food/water and inside crate</li>
+                    <li><strong>Car ramp</strong> (PetGear Tri-Fold or PetSafe Solvit Telescoping)</li>
+                    <li><strong>GingerLead belly sling</strong> for rear-end support (designed for post-surgical dogs)</li>
+                </ul>
+            </div>
+            <div class="card">
+                <span class="card-tag tag-info">Mental Enrichment</span>
+                <h3>Puzzle Feeders & Toys</h3>
+                <ul style="font-size: 14px; color: var(--text-muted); padding-left: 18px; line-height: 1.8;">
+                    <li><strong>Kong Classic (Large, red) x2-3</strong> -- stuff with kibble + broth, freeze</li>
+                    <li><strong>West Paw Toppl (Large)</strong> -- wider opening, easier for beginners</li>
+                    <li><strong>LickiMat Soother x2</strong> -- spread peanut butter (xylitol-free), freeze</li>
+                    <li><strong>Snuffle mat</strong> (PAW5 Wooly) -- hide kibble in fabric "grass"</li>
+                    <li><strong>Nina Ottosson puzzle</strong> (Level 1-2 to start)</li>
+                    <li><strong>Adaptil calming diffuser</strong> -- plug in near crate</li>
+                </ul>
+            </div>
+            <div class="card">
+                <span class="card-tag tag-info">Medical</span>
+                <h3>Recovery Supplies</h3>
+                <ul style="font-size: 14px; color: var(--text-muted); padding-left: 18px; line-height: 1.8;">
+                    <li><strong>E-collar</strong> (KONG Cloud Collar or ZenPet ProCone)</li>
+                    <li><strong>Reusable gel ice packs</strong> for cold therapy</li>
+                    <li><strong>Spill-proof water bowl</strong></li>
+                    <li><strong>Nutramax Dasuquin with MSM</strong> (30-59 lb size) -- #1 vet-recommended joint supplement</li>
+                    <li><strong>Nordic Naturals Omega-3 Pet</strong> -- 1,000-2,000mg EPA+DHA daily for a 50-lb dog</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Diet Section -->
+        <h3 style="margin-top: 40px; font-size: 18px; color: var(--navy);">Diet & Nutrition During Recovery</h3>
+        <p style="color: var(--text-muted); margin-bottom: 16px;">Duke needs fewer calories but MORE protein during recovery. Reduce kibble by 20-30% and weigh him weekly.</p>
+        <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+            <div class="card" style="text-align: center;">
+                <h3 style="font-size: 14px;">Sardines (in water)</h3>
+                <p>Omega-3s + protein. 1-2 small sardines, 2-3x/week</p>
+            </div>
+            <div class="card" style="text-align: center;">
+                <h3 style="font-size: 14px;">Bone Broth</h3>
+                <p>Collagen + hydration. Pour over kibble or freeze in Kong. No onion/garlic.</p>
+            </div>
+            <div class="card" style="text-align: center;">
+                <h3 style="font-size: 14px;">Blueberries</h3>
+                <p>Antioxidants. Small handful as training treats.</p>
+            </div>
+            <div class="card" style="text-align: center;">
+                <h3 style="font-size: 14px;">Pumpkin Puree</h3>
+                <p>Fiber + digestion support. 1-2 tbsp in food (meds cause GI upset).</p>
+            </div>
+        </div>
+
+        <!-- Stairs, Car, Floors -->
+        <h3 style="margin-top: 40px; font-size: 18px; color: var(--navy);">Handling Stairs, Car Rides & Slippery Floors</h3>
+        <div class="table-wrap" style="margin-top: 12px;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Situation</th>
+                        <th>Weeks 1-4</th>
+                        <th>Weeks 5-8</th>
+                        <th>Weeks 9-12</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Stairs</strong></td>
+                        <td>Avoid entirely. Block with baby gates. If unavoidable: belly sling, one flight max.</td>
+                        <td>Short flights with supervision + sling support.</td>
+                        <td>Permitted with supervision, no sling needed if confident.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Car Rides</strong></td>
+                        <td>Ramp required. Two-person lift if needed. Non-slip mat on seat. Crash-tested harness.</td>
+                        <td>Ramp required. Duke can likely manage with ramp alone.</td>
+                        <td>Ramp still recommended. No jumping in/out.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Slippery Floors</strong></td>
+                        <td colspan="3">Cover ALL hard surfaces Duke walks on. ToeGrips on nails + carpet runners + yoga mats. One slip can damage the repair.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Exercise Phases -->
+        <h3 style="margin-top: 40px; font-size: 18px; color: var(--navy);">Exercise Protocol by Phase</h3>
+        <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top: 12px;">
+            <div class="card">
+                <span class="card-tag" style="background: rgba(0,168,225,0.1); color: var(--cyan);">Weeks 1-4</span>
+                <h3>Protection Phase</h3>
+                <ul style="font-size: 14px; color: var(--text-muted); padding-left: 18px; line-height: 1.8;">
+                    <li><strong>Passive ROM:</strong> Gentle knee flexion/extension, 10 reps, 3x daily</li>
+                    <li><strong>Massage:</strong> Light stroking above/below incision, 5-10 min, 3x daily</li>
+                    <li><strong>Ice therapy:</strong> Wrapped ice pack, 10-15 min, 3-4x daily (first 5 days)</li>
+                    <li><strong>Walks:</strong> Bathroom only, 5-10 min, 3x daily, with belly sling</li>
+                </ul>
+            </div>
+            <div class="card">
+                <span class="card-tag" style="background: rgba(255,193,7,0.15); color: #b38600;">Weeks 5-8</span>
+                <h3>Controlled Activity</h3>
+                <ul style="font-size: 14px; color: var(--text-muted); padding-left: 18px; line-height: 1.8;">
+                    <li><strong>Sit-to-Stand:</strong> 10 reps, 3x daily (guide with treats)</li>
+                    <li><strong>Leash walks:</strong> 20-30 min, 2-3x daily, increase 5 min/week</li>
+                    <li><strong>Figure-8 walking:</strong> Two cones 8-10 ft apart, 5-10 reps each direction</li>
+                    <li><strong>Weight shifting:</strong> Gentle hip press, hold 3-5 sec, 10 reps, 2-3x daily</li>
+                </ul>
+            </div>
+            <div class="card">
+                <span class="card-tag" style="background: rgba(40,167,69,0.12); color: var(--green);">Weeks 9-12+</span>
+                <h3>Return to Function</h3>
+                <ul style="font-size: 14px; color: var(--text-muted); padding-left: 18px; line-height: 1.8;">
+                    <li><strong>Walks:</strong> 30-45 min, gentle inclines, varied terrain</li>
+                    <li><strong>Off-leash (fenced):</strong> Start 5 min, build to 20 min by week 12</li>
+                    <li><strong>Cavaletti poles:</strong> Walk slowly over ground-level broomsticks/PVC</li>
+                    <li><strong>Balance work:</strong> Stand on folded towel, hold 10-30 sec</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Complication Signs -->
+        <div class="callout callout-danger" style="margin-top: 32px;">
+            <h4>Red Flags -- Call the Surgeon Immediately</h4>
+            <ul style="font-size: 14px; color: var(--text-muted); padding-left: 18px; line-height: 1.8; margin-top: 8px;">
+                <li>Redness, swelling, warmth, pus, or foul smell at the incision</li>
+                <li>Incision opening or edges separating</li>
+                <li>Sudden worsening of limp after a period of improvement</li>
+                <li>Complete refusal to bear weight after initial improvement</li>
+                <li>Clicking, popping, or grinding sounds from the knee</li>
+                <li>Fever (normal: 101-102.5 F; above 103 F = call vet)</li>
+                <li>Refusal to eat for 24+ hours</li>
+                <li>Extreme swelling of the entire leg or uncontrolled bleeding</li>
+            </ul>
+        </div>
+
+        <!-- Online Communities -->
+        <h3 style="margin-top: 40px; font-size: 18px; color: var(--navy);">Online Support Communities</h3>
+        <div class="card-grid" style="margin-top: 12px;">
+            <div class="card">
+                <h3>TopDog Health (Facebook Group)</h3>
+                <p>The largest and most active TPLO recovery community. Tens of thousands of members sharing advice, weekly check-ins, and encouragement. Also offers a free <strong>Home Therapy Booklet</strong> with week-by-week exercises.</p>
+            </div>
+            <div class="card">
+                <h3>Search Facebook For</h3>
+                <p>"Dog TPLO Recovery Support Group," "CCL/ACL Dog Recovery," and "Dog Knee Surgery Recovery" for additional active communities.</p>
+            </div>
+            <div class="card">
+                <h3>Reddit: r/dogs & r/AskVet</h3>
+                <p>Search "TPLO recovery" for detailed personal experience threads and veterinary advice.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- QUESTIONS FOR THE VET -->
+<div class="section-alt" id="questions">
+    <div class="section fade-in">
+        <div class="accent-bar"></div>
+        <h2 class="section-title">Questions to Ask the Surgeon</h2>
+        <p class="section-subtitle">Bring this checklist to every consultation. Convert the decision from "procedure brand names" into a documented plan.</p>
+
+        <div class="card-grid" style="grid-template-columns: 1fr 1fr;">
+            <div>
+                <h3 style="color: var(--navy); font-size: 16px; margin-bottom: 16px;">Diagnosis & Procedure</h3>
+                <ul class="checklist">
+                    <li>What exam findings confirm CCL disease, and is it partial or complete?</li>
+                    <li>What do the radiographs show about existing arthritis?</li>
+                    <li>Why are you recommending TPLO vs TTA vs suture-based for a 50-lb dog?</li>
+                    <li>Will the meniscus be inspected? What's the plan if a tear is found?</li>
+                    <li>What are YOUR clinic's major complication and infection rates?</li>
+                    <li>What functional endpoint should I expect, and by when?</li>
+                </ul>
+            </div>
+            <div>
+                <h3 style="color: var(--navy); font-size: 16px; margin-bottom: 16px;">Aftercare & Planning</h3>
+                <ul class="checklist">
+                    <li>What pre-op lab work is required?</li>
+                    <li>What is the written restriction plan (crate, leash, sedatives)?</li>
+                    <li>When are staple removal and recheck X-rays? Are those costs bundled?</li>
+                    <li>Do you recommend formal rehabilitation? When does it start?</li>
+                    <li>What are the "red flags" that need immediate recheck?</li>
+                    <li>What is Duke's estimated risk for the other knee, and what prevention plan do you recommend?</li>
+                    <li>Can I get an itemized written estimate separating every cost category?</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="callout callout-info" style="margin-top: 32px;">
+            <h4>Decision Checklist</h4>
+            <ul style="list-style: none; padding: 0; margin-top: 8px;">
+                <li style="padding: 6px 0; font-size: 14px; color: var(--text-muted);">&#9744; Confirm CCL diagnosis with orthopedic exam and radiographs</li>
+                <li style="padding: 6px 0; font-size: 14px; color: var(--text-muted);">&#9744; Select procedure based on Duke's size/activity and surgeon's experience</li>
+                <li style="padding: 6px 0; font-size: 14px; color: var(--text-muted);">&#9744; Get itemized written estimate (consult, bloodwork, X-rays, surgery, implants, hospitalization, meds, follow-ups, rehab)</li>
+                <li style="padding: 6px 0; font-size: 14px; color: var(--text-muted);">&#9744; Confirm household can enforce 12 weeks of strict confinement</li>
+                <li style="padding: 6px 0; font-size: 14px; color: var(--text-muted);">&#9744; Plan for follow-up imaging BEFORE returning to unrestricted activity</li>
+                <li style="padding: 6px 0; font-size: 14px; color: var(--text-muted);">&#9744; Get pet insurance for the uninjured knee NOW</li>
+                <li style="padding: 6px 0; font-size: 14px; color: var(--text-muted);">&#9744; Budget for possible second surgery ($10K-$18K+ total both knees)</li>
+                <li style="padding: 6px 0; font-size: 14px; color: var(--text-muted);">&#9744; Trim Duke's coat, set up recovery area, stock mental enrichment toys</li>
+                <li style="padding: 6px 0; font-size: 14px; color: var(--text-muted);">&#9744; Begin weight management and calorie restriction plan</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- COMPLICATION RATES -->
+<section>
+    <div class="section fade-in">
+        <div class="accent-bar"></div>
+        <h2 class="section-title">Understanding the Risks</h2>
+        <p class="section-subtitle">Complications are not rare, but major ones requiring re-surgery are a smaller subset. The risk-benefit calculation strongly favors surgery.</p>
+
+        <div class="chart-row">
+            <div class="chart-container">
+                <h3>TPLO Complication Profile</h3>
+                <canvas id="complicationChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h3>Surgery vs No Surgery for a 50-lb Dog</h3>
+                <canvas id="surgeryVsNoChart"></canvas>
+            </div>
+        </div>
+
+        <div class="card-grid" style="margin-top: 24px;">
+            <div class="card">
+                <span class="card-tag tag-recommended">Low Risk</span>
+                <h3>Catastrophic Complications</h3>
+                <p>Death or permanent disability occurs in fewer than <strong>0.2%</strong> of TPLO cases. The procedure is well-established with decades of outcome data.</p>
+            </div>
+            <div class="card">
+                <span class="card-tag tag-alternative">Moderate</span>
+                <h3>Infection (Most Common)</h3>
+                <p>Infection rate is <strong>6-8.5%</strong> for TPLO. Usually manageable with antibiotics. Proper incision care and E-collar use are critical prevention.</p>
+            </div>
+            <div class="card">
+                <span class="card-tag tag-limited">Without Surgery</span>
+                <h3>Conservative Management</h3>
+                <p>For a 50-lb dog, success drops to <strong>47-64%</strong> -- and "success" often means modest improvement, not full function. Arthritis accelerates, meniscal tears become likely, and the other knee gets overloaded.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTRALATERAL RISK -->
+<div class="section-alt">
+    <div class="section fade-in">
+        <div class="accent-bar"></div>
+        <h2 class="section-title">The Other Knee: Planning Ahead</h2>
+        <p class="section-subtitle">The most financially and emotionally significant statistic in this entire guide.</p>
+
+        <div class="chart-container">
+            <h3>Contralateral CCL Rupture Risk</h3>
+            <canvas id="contralateralChart"></canvas>
+        </div>
+
+        <div class="card-grid" style="margin-top: 24px; grid-template-columns: repeat(3, 1fr);">
+            <div class="card" style="text-align: center;">
+                <div style="font-size: 48px; font-weight: 700; color: var(--red);">40-60%</div>
+                <p style="font-weight: 600; color: var(--navy);">Overall bilateral rupture rate</p>
+                <p style="font-size: 13px;">American College of Veterinary Surgeons</p>
+            </div>
+            <div class="card" style="text-align: center;">
+                <div style="font-size: 48px; font-weight: 700; color: var(--red);">5.5 mo</div>
+                <p style="font-weight: 600; color: var(--navy);">Median time between injuries (Labs)</p>
+                <p style="font-size: 13px;">Labrador-specific study</p>
+            </div>
+            <div class="card" style="text-align: center;">
+                <div style="font-size: 48px; font-weight: 700; color: var(--red);">48%</div>
+                <p style="font-weight: 600; color: var(--navy);">Bilateral rate in Labradors</p>
+                <p style="font-size: 13px;">Breed-specific research</p>
+            </div>
+        </div>
+
+        <div class="callout callout-danger" style="margin-top: 24px;">
+            <h4>Three Immediate Action Items</h4>
+            <p><strong>1. Get pet insurance for the uninjured knee now.</strong> With a 40-60% chance of contralateral rupture, the second surgery is the one insurance can still cover.<br><br>
+            <strong>2. Schedule consultations with 2-3 surgeons.</strong> Compare approaches, rapport, and request itemized cost estimates.<br><br>
+            <strong>3. Start prep today.</strong> Trim Duke's coat, begin a calorie-restricted diet for optimal surgical weight, stock up on puzzle feeders and enrichment toys. The 12-week confinement period will test both dog and owner.</p>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+    <div class="footer-brand">Bogen.ai</div>
+    <p style="font-size: 14px; color: var(--cyan); margin-bottom: 4px;">AI-Powered Research & Consulting</p>
+    <p>Prepared with care for Jesse Litvack and Duke</p>
+    <p style="margin-top: 12px;">This guide synthesizes research from veterinary specialty organizations, peer-reviewed literature, and local South Florida providers using multi-agent AI research methodology. It is not a substitute for professional veterinary advice. Always consult a board-certified veterinary surgeon for diagnosis and treatment decisions.</p>
+    <p style="margin-top: 12px;"><a href="https://bogen.ai">bogen.ai</a></p>
+    <p style="margin-top: 16px; font-size: 12px; opacity: 0.6;">Last updated: March 2026 | Research compiled using multi-source AI validation</p>
+</footer>
+
+<script>
+// Scroll animation
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// Chart defaults
+Chart.defaults.font.family = "'Montserrat', sans-serif";
+Chart.defaults.font.size = 13;
+Chart.defaults.color = '#5a6a7a';
+
+// 1. Success Rate Chart
+new Chart(document.getElementById('successChart'), {
+    type: 'bar',
+    data: {
+        labels: ['TPLO', 'TightRope', 'TTA', 'Lateral Suture'],
+        datasets: [{
+            label: 'Success Rate (%)',
+            data: [92.5, 94.9, 87.5, 85],
+            backgroundColor: ['#00a8e1', '#4dabf7', '#ffc107', '#28a745'],
+            borderRadius: 6,
+            borderSkipped: false
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { display: false },
+            tooltip: {
+                callbacks: {
+                    label: (ctx) => ctx.raw + '% success rate'
+                }
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: false,
+                min: 70,
+                max: 100,
+                ticks: { callback: v => v + '%' },
+                grid: { color: 'rgba(0,0,0,0.05)' }
+            },
+            x: { grid: { display: false } }
+        }
+    }
+});
+
+// 2. Surgeon Preference Chart
+new Chart(document.getElementById('preferenceChart'), {
+    type: 'doughnut',
+    data: {
+        labels: ['TPLO (78.6%)', 'TTA (14%)', 'Lateral Suture (5.8%)', 'TightRope (1.6%)'],
+        datasets: [{
+            data: [78.6, 14, 5.8, 1.6],
+            backgroundColor: ['#00a8e1', '#ffc107', '#28a745', '#4dabf7'],
+            borderWidth: 2,
+            borderColor: '#ffffff'
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'bottom',
+                labels: { padding: 12, usePointStyle: true, pointStyle: 'circle' }
+            },
+            tooltip: {
+                callbacks: {
+                    label: (ctx) => ctx.label + ' of VOS members'
+                }
+            }
+        }
+    }
+});
+
+// 3. Cost Pie Chart
+new Chart(document.getElementById('costPieChart'), {
+    type: 'doughnut',
+    data: {
+        labels: ['TPLO Surgery', 'Physical Rehab', 'Pre-Op Workup', 'Post-Op Meds', 'Follow-Up Visits', 'Equipment', 'Hospitalization'],
+        datasets: [{
+            data: [5298, 1200, 500, 165, 300, 130, 400],
+            backgroundColor: ['#1a3e5c', '#00a8e1', '#4dabf7', '#ffc107', '#28a745', '#fd7e14', '#6c757d'],
+            borderWidth: 2,
+            borderColor: '#ffffff'
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'bottom',
+                labels: { padding: 10, usePointStyle: true, pointStyle: 'circle', font: { size: 11 } }
+            },
+            tooltip: {
+                callbacks: {
+                    label: (ctx) => ctx.label + ': $' + ctx.raw.toLocaleString()
+                }
+            }
+        }
+    }
+});
+
+// 4. Cost Comparison Chart
+new Chart(document.getElementById('costCompareChart'), {
+    type: 'bar',
+    data: {
+        labels: ['TPLO', 'TTA', 'TightRope', 'Lateral Suture'],
+        datasets: [
+            {
+                label: 'Low Estimate',
+                data: [5500, 4000, 2000, 2000],
+                backgroundColor: 'rgba(0,168,225,0.3)',
+                borderRadius: 6,
+                borderSkipped: false
+            },
+            {
+                label: 'High Estimate',
+                data: [9000, 6500, 4000, 4500],
+                backgroundColor: 'rgba(26,62,92,0.8)',
+                borderRadius: 6,
+                borderSkipped: false
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'bottom',
+                labels: { usePointStyle: true, pointStyle: 'circle' }
+            },
+            tooltip: {
+                callbacks: {
+                    label: (ctx) => ctx.dataset.label + ': $' + ctx.raw.toLocaleString()
+                }
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                ticks: { callback: v => '$' + (v/1000) + 'K' },
+                grid: { color: 'rgba(0,0,0,0.05)' }
+            },
+            x: { grid: { display: false } }
+        }
+    }
+});
+
+// 5. Recovery Progress Chart
+new Chart(document.getElementById('recoveryChart'), {
+    type: 'line',
+    data: {
+        labels: ['Surgery', 'Week 2', 'Week 4', 'Week 6', 'Week 8\n(X-Ray)', 'Week 10', 'Week 12', 'Week 14', 'Week 16', '6 Months'],
+        datasets: [
+            {
+                label: 'Weight Bearing',
+                data: [0, 20, 45, 60, 75, 82, 88, 93, 96, 100],
+                borderColor: '#00a8e1',
+                backgroundColor: 'rgba(0,168,225,0.1)',
+                fill: true,
+                tension: 0.4,
+                pointRadius: 5,
+                pointBackgroundColor: '#00a8e1'
+            },
+            {
+                label: 'Activity Level Allowed',
+                data: [0, 5, 15, 25, 40, 55, 70, 85, 90, 100],
+                borderColor: '#28a745',
+                backgroundColor: 'rgba(40,167,69,0.05)',
+                fill: true,
+                tension: 0.4,
+                pointRadius: 5,
+                pointBackgroundColor: '#28a745'
+            },
+            {
+                label: 'Muscle Recovery',
+                data: [0, 5, 15, 25, 35, 45, 55, 65, 75, 100],
+                borderColor: '#ffc107',
+                backgroundColor: 'rgba(255,193,7,0.05)',
+                fill: true,
+                tension: 0.4,
+                pointRadius: 5,
+                pointBackgroundColor: '#ffc107'
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'bottom',
+                labels: { usePointStyle: true, pointStyle: 'circle', padding: 16 }
+            },
+            tooltip: {
+                callbacks: {
+                    label: (ctx) => ctx.dataset.label + ': ' + ctx.raw + '%'
+                }
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                max: 100,
+                ticks: { callback: v => v + '%' },
+                grid: { color: 'rgba(0,0,0,0.05)' },
+                title: { display: true, text: '% of Full Function' }
+            },
+            x: { grid: { display: false } }
+        }
+    }
+});
+
+// 6. Complication Chart
+new Chart(document.getElementById('complicationChart'), {
+    type: 'bar',
+    data: {
+        labels: ['Overall Complications', 'Infection', 'Major (Re-Surgery)', 'Late Meniscal Injury', 'Catastrophic'],
+        datasets: [{
+            label: 'Rate (%)',
+            data: [17, 7.25, 5, 4, 0.2],
+            backgroundColor: ['#ffc107', '#fd7e14', '#dc3545', '#6c757d', '#1a3e5c'],
+            borderRadius: 6,
+            borderSkipped: false
+        }]
+    },
+    options: {
+        indexAxis: 'y',
+        responsive: true,
+        plugins: {
+            legend: { display: false },
+            tooltip: {
+                callbacks: {
+                    label: (ctx) => ctx.raw + '% of cases'
+                }
+            }
+        },
+        scales: {
+            x: {
+                beginAtZero: true,
+                max: 25,
+                ticks: { callback: v => v + '%' },
+                grid: { color: 'rgba(0,0,0,0.05)' }
+            },
+            y: { grid: { display: false } }
+        }
+    }
+});
+
+// 7. Surgery vs No Surgery Chart
+new Chart(document.getElementById('surgeryVsNoChart'), {
+    type: 'radar',
+    data: {
+        labels: ['Full Function', 'Pain Control', 'Arthritis Delay', 'Activity Return', 'Quality of Life', 'Long-term Stability'],
+        datasets: [
+            {
+                label: 'With TPLO Surgery',
+                data: [92, 90, 80, 88, 92, 95],
+                borderColor: '#00a8e1',
+                backgroundColor: 'rgba(0,168,225,0.15)',
+                pointBackgroundColor: '#00a8e1',
+                pointRadius: 4
+            },
+            {
+                label: 'Conservative Management',
+                data: [55, 60, 40, 45, 55, 30],
+                borderColor: '#dc3545',
+                backgroundColor: 'rgba(220,53,69,0.1)',
+                pointBackgroundColor: '#dc3545',
+                pointRadius: 4
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'bottom',
+                labels: { usePointStyle: true, pointStyle: 'circle', padding: 16 }
+            }
+        },
+        scales: {
+            r: {
+                beginAtZero: true,
+                max: 100,
+                ticks: { display: false },
+                grid: { color: 'rgba(0,0,0,0.06)' },
+                pointLabels: { font: { size: 11 } }
+            }
+        }
+    }
+});
+
+// 8. Contralateral Risk Chart
+new Chart(document.getElementById('contralateralChart'), {
+    type: 'bar',
+    data: {
+        labels: ['All Dogs\n(ACVS)', 'Labradors\n(Breed Study)', 'Multi-breed\n(511 dogs)'],
+        datasets: [
+            {
+                label: 'Bilateral Rupture Rate (%)',
+                data: [50, 48, 38.7],
+                backgroundColor: ['rgba(220,53,69,0.7)', 'rgba(220,53,69,0.85)', 'rgba(220,53,69,0.55)'],
+                borderRadius: 6,
+                borderSkipped: false,
+                barThickness: 60
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { display: false },
+            tooltip: {
+                callbacks: {
+                    label: (ctx) => ctx.raw + '% develop bilateral CCL disease'
+                }
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                max: 70,
+                ticks: { callback: v => v + '%' },
+                grid: { color: 'rgba(0,0,0,0.05)' },
+                title: { display: true, text: 'Bilateral Rupture Rate' }
+            },
+            x: { grid: { display: false } }
+        }
+    }
+});
+</script>
+
+</body>
+</html>

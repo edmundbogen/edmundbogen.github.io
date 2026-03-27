@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seven Bridges - Current Listings | Dina Ulrich</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background-color: #f5f5f5;
+      padding: 20px;
+    }
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      background: white;
+      padding: 40px;
+    }
+    .header {
+      border-bottom: 4px solid #00a8e1;
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+    }
+    .header h1 {
+      color: #1a3e5c;
+      font-size: 2.5em;
+      font-weight: 300;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .header-subtitle {
+      color: #666;
+      font-size: 1.1em;
+      margin-top: 10px;
+    }
+    .summary-stats {
+      display: flex;
+      gap: 30px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+    .summary-stat {
+      background: #f8fbff;
+      padding: 20px 30px;
+      border-radius: 8px;
+      border-left: 4px solid #00a8e1;
+    }
+    .summary-stat-label {
+      color: #666;
+      font-size: 0.85em;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .summary-stat-value {
+      color: #1a3e5c;
+      font-size: 1.8em;
+      font-weight: 600;
+      margin-top: 5px;
+    }
+    .listing-card {
+      background: white;
+      border: 1px solid #e8e8e8;
+      border-left: 4px solid #00a8e1;
+      padding: 25px 25px 25px 30px;
+      margin-bottom: 20px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+    .listing-card:hover {
+      border-left-color: #1a3e5c;
+      box-shadow: 0 4px 20px rgba(26, 62, 92, 0.15);
+      transform: translateX(5px);
+    }
+    .listing-card.waterfront { border-left-color: #28a745; }
+    .listing-address {
+      color: #1a3e5c;
+      font-size: 1.4em;
+      font-weight: 500;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .listing-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      font-size: 0.7em;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-radius: 3px;
+      margin-left: 10px;
+      vertical-align: middle;
+    }
+    .badge-waterfront { background: #d4edda; color: #155724; }
+    .badge-type { background: #f8d7da; color: #721c24; }
+    .badge-price-reduced { background: #fff3cd; color: #856404; }
+    .badge-new-listing { background: #cce5ff; color: #004085; }
+    .badge-back-on-market { background: #d1ecf1; color: #0c5460; }
+    .listing-price {
+      color: #000000;
+      font-size: 2em;
+      font-weight: 300;
+      margin-bottom: 15px;
+    }
+    .listing-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+    .listing-detail-item { display: flex; flex-direction: column; }
+    .listing-detail-label {
+      color: #666;
+      font-size: 0.75em;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 5px;
+    }
+    .listing-detail-value {
+      color: #1a3e5c;
+      font-size: 1.1em;
+      font-weight: 600;
+    }
+    .listing-mls {
+      display: inline-block;
+      background: #f4f4f4;
+      color: #1a3e5c;
+      padding: 8px 15px;
+      font-size: 0.85em;
+      font-weight: 500;
+      margin-top: 10px;
+      letter-spacing: 0.05em;
+    }
+    .listing-sub {
+      color: #666;
+      font-size: 0.85em;
+      margin-top: 5px;
+    }
+    .view-listing-btn {
+      background: #00a8e1;
+      color: white;
+      padding: 14px 30px;
+      text-decoration: none;
+      font-size: 0.95em;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      display: inline-block;
+      transition: all 0.3s ease;
+      border-radius: 4px;
+    }
+    .view-listing-btn:hover {
+      background: #0088b8;
+      transform: translateY(-2px);
+    }
+    .listing-dom {
+      display: block;
+      color: #666;
+      font-size: 0.85em;
+      margin-top: 10px;
+      text-align: center;
+    }
+    .back-button {
+      background: #1a3e5c;
+      color: white;
+      padding: 12px 25px;
+      text-decoration: none;
+      font-size: 0.9em;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      display: inline-block;
+      margin-bottom: 20px;
+      border-radius: 4px;
+    }
+    .back-button:hover { background: #0d1f2d; }
+    @media (max-width: 768px) {
+      .listing-card { grid-template-columns: 1fr; }
+      .listing-cta { text-align: center; }
+      .summary-stats { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <a href="email.html" class="back-button">&larr; Back to Newsletter</a>
+
+    <div class="header">
+      <p style="color: #dc3545; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px;">Special Report | March 13, 2026</p>
+      <h1>Seven Bridges - Available Listings</h1>
+      <p class="header-subtitle">9 Active Listings</p>
+    </div>
+
+    <div class="summary-stats">
+      <div class="summary-stat">
+        <div class="summary-stat-label">Price Range</div>
+        <div class="summary-stat-value">$1.4M - $4.7M</div>
+      </div>
+      <div class="summary-stat">
+        <div class="summary-stat-label">Active Listings</div>
+        <div class="summary-stat-value">9</div>
+      </div>
+      <div class="summary-stat">
+        <div class="summary-stat-label">Property Types</div>
+        <div class="summary-stat-value">Single Family</div>
+      </div>
+      <div class="summary-stat">
+        <div class="summary-stat-label">Community</div>
+        <div class="summary-stat-value">Delray Beach</div>
+      </div>
+    </div>
+
+    <!-- Listing 1: $4,700,000 -->
+    <div class="listing-card">
+      <div class="listing-info">
+        <div class="listing-address">9544 Balenciaga Court, Delray Beach</div>
+        <div class="listing-price">$4,700,000</div>
+        <div class="listing-sub">Seven Bridges &bull; Single Family &bull; Built 2018</div>
+        <div class="listing-mls">MLS#: RX-11038252 | 4 BD / 7 BA / 6,815 SF</div>
+      </div>
+      <div class="listing-cta">
+        <a href="https://bogenhomes.com/homes-for-sale-details/9544-BALENCIAGA-DELRAY-BEACH-FL-33446/R11038252/43/" target="_blank" class="view-listing-btn">View Details</a>
+      </div>
+    </div>
+
+    <!-- Listing 2: $3,250,000 -->
+    <div class="listing-card">
+      <div class="listing-info">
+        <div class="listing-address">9623 Moritz Way, Delray Beach <span class="listing-badge badge-new-listing">New Listing</span></div>
+        <div class="listing-price">$3,250,000</div>
+        <div class="listing-sub">Seven Bridges &bull; Single Family &bull; Built 2015</div>
+        <div class="listing-mls">MLS#: FX-10550408 | 4 BD / 7 BA / 5,515 SF</div>
+      </div>
+      <div class="listing-cta">
+        <a href="https://bogenhomes.com/agents/dina-ulrich/" target="_blank" class="view-listing-btn">View Details</a>
+      </div>
+    </div>
+
+
+
+    <!-- Listing 5: $2,995,000 -->
+    <div class="listing-card">
+      <div class="listing-info">
+        <div class="listing-address">9795 Rennes Lane, Delray Beach</div>
+        <div class="listing-price">$2,995,000</div>
+        <div class="listing-sub">Seven Bridges &bull; Single Family &bull; Built 2019</div>
+        <div class="listing-mls">MLS#: RX-11135263 | 4 BD / 7 BA / 5,892 SF</div>
+      </div>
+      <div class="listing-cta">
+        <a href="https://bogenhomes.com/homes-for-sale-details/9795-RENNES-DELRAY-BEACH-FL-33446/R11135263/43/" target="_blank" class="view-listing-btn">View Details</a>
+      </div>
+    </div>
+
+    <!-- Listing 5: $2,795,000 -->
+    <div class="listing-card">
+      <div class="listing-info">
+        <div class="listing-address">9599 Moritz Way, Delray Beach <span class="listing-badge badge-new-listing">New Listing</span></div>
+        <div class="listing-price">$2,795,000</div>
+        <div class="listing-sub">Seven Bridges &bull; Single Family &bull; Built 2015</div>
+        <div class="listing-mls">MLS#: RX-11165859 | 4 BD / 7 BA / 4,820 SF</div>
+      </div>
+      <div class="listing-cta">
+        <a href="https://bogenhomes.com/homes-for-sale-details/9599-MORITZ-DELRAY-BEACH-FL-33446/R11165859/43/" target="_blank" class="view-listing-btn">View Details</a>
+      </div>
+    </div>
+
+    <!-- Listing 6: $2,650,000 -->
+    <div class="listing-card">
+      <div class="listing-info">
+        <div class="listing-address">16796 Strasbourg Lane, Delray Beach</div>
+        <div class="listing-price">$2,650,000</div>
+        <div class="listing-sub">Seven Bridges &bull; Single Family &bull; Built 2016</div>
+        <div class="listing-mls">MLS#: AX-11944727 | 4 BD / 7 BA / 5,216 SF</div>
+      </div>
+      <div class="listing-cta">
+        <a href="https://bogenhomes.com/agents/dina-ulrich/" target="_blank" class="view-listing-btn">View Details</a>
+      </div>
+    </div>
+
+    <!-- Listing 7: $2,299,000 -->
+    <div class="listing-card">
+      <div class="listing-info">
+        <div class="listing-address">9772 Rennes Lane, Delray Beach</div>
+        <div class="listing-price">$2,299,000</div>
+        <div class="listing-sub">Seven Bridges &bull; Single Family &bull; Built 2018</div>
+        <div class="listing-mls">MLS#: AX-11897867 | 4 BD / 7 BA / 3,968 SF</div>
+      </div>
+      <div class="listing-cta">
+        <a href="https://bogenhomes.com/agents/dina-ulrich/" target="_blank" class="view-listing-btn">View Details</a>
+      </div>
+    </div>
+
+    <!-- Listing 8: $2,035,000 -->
+    <div class="listing-card">
+      <div class="listing-info">
+        <div class="listing-address">16245 Pantheon Pass, Delray Beach</div>
+        <div class="listing-price">$2,035,000</div>
+        <div class="listing-sub">Seven Bridges &bull; Single Family &bull; Built 2017</div>
+        <div class="listing-mls">MLS#: AX-11956900 | 4 BD / 9 BA / 4,783 SF</div>
+      </div>
+      <div class="listing-cta">
+        <a href="https://bogenhomes.com/agents/dina-ulrich/" target="_blank" class="view-listing-btn">View Details</a>
+      </div>
+    </div>
+
+    <!-- Listing 9: $1,999,000 -->
+    <div class="listing-card">
+      <div class="listing-info">
+        <div class="listing-address">9566 Eden Roc Court, Delray Beach <span class="listing-badge badge-new-listing">New Listing</span></div>
+        <div class="listing-price">$1,999,000</div>
+        <div class="listing-sub">Seven Bridges &bull; Single Family &bull; Built 2016</div>
+        <div class="listing-mls">MLS#: RX-11169244 | 4 BD / 4 BA / 4,022 SF</div>
+      </div>
+      <div class="listing-cta">
+        <a href="https://bogenhomes.com/homes-for-sale-details/9566-EDEN-ROC-DELRAY-BEACH-FL-33446/R11169244/43/" target="_blank" class="view-listing-btn">View Details</a>
+      </div>
+    </div>
+
+    <!-- Listing 10: $1,449,000 -->
+    <div class="listing-card">
+      <div class="listing-info">
+        <div class="listing-address">16245 Cabernet Drive, Delray Beach</div>
+        <div class="listing-price">$1,449,000</div>
+        <div class="listing-sub">Seven Bridges &bull; Single Family &bull; Built 2018</div>
+        <div class="listing-mls">MLS#: RX-11123826 | 4 BD / 7 BA / 3,277 SF</div>
+      </div>
+      <div class="listing-cta">
+        <a href="https://bogenhomes.com/agents/dina-ulrich/" target="_blank" class="view-listing-btn">View Details</a>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px; padding-top: 30px; border-top: 2px solid #e8e8e8;">
+      <p style="color: #666; font-size: 0.9em; margin-bottom: 15px;">Questions about Seven Bridges?</p>
+      <a href="https://bogenhomes.com/agents/dina-ulrich/" target="_blank" style="display: inline-block; background: #1a3e5c; color: white; padding: 14px 40px; text-decoration: none; font-size: 1em; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; border-radius: 4px;">Contact Dina Ulrich</a>
+      <p style="color: #999; font-size: 0.8em; margin-top: 20px;">Dina Ulrich | Douglas Elliman Real Estate | (561) 769-8000</p>
+    </div>
+
+<div style="color: #999; font-size: 0.75em; line-height: 1.6; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e8e8e8;">
+  <p>&copy; 2026 Douglas Elliman Real Estate. All material presented herein is intended for information purposes only. While this information is believed to be correct, it is represented subject to errors, omissions, changes or withdrawal without notice. All property information, including, but not limited to square footage, room count, number of bedrooms and the school district in property listings should be verified by your own attorney, architect or zoning expert. If your property is currently listed with another real estate broker, please disregard this offer. It is not our intention to solicit the offerings of other real estate brokers. We cooperate with them fully. Equal Housing Opportunity.</p>
+</div>
+  </div>
+</body>
+</html>
