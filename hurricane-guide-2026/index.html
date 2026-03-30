@@ -11,18 +11,26 @@
     <style>
         /* ============================================
            EDMUND BOGEN BRAND — HURRICANE GUIDE 2026
-           Colors: Navy #1a3e5c | Bright Blue #00a8e1 | White #fff
+           DARK MODE
+           Base: #0d1117 | Surface: #161b22 | Elevated: #1c2333
+           Accent: #00a8e1 | Text: #e6edf3 | Muted: #8b949e
            Typography: Montserrat (sans-serif)
            ============================================ */
 
         :root {
+            --bg-base: #0d1117;
+            --bg-surface: #161b22;
+            --bg-elevated: #1c2333;
+            --bg-inset: #0a0e14;
             --navy: #1a3e5c;
             --blue: #00a8e1;
-            --white: #ffffff;
-            --light-gray: #f4f4f4;
-            --medium-gray: #e8e8e8;
-            --text-dark: #333333;
-            --text-light: #666666;
+            --blue-dim: #0077a8;
+            --white: #e6edf3;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --text-muted: #6e7681;
+            --border: #30363d;
+            --border-light: #21262d;
         }
 
         * {
@@ -35,13 +43,29 @@
             font-family: 'Montserrat', 'Lato', 'Helvetica Neue', Arial, sans-serif;
             font-size: 16px;
             line-height: 1.7;
-            color: var(--text-dark);
-            background: var(--white);
+            color: var(--text-primary);
+            background: var(--bg-base);
         }
 
         /* ---- PRINT / PDF STYLES ---- */
         @media print {
-            body { font-size: 11pt; line-height: 1.5; }
+            :root {
+                --bg-base: #ffffff;
+                --bg-surface: #f6f8fa;
+                --bg-elevated: #ffffff;
+                --bg-inset: #f0f2f5;
+                --text-primary: #1a1a1a;
+                --text-secondary: #555555;
+                --text-muted: #777777;
+                --border: #d0d7de;
+                --border-light: #e0e0e0;
+            }
+            body {
+                font-size: 11pt;
+                line-height: 1.5;
+                color: #1a1a1a;
+                background: #ffffff;
+            }
             .no-print { display: none !important; }
             .page-break { page-break-before: always; }
             .avoid-break { page-break-inside: avoid; }
@@ -50,6 +74,17 @@
             .hero-overlay { position: relative !important; }
             .section-image { max-height: 400px; }
             .download-bar { display: none !important; }
+            .section-title { color: #1a3e5c !important; }
+            h3, h4 { color: #1a3e5c !important; }
+            .toc h2 { color: #1a3e5c !important; }
+            .contact-table td:first-child { color: #1a3e5c !important; }
+            p, .checklist li, tbody td { color: #1a1a1a !important; }
+            .toc-list li { color: #1a1a1a !important; border-bottom-color: #d0d7de !important; }
+            .callout { background: #e8f4fd !important; }
+            .callout-warning { background: #fff3e0 !important; }
+            .callout-critical { background: #fce4ec !important; }
+            tbody tr:nth-child(even) { background: #f6f8fa !important; }
+            .key-fact { background: #1a3e5c !important; }
             @page {
                 margin: 0.6in 0.5in;
                 size: letter;
@@ -62,27 +97,55 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: var(--navy);
-            color: var(--white);
+            background: var(--bg-elevated);
+            border-top: 1px solid var(--border);
+            color: var(--text-primary);
             text-align: center;
             padding: 14px 20px;
             z-index: 1000;
             font-size: 14px;
             letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
         }
-        .download-bar a {
-            color: var(--blue);
+        .download-bar .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--blue);
+            color: #ffffff;
             text-decoration: none;
             font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 10px 28px;
+            border-radius: 4px;
+            transition: background 0.2s;
         }
-        .download-bar a:hover {
-            text-decoration: underline;
+        .download-bar .download-btn:hover {
+            background: #0090c4;
+        }
+        .download-bar .download-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+        .download-bar .print-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+        }
+        .download-bar .print-link:hover {
+            color: var(--blue);
         }
 
         /* ---- HERO ---- */
         .hero {
-            background: var(--navy);
-            color: var(--white);
+            background: var(--bg-inset);
+            color: var(--text-primary);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -91,6 +154,7 @@
             text-align: center;
             padding: 80px 40px;
             position: relative;
+            border-bottom: 1px solid var(--border);
         }
         .hero-pre {
             font-size: 13px;
@@ -107,6 +171,7 @@
             text-transform: uppercase;
             line-height: 1.2;
             margin-bottom: 16px;
+            color: var(--text-primary);
         }
         .hero h1 span {
             display: block;
@@ -119,16 +184,17 @@
             font-weight: 400;
             letter-spacing: 0.05em;
             margin-bottom: 40px;
-            opacity: 0.85;
+            color: var(--text-secondary);
         }
         .hero-community {
             font-size: 15px;
             font-weight: 500;
             letter-spacing: 0.15em;
             text-transform: uppercase;
-            border-top: 1px solid rgba(255,255,255,0.2);
+            border-top: 1px solid var(--border);
             padding-top: 24px;
             margin-top: 8px;
+            color: var(--text-primary);
         }
         .hero-accent-bar {
             width: 60px;
@@ -138,7 +204,7 @@
         }
         .hero-logo {
             margin-top: 40px;
-            opacity: 0.7;
+            color: var(--text-muted);
             font-size: 12px;
             letter-spacing: 0.15em;
             text-transform: uppercase;
@@ -148,13 +214,14 @@
             font-size: 14px;
             display: block;
             margin-bottom: 4px;
-            opacity: 1;
+            color: var(--text-secondary);
         }
 
         /* ---- TABLE OF CONTENTS ---- */
         .toc {
-            background: var(--light-gray);
+            background: var(--bg-surface);
             padding: 80px 40px;
+            border-bottom: 1px solid var(--border-light);
         }
         .toc-inner {
             max-width: 700px;
@@ -165,7 +232,7 @@
             font-weight: 600;
             letter-spacing: 0.2em;
             text-transform: uppercase;
-            color: var(--navy);
+            color: var(--blue);
             margin-bottom: 32px;
         }
         .toc-list {
@@ -174,11 +241,21 @@
         }
         .toc-list li {
             counter-increment: toc-counter;
-            padding: 12px 0;
-            border-bottom: 1px solid var(--medium-gray);
+            padding: 0;
+            border-bottom: 1px solid var(--border-light);
             font-size: 15px;
             font-weight: 400;
-            color: var(--text-dark);
+            color: var(--text-primary);
+        }
+        .toc-list li a {
+            display: block;
+            padding: 12px 0;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .toc-list li a:hover {
+            color: var(--blue);
         }
         .toc-list li::before {
             content: counter(toc-counter, decimal-leading-zero);
@@ -195,8 +272,10 @@
             margin: 0 auto;
         }
         .guide-section.alt-bg {
-            background: var(--light-gray);
+            background: var(--bg-surface);
             max-width: 100%;
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
         }
         .guide-section.alt-bg .section-inner {
             max-width: 900px;
@@ -217,7 +296,7 @@
             font-weight: 300;
             letter-spacing: 0.06em;
             text-transform: uppercase;
-            color: var(--navy);
+            color: var(--text-primary);
             margin-bottom: 32px;
             line-height: 1.3;
         }
@@ -232,31 +311,33 @@
         /* Section images */
         .section-image {
             width: 100%;
-            border-radius: 4px;
+            border-radius: 6px;
             margin: 32px 0;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+            border: 1px solid var(--border-light);
         }
 
         /* ---- TYPOGRAPHY ---- */
         h3 {
             font-size: 20px;
             font-weight: 600;
-            color: var(--navy);
+            color: var(--blue);
             margin: 32px 0 16px 0;
             letter-spacing: 0.02em;
         }
         h4 {
             font-size: 17px;
             font-weight: 600;
-            color: var(--navy);
+            color: var(--text-primary);
             margin: 24px 0 12px 0;
         }
         p {
             margin-bottom: 16px;
-            color: var(--text-dark);
+            color: var(--text-primary);
         }
         strong {
             font-weight: 600;
+            color: var(--white);
         }
         .highlight {
             color: var(--blue);
@@ -264,31 +345,37 @@
         }
 
         /* ---- TABLES ---- */
+        .table-wrap {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 24px 0 32px 0;
+        }
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 24px 0 32px 0;
             font-size: 14px;
         }
         thead th {
-            background: var(--navy);
-            color: var(--white);
+            background: var(--bg-elevated);
+            color: var(--blue);
             padding: 12px 16px;
             text-align: left;
             font-weight: 600;
             font-size: 12px;
             letter-spacing: 0.08em;
             text-transform: uppercase;
+            border-bottom: 2px solid var(--blue);
         }
         tbody td {
             padding: 10px 16px;
-            border-bottom: 1px solid var(--medium-gray);
+            border-bottom: 1px solid var(--border-light);
+            color: var(--text-primary);
         }
         tbody tr:nth-child(even) {
-            background: var(--light-gray);
+            background: var(--bg-surface);
         }
         tbody tr:hover {
-            background: #e3f2fd;
+            background: rgba(0,168,225,0.08);
         }
 
         /* ---- CHECKLISTS ---- */
@@ -300,8 +387,9 @@
         .checklist li {
             padding: 8px 0 8px 32px;
             position: relative;
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 1px solid var(--border-light);
             font-size: 15px;
+            color: var(--text-primary);
         }
         .checklist li::before {
             content: '';
@@ -316,7 +404,7 @@
 
         /* ---- CALLOUT BOXES ---- */
         .callout {
-            background: #e8f4fd;
+            background: rgba(0,168,225,0.08);
             border-left: 4px solid var(--blue);
             padding: 20px 24px;
             margin: 24px 0;
@@ -325,29 +413,32 @@
         .callout p {
             margin-bottom: 0;
             font-size: 15px;
+            color: var(--text-primary);
         }
         .callout-warning {
-            background: #fff3e0;
+            background: rgba(230,81,0,0.1);
             border-left-color: #e65100;
         }
         .callout-critical {
-            background: #fce4ec;
-            border-left-color: #c62828;
+            background: rgba(198,40,40,0.12);
+            border-left-color: #ef5350;
         }
         .callout-critical p {
             font-weight: 600;
+            color: #ef5350;
         }
 
         /* ---- KEY FACTS BAR ---- */
         .key-fact {
-            background: var(--navy);
-            color: var(--white);
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
             padding: 24px 32px;
             margin: 32px 0;
-            border-radius: 4px;
+            border-radius: 6px;
         }
         .key-fact p {
-            color: var(--white);
+            color: var(--text-primary);
             margin: 0;
             font-size: 15px;
         }
@@ -362,7 +453,7 @@
         /* ---- CONTACT TABLE ---- */
         .contact-table td:first-child {
             font-weight: 600;
-            color: var(--navy);
+            color: var(--blue);
             white-space: nowrap;
             width: 45%;
         }
@@ -375,15 +466,33 @@
             margin: 60px auto;
         }
 
+        /* ---- BACK TO TOP ---- */
+        .back-to-top {
+            text-align: center;
+            margin-top: 48px;
+        }
+        .back-to-top a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+        .back-to-top a:hover {
+            color: var(--blue);
+        }
+
         /* ---- FOOTER ---- */
         .guide-footer {
-            background: var(--navy);
-            color: var(--white);
+            background: var(--bg-inset);
+            border-top: 1px solid var(--border);
+            color: var(--text-primary);
             padding: 60px 40px;
             text-align: center;
         }
         .guide-footer p {
-            color: rgba(255,255,255,0.85);
+            color: var(--text-secondary);
             font-size: 13px;
             max-width: 700px;
             margin: 0 auto 12px auto;
@@ -393,7 +502,7 @@
             font-weight: 600;
             letter-spacing: 0.15em;
             text-transform: uppercase;
-            color: var(--white);
+            color: var(--text-primary);
             margin-bottom: 4px;
         }
         .guide-footer .footer-brokerage {
@@ -405,12 +514,12 @@
         }
         .guide-footer .footer-contact {
             font-size: 15px;
-            color: var(--white);
+            color: var(--text-primary);
             margin-bottom: 32px;
         }
         .guide-footer .footer-disclaimer {
             font-size: 11px;
-            color: rgba(255,255,255,0.85);
+            color: var(--text-muted);
             max-width: 600px;
             line-height: 1.6;
         }
@@ -423,23 +532,28 @@
             .guide-section { padding: 48px 24px; }
             table { font-size: 12px; }
             thead th, tbody td { padding: 8px 10px; }
+            .download-bar { flex-direction: column; gap: 8px; padding: 10px 16px; }
         }
 
         /* ---- MARGIN BOTTOM for download bar ---- */
-        body { padding-bottom: 60px; }
+        body { padding-bottom: 70px; }
     </style>
 </head>
 <body>
 
 <!-- DOWNLOAD BAR -->
 <div class="download-bar no-print">
-    To save as PDF: Press <strong>Ctrl+P</strong> (Windows) or <strong>Cmd+P</strong> (Mac) &rarr; Save as PDF &nbsp;|&nbsp; <a href="javascript:window.print()">Print / Download PDF</a>
+    <a href="Hurricane-Preparedness-Guide-2026-St-Andrews.pdf" class="download-btn" download>
+        <svg viewBox="0 0 16 16"><path d="M2.75 14A1.75 1.75 0 0 1 1 12.25v-2.5a.75.75 0 0 1 1.5 0v2.5c0 .138.112.25.25.25h10.5a.25.25 0 0 0 .25-.25v-2.5a.75.75 0 0 1 1.5 0v2.5A1.75 1.75 0 0 1 13.25 14ZM7.25 7.689V2a.75.75 0 0 1 1.5 0v5.689l1.97-1.969a.749.749 0 1 1 1.06 1.06l-3.25 3.25a.749.749 0 0 1-1.06 0L4.22 6.78a.749.749 0 1 1 1.06-1.06Z"/></svg>
+        Download PDF
+    </a>
+    <a href="javascript:window.print()" class="print-link">or print this page</a>
 </div>
 
 <!-- ==========================================
      HERO / COVER PAGE
      ========================================== -->
-<section class="hero page-break">
+<section class="hero page-break" id="top">
     <div class="hero-pre">The Edmund Bogen Team at Douglas Elliman Real Estate</div>
     <h1>Hurricane<br>Preparedness<br><span>Guide 2026</span></h1>
     <div class="hero-accent-bar"></div>
@@ -454,23 +568,23 @@
 <!-- ==========================================
      TABLE OF CONTENTS
      ========================================== -->
-<section class="toc page-break">
+<section class="toc page-break" id="toc">
     <div class="toc-inner">
         <h2>What's Inside</h2>
         <ol class="toc-list">
-            <li>The 2026 Season Outlook</li>
-            <li>South Florida's Hurricane History</li>
-            <li>Your Evacuation Plan</li>
-            <li>Building Your Emergency Supply Kit</li>
-            <li>Home Hardening</li>
-            <li>Generator Strategy for Luxury Homes</li>
-            <li>Insurance -- The Financial Shield</li>
-            <li>Pet Safety and Special Needs</li>
-            <li>When a Storm Is Named for Your Area</li>
-            <li>After the Storm</li>
-            <li>FPL and Power Restoration</li>
-            <li>Essential Contacts and Resources</li>
-            <li>Your Pre-Season Action Timeline</li>
+            <li><a href="#section-1">The 2026 Season Outlook</a></li>
+            <li><a href="#section-2">South Florida's Hurricane History</a></li>
+            <li><a href="#section-3">Your Evacuation Plan</a></li>
+            <li><a href="#section-4">Building Your Emergency Supply Kit</a></li>
+            <li><a href="#section-5">Home Hardening</a></li>
+            <li><a href="#section-6">Generator Strategy for Luxury Homes</a></li>
+            <li><a href="#section-7">Insurance -- The Financial Shield</a></li>
+            <li><a href="#section-8">Pet Safety and Special Needs</a></li>
+            <li><a href="#section-9">When a Storm Is Named for Your Area</a></li>
+            <li><a href="#section-10">After the Storm</a></li>
+            <li><a href="#section-11">FPL and Power Restoration</a></li>
+            <li><a href="#section-12">Essential Contacts and Resources</a></li>
+            <li><a href="#section-13">Your Pre-Season Action Timeline</a></li>
         </ol>
     </div>
 </section>
@@ -489,6 +603,7 @@
     </div>
 
     <h3>The Forecast Numbers</h3>
+    <div class="table-wrap">
     <table>
         <thead>
             <tr>
@@ -537,6 +652,7 @@
             </tr>
         </tbody>
     </table>
+    </div>
 
     <h3>The El Nino Factor</h3>
     <p>El Nino is the dominant variable this year. NOAA's Climate Prediction Center gives a <strong>62% probability</strong> of El Nino developing by June-August 2026, rising to 72-80% by fall. El Nino increases upper-level wind shear that disrupts storm formation. In El Nino years, the Atlantic averages roughly 10 named storms and 5 hurricanes, compared to 15 storms and 8 hurricanes during La Nina years.</p>
@@ -551,6 +667,8 @@
 
     <h3>2025 Season Recap</h3>
     <p>Last year produced 13 named storms, 5 hurricanes, and 4 major hurricanes &mdash; including <strong>3 Category 5 storms</strong> (Erin, Humberto, and Melissa), the second-most in a single season on record. No hurricane made U.S. landfall in 2025, but 4 of 5 hurricanes reached major status &mdash; the highest percentage ever observed &mdash; underscoring the rapid-intensification threat.</p>
+
+    <div class="back-to-top"><a href="#toc">Back to Contents</a></div>
 </section>
 
 <!-- ==========================================
@@ -568,6 +686,7 @@
         </div>
 
         <h3>Major Storms That Shaped South Florida</h3>
+        <div class="table-wrap">
         <table>
             <thead>
                 <tr>
@@ -610,10 +729,12 @@
                 </tr>
             </tbody>
         </table>
+        </div>
 
         <p>South Florida faces exposure from <strong>three directions</strong> (Atlantic, Caribbean, and Gulf of Mexico), sits adjacent to the energy-rich Gulf Stream, and its flat terrain allows hurricane-force winds to carry far inland. Palm Beach County has not experienced a major storm surge in over 50 years, but massive population growth means future surges will be far more devastating.</p>
 
         <h3>Understanding Watches, Warnings, and Surge</h3>
+        <div class="table-wrap">
         <table>
             <thead>
                 <tr>
@@ -656,10 +777,13 @@
                 </tr>
             </tbody>
         </table>
+        </div>
 
         <div class="callout">
             <p><strong>Only trust official sources.</strong> The National Hurricane Center, National Weather Service, and local emergency management are your only reliable forecast sources. Enable wireless emergency alerts and keep a battery-powered NOAA weather radio.</p>
         </div>
+
+        <div class="back-to-top"><a href="#toc">Back to Contents</a></div>
     </div>
 </section>
 
@@ -699,6 +823,7 @@
     </div>
 
     <h3>Evacuation Routes</h3>
+    <div class="table-wrap">
     <table>
         <thead>
             <tr>
@@ -730,12 +855,15 @@
             </tr>
         </tbody>
     </table>
+    </div>
 
     <p>Florida no longer uses contraflow. FDOT activates <strong>Emergency Shoulder Use (ESU)</strong> instead. Real-time info: FL511.com or dial 511.</p>
 
     <div class="key-fact">
         <p><span class="fact-number">72 hours</span>Leave at least 72 hours before anticipated landfall. Book inland hotels as soon as a storm enters the forecast cone &mdash; availability evaporates during multi-county evacuations.</p>
     </div>
+
+    <div class="back-to-top"><a href="#toc">Back to Contents</a></div>
 </section>
 
 <!-- ==========================================
@@ -807,6 +935,8 @@
         <div class="callout">
             <p><strong>Florida Tax-Free Supplies:</strong> As of August 1, 2025, batteries, portable generators (under 10,000 watts), fuel containers, fire extinguishers, smoke detectors, CO detectors, tarps, and personal flotation devices are <strong>permanently sales-tax exempt</strong>. Buy early when shelves are stocked.</p>
         </div>
+
+        <div class="back-to-top"><a href="#toc">Back to Contents</a></div>
     </div>
 </section>
 
@@ -841,6 +971,7 @@
     <p>The <strong>number one failure point</strong> during high winds. If the garage door fails, wind pressurizes the interior and can blow off the roof.</p>
 
     <h3>Shutter and Window Options</h3>
+    <div class="table-wrap">
     <table>
         <thead>
             <tr>
@@ -882,6 +1013,7 @@
             </tr>
         </tbody>
     </table>
+    </div>
 
     <div class="callout">
         <p><strong>Impact windows</strong> deliver 25-45% insurance discounts on wind coverage, add $10,000-$20,000 in home value, and eliminate seasonal shutter installation. Manufacturing takes 4-8 weeks &mdash; order in spring.</p>
@@ -898,6 +1030,8 @@
     <div class="callout-warning">
         <p><strong>Do NOT drain your pool.</strong> The water provides weight that prevents the pool from "popping" out of the ground. Super-chlorinate, lower the water level by 1-2 feet, and turn off the pump. Do not cover the pool or place furniture in it.</p>
     </div>
+
+    <div class="back-to-top"><a href="#toc">Back to Contents</a></div>
 </section>
 
 <!-- ==========================================
@@ -915,6 +1049,7 @@
         </div>
 
         <h3>Generator Comparison</h3>
+        <div class="table-wrap">
         <table>
             <thead>
                 <tr>
@@ -945,6 +1080,7 @@
                 </tr>
             </tbody>
         </table>
+        </div>
 
         <p>Leading brands: Generac (~75% market share), Kohler, Cummins. <strong>Natural gas</strong> is 30-40% cheaper to operate than propane and eliminates fuel storage.</p>
 
@@ -954,6 +1090,8 @@
         <div class="callout-critical">
             <p>CARBON MONOXIDE POISONING IS THE LEADING CAUSE OF POST-HURRICANE DEATHS. Never run a generator indoors, in a garage, or any enclosed space. Position at least 20 feet from all windows, doors, and vents. Install CO detectors on every level (tax-free in Florida).</p>
         </div>
+
+        <div class="back-to-top"><a href="#toc">Back to Contents</a></div>
     </div>
 </section>
 
@@ -973,6 +1111,7 @@
     <h3>Hurricane Deductibles &mdash; How They Work</h3>
     <p>Florida hurricane deductibles are <strong>percentage-based, not flat dollar amounts.</strong></p>
 
+    <div class="table-wrap">
     <table>
         <thead>
             <tr>
@@ -1009,6 +1148,7 @@
             </tr>
         </tbody>
     </table>
+    </div>
 
     <div class="callout">
         <p><strong>Always file a claim</strong> &mdash; even if damage is below your deductible. It creates a credit toward your deductible for subsequent storms that calendar year.</p>
@@ -1017,6 +1157,7 @@
     <h3>Flood Insurance &mdash; The Critical Gap</h3>
     <p>The NFIP's <strong>$250,000 building coverage limit</strong> is grossly insufficient for luxury homes. Private flood insurance through carriers like Neptune Flood, Zurich, and Hiscox covers up to $2.5M-$10M.</p>
 
+    <div class="table-wrap">
     <table>
         <thead>
             <tr>
@@ -1039,6 +1180,7 @@
             </tr>
         </tbody>
     </table>
+    </div>
 
     <div class="key-fact">
         <p><span class="fact-number">30 Days</span>NFIP flood policies carry a 30-day waiting period. Buy before the season, not when a storm approaches. Private flood insurance may have a shorter 7-10 day wait.</p>
@@ -1052,6 +1194,8 @@
 
     <h3>The 15-Minute Video That Could Save Your Claim</h3>
     <p>Walk through every room narrating as you go. Zoom in on labels, serial numbers, and brand names. Open drawers, closets, and cabinets. For luxury items &mdash; art, jewelry, wine, antiques &mdash; maintain current professional appraisals and scheduled personal property endorsements (floaters). Standard policy sublimits on jewelry ($1,500-$2,500) and art ($2,500-$5,000) are trivially inadequate for luxury collections.</p>
+
+    <div class="back-to-top"><a href="#toc">Back to Contents</a></div>
 </section>
 
 <!-- ==========================================
@@ -1098,6 +1242,8 @@
             <li><strong>FL Special Needs Registry:</strong> snr.flhealthresponse.com &mdash; enroll before June 1</li>
             <li><strong>Transportation:</strong> Palm Tran Connection 561-649-9848 (PBC)</li>
         </ul>
+
+        <div class="back-to-top"><a href="#toc">Back to Contents</a></div>
     </div>
 </section>
 
@@ -1149,6 +1295,8 @@
     <div class="callout-critical">
         <p>Stay indoors, away from ALL windows. Use your safe room &mdash; interior room, lowest floor, no windows. NEVER go outside during the eye. The calm is temporary and winds return violently from the opposite direction. Use flashlights, not candles. Never run a generator indoors.</p>
     </div>
+
+    <div class="back-to-top"><a href="#toc">Back to Contents</a></div>
 </section>
 
 <!-- ==========================================
@@ -1180,6 +1328,7 @@
         </div>
 
         <h3>Filing Your Claim &mdash; Florida's Strict Deadlines</h3>
+        <div class="table-wrap">
         <table>
             <thead>
                 <tr>
@@ -1210,8 +1359,10 @@
                 </tr>
             </tbody>
         </table>
+        </div>
 
         <h3>Recovery Timeline</h3>
+        <div class="table-wrap">
         <table>
             <thead>
                 <tr>
@@ -1253,6 +1404,7 @@
                 </tr>
             </tbody>
         </table>
+        </div>
 
         <h3>Contractor Fraud &mdash; Protect Yourself</h3>
         <p>Red flags: unsolicited door-knocking, demands for upfront payment, offers to "handle your insurance claim," pressure to sign exclusive contracts, no license proof.</p>
@@ -1263,6 +1415,8 @@
             <li><strong>Report fraud:</strong> FL Attorney General 1-866-966-7226</li>
             <li><strong>FEMA Fraud Hotline:</strong> 1-866-720-5721</li>
         </ul>
+
+        <div class="back-to-top"><a href="#toc">Back to Contents</a></div>
     </div>
 </section>
 
@@ -1280,6 +1434,7 @@
     </div>
 
     <h3>Recent Restoration Benchmarks</h3>
+    <div class="table-wrap">
     <table>
         <thead>
             <tr>
@@ -1304,6 +1459,7 @@
             </tr>
         </tbody>
     </table>
+    </div>
 
     <h3>Reporting Outages</h3>
     <ul class="checklist">
@@ -1313,6 +1469,8 @@
     </ul>
 
     <p>FPL prioritizes restoration: critical facilities first, then main power lines, then neighborhoods with the most customers, then individual homes. Gated communities like St. Andrews may have different timelines based on grid infrastructure. A whole-home generator is strongly recommended.</p>
+
+    <div class="back-to-top"><a href="#toc">Back to Contents</a></div>
 </section>
 
 <!-- ==========================================
@@ -1326,6 +1484,7 @@
         <img src="images/section-12-contacts.jpg" alt="Essential Contacts Wallet Card and Reference" class="section-image">
 
         <h3>Emergency Contacts</h3>
+        <div class="table-wrap">
         <table class="contact-table">
             <tbody>
                 <tr><td>PBC Emergency Management</td><td>561-712-6400 (24/7 during emergencies)</td></tr>
@@ -1353,6 +1512,7 @@
                 <tr><td>FL SAIL Hotline (emergencies)</td><td>1-800-342-3557</td></tr>
             </tbody>
         </table>
+        </div>
 
         <h3>Register for These Alert Systems Now</h3>
         <ul class="checklist">
@@ -1365,6 +1525,8 @@
         </ul>
 
         <p><strong>Social media to follow:</strong> @PBCDEM, @BrowardEMD, @NWSMiami, @FLSERT, @FPLConnect</p>
+
+        <div class="back-to-top"><a href="#toc">Back to Contents</a></div>
     </div>
 </section>
 
@@ -1424,6 +1586,8 @@
         <li>Confirm post-storm private security arrangements</li>
         <li>Identify hurricane-safe storage for luxury vehicles</li>
     </ul>
+
+    <div class="back-to-top"><a href="#toc">Back to Contents</a></div>
 </section>
 
 <!-- ==========================================
@@ -1456,8 +1620,10 @@
             <span style="color: var(--blue); font-size: 14px; letter-spacing: 0.1em;">RESIDENT AND MEMBER, ST. ANDREWS COUNTRY CLUB</span><br><br>
             The Edmund Bogen Team at Douglas Elliman<br>
             561-306-7117 | edmund@bogenhomes.com<br><br>
-            <span style="font-size: 14px; opacity: 0.8;">For property-specific storm preparation questions, insurance documentation assistance, or post-storm property assessment.</span></p>
+            <span style="font-size: 14px; color: var(--text-secondary);">For property-specific storm preparation questions, insurance documentation assistance, or post-storm property assessment.</span></p>
         </div>
+
+        <div class="back-to-top"><a href="#toc">Back to Contents</a></div>
     </div>
 </section>
 
