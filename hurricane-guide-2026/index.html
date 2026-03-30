@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 Hurricane Preparedness Guide | The Edmund Bogen Team</title>
+    <meta name="description" content="The definitive 2026 hurricane preparedness guide for St. Andrews Country Club and South Florida luxury homeowners. Presented by The Edmund Bogen Team at Douglas Elliman Real Estate.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================
+           EDMUND BOGEN BRAND — HURRICANE GUIDE 2026
+           Colors: Navy #1a3e5c | Bright Blue #00a8e1 | White #fff
+           Typography: Montserrat (sans-serif)
+           ============================================ */
+
+        :root {
+            --navy: #1a3e5c;
+            --blue: #00a8e1;
+            --white: #ffffff;
+            --light-gray: #f4f4f4;
+            --medium-gray: #e8e8e8;
+            --text-dark: #333333;
+            --text-light: #666666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', 'Lato', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background: var(--white);
+        }
+
+        /* ---- PRINT / PDF STYLES ---- */
+        @media print {
+            body { font-size: 11pt; line-height: 1.5; }
+            .no-print { display: none !important; }
+            .page-break { page-break-before: always; }
+            .avoid-break { page-break-inside: avoid; }
+            section { page-break-inside: avoid; }
+            .hero { height: auto !important; min-height: 0 !important; }
+            .hero-overlay { position: relative !important; }
+            .section-image { max-height: 400px; }
+            .download-bar { display: none !important; }
+            @page {
+                margin: 0.6in 0.5in;
+                size: letter;
+            }
+        }
+
+        /* ---- DOWNLOAD BAR ---- */
+        .download-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--navy);
+            color: var(--white);
+            text-align: center;
+            padding: 14px 20px;
+            z-index: 1000;
+            font-size: 14px;
+            letter-spacing: 0.05em;
+        }
+        .download-bar a {
+            color: var(--blue);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .download-bar a:hover {
+            text-decoration: underline;
+        }
+
+        /* ---- HERO ---- */
+        .hero {
+            background: var(--navy);
+            color: var(--white);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 80px 40px;
+            position: relative;
+        }
+        .hero-pre {
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--blue);
+            margin-bottom: 24px;
+        }
+        .hero h1 {
+            font-size: 52px;
+            font-weight: 300;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+        .hero h1 span {
+            display: block;
+            font-weight: 600;
+            font-size: 60px;
+            color: var(--blue);
+        }
+        .hero-sub {
+            font-size: 18px;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            margin-bottom: 40px;
+            opacity: 0.85;
+        }
+        .hero-community {
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 24px;
+            margin-top: 8px;
+        }
+        .hero-accent-bar {
+            width: 60px;
+            height: 4px;
+            background: var(--blue);
+            margin: 32px auto;
+        }
+        .hero-logo {
+            margin-top: 40px;
+            opacity: 0.7;
+            font-size: 12px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+        .hero-logo strong {
+            font-weight: 600;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 4px;
+            opacity: 1;
+        }
+
+        /* ---- TABLE OF CONTENTS ---- */
+        .toc {
+            background: var(--light-gray);
+            padding: 80px 40px;
+        }
+        .toc-inner {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .toc h2 {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--navy);
+            margin-bottom: 32px;
+        }
+        .toc-list {
+            list-style: none;
+            counter-reset: toc-counter;
+        }
+        .toc-list li {
+            counter-increment: toc-counter;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--medium-gray);
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--text-dark);
+        }
+        .toc-list li::before {
+            content: counter(toc-counter, decimal-leading-zero);
+            font-weight: 700;
+            color: var(--blue);
+            margin-right: 16px;
+            font-size: 14px;
+        }
+
+        /* ---- SECTIONS ---- */
+        .guide-section {
+            padding: 80px 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .guide-section.alt-bg {
+            background: var(--light-gray);
+            max-width: 100%;
+        }
+        .guide-section.alt-bg .section-inner {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Section header */
+        .section-number {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--blue);
+            margin-bottom: 8px;
+        }
+        .section-title {
+            font-size: 32px;
+            font-weight: 300;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--navy);
+            margin-bottom: 32px;
+            line-height: 1.3;
+        }
+
+        /* Accent bar left */
+        .accent-left {
+            border-left: 4px solid var(--blue);
+            padding-left: 24px;
+            margin-bottom: 32px;
+        }
+
+        /* Section images */
+        .section-image {
+            width: 100%;
+            border-radius: 4px;
+            margin: 32px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        /* ---- TYPOGRAPHY ---- */
+        h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--navy);
+            margin: 32px 0 16px 0;
+            letter-spacing: 0.02em;
+        }
+        h4 {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--navy);
+            margin: 24px 0 12px 0;
+        }
+        p {
+            margin-bottom: 16px;
+            color: var(--text-dark);
+        }
+        strong {
+            font-weight: 600;
+        }
+        .highlight {
+            color: var(--blue);
+            font-weight: 600;
+        }
+
+        /* ---- TABLES ---- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0 32px 0;
+            font-size: 14px;
+        }
+        thead th {
+            background: var(--navy);
+            color: var(--white);
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 12px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        tbody td {
+            padding: 10px 16px;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+        tbody tr:nth-child(even) {
+            background: var(--light-gray);
+        }
+        tbody tr:hover {
+            background: #e3f2fd;
+        }
+
+        /* ---- CHECKLISTS ---- */
+        .checklist {
+            list-style: none;
+            padding: 0;
+            margin: 16px 0 32px 0;
+        }
+        .checklist li {
+            padding: 8px 0 8px 32px;
+            position: relative;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 15px;
+        }
+        .checklist li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 11px;
+            width: 18px;
+            height: 18px;
+            border: 2px solid var(--blue);
+            border-radius: 3px;
+        }
+
+        /* ---- CALLOUT BOXES ---- */
+        .callout {
+            background: #e8f4fd;
+            border-left: 4px solid var(--blue);
+            padding: 20px 24px;
+            margin: 24px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .callout p {
+            margin-bottom: 0;
+            font-size: 15px;
+        }
+        .callout-warning {
+            background: #fff3e0;
+            border-left-color: #e65100;
+        }
+        .callout-critical {
+            background: #fce4ec;
+            border-left-color: #c62828;
+        }
+        .callout-critical p {
+            font-weight: 600;
+        }
+
+        /* ---- KEY FACTS BAR ---- */
+        .key-fact {
+            background: var(--navy);
+            color: var(--white);
+            padding: 24px 32px;
+            margin: 32px 0;
+            border-radius: 4px;
+        }
+        .key-fact p {
+            color: var(--white);
+            margin: 0;
+            font-size: 15px;
+        }
+        .key-fact .fact-number {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--blue);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        /* ---- CONTACT TABLE ---- */
+        .contact-table td:first-child {
+            font-weight: 600;
+            color: var(--navy);
+            white-space: nowrap;
+            width: 45%;
+        }
+
+        /* ---- DIVIDER ---- */
+        .section-divider {
+            width: 60px;
+            height: 3px;
+            background: var(--blue);
+            margin: 60px auto;
+        }
+
+        /* ---- FOOTER ---- */
+        .guide-footer {
+            background: var(--navy);
+            color: var(--white);
+            padding: 60px 40px;
+            text-align: center;
+        }
+        .guide-footer p {
+            color: rgba(255,255,255,0.85);
+            font-size: 13px;
+            max-width: 700px;
+            margin: 0 auto 12px auto;
+        }
+        .guide-footer .footer-brand {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+        .guide-footer .footer-brokerage {
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--blue);
+            margin-bottom: 24px;
+        }
+        .guide-footer .footer-contact {
+            font-size: 15px;
+            color: var(--white);
+            margin-bottom: 32px;
+        }
+        .guide-footer .footer-disclaimer {
+            font-size: 11px;
+            color: rgba(255,255,255,0.85);
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        /* ---- RESPONSIVE ---- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 32px; }
+            .hero h1 span { font-size: 38px; }
+            .section-title { font-size: 24px; }
+            .guide-section { padding: 48px 24px; }
+            table { font-size: 12px; }
+            thead th, tbody td { padding: 8px 10px; }
+        }
+
+        /* ---- MARGIN BOTTOM for download bar ---- */
+        body { padding-bottom: 60px; }
+    </style>
+</head>
+<body>
+
+<!-- DOWNLOAD BAR -->
+<div class="download-bar no-print">
+    To save as PDF: Press <strong>Ctrl+P</strong> (Windows) or <strong>Cmd+P</strong> (Mac) &rarr; Save as PDF &nbsp;|&nbsp; <a href="javascript:window.print()">Print / Download PDF</a>
+</div>
+
+<!-- ==========================================
+     HERO / COVER PAGE
+     ========================================== -->
+<section class="hero page-break">
+    <div class="hero-pre">The Edmund Bogen Team at Douglas Elliman Real Estate</div>
+    <h1>Hurricane<br>Preparedness<br><span>Guide 2026</span></h1>
+    <div class="hero-accent-bar"></div>
+    <div class="hero-sub">The Definitive Resource for South Florida Luxury Homeowners</div>
+    <div class="hero-community">Presented for the Residents of St. Andrews Country Club</div>
+    <div class="hero-logo">
+        <strong>The Edmund Bogen Team</strong>
+        at Douglas Elliman Real Estate
+    </div>
+</section>
+
+<!-- ==========================================
+     TABLE OF CONTENTS
+     ========================================== -->
+<section class="toc page-break">
+    <div class="toc-inner">
+        <h2>What's Inside</h2>
+        <ol class="toc-list">
+            <li>The 2026 Season Outlook</li>
+            <li>South Florida's Hurricane History</li>
+            <li>Your Evacuation Plan</li>
+            <li>Building Your Emergency Supply Kit</li>
+            <li>Home Hardening</li>
+            <li>Generator Strategy for Luxury Homes</li>
+            <li>Insurance -- The Financial Shield</li>
+            <li>Pet Safety and Special Needs</li>
+            <li>When a Storm Is Named for Your Area</li>
+            <li>After the Storm</li>
+            <li>FPL and Power Restoration</li>
+            <li>Essential Contacts and Resources</li>
+            <li>Your Pre-Season Action Timeline</li>
+        </ol>
+    </div>
+</section>
+
+<!-- ==========================================
+     SECTION 1: 2026 SEASON OUTLOOK
+     ========================================== -->
+<section class="guide-section page-break" id="section-1">
+    <div class="section-number">Section 01</div>
+    <h2 class="section-title">The 2026 Season Outlook</h2>
+
+    <img src="images/section-01-season-outlook.jpg" alt="2026 Atlantic Hurricane Season Forecast" class="section-image">
+
+    <div class="accent-left">
+        <p>The 2026 Atlantic hurricane season runs <strong>June 1 through November 30</strong>, with peak activity between mid-August and mid-October. Multiple forecasting organizations have weighed in on what to expect.</p>
+    </div>
+
+    <h3>The Forecast Numbers</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Organization</th>
+                <th>Named Storms</th>
+                <th>Hurricanes</th>
+                <th>Major (Cat 3+)</th>
+                <th>Released</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>TSR (Tropical Storm Risk)</td>
+                <td>14</td>
+                <td>7</td>
+                <td>3</td>
+                <td>Dec 2025</td>
+            </tr>
+            <tr>
+                <td>AccuWeather</td>
+                <td>11-16</td>
+                <td>4-7</td>
+                <td>2-4</td>
+                <td>Mar 2026</td>
+            </tr>
+            <tr>
+                <td>Colorado State University</td>
+                <td>TBD</td>
+                <td>TBD</td>
+                <td>TBD</td>
+                <td>Apr 9, 2026</td>
+            </tr>
+            <tr>
+                <td>NOAA</td>
+                <td>TBD</td>
+                <td>TBD</td>
+                <td>TBD</td>
+                <td>Late May 2026</td>
+            </tr>
+            <tr>
+                <td><em>Historical Avg (1991-2020)</em></td>
+                <td><em>14</em></td>
+                <td><em>7</em></td>
+                <td><em>3</em></td>
+                <td>&mdash;</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>The El Nino Factor</h3>
+    <p>El Nino is the dominant variable this year. NOAA's Climate Prediction Center gives a <strong>62% probability</strong> of El Nino developing by June-August 2026, rising to 72-80% by fall. El Nino increases upper-level wind shear that disrupts storm formation. In El Nino years, the Atlantic averages roughly 10 named storms and 5 hurricanes, compared to 15 storms and 8 hurricanes during La Nina years.</p>
+    <p>There is a 15% chance of a "super El Nino" (&ge;2&deg;C above normal), which would further suppress activity.</p>
+
+    <h3>Why Warm Water Changes Everything</h3>
+    <p>Atlantic sea surface temperatures remain "exceptionally, exceptionally warm" &mdash; extending hundreds of feet below the surface. The Gulf of Mexico has warmed at <strong>twice the global rate since 1970</strong>. This creates major rapid-intensification risk regardless of El Nino. Storms can go from tropical storm to Category 4 in under 24 hours when they cross superheated waters.</p>
+
+    <div class="callout-critical">
+        <p>The 1992 season produced just 7 named storms. One of them was Hurricane Andrew, which devastated South Florida and caused $27 billion in damage. A quiet season means nothing if that one storm hits your community.</p>
+    </div>
+
+    <h3>2025 Season Recap</h3>
+    <p>Last year produced 13 named storms, 5 hurricanes, and 4 major hurricanes &mdash; including <strong>3 Category 5 storms</strong> (Erin, Humberto, and Melissa), the second-most in a single season on record. No hurricane made U.S. landfall in 2025, but 4 of 5 hurricanes reached major status &mdash; the highest percentage ever observed &mdash; underscoring the rapid-intensification threat.</p>
+</section>
+
+<!-- ==========================================
+     SECTION 2: SOUTH FLORIDA HURRICANE HISTORY
+     ========================================== -->
+<section class="guide-section alt-bg page-break" id="section-2">
+    <div class="section-inner">
+        <div class="section-number">Section 02</div>
+        <h2 class="section-title">South Florida's Hurricane History</h2>
+
+        <img src="images/section-02-hurricane-history.jpg" alt="South Florida Hurricane History Timeline" class="section-image">
+
+        <div class="accent-left">
+            <p>South Florida's hurricane history is sobering. Palm Beach County has been struck by <strong>four Category 4+ hurricanes</strong> since 1926. A hurricane of any category can be expected to pass within 50 nautical miles of South Florida approximately <strong>every 5-7 years</strong>.</p>
+        </div>
+
+        <h3>Major Storms That Shaped South Florida</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Storm</th>
+                    <th>Year</th>
+                    <th>Category</th>
+                    <th>Impact</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Lake Okeechobee Hurricane</td>
+                    <td>1928</td>
+                    <td>Cat 4</td>
+                    <td>2,500-3,000 killed &mdash; 2nd deadliest U.S. natural disaster</td>
+                </tr>
+                <tr>
+                    <td>Hurricane Andrew</td>
+                    <td>1992</td>
+                    <td>Cat 5</td>
+                    <td>$27 billion in damage, devastated South Florida (landfall in Miami-Dade)</td>
+                </tr>
+                <tr>
+                    <td>Hurricane Frances</td>
+                    <td>2004</td>
+                    <td>Cat 2</td>
+                    <td>17,000+ buildings damaged in Palm Beach County</td>
+                </tr>
+                <tr>
+                    <td>Hurricane Wilma</td>
+                    <td>2005</td>
+                    <td>Cat 3</td>
+                    <td>$20 billion total U.S. damage, devastated PBC &amp; Broward</td>
+                </tr>
+                <tr>
+                    <td>Hurricane Irma</td>
+                    <td>2017</td>
+                    <td>Cat 4</td>
+                    <td>$300 million in PBC damage alone</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>South Florida faces exposure from <strong>three directions</strong> (Atlantic, Caribbean, and Gulf of Mexico), sits adjacent to the energy-rich Gulf Stream, and its flat terrain allows hurricane-force winds to carry far inland. Palm Beach County has not experienced a major storm surge in over 50 years, but massive population growth means future surges will be far more devastating.</p>
+
+        <h3>Understanding Watches, Warnings, and Surge</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Alert</th>
+                    <th>Meaning</th>
+                    <th>Timing</th>
+                    <th>Your Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Tropical Storm Watch</td>
+                    <td>Winds 39-73 mph possible</td>
+                    <td>~48 hours</td>
+                    <td>Monitor updates, review plan</td>
+                </tr>
+                <tr>
+                    <td>Tropical Storm Warning</td>
+                    <td>Winds 39-73 mph expected</td>
+                    <td>&lt;36 hours</td>
+                    <td>Finalize preparations</td>
+                </tr>
+                <tr>
+                    <td>Hurricane Watch</td>
+                    <td>Winds 74+ mph possible</td>
+                    <td>~48 hours</td>
+                    <td>Activate storm mode</td>
+                </tr>
+                <tr>
+                    <td>Hurricane Warning</td>
+                    <td>Winds 74+ mph expected</td>
+                    <td>&lt;36 hours</td>
+                    <td>Finish tasks, evacuate if ordered</td>
+                </tr>
+                <tr>
+                    <td>Storm Surge Warning</td>
+                    <td>Life-threatening coastal flooding</td>
+                    <td>48-36 hours</td>
+                    <td>Treat as evacuation order</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="callout">
+            <p><strong>Only trust official sources.</strong> The National Hurricane Center, National Weather Service, and local emergency management are your only reliable forecast sources. Enable wireless emergency alerts and keep a battery-powered NOAA weather radio.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ==========================================
+     SECTION 3: EVACUATION PLAN
+     ========================================== -->
+<section class="guide-section page-break" id="section-3">
+    <div class="section-number">Section 03</div>
+    <h2 class="section-title">Your Evacuation Plan</h2>
+
+    <img src="images/section-03-evacuation-plan.jpg" alt="Palm Beach and Broward Counties Evacuation Plan" class="section-image">
+
+    <h3>Palm Beach County Evacuation Zones</h3>
+    <div class="accent-left">
+        <p>Palm Beach County assigns zones <strong>A through E and L</strong>, based on storm surge vulnerability. Zone A evacuates first. Critical fact: <strong>Palm Beach County evacuates for storm surge, not wind.</strong></p>
+    </div>
+
+    <ul class="checklist">
+        <li><strong>Zone A</strong> &mdash; Evacuates first. Barrier islands, low-lying areas, manufactured homes.</li>
+        <li><strong>Zone B</strong> &mdash; Includes the Town of Palm Beach.</li>
+        <li><strong>Zones C-E</strong> &mdash; May evacuate depending on storm severity and surge projections.</li>
+        <li><strong>All mobile/manufactured homes</strong> evacuate regardless of zone.</li>
+    </ul>
+
+    <p><strong>Look up your zone:</strong> PBC Interactive Evacuation Zone Map at discover.pbc.gov or call 561-712-6400.</p>
+
+    <h3>Broward County Evacuation Zones</h3>
+    <ul class="checklist">
+        <li><strong>Plan A (Cat 1-2)</strong> &mdash; Evacuate east of the Intracoastal Waterway plus all mobile home parks.</li>
+        <li><strong>Plan B (Cat 3+)</strong> &mdash; Evacuate east of U.S. 1 (Federal Highway).</li>
+    </ul>
+    <p>Check your zone at broward.org/Hurricane or call 311.</p>
+
+    <h3>St. Andrews Country Club Specifics</h3>
+    <div class="callout">
+        <p>St. Andrews is located in <strong>western Boca Raton, well inland from the coast</strong>. The community is NOT in a coastal surge evacuation zone, which means most residents can shelter in place during Category 1-2 storms if their home is properly hardened. However, the clubhouse is NOT a designated public shelter.</p>
+    </div>
+
+    <h3>Evacuation Routes</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Route</th>
+                <th>Direction</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>I-95 North</strong></td>
+                <td>Northbound</td>
+                <td>Fastest but congests first</td>
+            </tr>
+            <tr>
+                <td><strong>Florida Turnpike</strong></td>
+                <td>Northbound</td>
+                <td>Less congested; toll-free during evacuations</td>
+            </tr>
+            <tr>
+                <td><strong>US-441 / SR-7</strong></td>
+                <td>Northbound</td>
+                <td>Surface road alternative</td>
+            </tr>
+            <tr>
+                <td><strong>I-75 (Alligator Alley)</strong></td>
+                <td>Westbound</td>
+                <td>Cross-state option; toll-free during evacuations</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>Florida no longer uses contraflow. FDOT activates <strong>Emergency Shoulder Use (ESU)</strong> instead. Real-time info: FL511.com or dial 511.</p>
+
+    <div class="key-fact">
+        <p><span class="fact-number">72 hours</span>Leave at least 72 hours before anticipated landfall. Book inland hotels as soon as a storm enters the forecast cone &mdash; availability evaporates during multi-county evacuations.</p>
+    </div>
+</section>
+
+<!-- ==========================================
+     SECTION 4: EMERGENCY SUPPLY KIT
+     ========================================== -->
+<section class="guide-section alt-bg page-break" id="section-4">
+    <div class="section-inner">
+        <div class="section-number">Section 04</div>
+        <h2 class="section-title">Building Your Emergency Supply Kit</h2>
+
+        <img src="images/section-04-supply-kit.jpg" alt="Emergency Supply Kit Checklist" class="section-image">
+
+        <div class="key-fact">
+            <p><span class="fact-number">7-10 Days</span>Florida's Division of Emergency Management recommends a full 7-day supply &mdash; and recent guidance suggests 10-day readiness due to supply chain disruptions.</p>
+        </div>
+
+        <p>Prepare <strong>two kits</strong>: a Go-Bag (3-day essentials for evacuation, kept near the door June through November) and a Stay-at-Home Kit (full 7-10 day supply for sheltering in place).</p>
+
+        <h3>Water</h3>
+        <ul class="checklist">
+            <li>1 gallon per person per day for 7-10 days</li>
+            <li>Family of 4 = 28-40 gallons minimum</li>
+            <li>Extra water for pets and medical needs</li>
+            <li>Consider a WaterBOB bathtub liner (holds 60 gallons)</li>
+        </ul>
+
+        <h3>Food</h3>
+        <ul class="checklist">
+            <li>7-10 days non-perishable, high-protein items</li>
+            <li>Canned proteins, nut butters, protein bars, crackers, dried fruit</li>
+            <li>Include infant formula, pet food, special dietary needs</li>
+            <li>Manual can opener</li>
+        </ul>
+
+        <h3>Medical</h3>
+        <ul class="checklist">
+            <li>Minimum 7-day supply of prescriptions (30-day preferred)</li>
+            <li>List of prescriptions and doctors' contact info</li>
+            <li>First aid kit: bandages, antiseptic, gauze, tape, tweezers</li>
+            <li>Spare batteries for medical/assistive devices</li>
+        </ul>
+
+        <h3>Power and Communication</h3>
+        <ul class="checklist">
+            <li>Battery-powered or hand-crank NOAA weather radio</li>
+            <li>LED flashlights with extra batteries (AA, C, D)</li>
+            <li>Portable battery banks &mdash; at least two 40,000 mAh</li>
+            <li>Car charger for cell phones</li>
+        </ul>
+
+        <h3>Cash and Documents</h3>
+        <ul class="checklist">
+            <li>$500+ in small bills and coins</li>
+            <li>Insurance policies, IDs, property deeds in waterproof container</li>
+            <li>Bank information, birth certificates, passports, vehicle titles</li>
+            <li>Digital backups in cloud storage</li>
+        </ul>
+
+        <h3>Tools, Sanitation, and Comfort</h3>
+        <ul class="checklist">
+            <li>Plastic sheeting and duct tape</li>
+            <li>Whistle, local paper maps, wrench/pliers</li>
+            <li>Toilet paper, soap, garbage bags, hand sanitizer</li>
+            <li>Unscented bleach (water purification: 8 drops per gallon)</li>
+            <li>Change of clothes, sturdy shoes, rain gear, blankets</li>
+            <li>Books, games, activities for children</li>
+        </ul>
+
+        <div class="callout">
+            <p><strong>Florida Tax-Free Supplies:</strong> As of August 1, 2025, batteries, portable generators (under 10,000 watts), fuel containers, fire extinguishers, smoke detectors, CO detectors, tarps, and personal flotation devices are <strong>permanently sales-tax exempt</strong>. Buy early when shelves are stocked.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ==========================================
+     SECTION 5: HOME HARDENING
+     ========================================== -->
+<section class="guide-section page-break" id="section-5">
+    <div class="section-number">Section 05</div>
+    <h2 class="section-title">Home Hardening</h2>
+
+    <img src="images/section-05-home-hardening.jpg" alt="Home Hardening Strategies" class="section-image">
+
+    <div class="accent-left">
+        <p>The most important precaution is protecting the areas where wind can enter your home. There are <strong>five critical zones</strong> to address.</p>
+    </div>
+
+    <h3>The Five Critical Areas</h3>
+
+    <h4>1. Roof</h4>
+    <p>Inspect annually for loose or damaged shingles, flashing, and soffits. Strengthen roof-to-deck attachments and roof-to-wall connections. Install secondary water resistance. Under Florida's 25% rule, if more than a quarter of the roof is damaged, the entire roof must be brought up to current code.</p>
+
+    <h4>2. Hurricane Straps</h4>
+    <p>Reinforce the connection between roof and walls. Double-wrap connectors on both sides of studs create a continuous load path from roof to foundation.</p>
+
+    <h4>3. Windows</h4>
+    <p>Install impact-rated windows or hurricane shutters. In the High-Velocity Hurricane Zone (HVHZ), shutters and windows must carry <strong>Miami-Dade TAS 201/202/203 approval</strong>.</p>
+
+    <h4>4. Doors</h4>
+    <p>Add steel jamb shields at latch and deadbolt locations. Verify deadbolts throw a full 1 inch into a reinforced strike.</p>
+
+    <h4>5. Garage Doors</h4>
+    <p>The <strong>number one failure point</strong> during high winds. If the garage door fails, wind pressurizes the interior and can blow off the roof.</p>
+
+    <h3>Shutter and Window Options</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Cost (Whole Home ~2,500 SF)</th>
+                <th>Key Advantage</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Storm panels (aluminum/steel)</td>
+                <td>$3,500-$9,000</td>
+                <td>Lowest cost, reusable</td>
+            </tr>
+            <tr>
+                <td>Accordion shutters</td>
+                <td>$7,500-$12,500</td>
+                <td>Permanent mount, good value</td>
+            </tr>
+            <tr>
+                <td>Bahama shutters</td>
+                <td>$9,000-$15,000</td>
+                <td>Decorative, provides shade</td>
+            </tr>
+            <tr>
+                <td>Colonial shutters</td>
+                <td>$10,000-$16,000</td>
+                <td>Best aesthetic for traditional homes</td>
+            </tr>
+            <tr>
+                <td>Roll-down shutters</td>
+                <td>$12,500-$22,500</td>
+                <td>30-second motorized deployment</td>
+            </tr>
+            <tr>
+                <td>Impact windows (per window)</td>
+                <td>$1,200-$2,500</td>
+                <td>Year-round, no seasonal install</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="callout">
+        <p><strong>Impact windows</strong> deliver 25-45% insurance discounts on wind coverage, add $10,000-$20,000 in home value, and eliminate seasonal shutter installation. Manufacturing takes 4-8 weeks &mdash; order in spring.</p>
+    </div>
+
+    <h3>My Safe Florida Home Program</h3>
+    <p>The Florida Legislature allocated <strong>$280 million</strong> for 2025-2026. The program offers free wind-mitigation inspections and matching grants up to $10,000 for eligible homeowners. Apply at mysafeflhome.com.</p>
+
+    <div class="callout">
+        <p><strong>Important for St. Andrews homeowners:</strong> The $10,000 grant is available for homes with an insured value of $700,000 or less (low-income homeowners exempt from this cap). Most St. Andrews homes exceed this threshold, but the <strong>free wind-mitigation inspection is available to all eligible homeowners</strong> and can still yield significant insurance savings.</p>
+    </div>
+
+    <h3>Pool Preparation</h3>
+    <div class="callout-warning">
+        <p><strong>Do NOT drain your pool.</strong> The water provides weight that prevents the pool from "popping" out of the ground. Super-chlorinate, lower the water level by 1-2 feet, and turn off the pump. Do not cover the pool or place furniture in it.</p>
+    </div>
+</section>
+
+<!-- ==========================================
+     SECTION 6: GENERATOR STRATEGY
+     ========================================== -->
+<section class="guide-section alt-bg page-break" id="section-6">
+    <div class="section-inner">
+        <div class="section-number">Section 06</div>
+        <h2 class="section-title">Generator Strategy for Luxury Homes</h2>
+
+        <img src="images/section-06-generator.jpg" alt="Generator Strategy Comparison" class="section-image">
+
+        <div class="accent-left">
+            <p>For homes of 3,000-5,000+ square feet (typical at St. Andrews), a <strong>whole-home standby generator</strong> (22kW-48kW) is the standard for maintaining full comfort during extended outages.</p>
+        </div>
+
+        <h3>Generator Comparison</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Best For</th>
+                    <th>Key Benefit</th>
+                    <th>Cost Range</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Portable</td>
+                    <td>Short-term, essentials only</td>
+                    <td>Most affordable</td>
+                    <td>$500-$2,000</td>
+                </tr>
+                <tr>
+                    <td>Portable + Transfer Switch</td>
+                    <td>Whole circuits, manual operation</td>
+                    <td>Higher power output</td>
+                    <td>$2,000-$5,000</td>
+                </tr>
+                <tr>
+                    <td><strong>Standby (Whole-Home)</strong></td>
+                    <td><strong>Full comfort, extended outages</strong></td>
+                    <td><strong>Automatic activation</strong></td>
+                    <td><strong>$15,000-$30,000+</strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>Leading brands: Generac (~75% market share), Kohler, Cummins. <strong>Natural gas</strong> is 30-40% cheaper to operate than propane and eliminates fuel storage.</p>
+
+        <h3>Community Considerations</h3>
+        <p>In gated communities like St. Andrews, generators must comply with HOA requirements for placement, enclosures, noise levels, and aesthetic standards. Many communities require <strong>Architectural Review Board approval</strong> and enclosures matching the home exterior. Plan installations with compliance in mind &mdash; allow 4-8 weeks lead time.</p>
+
+        <div class="callout-critical">
+            <p>CARBON MONOXIDE POISONING IS THE LEADING CAUSE OF POST-HURRICANE DEATHS. Never run a generator indoors, in a garage, or any enclosed space. Position at least 20 feet from all windows, doors, and vents. Install CO detectors on every level (tax-free in Florida).</p>
+        </div>
+    </div>
+</section>
+
+<!-- ==========================================
+     SECTION 7: INSURANCE
+     ========================================== -->
+<section class="guide-section page-break" id="section-7">
+    <div class="section-number">Section 07</div>
+    <h2 class="section-title">Insurance &mdash; The Financial Shield</h2>
+
+    <img src="images/section-07-insurance.jpg" alt="Navigating Your Insurance" class="section-image">
+
+    <div class="accent-left">
+        <p>Every St. Andrews homeowner needs three policies: <strong>Homeowners Insurance</strong>, <strong>Flood Insurance</strong>, and <strong>Windstorm/Named Storm Coverage</strong>. Standard homeowners insurance does NOT cover flooding.</p>
+    </div>
+
+    <h3>Hurricane Deductibles &mdash; How They Work</h3>
+    <p>Florida hurricane deductibles are <strong>percentage-based, not flat dollar amounts.</strong></p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Insured Value</th>
+                <th>2% Deductible</th>
+                <th>5% Deductible</th>
+                <th>10% Deductible</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>$1,000,000</td>
+                <td>$20,000</td>
+                <td>$50,000</td>
+                <td>$100,000</td>
+            </tr>
+            <tr>
+                <td>$2,000,000</td>
+                <td>$40,000</td>
+                <td>$100,000</td>
+                <td>$200,000</td>
+            </tr>
+            <tr>
+                <td>$3,000,000</td>
+                <td>$60,000</td>
+                <td>$150,000</td>
+                <td>$300,000</td>
+            </tr>
+            <tr>
+                <td>$5,000,000</td>
+                <td>$100,000</td>
+                <td>$250,000</td>
+                <td>$500,000</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="callout">
+        <p><strong>Always file a claim</strong> &mdash; even if damage is below your deductible. It creates a credit toward your deductible for subsequent storms that calendar year.</p>
+    </div>
+
+    <h3>Flood Insurance &mdash; The Critical Gap</h3>
+    <p>The NFIP's <strong>$250,000 building coverage limit</strong> is grossly insufficient for luxury homes. Private flood insurance through carriers like Neptune Flood, Zurich, and Hiscox covers up to $2.5M-$10M.</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Flood Zone</th>
+                <th>Annual Premium ($1M+ Home)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>VE (coastal, storm surge + waves)</td>
+                <td>$8,000-$25,000+</td>
+            </tr>
+            <tr>
+                <td>AE (near water, high risk)</td>
+                <td>$4,000-$12,000</td>
+            </tr>
+            <tr>
+                <td>X (moderate/low risk)</td>
+                <td>$800-$2,500</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="key-fact">
+        <p><span class="fact-number">30 Days</span>NFIP flood policies carry a 30-day waiting period. Buy before the season, not when a storm approaches. Private flood insurance may have a shorter 7-10 day wait.</p>
+    </div>
+
+    <h3>The Florida Insurance Market Is Improving</h3>
+    <p>Citizens Property Insurance policy count dropped from 1.42 million (Oct 2023) to ~395,144 (Jan 2026). OIR approved an average <strong>8.8% rate cut for 2026</strong>. Seventeen new companies have entered the market since 2022 reforms. South Florida will see the largest reductions.</p>
+
+    <h3>Wind Mitigation Inspection</h3>
+    <p>A $100-$200 inspection can yield <strong>up to 30% savings</strong> on your policy. Valid for 5 years. The single highest-ROI preparedness action.</p>
+
+    <h3>The 15-Minute Video That Could Save Your Claim</h3>
+    <p>Walk through every room narrating as you go. Zoom in on labels, serial numbers, and brand names. Open drawers, closets, and cabinets. For luxury items &mdash; art, jewelry, wine, antiques &mdash; maintain current professional appraisals and scheduled personal property endorsements (floaters). Standard policy sublimits on jewelry ($1,500-$2,500) and art ($2,500-$5,000) are trivially inadequate for luxury collections.</p>
+</section>
+
+<!-- ==========================================
+     SECTION 8: PET SAFETY AND SPECIAL NEEDS
+     ========================================== -->
+<section class="guide-section alt-bg page-break" id="section-8">
+    <div class="section-inner">
+        <div class="section-number">Section 08</div>
+        <h2 class="section-title">Pet Safety and Special Needs</h2>
+
+        <img src="images/section-08-pet-safety.jpg" alt="Pet Safety and Special Needs" class="section-image">
+
+        <div class="callout-critical">
+            <p>TROOPER'S LAW (SB 150): It is illegal in Florida to abandon, confine, or leave pets behind during a hurricane, tropical storm, or tornado warning.</p>
+        </div>
+
+        <h3>Pet Supply Checklist (7-10 Days)</h3>
+        <ul class="checklist">
+            <li>Food and water for 7-10 days</li>
+            <li>All medications with dosing instructions</li>
+            <li>Vaccination records and rabies certificate (waterproof copies)</li>
+            <li>Sturdy leash, harness, and/or carrier</li>
+            <li>Collar with current ID tag and rabies tag</li>
+            <li>Microchip information</li>
+            <li>Recent photo of you with your pet (proves ownership)</li>
+            <li>Pet first aid kit</li>
+            <li>Litter box and litter (cats)</li>
+            <li>Comfort items: toys, bedding, treats</li>
+        </ul>
+
+        <h3>Shelter Options</h3>
+        <p><strong>Palm Beach County:</strong> West Boynton Recreational Center, 6000 Northtree Blvd., Lake Worth, FL 33463. Pre-registration opens May 1 through PBC Animal Care and Control (561-233-1271).</p>
+        <p><strong>Broward County:</strong> Three pet-friendly shelters: Lyons Creek Middle School (Coconut Creek), Everglades High School (Miramar), and Falcon Cove Middle School (Weston). Pre-register through the Humane Society of Broward County (954-989-3977) or Pet Hurricane Hotline (954-266-6871).</p>
+
+        <div class="callout">
+            <p>For luxury homeowners: <strong>inland pet-friendly hotels are preferable to public shelters.</strong> Book early and verify pet policies in advance.</p>
+        </div>
+
+        <h3>Special Needs and Medical Requirements</h3>
+        <p>Both counties operate <strong>Special Needs Shelters</strong> with medical personnel and backup electricity.</p>
+        <ul class="checklist">
+            <li><strong>PBC:</strong> Physician-signed application &mdash; call 561-712-6400</li>
+            <li><strong>Broward:</strong> Year-round pre-registration &mdash; call 954-831-3902</li>
+            <li><strong>FL Special Needs Registry:</strong> snr.flhealthresponse.com &mdash; enroll before June 1</li>
+            <li><strong>Transportation:</strong> Palm Tran Connection 561-649-9848 (PBC)</li>
+        </ul>
+    </div>
+</section>
+
+<!-- ==========================================
+     SECTION 9: THE COUNTDOWN
+     ========================================== -->
+<section class="guide-section page-break" id="section-9">
+    <div class="section-number">Section 09</div>
+    <h2 class="section-title">When a Storm Is Named for Your Area</h2>
+
+    <img src="images/section-09-countdown.jpg" alt="The Countdown - Preparing for Landfall" class="section-image">
+
+    <h3>72 Hours Out &mdash; Storm Enters Forecast Cone</h3>
+    <ul class="checklist">
+        <li>Confirm evacuation zone and route</li>
+        <li>Verify all insurance policies are current</li>
+        <li>Fill vehicle gas tanks (EVs: charge to 80%+)</li>
+        <li>Withdraw $500+ cash in small bills</li>
+        <li>Charge all devices and portable battery packs</li>
+        <li>Fill prescriptions</li>
+        <li>Begin installing shutters or plywood</li>
+        <li>Freeze water bottles (keeps food cold, becomes drinking water)</li>
+        <li>Book inland hotels if evacuating</li>
+    </ul>
+
+    <h3>48 Hours Out &mdash; Hurricane Watch Issued</h3>
+    <ul class="checklist">
+        <li>Complete all shutter/plywood installation</li>
+        <li>Bring ALL outdoor items inside</li>
+        <li>Fill bathtubs with water (sanitation/flushing)</li>
+        <li>Set refrigerator and freezer to coldest settings</li>
+        <li>Confirm pet arrangements</li>
+        <li>Lower pool water 1-2 feet, shock-treat, turn off pump</li>
+        <li>Service/test generator, verify fuel supply</li>
+        <li>Relocate art, wine, and valuables to protected interior spaces</li>
+    </ul>
+
+    <h3>24 Hours Out &mdash; Hurricane Warning Issued</h3>
+    <ul class="checklist">
+        <li><strong>If in evacuation zone and ordered: LEAVE NOW</strong></li>
+        <li>Move supplies to interior safe room</li>
+        <li>Fully charge all phones and devices</li>
+        <li>Turn off propane tanks, unplug small appliances</li>
+        <li>Close and lock all windows, doors, and shutters</li>
+        <li>Communicate your plan to out-of-area contact</li>
+    </ul>
+
+    <h3>During the Storm</h3>
+    <div class="callout-critical">
+        <p>Stay indoors, away from ALL windows. Use your safe room &mdash; interior room, lowest floor, no windows. NEVER go outside during the eye. The calm is temporary and winds return violently from the opposite direction. Use flashlights, not candles. Never run a generator indoors.</p>
+    </div>
+</section>
+
+<!-- ==========================================
+     SECTION 10: AFTER THE STORM
+     ========================================== -->
+<section class="guide-section alt-bg page-break" id="section-10">
+    <div class="section-inner">
+        <div class="section-number">Section 10</div>
+        <h2 class="section-title">After the Storm</h2>
+
+        <img src="images/section-10-recovery.jpg" alt="After the Storm - Recovery and Repair" class="section-image">
+
+        <div class="accent-left">
+            <p><strong>Wait for the official all-clear.</strong> Do not venture outside until authorities confirm it is safe.</p>
+        </div>
+
+        <h3>First 24-48 Hours</h3>
+        <ul class="checklist">
+            <li>Avoid downed power lines, standing water, displaced wildlife</li>
+            <li>Photograph and video ALL damage before any cleanup</li>
+            <li>Contact your insurer immediately to file the claim</li>
+            <li>Begin drying any water-saturated areas within 24 hours</li>
+            <li>Keep all receipts for emergency expenses</li>
+            <li>Check on neighbors, especially elderly residents</li>
+        </ul>
+
+        <div class="callout-warning">
+            <p><strong>Mold begins growing within 24-48 hours</strong> of water intrusion. Run dehumidifiers and fans continuously. Pull back carpet and padding. Open cabinet doors. Move furniture away from wet walls. Act immediately.</p>
+        </div>
+
+        <h3>Filing Your Claim &mdash; Florida's Strict Deadlines</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Deadline</th>
+                    <th>Timeframe</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>File initial claim</td>
+                    <td><strong>1 year</strong> from date of loss</td>
+                </tr>
+                <tr>
+                    <td>Supplemental claims</td>
+                    <td>18 months</td>
+                </tr>
+                <tr>
+                    <td>Insurer acknowledges claim</td>
+                    <td>Within 7 days</td>
+                </tr>
+                <tr>
+                    <td>Insurer completes inspection</td>
+                    <td>Within 30 days</td>
+                </tr>
+                <tr>
+                    <td>Insurer pays or denies</td>
+                    <td>Within 60 days</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Recovery Timeline</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Phase</th>
+                    <th>Timeframe</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Immediate stabilization</td>
+                    <td>First 24-48 hours</td>
+                    <td>Tarp roof, board windows, extract water</td>
+                </tr>
+                <tr>
+                    <td>Moisture mitigation</td>
+                    <td>3-7 days</td>
+                    <td>Dehumidifiers, remove wet materials</td>
+                </tr>
+                <tr>
+                    <td>Structural stabilization</td>
+                    <td>1-2 weeks</td>
+                    <td>Engineers, compromised supports</td>
+                </tr>
+                <tr>
+                    <td>System repairs</td>
+                    <td>2-4 weeks</td>
+                    <td>Electrical, plumbing, HVAC</td>
+                </tr>
+                <tr>
+                    <td>Interior finish</td>
+                    <td>1-3 months</td>
+                    <td>Drywall, flooring, cabinetry</td>
+                </tr>
+                <tr>
+                    <td>Exterior &amp; cosmetic</td>
+                    <td>3-6 months</td>
+                    <td>Exterior restoration, landscaping</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Contractor Fraud &mdash; Protect Yourself</h3>
+        <p>Red flags: unsolicited door-knocking, demands for upfront payment, offers to "handle your insurance claim," pressure to sign exclusive contracts, no license proof.</p>
+        <ul class="checklist">
+            <li><strong>Verify every contractor</strong> at MyFloridaLicense.com</li>
+            <li>Get multiple bids in writing</li>
+            <li>Never pay full cost upfront</li>
+            <li><strong>Report fraud:</strong> FL Attorney General 1-866-966-7226</li>
+            <li><strong>FEMA Fraud Hotline:</strong> 1-866-720-5721</li>
+        </ul>
+    </div>
+</section>
+
+<!-- ==========================================
+     SECTION 11: FPL AND POWER
+     ========================================== -->
+<section class="guide-section page-break" id="section-11">
+    <div class="section-number">Section 11</div>
+    <h2 class="section-title">FPL and Power Restoration</h2>
+
+    <img src="images/section-11-fpl-power.jpg" alt="FPL Grid Resilience and Restoration" class="section-image">
+
+    <div class="accent-left">
+        <p>FPL has invested <strong>$5+ billion since 2006</strong> in grid hardening. Underground lines performed 5-14 times better than overhead during the 2024 hurricane season.</p>
+    </div>
+
+    <h3>Recent Restoration Benchmarks</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Storm</th>
+                <th>Category</th>
+                <th>Customers Affected</th>
+                <th>Restoration Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Hurricane Milton (2024)</td>
+                <td>Cat 3</td>
+                <td>2+ million</td>
+                <td>5 days</td>
+            </tr>
+            <tr>
+                <td>Hurricane Helene (2024)</td>
+                <td>Cat 4</td>
+                <td>680,000</td>
+                <td>3 days</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Reporting Outages</h3>
+    <ul class="checklist">
+        <li><strong>FPL Outage Line:</strong> 1-800-468-8243 (1-800-4-OUTAGE)</li>
+        <li><strong>FPL Outage Map:</strong> FPLmaps.com</li>
+        <li><strong>FPL Mobile App:</strong> Real-time outage tracking</li>
+    </ul>
+
+    <p>FPL prioritizes restoration: critical facilities first, then main power lines, then neighborhoods with the most customers, then individual homes. Gated communities like St. Andrews may have different timelines based on grid infrastructure. A whole-home generator is strongly recommended.</p>
+</section>
+
+<!-- ==========================================
+     SECTION 12: ESSENTIAL CONTACTS
+     ========================================== -->
+<section class="guide-section alt-bg page-break" id="section-12">
+    <div class="section-inner">
+        <div class="section-number">Section 12</div>
+        <h2 class="section-title">Essential Contacts and Resources</h2>
+
+        <img src="images/section-12-contacts.jpg" alt="Essential Contacts Wallet Card and Reference" class="section-image">
+
+        <h3>Emergency Contacts</h3>
+        <table class="contact-table">
+            <tbody>
+                <tr><td>PBC Emergency Management</td><td>561-712-6400 (24/7 during emergencies)</td></tr>
+                <tr><td>Broward County Emergency</td><td>954-831-3900 | Hotline: 311 or 954-831-4000</td></tr>
+                <tr><td>Boca Raton Citizen Info Center</td><td>561-982-4900 (activated during storms)</td></tr>
+                <tr><td>FPL Outage Reporting</td><td>1-800-468-8243 (1-800-4-OUTAGE)</td></tr>
+                <tr><td>FPL Outage Map</td><td>FPLmaps.com</td></tr>
+                <tr><td>211 Helpline (PBC/Treasure Coast)</td><td>Dial 2-1-1 or 866-882-2991</td></tr>
+                <tr><td>FL Division of Emergency Mgmt</td><td>FloridaDisaster.org | 1-800-354-3571</td></tr>
+                <tr><td>FEMA Disaster Assistance</td><td>1-800-621-3362 | DisasterAssistance.gov</td></tr>
+                <tr><td>FL Attorney General Fraud</td><td>1-866-966-7226</td></tr>
+                <tr><td>FL Dept. of Financial Services</td><td>1-800-227-8676</td></tr>
+                <tr><td>Red Cross (South Florida)</td><td>1-800-733-2767</td></tr>
+                <tr><td>FL511 (Traffic/Evacuation)</td><td>Dial 511 | FL511.com</td></tr>
+                <tr><td>PBC Water Utilities Emergency</td><td>561-740-4600</td></tr>
+                <tr><td>PBC Special Needs Shelter</td><td>561-712-6400</td></tr>
+                <tr><td>Broward Special Needs Registry</td><td>954-831-3902</td></tr>
+                <tr><td>Contractor License Verification</td><td>MyFloridaLicense.com</td></tr>
+                <tr><td>My Safe Florida Home</td><td>mysafeflhome.com</td></tr>
+                <tr><td>Disaster Distress Helpline</td><td>1-800-985-5990</td></tr>
+                <tr><td>FEMA Fraud Hotline</td><td>1-866-720-5721</td></tr>
+                <tr><td>NOAA Weather Radio (WPB)</td><td>162.475 MHz</td></tr>
+                <tr><td>NOAA Weather Radio (Ft. Pierce)</td><td>162.425 MHz</td></tr>
+                <tr><td>Broward Paratransit/TOPS</td><td>866-682-2258</td></tr>
+                <tr><td>FL SAIL Hotline (emergencies)</td><td>1-800-342-3557</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Register for These Alert Systems Now</h3>
+        <ul class="checklist">
+            <li><strong>AlertPBC</strong> &mdash; discover.pbc.gov (phone, text, email)</li>
+            <li><strong>AlertBroward</strong> &mdash; broward.org/Emergency</li>
+            <li><strong>FEMA App</strong> &mdash; Real-time NWS alerts for up to 5 locations</li>
+            <li><strong>FPL Mobile App</strong> &mdash; Outage tracking</li>
+            <li><strong>FL511 App</strong> &mdash; Evacuation route information</li>
+            <li><strong>Wireless Emergency Alerts</strong> &mdash; Built in to all modern phones</li>
+        </ul>
+
+        <p><strong>Social media to follow:</strong> @PBCDEM, @BrowardEMD, @NWSMiami, @FLSERT, @FPLConnect</p>
+    </div>
+</section>
+
+<!-- ==========================================
+     SECTION 13: PRE-SEASON ACTION TIMELINE
+     ========================================== -->
+<section class="guide-section page-break" id="section-13">
+    <div class="section-number">Section 13</div>
+    <h2 class="section-title">Your Pre-Season Action Timeline</h2>
+
+    <img src="images/section-13-timeline.jpg" alt="Pre-Season Action Timeline" class="section-image">
+
+    <div class="key-fact">
+        <p><span class="fact-number">Before June 1</span>Complete all preparation before hurricane season begins. The homeowners who weather hurricanes best are those who completed their checklist in May &mdash; not those scrambling when a watch is issued in September.</p>
+    </div>
+
+    <h3>Insurance and Financial</h3>
+    <ul class="checklist">
+        <li>Review and renew homeowners and flood insurance (30-day waiting period)</li>
+        <li>Confirm replacement cost coverage is adequate</li>
+        <li>Verify high-value item endorsements (art, jewelry, wine, antiques)</li>
+        <li>Ensure ALE coverage is adequate for comparable luxury housing</li>
+        <li>Schedule wind mitigation inspection if expiring (saves up to 30%)</li>
+        <li>Apply for My Safe Florida Home free inspection and grant</li>
+    </ul>
+
+    <h3>Home Hardening</h3>
+    <ul class="checklist">
+        <li>Inspect roof &mdash; shingles, flashing, soffits, straps</li>
+        <li>Test hurricane shutters, label panels for rapid installation</li>
+        <li>Clean gutters and downspouts</li>
+        <li>Reinforce garage doors</li>
+        <li>Seal cracks around windows and doors</li>
+        <li>Verify pool enclosure structural integrity</li>
+        <li>Service generator &mdash; test run, oil change, transfer switch</li>
+        <li>Trim trees &mdash; crown thinning, dead wood, coconut removal</li>
+    </ul>
+
+    <h3>Supplies and Planning</h3>
+    <ul class="checklist">
+        <li>Stock 7-10 day supply kit and prepare Go-Bag</li>
+        <li>Register for AlertPBC or AlertBroward</li>
+        <li>Look up your evacuation zone</li>
+        <li>Establish family communication plan with out-of-area contact</li>
+        <li>Complete video/photo property inventory</li>
+        <li>Fill prescriptions (30-day supply)</li>
+        <li>Pre-register pets for county shelter (PBC opens May 1)</li>
+        <li>Enroll in Special Needs Registry if applicable (before June 1)</li>
+    </ul>
+
+    <h3>Luxury Home Specifics</h3>
+    <ul class="checklist">
+        <li>Service wine cellar HVAC, verify generator backup</li>
+        <li>Photograph and catalog art collections with current appraisals</li>
+        <li>Test UPS backup for security systems and smart home infrastructure</li>
+        <li>Brief household staff on the hurricane plan</li>
+        <li>Confirm post-storm private security arrangements</li>
+        <li>Identify hurricane-safe storage for luxury vehicles</li>
+    </ul>
+</section>
+
+<!-- ==========================================
+     COMMUNITY APPENDIX
+     ========================================== -->
+<section class="guide-section alt-bg page-break" id="community">
+    <div class="section-inner">
+        <div class="section-number">Community Appendix</div>
+        <h2 class="section-title">St. Andrews Country Club</h2>
+
+        <div class="accent-left">
+            <p>St. Andrews Country Club is a private, gated luxury community in western Boca Raton, featuring Mediterranean, transitional, and contemporary architecture on manicured grounds with two championship golf courses. Homes range from approximately $1.5M to $15M+.</p>
+        </div>
+
+        <h3>Storm Preparation Notes for St. Andrews Residents</h3>
+        <ul class="checklist">
+            <li><strong>Location:</strong> Inland western Boca Raton &mdash; NOT in a coastal storm surge evacuation zone</li>
+            <li><strong>Construction:</strong> Most homes are CBS (concrete block and stucco), which performs well in hurricanes when properly maintained</li>
+            <li><strong>Gate Access:</strong> Community will follow emergency protocols during storms &mdash; confirm procedures with the POA</li>
+            <li><strong>Clubhouse:</strong> NOT a designated public shelter</li>
+            <li><strong>Generators:</strong> Require Architectural Review Board approval &mdash; plan with HOA compliance</li>
+            <li><strong>Tree Canopy:</strong> Mature canopy &mdash; schedule trimming early, arborist availability drops as season approaches</li>
+            <li><strong>Pool Homes:</strong> Follow pool prep guidelines (do not drain, shock-treat, lower level)</li>
+            <li><strong>FPL Service:</strong> Gated community restoration varies &mdash; whole-home generator strongly recommended</li>
+        </ul>
+
+        <h3>Your Agent for St. Andrews</h3>
+        <div class="key-fact">
+            <p><strong style="color: var(--white); font-size: 20px;">Edmund Bogen</strong><br>
+            <span style="color: var(--blue); font-size: 14px; letter-spacing: 0.1em;">RESIDENT AND MEMBER, ST. ANDREWS COUNTRY CLUB</span><br><br>
+            The Edmund Bogen Team at Douglas Elliman<br>
+            561-306-7117 | edmund@bogenhomes.com<br><br>
+            <span style="font-size: 14px; opacity: 0.8;">For property-specific storm preparation questions, insurance documentation assistance, or post-storm property assessment.</span></p>
+        </div>
+    </div>
+</section>
+
+<!-- ==========================================
+     FOOTER
+     ========================================== -->
+<footer class="guide-footer">
+    <div class="footer-brand">The Edmund Bogen Team</div>
+    <div class="footer-brokerage">at Douglas Elliman Real Estate</div>
+    <div class="footer-contact">
+        561-306-7117 | edmund@bogenhomes.com<br>
+        bogenhomes.com
+    </div>
+    <p>Research compiled March 2026. Sources include AccuWeather, NOAA/National Hurricane Center, Colorado State University, Florida Division of Emergency Management, FEMA, American Red Cross, Palm Beach County Emergency Management, Broward County Emergency Management, Florida CFO, My Safe Florida Home, FloodSmart.gov, FPL, and additional authoritative sources.</p>
+    <div class="footer-disclaimer">
+        <p>This guide is provided as a community service and general information resource. It does not constitute professional emergency management, insurance, legal, or construction advice. Consult qualified professionals for your specific situation. The Edmund Bogen Team at Douglas Elliman Real Estate. Equal Housing Opportunity.</p>
+    </div>
+</footer>
+
+</body>
+</html>
