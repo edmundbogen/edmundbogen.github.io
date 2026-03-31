@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your First AI Employee - Edmund's Mastermind</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.7;
+            color: #333333;
+            background-color: #ffffff;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Hero Image */
+        .hero {
+            width: 100%;
+            position: relative;
+        }
+
+        .hero img {
+            width: 100%;
+            display: block;
+        }
+
+        /* Navy header */
+        .header {
+            background: #1a3e5c;
+            color: #ffffff;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 38px;
+            font-weight: 300;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .header .subtitle {
+            font-size: 20px;
+            color: #00a8e1;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        /* Content sections */
+        .content {
+            padding: 50px 40px;
+        }
+
+        .content h2 {
+            font-size: 26px;
+            font-weight: 700;
+            color: #1a3e5c;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .content p {
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #333333;
+        }
+
+        .content strong {
+            color: #1a3e5c;
+            font-weight: 700;
+        }
+
+        /* Pain opening */
+        .pain-opening {
+            background: #f4f4f4;
+            border-left: 5px solid #00a8e1;
+            padding: 35px 40px;
+            margin: 0;
+        }
+
+        .pain-opening p {
+            font-size: 18px;
+            line-height: 1.9;
+            color: #333333;
+            margin-bottom: 15px;
+        }
+
+        .pain-opening p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Stats bar */
+        .stats-bar {
+            background: #1a3e5c;
+            color: #ffffff;
+            padding: 35px 40px;
+            text-align: center;
+        }
+
+        .stats-bar p {
+            font-size: 18px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .stats-bar p:last-child {
+            margin-bottom: 0;
+        }
+
+        .stats-bar .stat-highlight {
+            color: #00a8e1;
+            font-size: 22px;
+            font-weight: 800;
+        }
+
+        /* Qualification */
+        .qualification {
+            padding: 50px 40px;
+            background: #ffffff;
+        }
+
+        .qualification p {
+            font-size: 18px;
+            line-height: 1.9;
+            margin-bottom: 18px;
+            color: #333333;
+            padding-left: 15px;
+            border-left: 3px solid #00a8e1;
+        }
+
+        /* System boxes */
+        .system-box {
+            background: #f4f4f4;
+            padding: 30px;
+            margin: 25px 0;
+            border-left: 5px solid #00a8e1;
+        }
+
+        .system-box h3 {
+            color: #00a8e1;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .system-box .system-subtitle {
+            font-size: 15px;
+            color: #666666;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .system-box p {
+            margin-bottom: 12px;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .system-box .opportunity {
+            color: #00a8e1;
+            font-weight: 700;
+            font-size: 17px;
+        }
+
+        /* Accent sections */
+        .accent-section {
+            background: #00a8e1;
+            color: #ffffff;
+            padding: 45px 40px;
+        }
+
+        .accent-section h2 {
+            color: #ffffff;
+            font-size: 28px;
+            margin-bottom: 25px;
+        }
+
+        .accent-section li {
+            color: #ffffff;
+            font-size: 17px;
+        }
+
+        /* Deliverables list */
+        .deliverables {
+            list-style: none;
+            padding: 0;
+            margin: 25px 0;
+        }
+
+        .deliverables li {
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 14px;
+            padding-left: 10px;
+        }
+
+        /* Differentiation */
+        .diff-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .diff-list li {
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 12px;
+            padding-left: 15px;
+            position: relative;
+        }
+
+        .diff-list li::before {
+            content: ">";
+            position: absolute;
+            left: 0;
+            color: #00a8e1;
+            font-weight: 700;
+        }
+
+        /* Session logistics */
+        .logistics {
+            background: #1a3e5c;
+            color: #ffffff;
+            padding: 50px 40px;
+            text-align: center;
+        }
+
+        .logistics h2 {
+            color: #ffffff;
+            font-size: 28px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .logistics .session-block {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .logistics .session-label {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #00a8e1;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .logistics .session-date {
+            font-size: 22px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+
+        .logistics .session-time {
+            font-size: 18px;
+            color: rgba(255,255,255,0.85);
+        }
+
+        .logistics p {
+            color: #ffffff;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .logistics a {
+            color: #00a8e1;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .logistics a:hover {
+            text-decoration: underline;
+        }
+
+        /* CTA button */
+        .cta-button {
+            display: inline-block;
+            background: #00a8e1;
+            color: #ffffff;
+            padding: 18px 45px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border-radius: 4px;
+            margin: 25px 0;
+        }
+
+        .cta-button:hover {
+            background: #0088b8;
+        }
+
+        /* Million dollar question */
+        .million-dollar {
+            background: #f4f4f4;
+            padding: 50px 40px;
+        }
+
+        .million-dollar p {
+            font-size: 19px;
+            line-height: 1.9;
+            color: #1a3e5c;
+            font-weight: 600;
+            margin-bottom: 18px;
+            text-align: center;
+        }
+
+        /* Binary choice */
+        .choice-box {
+            background: #ffffff;
+            border: 2px solid #1a3e5c;
+            padding: 25px 30px;
+            margin: 20px 0;
+        }
+
+        .choice-box.option-a {
+            border-color: #e0e0e0;
+            opacity: 0.7;
+        }
+
+        .choice-box.option-b {
+            border-color: #00a8e1;
+            border-width: 3px;
+        }
+
+        .choice-label {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
+        }
+
+        .choice-box.option-a .choice-label {
+            color: #999999;
+        }
+
+        .choice-box.option-b .choice-label {
+            color: #00a8e1;
+        }
+
+        /* Divider */
+        .divider {
+            height: 2px;
+            background: #00a8e1;
+            margin: 40px 0;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a3e5c;
+            color: #ffffff;
+            padding: 50px 40px;
+            text-align: center;
+        }
+
+        .footer p {
+            color: #ffffff;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .tagline {
+            background: #00a8e1;
+            color: #ffffff;
+            padding: 22px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .header {
+                padding: 40px 25px;
+            }
+
+            .header h1 {
+                font-size: 28px;
+            }
+
+            .content,
+            .pain-opening,
+            .qualification,
+            .accent-section,
+            .logistics,
+            .million-dollar,
+            .footer {
+                padding: 35px 25px;
+            }
+
+            .system-box {
+                padding: 20px;
+            }
+
+            .logistics .session-date {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Image -->
+    <div class="hero">
+        <img src="Images/ai-phone-agent-hero.png" alt="AI Phone Agent - Your First AI Employee">
+    </div>
+
+    <!-- Section 1: Pain Amplification Opening -->
+    <div class="pain-opening">
+        <div class="container">
+            <p>Your phone rang at 11 PM last Tuesday. You let it go to voicemail.</p>
+
+            <p>That caller -- a relocating executive with a <strong>$1.2M budget</strong> -- called the next agent on Google. That agent's AI answered in <strong>0.5 seconds</strong>, qualified the buyer, confirmed pre-approval, and booked a showing for Thursday.</p>
+
+            <p>You woke up to a voicemail. They woke up to a <strong>$33,000 commission</strong>.</p>
+
+            <p>This is happening right now. Every single day. In your market.</p>
+        </div>
+    </div>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+        <div class="container">
+            <p><span class="stat-highlight">78%</span> of buyers work with the first agent who responds</p>
+            <p><span class="stat-highlight">62%</span> of inquiries come outside business hours</p>
+            <p>Average agent takes <span class="stat-highlight">15+ HOURS</span> to respond</p>
+            <p><span class="stat-highlight">48%</span> of sales inquiries go completely unanswered</p>
+        </div>
+    </div>
+
+    <!-- Section 2: Triple Qualification -->
+    <div class="qualification">
+        <div class="container">
+            <h2>IS THIS SESSION FOR YOU?</h2>
+
+            <p>If you're tired of waking up to missed calls that became someone else's commission...</p>
+
+            <p>If you want a <strong>24/7 lead qualifier</strong> that costs less than your monthly phone bill...</p>
+
+            <p>If you're ready to capture <strong>every single lead</strong> that calls your number -- day or night...</p>
+
+            <p style="border-left: none; padding-left: 0; font-weight: 700; color: #1a3e5c; font-size: 20px; text-align: center; margin-top: 30px;">Then clear your calendar. This session will change how you run your business.</p>
+        </div>
+    </div>
+
+    <!-- Section 3: Session Title -->
+    <div class="header">
+        <div class="container">
+            <h1>Your First AI Employee</h1>
+            <p class="subtitle">Hire a 24/7 Lead Qualifier for Less Than Your Phone Bill</p>
+            <p style="font-size: 16px; margin-top: 20px; opacity: 0.8;">Set Up Your First AI Phone Agent This Week</p>
+        </div>
+    </div>
+
+    <!-- Section 4: Positioning Statement -->
+    <div class="content">
+        <div class="container">
+            <p style="font-size: 19px; color: #1a3e5c; font-weight: 600; text-align: center; line-height: 1.9;">This isn't a theory session. You'll see <strong>live demos</strong> of TWO AI phone platforms, watch us set one up from scratch, and leave with everything you need to have yours running by Friday.</p>
+
+            <p style="text-align: center;">The math is brutal and simple: each missed call costs you approximately <strong style="color: #00a8e1;">$10,000 in lost commission</strong>. The solution costs <strong style="color: #00a8e1;">$149/month</strong>. One AI-captured deal pays for <strong style="color: #00a8e1;">five years</strong> of the service.</p>
+
+            <p style="text-align: center;">82% of agents are now using AI in some form. Douglas Elliman and SERHANT report <strong>40% productivity gains</strong>. Teams using AI phone agents report <strong>1-6 additional deals per month</strong>.</p>
+
+            <p style="text-align: center;">The question isn't whether AI phone agents work. The question is how many more commissions you're willing to lose before you set one up.</p>
+        </div>
+    </div>
+
+    <!-- Section 5: The 3 Systems Framework -->
+    <div class="content" style="background: #f9f9f9;">
+        <div class="container">
+            <h2>THE 3 SYSTEMS YOU'LL MASTER</h2>
+
+            <div class="system-box">
+                <h3>1&#xFE0F;&#x20E3; System #1: The Never-Miss Setup</h3>
+                <p class="system-subtitle">My AI Front Desk -- Plug-and-Play AI Receptionist</p>
+                <p><strong>What it does:</strong> Answers every call in under 1 second. Qualifies leads. Books appointments. Answers FAQs about your listings. Works 24/7/365 without breaks, bad days, or vacation requests.</p>
+                <p><strong>Cost:</strong> $99-$149/month. That's less than most agents spend on coffee.</p>
+                <p><strong>Setup time:</strong> 2-4 hours. You'll have it running before the weekend.</p>
+                <p><strong>Why it matters:</strong> The 5-minute rule is real -- responding within 5 minutes makes you <strong>100x more likely to connect</strong> and <strong>21x more likely to convert</strong>. This tool responds in 0.5 seconds.</p>
+                <p class="opportunity">Your opportunity: Stop losing leads to voicemail tonight. $149/month vs. the $10,000 you lose every time a call goes unanswered.</p>
+            </div>
+
+            <div class="system-box">
+                <h3>2&#xFE0F;&#x20E3; System #2: The Custom AI ISA</h3>
+                <p class="system-subtitle">Bland AI -- Maximum Control for Teams</p>
+                <p><strong>What it does:</strong> Enterprise-grade AI calling with voice cloning, custom conversation pathways, and deep CRM integration. This is the tool for teams that want total control over every word their AI says.</p>
+                <p><strong>Cost:</strong> $299-$499/month plus per-minute usage. Higher investment, higher ceiling.</p>
+                <p><strong>The edge:</strong> Clone your own voice. Build custom qualification pathways. Scale across an entire team. AI qualification nearly <strong>doubles MQL conversion</strong> -- from 38.8% to 76%.</p>
+                <p class="opportunity">Your opportunity: Replace a $4,000-$6,000/month human ISA with an AI that works every hour of every day -- at 70-85% cost reduction.</p>
+            </div>
+
+            <div class="system-box">
+                <h3>3&#xFE0F;&#x20E3; System #3: The ROI Machine</h3>
+                <p class="system-subtitle">The Math That Makes This a No-Brainer</p>
+                <p><strong>What it does:</strong> Connects your AI phone agent to Follow Up Boss via Zapier, creates automated follow-up sequences, and gives you a clear 7-day implementation plan to go from zero to fully operational.</p>
+                <p><strong>The numbers:</strong> Only 10% of missed calls ever convert later. If you're getting 20 calls a month and missing half, that's 10 lost opportunities. At even a 20% close rate, that's 2 deals. At $8,000 average commission, that's <strong>$16,000/month you're leaving on the table</strong>.</p>
+                <p><strong>The comparison:</strong> AI phone agent at $149/month vs. human ISA at $4,000-6,000/month. Same job. One never sleeps.</p>
+                <p class="opportunity">Your opportunity: Build the complete system -- AI answering, CRM integration, automated follow-up -- in 7 days. One deal pays for 5+ years of the service.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 6: Differentiation -->
+    <div class="content">
+        <div class="container">
+            <h2>THIS ISN'T A YOUTUBE TUTORIAL</h2>
+
+            <p>You can watch videos about AI phone agents all day. They won't show you what happens when a real lead calls. They won't answer your specific questions. And they definitely won't set one up for your business in real time.</p>
+
+            <p><strong>Here's what makes this session different:</strong></p>
+
+            <ul class="diff-list">
+                <li><strong>LIVE demo calls</strong> to real AI phone agents -- you'll hear them qualify leads in real time</li>
+                <li><strong>Side-by-side comparison</strong> of both platforms so you can choose the right one for your business</li>
+                <li><strong>Watch us set up a working AI receptionist</strong> from scratch during the session</li>
+                <li><strong>ROI calculator</strong> you'll fill in with YOUR numbers -- not hypotheticals</li>
+                <li><strong>7-day implementation plan</strong> -- you'll be live before next week</li>
+            </ul>
+
+            <p>Live demos. Real platform walkthroughs. Your questions answered in real time. That's the Mastermind difference.</p>
+        </div>
+    </div>
+
+    <!-- Section 7: What You'll Leave With -->
+    <div class="accent-section">
+        <div class="container">
+            <h2>WHAT YOU'LL WALK AWAY WITH</h2>
+            <ul class="deliverables">
+                <li>&#128214; Complete implementation workbook with step-by-step setup guides for both platforms</li>
+                <li>&#128221; Copy-paste AI phone scripts -- greeting, qualification, FAQs, follow-up booking</li>
+                <li>&#128200; Personal ROI calculator pre-loaded with YOUR numbers</li>
+                <li>&#128268; Follow Up Boss + Zapier integration recipe (plug and play)</li>
+                <li>&#128197; 7-day implementation timeline -- live by next Friday</li>
+                <li>&#9989; Compliance checklist -- recording disclosure, Fair Housing, TCPA requirements</li>
+                <li>&#127909; Full recording of the session (available for 90 days)</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Section 8: Mastermind Reality Check -->
+    <div class="content" style="background: #f9f9f9;">
+        <div class="container">
+            <h2>THE MASTERMIND REALITY CHECK</h2>
+
+            <p>I'm going to show you exactly how to do this yourself. That's what I do -- I give you the tools, the scripts, the frameworks. You can implement everything from this session on your own.</p>
+
+            <p><strong>But I also know the real barrier isn't information. It's implementation.</strong></p>
+
+            <p>That's why this session includes live walkthroughs, not slide decks. You'll see real AI agents answering real calls. You'll watch a setup happen in real time. And you'll have a workbook that walks you through every click.</p>
+
+            <p>The agents who attend these sessions and implement within 48 hours consistently report the biggest results. Teams are reporting <strong>1-6 additional deals per month</strong> from AI-captured leads.</p>
+
+            <p><strong>The cost of waiting is not zero.</strong> Every week without an AI phone agent is another week of calls going to voicemail, another week of leads calling the next agent, another week of commissions walking out the door.</p>
+        </div>
+    </div>
+
+    <!-- Section 9: Session Logistics -->
+    <div class="logistics">
+        <div class="container">
+            <h2>SESSION DETAILS</h2>
+
+            <p style="font-size: 17px; margin-bottom: 25px; color: rgba(255,255,255,0.85);">Two sessions. Same content. Attend whichever fits your schedule.</p>
+
+            <div class="session-block">
+                <p class="session-label">Session 1</p>
+                <p class="session-date">Tuesday, April 15, 2026</p>
+                <p class="session-time">9:00 AM Eastern</p>
+            </div>
+
+            <div class="session-block">
+                <p class="session-label">Session 2</p>
+                <p class="session-date">Thursday, April 17, 2026</p>
+                <p class="session-time">12:00 PM Eastern</p>
+            </div>
+
+            <div style="margin: 30px 0; padding: 20px; background: rgba(255,255,255,0.08); border-radius: 4px;">
+                <p><strong>Zoom Link:</strong> <a href="https://us02web.zoom.us/j/83924796230">us02web.zoom.us/j/83924796230</a></p>
+                <p><strong>Meeting ID:</strong> 839 2479 6230</p>
+                <p><strong>Workbook:</strong> <a href="https://edmundbogen.github.io/ai-phone-agent-workbook.html">Download the Implementation Workbook</a></p>
+            </div>
+
+            <p style="font-size: 15px; opacity: 0.8;">This session will be recorded and available to all Edmund's Mastermind members for 90 days.</p>
+        </div>
+    </div>
+
+    <!-- Section 10: The Million-Dollar Question -->
+    <div class="million-dollar">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 30px;">THE MILLION-DOLLAR QUESTION</h2>
+
+            <p>What if every call to your number was answered in 0.5 seconds -- day or night?</p>
+
+            <p>What if a $149/month tool could capture 5 extra leads per month?</p>
+
+            <p>What if one AI-captured deal paid for 5 years of the service?</p>
+
+            <p style="color: #00a8e1; font-size: 22px; margin-top: 30px;">What would that be worth to your business?</p>
+        </div>
+    </div>
+
+    <!-- Section 11: Binary Choice Close -->
+    <div class="content">
+        <div class="container">
+            <h2>THE CHOICE IS SIMPLE</h2>
+
+            <div class="choice-box option-a">
+                <p class="choice-label">Option A</p>
+                <p style="font-size: 17px; margin: 0;">Keep letting calls go to voicemail. Keep losing leads to competitors who respond in seconds. Keep waking up to missed opportunities. Hope that the 10% of missed calls that "might" convert later actually do.</p>
+            </div>
+
+            <div class="choice-box option-b">
+                <p class="choice-label">Option B</p>
+                <p style="font-size: 17px; margin: 0;"><strong>Set up your first AI employee this week.</strong> Never miss another call. Never lose another lead to slow response time. Capture every opportunity that comes to your phone number -- 24 hours a day, 7 days a week -- for less than your monthly phone bill.</p>
+            </div>
+
+            <p style="text-align: center; margin-top: 40px; font-size: 19px; color: #1a3e5c; font-weight: 600;">I'll see you on the Zoom.</p>
+
+            <div style="text-align: center; margin: 30px 0;">
+                <a href="https://us02web.zoom.us/j/83924796230" class="cta-button">JOIN THE SESSION</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 12: Signature & Footer -->
+    <div class="footer">
+        <div class="container">
+            <p style="font-size: 24px; font-weight: 700; margin-bottom: 5px;">Edmund Bogen & Team</p>
+            <p style="font-size: 16px; opacity: 0.85;">Edmund's Mastermind & Group Coaching</p>
+
+            <div style="margin: 35px 0; padding: 25px 0; border-top: 1px solid rgba(255,255,255,0.2); border-bottom: 1px solid rgba(255,255,255,0.2);">
+                <p style="font-size: 16px; font-weight: 700; margin-bottom: 15px;">P.S. -- The Competitive Reality</p>
+                <p style="font-size: 15px;">While you're reading this invitation, someone in your market already has an AI answering their phone. Their leads are being qualified at 2 AM. Their showings are being booked while they sleep.</p>
+                <p style="font-size: 15px; margin-top: 12px;">82% of agents are already using AI in some form. The ones using AI phone agents are reporting 1-6 additional deals per month. That's $8,000 to $48,000 in commission you're not earning.</p>
+                <p style="font-size: 15px; margin-top: 12px; color: #00a8e1; font-weight: 700;">Every day without an AI phone agent is another day of calls going to voicemail and commissions going to your competitors.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tagline -->
+    <div class="tagline">
+        "Because Missing Calls is NOT an Option!"
+    </div>
+
+</body>
+</html>
