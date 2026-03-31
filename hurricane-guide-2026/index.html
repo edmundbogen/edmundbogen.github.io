@@ -110,6 +110,7 @@
                 line-height: 1.5;
                 color: #1a1a1a !important;
                 background: #ffffff !important;
+                padding-bottom: 0 !important;
             }
             .no-print { display: none !important; }
             .page-break { page-break-before: always; }
@@ -235,24 +236,6 @@
             position: relative;
             z-index: 1;
             max-width: 560px;
-        }
-        .hero-pre {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            max-width: none;
-            text-align: center;
-            font-size: 14px;
-            font-weight: 600;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: #ffffff;
-            padding: 14px 20px;
-            background: rgba(10, 20, 35, 0.75);
-            border-bottom: 2px solid var(--blue);
-            z-index: 2;
-            text-shadow: 0 1px 4px rgba(0,0,0,0.5);
         }
         .hero h1 {
             font-size: 52px;
@@ -696,7 +679,7 @@
         Download PDF
     </a>
     <a href="javascript:window.print()" class="print-link">or print this page</a>
-    <div class="theme-toggle" onclick="toggleTheme()" role="button" aria-label="Toggle dark mode" tabindex="0">
+    <div class="theme-toggle" onclick="toggleTheme()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleTheme()}" role="button" aria-label="Toggle dark mode" tabindex="0">
         <span class="theme-toggle-label" id="theme-label">Dark Mode</span>
         <div class="theme-toggle-track"></div>
     </div>
@@ -705,7 +688,7 @@
 <!-- ==========================================
      HERO / COVER PAGE
      ========================================== -->
-<section class="hero page-break" id="top">
+<section class="hero page-break" id="top" aria-label="Hurricane Preparedness Guide 2026 cover">
     <h1>Hurricane<br>Preparedness<br><span>Guide 2026</span></h1>
     <div class="hero-accent-bar"></div>
     <div class="hero-sub">The Definitive Resource for South Florida Luxury Homeowners</div>
@@ -729,7 +712,7 @@
             <li><a href="#section-4">Building Your Emergency Supply Kit</a></li>
             <li><a href="#section-5">Home Hardening</a></li>
             <li><a href="#section-6">Generator Strategy for Luxury Homes</a></li>
-            <li><a href="#section-7">Insurance -- The Financial Shield</a></li>
+            <li><a href="#section-7">Insurance &mdash; The Financial Shield</a></li>
             <li><a href="#section-8">Pet Safety and Special Needs</a></li>
             <li><a href="#section-9">When a Storm Is Named for Your Area</a></li>
             <li><a href="#section-10">After the Storm</a></li>
@@ -805,12 +788,12 @@
     </table>
     </div>
 
-    <h3>The El Nino Factor</h3>
-    <p>El Nino is the dominant variable this year. NOAA's Climate Prediction Center gives a <strong>62% probability</strong> of El Nino developing by June-August 2026, rising to 72-80% by fall. El Nino increases upper-level wind shear that disrupts storm formation. In El Nino years, the Atlantic averages roughly 10 named storms and 5 hurricanes, compared to 15 storms and 8 hurricanes during La Nina years.</p>
-    <p>There is a 15% chance of a "super El Nino" (&ge;2&deg;C above normal), which would further suppress activity.</p>
+    <h3>The El Ni&ntilde;o Factor</h3>
+    <p>El Ni&ntilde;o is the dominant variable this year. NOAA's Climate Prediction Center gives a <strong>62% probability</strong> of El Ni&ntilde;o developing by June-August 2026, rising to 72-80% by fall. El Ni&ntilde;o increases upper-level wind shear that disrupts storm formation. In El Ni&ntilde;o years, the Atlantic averages roughly 10 named storms and 5 hurricanes, compared to 15 storms and 8 hurricanes during La Nina years.</p>
+    <p>There is a 15% chance of a "super El Ni&ntilde;o" (&ge;2&deg;C above normal), which would further suppress activity.</p>
 
     <h3>Why Warm Water Changes Everything</h3>
-    <p>Atlantic sea surface temperatures remain "exceptionally, exceptionally warm" &mdash; extending hundreds of feet below the surface. The Gulf of Mexico has warmed at <strong>twice the global rate since 1970</strong>. This creates major rapid-intensification risk regardless of El Nino. Storms can go from tropical storm to Category 4 in under 24 hours when they cross superheated waters.</p>
+    <p>Atlantic sea surface temperatures remain "exceptionally, exceptionally warm" &mdash; extending hundreds of feet below the surface. The Gulf of Mexico has warmed at <strong>twice the global rate since 1970</strong>. This creates major rapid-intensification risk regardless of El Ni&ntilde;o. Storms can go from tropical storm to Category 4 in under 24 hours when they cross superheated waters.</p>
 
     <div class="callout-critical">
         <p>The 1992 season produced just 7 named storms. One of them was Hurricane Andrew, which devastated South Florida and caused $27 billion in damage. A quiet season means nothing if that one storm hits your community.</p>
@@ -852,7 +835,7 @@
                     <td>Lake Okeechobee Hurricane</td>
                     <td>1928</td>
                     <td>Cat 4</td>
-                    <td>2,500-3,000 killed &mdash; 2nd deadliest U.S. natural disaster</td>
+                    <td>2,500-3,000 killed &mdash; 2nd deadliest U.S. hurricane</td>
                 </tr>
                 <tr>
                     <td>Hurricane Andrew</td>
@@ -875,8 +858,8 @@
                 <tr>
                     <td>Hurricane Irma</td>
                     <td>2017</td>
-                    <td>Cat 4</td>
-                    <td>$300 million in PBC damage alone</td>
+                    <td>Cat 4 (at landfall)</td>
+                    <td>$300 million in PBC damage; tropical-storm-force winds locally</td>
                 </tr>
             </tbody>
         </table>
@@ -1338,7 +1321,7 @@
     </div>
 
     <h3>The Florida Insurance Market Is Improving</h3>
-    <p>Citizens Property Insurance policy count dropped from 1.42 million (Oct 2023) to ~395,144 (Jan 2026). OIR approved an average <strong>8.8% rate cut for 2026</strong>. Seventeen new companies have entered the market since 2022 reforms. South Florida will see the largest reductions.</p>
+    <p>Citizens Property Insurance policy count dropped from 1.42 million (Oct 2023) to ~395,144 (Jan 2026). OIR approved an average <strong>8.8% Citizens rate cut for 2026</strong>. Seventeen new companies have entered the market since 2022 reforms. South Florida will see the largest reductions.</p>
 
     <h3>Wind Mitigation Inspection</h3>
     <p>A $100-$200 inspection can yield <strong>up to 30% savings</strong> on your policy. Valid for 5 years. The single highest-ROI preparedness action.</p>
@@ -1360,7 +1343,7 @@
         <img src="images/section-08-pet-safety.jpg" alt="Pet Safety and Special Needs" class="section-image">
 
         <div class="callout-critical">
-            <p>TROOPER'S LAW (SB 150): It is illegal in Florida to abandon, confine, or leave pets behind during a hurricane, tropical storm, or tornado warning.</p>
+            <p>TROOPER'S LAW (SB 150): It is a third-degree felony in Florida to restrain and abandon a dog outdoors during a declared natural disaster or while an evacuation order is in effect.</p>
         </div>
 
         <h3>Pet Supply Checklist (7-10 Days)</h3>
@@ -1378,7 +1361,7 @@
         </ul>
 
         <h3>Shelter Options</h3>
-        <p><strong>Palm Beach County:</strong> West Boynton Recreational Center, 6000 Northtree Blvd., Lake Worth, FL 33463. Pre-registration opens May 1 through PBC Animal Care and Control (561-233-1271).</p>
+        <p><strong>Palm Beach County:</strong> West Boynton Recreational Center, 6000 Northtree Blvd., Lake Worth, FL 33463. Pre-registration opens May 1 through PBC Animal Care and Control (561-233-1200).</p>
         <p><strong>Broward County:</strong> Three pet-friendly shelters: Lyons Creek Middle School (Coconut Creek), Everglades High School (Miramar), and Falcon Cove Middle School (Weston). Pre-register through the Humane Society of Broward County (954-989-3977) or Pet Hurricane Hotline (954-266-6871).</p>
 
         <div class="callout">
@@ -1391,7 +1374,7 @@
             <li><strong>PBC:</strong> Physician-signed application &mdash; call 561-712-6400</li>
             <li><strong>Broward:</strong> Year-round pre-registration &mdash; call 954-831-3902</li>
             <li><strong>FL Special Needs Registry:</strong> snr.flhealthresponse.com &mdash; enroll before June 1</li>
-            <li><strong>Transportation:</strong> Palm Tran Connection 561-649-9848 (PBC)</li>
+            <li><strong>Transportation:</strong> Palm Tran Connection 561-649-9838 (PBC)</li>
         </ul>
 
         <div class="back-to-top"><a href="#toc">Back to Contents</a></div>
@@ -1581,7 +1564,7 @@
     <img src="images/section-11-fpl-power.jpg" alt="FPL Grid Resilience and Restoration" class="section-image">
 
     <div class="accent-left">
-        <p>FPL has invested <strong>$5+ billion since 2006</strong> in grid hardening. Underground lines performed 5-14 times better than overhead during the 2024 hurricane season.</p>
+        <p>FPL has invested <strong>over $11 billion since 2006</strong> in grid hardening. Underground lines performed 5-14 times better than overhead during the 2024 hurricane season.</p>
     </div>
 
     <h3>Recent Restoration Benchmarks</h3>
@@ -1637,6 +1620,7 @@
         <h3>Emergency Contacts</h3>
         <div class="table-wrap">
         <table class="contact-table">
+            <thead><tr><th>Resource</th><th>Contact</th></tr></thead>
             <tbody>
                 <tr><td>PBC Emergency Management</td><td>561-712-6400 (24/7 during emergencies)</td></tr>
                 <tr><td>Broward County Emergency</td><td>954-831-3900 | Hotline: 311 or 954-831-4000</td></tr>
@@ -1644,10 +1628,10 @@
                 <tr><td>FPL Outage Reporting</td><td>1-800-468-8243 (1-800-4-OUTAGE)</td></tr>
                 <tr><td>FPL Outage Map</td><td>FPLmaps.com</td></tr>
                 <tr><td>211 Helpline (PBC/Treasure Coast)</td><td>Dial 2-1-1 or 866-882-2991</td></tr>
-                <tr><td>FL Division of Emergency Mgmt</td><td>FloridaDisaster.org | 1-800-354-3571</td></tr>
+                <tr><td>FL Division of Emergency Mgmt</td><td>FloridaDisaster.org | 1-800-342-3557</td></tr>
                 <tr><td>FEMA Disaster Assistance</td><td>1-800-621-3362 | DisasterAssistance.gov</td></tr>
                 <tr><td>FL Attorney General Fraud</td><td>1-866-966-7226</td></tr>
-                <tr><td>FL Dept. of Financial Services</td><td>1-800-227-8676</td></tr>
+                <tr><td>FL Dept. of Financial Services</td><td>1-877-693-5236 (Consumer Helpline)</td></tr>
                 <tr><td>Red Cross (South Florida)</td><td>1-800-733-2767</td></tr>
                 <tr><td>FL511 (Traffic/Evacuation)</td><td>Dial 511 | FL511.com</td></tr>
                 <tr><td>PBC Water Utilities Emergency</td><td>561-740-4600</td></tr>
