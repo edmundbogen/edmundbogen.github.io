@@ -237,13 +237,22 @@
             max-width: 560px;
         }
         .hero-pre {
-            font-size: 13px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            max-width: none;
+            text-align: center;
+            font-size: 14px;
             font-weight: 600;
             letter-spacing: 0.2em;
             text-transform: uppercase;
-            color: var(--blue);
-            margin-bottom: 24px;
-            text-shadow: 0 1px 6px rgba(0,0,0,0.5);
+            color: #ffffff;
+            padding: 14px 20px;
+            background: rgba(10, 20, 35, 0.75);
+            border-bottom: 2px solid var(--blue);
+            z-index: 2;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.5);
         }
         .hero h1 {
             font-size: 52px;
@@ -697,7 +706,7 @@
      HERO / COVER PAGE
      ========================================== -->
 <section class="hero page-break" id="top">
-    <div class="hero-pre">The Edmund Bogen Team at Douglas Elliman Real Estate</div>
+    <div class="hero-pre">The Edmund Bogen Team</div>
     <h1>Hurricane<br>Preparedness<br><span>Guide 2026</span></h1>
     <div class="hero-accent-bar"></div>
     <div class="hero-sub">The Definitive Resource for South Florida Luxury Homeowners</div>
