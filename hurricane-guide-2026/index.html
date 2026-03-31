@@ -199,15 +199,15 @@
 
         /* ---- HERO ---- */
         .hero {
-            background: url('images/hero-cover.png') center center / cover no-repeat;
+            background: url('images/hero-cover.png') right center / cover no-repeat;
             color: #ffffff;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 80px 40px;
+            align-items: flex-start;
+            text-align: left;
+            padding: 80px 40px 80px 8%;
             position: relative;
             border-bottom: 1px solid var(--border);
         }
@@ -215,17 +215,26 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(
-                to bottom,
-                rgba(10, 20, 35, 0.45) 0%,
-                rgba(26, 62, 92, 0.55) 40%,
-                rgba(10, 20, 35, 0.75) 100%
-            );
+            background:
+                linear-gradient(
+                    to right,
+                    rgba(10, 20, 35, 0.85) 0%,
+                    rgba(26, 62, 92, 0.55) 50%,
+                    rgba(10, 20, 35, 0.25) 100%
+                ),
+                linear-gradient(
+                    to bottom,
+                    rgba(10, 20, 35, 0.3) 0%,
+                    transparent 30%,
+                    transparent 70%,
+                    rgba(10, 20, 35, 0.5) 100%
+                );
             z-index: 0;
         }
         .hero > * {
             position: relative;
             z-index: 1;
+            max-width: 560px;
         }
         .hero-pre {
             font-size: 13px;
@@ -276,7 +285,7 @@
             width: 60px;
             height: 4px;
             background: var(--blue);
-            margin: 32px auto;
+            margin: 32px 0;
         }
         .hero-logo {
             margin-top: 40px;
@@ -654,6 +663,8 @@
 
         /* ---- RESPONSIVE ---- */
         @media (max-width: 768px) {
+            .hero { padding: 60px 24px; align-items: flex-start; text-align: left; background-position: 70% center; }
+            .hero > * { max-width: 100%; }
             .hero h1 { font-size: 32px; }
             .hero h1 span { font-size: 38px; }
             .section-title { font-size: 24px; }
