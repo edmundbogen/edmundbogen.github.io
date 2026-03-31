@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Zillow AI Domination Session - Edmund Bogen</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.7;
+            color: #333333;
+            background-color: #ffffff;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            width: 100%;
+            min-height: 420px;
+            overflow: hidden;
+        }
+
+        .hero img {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(26,62,92,0.85) 0%, rgba(26,62,92,0.95) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .hero-overlay h1 {
+            font-size: 38px;
+            font-weight: 300;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        .hero-overlay p {
+            font-size: 18px;
+            color: #ffffff;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .hero-date {
+            font-size: 15px;
+            color: #00a8e1;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* Content sections */
+        .content {
+            padding: 50px 40px;
+        }
+
+        .content h2 {
+            font-size: 26px;
+            font-weight: 600;
+            color: #1a3e5c;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .content p {
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #333333;
+        }
+
+        .content strong {
+            color: #1a3e5c;
+            font-weight: 700;
+        }
+
+        /* Accent sections */
+        .accent-section {
+            background: #00a8e1;
+            color: #ffffff;
+            padding: 40px;
+            margin: 0;
+        }
+
+        .accent-section h2 {
+            color: #ffffff;
+            font-size: 28px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .accent-section p {
+            color: #ffffff;
+            font-size: 17px;
+            line-height: 1.8;
+        }
+
+        /* System boxes */
+        .system-box {
+            background: #f4f4f4;
+            padding: 30px;
+            margin: 25px 0;
+            border-left: 5px solid #00a8e1;
+        }
+
+        .system-box h3 {
+            color: #00a8e1;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .system-box p {
+            margin-bottom: 12px;
+        }
+
+        .system-box .opportunity {
+            color: #1a3e5c;
+            font-weight: 700;
+            font-size: 16px;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #ddd;
+        }
+
+        /* Stats box */
+        .stats {
+            background: #1a3e5c;
+            color: #ffffff;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .stats p {
+            font-size: 18px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .stats .stat-highlight {
+            color: #00a8e1;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        /* Lists */
+        ul {
+            margin: 20px 0;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        li {
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        /* Qualification list */
+        .qual-list li {
+            padding: 12px 20px;
+            background: #f4f4f4;
+            margin-bottom: 10px;
+            border-left: 4px solid #00a8e1;
+            font-weight: 600;
+            color: #1a3e5c;
+        }
+
+        /* CTA button */
+        .cta-button {
+            display: inline-block;
+            background: #00a8e1;
+            color: #ffffff;
+            padding: 18px 45px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border-radius: 4px;
+            margin: 25px 0;
+            transition: background 0.3s;
+        }
+
+        .cta-button:hover {
+            background: #0088b8;
+        }
+
+        /* Session title banner */
+        .session-title-banner {
+            text-align: center;
+            padding: 35px;
+            background: #f4f4f4;
+            margin: 30px 0;
+        }
+
+        .session-title-banner h2 {
+            color: #00a8e1;
+            font-size: 30px;
+            margin-bottom: 10px;
+            letter-spacing: 0.06em;
+        }
+
+        .session-title-banner p {
+            color: #1a3e5c;
+            font-size: 18px;
+            font-style: italic;
+        }
+
+        /* Deliverable list */
+        .deliverable-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #e8e8e8;
+            font-size: 17px;
+        }
+
+        .deliverable-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Differentiation grid */
+        .diff-item {
+            padding: 15px 20px;
+            background: #f4f4f4;
+            margin-bottom: 12px;
+            border-left: 4px solid #00a8e1;
+        }
+
+        .diff-item strong {
+            color: #00a8e1;
+        }
+
+        /* Choice boxes */
+        .choice-box {
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .choice-a {
+            background: #f4f4f4;
+            border-left: 5px solid #999;
+        }
+
+        .choice-b {
+            background: #1a3e5c;
+            border-left: 5px solid #00a8e1;
+            color: #ffffff;
+        }
+
+        .choice-b p,
+        .choice-b strong {
+            color: #ffffff;
+        }
+
+        .choice-label {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a3e5c;
+            color: #ffffff;
+            padding: 50px 40px;
+            text-align: center;
+        }
+
+        .footer p {
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            background: #00a8e1;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        /* Divider */
+        .divider {
+            height: 2px;
+            background: #00a8e1;
+            margin: 40px 0;
+        }
+
+        /* Million dollar questions */
+        .question-block {
+            padding: 30px;
+            background: #f4f4f4;
+            margin: 30px 0;
+        }
+
+        .question-block p {
+            font-size: 19px;
+            font-weight: 600;
+            color: #1a3e5c;
+            margin-bottom: 12px;
+            font-style: italic;
+        }
+
+        /* Session details */
+        .session-detail {
+            display: flex;
+            padding: 12px 0;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        .session-detail .label {
+            font-weight: 700;
+            color: #1a3e5c;
+            min-width: 120px;
+        }
+
+        .session-detail a {
+            color: #00a8e1;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .session-detail a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .content, .accent-section, .footer {
+                padding: 30px 20px;
+            }
+
+            .hero-overlay h1 {
+                font-size: 26px;
+            }
+
+            .content h2 {
+                font-size: 22px;
+            }
+
+            .session-title-banner h2 {
+                font-size: 22px;
+            }
+
+            .session-detail {
+                flex-direction: column;
+            }
+
+            .session-detail .label {
+                margin-bottom: 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO IMAGE -->
+    <div class="hero">
+        <img src="Images/zillow-ai-hero.png" alt="The Zillow AI Domination Session">
+        <div class="hero-overlay">
+            <div>
+                <p class="hero-date">April 8, 2026 | 9:00 AM ET</p>
+                <h1>The Zillow AI Domination Session</h1>
+                <p>How to Stay Relevant When Buyers Arrive Pre-Programmed</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 1: PAIN AMPLIFICATION OPENING -->
+    <div class="content">
+        <div class="container">
+            <p>Five days ago, Zillow stood on a stage in New York City and declared war on the way you do business.</p>
+
+            <p>They launched <strong>AI Mode</strong> -- a conversational AI advisor now available to <strong>235 million monthly visitors</strong>. That's not a beta. That's not a press release. That is a fully operational system that gives every buyer in America comp analysis, offer strategies, neighborhood intelligence, and financing options <strong>before they ever pick up the phone to call you.</strong></p>
+
+            <p>While most agents spent last week posting market updates and door-knocking, the top 1% were already rewriting their value propositions, repositioning their listing presentations, and building AI counter-strategies. They understand something the rest of the industry hasn't processed yet: <strong>the education phase where you built trust with buyers -- the phase that justified your commission -- is now being handled by a machine that never sleeps, never forgets a preference, and never loses a lead.</strong></p>
+
+            <p>The question is no longer whether AI will change real estate. That happened on March 25th. The question is whether you'll be the agent who adapted in the first two weeks -- or the one who figured it out six months too late.</p>
+        </div>
+    </div>
+
+    <!-- SECTION 2: TRIPLE QUALIFICATION -->
+    <div class="content" style="background: #f4f4f4; padding: 40px;">
+        <div class="container">
+            <h2>This Session Is For You If...</h2>
+            <ul class="qual-list">
+                <li>If you're tired of buyers who show up knowing more than you -- because an algorithm briefed them for weeks before you met</li>
+                <li>If you want to stop losing listings to agents who've already adapted to AI and repositioned their value</li>
+                <li>If you're ready to turn Zillow's $2.6 billion investment into YOUR competitive advantage instead of your obituary</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- SECTION 3: SESSION TITLE -->
+    <div class="session-title-banner">
+        <div class="container">
+            <p style="font-size: 14px; text-transform: uppercase; letter-spacing: 0.15em; color: #666; margin-bottom: 15px;">Edmund's Mastermind Presents</p>
+            <h2>THE ZILLOW AI DOMINATION SESSION</h2>
+            <p>How to Stay Relevant When Buyers Arrive Pre-Programmed</p>
+        </div>
+    </div>
+
+    <!-- SECTION 4: POSITIONING STATEMENT -->
+    <div class="content">
+        <div class="container">
+            <p style="font-size: 19px; color: #1a3e5c; font-weight: 600; text-align: center; margin: 10px 0 30px;">This isn't theory. This isn't speculation. This isn't a webinar about "the future of AI."</p>
+
+            <p>You'll see the <strong>exact frameworks</strong> top producers deployed in the first 72 hours after Zillow's AI Mode launch. You'll get the scripts they rewrote. The listing presentations they rebuilt. The AI tools they stacked to fight fire with fire.</p>
+
+            <p>Zillow posted <strong>$2.6 billion in revenue in 2025</strong> -- a 16% year-over-year increase -- and hit <strong>GAAP profitability for the first time in company history.</strong> Their CEO said the quiet part out loud: they're "connecting the entire housing journey with AI." They control <strong>90% of all in-person tours</strong> through ShowingTime. They process <strong>50% of U.S. closings</strong> through Dotloop. Their home loans division grew <strong>6x</strong> with a 44% financing attach rate.</p>
+
+            <p>This is not a company experimenting. This is a company executing. And this session gives you the playbook to execute right alongside them.</p>
+        </div>
+    </div>
+
+    <!-- DATA STATS BAR -->
+    <div class="stats">
+        <div class="container">
+            <p><span class="stat-highlight">235M</span> monthly visitors now have an AI advisor</p>
+            <p><span class="stat-highlight">80%</span> direct traffic -- they don't need Google anymore</p>
+            <p><span class="stat-highlight">70%</span> of U.S. buyers and sellers reached by Zillow</p>
+            <p><span class="stat-highlight">$2.6B</span> revenue | First profitable year | <span class="stat-highlight">6x</span> lending growth</p>
+        </div>
+    </div>
+
+    <!-- SECTION 5: THE 3 SYSTEMS FRAMEWORK -->
+    <div class="content">
+        <div class="container">
+            <h2>The 3 Systems You'll Master</h2>
+            <p>Each system is designed to turn Zillow's disruption into your distinct competitive advantage.</p>
+
+            <div class="system-box">
+                <h3>1&#xFE0F;&#x20E3; System #1: The AI Translator Framework</h3>
+                <p>Zillow's AI gives buyers data. Raw, unfiltered, context-free data. Comp reports without strategy. Neighborhood stats without local nuance. Offer ranges without negotiation leverage.</p>
+                <p><strong>This system positions you as the agent who interprets AI for clients.</strong> You become the translator between what the algorithm says and what it actually means for their specific situation. The agent who can say "Zillow's AI told you X -- here's what it missed, and here's why it matters for your offer."</p>
+                <p class="opportunity">Your opportunity: Buyers don't need less information. They need someone who can make sense of MORE information. That's you.</p>
+            </div>
+
+            <div class="system-box">
+                <h3>2&#xFE0F;&#x20E3; System #2: The Listing-Side Money Move</h3>
+                <p>Here's what nobody is talking about: <strong>Zillow is explicitly shifting investment toward listing agents and away from buyer's agents.</strong> They said it at their investor summit. They're building tools, ad products, and AI features designed to capture listing inventory.</p>
+                <p>This system shows you how to pivot to where the $2.6 billion is flowing. How to position yourself as a listing specialist in a market where Zillow is actively steering sellers toward agents who play their game. How to use their own tools to win more listings than you lose.</p>
+                <p class="opportunity">Your opportunity: Follow the money. Zillow is investing billions on the listing side. Position yourself there before your competitors figure it out.</p>
+            </div>
+
+            <div class="system-box">
+                <h3>3&#xFE0F;&#x20E3; System #3: Your Competitive AI Stack</h3>
+                <p>Zillow has 235 million users feeding their AI. You can't out-data them. But you can <strong>out-tool them at the agent level.</strong> This system builds your own AI toolkit -- the prompts, platforms, and workflows that let you operate at a speed and quality that makes the algorithm look basic.</p>
+                <p>Market reports in 3 minutes. Listing descriptions that convert. Lead follow-up sequences that feel personal at scale. Neighborhood analyses that go deeper than any AI chatbot. You'll build a stack that makes you the most technologically advanced agent in your market.</p>
+                <p class="opportunity">Your opportunity: AI can't negotiate. It can't inspect a property. It can't manage a transaction. It can't provide fiduciary duty. Stack your own AI to dominate everything around those irreplaceable skills.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 6: DIFFERENTIATION -->
+    <div class="content" style="background: #f4f4f4;">
+        <div class="container">
+            <h2>What Makes This Session Different</h2>
+            <p>This is not a slide deck about "the future." This is a live working session built for the next 30 days.</p>
+
+            <div class="diff-item">
+                <strong>LIVE walkthrough of Zillow AI Mode</strong> -- you'll see exactly what your buyers are seeing, in real time, so you know what you're competing against
+            </div>
+            <div class="diff-item">
+                <strong>Real before/after value proposition rewrites</strong> -- we'll take your current pitch and rebuild it for a post-AI world, on camera
+            </div>
+            <div class="diff-item">
+                <strong>Copy-paste prompts you'll use this week</strong> -- not someday, not next quarter, THIS WEEK
+            </div>
+            <div class="diff-item">
+                <strong>Listing presentation overhaul</strong> -- the exact slides to add that address the AI elephant in the room
+            </div>
+            <div class="diff-item">
+                <strong>No slides, no theory -- just battlefield-tested strategy</strong> from agents who already adapted in the first 72 hours
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 7: WHAT YOU'LL LEAVE WITH -->
+    <div class="accent-section">
+        <div class="container">
+            <h2>What You'll Walk Away With</h2>
+            <ul class="deliverable-list" style="padding: 0;">
+                <li style="color: #fff; border-color: rgba(255,255,255,0.3);">&#x1F4CB; The Zillow AI Domination Workbook -- your complete implementation guide with frameworks, scripts, and action steps</li>
+                <li style="color: #fff; border-color: rgba(255,255,255,0.3);">&#x1F916; 15+ Copy-Paste AI Prompts calibrated specifically for the post-Zillow-AI landscape</li>
+                <li style="color: #fff; border-color: rgba(255,255,255,0.3);">&#x1F3AF; Your Rewritten Value Proposition -- updated for buyers who arrive pre-programmed by AI</li>
+                <li style="color: #fff; border-color: rgba(255,255,255,0.3);">&#x1F4CA; The Listing-Side Positioning Template -- how to pitch sellers in a Zillow-first market</li>
+                <li style="color: #fff; border-color: rgba(255,255,255,0.3);">&#x1F6E0;&#xFE0F; Your Competitive AI Stack Setup Guide -- exact tools, costs, and workflows</li>
+                <li style="color: #fff; border-color: rgba(255,255,255,0.3);">&#x1F4AC; The AI Translator Script -- word-for-word language for buyer consultations</li>
+                <li style="color: #fff; border-color: rgba(255,255,255,0.3);">&#x1F3AC; Full session recording available for 90 days to all Mastermind members</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- SECTION 8: MASTERMIND REALITY CHECK -->
+    <div class="content">
+        <div class="container">
+            <h2>The Mastermind Difference</h2>
+
+            <p>You can watch a YouTube video about Zillow AI. You can read an Inman article. You can listen to a podcast where someone speculates about what might happen.</p>
+
+            <p><strong>Or you can join a room where we do the work live.</strong></p>
+
+            <p>In this session, I'm going to open Zillow AI Mode on screen and show you exactly what it does. We're going to run real searches. We're going to see the comp analysis it generates, the offer strategies it suggests, the neighborhood data it surfaces. And then we're going to build your counter-strategy in real time.</p>
+
+            <p>No theory. No speculation. <strong>Live demos. Real tools. Immediate implementation.</strong></p>
+
+            <p>That's what separates a mastermind from a webinar. You don't leave with notes. You leave with a plan you've already started executing.</p>
+        </div>
+    </div>
+
+    <!-- SECTION 9: SESSION LOGISTICS -->
+    <div class="content" style="background: #f4f4f4;">
+        <div class="container">
+            <h2>Session Details</h2>
+
+            <div class="session-detail">
+                <span class="label">Date:</span>
+                <span>Wednesday, April 8, 2026</span>
+            </div>
+            <div class="session-detail">
+                <span class="label">Time:</span>
+                <span>9:00 AM Eastern</span>
+            </div>
+            <div class="session-detail">
+                <span class="label">Where:</span>
+                <a href="https://us02web.zoom.us/j/83924796230">Zoom -- Click to Join</a>
+            </div>
+            <div class="session-detail">
+                <span class="label">Meeting ID:</span>
+                <span>839 2479 6230</span>
+            </div>
+            <div class="session-detail">
+                <span class="label">Workbook:</span>
+                <a href="https://edmundbogen.github.io/zillow-ai-workbook.html">Download Before the Session</a>
+            </div>
+
+            <p style="margin-top: 25px;"><strong>This session will be recorded</strong> and available to all Edmund's Mastermind members for 90 days. But the live session is where the real work happens -- the Q&A, the live rewrites, the personalized feedback. Don't settle for the replay.</p>
+
+            <div style="text-align: center; margin: 30px 0;">
+                <a href="https://www.reignation.com/zillow-ai" class="cta-button">REGISTER NOW</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 10: THE MILLION-DOLLAR QUESTION -->
+    <div class="content">
+        <div class="container">
+            <h2>The Million-Dollar Question</h2>
+
+            <div class="question-block">
+                <p>What if you could turn every AI-informed buyer into a commission check?</p>
+                <p>What if Zillow's technology actually made you MORE valuable -- not less?</p>
+                <p>What if you were the only agent in your market who knew how to leverage this?</p>
+            </div>
+
+            <p>The agents who figure this out first don't just survive the AI shift. They <strong>dominate</strong> it. Because while everyone else is panicking about what Zillow AI means for their business, you'll be the one showing clients exactly why they still need you -- and why they need you MORE than ever.</p>
+
+            <p>Zillow's AI remembers buyer preferences across sessions. It builds a relationship over weeks and months. It provides data at a scale no human can match. <strong>But it cannot negotiate a $50,000 price reduction. It cannot spot the foundation crack during a walkthrough. It cannot manage a transaction through inspection, appraisal, and closing. It cannot provide fiduciary duty.</strong></p>
+
+            <p>The agents who win are the ones who <strong>leverage the AI for what it does well</strong> and <strong>double down on what it cannot do.</strong> That's what this session teaches.</p>
+        </div>
+    </div>
+
+    <!-- SECTION 11: BINARY CHOICE CLOSE -->
+    <div class="content" style="padding-bottom: 20px;">
+        <div class="container">
+            <h2>Your Move</h2>
+
+            <div class="choice-box choice-a">
+                <p class="choice-label" style="color: #999;">Option A</p>
+                <p>Keep doing what you've been doing. Keep the same listing presentation. Keep the same buyer consultation. Keep the same value proposition you wrote before March 25th. Watch as AI-informed buyers start asking questions you can't answer. Watch as listing agents who adapted start winning the appointments you used to get. Hope that 235 million monthly users somehow don't change the game.</p>
+            </div>
+
+            <div class="choice-box choice-b">
+                <p class="choice-label" style="color: #00a8e1;">Option B</p>
+                <p>Master the Zillow AI Domination framework in 90 minutes. Rewrite your value proposition for the post-AI era. Build your competitive AI stack. Position yourself on the listing side where the money is flowing. Become the agent in your market who doesn't just understand AI -- who <strong>weaponizes</strong> it.</p>
+            </div>
+
+            <p style="text-align: center; font-size: 20px; color: #1a3e5c; font-weight: 600; margin: 30px 0;">I'll see you on the Zoom. April 8th. 9 AM Eastern.</p>
+
+            <div style="text-align: center; margin: 30px 0;">
+                <a href="https://www.reignation.com/zillow-ai" class="cta-button">CLICK HERE TO REGISTER</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 12: FOOTER / SIGNATURE -->
+    <div class="footer">
+        <div class="container">
+            <p style="font-size: 24px; font-weight: 700; margin-bottom: 5px;">Edmund Bogen</p>
+            <p style="font-size: 16px; opacity: 0.8;">& Team</p>
+            <p style="font-size: 17px; margin-top: 15px;">Edmund's Mastermind & Group Coaching</p>
+            <p><a href="https://www.reignation.com/zillow-ai" style="color: #00a8e1; text-decoration: none; font-weight: 600;">www.reignation.com/zillow-ai</a></p>
+
+            <div style="margin: 40px 0; padding: 30px 0; border-top: 1px solid rgba(255,255,255,0.2); border-bottom: 1px solid rgba(255,255,255,0.2);">
+                <p style="font-size: 16px; font-weight: 700; margin-bottom: 15px;">P.S. -- The Competitive Reality</p>
+                <p style="font-size: 15px;">While you're reading this, Zillow's AI is having a conversation with a buyer in your market right now. It's pulling comps for the neighborhood you farm. It's suggesting offer strategies for the listing you just took. It's building a relationship with a client who was supposed to call you.</p>
+                <p style="font-size: 15px; margin-top: 15px;">Zillow reaches 70% of U.S. buyers and sellers. They have 80% direct traffic -- they don't even need Google to find your clients. Their AI remembers every conversation, every preference, every search. It doesn't take days off. It doesn't miss follow-ups.</p>
+                <p style="font-size: 16px; font-weight: 700; margin-top: 20px; color: #00a8e1;">The agents who learned to leverage this in the first two weeks will own the next two years. Which side are you on?</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAGLINE -->
+    <div class="tagline">
+        "Because Getting Outsmarted by an Algorithm is NOT an Option!"
+    </div>
+
+</body>
+</html>
