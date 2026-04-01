@@ -327,7 +327,7 @@
             color: var(--text-primary);
         }
         .toc-list li a {
-            display: block;
+            display: inline;
             padding: 12px 0;
             color: var(--text-primary);
             text-decoration: none;
@@ -336,11 +336,13 @@
         .toc-list li a:hover {
             color: var(--blue);
         }
+        .toc-list li {
+            padding: 12px 0;
+        }
         .toc-list li::before {
-            content: counter(toc-counter, decimal-leading-zero);
+            content: counter(toc-counter, decimal-leading-zero) " \2014  ";
             font-weight: 700;
             color: var(--blue);
-            margin-right: 16px;
             font-size: 14px;
         }
 
