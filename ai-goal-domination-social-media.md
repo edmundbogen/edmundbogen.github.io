@@ -1,4 +1,4 @@
-# AI Goal Domination Session -- Social Media Promotion Package
+# The 8% System -- Social Media Promotion Package
 ## Edmund's Mastermind | April 22, 2026 | 9:00 AM EST
 
 > Copy-ready posts for all 8 platforms. Media produced separately by Eytan.
@@ -20,7 +20,7 @@ Here's the thing. It's not your fault. Goals fail because they live in your head
 
 That's exactly what I'm breaking down LIVE on April 22nd.
 
-**THE AI GOAL DOMINATION SESSION**
+**THE 8% SYSTEM: 92% of Goals Fail. Here's the System the Other 8% Use.**
 Wednesday, April 22 | 9:00 AM EST | Zoom
 
 Here's what you'll walk away with:
@@ -54,7 +54,7 @@ While most agents are starting every Monday guessing what to work on, the top 1%
 
 On April 22nd, I'm showing you exactly how to build that machine.
 
-**The AI Goal Domination Session**
+**The The 8% System**
 Wednesday, April 22 | 9:00 AM EST
 
 You'll walk away with:
@@ -82,7 +82,7 @@ The agents hitting $500K+ aren't more talented than you. They aren't grinding ha
 
 On April 22nd I'm breaking down the exact AI-powered system that turns your biggest 5-year goal into daily calendar blocks that run on autopilot.
 
-THE AI GOAL DOMINATION SESSION
+THE 8% SYSTEM: 92% of Goals Fail. Here's the System the Other 8% Use.
 Wednesday, April 22 | 9:00 AM EST
 
 What you'll get:

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Goal Domination - Complete Implementation Workbook</title>
+<title>The 8% System - Complete Implementation Workbook | Edmund's Mastermind</title>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
@@ -15,23 +15,133 @@
     @media print {
         .page-break { page-break-after: always; }
         .no-break { page-break-inside: avoid; }
-        body { font-size: 10pt; }
+        .toolbar { display: none !important; }
+        body { font-size: 10pt; background: #fff !important; color: #333 !important; }
+        .page { box-shadow: none !important; margin: 0 !important; padding: 30px 0 !important; }
+        .cover { min-height: 9.5in; }
+        h2, h3, h4 { page-break-after: avoid; }
+        .prompt-block, .navy-box, .highlight-box, table { page-break-inside: avoid; }
+    }
+
+    /* ===== LIGHT THEME ===== */
+    :root {
+        --bg: #f0f0f0;
+        --page-bg: #ffffff;
+        --text: #333333;
+        --text-light: #666666;
+        --heading: #1a3e5c;
+        --accent: #00a8e1;
+        --navy: #1a3e5c;
+        --navy-deep: #0d2840;
+        --card-bg: #f4f4f4;
+        --border: #e0e0e0;
+        --line: #cccccc;
+        --table-stripe: #f9f9f9;
+        --prompt-bg: #f9f9f9;
+        --prompt-border: #e0e0e0;
+        --prompt-text: #333333;
+        --cover-bg: linear-gradient(135deg, #1a3e5c 0%, #0d2840 100%);
+        --toolbar-bg: #1a3e5c;
+        --toolbar-text: #ffffff;
+        --checkbox-color: #1a3e5c;
+        --fill-line: #cccccc;
+        --highlight-bg: #f4f4f4;
+        --commit-border: #1a3e5c;
+    }
+
+    /* ===== DARK THEME ===== */
+    [data-theme="dark"] {
+        --bg: #0a0a0a;
+        --page-bg: #1a1a2e;
+        --text: #e0e0e0;
+        --text-light: #aaaaaa;
+        --heading: #00a8e1;
+        --accent: #00a8e1;
+        --navy: #0f2a40;
+        --navy-deep: #091c2e;
+        --card-bg: #16213e;
+        --border: #2a2a4a;
+        --line: #444466;
+        --table-stripe: #1e1e3a;
+        --prompt-bg: #0f1a2e;
+        --prompt-border: #2a3a5a;
+        --prompt-text: #d0d0d0;
+        --cover-bg: linear-gradient(135deg, #0a1628 0%, #1a3e5c 100%);
+        --toolbar-bg: #0a1628;
+        --toolbar-text: #ffffff;
+        --checkbox-color: #00a8e1;
+        --fill-line: #444466;
+        --highlight-bg: #16213e;
+        --commit-border: #00a8e1;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
         font-family: 'Montserrat', Arial, sans-serif;
-        color: #333333;
-        background: #ffffff;
+        color: var(--text);
+        background: var(--bg);
         line-height: 1.6;
         font-size: 11pt;
     }
 
-    /* COVER PAGE */
+    /* ===== TOOLBAR ===== */
+    .toolbar {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: var(--toolbar-bg);
+        padding: 12px 24px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .toolbar .brand {
+        font-size: 10pt;
+        font-weight: 600;
+        color: var(--toolbar-text);
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        white-space: nowrap;
+    }
+
+    .toolbar .spacer { flex: 1; }
+
+    .toolbar button, .toolbar a button {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 9pt;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        border: none;
+        border-radius: 4px;
+        padding: 8px 18px;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .btn-theme {
+        background: transparent;
+        color: var(--toolbar-text);
+        border: 2px solid rgba(255,255,255,0.3) !important;
+    }
+    .btn-theme:hover { border-color: #00a8e1 !important; color: #00a8e1; }
+
+    .btn-download {
+        background: #00a8e1;
+        color: #ffffff;
+        text-decoration: none;
+    }
+    .btn-download:hover { background: #008bbf; }
+
+    .toolbar a { text-decoration: none; }
+
+    /* ===== COVER ===== */
     .cover {
         min-height: 10in;
-        background: linear-gradient(135deg, #1a3e5c 0%, #0d2840 100%);
+        background: var(--cover-bg);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -43,8 +153,8 @@
 
     .cover .hero-image {
         width: 100%;
-        max-width: 500px;
-        margin-bottom: 40px;
+        max-width: 520px;
+        margin-bottom: 35px;
         border-radius: 12px;
         overflow: hidden;
     }
@@ -57,23 +167,27 @@
     }
 
     .cover h1 {
-        font-size: 36pt;
+        font-size: 34pt;
         font-weight: 300;
         letter-spacing: 0.12em;
         text-transform: uppercase;
         margin-bottom: 10px;
     }
 
-    .cover h1 span {
-        color: #00a8e1;
-        font-weight: 600;
-    }
+    .cover h1 span { color: #00a8e1; font-weight: 600; }
 
     .cover .subtitle {
-        font-size: 14pt;
+        font-size: 13pt;
         color: rgba(255,255,255,0.8);
+        margin-bottom: 8px;
+    }
+
+    .cover .hook {
+        font-size: 15pt;
+        color: #00a8e1;
+        font-weight: 500;
         margin-bottom: 30px;
-        font-weight: 400;
+        font-style: italic;
     }
 
     .cover .workbook-label {
@@ -91,113 +205,112 @@
         margin-bottom: 40px;
     }
 
-    .cover .brand {
+    .cover .brand-line {
         font-size: 10pt;
         color: rgba(255,255,255,0.5);
         text-transform: uppercase;
         letter-spacing: 0.1em;
     }
 
-    /* PAGE LAYOUT */
+    /* ===== PAGE ===== */
     .page {
-        padding: 40px;
-        max-width: 7.5in;
-        margin: 0 auto;
+        background: var(--page-bg);
+        max-width: 8in;
+        margin: 20px auto;
+        padding: 45px 50px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        border-radius: 4px;
     }
 
-    /* HEADERS */
+    [data-theme="dark"] .page { box-shadow: 0 2px 12px rgba(0,0,0,0.4); }
+
     .page-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border-bottom: 2px solid #1a3e5c;
+        border-bottom: 2px solid var(--heading);
         padding-bottom: 8px;
         margin-bottom: 30px;
     }
 
     .page-header .brand-mark {
         font-size: 8pt;
-        color: #1a3e5c;
+        color: var(--heading);
         text-transform: uppercase;
         letter-spacing: 0.1em;
         font-weight: 600;
     }
 
-    .page-header .page-num {
+    .page-header .page-num { font-size: 8pt; color: var(--text-light); }
+
+    .page-footer {
+        text-align: center;
+        margin-top: 30px;
+        padding-top: 10px;
+        border-top: 1px solid var(--border);
         font-size: 8pt;
-        color: #999;
+        color: var(--text-light);
     }
 
+    /* ===== TYPOGRAPHY ===== */
     h2 {
         font-size: 18pt;
         font-weight: 600;
-        color: #1a3e5c;
+        color: var(--heading);
         text-transform: uppercase;
         letter-spacing: 0.06em;
         margin-bottom: 20px;
+        page-break-after: avoid;
     }
 
     h3 {
         font-size: 13pt;
         font-weight: 600;
-        color: #1a3e5c;
+        color: var(--heading);
         margin-bottom: 12px;
+        page-break-after: avoid;
     }
 
     h4 {
         font-size: 11pt;
         font-weight: 600;
-        color: #00a8e1;
+        color: var(--accent);
         margin-bottom: 8px;
         text-transform: uppercase;
         letter-spacing: 0.05em;
+        page-break-after: avoid;
     }
 
-    p {
-        margin-bottom: 12px;
-        line-height: 1.6;
-    }
+    p { margin-bottom: 12px; }
 
-    /* ACCENT ELEMENTS */
-    .accent-bar {
-        width: 4px;
-        height: 30px;
-        background: #00a8e1;
-        margin-bottom: 15px;
-    }
+    /* ===== COMPONENTS ===== */
+    .accent-bar { width: 4px; height: 30px; background: var(--accent); margin-bottom: 15px; }
 
     .highlight-box {
-        background: #f4f4f4;
-        border-left: 4px solid #00a8e1;
+        background: var(--highlight-bg);
+        border-left: 4px solid var(--accent);
         padding: 15px 20px;
         margin: 15px 0;
         border-radius: 0 4px 4px 0;
+        page-break-inside: avoid;
     }
-
-    .highlight-box p {
-        margin-bottom: 6px;
-    }
+    .highlight-box p { margin-bottom: 6px; }
 
     .navy-box {
-        background: #1a3e5c;
+        background: var(--navy);
         color: #ffffff;
         padding: 20px;
         border-radius: 6px;
         margin: 15px 0;
+        page-break-inside: avoid;
     }
+    .navy-box h4 { color: #00a8e1; }
+    .navy-box p, .navy-box li { color: #ffffff; }
 
-    .navy-box h4 {
-        color: #00a8e1;
-    }
-
-    .navy-box p, .navy-box li {
-        color: #ffffff;
-    }
-
-    /* PROMPT BLOCKS */
+    /* ===== PROMPTS ===== */
     .prompt-block {
-        background: #f9f9f9;
-        border: 1px solid #e0e0e0;
+        background: var(--prompt-bg);
+        border: 1px solid var(--prompt-border);
         border-radius: 4px;
         padding: 12px 15px;
         margin: 10px 0;
@@ -205,130 +318,63 @@
         font-size: 8.5pt;
         line-height: 1.5;
         white-space: pre-wrap;
-        color: #333;
+        color: var(--prompt-text);
+        page-break-inside: avoid;
     }
 
     .prompt-label {
         font-family: 'Montserrat', sans-serif;
         font-size: 9pt;
         font-weight: 600;
-        color: #00a8e1;
+        color: var(--accent);
         text-transform: uppercase;
         letter-spacing: 0.05em;
         margin-bottom: 6px;
         display: block;
     }
 
-    /* WORKSHEET ELEMENTS */
-    .fill-line {
-        border-bottom: 1px solid #ccc;
-        display: block;
-        height: 28px;
-        margin: 6px 0;
-    }
+    /* ===== WORKSHEETS ===== */
+    .fill-line { border-bottom: 1px solid var(--fill-line); display: block; height: 28px; margin: 6px 0; }
+    .fill-line-long { border-bottom: 1px solid var(--fill-line); display: block; height: 28px; margin: 6px 0; width: 100%; }
 
-    .fill-line-long {
-        border-bottom: 1px solid #ccc;
-        display: block;
-        height: 28px;
-        margin: 6px 0;
-        width: 100%;
-    }
+    .checkbox-item { padding: 5px 0 5px 25px; position: relative; font-size: 10pt; }
+    .checkbox-item::before { content: "[ ]"; position: absolute; left: 0; font-family: monospace; color: var(--checkbox-color); }
 
-    .dollar-line {
-        display: inline-block;
-        width: 120px;
-        border-bottom: 1px solid #ccc;
-        margin: 0 5px;
-        text-align: center;
-    }
+    ul, ol { margin: 10px 0 10px 20px; }
+    li { margin-bottom: 6px; line-height: 1.5; }
 
-    .checkbox-item {
-        padding: 5px 0 5px 25px;
-        position: relative;
-        font-size: 10pt;
-    }
+    .two-col { display: flex; gap: 25px; }
+    .two-col .col { flex: 1; }
 
-    .checkbox-item::before {
-        content: "[ ]";
-        position: absolute;
-        left: 0;
-        font-family: monospace;
-        color: #1a3e5c;
-    }
+    table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 9.5pt; page-break-inside: avoid; }
+    th { background: var(--navy); color: #ffffff; padding: 8px 12px; text-align: left; font-weight: 600; font-size: 9pt; text-transform: uppercase; letter-spacing: 0.03em; }
+    td { padding: 8px 12px; border-bottom: 1px solid var(--border); }
+    tr:nth-child(even) { background: var(--table-stripe); }
 
-    /* LISTS */
-    ul, ol {
-        margin: 10px 0 10px 20px;
-    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+    .section-divider { border: none; border-top: 3px solid var(--accent); margin: 25px 0; }
 
-    li {
-        margin-bottom: 6px;
-        line-height: 1.5;
-    }
+    .page-break { page-break-after: always; height: 0; margin: 0; padding: 0; }
 
-    /* TWO COLUMN */
-    .two-col {
-        display: flex;
-        gap: 25px;
-    }
-
-    .two-col .col {
-        flex: 1;
-    }
-
-    /* TABLES */
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 15px 0;
-        font-size: 9.5pt;
-    }
-
-    th {
-        background: #1a3e5c;
-        color: #ffffff;
-        padding: 8px 12px;
-        text-align: left;
-        font-weight: 600;
-        font-size: 9pt;
-        text-transform: uppercase;
-        letter-spacing: 0.03em;
-    }
-
-    td {
-        padding: 8px 12px;
-        border-bottom: 1px solid #e0e0e0;
-    }
-
-    tr:nth-child(even) {
-        background: #f9f9f9;
-    }
-
-    /* FOOTER */
-    .page-footer {
-        text-align: center;
-        margin-top: 30px;
-        padding-top: 10px;
-        border-top: 1px solid #e0e0e0;
-        font-size: 8pt;
-        color: #999;
-    }
-
-    hr {
-        border: none;
-        border-top: 1px solid #e0e0e0;
-        margin: 20px 0;
-    }
-
-    .section-divider {
-        border: none;
-        border-top: 3px solid #00a8e1;
-        margin: 25px 0;
+    @media (max-width: 700px) {
+        .page { padding: 25px 20px; margin: 10px; }
+        .cover h1 { font-size: 22pt; }
+        .two-col { flex-direction: column; gap: 15px; }
+        .toolbar .brand { display: none; }
     }
 </style>
 </head>
 <body>
+
+<!-- ===== TOOLBAR ===== -->
+<div class="toolbar">
+    <span class="brand">Edmund's Mastermind | The 8% System</span>
+    <span class="spacer"></span>
+    <button class="btn-theme" onclick="toggleTheme()" id="themeBtn">Dark Mode</button>
+    <a href="ai-goal-domination-workbook.pdf" download="The-8-Percent-System-Workbook.pdf">
+        <button class="btn-download">Download PDF</button>
+    </a>
+</div>
 
 <!-- ==================== PAGE 1: COVER ==================== -->
 <div class="cover">
@@ -337,10 +383,11 @@
     </div>
 
     <div class="workbook-label">Complete Implementation Workbook</div>
-    <h1>THE AI <span>GOAL DOMINATION</span> SESSION</h1>
+    <h1>THE <span>8%</span> SYSTEM</h1>
+    <div class="hook">92% of Goals Fail. Here's the System the Other 8% Use.</div>
     <div class="subtitle">Turn Your Biggest Ambitions Into Unstoppable Daily Execution</div>
     <div class="date">Edmund's Mastermind | April 22, 2026</div>
-    <div class="brand">Edmund's Mastermind & Group Coaching</div>
+    <div class="brand-line">Edmund's Mastermind & Group Coaching</div>
 </div>
 
 <div class="page-break"></div>
@@ -369,7 +416,6 @@
     <hr class="section-divider">
 
     <h3>Workshop Overview: Your Profit-Generating Toolkit</h3>
-
     <p><strong>The 3 Systems You'll Master Today:</strong></p>
 
     <div class="highlight-box">
@@ -384,7 +430,7 @@
         <p><strong>3. The Identity Upgrade Loop</strong> -- Stop patching your way through the day with hacks and tricks. Become the person who naturally does what winners do -- using AI to rewire your habits at the root.</p>
     </div>
 
-    <div class="page-footer">AI Goal Domination Session | Edmund's Mastermind | April 22, 2026</div>
+    <div class="page-footer">The 8% System | Edmund's Mastermind | April 22, 2026</div>
 </div>
 
 <div class="page-break"></div>
@@ -434,7 +480,7 @@
         <li>Personal net worth targets with investment allocation roadmaps</li>
     </ul>
 
-    <div class="page-footer">AI Goal Domination Session | Edmund's Mastermind | April 22, 2026</div>
+    <div class="page-footer">The 8% System | Edmund's Mastermind | April 22, 2026</div>
 </div>
 
 <div class="page-break"></div>
@@ -448,7 +494,7 @@
 
     <div class="accent-bar"></div>
     <h2>The Vision Lock System: Prompts</h2>
-    <p style="font-style: italic; color: #666;">Copy these exact prompts into ChatGPT for immediate results:</p>
+    <p style="font-style: italic; color: var(--text-light);">Copy these exact prompts into ChatGPT for immediate results:</p>
 
     <span class="prompt-label">For Defining Your 5-Year SMART Goal:</span>
     <div class="prompt-block">I want to create a 5-year SMART goal for my career as a [real estate agent / entrepreneur / your role]. My current annual income is $[amount]. I want to reach $[target] in 5 years. Ask me 10 clarifying questions about my business model, lifestyle goals, and what success looks like across health, relationships, and finances. After my answers, write a single SMART goal statement that is specific, measurable, attainable, relevant, and time-bound. Make it vivid enough that I can feel it.</div>
@@ -468,7 +514,7 @@
     <span class="prompt-label">For Breaking Income Goals Into Daily Math:</span>
     <div class="prompt-block">I'm a [real estate agent / business owner] who wants to earn $[annual target] this year. My average [commission / deal size] is $[amount]. My lead-to-close conversion rate is approximately [X]%. Break this down into: how many closed deals I need per month, how many appointments per week, how many lead conversations per day, and what my daily prospecting time needs to be. Give me the exact math so I know my daily number.</div>
 
-    <div class="page-footer">AI Goal Domination Session | Edmund's Mastermind | April 22, 2026</div>
+    <div class="page-footer">The 8% System | Edmund's Mastermind | April 22, 2026</div>
 </div>
 
 <div class="page-break"></div>
@@ -512,14 +558,14 @@
     <div class="checkbox-item">Printed and framed in my office</div>
     <div class="checkbox-item">Desktop/laptop wallpaper</div>
     <div class="checkbox-item">Bathroom mirror (laminated)</div>
-    <div class="checkbox-item">Other: <span class="fill-line" style="width: 200px; display: inline-block;"></span></div>
+    <div class="checkbox-item">Other: ________________________________</div>
 
     <h4 style="margin-top: 20px;">Questions to Ask During Q&A</h4>
     <span class="fill-line-long"></span>
     <span class="fill-line-long"></span>
     <span class="fill-line-long"></span>
 
-    <div class="page-footer">AI Goal Domination Session | Edmund's Mastermind | April 22, 2026</div>
+    <div class="page-footer">The 8% System | Edmund's Mastermind | April 22, 2026</div>
 </div>
 
 <div class="page-break"></div>
@@ -569,7 +615,7 @@
         <li>Health and relationship goals woven into your work calendar so nothing gets sacrificed</li>
     </ul>
 
-    <div class="page-footer">AI Goal Domination Session | Edmund's Mastermind | April 22, 2026</div>
+    <div class="page-footer">The 8% System | Edmund's Mastermind | April 22, 2026</div>
 </div>
 
 <div class="page-break"></div>
@@ -583,7 +629,7 @@
 
     <div class="accent-bar"></div>
     <h2>The Autopilot Roadmap System: Prompts</h2>
-    <p style="font-style: italic; color: #666;">Copy these exact prompts into ChatGPT for immediate results:</p>
+    <p style="font-style: italic; color: var(--text-light);">Copy these exact prompts into ChatGPT for immediate results:</p>
 
     <span class="prompt-label">For Building Your 5-Year-to-Daily Roadmap:</span>
     <div class="prompt-block">Here is my 5-year SMART goal: [paste goal]. Break this down into a cascading roadmap:
@@ -608,9 +654,9 @@ Format as a structured plan I can reference daily. Make each level specific and 
     <div class="prompt-block">End of month review. My monthly targets were: [paste targets]. My actual results were: [paste results]. My 5-year goal is: [paste goal]. Based on the gap (or surplus) between target and actual: (1) Recalculate my targets for next month, (2) Identify the 1-2 behaviors that most impacted results (positive or negative), (3) Suggest one system change that would improve execution, (4) Give me an updated daily number for next month.</div>
 
     <span class="prompt-label">For Creating a 90-Day Sprint Plan:</span>
-    <div class="prompt-block">I need a focused 90-day sprint plan. My biggest goal for the next 90 days is: [goal]. My current baseline is: [where I am now]. Create a week-by-week plan with: Week number | Primary focus | Key metric to hit | Daily non-negotiable action. Include a "checkpoint" every 2 weeks where I assess and adjust. Make it aggressive but achievable. I want to look back in 90 days and be shocked at how much I accomplished.</div>
+    <div class="prompt-block">I need a focused 90-day sprint plan. My biggest goal for the next 90 days is: [goal]. My current baseline is: [where I am now]. Create a week-by-week plan with: Week number | Primary focus | Key metric to hit | Daily non-negotiable action. Include a "checkpoint" every 2 weeks where I assess and adjust. Make it aggressive but achievable.</div>
 
-    <div class="page-footer">AI Goal Domination Session | Edmund's Mastermind | April 22, 2026</div>
+    <div class="page-footer">The 8% System | Edmund's Mastermind | April 22, 2026</div>
 </div>
 
 <div class="page-break"></div>
@@ -637,11 +683,11 @@ Format as a structured plan I can reference daily. Make each level specific and 
 
     <table>
         <tr><th>Day</th><th>Time</th><th>Block Name</th><th>Goal It Serves</th></tr>
-        <tr><td>Mon</td><td><span class="fill-line" style="width: 60px; display: inline-block;"></span></td><td><span class="fill-line" style="width: 100px; display: inline-block;"></span></td><td><span class="fill-line" style="width: 80px; display: inline-block;"></span></td></tr>
-        <tr><td>Tue</td><td><span class="fill-line" style="width: 60px; display: inline-block;"></span></td><td><span class="fill-line" style="width: 100px; display: inline-block;"></span></td><td><span class="fill-line" style="width: 80px; display: inline-block;"></span></td></tr>
-        <tr><td>Wed</td><td><span class="fill-line" style="width: 60px; display: inline-block;"></span></td><td><span class="fill-line" style="width: 100px; display: inline-block;"></span></td><td><span class="fill-line" style="width: 80px; display: inline-block;"></span></td></tr>
-        <tr><td>Thu</td><td><span class="fill-line" style="width: 60px; display: inline-block;"></span></td><td><span class="fill-line" style="width: 100px; display: inline-block;"></span></td><td><span class="fill-line" style="width: 80px; display: inline-block;"></span></td></tr>
-        <tr><td>Fri</td><td><span class="fill-line" style="width: 60px; display: inline-block;"></span></td><td><span class="fill-line" style="width: 100px; display: inline-block;"></span></td><td><span class="fill-line" style="width: 80px; display: inline-block;"></span></td></tr>
+        <tr><td>Mon</td><td>____________</td><td>______________________</td><td>________________</td></tr>
+        <tr><td>Tue</td><td>____________</td><td>______________________</td><td>________________</td></tr>
+        <tr><td>Wed</td><td>____________</td><td>______________________</td><td>________________</td></tr>
+        <tr><td>Thu</td><td>____________</td><td>______________________</td><td>________________</td></tr>
+        <tr><td>Fri</td><td>____________</td><td>______________________</td><td>________________</td></tr>
     </table>
 
     <h4 style="margin-top: 15px;">My Daily Non-Negotiable (The ONE Thing I Do Every Day)</h4>
@@ -651,19 +697,19 @@ Format as a structured plan I can reference daily. Make each level specific and 
 
     <div class="two-col">
         <div class="col">
-            <p>Hours spent planning per week (before): <span class="fill-line" style="width: 50px; display: inline-block;"></span></p>
-            <p>Hours spent planning per week (after): <span class="fill-line" style="width: 50px; display: inline-block;"></span></p>
+            <p>Hours planning per week (before): ________</p>
+            <p>Hours planning per week (after): ________</p>
         </div>
         <div class="col">
-            <p>% of calendar blocks completed last week: <span class="fill-line" style="width: 50px; display: inline-block;"></span></p>
-            <p>Weekly time saved: <span class="fill-line" style="width: 50px; display: inline-block;"></span> hrs</p>
+            <p>Calendar blocks completed last week: ________%</p>
+            <p>Weekly time saved: ________ hrs</p>
         </div>
     </div>
 
     <h4 style="margin-top: 15px;">My First Weekly Review Date</h4>
-    <p>Day: <span class="fill-line" style="width: 100px; display: inline-block;"></span> Time: <span class="fill-line" style="width: 80px; display: inline-block;"></span> (Put this in your calendar NOW)</p>
+    <p>Day: ________________ Time: ____________ (Put this in your calendar NOW)</p>
 
-    <div class="page-footer">AI Goal Domination Session | Edmund's Mastermind | April 22, 2026</div>
+    <div class="page-footer">The 8% System | Edmund's Mastermind | April 22, 2026</div>
 </div>
 
 <div class="page-break"></div>
@@ -713,7 +759,7 @@ Format as a structured plan I can reference daily. Make each level specific and 
         <li>Shifting from "busy agent" identity to "business owner" identity</li>
     </ul>
 
-    <div class="page-footer">AI Goal Domination Session | Edmund's Mastermind | April 22, 2026</div>
+    <div class="page-footer">The 8% System | Edmund's Mastermind | April 22, 2026</div>
 </div>
 
 <div class="page-break"></div>
@@ -727,7 +773,7 @@ Format as a structured plan I can reference daily. Make each level specific and 
 
     <div class="accent-bar"></div>
     <h2>The Identity Upgrade Loop: Prompts</h2>
-    <p style="font-style: italic; color: #666;">Copy these exact prompts into ChatGPT for immediate results:</p>
+    <p style="font-style: italic; color: var(--text-light);">Copy these exact prompts into ChatGPT for immediate results:</p>
 
     <span class="prompt-label">For Identifying Your Willpower Patches:</span>
     <div class="prompt-block">I want to audit my current habits for "willpower patches" -- things I force myself to do rather than naturally want to do. Here are the behaviors I struggle to maintain consistently: [list 5-7 behaviors, e.g., "prospecting calls, exercise, eating healthy, following up with leads, content creation, reading, waking up early"]. For each one, tell me: (1) Is this a patch problem or a system problem? (2) What might the root cause be? (3) What would make this behavior automatic instead of forced?</div>
@@ -747,7 +793,7 @@ Format as a structured plan I can reference daily. Make each level specific and 
     <span class="prompt-label">For Designing Your Environment for Automatic Behavior:</span>
     <div class="prompt-block">I want to redesign my physical and digital environment so that [desired behavior, e.g., "prospecting for 2 hours every morning"] becomes the path of least resistance. Describe my current environment: [workspace details]. Suggest 5 specific changes to my physical space, phone setup, computer desktop, and daily triggers that would make this behavior nearly automatic. Think friction reduction and cue placement.</div>
 
-    <div class="page-footer">AI Goal Domination Session | Edmund's Mastermind | April 22, 2026</div>
+    <div class="page-footer">The 8% System | Edmund's Mastermind | April 22, 2026</div>
 </div>
 
 <div class="page-break"></div>
@@ -763,52 +809,37 @@ Format as a structured plan I can reference daily. Make each level specific and 
     <h2>The Identity Upgrade Loop: Your Notes</h2>
 
     <h4>My Current Identity (Honest Assessment)</h4>
-    <p>I currently see myself as: <span class="fill-line-long"></span></p>
+    <p>I currently see myself as: ________________________________________________</p>
     <span class="fill-line-long"></span>
 
     <h4 style="margin-top: 15px;">My Target Identity (Who I'm Becoming)</h4>
-    <p>In 12 months, I will be the kind of person who: <span class="fill-line-long"></span></p>
+    <p>In 12 months, I will be the kind of person who: ________________________________________________</p>
     <span class="fill-line-long"></span>
 
     <h4 style="margin-top: 15px;">My Top 3 Willpower Patches (Things I Force, Not Flow)</h4>
 
     <table>
         <tr><th>#</th><th>Behavior I Force</th><th>Root Cause</th><th>Replacement</th></tr>
-        <tr>
-            <td>1</td>
-            <td><span class="fill-line" style="width: 120px; display: inline-block;"></span></td>
-            <td><span class="fill-line" style="width: 120px; display: inline-block;"></span></td>
-            <td><span class="fill-line" style="width: 120px; display: inline-block;"></span></td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td><span class="fill-line" style="width: 120px; display: inline-block;"></span></td>
-            <td><span class="fill-line" style="width: 120px; display: inline-block;"></span></td>
-            <td><span class="fill-line" style="width: 120px; display: inline-block;"></span></td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td><span class="fill-line" style="width: 120px; display: inline-block;"></span></td>
-            <td><span class="fill-line" style="width: 120px; display: inline-block;"></span></td>
-            <td><span class="fill-line" style="width: 120px; display: inline-block;"></span></td>
-        </tr>
+        <tr><td>1</td><td>____________________</td><td>____________________</td><td>____________________</td></tr>
+        <tr><td>2</td><td>____________________</td><td>____________________</td><td>____________________</td></tr>
+        <tr><td>3</td><td>____________________</td><td>____________________</td><td>____________________</td></tr>
     </table>
 
     <h4 style="margin-top: 15px;">My Morning Power Routine (Design It Here)</h4>
     <table>
         <tr><th>Time</th><th>Activity</th><th>Duration</th><th>Serves</th></tr>
-        <tr><td><span class="fill-line" style="width: 50px; display: inline-block;"></span></td><td><span class="fill-line" style="width: 120px; display: inline-block;"></span></td><td><span class="fill-line" style="width: 40px; display: inline-block;"></span></td><td><span class="fill-line" style="width: 70px; display: inline-block;"></span></td></tr>
-        <tr><td><span class="fill-line" style="width: 50px; display: inline-block;"></span></td><td><span class="fill-line" style="width: 120px; display: inline-block;"></span></td><td><span class="fill-line" style="width: 40px; display: inline-block;"></span></td><td><span class="fill-line" style="width: 70px; display: inline-block;"></span></td></tr>
-        <tr><td><span class="fill-line" style="width: 50px; display: inline-block;"></span></td><td><span class="fill-line" style="width: 120px; display: inline-block;"></span></td><td><span class="fill-line" style="width: 40px; display: inline-block;"></span></td><td><span class="fill-line" style="width: 70px; display: inline-block;"></span></td></tr>
-        <tr><td><span class="fill-line" style="width: 50px; display: inline-block;"></span></td><td><span class="fill-line" style="width: 120px; display: inline-block;"></span></td><td><span class="fill-line" style="width: 40px; display: inline-block;"></span></td><td><span class="fill-line" style="width: 70px; display: inline-block;"></span></td></tr>
-        <tr><td><span class="fill-line" style="width: 50px; display: inline-block;"></span></td><td><span class="fill-line" style="width: 120px; display: inline-block;"></span></td><td><span class="fill-line" style="width: 40px; display: inline-block;"></span></td><td><span class="fill-line" style="width: 70px; display: inline-block;"></span></td></tr>
+        <tr><td>________</td><td>______________________</td><td>________</td><td>____________</td></tr>
+        <tr><td>________</td><td>______________________</td><td>________</td><td>____________</td></tr>
+        <tr><td>________</td><td>______________________</td><td>________</td><td>____________</td></tr>
+        <tr><td>________</td><td>______________________</td><td>________</td><td>____________</td></tr>
+        <tr><td>________</td><td>______________________</td><td>________</td><td>____________</td></tr>
     </table>
 
     <h4 style="margin-top: 15px;">One Environment Change I'm Making This Week</h4>
     <span class="fill-line-long"></span>
     <span class="fill-line-long"></span>
 
-    <div class="page-footer">AI Goal Domination Session | Edmund's Mastermind | April 22, 2026</div>
+    <div class="page-footer">The 8% System | Edmund's Mastermind | April 22, 2026</div>
 </div>
 
 <div class="page-break"></div>
@@ -865,7 +896,7 @@ Format as a structured plan I can reference daily. Make each level specific and 
         </div>
     </div>
 
-    <div class="page-footer">AI Goal Domination Session | Edmund's Mastermind | April 22, 2026</div>
+    <div class="page-footer">The 8% System | Edmund's Mastermind | April 22, 2026</div>
 </div>
 
 <div class="page-break"></div>
@@ -880,36 +911,36 @@ Format as a structured plan I can reference daily. Make each level specific and 
     <div class="accent-bar"></div>
     <h2>Your Profit Commitment Contract</h2>
 
-    <div class="highlight-box" style="background: #fff; border: 2px solid #1a3e5c; padding: 25px;">
+    <div class="highlight-box" style="border: 2px solid var(--heading); padding: 25px;">
 
         <p style="font-style: italic; margin-bottom: 20px;">Based on today's session, I commit to the following:</p>
 
         <h4>Primary System Focus</h4>
-        <p>I will master <span class="fill-line" style="width: 250px; display: inline-block;"></span> first because it will save me <span class="fill-line" style="width: 60px; display: inline-block;"></span> hours per week and move me $<span class="fill-line" style="width: 80px; display: inline-block;"></span> closer to my annual target.</p>
+        <p>I will master ________________________________ first because it will save me ________ hours per week and move me $____________ closer to my annual target.</p>
 
         <h4 style="margin-top: 20px;">Time Investment</h4>
-        <p>I will invest <span class="fill-line" style="width: 40px; display: inline-block;"></span> hours per week learning and running these systems.</p>
+        <p>I will invest ________ hours per week learning and running these systems.</p>
 
         <h4 style="margin-top: 20px;">Success Metrics</h4>
-        <p>Time savings target: <span class="fill-line" style="width: 60px; display: inline-block;"></span> hours per week</p>
-        <p>Calendar block completion rate: <span class="fill-line" style="width: 60px; display: inline-block;"></span>% per week</p>
-        <p>Revenue increase: $<span class="fill-line" style="width: 80px; display: inline-block;"></span> per month within 90 days</p>
-        <p>Identity score improvement: from <span class="fill-line" style="width: 30px; display: inline-block;"></span>/10 to <span class="fill-line" style="width: 30px; display: inline-block;"></span>/10</p>
+        <p>Time savings target: ________ hours per week</p>
+        <p>Calendar block completion rate: ________% per week</p>
+        <p>Revenue increase: $____________ per month within 90 days</p>
+        <p>Identity score improvement: from ____/10 to ____/10</p>
 
         <h4 style="margin-top: 20px;">Accountability</h4>
-        <p>Accountability partner: <span class="fill-line" style="width: 200px; display: inline-block;"></span></p>
-        <p>Weekly check-in: Every <span class="fill-line" style="width: 80px; display: inline-block;"></span> at <span class="fill-line" style="width: 80px; display: inline-block;"></span></p>
-        <p>30-day review date: <span class="fill-line" style="width: 150px; display: inline-block;"></span></p>
-        <p>90-day sprint end date: <span class="fill-line" style="width: 150px; display: inline-block;"></span></p>
+        <p>Accountability partner: ________________________________</p>
+        <p>Weekly check-in: Every ____________ at ____________</p>
+        <p>30-day review date: ________________________</p>
+        <p>90-day sprint end date: ________________________</p>
 
         <hr style="margin: 25px 0;">
 
         <p style="text-align: center; font-weight: 600; font-size: 12pt;">My Signature</p>
-        <p style="text-align: center;"><span class="fill-line" style="width: 250px; display: inline-block;"></span></p>
-        <p style="text-align: center; font-size: 9pt; color: #999;">Date: <span class="fill-line" style="width: 120px; display: inline-block;"></span></p>
+        <p style="text-align: center;">________________________________________</p>
+        <p style="text-align: center; font-size: 9pt; color: var(--text-light);">Date: ____________________</p>
     </div>
 
-    <div class="page-footer">AI Goal Domination Session | Edmund's Mastermind | April 22, 2026</div>
+    <div class="page-footer">The 8% System | Edmund's Mastermind | April 22, 2026</div>
 </div>
 
 <div class="page-break"></div>
@@ -926,10 +957,10 @@ Format as a structured plan I can reference daily. Make each level specific and 
 
     <table>
         <tr><th>Week</th><th>Calendar Blocks Hit</th><th>Daily # Hit</th><th>Identity Score</th><th>Biggest Win</th></tr>
-        <tr><td>1</td><td><span class="fill-line" style="width: 50px; display: inline-block;"></span>%</td><td><span class="fill-line" style="width: 40px; display: inline-block;"></span></td><td><span class="fill-line" style="width: 30px; display: inline-block;"></span>/10</td><td><span class="fill-line" style="width: 120px; display: inline-block;"></span></td></tr>
-        <tr><td>2</td><td><span class="fill-line" style="width: 50px; display: inline-block;"></span>%</td><td><span class="fill-line" style="width: 40px; display: inline-block;"></span></td><td><span class="fill-line" style="width: 30px; display: inline-block;"></span>/10</td><td><span class="fill-line" style="width: 120px; display: inline-block;"></span></td></tr>
-        <tr><td>3</td><td><span class="fill-line" style="width: 50px; display: inline-block;"></span>%</td><td><span class="fill-line" style="width: 40px; display: inline-block;"></span></td><td><span class="fill-line" style="width: 30px; display: inline-block;"></span>/10</td><td><span class="fill-line" style="width: 120px; display: inline-block;"></span></td></tr>
-        <tr><td>4</td><td><span class="fill-line" style="width: 50px; display: inline-block;"></span>%</td><td><span class="fill-line" style="width: 40px; display: inline-block;"></span></td><td><span class="fill-line" style="width: 30px; display: inline-block;"></span>/10</td><td><span class="fill-line" style="width: 120px; display: inline-block;"></span></td></tr>
+        <tr><td>1</td><td>________%</td><td>________</td><td>____/10</td><td>________________________</td></tr>
+        <tr><td>2</td><td>________%</td><td>________</td><td>____/10</td><td>________________________</td></tr>
+        <tr><td>3</td><td>________%</td><td>________</td><td>____/10</td><td>________________________</td></tr>
+        <tr><td>4</td><td>________%</td><td>________</td><td>____/10</td><td>________________________</td></tr>
     </table>
 
     <h3 style="margin-top: 25px;">Monthly ROI Assessment</h3>
@@ -937,17 +968,17 @@ Format as a structured plan I can reference daily. Make each level specific and 
     <div class="two-col">
         <div class="col">
             <h4>Time Savings</h4>
-            <p>Planning time saved: <span class="fill-line" style="width: 50px; display: inline-block;"></span> hrs/week</p>
-            <p>Decision fatigue eliminated: <span class="fill-line" style="width: 50px; display: inline-block;"></span> hrs/week</p>
-            <p>Total time reclaimed: <span class="fill-line" style="width: 50px; display: inline-block;"></span> hrs/month</p>
-            <p>Value of time ($<span class="fill-line" style="width: 40px; display: inline-block;"></span>/hr): $<span class="fill-line" style="width: 60px; display: inline-block;"></span></p>
+            <p>Planning time saved: ________ hrs/week</p>
+            <p>Decision fatigue eliminated: ________ hrs/week</p>
+            <p>Total time reclaimed: ________ hrs/month</p>
+            <p>Value of time ($________/hr): $____________</p>
         </div>
         <div class="col">
             <h4>Revenue Impact</h4>
-            <p>New leads generated: <span class="fill-line" style="width: 50px; display: inline-block;"></span></p>
-            <p>Appointments set: <span class="fill-line" style="width: 50px; display: inline-block;"></span></p>
-            <p>Deals in pipeline: <span class="fill-line" style="width: 50px; display: inline-block;"></span></p>
-            <p>Revenue attributed: $<span class="fill-line" style="width: 80px; display: inline-block;"></span></p>
+            <p>New leads generated: ________</p>
+            <p>Appointments set: ________</p>
+            <p>Deals in pipeline: ________</p>
+            <p>Revenue attributed: $____________</p>
         </div>
     </div>
 
@@ -964,13 +995,12 @@ Format as a structured plan I can reference daily. Make each level specific and 
     <h4 style="margin-top: 15px;">Member Questions & Insights That Resonated</h4>
     <span class="fill-line-long"></span>
     <span class="fill-line-long"></span>
-    <span class="fill-line-long"></span>
 
     <h4 style="margin-top: 15px;">What I'm Doing DIFFERENTLY Starting Tomorrow</h4>
     <span class="fill-line-long"></span>
     <span class="fill-line-long"></span>
 
-    <div class="page-footer">AI Goal Domination Session | Edmund's Mastermind | April 22, 2026</div>
+    <div class="page-footer">The 8% System | Edmund's Mastermind | April 22, 2026</div>
 </div>
 
 <div class="page-break"></div>
@@ -1009,18 +1039,45 @@ Format as a structured plan I can reference daily. Make each level specific and 
         <p style="font-style: italic; font-size: 12pt; line-height: 1.8; margin-bottom: 20px;">"While my competitors are setting goals on napkins and hoping for the best, I'm running an AI-powered system that turns my biggest ambitions into daily calendar blocks that execute themselves. These tools don't make me lazy -- they make me unstoppable. Every hour I save planning is an hour I spend closing, building, and growing. This is my competitive weapon, and I will master it."</p>
 
         <h4 style="margin-top: 20px;">My Personal Success Statement</h4>
-        <p><span class="fill-line-long" style="border-color: rgba(255,255,255,0.3);"></span></p>
-        <p><span class="fill-line-long" style="border-color: rgba(255,255,255,0.3);"></span></p>
-        <p><span class="fill-line-long" style="border-color: rgba(255,255,255,0.3);"></span></p>
+        <p>________________________________________________________________________</p>
+        <p>________________________________________________________________________</p>
+        <p>________________________________________________________________________</p>
     </div>
 
     <div style="text-align: center; margin-top: 30px;">
-        <p style="font-size: 10pt; color: #999;">&copy; 2026 Edmund's Mastermind -- Your AI-Powered Goal Execution System</p>
+        <p style="font-size: 10pt; color: var(--text-light);">&copy; 2026 Edmund's Mastermind -- The 8% System</p>
         <p style="font-size: 12pt; color: #00a8e1; font-weight: 600; font-style: italic; margin-top: 10px;">"Because Winging It is NOT an Option!"</p>
     </div>
 
-    <div class="page-footer">AI Goal Domination Session | Edmund's Mastermind | April 22, 2026</div>
+    <div class="page-footer">The 8% System | Edmund's Mastermind | April 22, 2026</div>
 </div>
+
+<!-- ===== THEME TOGGLE ===== -->
+<script>
+    function toggleTheme() {
+        var html = document.documentElement;
+        var btn = document.getElementById('themeBtn');
+        if (html.getAttribute('data-theme') === 'light') {
+            html.setAttribute('data-theme', 'dark');
+            btn.textContent = 'Light Mode';
+            localStorage.setItem('workbook-theme', 'dark');
+        } else {
+            html.setAttribute('data-theme', 'light');
+            btn.textContent = 'Dark Mode';
+            localStorage.setItem('workbook-theme', 'light');
+        }
+    }
+
+    (function() {
+        var saved = localStorage.getItem('workbook-theme');
+        if (saved === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.addEventListener('DOMContentLoaded', function() {
+                document.getElementById('themeBtn').textContent = 'Light Mode';
+            });
+        }
+    })();
+</script>
 
 </body>
 </html>
