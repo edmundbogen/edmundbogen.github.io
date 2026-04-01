@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The AI Goal Domination Session - Edmund's Mastermind</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+        font-family: 'Montserrat', Arial, sans-serif;
+        color: #333333;
+        background: #ffffff;
+        line-height: 1.7;
+        font-size: 16px;
+    }
+
+    .container {
+        max-width: 680px;
+        margin: 0 auto;
+        padding: 0;
+    }
+
+    /* HERO IMAGE SECTION */
+    .hero-section {
+        background: linear-gradient(135deg, #1a3e5c 0%, #0d2840 100%);
+        padding: 60px 40px;
+        text-align: center;
+        position: relative;
+    }
+
+    .hero-section .hero-image {
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto 30px;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .hero-section .hero-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 12px;
+    }
+
+    .hero-section h1 {
+        color: #ffffff;
+        font-size: 36px;
+        font-weight: 300;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+    }
+
+    .hero-section h1 span {
+        color: #00a8e1;
+        font-weight: 600;
+    }
+
+    .hero-section .date-line {
+        color: #00a8e1;
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+
+    /* SECTIONS */
+    .section {
+        padding: 40px;
+    }
+
+    .section-dark {
+        background: #1a3e5c;
+        color: #ffffff;
+        padding: 40px;
+    }
+
+    .section-light {
+        background: #f4f4f4;
+        padding: 40px;
+    }
+
+    .accent-bar {
+        width: 4px;
+        height: 40px;
+        background: #00a8e1;
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        font-size: 24px;
+        font-weight: 600;
+        color: #1a3e5c;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+    }
+
+    .section-dark h2 {
+        color: #00a8e1;
+    }
+
+    h3 {
+        font-size: 20px;
+        font-weight: 600;
+        color: #1a3e5c;
+        margin-bottom: 12px;
+    }
+
+    .section-dark h3 {
+        color: #ffffff;
+    }
+
+    p {
+        margin-bottom: 16px;
+        line-height: 1.7;
+    }
+
+    .highlight {
+        color: #00a8e1;
+        font-weight: 600;
+    }
+
+    /* PAIN AMPLIFICATION */
+    .pain-section p {
+        font-size: 17px;
+    }
+
+    .pain-section strong {
+        color: #1a3e5c;
+    }
+
+    /* QUALIFICATION */
+    .qualification {
+        border-left: 4px solid #00a8e1;
+        padding: 15px 20px;
+        margin-bottom: 15px;
+        background: rgba(0,168,225,0.05);
+        font-size: 17px;
+        font-style: italic;
+    }
+
+    /* SYSTEMS */
+    .system-card {
+        background: #ffffff;
+        border-radius: 8px;
+        padding: 25px;
+        margin-bottom: 20px;
+        border-left: 4px solid #00a8e1;
+    }
+
+    .system-card .system-number {
+        color: #00a8e1;
+        font-size: 14px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 8px;
+    }
+
+    .system-card h3 {
+        color: #1a3e5c;
+        margin-bottom: 10px;
+    }
+
+    .system-card p {
+        color: #333;
+        font-size: 15px;
+        margin-bottom: 8px;
+    }
+
+    .system-card .opportunity {
+        color: #00a8e1;
+        font-weight: 600;
+        font-size: 15px;
+    }
+
+    /* DELIVERABLES */
+    .deliverable-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .deliverable-list li {
+        padding: 10px 0;
+        font-size: 16px;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .section-dark .deliverable-list li {
+        color: #ffffff;
+    }
+
+    /* DIFFERENTIATOR */
+    .diff-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .diff-list li {
+        padding: 8px 0 8px 25px;
+        position: relative;
+        font-size: 16px;
+    }
+
+    .diff-list li::before {
+        content: ">";
+        position: absolute;
+        left: 0;
+        color: #00a8e1;
+        font-weight: 700;
+    }
+
+    /* LOGISTICS */
+    .logistics-box {
+        background: #ffffff;
+        border: 2px solid #00a8e1;
+        border-radius: 8px;
+        padding: 30px;
+        text-align: center;
+    }
+
+    .logistics-box .zoom-link {
+        display: inline-block;
+        background: #00a8e1;
+        color: #ffffff;
+        text-decoration: none;
+        padding: 14px 40px;
+        font-size: 16px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        border-radius: 4px;
+        margin: 15px 0;
+    }
+
+    .logistics-box .zoom-link:hover {
+        background: #008bbf;
+    }
+
+    .logistics-box p {
+        color: #333;
+        margin-bottom: 8px;
+    }
+
+    .logistics-box .meeting-id {
+        color: #666;
+        font-size: 14px;
+    }
+
+    /* MILLION DOLLAR QUESTION */
+    .mdq-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .mdq-list li {
+        padding: 8px 0;
+        font-size: 18px;
+        color: #ffffff;
+    }
+
+    /* BINARY CHOICE */
+    .choice-box {
+        background: #f4f4f4;
+        border-radius: 8px;
+        padding: 25px;
+        margin-bottom: 15px;
+    }
+
+    .choice-box.losing {
+        border-left: 4px solid #999;
+    }
+
+    .choice-box.winning {
+        border-left: 4px solid #00a8e1;
+    }
+
+    .choice-box h4 {
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .choice-box.losing h4 { color: #999; }
+    .choice-box.winning h4 { color: #00a8e1; }
+
+    /* SIGNATURE */
+    .signature {
+        text-align: center;
+        padding: 50px 40px;
+        background: #1a3e5c;
+        color: #ffffff;
+    }
+
+    .signature .sign-name {
+        font-size: 22px;
+        font-weight: 300;
+        letter-spacing: 0.08em;
+        margin-bottom: 5px;
+    }
+
+    .signature .sign-title {
+        color: #00a8e1;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+    }
+
+    .signature .tagline {
+        font-size: 16px;
+        font-weight: 600;
+        font-style: italic;
+        color: #00a8e1;
+        margin-top: 20px;
+    }
+
+    /* REALITY CHECK */
+    .reality-item {
+        padding: 8px 0;
+        font-size: 16px;
+        color: #ffffff;
+    }
+
+    hr {
+        border: none;
+        border-top: 1px solid rgba(0,168,225,0.3);
+        margin: 30px 0;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+
+    <!-- HERO -->
+    <div class="hero-section">
+        <div class="hero-image">
+            <img src="ai-goal-domination-hero.png" alt="92% of Goals Fail. Here's the System the Other 8% Use.">
+        </div>
+
+        <h1>THE AI <span>GOAL DOMINATION</span> SESSION</h1>
+        <div class="date-line">April 22, 2026 | 9:00 AM EST</div>
+    </div>
+
+    <!-- SECTION 1: PAIN AMPLIFICATION -->
+    <div class="section pain-section">
+        <div class="accent-bar"></div>
+
+        <p><strong>While you're setting the same goals you set last year</strong> -- scribbling resolutions on napkins, downloading another planner app, telling yourself "this quarter will be different" -- <strong>the top 1% of agents and entrepreneurs have handed their entire goal architecture to AI.</strong></p>
+
+        <p>They're not working harder. They're not more disciplined. They've built <strong>systems that chase their goals FOR them</strong> -- breaking 5-year visions into daily calendar blocks, automating their accountability, and literally transforming who they are at the identity level.</p>
+
+        <p>Here's what's happening right now:</p>
+
+        <p><strong>The truth:</strong> 92% of people who set goals never achieve them. Not because the goals are wrong -- because they have zero system to execute.</p>
+
+        <p><strong>The opportunity:</strong> AI can now take your biggest, most ambitious 5-year goal and reverse-engineer it into exactly what you need to do TODAY. Not theory. Not a vision board collecting dust. A living, breathing system that adapts, reminds, and evolves with you.</p>
+
+        <p><strong>The advantage:</strong> While your competitors are still relying on willpower and motivation (which statistically disappear by February), you'll have an AI-powered machine running your goal execution 24/7.</p>
+    </div>
+
+    <!-- SECTION 2: TRIPLE QUALIFICATION -->
+    <div class="section-light">
+        <div class="accent-bar"></div>
+        <h2>This Session Is For You If...</h2>
+
+        <div class="qualification">
+            If you're tired of setting ambitious goals in January and quietly abandoning them by March -- watching another year pass where your income, health, and lifestyle stay exactly the same...
+        </div>
+
+        <div class="qualification">
+            If you want to see LIVE how AI can take a vague dream like "I want to make $500K this year" and turn it into a specific daily playbook with calendar blocks, milestones, and built-in accountability...
+        </div>
+
+        <div class="qualification">
+            If you're ready to stop being the person who KNOWS what to do but never consistently DOES it -- and start becoming the person for whom success behaviors are automatic...
+        </div>
+    </div>
+
+    <!-- SECTION 3: SESSION TITLE -->
+    <div class="section-dark" style="text-align: center; padding: 50px 40px;">
+        <h2 style="font-size: 28px; color: #ffffff; margin-bottom: 10px;">INTRODUCING</h2>
+        <h1 style="font-size: 34px; font-weight: 300; letter-spacing: 0.1em; color: #ffffff; margin-bottom: 15px;">THE AI <span style="color: #00a8e1; font-weight: 600;">GOAL DOMINATION</span> SESSION</h1>
+        <p style="color: rgba(255,255,255,0.8); font-size: 17px;">The system that turns your biggest ambitions into unstoppable daily execution</p>
+    </div>
+
+    <!-- SECTION 4: POSITIONING -->
+    <div class="section">
+        <p style="font-size: 17px;"><strong>This isn't another goal-setting workshop.</strong> You won't leave with a prettier vision board or a list of affirmations. You'll leave with a <span class="highlight">battlefield-tested AI system</span> that takes your 5-year vision and converts it into exactly what you need to do -- today, this week, this month -- with every task living inside your calendar, chasing you until it's done.</p>
+
+        <p style="font-size: 17px;">I'm going to build these systems LIVE. You'll watch me take a real goal, feed it to AI, and walk out with a complete execution machine you can replicate in 30 minutes.</p>
+    </div>
+
+    <!-- SECTION 5: THE 3 SYSTEMS -->
+    <div class="section-light">
+        <div class="accent-bar"></div>
+        <h2>The 3 Systems You'll Master</h2>
+
+        <div class="system-card">
+            <div class="system-number">System 1</div>
+            <h3>"The Vision Lock System"</h3>
+            <p>Most people can't clearly describe where they want to be in 5 years. That's why every decision they make is random. This system uses AI to extract your deepest goals, pressure-test them into SMART targets, and then generate vivid visual representations your brain can't ignore -- vision boards, phone wallpapers, printed imagery that keeps your destination locked in every single day.</p>
+            <p class="opportunity">Your opportunity: Stop drifting. Get crystal clear on what you're building, and make your brain SEE it every time you pick up your phone.</p>
+        </div>
+
+        <div class="system-card">
+            <div class="system-number">System 2</div>
+            <h3>"The Autopilot Roadmap System"</h3>
+            <p>Once your vision is locked, AI reverse-engineers it into yearly milestones, quarterly targets, monthly objectives, weekly priorities, and daily calendar blocks. No guessing. No "I'll figure it out Monday." Your entire roadmap lives inside your calendar -- AI schedules focus blocks, shifts them around conflicts, and monitors your progress so the SYSTEM chases the goal, not your willpower.</p>
+            <p class="opportunity">Your opportunity: Wake up every morning knowing EXACTLY what to do. Your calendar becomes your accountability partner -- powered by AI, running 24/7.</p>
+        </div>
+
+        <div class="system-card">
+            <div class="system-number">System 3</div>
+            <h3>"The Identity Upgrade Loop"</h3>
+            <p>Here's what nobody talks about: timers, energy drinks, productivity hacks -- they're all external patches on an internal problem. The agents and entrepreneurs who sustain massive results don't rely on tricks. They've become the kind of person for whom the right behaviors are AUTOMATIC. This system uses AI to identify where you're patching instead of building, explore the root causes, and design durable habit replacements that transform your identity over time.</p>
+            <p class="opportunity">Your opportunity: Stop hacking your way through the day. Start BECOMING the person who naturally does what winners do -- and watch everything else fall into place.</p>
+        </div>
+    </div>
+
+    <!-- SECTION 6: DIFFERENTIATION -->
+    <div class="section">
+        <div class="accent-bar"></div>
+        <h2>What Makes This Different From Every Other "Goal Setting" Session You've Attended</h2>
+
+        <ul class="diff-list">
+            <li><strong>LIVE system building</strong> -- not slides, not theory. I build these systems in real time so you can copy exactly what I do.</li>
+            <li><strong>Copy-paste AI prompts</strong> -- every prompt I use is in your workbook. You don't need to figure out what to type. Just paste and go.</li>
+            <li><strong>Calendar integration</strong> -- your goals leave this session INSIDE your schedule, not on a piece of paper in your desk drawer.</li>
+            <li><strong>Works for any goal</strong> -- GCI targets, health transformations, relationship goals, business launches. The system is universal.</li>
+            <li><strong>Identity-level transformation</strong> -- this isn't about doing more. It's about becoming the person who doesn't need motivation to execute.</li>
+            <li><strong>Beginner-friendly</strong> -- if you can talk to ChatGPT, you can run this system. No technical skills required.</li>
+        </ul>
+    </div>
+
+    <!-- SECTION 7: DELIVERABLES -->
+    <div class="section-dark">
+        <div class="accent-bar"></div>
+        <h2>What You'll Leave With</h2>
+
+        <ul class="deliverable-list">
+            <li>&#x1F3AF; A crystal-clear, AI-validated 5-year SMART goal that actually excites you</li>
+            <li>&#x1F5BC; An AI-generated vision board with images tailored to YOUR specific future</li>
+            <li>&#x1F4CA; A complete reverse-engineered roadmap: yearly > quarterly > monthly > weekly > daily</li>
+            <li>&#x1F4C5; Calendar blocks and recurring focus sessions already scheduled in your planner</li>
+            <li>&#x1F9E0; An identity upgrade plan that replaces willpower patches with permanent habit architecture</li>
+            <li>&#x1F4CB; A 30-day implementation workbook with every prompt, worksheet, and tracker you need</li>
+            <li>&#x1F4BB; The exact AI prompts I use -- copy, paste, customize, execute</li>
+        </ul>
+    </div>
+
+    <!-- SECTION 8: MASTERMIND REALITY CHECK -->
+    <div class="section">
+        <div class="accent-bar"></div>
+        <h2>The Mastermind Reality Check</h2>
+
+        <p>Unlike other "goal-setting workshops" where you leave inspired but unchanged, here's what you're getting:</p>
+
+        <p>&#x26A1; <strong>A working system, not a motivational speech.</strong> You'll leave with tools running inside your calendar -- not just notes in a journal.</p>
+
+        <p>&#x26A1; <strong>AI does the heavy lifting.</strong> No spreadsheets. No manual planning. AI builds the roadmap, schedules the blocks, and monitors the execution.</p>
+
+        <p>&#x26A1; <strong>Real-time building.</strong> I don't show you screenshots of what I did last week. I build it LIVE so you see every step, every prompt, every click.</p>
+
+        <p>&#x26A1; <strong>Accountability built into the system.</strong> The system follows up with YOU. You don't need a coach texting you -- your AI-powered calendar won't let you forget.</p>
+
+        <p>&#x26A1; <strong>Applicable to your ENTIRE life.</strong> GCI goals, fitness targets, relationship commitments, business launches -- one system runs all of it.</p>
+    </div>
+
+    <!-- SECTION 9: LOGISTICS -->
+    <div class="section-dark">
+        <div class="accent-bar"></div>
+        <h2 style="text-align: center;">Session Details</h2>
+
+        <div class="logistics-box">
+            <p style="font-size: 20px; font-weight: 600; color: #1a3e5c;">THE AI GOAL DOMINATION SESSION</p>
+            <p style="font-size: 18px; color: #1a3e5c; font-weight: 500;">Wednesday, April 22, 2026</p>
+            <p style="font-size: 18px; color: #1a3e5c;">9:00 AM Eastern Standard Time</p>
+
+            <a href="https://us02web.zoom.us/j/83924796230" class="zoom-link">JOIN ON ZOOM</a>
+
+            <p class="meeting-id">Meeting ID: 839 2479 6230</p>
+
+            <hr style="margin: 20px 0; border-color: #e8e8e8;">
+
+            <p style="font-size: 14px; color: #666;">Workbook will be available for download before the session.<br>This session will be recorded for members who can't attend live.</p>
+        </div>
+    </div>
+
+    <!-- SECTION 10: MILLION DOLLAR QUESTION -->
+    <div class="section-dark" style="background: linear-gradient(135deg, #0d2840 0%, #1a3e5c 100%);">
+        <div class="accent-bar"></div>
+        <h2>The Million-Dollar Question</h2>
+
+        <p style="font-size: 18px; color: rgba(255,255,255,0.9);">What if you could:</p>
+
+        <ul class="mdq-list">
+            <li>&#x2022; Wake up every single morning knowing EXACTLY what to work on -- with every task already in your calendar, prioritized by AI based on your 5-year vision?</li>
+            <li>&#x2022; Hit your income target, your health goals, and your relationship commitments -- not because you found more willpower, but because you built a system that won't let you fail?</li>
+            <li>&#x2022; Look back in 12 months and realize you accomplished more than the previous 5 years combined -- all while your competitors are still writing the same goals on a fresh notebook?</li>
+        </ul>
+
+        <p style="font-size: 17px; color: #00a8e1; margin-top: 25px;"><strong>That's not a fantasy. That's what happens when you stop relying on motivation and start running systems.</strong></p>
+    </div>
+
+    <!-- SECTION 11: BINARY CHOICE -->
+    <div class="section">
+        <div class="accent-bar"></div>
+        <h2>The Choice Is Simple</h2>
+
+        <div class="choice-box losing">
+            <h4>Option A: Keep Doing What You're Doing</h4>
+            <p>Set the same goals. Rely on willpower. Lose momentum by March. Watch another year pass where your income, health, and lifestyle stay exactly where they are. Hope that "next year will be different" -- even though nothing in your system has changed.</p>
+        </div>
+
+        <div class="choice-box winning">
+            <h4>Option B: Build the Machine</h4>
+            <p>Spend 90 minutes with me on April 22nd. Walk out with an AI-powered goal execution system that runs inside your calendar, adapts to your life, and transforms not just what you DO -- but who you ARE. Copy the prompts. Run the system. Watch compounding results stack for the rest of 2026 and beyond.</p>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="https://us02web.zoom.us/j/83924796230" style="display: inline-block; background: #00a8e1; color: #ffffff; text-decoration: none; padding: 16px 50px; font-size: 16px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; border-radius: 4px;">I Choose Domination</a>
+        </div>
+    </div>
+
+    <!-- SECTION 12: SIGNATURE -->
+    <div class="signature">
+        <p style="font-size: 16px; color: rgba(255,255,255,0.7); margin-bottom: 20px;">To Your Goal Domination,</p>
+        <p class="sign-name">Edmund Bogen & Team</p>
+        <p class="sign-title">Edmund's Mastermind & Group Coaching</p>
+        <p class="tagline">"Because Winging It is NOT an Option!"</p>
+    </div>
+
+</div>
+
+<!--
+============================================================
+AI HERO IMAGE GENERATION PROMPT
+============================================================
+
+Use this prompt with Midjourney, DALL-E, or similar AI image generators.
+Input Edmund's actual photo as a reference image, then use this prompt:
+
+PROMPT:
+"Professional portrait-style image of a confident 57-year-old man,
+handsome with a strong athletic build, wearing stylish black-framed glasses,
+dressed in a sharp navy suit or business casual outfit. He is standing
+in a modern office or studio environment with subtle holographic AI
+interface elements floating around him -- translucent blue goal roadmaps,
+calendar grids, milestone charts, and progress indicators. The color
+palette is navy blue (#1a3e5c), bright cyan (#00a8e1), and white.
+The lighting is professional and cinematic with a slight blue tint.
+The mood conveys authority, vision, and technological mastery.
+Clean, modern, luxury aesthetic. High resolution, 1200x628 aspect ratio."
+
+STYLE NOTES:
+- The AI/tech elements should be subtle and elegant, not sci-fi
+- The subject should look like a leader/coach, not a tech worker
+- Navy and cyan tones should dominate
+- The image should feel aspirational and authoritative
+- Use Edmund's actual photo as the face/body reference
+
+============================================================
+-->
+
+</body>
+</html>
