@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hurricane Preparedness Guide 2026: It's Never Too Early | The Edmund Bogen Team</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+            color: #1a1a1a;
+            background-color: #f4f4f4;
+        }
+        /* Navigation */
+        .nav { background-color: #1a3e5c; padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; }
+        .nav-brand { color: #ffffff; font-size: 16px; font-weight: 300; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; }
+        .nav-links { display: flex; gap: 25px; }
+        .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 13px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s ease; }
+        .nav-links a:hover { color: #00a8e1; }
+        /* Hero */
+        .hero { position: relative; width: 100%; height: 500px; overflow: hidden; }
+        .hero img { width: 100%; height: 100%; object-fit: cover; }
+        .hero-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, rgba(26,62,92,0.3) 0%, rgba(26,62,92,0.7) 100%); }
+        /* Content */
+        .content-container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+        .article-header { padding: 50px 0 30px 0; text-align: center; }
+        .category-label { color: #00a8e1; font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 20px; }
+        .article-title { color: #1a3e5c; font-size: 36px; font-weight: 300; letter-spacing: 1px; line-height: 1.3; margin-bottom: 15px; }
+        .article-meta { color: #666666; font-size: 14px; margin-bottom: 30px; }
+        /* Key Stats */
+        .key-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 40px 0; }
+        .key-stat { text-align: center; padding: 25px 15px; border-left: 3px solid #00a8e1; background-color: #f8f9fa; }
+        .key-stat-number { font-size: 28px; font-weight: 300; color: #1a3e5c; margin-bottom: 5px; }
+        .key-stat-label { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: #666666; }
+        /* Article Body */
+        .article-body { padding: 20px 0 60px 0; }
+        .article-body h2 { color: #1a3e5c; font-size: 22px; font-weight: 400; margin: 40px 0 20px 0; letter-spacing: 0.5px; }
+        .article-body p { color: #333333; font-size: 16px; line-height: 1.8; margin-bottom: 20px; }
+        .article-body ul { color: #333333; font-size: 16px; line-height: 1.8; margin: 0 0 20px 30px; }
+        .article-body li { margin-bottom: 8px; }
+        /* Pull Quote */
+        .pull-quote { border-left: 4px solid #00a8e1; padding: 20px 30px; margin: 30px 0; background-color: #f8fbff; }
+        .pull-quote p { color: #1a3e5c; font-size: 18px; font-weight: 400; font-style: italic; line-height: 1.6; margin: 0; }
+        /* CTA Section */
+        .cta-section { background: linear-gradient(135deg, #1a3e5c 0%, #2a5a7c 100%); padding: 60px 40px; text-align: center; margin: 40px 0; }
+        .cta-section h2 { color: #ffffff; font-size: 28px; font-weight: 300; letter-spacing: 1px; margin-bottom: 15px; }
+        .cta-section p { color: rgba(255,255,255,0.9); font-size: 16px; margin-bottom: 25px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .btn-primary { display: inline-block; background-color: #00a8e1; color: #ffffff; padding: 14px 35px; text-decoration: none; font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; transition: background-color 0.3s ease; }
+        .btn-primary:hover { background-color: #0090c4; }
+        .btn-guide { display: inline-block; background-color: #cc0000; color: #ffffff; padding: 16px 40px; text-decoration: none; font-size: 14px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-top: 10px; transition: background-color 0.3s ease; }
+        .btn-guide:hover { background-color: #aa0000; }
+        /* Author Bio */
+        .author-bio { background-color: #ffffff; display: flex; gap: 30px; padding: 40px; margin-bottom: 40px; }
+        .author-image { width: 150px; height: 150px; object-fit: cover; flex-shrink: 0; }
+        .author-info h3 { color: #1a3e5c; font-size: 20px; font-weight: 300; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 5px; }
+        .author-title { color: #00a8e1; font-size: 13px; font-weight: 500; margin-bottom: 15px; }
+        .author-info p { color: #555555; font-size: 14px; line-height: 1.7; margin-bottom: 15px; }
+        .author-contact { display: flex; gap: 25px; }
+        .author-contact a { color: #1a3e5c; text-decoration: none; font-size: 14px; font-weight: 500; }
+        .author-contact a:hover { color: #00a8e1; }
+        /* Footer */
+        .footer { background-color: #1a3e5c; padding: 40px; text-align: center; }
+        .footer-brand { color: #ffffff; font-size: 14px; font-weight: 300; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px; }
+        .footer-disclaimer { color: rgba(255,255,255,0.7); font-size: 11px; line-height: 1.6; max-width: 800px; margin: 0 auto; }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .key-stats { grid-template-columns: 1fr; }
+            .article-title { font-size: 26px; }
+            .hero { height: 300px; }
+            .author-bio { flex-direction: column; text-align: center; }
+            .author-image { margin: 0 auto; }
+            .author-contact { justify-content: center; flex-wrap: wrap; }
+            .nav { padding: 15px 20px; }
+            .nav-links { gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="https://bogenhomes.com" class="nav-brand">The Edmund Bogen Team</a>
+        <div class="nav-links">
+            <a href="https://bogenhomes.com">Properties</a>
+            <a href="https://edmundbogen.github.io/market-dashboard/">Dashboard</a>
+            <a href="https://bogenhomes.com/contact/">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Image -->
+    <div class="hero">
+        <img src="https://edmundbogen.github.io/hurricane-season-prep-2026/hero.png" alt="Hurricane Preparedness Guide 2026">
+        <div class="hero-overlay"></div>
+    </div>
+
+    <!-- Article Header -->
+    <div class="content-container">
+        <div class="article-header">
+            <p class="category-label">Community Resource</p>
+            <h1 class="article-title">Hurricane Preparedness Guide 2026: It's Never Too Early</h1>
+            <p class="article-meta">By Edmund Bogen | April 3, 2026</p>
+        </div>
+    </div>
+
+    <!-- Key Stats -->
+    <div class="content-container">
+        <div class="key-stats">
+            <div class="key-stat">
+                <p class="key-stat-number">June 1</p>
+                <p class="key-stat-label">Season Starts</p>
+            </div>
+            <div class="key-stat">
+                <p class="key-stat-number">11-16</p>
+                <p class="key-stat-label">Named Storms Projected</p>
+            </div>
+            <div class="key-stat">
+                <p class="key-stat-number">4-7</p>
+                <p class="key-stat-label">Hurricanes Projected</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Article Content -->
+    <div class="content-container">
+        <div class="article-body">
+
+            <p>As a courtesy to our St. Andrews Country Club community and neighbors across Boca Raton's luxury communities, The Edmund Bogen Team is delivering our comprehensive 2026 Hurricane Preparedness Guide. Hurricane season begins June 1 and runs through November 30, with peak activity between mid-August and mid-October. It is never too soon to prepare.</p>
+
+            <p>This guide is not a sales piece. It is a resource we have assembled because preparedness protects what matters most: your family, your home, and your peace of mind. We encourage you to read it, share it, and use the pre-season timeline to get ahead of the curve before the first storm forms.</p>
+
+            <div class="pull-quote">
+                <p>"The 1992 season produced just 7 named storms. One of them was Hurricane Andrew, which devastated South Florida and caused $27 billion in damage. A quiet season means nothing if that one storm hits your community."</p>
+            </div>
+
+            <h2>What the 2026 Forecasts Say</h2>
+
+            <p>Four major forecasting organizations have weighed in on the 2026 Atlantic hurricane season. AccuWeather projects 11 to 16 named storms, 4 to 7 hurricanes, and 2 to 4 major hurricanes (Category 3+). Tropical Storm Risk (TSR) forecasts 14 named storms, 7 hurricanes, and 3 major hurricanes. Colorado State University and NOAA will release their official forecasts in April and late May, respectively.</p>
+
+            <p>El Nino is the dominant variable this year. NOAA gives a 62% probability of El Nino developing by summer, which typically suppresses hurricane formation. However, forecasters universally warn against complacency: Atlantic sea surface temperatures remain exceptionally warm, creating major rapid-intensification risk regardless of El Nino conditions. In 2023, the season produced 20 named storms despite El Nino because record-warm ocean temperatures overpowered the shear.</p>
+
+            <h2>What the Guide Covers</h2>
+
+            <p>Our 13-section guide is the most comprehensive hurricane resource we have ever produced for the community. It covers:</p>
+
+            <ul>
+                <li><strong>2026 Season Outlook</strong> -- Forecast data from four organizations, El Nino analysis, sea surface temperature impact</li>
+                <li><strong>South Florida's Hurricane History</strong> -- Why Palm Beach County faces Category 4+ exposure every 5-7 years</li>
+                <li><strong>Evacuation Planning</strong> -- Zones, routes, shelter locations, and when to leave vs. shelter in place</li>
+                <li><strong>Emergency Supply Checklist</strong> -- Complete 14-day supply list with quantities for a household of four</li>
+                <li><strong>Home Hardening</strong> -- Impact windows, shutters, roof-to-wall connections, garage doors, and landscaping</li>
+                <li><strong>Generator Strategy</strong> -- Portable vs. whole-home, fuel calculations, safety protocols, and permits</li>
+                <li><strong>Insurance Deep-Dive</strong> -- Wind vs. flood policies, deductibles, documentation, and Citizens vs. private carriers</li>
+                <li><strong>Pet Safety</strong> -- Evacuation with pets, shelter options, identification, and Trooper's Law</li>
+                <li><strong>72-Hour Storm Countdown</strong> -- Hour-by-hour action checklist from first advisory through landfall</li>
+                <li><strong>Post-Storm Recovery</strong> -- Re-entry, damage assessment, contractor vetting, and insurance claims</li>
+                <li><strong>Power Restoration Timeline</strong> -- How FPL prioritizes, realistic timelines, and what to expect</li>
+                <li><strong>Emergency Contacts</strong> -- Every phone number and website you need in one place</li>
+                <li><strong>Pre-Season Timeline</strong> -- Month-by-month action plan from April through June 1</li>
+            </ul>
+
+            <div class="pull-quote">
+                <p>"AccuWeather projects 3-5 direct U.S. impacts this season. South Florida faces exposure from three directions -- Atlantic, Caribbean, and Gulf of Mexico -- and sits adjacent to the energy-rich Gulf Stream."</p>
+            </div>
+
+            <h2>Why We Do This</h2>
+
+            <p>We are real estate professionals, not meteorologists. But we live here. We own homes here. We raise families here. And we have watched neighbors scramble in the days before a storm because they did not have a plan. Preparation is not about fear. It is about being ready so that when the time comes, you can focus on what actually matters.</p>
+
+            <p>The full guide is available online and as a downloadable PDF. We encourage you to bookmark it, print the emergency contacts page, and share it with anyone in your household who should know the plan.</p>
+
+        </div>
+    </div>
+
+    <!-- Full Guide CTA -->
+    <div class="cta-section">
+        <h2>Access the Complete Guide</h2>
+        <p>13 sections. Every phone number, checklist, and timeline you need. Prepared for the residents of St. Andrews Country Club and the luxury communities of Boca Raton.</p>
+        <a href="https://edmundbogen.github.io/hurricane-guide-2026/" class="btn-guide">Read the Full Hurricane Guide</a>
+    </div>
+
+    <!-- Dashboard CTA -->
+    <div class="content-container">
+        <div class="cta-section" style="background: #ffffff; border: 2px solid #e8e8e8; margin-top: 0;">
+            <h2 style="color: #1a3e5c;">Luxury Communities Market Dashboard</h2>
+            <p style="color: #555555;">Updated weekly with active listings, sales data, and absorption rates across all 21 premier Boca Raton communities.</p>
+            <a href="https://edmundbogen.github.io/dashboard-2026-04-03/" class="btn-primary">View Dashboard</a>
+        </div>
+    </div>
+
+    <!-- Author Bio -->
+    <div class="content-container">
+        <section class="author-bio">
+            <img src="https://edmundbogen.github.io/edmund-profile.jpg" alt="Edmund Bogen" class="author-image">
+            <div class="author-info">
+                <h3>Edmund Bogen</h3>
+                <p class="author-title">AI Consultant &amp; Luxury Real Estate Specialist | Douglas Elliman</p>
+                <p>Edmund Bogen leads The Edmund Bogen Team at Douglas Elliman, specializing in luxury properties throughout South Florida's most prestigious communities. As founder of Bogen.ai and Edmund's Mastermind, a coaching community of 14,000+ real estate professionals, Edmund combines deep AI expertise with decades of luxury market knowledge to deliver data-driven results for his clients.</p>
+                <div class="author-contact">
+                    <a href="tel:561-235-7575">561-235-7575</a>
+                    <a href="mailto:edmund@bogenhomes.com">edmund@bogenhomes.com</a>
+                    <a href="https://bogenhomes.com">bogenhomes.com</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="footer-brand">The Edmund Bogen Team | Douglas Elliman</p>
+        <p class="footer-disclaimer">&copy; 2026 The Edmund Bogen Team. All rights reserved. Douglas Elliman Real Estate. Equal Housing Opportunity. This article is provided for general informational purposes only and should not be construed as legal, financial, or professional advice.</p>
+        <p class="footer-disclaimer" style="margin-top:8px; font-size:0.7em; opacity:0.7;">Market data courtesy of BeachesMLS. Information is deemed reliable but not guaranteed.</p>
+    </footer>
+
+</body>
+</html>
+<!-- v2026-04-03 -->
