@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Douglas Elliman Coral Gables — Office Meeting | April 16, 2026</title>
+    <meta name="description" content="Join us for an exclusive office meeting featuring AI strategies for real estate, condo rule updates, and commercial insights. April 16, 2026.">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --navy: #1a3e5c;
+            --bright-blue: #00a8e1;
+            --white: #ffffff;
+            --light-gray: #f4f4f4;
+            --medium-gray: #e0e0e0;
+            --dark-text: #333333;
+            --elliman-teal: #006272;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f4f4f4;
+            --bg-card: #ffffff;
+            --text-primary: #1a3e5c;
+            --text-secondary: #333333;
+            --text-muted: #666666;
+            --border-color: #e0e0e0;
+            --hero-bg: linear-gradient(135deg, #1a3e5c 0%, #0d2137 60%, #0a1a2e 100%);
+            --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+            --toggle-bg: #e0e0e0;
+            --toggle-dot: #1a3e5c;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0d1b2a;
+            --bg-secondary: #132d46;
+            --bg-card: #1a3e5c;
+            --text-primary: #ffffff;
+            --text-secondary: #c8d8e8;
+            --text-muted: #8aa4bd;
+            --border-color: #2a5070;
+            --hero-bg: linear-gradient(135deg, #0d1b2a 0%, #132d46 60%, #1a3e5c 100%);
+            --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+            --toggle-bg: #2a5070;
+            --toggle-dot: #00a8e1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+            line-height: 1.6;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--bg-card);
+            padding: 8px 16px;
+            border-radius: 40px;
+            box-shadow: var(--card-shadow);
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.05);
+        }
+
+        .theme-toggle-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .toggle-track {
+            width: 44px;
+            height: 24px;
+            background: var(--toggle-bg);
+            border-radius: 12px;
+            position: relative;
+            transition: background 0.3s ease;
+        }
+
+        .toggle-dot {
+            width: 18px;
+            height: 18px;
+            background: var(--toggle-dot);
+            border-radius: 50%;
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .toggle-dot {
+            left: 23px;
+        }
+
+        .toggle-icon {
+            font-size: 16px;
+        }
+
+        /* Print Button */
+        .print-btn {
+            position: fixed;
+            top: 20px;
+            right: 180px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--bright-blue);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 40px;
+            box-shadow: var(--card-shadow);
+            cursor: pointer;
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .print-btn:hover {
+            background: #0090c4;
+            transform: scale(1.05);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--hero-bg);
+            padding: 100px 40px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(0, 168, 225, 0.08) 0%, transparent 60%),
+                        radial-gradient(circle at 70% 80%, rgba(0, 168, 225, 0.05) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(0, 168, 225, 0.15);
+            border: 1px solid rgba(0, 168, 225, 0.3);
+            color: #00a8e1;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 6px 20px;
+            border-radius: 30px;
+            margin-bottom: 30px;
+        }
+
+        .hero-title {
+            font-size: 52px;
+            font-weight: 300;
+            color: #ffffff;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+
+        .hero-title strong {
+            font-weight: 700;
+            display: block;
+            color: #00a8e1;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.7);
+            letter-spacing: 0.04em;
+            margin-bottom: 40px;
+        }
+
+        .hero-date-bar {
+            display: inline-flex;
+            align-items: center;
+            gap: 30px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 8px;
+            padding: 20px 40px;
+        }
+
+        .hero-date-item {
+            text-align: center;
+        }
+
+        .hero-date-label {
+            font-size: 10px;
+            font-weight: 600;
+            color: #00a8e1;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .hero-date-value {
+            font-size: 16px;
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .hero-date-divider {
+            width: 1px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Elliman Header Bar */
+        .elliman-bar {
+            background: var(--bg-secondary);
+            padding: 16px 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .elliman-bar span {
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        /* Featured Speaker */
+        .featured-speaker {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 48px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+
+        .featured-speaker::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--bright-blue);
+        }
+
+        .featured-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--bright-blue);
+            margin-bottom: 16px;
+        }
+
+        .featured-name {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .featured-titles {
+            margin-bottom: 24px;
+        }
+
+        .featured-title-line {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        .featured-talk-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .featured-talk-title em {
+            color: var(--bright-blue);
+            font-style: normal;
+        }
+
+        .technique-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .technique-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .technique-number {
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            background: rgba(0, 168, 225, 0.1);
+            color: var(--bright-blue);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .technique-content h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+
+        .technique-content p {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .book-callout {
+            margin-top: 24px;
+            padding: 16px 20px;
+            background: rgba(0, 168, 225, 0.06);
+            border: 1px solid rgba(0, 168, 225, 0.15);
+            border-radius: 8px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .book-callout strong {
+            color: var(--text-primary);
+        }
+
+        /* Other Speakers */
+        .speakers-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .speaker-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 28px;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .speaker-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--navy);
+        }
+
+        [data-theme="dark"] .speaker-card::before {
+            background: var(--bright-blue);
+            opacity: 0.4;
+        }
+
+        .speaker-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .speaker-topic {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Martha Section */
+        .announcements-bar {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .announcements-icon {
+            flex-shrink: 0;
+            width: 44px;
+            height: 44px;
+            background: var(--navy);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        [data-theme="dark"] .announcements-icon {
+            background: rgba(0, 168, 225, 0.15);
+        }
+
+        .announcements-icon svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .announcements-text h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+
+        .announcements-text p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* Lunch Banner */
+        .lunch-banner {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 168, 225, 0.06);
+            border: 1px solid rgba(0, 168, 225, 0.15);
+            border-radius: 12px;
+            margin-bottom: 50px;
+        }
+
+        .lunch-banner p {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--bright-blue);
+        }
+
+        /* RSVP Section */
+        .rsvp-section {
+            text-align: center;
+            padding: 48px 40px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            margin-bottom: 40px;
+        }
+
+        .rsvp-section h3 {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .rsvp-section p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .rsvp-email {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 14px 40px;
+            background: var(--bright-blue);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .rsvp-email:hover {
+            background: #0090c4;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0, 168, 225, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-brand {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .footer-address {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 80px 24px 60px;
+            }
+            .hero-title {
+                font-size: 34px;
+            }
+            .hero-date-bar {
+                flex-direction: column;
+                gap: 16px;
+                padding: 20px 24px;
+            }
+            .hero-date-divider {
+                width: 60px;
+                height: 1px;
+            }
+            .main-content {
+                padding: 40px 20px;
+            }
+            .featured-speaker {
+                padding: 28px;
+            }
+            .speakers-grid {
+                grid-template-columns: 1fr;
+            }
+            .theme-toggle {
+                top: 12px;
+                right: 12px;
+                padding: 6px 12px;
+            }
+            .print-btn {
+                top: 12px;
+                right: 140px;
+                padding: 6px 14px;
+                font-size: 11px;
+            }
+            .theme-toggle-label {
+                display: none;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .theme-toggle, .print-btn {
+                display: none !important;
+            }
+
+            body {
+                background: #ffffff !important;
+                color: #333333 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .hero {
+                background: #1a3e5c !important;
+                padding: 60px 40px 50px !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .hero-badge {
+                border: 1px solid rgba(0, 168, 225, 0.5) !important;
+            }
+
+            .hero-title, .hero-title strong, .hero-subtitle,
+            .hero-date-value, .hero-date-label {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .main-content {
+                padding: 30px 40px !important;
+            }
+
+            .featured-speaker, .speaker-card, .announcements-bar,
+            .lunch-banner, .rsvp-section {
+                break-inside: avoid;
+                box-shadow: none !important;
+                border: 1px solid #ddd !important;
+                background: #ffffff !important;
+            }
+
+            .featured-speaker::before, .speaker-card::before {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .featured-name, .featured-talk-title, .speaker-name,
+            .technique-content h4, .announcements-text h4 {
+                color: #1a3e5c !important;
+            }
+
+            .rsvp-email {
+                background: #00a8e1 !important;
+                color: #ffffff !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .elliman-bar {
+                background: #f4f4f4 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            @page {
+                margin: 0.5in;
+                size: letter;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" onclick="toggleTheme()" role="button" aria-label="Toggle dark mode">
+        <span class="theme-toggle-label">Theme</span>
+        <div class="toggle-track">
+            <div class="toggle-dot"></div>
+        </div>
+        <span class="toggle-icon" id="themeIcon">&#9789;</span>
+    </div>
+
+    <!-- Print / PDF Button -->
+    <button class="print-btn" onclick="window.print()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Save PDF
+    </button>
+
+    <!-- Elliman Bar -->
+    <div class="elliman-bar">
+        <span>Douglas Elliman Real Estate &mdash; Coral Gables Office</span>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">You're Invited &mdash; Office Meeting</div>
+            <h1 class="hero-title">
+                3 AI Plays<br><strong>That Pay</strong>
+            </h1>
+            <p class="hero-subtitle">Techniques You Can Use This Week to Win Listings</p>
+            <div class="hero-date-bar">
+                <div class="hero-date-item">
+                    <div class="hero-date-label">Date</div>
+                    <div class="hero-date-value">Thursday, April 16, 2026</div>
+                </div>
+                <div class="hero-date-divider"></div>
+                <div class="hero-date-item">
+                    <div class="hero-date-label">Time</div>
+                    <div class="hero-date-value">10:30 AM &ndash; 12:30 PM</div>
+                </div>
+                <div class="hero-date-divider"></div>
+                <div class="hero-date-item">
+                    <div class="hero-date-label">Location</div>
+                    <div class="hero-date-value">1515 Sunset Dr, Suite 10, Coral Gables</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="main-content">
+
+        <!-- Featured Speaker: Edmund -->
+        <div class="featured-speaker">
+            <div class="featured-label">Featured Speaker</div>
+            <div class="featured-name">Edmund Bogen</div>
+            <div class="featured-titles">
+                <div class="featured-title-line">The Edmund Bogen Team at Douglas Elliman</div>
+                <div class="featured-title-line">Founder, Bogen.ai &mdash; AI Consulting for Real Estate Professionals</div>
+            </div>
+            <div class="featured-talk-title">"3 AI Plays That Pay" &mdash; <em>Live Demonstration</em></div>
+            <ul class="technique-list">
+                <li class="technique-item">
+                    <div class="technique-number">1</div>
+                    <div class="technique-content">
+                        <h4>The CMA Machine</h4>
+                        <p>Generate AI-powered Comparative Market Analyses in minutes and deliver them in a way that converts at 15&ndash;43%. Walk out with a system you can launch this week.</p>
+                    </div>
+                </li>
+                <li class="technique-item">
+                    <div class="technique-number">2</div>
+                    <div class="technique-content">
+                        <h4>Click-Through Intelligence</h4>
+                        <p>Turn your email open-and-click data into a lead-identification engine. The technique behind a $2.1M deal that came from one follow-up call.</p>
+                    </div>
+                </li>
+                <li class="technique-item">
+                    <div class="technique-number">3</div>
+                    <div class="technique-content">
+                        <h4>Competitive Gap Analysis</h4>
+                        <p>Use AI to find exactly where your competitors are dropping the ball &mdash; and step in to win the listings they're leaving on the table.</p>
+                    </div>
+                </li>
+            </ul>
+            <div class="book-callout">
+                Techniques drawn from <strong>Prompt to Close: The AI Playbook for Real Estate</strong> by Edmund Bogen &mdash; available now on Amazon.
+            </div>
+        </div>
+
+        <!-- Other Speakers -->
+        <div class="speakers-grid">
+            <div class="speaker-card">
+                <div class="speaker-name">Danielle Blake</div>
+                <div class="speaker-topic">Condo Rules Update &mdash; New forms, compliance changes, and what every agent needs to know heading into Q2.</div>
+            </div>
+            <div class="speaker-card">
+                <div class="speaker-name">Alian Collazo</div>
+                <div class="speaker-topic">Commercial Market Update &mdash; Current conditions, opportunities, and key trends shaping the commercial landscape.</div>
+            </div>
+        </div>
+
+        <!-- Martha Announcements -->
+        <div class="announcements-bar">
+            <div class="announcements-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <div class="announcements-text">
+                <h4>Martha Pomares &mdash; Office Announcements</h4>
+                <p>Important updates and announcements from the Regional Manager.</p>
+            </div>
+        </div>
+
+        <!-- Lunch -->
+        <div class="lunch-banner">
+            <p>Lunch Will Be Provided</p>
+        </div>
+
+        <!-- RSVP -->
+        <div class="rsvp-section">
+            <h3>Reserve Your Seat</h3>
+            <p>Space is limited. Please confirm your attendance.</p>
+            <a href="mailto:Katherine.Perez@elliman.com?subject=RSVP%20%E2%80%94%20April%2016%20Office%20Meeting" class="rsvp-email">RSVP to Katherine Perez</a>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-brand">Douglas Elliman Real Estate &mdash; Coral Gables</div>
+        <div class="footer-address">1515 Sunset Drive, Suite 10, Coral Gables, FL 33143</div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const current = html.getAttribute('data-theme');
+            const next = current === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', next);
+            document.getElementById('themeIcon').innerHTML = next === 'dark' ? '&#9788;' : '&#9789;';
+            localStorage.setItem('theme', next);
+        }
+
+        // Restore saved theme
+        (function() {
+            const saved = localStorage.getItem('theme');
+            if (saved) {
+                document.documentElement.setAttribute('data-theme', saved);
+                document.getElementById('themeIcon').innerHTML = saved === 'dark' ? '&#9788;' : '&#9789;';
+            }
+        })();
+    </script>
+
+</body>
+</html>
