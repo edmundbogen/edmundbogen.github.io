@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your First AI-Powered CMA Skill — Prompt to Close</title>
+<meta name="description" content="A ready-to-use Claude Skill template for creating AI-powered CMAs. From Prompt to Close by Edmund Bogen.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: #fff;
+    color: #1a3e5c;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 32px 60px;
+  }
+
+  @media print {
+    body { padding: 0.4in; max-width: 100%; font-size: 11px; }
+    .no-print { display: none; }
+    .skill-block { break-inside: avoid; }
+    h1 { font-size: 24px; }
+    h2 { font-size: 16px; }
+  }
+
+  .header {
+    text-align: center;
+    padding-bottom: 28px;
+    border-bottom: 3px solid #1a3e5c;
+    margin-bottom: 32px;
+  }
+
+  .header h1 {
+    font-size: 32px;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #1a3e5c;
+  }
+
+  .header .subtitle {
+    font-size: 13px;
+    font-weight: 600;
+    color: #00a8e1;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+
+  .header .source {
+    font-size: 12px;
+    color: #888;
+    margin-top: 12px;
+  }
+
+  .intro {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #444;
+    margin-bottom: 32px;
+    max-width: 750px;
+  }
+
+  .intro strong { color: #1a3e5c; }
+
+  h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a3e5c;
+    margin-bottom: 16px;
+    padding-left: 14px;
+    border-left: 4px solid #00a8e1;
+    letter-spacing: 0.03em;
+  }
+
+  .step {
+    margin-bottom: 32px;
+  }
+
+  .step-num {
+    display: inline-block;
+    background: #00a8e1;
+    color: #fff;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 32px;
+    font-size: 15px;
+    font-weight: 700;
+    margin-right: 12px;
+    vertical-align: middle;
+  }
+
+  .step-title {
+    display: inline;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a3e5c;
+    vertical-align: middle;
+  }
+
+  .step p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+    margin-top: 10px;
+    margin-left: 44px;
+  }
+
+  .skill-block {
+    background: #0d1b2a;
+    color: #e8e8e8;
+    border-radius: 6px;
+    padding: 24px 28px;
+    margin: 20px 0 32px;
+    font-size: 13px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    font-family: 'Courier New', monospace;
+    position: relative;
+  }
+
+  .skill-block .label {
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    background: #00a8e1;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 12px;
+    border-radius: 3px;
+  }
+
+  .skill-block .placeholder {
+    color: #00a8e1;
+    font-weight: bold;
+  }
+
+  .skill-block .comment {
+    color: #5a7a8a;
+    font-style: italic;
+  }
+
+  .customize-box {
+    background: #f4f8fb;
+    border: 1px solid #d0e3ef;
+    border-radius: 6px;
+    padding: 20px 24px;
+    margin: 20px 0 32px;
+  }
+
+  .customize-box h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1a3e5c;
+    margin-bottom: 12px;
+  }
+
+  .customize-box ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .customize-box li {
+    font-size: 13px;
+    color: #444;
+    padding: 6px 0;
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .customize-box li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 12px;
+    width: 8px;
+    height: 8px;
+    border: 2px solid #00a8e1;
+    border-radius: 2px;
+  }
+
+  .example-output {
+    background: #f8f8f8;
+    border-left: 4px solid #00a8e1;
+    padding: 16px 20px;
+    margin: 16px 0 32px;
+    font-size: 13px;
+    color: #444;
+    line-height: 1.7;
+  }
+
+  .example-output strong {
+    color: #1a3e5c;
+  }
+
+  .cta-box {
+    background: #1a3e5c;
+    color: #fff;
+    border-radius: 6px;
+    padding: 28px 32px;
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  .cta-box h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .cta-box p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.6;
+  }
+
+  .cta-box .links {
+    margin-top: 16px;
+    font-size: 14px;
+  }
+
+  .cta-box a {
+    color: #00a8e1;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .footer {
+    text-align: center;
+    margin-top: 32px;
+    font-size: 10px;
+    color: #aaa;
+    letter-spacing: 0.05em;
+  }
+
+  .print-btn {
+    display: inline-block;
+    background: #00a8e1;
+    color: #fff;
+    border: none;
+    padding: 12px 32px;
+    border-radius: 4px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    margin-top: 24px;
+  }
+
+  .print-btn:hover {
+    background: #0090c4;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Your First AI-Powered CMA Skill</h1>
+  <div class="subtitle">Copy, Customize, Close</div>
+  <div class="source">From <strong>Prompt to Close</strong> by Edmund Bogen &mdash; Chapter 3: The CMA Machine</div>
+</div>
+
+<div class="intro">
+  A <strong>Skill</strong> is a pre-built instruction set that tells AI everything about your market, your voice, and your standards &mdash; so you never have to type it again. Below is a complete CMA Skill template. <strong>Replace the bracketed fields with your information</strong>, paste it into Claude as a Project instruction or ChatGPT Custom GPT, and you'll generate client-ready CMAs in under 10 minutes.
+</div>
+
+<div class="step">
+  <span class="step-num">1</span>
+  <div class="step-title">Copy the Skill Template Below</div>
+  <p>This is the full instruction set. Everything between the dark boxes is what you paste into your AI tool.</p>
+</div>
+
+<div class="skill-block">
+<div class="label">CMA SKILL TEMPLATE</div>
+<span class="comment"># My CMA Machine &mdash; [YOUR MARKET NAME]</span>
+
+You are a luxury real estate market analyst working exclusively for me, a licensed real estate agent. Your job is to produce professional Comparative Market Analyses that I present to prospective sellers.
+
+<span class="comment">## My Market</span>
+- <span class="placeholder">[YOUR CITY / REGION]</span>
+- <span class="placeholder">[YOUR PRIMARY NEIGHBORHOODS OR COMMUNITIES]</span>
+- Price range focus: <span class="placeholder">[$ LOW]</span> to <span class="placeholder">[$ HIGH]</span>
+- Property types: <span class="placeholder">[Single family, condo, townhome, etc.]</span>
+
+<span class="comment">## My Local Knowledge (This is what makes YOUR CMA better than generic AI)</span>
+- Waterfront premium: <span class="placeholder">[X]</span>%
+- Renovation premium (gut reno): <span class="placeholder">[X]</span>%
+- Large lot premium (over <span class="placeholder">[X]</span> acres): <span class="placeholder">[X]</span>%
+- New construction premium: <span class="placeholder">[X]</span>%
+- Community/HOA factors: <span class="placeholder">[e.g., club membership required, equity fees, transfer fees]</span>
+- Seasonal patterns: <span class="placeholder">[e.g., peak season Nov-Apr, summer slowdown]</span>
+
+<span class="comment">## CMA Output Format</span>
+When I give you a property address or details, produce:
+
+1. <strong>Executive Summary</strong> (3-4 sentences: what the home is, what it's worth, why)
+2. <strong>Comparable Sales Analysis</strong> (3-5 recent comps within 1 mile, with:)
+   - Address, sale price, date, beds/baths/SF
+   - Price per square foot
+   - Key differences from subject property
+   - Adjustment notes
+3. <strong>Recommended Price Range</strong> (low / target / high with rationale)
+4. <strong>Market Context</strong> (days on market trend, inventory levels, absorption rate)
+5. <strong>Seller Talking Points</strong> (3 bullet points I can use in my listing presentation)
+
+<span class="comment">## My Voice</span>
+- Professional but conversational &mdash; I'm presenting this to sophisticated homeowners
+- Data-driven with clear opinions &mdash; don't hedge, give me a recommendation
+- <span class="placeholder">[ADD ANY PERSONAL STYLE NOTES: formal/casual, first person/third person, etc.]</span>
+
+<span class="comment">## Rules</span>
+- Always note when data may be outdated and recommend MLS verification
+- Never fabricate specific sale prices &mdash; use ranges if uncertain
+- Flag any factors that could significantly move the price up or down
+- Include a disclaimer: "This analysis is for discussion purposes. Final pricing should be confirmed with current MLS data."
+</div>
+
+<div class="step">
+  <span class="step-num">2</span>
+  <div class="step-title">Customize It for Your Market</div>
+  <p>Replace every <span style="color: #00a8e1; font-weight: 600;">[BRACKETED FIELD]</span> with your actual numbers and details. The more specific you are, the better your CMAs will be.</p>
+</div>
+
+<div class="customize-box">
+  <h3>Fields to Fill In</h3>
+  <ul>
+    <li>Your city and primary neighborhoods/communities</li>
+    <li>Your price range sweet spot</li>
+    <li>Property types you specialize in</li>
+    <li>Local premiums you know from experience (waterfront, renovation, lot size, new build)</li>
+    <li>HOA/community-specific factors (club dues, transfer fees, equity requirements)</li>
+    <li>Seasonal market patterns in your area</li>
+    <li>Your personal voice and presentation style</li>
+  </ul>
+</div>
+
+<div class="step">
+  <span class="step-num">3</span>
+  <div class="step-title">Use It</div>
+  <p>Once your Skill is loaded, you just type the property address. That's it. The AI already knows your market, your premiums, your format, and your voice.</p>
+</div>
+
+<div class="example-output">
+  <strong>Example prompt after loading the Skill:</strong><br><br>
+  "Run a CMA for 17534 Bocaire Way, Boca Raton. 4 bed, 3.5 bath, 3,800 SF, built 2004, recently renovated kitchen and master bath, golf course lot, no water view."<br><br>
+  <strong>What you get back:</strong> A complete, formatted CMA with comps, price range, market context, and talking points &mdash; ready to send or present. Under 10 minutes.
+</div>
+
+<div class="step">
+  <span class="step-num">4</span>
+  <div class="step-title">Where to Paste It</div>
+  <p><strong>Claude:</strong> Go to claude.ai &rarr; Projects &rarr; New Project &rarr; paste the Skill as the Project Instructions.<br>
+  <strong>ChatGPT:</strong> Go to chatgpt.com &rarr; Explore GPTs &rarr; Create &rarr; paste in the Instructions field.<br>
+  Either way, the Skill persists across conversations. Build once, use forever.</p>
+</div>
+
+<div class="cta-box">
+  <h3>Want All the Systems?</h3>
+  <p>The CMA Machine is just Chapter 3. Prompt to Close has 14 chapters covering content creation, contracts, listing presentations, virtual staging, competitive intelligence, and a full 90-day implementation plan.</p>
+  <div class="links">
+    <a href="https://www.amazon.com/dp/B0GTRS9DVF">Get the book on Amazon &mdash; $19.95</a>
+    &nbsp;&bull;&nbsp;
+    <a href="https://bogen.ai/book">bogen.ai/book</a>
+  </div>
+</div>
+
+<div style="text-align: center;" class="no-print">
+  <button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
+</div>
+
+<div class="footer">
+  &copy; 2026 Edmund Bogen &bull; The Edmund Bogen Team at Douglas Elliman Real Estate &bull; bogen.ai<br>
+  From <em>Prompt to Close: The AI Playbook for Real Estate Professionals</em>
+</div>
+
+</body>
+</html>
