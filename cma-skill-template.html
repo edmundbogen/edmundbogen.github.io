@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,30 +8,134 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
 
+  /* ── CSS Custom Properties for Light/Dark ── */
+  :root {
+    --navy: #1a3e5c;
+    --accent: #00a8e1;
+    --accent-hover: #0090c4;
+  }
+
+  [data-theme="light"] {
+    --bg: #ffffff;
+    --bg-alt: #f4f8fb;
+    --bg-code: #0d1b2a;
+    --text-primary: #1a3e5c;
+    --text-body: #444444;
+    --text-muted: #888888;
+    --text-code: #e8e8e8;
+    --text-comment: #5a7a8a;
+    --border: #d0e3ef;
+    --border-header: #1a3e5c;
+    --example-bg: #f8f8f8;
+    --cta-bg: #1a3e5c;
+    --cta-text: #ffffff;
+    --cta-muted: rgba(255,255,255,0.7);
+    --toggle-bg: #e8e8e8;
+    --toggle-knob: #1a3e5c;
+    --footer-text: #aaaaaa;
+    --copy-bg: rgba(0,168,225,0.15);
+  }
+
+  [data-theme="dark"] {
+    --bg: #0a1628;
+    --bg-alt: #12213a;
+    --bg-code: #060e1a;
+    --text-primary: #e0eaf4;
+    --text-body: #b0c4d8;
+    --text-muted: #6a8098;
+    --text-code: #e8e8e8;
+    --text-comment: #5a7a8a;
+    --border: #1e3a54;
+    --border-header: #00a8e1;
+    --example-bg: #12213a;
+    --cta-bg: #12213a;
+    --cta-text: #e0eaf4;
+    --cta-muted: rgba(176,196,216,0.7);
+    --toggle-bg: #1e3a54;
+    --toggle-knob: #00a8e1;
+    --footer-text: #4a6a80;
+    --copy-bg: rgba(0,168,225,0.2);
+  }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
     font-family: 'Montserrat', sans-serif;
-    background: #fff;
-    color: #1a3e5c;
+    background: var(--bg);
+    color: var(--text-primary);
     max-width: 900px;
     margin: 0 auto;
     padding: 40px 32px 60px;
+    transition: background 0.3s ease, color 0.3s ease;
   }
 
+  /* ── Print ── */
   @media print {
-    body { padding: 0.4in; max-width: 100%; font-size: 11px; }
-    .no-print { display: none; }
+    body { padding: 0.4in; max-width: 100%; font-size: 11px; background: #fff; color: #1a3e5c; }
+    .no-print { display: none !important; }
     .skill-block { break-inside: avoid; }
     h1 { font-size: 24px; }
     h2 { font-size: 16px; }
+    .header { border-color: #1a3e5c; }
+    .intro, .step p, .customize-box li, .example-output { color: #444; }
+    .customize-box { background: #f4f8fb; border-color: #d0e3ef; }
+    .example-output { background: #f8f8f8; }
+    .cta-box { background: #1a3e5c; }
   }
 
+  /* ── Theme Toggle ── */
+  .theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .toggle-track {
+    width: 52px;
+    height: 28px;
+    background: var(--toggle-bg);
+    border-radius: 14px;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.3s ease;
+  }
+
+  .toggle-knob {
+    width: 22px;
+    height: 22px;
+    background: var(--toggle-knob);
+    border-radius: 50%;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+
+  [data-theme="dark"] .toggle-knob {
+    transform: translateX(24px);
+  }
+
+  .toggle-icon {
+    font-size: 16px;
+    line-height: 1;
+  }
+
+  /* ── Header ── */
   .header {
     text-align: center;
     padding-bottom: 28px;
-    border-bottom: 3px solid #1a3e5c;
+    border-bottom: 3px solid var(--border-header);
     margin-bottom: 32px;
+    transition: border-color 0.3s ease;
   }
 
   .header h1 {
@@ -39,13 +143,13 @@
     font-weight: 300;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #1a3e5c;
+    color: var(--text-primary);
   }
 
   .header .subtitle {
     font-size: 13px;
     font-weight: 600;
-    color: #00a8e1;
+    color: var(--accent);
     letter-spacing: 0.12em;
     text-transform: uppercase;
     margin-top: 8px;
@@ -53,37 +157,38 @@
 
   .header .source {
     font-size: 12px;
-    color: #888;
+    color: var(--text-muted);
     margin-top: 12px;
   }
 
+  /* ── Intro ── */
   .intro {
     font-size: 15px;
     line-height: 1.7;
-    color: #444;
+    color: var(--text-body);
     margin-bottom: 32px;
     max-width: 750px;
   }
 
-  .intro strong { color: #1a3e5c; }
+  .intro strong { color: var(--text-primary); }
 
+  /* ── Headings ── */
   h2 {
     font-size: 18px;
     font-weight: 700;
-    color: #1a3e5c;
+    color: var(--text-primary);
     margin-bottom: 16px;
     padding-left: 14px;
-    border-left: 4px solid #00a8e1;
+    border-left: 4px solid var(--accent);
     letter-spacing: 0.03em;
   }
 
-  .step {
-    margin-bottom: 32px;
-  }
+  /* ── Steps ── */
+  .step { margin-bottom: 32px; }
 
   .step-num {
     display: inline-block;
-    background: #00a8e1;
+    background: var(--accent);
     color: #fff;
     width: 32px;
     height: 32px;
@@ -100,21 +205,24 @@
     display: inline;
     font-size: 16px;
     font-weight: 600;
-    color: #1a3e5c;
+    color: var(--text-primary);
     vertical-align: middle;
   }
 
   .step p {
     font-size: 14px;
-    color: #555;
+    color: var(--text-body);
     line-height: 1.6;
     margin-top: 10px;
     margin-left: 44px;
   }
 
+  .step p strong { color: var(--text-primary); }
+
+  /* ── Skill Block ── */
   .skill-block {
-    background: #0d1b2a;
-    color: #e8e8e8;
+    background: var(--bg-code);
+    color: var(--text-code);
     border-radius: 6px;
     padding: 24px 28px;
     margin: 20px 0 32px;
@@ -129,7 +237,7 @@
     position: absolute;
     top: -12px;
     left: 20px;
-    background: #00a8e1;
+    background: var(--accent);
     color: #fff;
     font-family: 'Montserrat', sans-serif;
     font-size: 10px;
@@ -141,38 +249,60 @@
   }
 
   .skill-block .placeholder {
-    color: #00a8e1;
+    color: var(--accent);
     font-weight: bold;
   }
 
   .skill-block .comment {
-    color: #5a7a8a;
+    color: var(--text-comment);
     font-style: italic;
   }
 
+  .copy-btn {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    background: var(--copy-bg);
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 5px 14px;
+    border-radius: 4px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .copy-btn:hover {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  /* ── Customize Box ── */
   .customize-box {
-    background: #f4f8fb;
-    border: 1px solid #d0e3ef;
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
     border-radius: 6px;
     padding: 20px 24px;
     margin: 20px 0 32px;
+    transition: background 0.3s ease, border-color 0.3s ease;
   }
 
   .customize-box h3 {
     font-size: 14px;
     font-weight: 700;
-    color: #1a3e5c;
+    color: var(--text-primary);
     margin-bottom: 12px;
   }
 
-  .customize-box ul {
-    list-style: none;
-    padding: 0;
-  }
+  .customize-box ul { list-style: none; padding: 0; }
 
   .customize-box li {
     font-size: 13px;
-    color: #444;
+    color: var(--text-body);
     padding: 6px 0;
     padding-left: 20px;
     position: relative;
@@ -186,42 +316,49 @@
     top: 12px;
     width: 8px;
     height: 8px;
-    border: 2px solid #00a8e1;
+    border: 2px solid var(--accent);
     border-radius: 2px;
   }
 
+  /* ── Example Output ── */
   .example-output {
-    background: #f8f8f8;
-    border-left: 4px solid #00a8e1;
+    background: var(--example-bg);
+    border-left: 4px solid var(--accent);
     padding: 16px 20px;
     margin: 16px 0 32px;
     font-size: 13px;
-    color: #444;
+    color: var(--text-body);
     line-height: 1.7;
+    transition: background 0.3s ease;
   }
 
-  .example-output strong {
-    color: #1a3e5c;
-  }
+  .example-output strong { color: var(--text-primary); }
 
+  /* ── CTA Box ── */
   .cta-box {
-    background: #1a3e5c;
-    color: #fff;
+    background: var(--cta-bg);
+    color: var(--cta-text);
     border-radius: 6px;
     padding: 28px 32px;
     text-align: center;
     margin-top: 40px;
+    transition: background 0.3s ease;
+  }
+
+  [data-theme="dark"] .cta-box {
+    border: 1px solid var(--border);
   }
 
   .cta-box h3 {
     font-size: 18px;
     font-weight: 700;
     margin-bottom: 8px;
+    color: var(--cta-text);
   }
 
   .cta-box p {
     font-size: 14px;
-    color: rgba(255,255,255,0.7);
+    color: var(--cta-muted);
     line-height: 1.6;
   }
 
@@ -231,22 +368,26 @@
   }
 
   .cta-box a {
-    color: #00a8e1;
+    color: var(--accent);
     text-decoration: none;
     font-weight: 600;
   }
 
-  .footer {
+  .cta-box a:hover { text-decoration: underline; }
+
+  /* ── Action Buttons ── */
+  .action-bar {
     text-align: center;
     margin-top: 32px;
-    font-size: 10px;
-    color: #aaa;
-    letter-spacing: 0.05em;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
   }
 
-  .print-btn {
+  .action-btn {
     display: inline-block;
-    background: #00a8e1;
+    background: var(--accent);
     color: #fff;
     border: none;
     padding: 12px 32px;
@@ -256,15 +397,54 @@
     font-weight: 600;
     letter-spacing: 0.05em;
     cursor: pointer;
-    margin-top: 24px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background 0.2s ease;
   }
 
-  .print-btn:hover {
-    background: #0090c4;
+  .action-btn:hover { background: var(--accent-hover); }
+
+  .action-btn.secondary {
+    background: transparent;
+    color: var(--accent);
+    border: 2px solid var(--accent);
+  }
+
+  .action-btn.secondary:hover {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center;
+    margin-top: 32px;
+    font-size: 10px;
+    color: var(--footer-text);
+    letter-spacing: 0.05em;
+    transition: color 0.3s ease;
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 600px) {
+    body { padding: 24px 16px 40px; }
+    .header h1 { font-size: 22px; }
+    .theme-toggle { top: 12px; right: 12px; }
+    .theme-toggle .toggle-label { display: none; }
+    .action-bar { flex-direction: column; align-items: center; }
+    .action-btn { width: 80%; text-align: center; }
   }
 </style>
 </head>
 <body>
+
+<!-- Theme Toggle -->
+<div class="theme-toggle no-print">
+  <span class="toggle-icon" id="theme-icon">&#9788;</span>
+  <div class="toggle-track" id="toggle" onclick="toggleTheme()" role="button" tabindex="0" aria-label="Toggle light/dark mode">
+    <div class="toggle-knob"></div>
+  </div>
+</div>
 
 <div class="header">
   <h1>Your First AI-Powered CMA Skill</h1>
@@ -279,10 +459,11 @@
 <div class="step">
   <span class="step-num">1</span>
   <div class="step-title">Copy the Skill Template Below</div>
-  <p>This is the full instruction set. Everything between the dark boxes is what you paste into your AI tool.</p>
+  <p>This is the full instruction set. Everything in the dark box is what you paste into your AI tool. Click the copy button to grab it instantly.</p>
 </div>
 
-<div class="skill-block">
+<div class="skill-block" id="skill-block">
+<button class="copy-btn no-print" onclick="copySkill()">Copy</button>
 <div class="label">CMA SKILL TEMPLATE</div>
 <span class="comment"># My CMA Machine &mdash; [YOUR MARKET NAME]</span>
 
@@ -330,7 +511,7 @@ When I give you a property address or details, produce:
 <div class="step">
   <span class="step-num">2</span>
   <div class="step-title">Customize It for Your Market</div>
-  <p>Replace every <span style="color: #00a8e1; font-weight: 600;">[BRACKETED FIELD]</span> with your actual numbers and details. The more specific you are, the better your CMAs will be.</p>
+  <p>Replace every <span style="color: var(--accent); font-weight: 600;">[BRACKETED FIELD]</span> with your actual numbers and details. The more specific you are, the better your CMAs will be.</p>
 </div>
 
 <div class="customize-box">
@@ -376,14 +557,68 @@ When I give you a property address or details, produce:
   </div>
 </div>
 
-<div style="text-align: center;" class="no-print">
-  <button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
+<div class="action-bar no-print">
+  <a class="action-btn" href="cma-skill-template.pdf" download>Download PDF</a>
+  <button class="action-btn secondary" onclick="window.print()">Print</button>
 </div>
 
 <div class="footer">
   &copy; 2026 Edmund Bogen &bull; The Edmund Bogen Team at Douglas Elliman Real Estate &bull; bogen.ai<br>
   From <em>Prompt to Close: The AI Playbook for Real Estate Professionals</em>
 </div>
+
+<script>
+  // ── Theme Toggle ──
+  function toggleTheme() {
+    const html = document.documentElement;
+    const current = html.getAttribute('data-theme');
+    const next = current === 'light' ? 'dark' : 'light';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('cma-theme', next);
+    updateIcon(next);
+  }
+
+  function updateIcon(theme) {
+    document.getElementById('theme-icon').innerHTML = theme === 'dark' ? '&#9790;' : '&#9788;';
+  }
+
+  // Load saved preference
+  (function() {
+    const saved = localStorage.getItem('cma-theme');
+    if (saved) {
+      document.documentElement.setAttribute('data-theme', saved);
+      updateIcon(saved);
+    }
+  })();
+
+  // Keyboard shortcut: D to toggle
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'd' || e.key === 'D') {
+      if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+        toggleTheme();
+      }
+    }
+  });
+
+  // ── Copy Skill Template ──
+  function copySkill() {
+    const block = document.getElementById('skill-block');
+    // Get plain text, stripping HTML tags
+    const temp = block.cloneNode(true);
+    // Remove the copy button and label from clone
+    const btn = temp.querySelector('.copy-btn');
+    const label = temp.querySelector('.label');
+    if (btn) btn.remove();
+    if (label) label.remove();
+    const text = temp.textContent.trim();
+
+    navigator.clipboard.writeText(text).then(function() {
+      const copyBtn = block.querySelector('.copy-btn');
+      copyBtn.textContent = 'Copied!';
+      setTimeout(function() { copyBtn.textContent = 'Copy'; }, 2000);
+    });
+  }
+</script>
 
 </body>
 </html>
