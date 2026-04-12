@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CMA — 2257 Egret Cove Drive | The Edmund Bogen Team</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* LIGHT THEME (default) */
+  :root, [data-theme="light"] {
+    --navy: #1a3e5c;
+    --bright-blue: #00a8e1;
+    --white: #ffffff;
+    --light-gray: #f4f4f4;
+    --mid-gray: #e8e8e8;
+    --text-dark: #333333;
+    --text-light: #666666;
+    --bg-main: #ffffff;
+    --bg-content: #ffffff;
+    --bg-card: #ffffff;
+    --bg-context: #ffffff;
+    --border-color: #e8e8e8;
+    --table-stripe: #f4f4f4;
+    --comp-note-bg: #f4f4f4;
+    --market-box-bg: #f4f4f4;
+    --negative-color: #c0392b;
+    --hero-start: #1a3e5c;
+    --hero-end: #0d2840;
+  }
+
+  /* DARK THEME */
+  [data-theme="dark"] {
+    --navy: #1a3e5c;
+    --bright-blue: #00a8e1;
+    --white: #e8ecf0;
+    --light-gray: #1e2a36;
+    --mid-gray: #2a3a48;
+    --text-dark: #dce3ea;
+    --text-light: #8a9bb0;
+    --bg-main: #0f1923;
+    --bg-content: #0f1923;
+    --bg-card: #162330;
+    --bg-context: #162330;
+    --border-color: #2a3a48;
+    --table-stripe: #162330;
+    --comp-note-bg: #1e2a36;
+    --market-box-bg: #162330;
+    --negative-color: #e74c3c;
+    --hero-start: #0f1923;
+    --hero-end: #060d14;
+  }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-dark);
+    line-height: 1.6;
+    background: var(--bg-main);
+    transition: background 0.3s, color 0.3s;
+  }
+
+  /* THEME TOGGLE + PDF BUTTON BAR */
+  .toolbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    gap: 8px;
+    padding: 16px 20px;
+  }
+  .toolbar button {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-theme {
+    background: var(--navy);
+    color: var(--white);
+  }
+  .btn-theme:hover { opacity: 0.85; }
+  .btn-pdf {
+    background: var(--bright-blue);
+    color: #fff;
+  }
+  .btn-pdf:hover { opacity: 0.85; }
+
+  /* HEADER */
+  .header {
+    background: var(--navy);
+    color: #fff;
+    padding: 40px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .header-left .team-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--bright-blue);
+    margin-bottom: 4px;
+  }
+  .header-left .firm-name {
+    font-size: 22px;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #fff;
+  }
+  .header-left .location {
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.7);
+    margin-top: 4px;
+  }
+  .header-right {
+    text-align: right;
+    font-size: 13px;
+    line-height: 1.8;
+    color: #fff;
+  }
+  .header-right .agent-name {
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  /* HERO SECTION */
+  .hero {
+    background: linear-gradient(135deg, var(--hero-start) 0%, var(--hero-end) 100%);
+    color: #fff;
+    padding: 60px 60px 50px;
+  }
+  .hero .doc-type {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--bright-blue);
+    margin-bottom: 12px;
+  }
+  .hero h1 {
+    font-size: 42px;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    margin-bottom: 8px;
+  }
+  .hero .subtitle {
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.8);
+  }
+  .hero .prepared {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 8px;
+  }
+
+  /* CONTENT SECTIONS */
+  .content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 50px 60px;
+  }
+
+  .letter {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--text-dark);
+    margin-bottom: 40px;
+  }
+  .letter strong { font-weight: 600; }
+
+  /* PROPERTY AT A GLANCE */
+  .section-title {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--bright-blue);
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--bright-blue);
+  }
+
+  .property-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 50px;
+  }
+  .property-grid .cell {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+    background: var(--bg-card);
+  }
+  .property-grid .cell:nth-child(3n) { border-right: none; }
+  .property-grid .cell:nth-last-child(-n+3) { border-bottom: none; }
+  .property-grid .cell-label {
+    font-size: 11px;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+  }
+  .property-grid .cell-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-dark);
+  }
+
+  /* COMP CARDS */
+  .comp-card {
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 24px;
+    background: var(--bg-card);
+  }
+  .comp-header {
+    background: var(--navy);
+    color: #fff;
+    padding: 14px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .comp-header .comp-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .comp-header .comp-tag {
+    background: var(--bright-blue);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 2px;
+  }
+  .comp-body { padding: 24px; }
+  .comp-address {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 2px;
+  }
+  .comp-mls {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-bottom: 16px;
+  }
+  .comp-price {
+    font-size: 32px;
+    font-weight: 300;
+    color: var(--bright-blue);
+    margin-bottom: 2px;
+  }
+  .comp-ppsf {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-bottom: 20px;
+  }
+  .comp-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 40px;
+    margin-bottom: 20px;
+  }
+  .comp-details .detail {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .comp-details .detail-label { color: var(--text-light); }
+  .comp-details .detail-value { font-weight: 600; color: var(--text-dark); }
+  .comp-note {
+    border-left: 3px solid var(--bright-blue);
+    padding: 12px 16px;
+    background: var(--comp-note-bg);
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-dark);
+    border-radius: 0 4px 4px 0;
+  }
+
+  /* TWO-UP COMP LAYOUT */
+  .comp-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+  .comp-row .comp-card { margin-bottom: 0; }
+
+  /* ADJUSTMENTS TABLE */
+  .adj-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 50px;
+    font-size: 13px;
+  }
+  .adj-table thead th {
+    background: var(--navy);
+    color: #fff;
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .adj-table tbody td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: top;
+    color: var(--text-dark);
+  }
+  .adj-table tbody tr:nth-child(even) { background: var(--table-stripe); }
+  .adj-table .highlight { color: var(--bright-blue); font-weight: 600; }
+  .adj-table .negative { color: var(--negative-color); font-weight: 600; }
+  .adj-table .row-total td {
+    font-weight: 700;
+    border-top: 2px solid var(--navy);
+    font-size: 14px;
+  }
+
+  /* MARKET SUMMARY BOXES */
+  .market-summary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 40px;
+  }
+  .market-box {
+    padding: 24px 20px;
+    text-align: center;
+    border-right: 1px solid var(--border-color);
+    background: var(--market-box-bg);
+  }
+  .market-box:last-child { border-right: none; }
+  .market-box .box-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 8px;
+  }
+  .market-box .box-value {
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--bright-blue);
+    margin-bottom: 4px;
+  }
+  .market-box .box-sub {
+    font-size: 11px;
+    color: var(--text-light);
+  }
+
+  /* RECOMMENDED PRICE BOX */
+  .price-box {
+    background: var(--navy);
+    color: #fff;
+    padding: 40px;
+    border-radius: 4px;
+    margin-bottom: 40px;
+  }
+  .price-box .price-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--bright-blue);
+    margin-bottom: 16px;
+  }
+  .price-box .price-range {
+    font-size: 42px;
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+  .price-box .price-detail {
+    font-size: 14px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.85);
+  }
+  .price-box .price-detail strong {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  /* ADDITIONAL CONTEXT */
+  .context-box {
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 24px;
+    margin-bottom: 24px;
+    border-left: 4px solid var(--bright-blue);
+    background: var(--bg-context);
+  }
+  .context-box h3 {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--bright-blue);
+    margin-bottom: 12px;
+  }
+  .context-box p, .context-box li {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-dark);
+  }
+  .context-box ul { margin-left: 20px; margin-top: 8px; }
+  .context-box li { margin-bottom: 6px; }
+
+  /* CLOSING */
+  .closing {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--text-dark);
+    margin-bottom: 40px;
+  }
+  .signature { margin-top: 30px; }
+  .signature .sig-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 2px;
+  }
+  .signature .sig-title {
+    font-size: 13px;
+    color: var(--text-light);
+    line-height: 1.6;
+  }
+
+  /* DISCLAIMER */
+  .disclaimer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.6);
+    padding: 24px 60px;
+    font-size: 11px;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  /* PRINT / PDF */
+  @media print {
+    .toolbar { display: none !important; }
+    .header, .hero, .disclaimer { break-inside: avoid; }
+    .comp-card { break-inside: avoid; }
+    .price-box { break-inside: avoid; }
+    body { font-size: 12px; background: #fff; color: #333; }
+    .content { padding: 30px 40px; }
+    .comp-price, .market-box .box-value { color: #1a3e5c; }
+    .section-title, .context-box h3, .price-box .price-label { color: #1a3e5c; }
+  }
+
+  @media (max-width: 768px) {
+    .toolbar { padding: 10px 12px; }
+    .toolbar button { padding: 8px 12px; font-size: 10px; }
+    .header { flex-direction: column; text-align: center; padding: 30px 24px; }
+    .header-right { text-align: center; margin-top: 16px; }
+    .hero { padding: 40px 24px; }
+    .hero h1 { font-size: 28px; }
+    .content { padding: 30px 24px; }
+    .property-grid { grid-template-columns: 1fr; }
+    .property-grid .cell { border-right: none; }
+    .comp-row { grid-template-columns: 1fr; }
+    .comp-details { grid-template-columns: 1fr; }
+    .market-summary { grid-template-columns: 1fr 1fr; }
+    .market-box { border-bottom: 1px solid var(--border-color); }
+    .adj-table { font-size: 11px; }
+    .adj-table thead th, .adj-table tbody td { padding: 8px 10px; }
+    .price-box .price-range { font-size: 30px; }
+    .disclaimer { padding: 20px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOOLBAR -->
+<div class="toolbar">
+  <button class="btn-theme" onclick="toggleTheme()" id="themeBtn">DARK MODE</button>
+  <button class="btn-pdf" onclick="downloadPDF()">DOWNLOAD PDF</button>
+</div>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <div class="team-label">The Edmund Bogen Team</div>
+    <div class="firm-name">At Douglas Elliman Real Estate</div>
+    <div class="location">Boca Raton, FL &middot; bogenhomes.com</div>
+  </div>
+  <div class="header-right">
+    <div class="agent-name">Edmund Bogen</div>
+    <div>(561) 235-7575</div>
+    <div>edmund@bogenhomes.com</div>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="doc-type">Comparative Market Analysis</div>
+  <h1>2257 Egret Cove Drive</h1>
+  <div class="subtitle">West Palm Beach, FL 33411 &middot; Baywinds Community</div>
+  <div class="prepared">Prepared April 2026 &middot; Comparable sales: Nov 2025 &ndash; Mar 2026</div>
+</div>
+
+<!-- LETTER & PROPERTY SUMMARY -->
+<div class="content">
+
+  <div class="letter">
+    <p>April 2026</p>
+    <br>
+    <p>Thank you for the opportunity to present this Comparative Market Analysis (CMA) for your home at <strong>2257 Egret Cove Drive, West Palm Beach, FL 33411</strong>. I have prepared this analysis using the most relevant recent sales within the Baywinds community &mdash; including two sales on your own street &mdash; to help you make an informed and confident pricing decision.</p>
+    <br>
+    <p>Your home is a single-story <strong>3-bedroom, 2-bathroom</strong> CBS/Stucco residence offering <strong>1,961 square feet</strong> of living space (2,701 sq ft total) with a 2-car garage, a finished screened porch, and a concrete tile roof &mdash; all constructed in <strong>2004</strong> within the sought-after gated, guard-staffed Baywinds 55+ community.</p>
+    <br>
+    <p>To establish an accurate value range, I reviewed recent sold properties within Baywinds and selected the <strong>4 that most closely mirror your home</strong> in size, age, construction, and location. I also accounted for the home's current condition, which requires updating, and adjusted the comparable values accordingly. My analysis reflects differences in living area, year built, condition, view premiums, and renovation status.</p>
+  </div>
+
+  <!-- PROPERTY AT A GLANCE -->
+  <div class="section-title">Your Property at a Glance</div>
+  <div class="property-grid">
+    <div class="cell">
+      <div class="cell-label">Bedrooms / Baths</div>
+      <div class="cell-value">3 BR / 2 BA</div>
+    </div>
+    <div class="cell">
+      <div class="cell-label">Living Area</div>
+      <div class="cell-value">1,961 sq ft</div>
+    </div>
+    <div class="cell">
+      <div class="cell-label">Total Sq Ft</div>
+      <div class="cell-value">2,701 sq ft</div>
+    </div>
+    <div class="cell">
+      <div class="cell-label">Year Built</div>
+      <div class="cell-value">2004</div>
+    </div>
+    <div class="cell">
+      <div class="cell-label">Construction</div>
+      <div class="cell-value">CBS / Stucco</div>
+    </div>
+    <div class="cell">
+      <div class="cell-label">Roof</div>
+      <div class="cell-value">Concrete Tile</div>
+    </div>
+    <div class="cell">
+      <div class="cell-label">Garage</div>
+      <div class="cell-value">2-Car (466 sq ft)</div>
+    </div>
+    <div class="cell">
+      <div class="cell-label">Screened Porch</div>
+      <div class="cell-value">216 sq ft</div>
+    </div>
+    <div class="cell">
+      <div class="cell-label">Lot Size</div>
+      <div class="cell-value">0.13 Acres</div>
+    </div>
+  </div>
+
+  <!-- COMPS -->
+  <div class="section-title">Selected Comparable Sales</div>
+
+  <!-- Comp 1 & 2 side by side -->
+  <div class="comp-row">
+    <div class="comp-card">
+      <div class="comp-header">
+        <span class="comp-label">Comp 1 &mdash; Nov 2025</span>
+        <span class="comp-tag">Same Street</span>
+      </div>
+      <div class="comp-body">
+        <div class="comp-address">2254 Egret Cove Drive</div>
+        <div class="comp-mls">Baywinds RPD PL 10 &middot; MLS RX-11104253</div>
+        <div class="comp-price">$447,000</div>
+        <div class="comp-ppsf">$273.89 / sq ft &middot; Sold 11/21/2025</div>
+        <div class="comp-details">
+          <div class="detail"><span class="detail-label">Beds/Baths</span><span class="detail-value">3 / 2</span></div>
+          <div class="detail"><span class="detail-label">Living sq ft</span><span class="detail-value">1,632</span></div>
+          <div class="detail"><span class="detail-label">Total sq ft</span><span class="detail-value">2,255</span></div>
+          <div class="detail"><span class="detail-label">Year built</span><span class="detail-value">2004</span></div>
+          <div class="detail"><span class="detail-label">List price</span><span class="detail-value">$465,000</span></div>
+          <div class="detail"><span class="detail-label">DOM</span><span class="detail-value">100 days</span></div>
+          <div class="detail"><span class="detail-label">View</span><span class="detail-value">Lake</span></div>
+          <div class="detail"><span class="detail-label">Garage</span><span class="detail-value">2-car</span></div>
+        </div>
+        <div class="comp-note">Strongest location match &mdash; same street, same subdivision, same 2004 build year. Subject is 329 sq ft larger under air; size-adjusted value points to $484K&ndash;$489K for a home in comparable condition. Sold at 96% of list after 100 days on market.</div>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-header">
+        <span class="comp-label">Comp 2 &mdash; Dec 2025</span>
+        <span class="comp-tag">Closest Size</span>
+      </div>
+      <div class="comp-body">
+        <div class="comp-address">2325 Sapphire Circle</div>
+        <div class="comp-mls">Baywinds RPD PL 8 &middot; MLS RX-11131284</div>
+        <div class="comp-price">$450,000</div>
+        <div class="comp-ppsf">$226.81 / sq ft &middot; Sold 12/19/2025</div>
+        <div class="comp-details">
+          <div class="detail"><span class="detail-label">Beds/Baths</span><span class="detail-value">3 / 2</span></div>
+          <div class="detail"><span class="detail-label">Living sq ft</span><span class="detail-value">1,984</span></div>
+          <div class="detail"><span class="detail-label">Total sq ft</span><span class="detail-value">2,697</span></div>
+          <div class="detail"><span class="detail-label">Year built</span><span class="detail-value">2003</span></div>
+          <div class="detail"><span class="detail-label">List price</span><span class="detail-value">$470,000</span></div>
+          <div class="detail"><span class="detail-label">DOM</span><span class="detail-value">30 days</span></div>
+          <div class="detail"><span class="detail-label">View</span><span class="detail-value">Water</span></div>
+          <div class="detail"><span class="detail-label">Garage</span><span class="detail-value">2-car</span></div>
+        </div>
+        <div class="comp-note">Near-identical size profile (1,984 / 2,697 sq ft vs. subject 1,961 / 2,701). Sold in just 30 days at 96% of list &mdash; strong demand signal at this price point. Water view carries a slight premium vs. subject.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Comp 3 full width -->
+  <div class="comp-card">
+    <div class="comp-header">
+      <span class="comp-label">Comp 3 &mdash; Feb 2026</span>
+      <span class="comp-tag">Renovated Ceiling</span>
+    </div>
+    <div class="comp-body">
+      <div class="comp-address">9319 Sapphire Cove Drive</div>
+      <div class="comp-mls">Baywinds RPD PL 8 &middot; MLS RX-11146279</div>
+      <div class="comp-price">$540,000</div>
+      <div class="comp-ppsf">$272.17 / sq ft &middot; Sold 2/19/2026</div>
+      <div class="comp-details">
+        <div class="detail"><span class="detail-label">Beds/Baths</span><span class="detail-value">3 / 2</span></div>
+        <div class="detail"><span class="detail-label">Living sq ft</span><span class="detail-value">1,984</span></div>
+        <div class="detail"><span class="detail-label">Total sq ft</span><span class="detail-value">2,697</span></div>
+        <div class="detail"><span class="detail-label">Year built</span><span class="detail-value">2003</span></div>
+        <div class="detail"><span class="detail-label">List price</span><span class="detail-value">$565,000</span></div>
+        <div class="detail"><span class="detail-label">DOM</span><span class="detail-value">30 days</span></div>
+        <div class="detail"><span class="detail-label">View</span><span class="detail-value">Lake</span></div>
+        <div class="detail"><span class="detail-label">Garage</span><span class="detail-value">2-car</span></div>
+      </div>
+      <div class="comp-note">Most current data point (Feb 2026), same size profile. Fully renovated: impact windows/doors, LVP flooring, updated kitchen &amp; baths. Establishes the market ceiling for updated homes. Subject adjusted significantly downward for condition delta.</div>
+    </div>
+  </div>
+
+  <!-- Comp 4 full width -->
+  <div class="comp-card">
+    <div class="comp-header">
+      <span class="comp-label">Comp 4 &mdash; Mar 2026</span>
+      <span class="comp-tag">Same Street &middot; Same Size</span>
+    </div>
+    <div class="comp-body">
+      <div class="comp-address">2281 Egret Cove Drive</div>
+      <div class="comp-mls">Baywinds RPD PL 10 &middot; MLS RX-11163499</div>
+      <div class="comp-price">$457,500</div>
+      <div class="comp-ppsf">$233.30 / sq ft &middot; Sold ~Mar 2026</div>
+      <div class="comp-details">
+        <div class="detail"><span class="detail-label">Beds/Baths</span><span class="detail-value">3 / 2</span></div>
+        <div class="detail"><span class="detail-label">Living sq ft</span><span class="detail-value">1,961</span></div>
+        <div class="detail"><span class="detail-label">Total sq ft</span><span class="detail-value">2,701</span></div>
+        <div class="detail"><span class="detail-label">Year built</span><span class="detail-value">2004</span></div>
+        <div class="detail"><span class="detail-label">List price</span><span class="detail-value">$475,000</span></div>
+        <div class="detail"><span class="detail-label">DOM</span><span class="detail-value">Est. 60 days</span></div>
+        <div class="detail"><span class="detail-label">View</span><span class="detail-value">Lake</span></div>
+        <div class="detail"><span class="detail-label">Garage</span><span class="detail-value">2-car</span></div>
+      </div>
+      <div class="comp-note">Most relevant comparable &mdash; same street, identical square footage (1,961 sf), same year built, same floor plan. Described as &ldquo;impeccably cared for.&rdquo; Sold at 96% of list. This is the clearest benchmark for what your home would sell for in excellent condition. Subject requires a condition adjustment of -$25K to -$35K.</div>
+    </div>
+  </div>
+
+  <!-- ADDITIONAL MARKET CONTEXT -->
+  <div class="section-title">Additional Market Context</div>
+
+  <div class="context-box">
+    <h3>Active Competition on Egret Cove Drive</h3>
+    <p><strong>2277 Egret Cove Drive</strong> is currently listed at <strong>$445,000</strong> (MLS B26001331). This is a 3/2, 1,631 sq ft home with granite countertops, stainless steel appliances, lake views, and turnkey condition. It represents the price point buyers are seeing when they search your street today.</p>
+  </div>
+
+  <div class="context-box">
+    <h3>Same Floor Plan Sales in Baywinds (1,961 sq ft / 2004 Build)</h3>
+    <ul>
+      <li><strong>9743 Sandpiper Lane</strong> &mdash; Sold at <strong>$380,000</strong> ($194/sf). Same size, same year. Establishes the floor for this floor plan.</li>
+      <li><strong>9462 Sandpiper Lane</strong> &mdash; Pending at <strong>$426,900</strong> ($218/sf). Same size, same year. Strong mid-range data point.</li>
+      <li><strong>9763 Sandpiper Lane</strong> &mdash; Pending at <strong>$489,000</strong> ($249/sf). Same size, same year. Likely in updated condition.</li>
+    </ul>
+  </div>
+
+  <div class="context-box">
+    <h3>Baywinds Community-Wide Metrics (Trailing 12 Months)</h3>
+    <ul>
+      <li>50 homes sold, average asking price <strong>$431,833</strong>, average sold price <strong>$417,266</strong></li>
+      <li>Average list-to-sale ratio: <strong>97%</strong></li>
+      <li>Average days on market: <strong>109 days</strong></li>
+      <li>Median sale price: <strong>$392,500</strong> (down 5% year-over-year)</li>
+    </ul>
+  </div>
+
+  <!-- ADJUSTMENTS TABLE -->
+  <div class="section-title">Gross Adjustments &mdash; Subject vs. Comps</div>
+  <table class="adj-table">
+    <thead>
+      <tr>
+        <th>Factor</th>
+        <th>Comp 1<br>2254 Egret Cove</th>
+        <th>Comp 2<br>2325 Sapphire Cir</th>
+        <th>Comp 3<br>9319 Sapphire Cove</th>
+        <th>Comp 4<br>2281 Egret Cove</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Sold price</td>
+        <td>$447,000</td>
+        <td>$450,000</td>
+        <td>$540,000</td>
+        <td>$457,500</td>
+      </tr>
+      <tr>
+        <td>Living sq ft (vs 1,961)</td>
+        <td class="highlight">+329 sf &rarr; +$30,000</td>
+        <td class="highlight">+23 sf &rarr; +$2,000</td>
+        <td class="highlight">+23 sf &rarr; +$2,000</td>
+        <td>Same &rarr; $0</td>
+      </tr>
+      <tr>
+        <td>Year built (vs 2004)</td>
+        <td>Same &rarr; $0</td>
+        <td class="negative">1 yr older &rarr; -$1,500</td>
+        <td class="negative">1 yr older &rarr; -$1,500</td>
+        <td>Same &rarr; $0</td>
+      </tr>
+      <tr>
+        <td>Condition / updates</td>
+        <td class="negative">Better condition &rarr; -$15,000</td>
+        <td class="negative">Better condition &rarr; -$15,000</td>
+        <td class="negative">Fully renovated &rarr; -$60,000</td>
+        <td class="negative">Excellent condition &rarr; -$30,000</td>
+      </tr>
+      <tr>
+        <td>Lake / water view premium</td>
+        <td class="negative">Lake view &rarr; -$8,000</td>
+        <td class="negative">Water view &rarr; -$8,000</td>
+        <td class="negative">Lake view &rarr; -$8,000</td>
+        <td class="negative">Lake view &rarr; -$8,000</td>
+      </tr>
+      <tr class="row-total">
+        <td>Adjusted value</td>
+        <td>$454,000</td>
+        <td>$427,500</td>
+        <td>$472,500</td>
+        <td>$419,500</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="font-size: 12px; color: var(--text-light); margin-top: -40px; margin-bottom: 50px; line-height: 1.6;">
+    Adjustments are qualitative market-based estimates. Condition adjustments are larger than a typical CMA because the subject property requires updating to kitchen, baths, flooring, and/or mechanical systems. Comp 4 (2281 Egret Cove) is the most directly comparable sale but sold in excellent, move-in-ready condition.
+  </p>
+
+  <!-- MARKET SUMMARY -->
+  <div class="section-title">Market Analysis &amp; Value Opinion</div>
+
+  <div class="market-summary">
+    <div class="market-box">
+      <div class="box-label">Low Comp Sold</div>
+      <div class="box-value">$380,000</div>
+      <div class="box-sub">9743 Sandpiper Ln</div>
+    </div>
+    <div class="market-box">
+      <div class="box-label">High Comp Sold</div>
+      <div class="box-value">$540,000</div>
+      <div class="box-sub">9319 Sapphire Cove Dr</div>
+    </div>
+    <div class="market-box">
+      <div class="box-label">Avg Adjusted Value</div>
+      <div class="box-value">$443,375</div>
+      <div class="box-sub">4-comp blended</div>
+    </div>
+    <div class="market-box">
+      <div class="box-label">Implied $/Sq Ft</div>
+      <div class="box-value">$219</div>
+      <div class="box-sub">Subject living area</div>
+    </div>
+  </div>
+
+  <!-- RECOMMENDED PRICE -->
+  <div class="price-box">
+    <div class="price-label">Recommended List Price</div>
+    <div class="price-range">$429,900</div>
+    <div class="price-detail">
+      Approximately <strong>$219 per sq ft</strong> of living area. This price reflects the home's current condition &mdash; which requires updating &mdash; while still capturing the value of the Baywinds community, the Egret Cove Drive location, and the desirable 1,961 sq ft floor plan.
+      <br><br>
+      At <strong>$429,900</strong>, the home is positioned:
+      <br><br>
+      &bull; <strong>$27,600 below</strong> the most directly comparable sale (2281 Egret Cove, $457,500) &mdash; reflecting the condition gap between a pristine home and one requiring updates<br>
+      &bull; <strong>$15,100 below</strong> the active listing at 2277 Egret Cove ($445,000) &mdash; which is turnkey with granite, stainless, and lake views<br>
+      &bull; <strong>$3,000 above</strong> the pending sale at 9462 Sandpiper ($426,900) &mdash; confirming buyer demand at this price point for the same floor plan<br>
+      &bull; <strong>$49,900 above</strong> the floor established by 9743 Sandpiper ($380,000) &mdash; ensuring we are not leaving money on the table
+    </div>
+  </div>
+
+  <!-- CLOSING LETTER -->
+  <div class="closing">
+    <p>Based on the data above, I recommend positioning your home at <strong>$429,900</strong> to attract qualified, motivated buyers while protecting your bottom line. This price acknowledges the home's need for cosmetic and functional updates, and it positions you competitively against turnkey listings on the same street that are priced $15K&ndash;$27K higher.</p>
+    <br>
+    <p>Baywinds remains an active market &mdash; accurately priced homes are selling in as few as 30 days, and even at the community-wide level, homes are transacting at 97% of list price. At $429,900, we create urgency among buyers who see the value in this floor plan and location, and we leave appropriate room to negotiate while protecting your net proceeds.</p>
+    <br>
+    <p>It is worth noting that if you choose to make targeted improvements before listing &mdash; such as updated flooring, fresh paint, or kitchen/bath refreshes &mdash; we can revisit the price upward toward the $450K&ndash;$460K range that the pristine Egret Cove comps support.</p>
+    <br>
+    <p>My commitment to you goes beyond just the numbers. As your listing agent, I will provide professional photography, targeted digital marketing, and my full expertise to position your home for the strongest possible outcome. I would be honored to walk through the property with you, discuss your goals, and build a custom marketing strategy tailored to your timeline.</p>
+    <br>
+    <p>Please do not hesitate to reach out at any time &mdash; I am always available to answer your questions.</p>
+
+    <div class="signature">
+      <p>Warm regards,</p>
+      <br>
+      <div class="sig-name">Edmund Bogen</div>
+      <div class="sig-title">
+        The Edmund Bogen Team &middot; Douglas Elliman Real Estate<br>
+        (561) 235-7575 &middot; edmund@bogenhomes.com &middot; bogenhomes.com
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- DISCLAIMER -->
+<div class="disclaimer">
+  <strong>Disclaimer:</strong> This Comparative Market Analysis is prepared by The Edmund Bogen Team at Douglas Elliman Real Estate for informational purposes only. It is not an appraisal and should not be used as a substitute for a licensed appraisal. All information is deemed reliable but not guaranteed. Market conditions can change rapidly. Final pricing decisions rest with the seller. &middot; (561) 235-7575 &middot; edmund@bogenhomes.com
+</div>
+
+<script>
+  // THEME TOGGLE
+  function toggleTheme() {
+    const html = document.documentElement;
+    const btn = document.getElementById('themeBtn');
+    if (html.getAttribute('data-theme') === 'light') {
+      html.setAttribute('data-theme', 'dark');
+      btn.textContent = 'LIGHT MODE';
+    } else {
+      html.setAttribute('data-theme', 'light');
+      btn.textContent = 'DARK MODE';
+    }
+  }
+
+  // PDF DOWNLOAD via browser print
+  function downloadPDF() {
+    // Force light theme for PDF
+    const html = document.documentElement;
+    const currentTheme = html.getAttribute('data-theme');
+    html.setAttribute('data-theme', 'light');
+
+    // Hide toolbar
+    document.querySelector('.toolbar').style.display = 'none';
+
+    // Small delay to let styles render, then print
+    setTimeout(function() {
+      window.print();
+      // Restore
+      html.setAttribute('data-theme', currentTheme);
+      document.querySelector('.toolbar').style.display = 'flex';
+    }, 200);
+  }
+</script>
+
+</body>
+</html>
