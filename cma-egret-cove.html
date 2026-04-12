@@ -94,6 +94,62 @@
   }
   .btn-pdf:hover { opacity: 0.85; }
 
+  /* PROPERTY HERO IMAGE */
+  .property-hero {
+    position: relative;
+    width: 100%;
+    max-height: 500px;
+    overflow: hidden;
+  }
+  .property-hero img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    max-height: 500px;
+  }
+  .property-hero .hero-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(15,25,35,0.85) 0%, rgba(15,25,35,0.4) 60%, transparent 100%);
+    padding: 40px 60px 30px;
+  }
+  .property-hero .hero-badge {
+    display: inline-block;
+    background: var(--bright-blue);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 2px;
+    margin-bottom: 10px;
+  }
+  .property-hero .hero-address {
+    font-size: 28px;
+    font-weight: 300;
+    color: #fff;
+    letter-spacing: 0.02em;
+  }
+  .property-hero .hero-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.75);
+    margin-top: 4px;
+  }
+  @media (max-width: 768px) {
+    .property-hero { max-height: 300px; }
+    .property-hero img { max-height: 300px; }
+    .property-hero .hero-overlay { padding: 24px; }
+    .property-hero .hero-address { font-size: 20px; }
+  }
+  @media print {
+    .property-hero { max-height: 400px; break-inside: avoid; }
+    .property-hero img { max-height: 400px; }
+  }
+
   /* HEADER */
   .header {
     background: var(--navy);
@@ -518,6 +574,16 @@
     <div class="agent-name">Edmund Bogen</div>
     <div>(561) 235-7575</div>
     <div>edmund@bogenhomes.com</div>
+  </div>
+</div>
+
+<!-- PROPERTY HERO IMAGE -->
+<div class="property-hero">
+  <img src="cma-egret-cove-hero.jpg" alt="2257 Egret Cove Drive — Subject Property">
+  <div class="hero-overlay">
+    <div class="hero-badge">Subject Property</div>
+    <div class="hero-address">2257 Egret Cove Drive</div>
+    <div class="hero-sub">Baywinds &middot; West Palm Beach, FL 33411</div>
   </div>
 </div>
 
