@@ -85,6 +85,12 @@
         .listing-card.new-construction {
             border-left-color: #dc3545;
         }
+        .listing-card.price-reduced {
+            border-left-color: #fd7e14;
+        }
+        .listing-card.new-listing {
+            border-left-color: #00a8e1;
+        }
         .listing-address {
             color: #1a3e5c;
             font-size: 1.4em;
@@ -111,6 +117,10 @@
         .badge-new {
             background: #f8d7da;
             color: #721c24;
+        }
+        .badge-reduced {
+            background: #fff3cd;
+            color: #856404;
         }
         .badge-new-listing {
             background: #d1ecf1;
@@ -209,36 +219,32 @@
 </head>
 <body>
     <div class="container">
-        <a href="index.html" class="back-button">&larr; Back to Market Dashboard</a>
+        <a href="dashboard.html" class="back-button">&larr; Back to Market Dashboard</a>
 
         <div class="header">
-            <h1>St. Andrews Country Club - Available Listings</h1>
-            <p class="header-subtitle">Updated April 3, 2026 | 10 Active Listings | Market Current</p>
+            <h1>St. Andrews Country Club</h1>
+            <p class="header-subtitle">Current Listings &mdash; Updated April 14, 2026 | 12 Active Listings</p>
         </div>
 
         <div class="summary-stats">
             <div class="summary-stat">
                 <div class="summary-stat-label">Price Range</div>
-                <div class="summary-stat-value">$2.1M - $12.5M</div>
+                <div class="summary-stat-value">$2.08M &ndash; $12.5M</div>
             </div>
             <div class="summary-stat">
                 <div class="summary-stat-label">Active Listings</div>
-                <div class="summary-stat-value">10</div>
+                <div class="summary-stat-value">12</div>
             </div>
             <div class="summary-stat">
                 <div class="summary-stat-label">Sold YTD</div>
                 <div class="summary-stat-value">12</div>
             </div>
-            <div class="summary-stat">
-                <div class="summary-stat-label">Absorption Rate</div>
-                <div class="summary-stat-value">55%</div>
-            </div>
         </div>
 
-        <!-- Listing 1: New Construction + Waterfront -->
-        <div class="listing-card new-construction">
+        <!-- Listing 1: $12,500,000 - Waterfront -->
+        <div class="listing-card waterfront">
             <div class="listing-info">
-                <div class="listing-address">17699 Lake Estates Drive <span class="listing-badge badge-new">New Construction 2026</span> <span class="listing-badge badge-waterfront">Waterfront</span></div>
+                <div class="listing-address">17699 Lake Estates Drive <span class="listing-badge badge-waterfront">Waterfront</span></div>
                 <div class="listing-price">$12,500,000</div>
                 <div class="listing-details">
                     <div class="listing-detail-item">
@@ -247,7 +253,7 @@
                     </div>
                     <div class="listing-detail-item">
                         <span class="listing-detail-label">Bathrooms</span>
-                        <span class="listing-detail-value">9.2</span>
+                        <span class="listing-detail-value">9 Full, 2 Half</span>
                     </div>
                     <div class="listing-detail-item">
                         <span class="listing-detail-label">Living SqFt</span>
@@ -255,25 +261,24 @@
                     </div>
                     <div class="listing-detail-item">
                         <span class="listing-detail-label">Year Built</span>
-                        <span class="listing-detail-value">2026</span>
+                        <span class="listing-detail-value">1994</span>
                     </div>
                     <div class="listing-detail-item">
-                        <span class="listing-detail-label">Lot SqFt</span>
-                        <span class="listing-detail-value">10,249</span>
+                        <span class="listing-detail-label">Pool</span>
+                        <span class="listing-detail-value">Yes</span>
                     </div>
                 </div>
                 <div class="listing-mls">MLS#: B26007876</div>
             </div>
             <div class="listing-cta">
                 <a href="https://bogenhomes.com/homes-for-sale-details/17699-LAKE-ESTATES-DRIVE-BOCA-RATON-FL-33496/B26007876/43/" target="_blank" class="view-listing-btn">View Details</a>
-                <span class="listing-dom">6 Days on Market</span>
             </div>
         </div>
 
-        <!-- Listing 2: New Construction -->
+        <!-- Listing 2: $9,999,000 - New Construction -->
         <div class="listing-card new-construction">
             <div class="listing-info">
-                <div class="listing-address">17591 Scarsdale Way <span class="listing-badge badge-new">New Construction 2027</span></div>
+                <div class="listing-address">17591 Scarsdale Way <span class="listing-badge badge-new">New Construction</span></div>
                 <div class="listing-price">$9,999,000</div>
                 <div class="listing-details">
                     <div class="listing-detail-item">
@@ -282,7 +287,7 @@
                     </div>
                     <div class="listing-detail-item">
                         <span class="listing-detail-label">Bathrooms</span>
-                        <span class="listing-detail-value">7.1</span>
+                        <span class="listing-detail-value">7 Full, 1 Half</span>
                     </div>
                     <div class="listing-detail-item">
                         <span class="listing-detail-label">Living SqFt</span>
@@ -292,19 +297,22 @@
                         <span class="listing-detail-label">Year Built</span>
                         <span class="listing-detail-value">2027</span>
                     </div>
+                    <div class="listing-detail-item">
+                        <span class="listing-detail-label">Pool</span>
+                        <span class="listing-detail-value">Yes</span>
+                    </div>
                 </div>
                 <div class="listing-mls">MLS#: A11989389</div>
             </div>
             <div class="listing-cta">
-                <a href="https://bogenhomes.com" target="_blank" class="view-listing-btn">View Details</a>
-                <span class="listing-dom">8 Days on Market</span>
+                <a href="https://www.bogenhomes.com" target="_blank" class="view-listing-btn">View Details</a>
             </div>
         </div>
 
-        <!-- Listing 3: New Construction + Price Reduced -->
+        <!-- Listing 3: $9,975,000 - New Construction -->
         <div class="listing-card new-construction">
             <div class="listing-info">
-                <div class="listing-address">17903 Foxborough Lane <span class="listing-badge badge-new">New Construction 2026</span> <span class="listing-badge badge-new">Price Reduced</span></div>
+                <div class="listing-address">17903 Foxborough Lane <span class="listing-badge badge-new">New Construction</span></div>
                 <div class="listing-price">$9,975,000</div>
                 <div class="listing-details">
                     <div class="listing-detail-item">
@@ -313,26 +321,63 @@
                     </div>
                     <div class="listing-detail-item">
                         <span class="listing-detail-label">Bathrooms</span>
-                        <span class="listing-detail-value">6.2</span>
+                        <span class="listing-detail-value">6 Full, 2 Half</span>
                     </div>
                     <div class="listing-detail-item">
                         <span class="listing-detail-label">Living SqFt</span>
-                        <span class="listing-detail-value">7,616</span>
+                        <span class="listing-detail-value">7,615</span>
                     </div>
                     <div class="listing-detail-item">
                         <span class="listing-detail-label">Year Built</span>
                         <span class="listing-detail-value">2026</span>
+                    </div>
+                    <div class="listing-detail-item">
+                        <span class="listing-detail-label">Pool</span>
+                        <span class="listing-detail-value">Yes</span>
                     </div>
                 </div>
                 <div class="listing-mls">MLS#: R11087609</div>
             </div>
             <div class="listing-cta">
                 <a href="https://bogenhomes.com/homes-for-sale-details/17903-FOXBOROUGH-LANE-BOCA-RATON-FL-33496/R11087609/43/" target="_blank" class="view-listing-btn">View Details</a>
-                <span class="listing-dom">332 Days on Market</span>
             </div>
         </div>
 
-        <!-- Listing 4 -->
+        <!-- Listing 4: $8,299,000 -->
+        <div class="listing-card">
+            <div class="listing-info">
+                <div class="listing-address">17787 Scarsdale Way</div>
+                <div class="listing-price">$8,299,000</div>
+                <div class="listing-details">
+                    <div class="listing-detail-item">
+                        <span class="listing-detail-label">Bedrooms</span>
+                        <span class="listing-detail-value">5</span>
+                    </div>
+                    <div class="listing-detail-item">
+                        <span class="listing-detail-label">Bathrooms</span>
+                        <span class="listing-detail-value">6 Full, 2 Half</span>
+                    </div>
+                    <div class="listing-detail-item">
+                        <span class="listing-detail-label">Living SqFt</span>
+                        <span class="listing-detail-value">5,861</span>
+                    </div>
+                    <div class="listing-detail-item">
+                        <span class="listing-detail-label">Year Built</span>
+                        <span class="listing-detail-value">2022</span>
+                    </div>
+                    <div class="listing-detail-item">
+                        <span class="listing-detail-label">Pool</span>
+                        <span class="listing-detail-value">Yes</span>
+                    </div>
+                </div>
+                <div class="listing-mls">MLS#: B26010941</div>
+            </div>
+            <div class="listing-cta">
+                <a href="https://bogenhomes.com/homes-for-sale-details/17787-SCARSDALE-WAY-BOCA-RATON-FL-33496/B26010941/43/" target="_blank" class="view-listing-btn">View Details</a>
+            </div>
+        </div>
+
+        <!-- Listing 5: $7,495,000 -->
         <div class="listing-card">
             <div class="listing-info">
                 <div class="listing-address">17615 Foxborough Lane</div>
@@ -344,7 +389,7 @@
                     </div>
                     <div class="listing-detail-item">
                         <span class="listing-detail-label">Bathrooms</span>
-                        <span class="listing-detail-value">5.1</span>
+                        <span class="listing-detail-value">5 Full, 1 Half</span>
                     </div>
                     <div class="listing-detail-item">
                         <span class="listing-detail-label">Living SqFt</span>
@@ -354,19 +399,57 @@
                         <span class="listing-detail-label">Year Built</span>
                         <span class="listing-detail-value">2024</span>
                     </div>
+                    <div class="listing-detail-item">
+                        <span class="listing-detail-label">Days on Market</span>
+                        <span class="listing-detail-value">212</span>
+                    </div>
                 </div>
                 <div class="listing-mls">MLS#: R11123890</div>
             </div>
             <div class="listing-cta">
                 <a href="https://bogenhomes.com/homes-for-sale-details/17615-FOXBOROUGH-LANE-BOCA-RATON-FL-33496/R11123890/43/" target="_blank" class="view-listing-btn">View Details</a>
-                <span class="listing-dom">199 Days on Market</span>
+                <span class="listing-dom">212 Days on Market</span>
             </div>
         </div>
 
-        <!-- Listing 5: New Listing -->
+        <!-- Listing 6: $5,999,000 - Waterfront -->
+        <div class="listing-card waterfront">
+            <div class="listing-info">
+                <div class="listing-address">17730 Scarsdale Way <span class="listing-badge badge-waterfront">Waterfront</span></div>
+                <div class="listing-price">$5,999,000</div>
+                <div class="listing-details">
+                    <div class="listing-detail-item">
+                        <span class="listing-detail-label">Bedrooms</span>
+                        <span class="listing-detail-value">7</span>
+                    </div>
+                    <div class="listing-detail-item">
+                        <span class="listing-detail-label">Bathrooms</span>
+                        <span class="listing-detail-value">8 Full, 1 Half</span>
+                    </div>
+                    <div class="listing-detail-item">
+                        <span class="listing-detail-label">Living SqFt</span>
+                        <span class="listing-detail-value">7,709</span>
+                    </div>
+                    <div class="listing-detail-item">
+                        <span class="listing-detail-label">Year Built</span>
+                        <span class="listing-detail-value">2005</span>
+                    </div>
+                    <div class="listing-detail-item">
+                        <span class="listing-detail-label">Pool</span>
+                        <span class="listing-detail-value">Yes</span>
+                    </div>
+                </div>
+                <div class="listing-mls">MLS#: B26010857</div>
+            </div>
+            <div class="listing-cta">
+                <a href="https://bogenhomes.com/homes-for-sale-details/17730-SCARSDALE-WAY-BOCA-RATON-FL-33496/B26010857/43/" target="_blank" class="view-listing-btn">View Details</a>
+            </div>
+        </div>
+
+        <!-- Listing 7: $5,850,000 -->
         <div class="listing-card">
             <div class="listing-info">
-                <div class="listing-address">7210 Ayrshire Lane <span class="listing-badge badge-new-listing">New Listing</span></div>
+                <div class="listing-address">7210 Ayrshire Lane</div>
                 <div class="listing-price">$5,850,000</div>
                 <div class="listing-details">
                     <div class="listing-detail-item">
@@ -375,7 +458,7 @@
                     </div>
                     <div class="listing-detail-item">
                         <span class="listing-detail-label">Bathrooms</span>
-                        <span class="listing-detail-value">5.1</span>
+                        <span class="listing-detail-value">5 Full, 1 Half</span>
                     </div>
                     <div class="listing-detail-item">
                         <span class="listing-detail-label">Living SqFt</span>
@@ -385,19 +468,22 @@
                         <span class="listing-detail-label">Year Built</span>
                         <span class="listing-detail-value">1988</span>
                     </div>
+                    <div class="listing-detail-item">
+                        <span class="listing-detail-label">Pool</span>
+                        <span class="listing-detail-value">Yes</span>
+                    </div>
                 </div>
                 <div class="listing-mls">MLS#: B26009359</div>
             </div>
             <div class="listing-cta">
                 <a href="https://bogenhomes.com/homes-for-sale-details/7210-AYRSHIRE-LANE-BOCA-RATON-FL-33496/B26009359/43/" target="_blank" class="view-listing-btn">View Details</a>
-                <span class="listing-dom">2 Days on Market</span>
             </div>
         </div>
 
-        <!-- Listing 6: New Listing -->
+        <!-- Listing 8: $4,395,000 -->
         <div class="listing-card">
             <div class="listing-info">
-                <div class="listing-address">7215 Ballantrae Court <span class="listing-badge badge-new-listing">New Listing</span></div>
+                <div class="listing-address">7215 Ballantrae Court</div>
                 <div class="listing-price">$4,395,000</div>
                 <div class="listing-details">
                     <div class="listing-detail-item">
@@ -406,7 +492,7 @@
                     </div>
                     <div class="listing-detail-item">
                         <span class="listing-detail-label">Bathrooms</span>
-                        <span class="listing-detail-value">3.1</span>
+                        <span class="listing-detail-value">3 Full, 1 Half</span>
                     </div>
                     <div class="listing-detail-item">
                         <span class="listing-detail-label">Living SqFt</span>
@@ -416,16 +502,53 @@
                         <span class="listing-detail-label">Year Built</span>
                         <span class="listing-detail-value">1987</span>
                     </div>
+                    <div class="listing-detail-item">
+                        <span class="listing-detail-label">Pool</span>
+                        <span class="listing-detail-value">Yes</span>
+                    </div>
                 </div>
                 <div class="listing-mls">MLS#: B26007905</div>
             </div>
             <div class="listing-cta">
                 <a href="https://bogenhomes.com/homes-for-sale-details/7215-BALLANTRAE-COURT-BOCA-RATON-FL-33496/B26007905/43/" target="_blank" class="view-listing-btn">View Details</a>
-                <span class="listing-dom">6 Days on Market</span>
             </div>
         </div>
 
-        <!-- Listing 7 -->
+        <!-- Listing 9: $4,095,000 -->
+        <div class="listing-card">
+            <div class="listing-info">
+                <div class="listing-address">17646 Scarsdale Way</div>
+                <div class="listing-price">$4,095,000</div>
+                <div class="listing-details">
+                    <div class="listing-detail-item">
+                        <span class="listing-detail-label">Bedrooms</span>
+                        <span class="listing-detail-value">3</span>
+                    </div>
+                    <div class="listing-detail-item">
+                        <span class="listing-detail-label">Bathrooms</span>
+                        <span class="listing-detail-value">3 Full</span>
+                    </div>
+                    <div class="listing-detail-item">
+                        <span class="listing-detail-label">Living SqFt</span>
+                        <span class="listing-detail-value">3,723</span>
+                    </div>
+                    <div class="listing-detail-item">
+                        <span class="listing-detail-label">Year Built</span>
+                        <span class="listing-detail-value">1984</span>
+                    </div>
+                    <div class="listing-detail-item">
+                        <span class="listing-detail-label">Pool</span>
+                        <span class="listing-detail-value">Yes</span>
+                    </div>
+                </div>
+                <div class="listing-mls">MLS#: B26011176</div>
+            </div>
+            <div class="listing-cta">
+                <a href="https://bogenhomes.com/homes-for-sale-details/17646-SCARSDALE-WAY-BOCA-RATON-FL-33496/B26011176/43/" target="_blank" class="view-listing-btn">View Details</a>
+            </div>
+        </div>
+
+        <!-- Listing 10: $3,699,000 -->
         <div class="listing-card">
             <div class="listing-info">
                 <div class="listing-address">7536 Fenwick Place</div>
@@ -437,7 +560,7 @@
                     </div>
                     <div class="listing-detail-item">
                         <span class="listing-detail-label">Bathrooms</span>
-                        <span class="listing-detail-value">5.1</span>
+                        <span class="listing-detail-value">5 Full, 1 Half</span>
                     </div>
                     <div class="listing-detail-item">
                         <span class="listing-detail-label">Living SqFt</span>
@@ -447,47 +570,20 @@
                         <span class="listing-detail-label">Year Built</span>
                         <span class="listing-detail-value">1983</span>
                     </div>
+                    <div class="listing-detail-item">
+                        <span class="listing-detail-label">Days on Market</span>
+                        <span class="listing-detail-value">90</span>
+                    </div>
                 </div>
                 <div class="listing-mls">MLS#: R11154759</div>
             </div>
             <div class="listing-cta">
                 <a href="https://bogenhomes.com/homes-for-sale-details/7536-FENWICK-PLACE-BOCA-RATON-FL-33496/R11154759/43/" target="_blank" class="view-listing-btn">View Details</a>
-                <span class="listing-dom">77 Days on Market</span>
+                <span class="listing-dom">90 Days on Market</span>
             </div>
         </div>
 
-        <!-- Listing 8 -->
-        <div class="listing-card">
-            <div class="listing-info">
-                <div class="listing-address">17829 Scarsdale Way</div>
-                <div class="listing-price">$3,295,000</div>
-                <div class="listing-details">
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Bedrooms</span>
-                        <span class="listing-detail-value">3</span>
-                    </div>
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Bathrooms</span>
-                        <span class="listing-detail-value">2.2</span>
-                    </div>
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Living SqFt</span>
-                        <span class="listing-detail-value">3,121</span>
-                    </div>
-                    <div class="listing-detail-item">
-                        <span class="listing-detail-label">Year Built</span>
-                        <span class="listing-detail-value">1985</span>
-                    </div>
-                </div>
-                <div class="listing-mls">MLS#: R11161466</div>
-            </div>
-            <div class="listing-cta">
-                <a href="https://bogenhomes.com/homes-for-sale-details/17829-SCARSDALE-WAY-BOCA-RATON-FL-33496/R11161466/43/" target="_blank" class="view-listing-btn">View Details</a>
-                <span class="listing-dom">55 Days on Market</span>
-            </div>
-        </div>
-
-        <!-- Listing 9 -->
+        <!-- Listing 11: $3,200,000 -->
         <div class="listing-card">
             <div class="listing-info">
                 <div class="listing-address">17844 Scarsdale Way</div>
@@ -499,7 +595,7 @@
                     </div>
                     <div class="listing-detail-item">
                         <span class="listing-detail-label">Bathrooms</span>
-                        <span class="listing-detail-value">4</span>
+                        <span class="listing-detail-value">4 Full</span>
                     </div>
                     <div class="listing-detail-item">
                         <span class="listing-detail-label">Living SqFt</span>
@@ -509,20 +605,24 @@
                         <span class="listing-detail-label">Year Built</span>
                         <span class="listing-detail-value">1984</span>
                     </div>
+                    <div class="listing-detail-item">
+                        <span class="listing-detail-label">Days on Market</span>
+                        <span class="listing-detail-value">190</span>
+                    </div>
                 </div>
                 <div class="listing-mls">MLS#: F10528126</div>
             </div>
             <div class="listing-cta">
                 <a href="https://bogenhomes.com/homes-for-sale-details/17844-SCARSDALE-WAY-BOCA-RATON-FL-33496/F10528126/43/" target="_blank" class="view-listing-btn">View Details</a>
-                <span class="listing-dom">177 Days on Market</span>
+                <span class="listing-dom">190 Days on Market</span>
             </div>
         </div>
 
-        <!-- Listing 10 -->
+        <!-- Listing 12: $2,075,000 -->
         <div class="listing-card">
             <div class="listing-info">
                 <div class="listing-address">7946 Shelby Circle</div>
-                <div class="listing-price">$2,100,000</div>
+                <div class="listing-price">$2,075,000</div>
                 <div class="listing-details">
                     <div class="listing-detail-item">
                         <span class="listing-detail-label">Bedrooms</span>
@@ -530,7 +630,7 @@
                     </div>
                     <div class="listing-detail-item">
                         <span class="listing-detail-label">Bathrooms</span>
-                        <span class="listing-detail-value">2.1</span>
+                        <span class="listing-detail-value">2 Full, 1 Half</span>
                     </div>
                     <div class="listing-detail-item">
                         <span class="listing-detail-label">Living SqFt</span>
@@ -540,22 +640,28 @@
                         <span class="listing-detail-label">Year Built</span>
                         <span class="listing-detail-value">1991</span>
                     </div>
+                    <div class="listing-detail-item">
+                        <span class="listing-detail-label">Days on Market</span>
+                        <span class="listing-detail-value">119</span>
+                    </div>
                 </div>
                 <div class="listing-mls">MLS#: R11148303</div>
             </div>
             <div class="listing-cta">
                 <a href="https://bogenhomes.com/homes-for-sale-details/7946-SHELBY-CIRCLE-BOCA-RATON-FL-33496/R11148303/43/" target="_blank" class="view-listing-btn">View Details</a>
-                <span class="listing-dom">106 Days on Market</span>
+                <span class="listing-dom">119 Days on Market</span>
             </div>
         </div>
 
         <div style="text-align: center; margin-top: 40px; padding-top: 30px; border-top: 2px solid #e8e8e8;">
             <p style="color: #666; font-size: 0.9em; margin-bottom: 15px;">Questions about St. Andrews Country Club?</p>
-            <a href="https://bogenhomes.com/contact/" target="_blank" style="display: inline-block; background: #1a3e5c; color: white; padding: 14px 40px; text-decoration: none; font-size: 1em; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; border-radius: 4px;">Contact Edmund Bogen</a>
-            <p style="color: #999; font-size: 0.8em; margin-top: 20px;">The Edmund Bogen Team | Douglas Elliman Real Estate | 561-235-7575</p>
-            <p style="color: #bbb; font-size: 0.7em; margin-top: 10px;">Market data courtesy of BeachesMLS. Information is deemed reliable but not guaranteed.</p>
+            <a href="tel:5612357575" style="display: inline-block; background: #1a3e5c; color: white; padding: 14px 40px; text-decoration: none; font-size: 1em; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; border-radius: 4px;">Contact Edmund Bogen</a>
+            <p style="color: #999; font-size: 0.8em; margin-top: 20px;">The Edmund Bogen Team | Douglas Elliman Real Estate | 561-235-7575 | edmund@bogenhomes.com</p>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e8e8e8;">
+            <p style="color: #999; font-size: 0.65em; line-height: 1.6; max-width: 800px; margin: 0 auto;">&copy; 2026 DOUGLAS ELLIMAN REAL ESTATE. ALL MATERIAL PRESENTED HEREIN IS INTENDED FOR INFORMATION PURPOSES ONLY. WHILE, THIS INFORMATION IS BELIEVED TO BE CORRECT, IT IS REPRESENTED SUBJECT TO ERRORS, OMISSIONS, CHANGES OR WITHDRAWAL WITHOUT NOTICE. ALL PROPERTY INFORMATION, INCLUDING, BUT NOT LIMITED TO SQUARE FOOTAGE, ROOM COUNT, NUMBER OF BEDROOMS AND THE SCHOOL DISTRICT IN PROPERTY LISTINGS SHOULD BE VERIFIED BY YOUR OWN ATTORNEY, ARCHITECT OR ZONING EXPERT. IF YOUR PROPERTY IS CURRENTLY LISTED WITH ANOTHER REAL ESTATE BROKER, PLEASE DISREGARD THIS OFFER. IT IS NOT OUR INTENTION TO SOLICIT THE OFFERINGS OF OTHER REAL ESTATE BROKERS. WE COOPERATE WITH THEM FULLY. EQUAL HOUSING OPPORTUNITY.</p>
         </div>
     </div>
 </body>
 </html>
-<!-- v2026-04-03 -->
