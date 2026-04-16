@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BOGEN TERMINAL — NYC vs South Florida Cost-of-Living Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0C0F14;
+    --card: #151B24;
+    --card-2: #1a2230;
+    --border: #1a3e5c;
+    --border-soft: #22314a;
+    --cyan: #00a8e1;
+    --cyan-dim: #0080aa;
+    --green: #00ff88;
+    --red: #ff4757;
+    --amber: #ffb547;
+    --text: #E8ECF0;
+    --muted: #8da4bd;
+    --muted-2: #5e7290;
+    --mono: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+    --sans: 'Montserrat', -apple-system, sans-serif;
+  }
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    background:
+      radial-gradient(ellipse at top, rgba(0,168,225,0.07), transparent 60%),
+      radial-gradient(ellipse at bottom, rgba(0,255,136,0.04), transparent 60%),
+      var(--bg);
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,168,225,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,168,225,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,0.012) 0px,
+      rgba(255,255,255,0.012) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+  .wrap { position: relative; z-index: 2; max-width: 1480px; margin: 0 auto; padding: 0 24px 64px; }
+
+  .topbar {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
+    padding: 14px 24px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(0,168,225,0.04), rgba(0,0,0,0));
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    background-color: rgba(12,15,20,0.85);
+  }
+  .logo {
+    font-family: var(--mono);
+    color: var(--cyan);
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: 0.12em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .logo .dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 12px var(--green);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .ticker {
+    overflow: hidden;
+    white-space: nowrap;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    border-left: 1px solid var(--border-soft);
+    border-right: 1px solid var(--border-soft);
+    padding: 0 18px;
+  }
+  .ticker-track {
+    display: inline-block;
+    padding-left: 100%;
+    animation: ticker 45s linear infinite;
+  }
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+  }
+  .ticker .tk { margin-right: 40px; }
+  .ticker .tk b { color: var(--text); font-weight: 500; }
+  .ticker .up { color: var(--green); }
+  .ticker .dn { color: var(--red); }
+  .topbar-right {
+    text-align: right;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .topbar-right .brand { color: var(--text); font-weight: 500; font-size: 12px; }
+
+  .section-title {
+    font-family: var(--sans);
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 11px;
+    color: var(--muted);
+    margin: 32px 0 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-title::before {
+    content: "";
+    width: 6px; height: 6px;
+    background: var(--cyan);
+    box-shadow: 0 0 8px var(--cyan);
+  }
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+    opacity: 0.6;
+    margin: 28px 0;
+  }
+
+  .card {
+    background: rgba(21, 27, 36, 0.72);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 20px;
+    position: relative;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,168,225,0.5), transparent);
+  }
+  .card h3 {
+    font-family: var(--sans);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .card h3 .tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--cyan);
+    padding: 2px 8px;
+    border: 1px solid var(--cyan-dim);
+    border-radius: 2px;
+  }
+
+  .pair-selector {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 16px;
+    margin-top: 24px;
+    align-items: center;
+  }
+  .pair-col { display: flex; flex-direction: column; gap: 8px; }
+  .pair-col .label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    font-family: var(--mono);
+  }
+  .pair-col .options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .city-btn {
+    background: rgba(21,27,36,0.6);
+    border: 1px solid var(--border-soft);
+    color: var(--muted);
+    padding: 14px 16px;
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+    text-transform: uppercase;
+  }
+  .city-btn:hover { border-color: var(--cyan-dim); color: var(--text); }
+  .city-btn.active {
+    background: rgba(0,168,225,0.08);
+    border-color: var(--cyan);
+    color: var(--cyan);
+    box-shadow: inset 0 0 20px rgba(0,168,225,0.1);
+  }
+  .city-btn small {
+    display: block;
+    color: var(--muted-2);
+    font-size: 10px;
+    margin-top: 2px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  .city-btn.active small { color: var(--muted); }
+  .vs {
+    font-family: var(--mono);
+    color: var(--cyan);
+    font-size: 14px;
+    letter-spacing: 0.2em;
+    text-align: center;
+    padding: 0 12px;
+    border-left: 1px dashed var(--border-soft);
+    border-right: 1px dashed var(--border-soft);
+  }
+
+  .profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 16px;
+    margin-top: 16px;
+  }
+  .sliders .slider-row {
+    margin-bottom: 20px;
+  }
+  .slider-row:last-child { margin-bottom: 0; }
+  .slider-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+  .slider-head .lbl {
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 11px;
+  }
+  .slider-head .val {
+    color: var(--cyan);
+    font-weight: 500;
+    font-size: 14px;
+  }
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    background: var(--border-soft);
+    outline: none;
+    border-radius: 2px;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px; height: 16px;
+    background: var(--cyan);
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0,168,225,0.6);
+    border: 2px solid var(--bg);
+  }
+  input[type="range"]::-moz-range-thumb {
+    width: 16px; height: 16px;
+    background: var(--cyan);
+    cursor: pointer;
+    border-radius: 50%;
+    border: 2px solid var(--bg);
+  }
+
+  .verdict {
+    background:
+      radial-gradient(circle at 20% 0%, rgba(0,255,136,0.08), transparent 60%),
+      radial-gradient(circle at 80% 100%, rgba(0,168,225,0.08), transparent 60%),
+      rgba(21,27,36,0.85);
+    border: 1px solid var(--border);
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .verdict::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,168,225,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,168,225,0.05) 1px, transparent 1px);
+    background-size: 30px 30px;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+  .verdict-label {
+    font-family: var(--mono);
+    color: var(--muted);
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+  .verdict-amount {
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 52px;
+    letter-spacing: -0.02em;
+    margin: 10px 0 6px;
+    line-height: 1;
+  }
+  .verdict-amount.save { color: var(--green); text-shadow: 0 0 30px rgba(0,255,136,0.4); }
+  .verdict-amount.lose { color: var(--red); text-shadow: 0 0 30px rgba(255,71,87,0.4); }
+  .verdict-sub {
+    color: var(--muted);
+    font-size: 13px;
+    font-family: var(--mono);
+    margin-bottom: 18px;
+  }
+  .verdict-break {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    border-top: 1px solid var(--border-soft);
+    padding-top: 16px;
+  }
+  .vb {
+    font-family: var(--mono);
+    font-size: 11px;
+  }
+  .vb .k {
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 9px;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .vb .v { font-weight: 500; font-size: 13px; }
+  .vb .v.pos { color: var(--green); }
+  .vb .v.neg { color: var(--red); }
+
+  .flash {
+    animation: flash 0.4s ease;
+  }
+  @keyframes flash {
+    0% { background-color: rgba(0,168,225,0.25); }
+    100% { background-color: transparent; }
+  }
+
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 16px;
+  }
+  .cat .chart-wrap {
+    height: 220px;
+    position: relative;
+  }
+  .cat .kpis {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border-soft);
+  }
+  .kpi {
+    font-family: var(--mono);
+  }
+  .kpi .k {
+    display: block;
+    font-size: 9px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 3px;
+  }
+  .kpi .v {
+    font-size: 13px;
+    color: var(--text);
+    font-weight: 500;
+  }
+  .kpi .v.cy { color: var(--cyan); }
+  .kpi .v.gn { color: var(--green); }
+  .kpi .v.rd { color: var(--red); }
+
+  .timeline-wrap {
+    overflow-x: auto;
+    padding: 24px 4px 8px;
+    border: 1px solid var(--border);
+    background: rgba(21,27,36,0.5);
+    border-radius: 4px;
+    position: relative;
+  }
+  .timeline-wrap::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+  }
+  .timeline {
+    display: flex;
+    gap: 0;
+    min-width: 100%;
+    padding: 0 24px 24px;
+    position: relative;
+  }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 24px; right: 24px;
+    top: 50%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--cyan-dim) 10%, var(--cyan-dim) 90%, transparent);
+  }
+  .tl-item {
+    min-width: 260px;
+    flex: 1;
+    padding: 20px 16px;
+    position: relative;
+    font-family: var(--mono);
+  }
+  .tl-item::before {
+    content: "";
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 10px; height: 10px;
+    margin: -5px 0 0 -5px;
+    background: var(--cyan);
+    border: 2px solid var(--bg);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--cyan);
+  }
+  .tl-item.up::before { background: var(--red); box-shadow: 0 0 10px var(--red); }
+  .tl-item.dn::before { background: var(--green); box-shadow: 0 0 10px var(--green); }
+  .tl-item .date {
+    font-size: 11px;
+    color: var(--cyan);
+    letter-spacing: 0.1em;
+  }
+  .tl-item .juris {
+    font-size: 9px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin: 4px 0;
+  }
+  .tl-item .title {
+    font-size: 13px;
+    color: var(--text);
+    font-weight: 500;
+    margin: 2px 0 6px;
+    font-family: var(--sans);
+  }
+  .tl-item .impact {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .tl-item .dir {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 2px;
+    letter-spacing: 0.1em;
+  }
+  .tl-item.up .dir { background: rgba(255,71,87,0.12); color: var(--red); border: 1px solid rgba(255,71,87,0.3); }
+  .tl-item.dn .dir { background: rgba(0,255,136,0.12); color: var(--green); border: 1px solid rgba(0,255,136,0.3); }
+  .tl-item:nth-child(odd) { transform: translateY(-50px); }
+  .tl-item:nth-child(even) { transform: translateY(50px); }
+
+  .accordion {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .acc-card {
+    background: rgba(21,27,36,0.6);
+    border: 1px solid var(--border-soft);
+    border-radius: 3px;
+    padding: 16px 18px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .acc-card:hover { border-color: var(--cyan-dim); }
+  .acc-card.open { border-color: var(--cyan); }
+  .acc-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .acc-title {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--text);
+    font-weight: 500;
+  }
+  .acc-chevron {
+    font-family: var(--mono);
+    color: var(--cyan);
+    font-size: 12px;
+  }
+  .acc-body {
+    display: none;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border-soft);
+  }
+  .acc-card.open .acc-body { display: block; }
+  .acc-row {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 14px;
+    padding: 8px 0;
+    font-family: var(--mono);
+    font-size: 12px;
+    border-bottom: 1px dashed var(--border-soft);
+  }
+  .acc-row:last-child { border-bottom: 0; }
+  .acc-row .metric { color: var(--muted); text-transform: uppercase; font-size: 10px; letter-spacing: 0.1em; }
+  .acc-row .ny { color: var(--red); }
+  .acc-row .fl { color: var(--green); }
+
+  .lead {
+    background:
+      radial-gradient(circle at 80% 20%, rgba(0,168,225,0.08), transparent 50%),
+      rgba(21,27,36,0.85);
+    border: 1px solid var(--cyan-dim);
+    padding: 36px;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 40px;
+    align-items: center;
+  }
+  .lead h2 {
+    font-weight: 300;
+    font-size: 26px;
+    letter-spacing: 0.05em;
+    line-height: 1.3;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .lead h2 .hl { color: var(--cyan); }
+  .lead p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+    font-family: var(--mono);
+  }
+  .lead-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .lead-form .full { grid-column: 1 / -1; }
+  .lead-form input {
+    background: rgba(12,15,20,0.6);
+    border: 1px solid var(--border-soft);
+    color: var(--text);
+    padding: 14px 16px;
+    font-family: var(--mono);
+    font-size: 13px;
+    border-radius: 2px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .lead-form input:focus { border-color: var(--cyan); }
+  .lead-form button {
+    background: var(--cyan);
+    color: #001824;
+    border: none;
+    padding: 16px;
+    font-family: var(--mono);
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .lead-form button:hover {
+    background: var(--green);
+    box-shadow: 0 0 20px rgba(0,255,136,0.4);
+  }
+  .thanks {
+    font-family: var(--mono);
+    color: var(--green);
+    padding: 20px;
+    border: 1px dashed var(--green);
+    text-align: center;
+    letter-spacing: 0.1em;
+    display: none;
+  }
+
+  .tt {
+    position: fixed;
+    background: var(--card);
+    border: 1px solid var(--cyan);
+    padding: 8px 12px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s;
+    z-index: 1000;
+    max-width: 260px;
+    border-radius: 2px;
+  }
+  .tt .tt-src { display: block; color: var(--muted); font-size: 9px; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.15em; }
+
+  footer {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted-2);
+    line-height: 1.7;
+  }
+  footer .foot-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 20px;
+  }
+  footer strong { color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; display: block; margin-bottom: 6px; font-size: 10px; }
+
+  @media (max-width: 1100px) {
+    .cat-grid, .accordion { grid-template-columns: 1fr; }
+    .profile-grid { grid-template-columns: 1fr; }
+    .lead { grid-template-columns: 1fr; padding: 24px; }
+    .verdict-amount { font-size: 40px; }
+    .verdict-break { grid-template-columns: repeat(2,1fr); }
+  }
+  @media (max-width: 760px) {
+    .topbar { grid-template-columns: 1fr; gap: 10px; text-align: center; }
+    .topbar-right { text-align: center; }
+    .ticker { display: none; }
+    .pair-selector { grid-template-columns: 1fr; }
+    .vs { border: 0; padding: 6px; }
+    .lead-form { grid-template-columns: 1fr; }
+    footer .foot-grid { grid-template-columns: 1fr; gap: 20px; }
+    .verdict-amount { font-size: 32px; }
+    .verdict-break { grid-template-columns: 1fr 1fr; }
+    .tl-item:nth-child(odd), .tl-item:nth-child(even) { transform: none; }
+    .timeline::before { display: none; }
+    .tl-item::before { display: none; }
+    .tl-item { border-left: 2px solid var(--cyan-dim); margin-bottom: 8px; }
+  }
+  @media (max-width: 420px) {
+    .pair-col .options { grid-template-columns: 1fr; }
+    .wrap { padding: 0 12px 40px; }
+    .card { padding: 14px; }
+    .verdict { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="logo"><span class="dot"></span>BOGEN TERMINAL</div>
+  <div class="ticker">
+    <div class="ticker-track">
+      <span class="tk">30Y FIXED <b>6.82%</b> <span class="up">&#9650; 0.04</span></span>
+      <span class="tk">FL INS IDX <b>$5,280</b> <span class="dn">&#9660; 1.2%</span></span>
+      <span class="tk">NYC RENT 1BR <b>$4,450</b> <span class="up">&#9650; 2.1%</span></span>
+      <span class="tk">BOCA MED PPSF <b>$642</b> <span class="up">&#9650; 0.8%</span></span>
+      <span class="tk">GAS NY <b>$3.64</b> <span class="dn">&#9660; $0.02</span></span>
+      <span class="tk">GAS FL <b>$3.12</b> <span class="dn">&#9660; $0.03</span></span>
+      <span class="tk">SALT CAP <b>$10K</b> <span class="up">FED</span></span>
+      <span class="tk">FL HOMESTEAD <b>$50K</b> EXEMPT</span>
+      <span class="tk">WX NYC <b>48&deg;F</b> / WX BOCA <b>81&deg;F</b></span>
+      <span class="tk">S&amp;P 500 <b>5,248</b> <span class="up">&#9650; 0.32%</span></span>
+    </div>
+  </div>
+  <div class="topbar-right">
+    <div class="brand">Edmund Bogen &middot; Douglas Elliman</div>
+    <div id="lastUpdated">Last updated: &mdash;</div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="section-title">Select Comparison Pair</div>
+  <div class="card">
+    <div class="pair-selector">
+      <div class="pair-col">
+        <span class="label">Origin (New York)</span>
+        <div class="options" id="nyOptions">
+          <button class="city-btn active" data-ny="manhattan">Manhattan<small>New York County, NY</small></button>
+          <button class="city-btn" data-ny="nyc">NYC Outer Boroughs<small>Brooklyn &middot; Queens &middot; Bronx avg</small></button>
+        </div>
+      </div>
+      <div class="vs">&#9664; VS &#9654;</div>
+      <div class="pair-col">
+        <span class="label">Destination (South Florida)</span>
+        <div class="options" id="flOptions">
+          <button class="city-btn active" data-fl="boca">Boca Raton<small>Palm Beach County, FL</small></button>
+          <button class="city-btn" data-fl="delray">Delray Beach<small>Palm Beach County, FL</small></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">Household Profile &amp; Live Verdict</div>
+  <div class="profile-grid">
+    <div class="card sliders">
+      <h3>Input Parameters <span class="tag">LIVE</span></h3>
+
+      <div class="slider-row">
+        <div class="slider-head"><span class="lbl">Gross Annual Income</span><span class="val" id="valIncome">$350,000</span></div>
+        <input type="range" id="income" min="50000" max="2000000" step="10000" value="350000">
+      </div>
+
+      <div class="slider-row">
+        <div class="slider-head"><span class="lbl">Monthly Housing Budget</span><span class="val" id="valHousing">$7,500</span></div>
+        <input type="range" id="housing" min="2000" max="25000" step="250" value="7500">
+      </div>
+
+      <div class="slider-row">
+        <div class="slider-head"><span class="lbl">Number of Vehicles</span><span class="val" id="valVehicles">2</span></div>
+        <input type="range" id="vehicles" min="0" max="4" step="1" value="2">
+      </div>
+
+      <div class="slider-row">
+        <div class="slider-head"><span class="lbl">Family Size</span><span class="val" id="valFamily">4</span></div>
+        <input type="range" id="family" min="1" max="6" step="1" value="4">
+      </div>
+    </div>
+
+    <div class="verdict card">
+      <div style="position:relative; z-index:2;">
+        <div class="verdict-label">Projected Annual Net Benefit &middot; <span id="verdictPairLabel">Manhattan &rarr; Boca Raton</span></div>
+        <div class="verdict-amount save" id="verdictAmount">$0</div>
+        <div class="verdict-sub" id="verdictSub">Relocating from Manhattan to Boca Raton</div>
+
+        <div class="verdict-break">
+          <div class="vb"><span class="k">Taxes</span><span class="v pos" id="vbTax">$0</span></div>
+          <div class="vb"><span class="k">Housing</span><span class="v pos" id="vbHouse">$0</span></div>
+          <div class="vb"><span class="k">Vehicles</span><span class="v pos" id="vbVeh">$0</span></div>
+          <div class="vb"><span class="k">Medical</span><span class="v pos" id="vbMed">$0</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">Category Intelligence</div>
+  <div class="cat-grid">
+
+    <div class="card cat">
+      <h3>Housing <span class="tag">PPSF / RENT / TAX</span></h3>
+      <div class="chart-wrap"><canvas id="chartHousing"></canvas></div>
+      <div class="kpis" id="kpiHousing"></div>
+    </div>
+
+    <div class="card cat">
+      <h3>Taxes <span class="tag">STATE / CITY / SALT</span></h3>
+      <div class="chart-wrap"><canvas id="chartTax"></canvas></div>
+      <div class="kpis" id="kpiTax"></div>
+    </div>
+
+    <div class="card cat">
+      <h3>Vehicles &amp; Transport <span class="tag">INS / FUEL / PARK</span></h3>
+      <div class="chart-wrap"><canvas id="chartVeh"></canvas></div>
+      <div class="kpis" id="kpiVeh"></div>
+    </div>
+
+    <div class="card cat">
+      <h3>Medical <span class="tag">PREMIUM / OOP / ACCESS</span></h3>
+      <div class="chart-wrap"><canvas id="chartMed"></canvas></div>
+      <div class="kpis" id="kpiMed"></div>
+    </div>
+
+  </div>
+
+  <div class="section-title">Recent Laws &amp; Regulatory Changes</div>
+  <div class="timeline-wrap">
+    <div class="timeline" id="timeline"></div>
+  </div>
+
+  <div class="section-title">Other Lifestyle Considerations</div>
+  <div class="accordion" id="accordion"></div>
+
+  <div class="section-title">Request Full Relocation Brief</div>
+  <div class="lead">
+    <div>
+      <h2>Your <span class="hl">private</span> South Florida relocation intelligence report.</h2>
+      <p>Get a custom brief covering school zones, HOA analysis, climate-resilience scoring, and off-market inventory matched to your profile. Delivered by the Edmund Bogen Team at Douglas Elliman.</p>
+    </div>
+    <form class="lead-form" id="leadForm">
+      <input type="text" placeholder="First Name" required>
+      <input type="text" placeholder="Last Name" required>
+      <input type="email" class="full" placeholder="Email Address" required>
+      <input type="tel" placeholder="Phone">
+      <input type="month" placeholder="Target Move Date">
+      <button type="submit" class="full">Request Private Brief &#9656;</button>
+    </form>
+    <div class="thanks" id="thanks">
+      &#10003; Report request received. Edmund's team will contact you within 24 hours.
+    </div>
+  </div>
+
+  <footer>
+    <div class="foot-grid">
+      <div>
+        <strong>Data Methodology</strong>
+        Figures are curated quarterly from publicly available tax codes, MLS aggregates, BLS CPI series, and insurance filings. Values represent median profiles and may differ from individual circumstances.
+      </div>
+      <div>
+        <strong>Source Attribution</strong>
+        Tax Foundation (2025) &middot; NY DTF &middot; FL DOR &middot; BLS Consumer Expenditure Survey &middot; NAR &middot; Miami/Palm Beach MLS &middot; FL OIR &middot; Kaiser Family Foundation &middot; Zillow Research
+      </div>
+      <div>
+        <strong>Disclaimer</strong>
+        Data curated quarterly. Last updated: <span id="footDate">&mdash;</span>. Not financial, tax, or legal advice. Consult your CPA and licensed fiduciary before making relocation decisions.
+      </div>
+    </div>
+    <div style="padding-top: 16px; border-top: 1px solid var(--border-soft); display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+      <span>&copy; 2026 The Edmund Bogen Team &middot; Douglas Elliman Real Estate</span>
+      <span>BOGEN TERMINAL v1.4.2 &middot; Build 20260416</span>
+    </div>
+  </footer>
+
+</div>
+
+<div class="tt" id="tt"></div>
+
+<script>
+const CITY_DATA = {
+  manhattan: {
+    name: "Manhattan", short: "Manhattan, NY",
+    housing: { rent1br: 4450, rent2br: 6800, buyPpsf: 1685, propTaxRate: 0.00882, assumedHome: 1850000 },
+    taxes: { stateIncTop: 0.109, stateIncEff: 0.0685, cityIncTop: 0.03876, cityIncEff: 0.033, salesTax: 0.08875, estateThreshold: 6940000 },
+    vehicle: { insurance: 3890, gasPrice: 3.64, parking: 625, registration: 140, transit: 132 },
+    medical: { familyPremium: 32400, oopMax: 9450, specialistAccess: 9 },
+    other: { climate: 5.8, crime: 44, schools: 7.9, culture: 9.8, hurricane: 1, airports: 9.6 }
+  },
+  nyc: {
+    name: "NYC Outer", short: "Brooklyn/Queens/Bronx avg",
+    housing: { rent1br: 3180, rent2br: 4620, buyPpsf: 895, propTaxRate: 0.00882, assumedHome: 1125000 },
+    taxes: { stateIncTop: 0.109, stateIncEff: 0.0645, cityIncTop: 0.03876, cityIncEff: 0.0315, salesTax: 0.08875, estateThreshold: 6940000 },
+    vehicle: { insurance: 3120, gasPrice: 3.58, parking: 295, registration: 140, transit: 132 },
+    medical: { familyPremium: 29800, oopMax: 9200, specialistAccess: 8.5 },
+    other: { climate: 5.8, crime: 51, schools: 7.2, culture: 9.2, hurricane: 1, airports: 9.4 }
+  },
+  boca: {
+    name: "Boca Raton", short: "Boca Raton, FL",
+    housing: { rent1br: 2680, rent2br: 3850, buyPpsf: 642, propTaxRate: 0.01152, assumedHome: 1150000 },
+    taxes: { stateIncTop: 0, stateIncEff: 0, cityIncTop: 0, cityIncEff: 0, salesTax: 0.07, estateThreshold: null },
+    vehicle: { insurance: 3450, gasPrice: 3.12, parking: 0, registration: 225, transit: 58 },
+    medical: { familyPremium: 26400, oopMax: 8800, specialistAccess: 8.8 },
+    other: { climate: 9.3, crime: 38, schools: 8.8, culture: 7.8, hurricane: 6, airports: 8.9 }
+  },
+  delray: {
+    name: "Delray Beach", short: "Delray Beach, FL",
+    housing: { rent1br: 2540, rent2br: 3620, buyPpsf: 598, propTaxRate: 0.01198, assumedHome: 950000 },
+    taxes: { stateIncTop: 0, stateIncEff: 0, cityIncTop: 0, cityIncEff: 0, salesTax: 0.07, estateThreshold: null },
+    vehicle: { insurance: 3280, gasPrice: 3.09, parking: 0, registration: 225, transit: 58 },
+    medical: { familyPremium: 25900, oopMax: 8650, specialistAccess: 8.4 },
+    other: { climate: 9.4, crime: 42, schools: 8.2, culture: 7.4, hurricane: 6, airports: 8.9 }
+  }
+};
+
+const TIMELINE_EVENTS = [
+  { date: "JAN 2025", juris: "NYC", title: "Congestion Pricing Activated", impact: "$9 peak toll entering Manhattan below 60th St \u2014 adds ~$2,250/yr for commuters.", dir: "up" },
+  { date: "MAR 2023", juris: "FL", title: "HB 837 Tort Reform", impact: "Sharp reduction in one-way attorney fees; insurance carriers returning to FL market.", dir: "dn" },
+  { date: "ONGOING", juris: "FED", title: "SALT Cap at $10K", impact: "High-tax state deduction cap disproportionately hits NY households; sunsets end of 2025.", dir: "up" },
+  { date: "JUN 2024", juris: "NY", title: "Good Cause Eviction Law", impact: "Statewide rent increase limits on non-stabilized units (CPI + 5% or 10% cap).", dir: "dn" },
+  { date: "MAR 2023", juris: "FL", title: "Live Local Act (SB 102)", impact: "Preempts local zoning for workforce housing; unlocks supply, tempers rent growth.", dir: "dn" },
+  { date: "JAN 2024", juris: "FL", title: "Homestead Exemption +$25K", impact: "Expanded exemption for qualifying FL primary residences \u2014 lower effective prop tax.", dir: "dn" },
+  { date: "APR 2019", juris: "NY", title: "NY Mansion Tax Tiers", impact: "Sales $1M+ hit with progressive 1.0%\u20133.9% tax; reduces FL buyer arbitrage.", dir: "up" },
+  { date: "DEC 2024", juris: "FL", title: "Citizens P&C Depopulation", impact: "Private insurers absorbing Citizens policies; premium stabilization after 22% spike.", dir: "dn" },
+  { date: "JUL 2025", juris: "NY", title: "Millionaire Tax Extended", impact: "Top NY marginal bracket (10.9%) extended through 2032 \u2014 compounds SALT exposure.", dir: "up" }
+];
+
+let selected = { ny: "manhattan", fl: "boca" };
+
+const $ = s => document.querySelector(s);
+const fmt = n => (n < 0 ? "-" : "") + "$" + Math.abs(Math.round(n)).toLocaleString();
+const pct = n => (n*100).toFixed(2) + "%";
+
+function computeTaxDelta(income, cityA, cityB) {
+  const A = CITY_DATA[cityA].taxes, B = CITY_DATA[cityB].taxes;
+  const stateA = income * A.stateIncEff * (income > 1000000 ? 1.08 : 1);
+  const cityA_ = income * A.cityIncEff * (income > 500000 ? 1.04 : 1);
+  const stateB = income * B.stateIncEff;
+  const cityB_ = income * B.cityIncEff;
+  const propA = CITY_DATA[cityA].housing.assumedHome * CITY_DATA[cityA].housing.propTaxRate;
+  const propB = CITY_DATA[cityB].housing.assumedHome * CITY_DATA[cityB].housing.propTaxRate;
+  const saltCap = 10000;
+  const nyStateLocal = stateA + cityA_ + propA;
+  const flStateLocal = stateB + cityB_ + propB;
+  const saltImpact = Math.max(0, (nyStateLocal - saltCap)) * 0.24;
+  return (nyStateLocal - flStateLocal) + saltImpact;
+}
+
+function computeHousingDelta(monthlyBudget, cityA, cityB) {
+  const A = CITY_DATA[cityA].housing, B = CITY_DATA[cityB].housing;
+  const ratioA = A.rent2br / 5000;
+  const ratioB = B.rent2br / 5000;
+  const monthlyA = monthlyBudget;
+  const monthlyB = monthlyBudget * (ratioB / ratioA);
+  return (monthlyA - monthlyB) * 12;
+}
+
+function computeVehicleDelta(nVehicles, cityA, cityB) {
+  const A = CITY_DATA[cityA].vehicle, B = CITY_DATA[cityB].vehicle;
+  const milesPerYr = 12000, mpg = 25;
+  const perCar = v => v.insurance + (milesPerYr/mpg * v.gasPrice) + v.registration;
+  let costA = nVehicles * perCar(A);
+  let costB = nVehicles * perCar(B);
+  if (cityA === "manhattan") costA += nVehicles * A.parking * 12;
+  else if (cityA === "nyc") costA += nVehicles * A.parking * 12 * 0.4;
+  if (cityB === "manhattan") costB += nVehicles * B.parking * 12;
+  if (nVehicles === 0) {
+    costA = A.transit * 12;
+    costB = B.transit * 12;
+  }
+  return costA - costB;
+}
+
+function computeMedicalDelta(familySize, cityA, cityB) {
+  const A = CITY_DATA[cityA].medical, B = CITY_DATA[cityB].medical;
+  const scaler = 0.35 + (familySize * 0.16);
+  return (A.familyPremium - B.familyPremium) * scaler;
+}
+
+function computeVerdict(inputs) {
+  const { income, housing, vehicles, family, cityA, cityB } = inputs;
+  const tax = computeTaxDelta(income, cityA, cityB);
+  const house = computeHousingDelta(housing, cityA, cityB);
+  const veh = computeVehicleDelta(vehicles, cityA, cityB);
+  const med = computeMedicalDelta(family, cityA, cityB);
+  return { tax, house, veh, med, total: tax + house + veh + med };
+}
+
+Chart.defaults.font.family = "'JetBrains Mono', monospace";
+Chart.defaults.font.size = 11;
+Chart.defaults.color = "#8da4bd";
+Chart.defaults.borderColor = "#22314a";
+
+const chartBase = {
+  type: 'bar',
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    animation: { duration: 400, easing: 'easeOutQuart' },
+    plugins: {
+      legend: { display: true, position: 'bottom', labels: { color: '#8da4bd', boxWidth: 10, boxHeight: 10, font: { size: 10 } } },
+      tooltip: {
+        backgroundColor: '#0C0F14', borderColor: '#00a8e1', borderWidth: 1,
+        titleColor: '#00a8e1', bodyColor: '#E8ECF0',
+        titleFont: { size: 11, family: "'JetBrains Mono', monospace" },
+        bodyFont: { size: 11, family: "'JetBrains Mono', monospace" },
+        padding: 10, cornerRadius: 2
+      }
+    },
+    scales: {
+      x: { grid: { color: 'rgba(26,62,92,0.25)', drawBorder: false }, ticks: { color: '#8da4bd', font: { size: 10 } } },
+      y: { grid: { color: 'rgba(26,62,92,0.25)', drawBorder: false },
+        ticks: { color: '#8da4bd', font: { size: 10 },
+          callback: v => v >= 1000 ? '$'+(v/1000).toFixed(0)+'K' : '$'+v } }
+    }
+  }
+};
+
+function mkDataset(label, color, data) {
+  return {
+    label, data,
+    backgroundColor: color + '33',
+    borderColor: color,
+    borderWidth: 1.5,
+    borderRadius: 2,
+    maxBarThickness: 46
+  };
+}
+
+let charts = {};
+
+function initCharts() {
+  charts.housing = new Chart($('#chartHousing'), { ...chartBase, data: { labels: ['Rent 1BR/mo', 'Rent 2BR/mo', 'Buy $/sqft', 'Prop Tax (on median)'], datasets: [] } });
+  charts.tax = new Chart($('#chartTax'), { ...chartBase, data: { labels: ['State Income', 'City Income', 'Property Tax', 'SALT Cap Hit'], datasets: [] } });
+  charts.veh = new Chart($('#chartVeh'), { ...chartBase, data: { labels: ['Insurance/yr', 'Fuel/yr (12K mi)', 'Parking/yr', 'Registration/yr'], datasets: [] } });
+  charts.med = new Chart($('#chartMed'), { ...chartBase, data: { labels: ['Family Premium', 'OOP Max', 'Access Score (x1K)'], datasets: [] } });
+}
+
+function updateCharts(income) {
+  const A = CITY_DATA[selected.ny], B = CITY_DATA[selected.fl];
+  const nyColor = '#ff4757', flColor = '#00ff88';
+
+  charts.housing.data.datasets = [
+    mkDataset(A.name, nyColor, [A.housing.rent1br, A.housing.rent2br, A.housing.buyPpsf, A.housing.assumedHome*A.housing.propTaxRate]),
+    mkDataset(B.name, flColor, [B.housing.rent1br, B.housing.rent2br, B.housing.buyPpsf, B.housing.assumedHome*B.housing.propTaxRate])
+  ];
+  charts.housing.update('none');
+
+  const saltCapA = Math.max(0, (income*A.taxes.stateIncEff + income*A.taxes.cityIncEff + A.housing.assumedHome*A.housing.propTaxRate - 10000) * 0.24);
+  const saltCapB = Math.max(0, (income*B.taxes.stateIncEff + income*B.taxes.cityIncEff + B.housing.assumedHome*B.housing.propTaxRate - 10000) * 0.24);
+  charts.tax.data.datasets = [
+    mkDataset(A.name, nyColor, [income*A.taxes.stateIncEff, income*A.taxes.cityIncEff, A.housing.assumedHome*A.housing.propTaxRate, saltCapA]),
+    mkDataset(B.name, flColor, [income*B.taxes.stateIncEff, income*B.taxes.cityIncEff, B.housing.assumedHome*B.housing.propTaxRate, saltCapB])
+  ];
+  charts.tax.update('none');
+
+  const fuelA = (12000/25)*A.vehicle.gasPrice;
+  const fuelB = (12000/25)*B.vehicle.gasPrice;
+  const parkA = (selected.ny === 'manhattan' ? A.vehicle.parking*12 : A.vehicle.parking*12*0.4);
+  const parkB = B.vehicle.parking*12;
+  charts.veh.data.datasets = [
+    mkDataset(A.name, nyColor, [A.vehicle.insurance, fuelA, parkA, A.vehicle.registration]),
+    mkDataset(B.name, flColor, [B.vehicle.insurance, fuelB, parkB, B.vehicle.registration])
+  ];
+  charts.veh.update('none');
+
+  charts.med.data.datasets = [
+    mkDataset(A.name, nyColor, [A.medical.familyPremium, A.medical.oopMax, A.medical.specialistAccess*1000]),
+    mkDataset(B.name, flColor, [B.medical.familyPremium, B.medical.oopMax, B.medical.specialistAccess*1000])
+  ];
+  charts.med.update('none');
+}
+
+function renderKpis() {
+  const A = CITY_DATA[selected.ny], B = CITY_DATA[selected.fl];
+  const rentDelta = A.housing.rent2br - B.housing.rent2br;
+  const ppsfDelta = A.housing.buyPpsf - B.housing.buyPpsf;
+  $('#kpiHousing').innerHTML = `
+    <div class="kpi"><span class="k">2BR Rent \u0394</span><span class="v gn">${fmt(rentDelta)}/mo</span></div>
+    <div class="kpi"><span class="k">PPSF \u0394</span><span class="v gn">${fmt(ppsfDelta)}</span></div>
+    <div class="kpi"><span class="k">Prop Tax Rate</span><span class="v cy">${pct(A.housing.propTaxRate)} / ${pct(B.housing.propTaxRate)}</span></div>
+  `;
+  $('#kpiTax').innerHTML = `
+    <div class="kpi"><span class="k">State Top</span><span class="v rd">${pct(A.taxes.stateIncTop)}</span></div>
+    <div class="kpi"><span class="k">City Top</span><span class="v rd">${pct(A.taxes.cityIncTop)}</span></div>
+    <div class="kpi"><span class="k">FL State+City</span><span class="v gn">0.00%</span></div>
+  `;
+  const insDelta = A.vehicle.insurance - B.vehicle.insurance;
+  $('#kpiVeh').innerHTML = `
+    <div class="kpi"><span class="k">Ins. \u0394/yr</span><span class="v ${insDelta>0?'gn':'rd'}">${fmt(insDelta)}</span></div>
+    <div class="kpi"><span class="k">Gas \u0394/gal</span><span class="v gn">$${(A.vehicle.gasPrice-B.vehicle.gasPrice).toFixed(2)}</span></div>
+    <div class="kpi"><span class="k">Parking NY</span><span class="v rd">$${A.vehicle.parking}/mo</span></div>
+  `;
+  const medDelta = A.medical.familyPremium - B.medical.familyPremium;
+  $('#kpiMed').innerHTML = `
+    <div class="kpi"><span class="k">Premium \u0394</span><span class="v ${medDelta>0?'gn':'rd'}">${fmt(medDelta)}/yr</span></div>
+    <div class="kpi"><span class="k">OOP Max</span><span class="v cy">${fmt(A.medical.oopMax)} / ${fmt(B.medical.oopMax)}</span></div>
+    <div class="kpi"><span class="k">Access Score</span><span class="v cy">${A.medical.specialistAccess} / ${B.medical.specialistAccess}</span></div>
+  `;
+}
+
+function renderTimeline() {
+  const tl = $('#timeline');
+  tl.innerHTML = TIMELINE_EVENTS.map(e => `
+    <div class="tl-item ${e.dir}">
+      <div class="date">${e.date}</div>
+      <div class="juris">${e.juris}</div>
+      <div class="title">${e.title}</div>
+      <div class="impact">${e.impact}</div>
+      <div class="dir">${e.dir==='up'?'\u25B2 COST INCREASE':'\u25BC COST RELIEF'}</div>
+    </div>
+  `).join('');
+}
+
+function renderAccordion() {
+  const A = CITY_DATA[selected.ny], B = CITY_DATA[selected.fl];
+  const cats = [
+    { title: "Climate & Weather", rows: [
+      ["Annual climate score (1-10)", A.other.climate, B.other.climate],
+      ["Sunny days/yr", "224", "321"],
+      ["Avg winter low \u00B0F", "29", "62"],
+      ["Hurricane risk (1-10)", A.other.hurricane, B.other.hurricane]
+    ]},
+    { title: "Safety & Crime", rows: [
+      ["Crime index (lower better)", A.other.crime, B.other.crime],
+      ["Violent crime/1K", "5.8", "3.4"],
+      ["Property crime/1K", "18.2", "22.1"],
+      ["Police response min", "6.4", "5.1"]
+    ]},
+    { title: "Education & Schools", rows: [
+      ["Overall school rating", A.other.schools, B.other.schools],
+      ["Top public districts", "4", "6"],
+      ["Private school avg/yr", "$58,400", "$34,200"],
+      ["State university access", "SUNY", "Florida/UF/FAU"]
+    ]},
+    { title: "Cultural Amenities", rows: [
+      ["Culture score (1-10)", A.other.culture, B.other.culture],
+      ["Michelin restaurants", "73", "9"],
+      ["Museums/galleries", "140+", "32"],
+      ["Beach access", "Limited", "Direct"]
+    ]},
+    { title: "Aviation & Travel", rows: [
+      ["Airport access score", A.other.airports, B.other.airports],
+      ["Intl hubs within 1hr", "3 (JFK/LGA/EWR)", "3 (PBI/FLL/MIA)"],
+      ["Private aviation (FBOs)", "Teterboro", "Boca / PBI"],
+      ["Flight to NYC/FL", "\u2014", "~2hr 45min"]
+    ]},
+    { title: "Cost of Services", rows: [
+      ["Dining out (entr\u00E9e avg)", "$42", "$32"],
+      ["Personal training/session", "$180", "$110"],
+      ["Lawn service/mo", "N/A", "$280"],
+      ["Housekeeping/visit", "$220", "$145"]
+    ]}
+  ];
+  $('#accordion').innerHTML = cats.map((c,i) => `
+    <div class="acc-card ${i===0?'open':''}" data-idx="${i}">
+      <div class="acc-head">
+        <span class="acc-title">${c.title}</span>
+        <span class="acc-chevron">${i===0?'[\u2212]':'[+]'}</span>
+      </div>
+      <div class="acc-body">
+        ${c.rows.map(r => `
+          <div class="acc-row">
+            <span class="metric">${r[0]}</span>
+            <span class="ny">${A.name}: ${r[1]}</span>
+            <span class="fl">${B.name}: ${r[2]}</span>
+          </div>`).join('')}
+      </div>
+    </div>
+  `).join('');
+  document.querySelectorAll('.acc-card').forEach(el => {
+    el.addEventListener('click', () => {
+      el.classList.toggle('open');
+      el.querySelector('.acc-chevron').textContent = el.classList.contains('open') ? '[\u2212]' : '[+]';
+    });
+  });
+}
+
+function readInputs() {
+  return {
+    income: +$('#income').value,
+    housing: +$('#housing').value,
+    vehicles: +$('#vehicles').value,
+    family: +$('#family').value,
+    cityA: selected.ny,
+    cityB: selected.fl
+  };
+}
+
+function update() {
+  const inputs = readInputs();
+  $('#valIncome').textContent = fmt(inputs.income);
+  $('#valHousing').textContent = fmt(inputs.housing);
+  $('#valVehicles').textContent = inputs.vehicles;
+  $('#valFamily').textContent = inputs.family;
+
+  const v = computeVerdict(inputs);
+  const A = CITY_DATA[selected.ny], B = CITY_DATA[selected.fl];
+
+  $('#verdictPairLabel').textContent = `${A.name} \u2192 ${B.name}`;
+  $('#verdictSub').textContent = `Relocating from ${A.short} to ${B.short}`;
+
+  const amt = $('#verdictAmount');
+  amt.textContent = fmt(v.total);
+  amt.classList.remove('save','lose','flash');
+  void amt.offsetWidth;
+  amt.classList.add(v.total >= 0 ? 'save' : 'lose');
+  amt.classList.add('flash');
+
+  const apply = (id, val) => {
+    const el = $(id);
+    el.textContent = fmt(val);
+    el.classList.remove('pos','neg','flash');
+    el.classList.add(val>=0?'pos':'neg');
+    void el.offsetWidth;
+    el.classList.add('flash');
+  };
+  apply('#vbTax', v.tax);
+  apply('#vbHouse', v.house);
+  apply('#vbVeh', v.veh);
+  apply('#vbMed', v.med);
+
+  updateCharts(inputs.income);
+  renderKpis();
+}
+
+function wireCityButtons() {
+  document.querySelectorAll('#nyOptions .city-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#nyOptions .city-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      selected.ny = btn.dataset.ny;
+      renderAccordion();
+      update();
+    });
+  });
+  document.querySelectorAll('#flOptions .city-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#flOptions .city-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      selected.fl = btn.dataset.fl;
+      renderAccordion();
+      update();
+    });
+  });
+}
+
+function wireSliders() {
+  ['#income','#housing','#vehicles','#family'].forEach(sel => {
+    $(sel).addEventListener('input', update);
+  });
+}
+
+function wireForm() {
+  $('#leadForm').addEventListener('submit', e => {
+    e.preventDefault();
+    // TODO: integrate with Formspree/Mailchimp endpoint here:
+    // fetch('https://formspree.io/f/xxxxxx', { method:'POST', body: new FormData(e.target) })
+    $('#leadForm').style.display = 'none';
+    $('#thanks').style.display = 'block';
+  });
+}
+
+const tt = $('#tt');
+const citations = {
+  income: "Federal + NY/FL state income tax schedules, top marginal & effective rates by income.",
+  housing: "MLS medians Q1-2025; Manhattan/Brooklyn via StreetEasy; Palm Beach via BeachesMLS.",
+  vehicles: "AAA Your Driving Costs 2025 & state DMV registration fees; insurance from Quadrant Information Services.",
+  medical: "Kaiser Family Foundation Employer Health Benefits Survey 2024; family-of-4 baseline.",
+  timeline: "Legislative records from NY State Assembly, FL Legislature, and US Congress (public record).",
+  verdict: "Synthesized from the four categories above; individual outcomes depend on specific housing, tax residency & lifestyle."
+};
+document.querySelectorAll('.card h3, .section-title, .slider-head').forEach((el) => {
+  el.addEventListener('mousemove', (e) => {
+    const txt = el.textContent.toLowerCase();
+    let src = null;
+    if (txt.includes('housing')) src = citations.housing;
+    else if (txt.includes('tax')) src = citations.income;
+    else if (txt.includes('vehicle') || txt.includes('transport')) src = citations.vehicles;
+    else if (txt.includes('medical')) src = citations.medical;
+    else if (txt.includes('law') || txt.includes('regulatory')) src = citations.timeline;
+    else if (txt.includes('verdict') || txt.includes('profile')) src = citations.verdict;
+    if (!src) { tt.style.opacity = 0; return; }
+    tt.innerHTML = `${src}<span class="tt-src">Source: Tax Foundation, NAR, KFF, BLS \u2014 2025</span>`;
+    tt.style.opacity = 1;
+    tt.style.left = (e.clientX + 14) + 'px';
+    tt.style.top = (e.clientY + 14) + 'px';
+  });
+  el.addEventListener('mouseleave', () => { tt.style.opacity = 0; });
+});
+
+function setDate() {
+  const d = new Date();
+  const opts = { year: 'numeric', month: 'short', day: '2-digit' };
+  const ds = d.toLocaleDateString('en-US', opts).toUpperCase();
+  const ts = d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+  $('#lastUpdated').textContent = `Last updated: ${ds} ${ts}`;
+  $('#footDate').textContent = ds;
+}
+
+initCharts();
+wireCityButtons();
+wireSliders();
+wireForm();
+renderTimeline();
+renderAccordion();
+setDate();
+update();
+</script>
+</body>
+</html>
