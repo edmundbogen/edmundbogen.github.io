@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Write Your Book with Claude Code — A Step-by-Step Guide by Edmund Bogen</title>
+<meta name="description" content="The exact step-by-step workflow Edmund Bogen used to write Prompt to Close and Prompt to Plate — using Claude Code as your writing partner, editor, and publishing pipeline.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1a3e5c;
+    --cyan: #00a8e1;
+    --white: #ffffff;
+    --black: #000000;
+    --gray-50: #f8f9fb;
+    --gray-100: #f4f4f4;
+    --gray-200: #e8e8e8;
+    --gray-300: #d1d5db;
+    --gray-500: #6b7280;
+    --gray-700: #374151;
+    --gray-900: #111827;
+
+    --bg: var(--white);
+    --bg-alt: var(--gray-50);
+    --bg-section: var(--gray-100);
+    --fg: #222;
+    --fg-muted: var(--gray-500);
+    --heading: var(--navy);
+    --accent: var(--cyan);
+    --border: var(--gray-200);
+    --card-bg: var(--white);
+    --code-bg: #0f1e2d;
+    --code-fg: #e6edf3;
+    --shadow: 0 2px 20px rgba(26, 62, 92, 0.08);
+  }
+
+  [data-theme="dark"] {
+    --bg: #0a1a28;
+    --bg-alt: #0f2336;
+    --bg-section: #122a40;
+    --fg: #e6edf3;
+    --fg-muted: #9fb4c8;
+    --heading: #ffffff;
+    --accent: #00c2ff;
+    --border: #1e4060;
+    --card-bg: #122a40;
+    --code-bg: #050d16;
+    --code-fg: #e6edf3;
+    --shadow: 0 2px 30px rgba(0, 0, 0, 0.4);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    line-height: 1.7;
+    font-size: 17px;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  /* ====== NAV ====== */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+    background: color-mix(in srgb, var(--bg) 90%, transparent);
+  }
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 16px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--heading);
+    text-decoration: none;
+  }
+  .eb-logo {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+  }
+  [data-theme="dark"] .eb-logo {
+    background: var(--accent);
+    color: var(--navy);
+  }
+  .nav-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  .theme-toggle, .pdf-btn {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 10px 18px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--fg);
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+  .pdf-btn {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+  .pdf-btn:hover {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: white;
+  }
+  [data-theme="dark"] .pdf-btn { color: var(--navy); }
+  [data-theme="dark"] .pdf-btn:hover { background: white; border-color: white; color: var(--navy); }
+
+  /* ====== HERO ====== */
+  .hero {
+    background: var(--navy);
+    color: white;
+    padding: 100px 32px 80px;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+  }
+  [data-theme="dark"] .hero { background: linear-gradient(135deg, #0a1a28, #122a40); }
+  .hero::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 20%;
+    bottom: 20%;
+    width: 5px;
+    background: var(--cyan);
+  }
+  .hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding-left: 24px;
+  }
+  .hero-eyebrow {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+  .hero h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: clamp(32px, 5vw, 56px);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 24px;
+    max-width: 850px;
+  }
+  .hero h1 strong { font-weight: 700; }
+  .hero-sub {
+    font-size: 19px;
+    line-height: 1.6;
+    max-width: 700px;
+    color: rgba(255,255,255,0.85);
+  }
+  .hero-meta {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+  }
+  .hero-meta strong { color: var(--cyan); font-weight: 600; }
+
+  /* ====== SECTIONS ====== */
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 64px 32px;
+  }
+  section { margin-bottom: 72px; }
+  section:last-child { margin-bottom: 0; }
+
+  h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: clamp(24px, 3vw, 34px);
+    color: var(--heading);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin-bottom: 16px;
+    padding-left: 20px;
+    position: relative;
+  }
+  h2::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    bottom: 8px;
+    width: 4px;
+    background: var(--accent);
+  }
+  h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 21px;
+    color: var(--heading);
+    margin-top: 40px;
+    margin-bottom: 12px;
+  }
+  h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-top: 32px;
+    margin-bottom: 8px;
+  }
+  p { margin-bottom: 18px; color: var(--fg); }
+  p.lead { font-size: 19px; color: var(--fg-muted); margin-bottom: 32px; }
+
+  ul, ol { padding-left: 24px; margin-bottom: 20px; }
+  li { margin-bottom: 10px; }
+
+  strong { color: var(--heading); font-weight: 600; }
+  a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; transition: border 0.2s; }
+  a:hover { border-bottom-color: var(--accent); }
+
+  /* ====== STEP CARDS ====== */
+  .step {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 4px;
+    padding: 36px 40px;
+    margin-bottom: 28px;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease;
+  }
+  .step:hover { transform: translateY(-2px); }
+  .step-number {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .step h3 { margin-top: 0; }
+  .step-time {
+    display: inline-block;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--bg-alt);
+    color: var(--fg-muted);
+    padding: 4px 10px;
+    border-radius: 3px;
+    margin-left: 12px;
+    vertical-align: middle;
+    font-weight: 500;
+  }
+
+  /* ====== CODE + PROMPTS ====== */
+  .code-block, .prompt-box {
+    background: var(--code-bg);
+    color: var(--code-fg);
+    border-radius: 4px;
+    padding: 20px 24px;
+    margin: 16px 0 24px;
+    font-family: 'SF Mono', Monaco, 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-x: auto;
+    border-left: 3px solid var(--accent);
+  }
+  .prompt-box {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+  }
+  .prompt-box::before {
+    content: 'PASTE THIS PROMPT';
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+
+  /* ====== CALLOUT ====== */
+  .callout {
+    background: var(--bg-section);
+    border-left: 4px solid var(--accent);
+    padding: 24px 28px;
+    border-radius: 4px;
+    margin: 24px 0;
+  }
+  .callout-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* ====== CHECKLIST ====== */
+  .checklist {
+    list-style: none;
+    padding-left: 0;
+  }
+  .checklist li {
+    padding-left: 32px;
+    position: relative;
+    margin-bottom: 14px;
+  }
+  .checklist li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 5px;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--accent);
+    border-radius: 3px;
+  }
+
+  /* ====== TABLE ====== */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 24px;
+    font-size: 15px;
+  }
+  th, td {
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  th {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--bg-alt);
+  }
+  tr:last-child td { border-bottom: 0; }
+
+  /* ====== CTA FOOTER ====== */
+  .final-cta {
+    background: var(--navy);
+    color: white;
+    text-align: center;
+    padding: 80px 32px;
+    margin-top: 80px;
+  }
+  [data-theme="dark"] .final-cta { background: linear-gradient(135deg, #0a1a28, #122a40); border-top: 1px solid var(--border); }
+  .final-cta h2 {
+    color: white;
+    padding-left: 0;
+    max-width: 700px;
+    margin: 0 auto 16px;
+  }
+  .final-cta h2::before { display: none; }
+  .final-cta p {
+    color: rgba(255,255,255,0.85);
+    max-width: 600px;
+    margin: 0 auto 32px;
+    font-size: 18px;
+  }
+  .cta-btn {
+    display: inline-block;
+    background: var(--cyan);
+    color: white !important;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 18px 40px;
+    border-radius: 4px;
+    text-decoration: none;
+    border-bottom: 0;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .cta-btn:hover {
+    background: white;
+    color: var(--navy) !important;
+    transform: translateY(-2px);
+  }
+
+  /* ====== FOOTER ====== */
+  footer {
+    background: var(--bg-alt);
+    padding: 40px 32px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--fg-muted);
+    border-top: 1px solid var(--border);
+  }
+  footer .eb-logo { display: inline-flex; margin-bottom: 16px; width: 44px; height: 44px; font-size: 15px; }
+  footer a { color: var(--accent); }
+
+  /* ====== MOBILE ====== */
+  @media (max-width: 640px) {
+    .nav-inner { padding: 14px 20px; }
+    .nav-brand { font-size: 12px; }
+    .nav-brand span { display: none; }
+    .hero { padding: 72px 24px 56px; }
+    .hero-inner { padding-left: 20px; }
+    main { padding: 48px 24px; }
+    .step { padding: 28px 24px; }
+    .theme-toggle, .pdf-btn { padding: 8px 12px; font-size: 11px; }
+  }
+
+  /* ====== PRINT / PDF ====== */
+  @media print {
+    .nav, .final-cta, footer { display: none !important; }
+    body { font-size: 11pt; line-height: 1.5; background: white; color: black; }
+    .hero { background: var(--navy) !important; color: white !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; page-break-after: always; }
+    .step { break-inside: avoid; box-shadow: none; }
+    h2, h3 { break-after: avoid; }
+    a { color: var(--navy); border: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">
+      <span class="eb-logo">EB</span>
+      <span>Edmund Bogen &mdash; Bogen.ai</span>
+    </a>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <span id="themeLabel">Dark</span>
+      </button>
+      <a href="write-your-book-with-claude-code.pdf" class="pdf-btn" download>Download PDF</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">A Step-by-Step Guide</div>
+    <h1>Write Your Book<br><strong>with Claude Code</strong></h1>
+    <p class="hero-sub">The exact workflow I used to write <em>Prompt to Close</em> and <em>Prompt to Plate</em> &mdash; from blank page to Amazon KDP. Built for non-technical authors who want to finish the book they&rsquo;ve been talking about for years.</p>
+    <div class="hero-meta">
+      <div><strong>Author:</strong> Edmund Bogen</div>
+      <div><strong>Time to setup:</strong> ~60 minutes</div>
+      <div><strong>Time to first draft:</strong> 6&ndash;10 weeks</div>
+    </div>
+  </div>
+</section>
+
+<main>
+
+<!-- INTRO -->
+<section>
+  <p class="lead">Most people try to write a book in a chat window. It falls apart around 20,000 words &mdash; because chat has no memory of your manuscript, can&rsquo;t edit files, and can&rsquo;t hold your voice across chapters.</p>
+  <p>Claude Code is different. It runs on your computer, reads and edits your actual manuscript files, remembers everything between sessions, and can run scripts that turn your words into print-ready books. It treats your book like software &mdash; which is exactly what a modern manuscript is: a collection of files that get assembled into a finished product.</p>
+  <p>This guide walks you through the same workflow I used to ship <em>Prompt to Close</em> to Amazon KDP. Follow the ten steps below in order. If you get stuck, reach out &mdash; my team at <a href="https://bogen.ai">Bogen.ai</a> has built this exact pipeline for several authors.</p>
+</section>
+
+<!-- PART 1: SETUP -->
+<section>
+  <h2>Part 1 &mdash; The One-Time Setup</h2>
+  <p>You&rsquo;ll do this once. It takes about an hour. After this, every writing session starts in 10 seconds.</p>
+
+  <div class="step">
+    <div class="step-number">Step 01 <span class="step-time">15 min</span></div>
+    <h3>Install Claude Code</h3>
+    <p>Go to <a href="https://claude.com/claude-code">claude.com/claude-code</a> and follow the install instructions for your operating system (Mac, Windows, or Linux). You&rsquo;ll also need a Claude Pro or Max subscription ($20&ndash;$200/month).</p>
+    <p>When install finishes, open your Terminal (Mac) or Command Prompt (Windows) and type <code>claude</code>. If you see a welcome screen, you&rsquo;re in.</p>
+    <div class="callout">
+      <div class="callout-title">Don&rsquo;t Panic</div>
+      <p>If you&rsquo;ve never opened a terminal before, that&rsquo;s fine. You&rsquo;ll type about five commands the entire time you write this book. Claude Code does the rest.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-number">Step 02 <span class="step-time">10 min</span></div>
+    <h3>Create a GitHub repository for your book</h3>
+    <p>GitHub is where your manuscript lives. Every edit is versioned &mdash; you can never lose a paragraph. Create a free account at <a href="https://github.com">github.com</a>, then create a new <strong>private</strong> repository named after your book (e.g. <code>my-book-title</code>).</p>
+    <p>Open Claude Code in a new project folder on your computer and paste this:</p>
+    <div class="prompt-box">
+      Set up a new book project for me. Initialize a git repository, connect it to my private GitHub repo named &ldquo;my-book-title,&rdquo; and create the folder structure for a non-fiction book with chapter files.
+    </div>
+    <p>Claude Code will ask a few questions and handle the rest.</p>
+  </div>
+
+  <div class="step">
+    <div class="step-number">Step 03 <span class="step-time">15 min</span></div>
+    <h3>Create your Book Plan file</h3>
+    <p>This is the most important file you will ever write. It&rsquo;s where Claude Code learns your voice, your reader, and your structure. Every future session starts by reading this file.</p>
+    <p>Ask Claude Code:</p>
+    <div class="prompt-box">
+      Create a file called BOOK_PLAN.md. Include sections for: Book title and subtitle, One-sentence pitch, Target reader (one paragraph), My voice and tone (three adjectives plus three phrases I would never say), Chapter outline (16&ndash;20 chapters with one-sentence description each), and Disclaimers I need to include.
+    </div>
+    <p>Fill it in. Take your time. This file is your North Star.</p>
+  </div>
+
+  <div class="step">
+    <div class="step-number">Step 04 <span class="step-time">5 min</span></div>
+    <h3>Create one file per chapter</h3>
+    <p>Do not write your book in one long document. Split it. Ask Claude Code:</p>
+    <div class="prompt-box">
+      Based on my BOOK_PLAN.md, create one markdown file for each chapter, numbered sequentially: 00_Introduction.md, 01_Chapter_01.md, 02_Chapter_02.md, and so on through the conclusion and appendices.
+    </div>
+    <p>Now when you say &ldquo;rewrite the opening of chapter three,&rdquo; Claude Code edits only that file. Chapter seven stays untouched. This is how you avoid drift across a long manuscript.</p>
+  </div>
+
+  <div class="step">
+    <div class="step-number">Step 05 <span class="step-time">10 min</span></div>
+    <h3>Build your assembly and conversion scripts</h3>
+    <p>You need three tiny scripts. You won&rsquo;t write them &mdash; Claude Code will. Just paste:</p>
+    <div class="prompt-box">
+      Create three Python scripts: (1) assemble.py &mdash; stitches all chapter markdown files into a single COMPLETE_MANUSCRIPT.md file in the correct order. (2) convert_to_docx.py &mdash; turns COMPLETE_MANUSCRIPT.md into a Word document I can send to a human editor. (3) build_kdp_pdf.py &mdash; turns COMPLETE_MANUSCRIPT.md into a print-ready 6x9 PDF for Amazon KDP upload. Set up all dependencies.
+    </div>
+    <p>These three scripts turn your markdown files into every format you need. Run them after every round of edits. Each one takes under five seconds.</p>
+  </div>
+</section>
+
+<!-- PART 2: WRITING -->
+<section>
+  <h2>Part 2 &mdash; The Writing Workflow</h2>
+  <p>Here&rsquo;s where the magic happens. Stay disciplined on these five habits and your first draft will be done in 6&ndash;10 weeks.</p>
+
+  <div class="step">
+    <div class="step-number">Step 06 <span class="step-time">Day 1</span></div>
+    <h3>Write your strongest chapter first &mdash; all the way through</h3>
+    <p>Pick the chapter you&rsquo;re most excited about. Write it start to finish. This becomes your <strong>voice anchor</strong>. From now on, every time you start a new session, tell Claude Code:</p>
+    <div class="prompt-box">
+      Before we write anything today, read Chapter 3 from start to finish. Match that voice exactly &mdash; same sentence rhythm, same level of formality, same use of stories and examples. Then read BOOK_PLAN.md. Confirm you&rsquo;re ready.
+    </div>
+    <p>This single habit is why my book doesn&rsquo;t read like AI slop. The AI learns <em>you</em> from your best chapter, not from the internet.</p>
+  </div>
+
+  <div class="step">
+    <div class="step-number">Step 07 <span class="step-time">Daily</span></div>
+    <h3>Draft in 90-minute blocks, not marathon sessions</h3>
+    <p>Here&rsquo;s my actual daily schedule during writing sprints:</p>
+    <table>
+      <thead><tr><th>Time</th><th>Activity</th></tr></thead>
+      <tbody>
+        <tr><td>6:00 &ndash; 7:00 AM</td><td>Review yesterday&rsquo;s draft, outline today&rsquo;s section</td></tr>
+        <tr><td>7:00 &ndash; 8:30 AM</td><td>Writing block 1 &mdash; first draft, 1,500&ndash;2,000 words</td></tr>
+        <tr><td>8:30 &ndash; 10:00 AM</td><td>Gym / break (essential &mdash; don&rsquo;t skip)</td></tr>
+        <tr><td>10:00 &ndash; 11:30 AM</td><td>Writing block 2 &mdash; edit, add stories, build out prompts/examples</td></tr>
+      </tbody>
+    </table>
+    <p>Two focused blocks. Three hours of real writing. That&rsquo;s it. You&rsquo;ll produce more in this cadence than people who &ldquo;write all day&rdquo; on weekends.</p>
+  </div>
+
+  <div class="step">
+    <div class="step-number">Step 08 <span class="step-time">Weekly</span></div>
+    <h3>Commit your work to GitHub every single session</h3>
+    <p>At the end of every writing session, paste:</p>
+    <div class="prompt-box">
+      Commit today&rsquo;s work to GitHub with a descriptive message, then push to the remote repo.
+    </div>
+    <p>This is your insurance policy. If your laptop dies, your manuscript is safe. If you break something, you can roll back. You literally cannot lose work.</p>
+  </div>
+
+  <div class="step">
+    <div class="step-number">Step 09 <span class="step-time">After Draft 1</span></div>
+    <h3>Run a multi-agent editorial review</h3>
+    <p>This is the part that blows people&rsquo;s minds. When your first draft is complete, you can have Claude Code spin up specialized &ldquo;agents&rdquo; that each review your manuscript from a different angle &mdash; like hiring four different editors at once.</p>
+    <p>Ask Claude Code:</p>
+    <div class="prompt-box">
+      Run a four-agent editorial review on COMPLETE_MANUSCRIPT.md. Agent 1: fact-check every statistic and claim, flag anything without a source. Agent 2: voice consistency &mdash; flag paragraphs that don&rsquo;t sound like my Chapter 3 voice anchor. Agent 3: reader-friendliness &mdash; flag jargon, long paragraphs, generic AI phrasing. Agent 4: structure &mdash; flag chapters that start slow or end weak. Consolidate findings into a prioritized punch list.
+    </div>
+    <p>I got a 35-item punch list on <em>Prompt to Close</em>. Items 1&ndash;29 were fixed in three days. The book got dramatically tighter &mdash; 66,500 words (V1) down to 52,701 (V7). That kind of iteration is only possible when your manuscript lives in files the AI can see and edit.</p>
+  </div>
+
+  <div class="step">
+    <div class="step-number">Step 10 <span class="step-time">Launch Week</span></div>
+    <h3>Publish to Amazon KDP</h3>
+    <p>When you&rsquo;re ready to publish, ask Claude Code:</p>
+    <div class="prompt-box">
+      Run build_kdp_pdf.py to generate the print-ready 6x9 PDF. Then generate the Kindle ebook file. Give me a pre-launch checklist for Amazon KDP upload including: cover dimensions, pricing recommendations, category selection, keyword research, and the optimal pre-order window.
+    </div>
+    <p>Upload to <a href="https://kdp.amazon.com">kdp.amazon.com</a>. Set a 7-day pre-order window for algorithmic boost. Your book is live.</p>
+  </div>
+</section>
+
+<!-- FIVE HABITS -->
+<section>
+  <h2>The Five Habits That Matter Most</h2>
+  <ul class="checklist">
+    <li><strong>Write to files, not chat.</strong> If it&rsquo;s not saved in a file, it doesn&rsquo;t exist.</li>
+    <li><strong>One chapter = one file.</strong> Never combine, never split.</li>
+    <li><strong>Rebuild after every edit.</strong> Run <code>assemble.py</code> every time, no exceptions.</li>
+    <li><strong>Read your voice anchor before drafting new chapters.</strong> This is how you preserve your voice.</li>
+    <li><strong>Commit to GitHub after every session.</strong> Your insurance policy.</li>
+  </ul>
+</section>
+
+<!-- THE MISTAKE -->
+<section>
+  <h2>The Mistake Almost Everyone Makes</h2>
+  <p>They treat the AI as a ghostwriter. It&rsquo;s not. It&rsquo;s a research assistant, editor, and production pipeline rolled into one. Your voice, your stories, your opinions &mdash; those stay yours. The AI removes the drudgery (formatting, consistency, verification, assembly, conversion) so you can focus on the parts only you can do.</p>
+  <div class="callout">
+    <div class="callout-title">Rule of Thumb</div>
+    <p>If the AI wrote a sentence you wouldn&rsquo;t say out loud to a friend, delete it. Your book&rsquo;s value is <em>you</em>. The AI&rsquo;s job is to help you sound more like yourself, faster.</p>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section>
+  <h2>Realistic Timeline</h2>
+  <table>
+    <thead>
+      <tr><th>Phase</th><th>Duration</th><th>What Happens</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Setup</td><td>~1 hour</td><td>Steps 1&ndash;5 above</td></tr>
+      <tr><td>Voice anchor chapter</td><td>3&ndash;5 days</td><td>Step 6 &mdash; write your strongest chapter</td></tr>
+      <tr><td>First draft sprint</td><td>6&ndash;10 weeks</td><td>Daily 90-min blocks, 1 chapter per week</td></tr>
+      <tr><td>Editorial passes</td><td>2&ndash;4 weeks</td><td>Multi-agent review + revisions</td></tr>
+      <tr><td>Design + KDP upload</td><td>1&ndash;2 weeks</td><td>Cover design, formatting, listing setup</td></tr>
+      <tr><td>Launch</td><td>1 week</td><td>Pre-order, reviews, social push</td></tr>
+    </tbody>
+  </table>
+  <p><strong>Total: 3&ndash;4 months</strong> from outline to Amazon, if you stay consistent. Most people have been &ldquo;working on their book&rdquo; for 3&ndash;4 <em>years</em>. This cuts that to one season.</p>
+</section>
+
+<!-- TOOLS -->
+<section>
+  <h2>Everything You Need</h2>
+  <ul>
+    <li><strong>Claude Code</strong> &mdash; free to install (<a href="https://claude.com/claude-code">claude.com/claude-code</a>)</li>
+    <li><strong>Claude Pro or Max subscription</strong> &mdash; $20&ndash;$200/month depending on volume</li>
+    <li><strong>GitHub account</strong> &mdash; free (<a href="https://github.com">github.com</a>)</li>
+    <li><strong>Amazon KDP account</strong> &mdash; free (<a href="https://kdp.amazon.com">kdp.amazon.com</a>)</li>
+    <li><strong>A book to write</strong> &mdash; you already have one in you</li>
+  </ul>
+  <p>No expensive platforms. No course required. No ghostwriter.</p>
+</section>
+
+<!-- NEXT STEP -->
+<section>
+  <h2>Your Next Step</h2>
+  <p>Before you close this page, do this one thing:</p>
+  <ol>
+    <li>Write your book&rsquo;s title (working title is fine)</li>
+    <li>Write your target reader in one sentence</li>
+    <li>Write your chapter outline &mdash; even if it&rsquo;s rough</li>
+  </ol>
+  <p>Those three items are the seed of your <code>BOOK_PLAN.md</code>. Everything else flows from there.</p>
+</section>
+
+</main>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <h2>Want a Shortcut?</h2>
+  <p>My team at Bogen.ai has built this exact pipeline for several authors. We can get you set up in a single 90-minute session &mdash; fully customized to your book, your voice, and your timeline.</p>
+  <a href="https://bogen.ai" class="cta-btn">Get in Touch &rarr;</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="eb-logo">EB</div>
+  <p><strong>Edmund Bogen</strong> &mdash; Author of <em>Prompt to Close</em> and <em>Prompt to Plate</em></p>
+  <p>AI consultant, speaker, and coach &mdash; <a href="https://bogen.ai">bogen.ai</a></p>
+  <p style="margin-top: 16px; font-size: 12px;">&copy; 2026 Edmund Bogen. All rights reserved.</p>
+</footer>
+
+<script>
+  const toggle = document.getElementById('themeToggle');
+  const label = document.getElementById('themeLabel');
+  const root = document.documentElement;
+
+  const saved = localStorage.getItem('theme');
+  if (saved) {
+    root.setAttribute('data-theme', saved);
+    label.textContent = saved === 'dark' ? 'Light' : 'Dark';
+  } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    root.setAttribute('data-theme', 'dark');
+    label.textContent = 'Light';
+  }
+
+  toggle.addEventListener('click', () => {
+    const current = root.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    label.textContent = next === 'dark' ? 'Light' : 'Dark';
+    localStorage.setItem('theme', next);
+  });
+</script>
+
+</body>
+</html>
