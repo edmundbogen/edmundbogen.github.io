@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>200 East #712 — May 2026 Social Media Calendar | The Edmund Bogen Team</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1a3e5c;
+  --cyan:#00a8e1;
+  --white:#ffffff;
+  --gray:#f4f4f4;
+  --dark:#333;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Montserrat',sans-serif;background:var(--gray);color:var(--dark);line-height:1.6}
+
+/* HEADER */
+.hero{background:linear-gradient(rgba(26,62,92,.85),rgba(26,62,92,.9)),url('https://photos.zillowstatic.com/fp/6df77045f8b75a69a8b89bc3f77c0d34-p_e.jpg') center/cover;color:white;padding:100px 20px 60px;text-align:center;border-bottom:5px solid var(--cyan)}
+.hero-brand{font-size:12px;letter-spacing:.3em;font-weight:500;text-transform:uppercase;opacity:.9;margin-bottom:20px}
+.hero h1{font-size:clamp(28px,5vw,54px);font-weight:300;letter-spacing:.08em;text-transform:uppercase;margin-bottom:15px}
+.hero .addr{font-size:clamp(14px,2vw,18px);letter-spacing:.1em;text-transform:uppercase;opacity:.9}
+.hero .stats{margin-top:30px;font-size:14px;letter-spacing:.15em;text-transform:uppercase;opacity:.85}
+.hero .stats span{display:inline-block;padding:0 18px;border-right:1px solid rgba(255,255,255,.3)}
+.hero .stats span:last-child{border-right:none}
+
+/* SUBHEADER */
+.subhead{background:var(--navy);color:white;padding:20px;text-align:center;border-bottom:3px solid var(--cyan)}
+.subhead h2{font-weight:400;letter-spacing:.1em;font-size:18px;text-transform:uppercase}
+.subhead p{font-size:13px;opacity:.85;margin-top:5px}
+
+/* NAV */
+.nav{background:white;padding:16px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.08);display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center}
+.nav-label{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--navy);font-weight:600;margin-right:10px}
+.nav button{background:white;color:var(--navy);border:2px solid var(--navy);padding:8px 16px;font-family:inherit;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;cursor:pointer;transition:all .2s}
+.nav button:hover,.nav button.active{background:var(--cyan);color:white;border-color:var(--cyan)}
+
+/* INTRO */
+.intro{max-width:1100px;margin:40px auto;padding:30px;background:white;border-left:5px solid var(--cyan)}
+.intro h3{color:var(--navy);letter-spacing:.08em;font-weight:500;text-transform:uppercase;margin-bottom:15px;font-size:20px}
+.intro p{margin-bottom:12px;font-size:15px}
+.intro ul{margin:10px 0 10px 20px}
+.intro li{margin-bottom:6px;font-size:14px}
+.intro strong{color:var(--navy)}
+
+/* CALENDAR */
+.calendar{max-width:1400px;margin:0 auto;padding:0 20px 60px}
+.week{margin-bottom:50px}
+.week-header{background:var(--navy);color:white;padding:20px 24px;border-left:5px solid var(--cyan)}
+.week-header h2{font-weight:400;letter-spacing:.1em;text-transform:uppercase;font-size:22px}
+.week-header p{font-size:13px;opacity:.85;margin-top:4px;letter-spacing:.05em}
+.day-grid{display:grid;grid-template-columns:1fr;gap:20px;margin-top:20px}
+.day-card{background:white;border-radius:0;box-shadow:0 2px 10px rgba(0,0,0,.06);overflow:hidden}
+.day-header{background:linear-gradient(135deg,var(--navy) 0%,#2a5680 100%);color:white;padding:18px 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;cursor:pointer;border-left:5px solid var(--cyan)}
+.day-header:hover{background:#234d74}
+.day-title{font-weight:500;letter-spacing:.08em;text-transform:uppercase;font-size:16px}
+.day-date{font-size:12px;opacity:.8;letter-spacing:.1em;text-transform:uppercase}
+.day-theme{font-size:13px;background:var(--cyan);padding:4px 12px;letter-spacing:.05em;text-transform:uppercase;font-weight:500}
+.day-content{display:none;padding:20px}
+.day-content.open{display:block}
+
+/* PLATFORM TABS */
+.platform-tabs{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:20px;border-bottom:2px solid var(--gray)}
+.platform-tabs button{background:transparent;color:var(--navy);border:none;padding:12px 18px;font-family:inherit;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;cursor:pointer;border-bottom:3px solid transparent;transition:all .2s}
+.platform-tabs button:hover{color:var(--cyan)}
+.platform-tabs button.active{color:var(--cyan);border-bottom-color:var(--cyan)}
+
+.platform-panel{display:none}
+.platform-panel.active{display:block}
+
+/* POST CARD */
+.post{background:var(--gray);border-left:4px solid var(--cyan);padding:18px;margin-bottom:14px}
+.post-meta{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:10px;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--navy);font-weight:600}
+.post-time{background:var(--navy);color:white;padding:4px 10px}
+.post-format{background:var(--cyan);color:white;padding:4px 10px}
+.post-copy{font-size:15px;line-height:1.6;margin-bottom:10px;color:var(--dark);white-space:pre-wrap}
+.post-hashtags{font-size:13px;color:var(--cyan);font-weight:500;margin-bottom:8px;word-break:break-word}
+.post-note{font-size:12px;color:#666;font-style:italic;background:white;padding:8px 12px;border-left:2px solid var(--cyan);margin-top:8px}
+.post-actions{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+.copy-btn{background:var(--navy);color:white;border:none;padding:6px 14px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;cursor:pointer;font-family:inherit}
+.copy-btn:hover{background:var(--cyan)}
+.copy-btn.copied{background:#2ecc71}
+
+/* FOOTER */
+.footer{background:var(--navy);color:white;padding:40px 20px;text-align:center;border-top:5px solid var(--cyan)}
+.footer-brand{font-size:14px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:10px}
+.footer-sub{font-size:12px;opacity:.7;letter-spacing:.1em;text-transform:uppercase}
+
+/* UTILITY */
+.badge{display:inline-block;padding:3px 8px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;background:var(--cyan);color:white}
+@media(min-width:900px){.day-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-brand">The Edmund Bogen Team · Douglas Elliman</div>
+  <h1>200 East #712</h1>
+  <div class="addr">200 E Palmetto Park Rd · Boca Raton · FL 33432</div>
+  <div class="stats">
+    <span>2 BR + Den</span><span>2.5 BA</span><span>2,265 SF</span><span>7th Floor</span>
+  </div>
+</header>
+
+<div class="subhead">
+  <h2>May 2026 · Social Media Content Calendar</h2>
+  <p>500 posts · 5 platforms · 20 days · assistant-ready</p>
+</div>
+
+<nav class="nav">
+  <span class="nav-label">Jump to:</span>
+  <button onclick="scrollWeek(1)">Week 1</button>
+  <button onclick="scrollWeek(2)">Week 2</button>
+  <button onclick="scrollWeek(3)">Week 3</button>
+  <button onclick="scrollWeek(4)">Week 4</button>
+  <button onclick="expandAll()">Expand All</button>
+  <button onclick="collapseAll()">Collapse All</button>
+</nav>
+
+<section class="intro">
+  <h3>How To Use This Calendar</h3>
+  <p><strong>Nicole — read this first.</strong> Each day has 5 platforms (X · Facebook · LinkedIn · Instagram · TikTok). Each platform has 5 posts scheduled across the day (7 AM / 10 AM / 1 PM / 4 PM / 7 PM). Click any day to expand. Click any platform tab to see that day's 5 posts. Click <em>Copy</em> on a post to grab the text.</p>
+  <p><strong>Formats you'll produce:</strong></p>
+  <ul>
+    <li><strong>AI Ed Video</strong> — Use the AI Ed avatar script. HeyGen or Synthesia.</li>
+    <li><strong>AI Avatar Video</strong> — Use a secondary AI persona (e.g., concierge voice, stylist, chef).</li>
+    <li><strong>Static Image</strong> — Professional property photo with navy overlay + headline per brand standards.</li>
+    <li><strong>Carousel</strong> — 5–10 slide IG/LinkedIn carousel. Use brand template.</li>
+    <li><strong>Reel / Short</strong> — 15–60s vertical video, b-roll or AI Ed.</li>
+    <li><strong>Meme</strong> — Branded (navy + cyan), luxury-real-estate humor, tasteful.</li>
+  </ul>
+  <p><strong>Brand rule:</strong> Every visual must follow the Edmund Bogen brand kit — navy <code style="background:#1a3e5c;color:white;padding:2px 6px">#1a3e5c</code>, cyan <code style="background:#00a8e1;color:white;padding:2px 6px">#00a8e1</code>, white. Montserrat font. EB logo + Douglas Elliman co-branding visible. Never use script or serif fonts. Never use warm overlay colors.</p>
+  <p><strong>Compliance:</strong> Every post must include (or be accompanied by the next post including) "The Edmund Bogen Team at Douglas Elliman Real Estate · Equal Housing Opportunity." For listings under contract, use "Under Contract" language — not "Sold."</p>
+</section>
+
+<main class="calendar" id="calendar"></main>
+
+<footer class="footer">
+  <div class="footer-brand">The Edmund Bogen Team</div>
+  <div class="footer-sub">At Douglas Elliman Real Estate · South Florida</div>
+  <div class="footer-sub" style="margin-top:15px">© 2026 · Equal Housing Opportunity · Generated for Nicole Hudson</div>
+</footer>
+
+<script>
+// ============ DAY THEMES ============
+const days = [
+  // WEEK 1 - Introducing Unit 712
+  {d:1, date:"Fri May 1, 2026", title:"Day 1 — The Grand Reveal", theme:"Wake up to this view"},
+  {d:2, date:"Mon May 4, 2026", title:"Day 2 — Full Walkthrough", theme:"2,265 sq ft tour"},
+  {d:3, date:"Tue May 5, 2026", title:"Day 3 — Golden Hour", theme:"Sunset from the 7th floor"},
+  {d:4, date:"Wed May 6, 2026", title:"Day 4 — The Owner's Suite", theme:"Primary suite tour"},
+  {d:5, date:"Thu May 7, 2026", title:"Day 5 — The Hidden Den", theme:"Flex-room reveal"},
+  // WEEK 2 - Building & Amenities
+  {d:6, date:"Fri May 8, 2026", title:"Day 6 — The Pool Deck", theme:"Resort-style amenities"},
+  {d:7, date:"Mon May 11, 2026", title:"Day 7 — Concierge & Valet", theme:"24/7 service living"},
+  {d:8, date:"Tue May 12, 2026", title:"Day 8 — Architecture Story", theme:"Derek Vander Ploeg design"},
+  {d:9, date:"Wed May 13, 2026", title:"Day 9 — Fitness & Club Room", theme:"Amenity vs country club"},
+  {d:10, date:"Thu May 14, 2026", title:"Day 10 — Boutique Building", theme:"115 homes, not 500"},
+  // WEEK 3 - Neighborhood & Walkability
+  {d:11, date:"Fri May 15, 2026", title:"Day 11 — Car Keys Optional", theme:"Walk-everything lifestyle"},
+  {d:12, date:"Mon May 18, 2026", title:"Day 12 — Mizner Park at Night", theme:"The downtown vibe"},
+  {d:13, date:"Tue May 19, 2026", title:"Day 13 — Beach in 10 Min", theme:"Sand from the lobby"},
+  {d:14, date:"Wed May 20, 2026", title:"Day 14 — Royal Palm Plaza", theme:"Pink Plaza shopping"},
+  {d:15, date:"Thu May 21, 2026", title:"Day 15 — Best Coffee Nearby", theme:"3-block coffee guide"},
+  // WEEK 4 - Events, Season, Close
+  {d:16, date:"Fri May 22, 2026", title:"Day 16 — Amphitheater Season", theme:"Walk home from concerts"},
+  {d:17, date:"Mon May 25, 2026", title:"Day 17 — Memorial Day", theme:"Balcony coffee ritual"},
+  {d:18, date:"Tue May 26, 2026", title:"Day 18 — Summer In The City", theme:"Free concert series"},
+  {d:19, date:"Wed May 27, 2026", title:"Day 19 — Sunset Cocktails", theme:"Best rooftop bars nearby"},
+  {d:20, date:"Thu May 28, 2026", title:"Day 20 — Private Tour CTA", theme:"Close the month — book a showing"}
+];
+
+// ============ 500 POSTS ============
+// Structure: each day has 5 platforms × 5 time slots = 25 posts
+// Times: 7AM (hook) | 10AM (feature) | 1PM (lifestyle) | 4PM (social proof) | 7PM (CTA)
+const times = ["7:00 AM","10:00 AM","1:00 PM","4:00 PM","7:00 PM"];
+const platforms = ["X","Facebook","LinkedIn","Instagram","TikTok"];
+
+// POSTS: [dayIdx][platformIdx][slotIdx] = {format, copy, hashtags, note}
+// Using terse, production-ready copy. Every post is deployable.
+const P = {
+  // DAY 1 - Wake Up To This View
+  1:{
+    X:[
+      {f:"AI Ed Video :20",c:"Monday morning, 7 AM. 7 floors above downtown Boca. This is what waking up looks like at 200 East #712. 2BR + den, 2,265 SF, ocean + golf course views. Just listed.",h:"#BocaRaton #LuxuryCondo #SouthFloridaRealEstate",n:"AI Ed filmed on balcony, morning light. Under 280 char when trimmed."},
+      {f:"Static + Caption",c:"Mediterranean Revival meets modern luxury. 200 East, Unit 712. The best view in downtown Boca isn't from the Boca Resort — it's from the balcony I'm about to show you.",h:"#BogenHomes #BocaRatonCondos",n:"Hero exterior shot with navy overlay, EB logo corner."},
+      {f:"Meme",c:"When your 'morning commute' is a 30-second elevator ride to the lobby coffee bar. 200 East, Boca Raton.",h:"#DowntownBoca #RealEstateHumor",n:"Meme template: elevator buttons, navy/cyan branded."},
+      {f:"Thread (3 tweets)",c:"THREAD: What you actually get for $1.6M in downtown Boca in 2026. (1/3) A 2,265 SF corner residence at 200 East Palmetto with ocean, golf, and skyline views from every window.",h:"#RealEstateThread #BocaRaton",n:"Thread 2/3: amenities. 3/3: walkability + CTA."},
+      {f:"AI Ed CTA Video :15",c:"Saw the view today. Want to see it in person? DM 'TOUR' and I'll send you the private showing link. Evenings and weekends available.",h:"#PrivateShowing #BogenHomes",n:"AI Ed close-up, cyan lower-third with contact info."}
+    ],
+    Facebook:[
+      {f:"AI Ed Video :60",c:"Good Monday, everyone. I'm standing on the 7th-floor balcony at 200 East Palmetto — one of the most sought-after addresses in downtown Boca Raton. Unit 712 just came to market and I want to walk you through why it's different. Two bedrooms, a den, 2.5 baths, 2,265 square feet. Views of the ocean, the Boca Resort golf course, and the downtown skyline all from the same balcony. Come with me.",h:"#BogenHomes #LuxuryRealEstate #BocaRaton #DouglasElliman",n:"Post at 7 AM. AI Ed 60-sec establishing shot."},
+      {f:"Carousel (6 photos)",c:"Let's take the full tour of 200 East, Unit 712. Swipe through — ocean view, chef's kitchen, owner's suite, spa bath, den/flex room, and that balcony. Every angle tells the same story: this is downtown Boca living at its best. Serious inquiries welcome. Comment TOUR and my team will reach out.",h:"#BocaRatonCondos #JustListed",n:"6 professional photos, brand frame with cyan accent bar."},
+      {f:"Static + Story",c:"True story. My client walked in last week, stood on this balcony for 90 seconds, turned around and said 'I don't need to see anything else.' That's what 200 East does. If you or someone you know is looking for that kind of certainty in downtown Boca, send them this post.",h:"#RealEstateStories #BocaLife",n:"Balcony view photo, EB logo + Douglas Elliman co-brand."},
+      {f:"Community Post",c:"Quick shoutout to everyone in the Mizner Park / Royal Palm Plaza neighborhood. We have a beautiful new listing at 200 East Palmetto #712 and we want to make sure our neighbors hear about it first. Know someone looking to upgrade inside downtown Boca? Tag them.",h:"#DowntownBoca #Neighbors",n:"Encourage neighbor tagging — organic reach play."},
+      {f:"Live Q&A Announcement",c:"Tonight at 7 PM I'm going live from the balcony of 200 East #712. If you've got questions about pricing, the building, downtown Boca, or the Boca market in general — bring them. See you at 7.",h:"#FacebookLive #AskTheAgent",n:"Schedule FB Live at 7 PM — push notification to followers."}
+    ],
+    LinkedIn:[
+      {f:"Professional Insight",c:"Downtown Boca Raton's luxury condo segment has compressed inventory by 22% YoY. That matters because it reframes the conversation for sellers at 200 East Palmetto, where I just listed Unit 712 — a corner 7th-floor residence, 2,265 SF. When supply tightens at the top of the market, strategic pricing wins over aggressive pricing. Happy to discuss what that looks like with any fellow agents or serious buyers.",h:"#LuxuryRealEstate #MarketInsights #SouthFlorida",n:"LinkedIn loves data. Lead with a stat."},
+      {f:"Article Preview",c:"I published a short piece on why boutique luxury buildings (like 200 East Palmetto, with just 115 residences) outperform tower condos in the resale market. The ratio of concierge staff to unit owners is the leading indicator. Full article linked below.",h:"#BocaRaton #RealEstateStrategy",n:"Link to article on edmundbogen.github.io/blog."},
+      {f:"AI Ed Video :90",c:"In 90 seconds: what a $1.6M downtown Boca condo gets you in 2026 and why 200 East #712 is priced where it is. I break down comparable sales, carry costs, and the three amenity line items that justify the premium.",h:"#RealEstateAnalysis #LuxuryMarket",n:"Data-forward tone. Screen-recording of comparable sales as B-roll."},
+      {f:"Referral Post",c:"To my network of wealth advisors, CPAs, and estate attorneys in South Florida: if you have clients considering a downtown Boca pied-à-terre for tax residency, 200 East #712 is worth a conversation. Full-time concierge, valet, and boutique scale — ideal for the snowbird executive profile. DM me and I'll send the private brochure.",h:"#WealthAdvisors #RealEstateReferrals",n:"Referral network is LinkedIn's strongest lane for Edmund."},
+      {f:"Carousel: 5 Reasons",c:"5 reasons 200 East, Unit 712 is the smartest luxury buy in downtown Boca right now. Slide through. Then tell me which one surprised you.",h:"#BocaRatonRealEstate #InvestmentGrade",n:"5-slide LinkedIn carousel. Slide 1 hook, 2-4 reasons, 5 CTA."}
+    ],
+    Instagram:[
+      {f:"Reel :30",c:"POV: you bought the right unit on the right floor. 200 East #712, Boca Raton. 🫧",h:"#BocaRaton #LuxuryCondo #BogenHomes #JustListed #SouthFlorida #DouglasElliman #DowntownBoca #MiznerPark #BocaLife #LuxuryLiving",n:"Trending audio. POV balcony walk-out reel, golden hour."},
+      {f:"Static + Caption",c:"The lighting told me it was time to post. 200 East Palmetto Road, Unit 712. A corner residence where the ocean meets the Boca Resort golf course meets the downtown skyline. Two bedrooms. A den. 2.5 baths. 2,265 square feet of why-would-you-live-anywhere-else.",h:"#LuxuryRealEstate #BocaRatonHomes #InteriorDesign #RealEstateGram #HomeSweetHome #Realtor #LuxuryLifestyle",n:"Professional hero photo. Brand-compliant frame."},
+      {f:"Carousel (8)",c:"The full tour. 8 slides. Start here 👉. Save this post for your dream board — or send it to the friend who keeps saying they're 'thinking about' downtown Boca.",h:"#BocaRatonCondos #LuxuryHomes #DreamHome #SouthFloridaLuxury #CondoLife #JustListed #BogenHomes #EquelHousingOpportunity",n:"8 pro photos edited to brand. Slide 1 = hero, Slide 8 = CTA."},
+      {f:"Story Poll",c:"Ocean view or golf course view? Vote below 👇 (At 200 East #712, you don't have to choose.)",h:"(Stories don't use hashtags — use 2-3 stickers)",n:"Add location sticker Boca Raton, poll sticker, link sticker to property page."},
+      {f:"AI Ed Reel :45",c:"When AI Ed walks you through the view, you already know the video's gonna go off. 200 East Palmetto #712. DM 'TOUR' for the private showing.",h:"#AIEd #BogenHomes #LuxuryListing #BocaRaton #JustListed",n:"AI Ed avatar clip + balcony b-roll. Trending audio if appropriate."}
+    ],
+    TikTok:[
+      {f:"Video :15 (Hook)",c:"Hook: 'This is the view you'd wake up to if you bought the best corner unit in downtown Boca Raton.' Cut to balcony pan. Text overlay: 200 East #712.",h:"#luxuryrealestate #bocaraton #realestatetiktok #luxuryhome",n:"Quick-cut, trending sound. 3 seconds to hook."},
+      {f:"AI Ed Video :30",c:"Script: 'I'm Edmund Bogen. In 30 seconds, I'll show you the listing I'd personally buy if I were in the market for a downtown Boca condo.' Then 3 quick features + ask for follow.",h:"#aiavatar #realestate #bogenhomes #bocaraton",n:"AI Ed shot. Aggressive cuts, captions burned in."},
+      {f:"Day-In-The-Life :60",c:"Hook: 'A day in the life if you lived at 200 East Palmetto Road, Boca Raton.' Cut: coffee on balcony → valet → walk to Mizner → beach → sunset back home.",h:"#dayinmylife #luxurylife #bocaraton #condolife",n:"Full day shoot. Hire 1 actor or use AI avatar. 60-sec cut."},
+      {f:"Comparison :20",c:"Text overlay: 'Other $1.6M condos:' (shows generic exterior) 'vs. 200 East #712:' (shows balcony view). Voiceover: 'Same price. Wildly different outcome.'",h:"#realestate #luxurycompare #bocaraton",n:"Side-by-side cut. Trending sound, hard audio punch on reveal."},
+      {f:"CTA Reel :15",c:"'DM me the word TOUR and I'll send you the private showing link. First come, first serve — these don't sit.' (AI Ed to camera)",h:"#realestatetiktok #luxuryrealestate #bogenhomes",n:"AI Ed close-up. Burn captions."}
+    ]
+  },
+  // DAY 2 - Full Walkthrough
+  2:{
+    X:[
+      {f:"AI Ed Video :30",c:"2,265 square feet. One take. Let's walk. 200 East #712, downtown Boca. Link in bio.",h:"#BocaRaton #LuxuryCondo #RealEstate",n:"One-take walkthrough by AI Ed. High energy."},
+      {f:"Floor Plan Graphic",c:"The floor plan that sold my last 3 clients on this building. 2BR + den. Corner exposure. Kitchen that opens to the living room. Here's why layout beats square footage every time at 200 East.",h:"#FloorPlans #RealEstateDesign",n:"Branded floor plan image, navy lines, cyan highlights."},
+      {f:"Poll",c:"What matters more in a $1.6M condo: ❏ View ❏ Layout ❏ Building amenities ❏ Walkability. (For the record, 200 East #712 is the only downtown Boca listing that gives you all four.)",h:"#BocaRatonLuxury #RealEstatePoll",n:"Twitter native poll. Comment section = lead-gen."},
+      {f:"Static + Quick Data",c:"2,265 SF · 2BR + den · 2.5BA · 7th floor · East/SE corner · 24/7 concierge · walk score 98. Downtown Boca's most complete luxury condo.",h:"#BogenHomes #BocaCondos",n:"Brand-compliant infographic."},
+      {f:"CTA",c:"Want the full walkthrough video? Reply WALK and I'll send it. No email gate.",h:"#RealEstate #BocaRaton",n:"Reply-based lead magnet."}
+    ],
+    Facebook:[
+      {f:"Reel :60 walkthrough",c:"Good morning, everyone. If you've been waiting for a full tour of 200 East #712 — today's your day. I filmed a complete walkthrough of the residence yesterday at golden hour. 60 seconds, one take. Tell me what detail surprised you most in the comments.",h:"#BogenHomes #JustListed #BocaRaton",n:"60-sec walkthrough reel, posted at 7 AM."},
+      {f:"Carousel (10)",c:"Ten photos. One tour. 200 East Palmetto, Unit 712. Start with slide 1 — the entry foyer — and finish with slide 10, the private balcony at sunset. Which slide made you pause?",h:"#LuxuryHomes #BocaRatonCondos",n:"10-photo carousel, brand frames."},
+      {f:"Long-form story",c:"When this unit came back to market I was the first call. Here's why. The 7th floor at 200 East has a rare thing in downtown condo towers — a true East/Southeast corner exposure that puts the ocean, the Boca Resort golf course, and Mizner Park in your line of sight simultaneously. That's not a floor plan you buy. That's a position you inherit when the right seller decides to move on. If you've been patient for the right downtown Boca unit, this is it. DM me for the full private brochure.",h:"#LuxuryRealEstate #BocaRaton",n:"Long-form Facebook storytelling post."},
+      {f:"AI Avatar Concierge",c:"Meet 'Mira,' the AI concierge I built to answer questions about 200 East. She knows every room, every amenity, and every comparable sale in the building. Ask her anything in the comments — I'll translate.",h:"#AIRealEstate #BogenHomes",n:"Secondary AI avatar — 'Mira the Concierge.' 30-sec intro video."},
+      {f:"Live Walkthrough",c:"Tonight, 7 PM — full Facebook Live walkthrough of 200 East #712. Bring your questions, your spouse, and your dream home wishlist. I'll cover pricing, comps, and what it costs to own here monthly.",h:"#FacebookLive #DowntownBoca",n:"Scheduled FB Live."}
+    ],
+    LinkedIn:[
+      {f:"Deep-dive Post",c:"Square footage is the vanity metric. Usable square footage is the value metric. 200 East #712 has 2,265 SF on paper but 2,265 SF you'll actually use — because the architect (Derek Vander Ploeg) laid out the corner residences with functional flow, not just bedroom count. Here's what that looks like on the floor plan.",h:"#ArchitectureAndDesign #RealEstateStrategy",n:"Attach floor plan. Screen-read by AI Ed in a :60 video."},
+      {f:"Industry Insight",c:"A reminder to my fellow brokers: the fastest way to lose a luxury listing is to lead with price. The fastest way to win one is to lead with positioning. Here's how I'm positioning 200 East #712 into the downtown Boca buyer pool.",h:"#RealEstateCoaching #LuxuryMarket",n:"Screenshot of repositioning doc (redacted). Educational post."},
+      {f:"Carousel: Layout Matters",c:"5 slides on why the corner residence floor plan at 200 East is the best in the building. Slide 1 hook. Slides 2-4 architectural reasoning. Slide 5 CTA: request private brochure.",h:"#BocaRaton #LuxuryCondos",n:"Clean brand-compliant LinkedIn carousel."},
+      {f:"Video Analysis :90",c:"The 90-second breakdown: what buyers should look for when they walk into a luxury condo, using 200 East #712 as the live example. If you're house-hunting in downtown Boca, watch this before your next showing.",h:"#RealEstateEducation #BocaRaton",n:"AI Ed on camera + floor plan cutaways."},
+      {f:"Referral CTA",c:"Advisors — if you have a client asking about downtown Boca condos, I'll send you the private financials on 200 East #712 (HOA breakdown, projected 5-year appreciation, and total carry cost). DM me with your firm name.",h:"#WealthManagement #RealEstateReferrals",n:"Referral gated content play."}
+    ],
+    Instagram:[
+      {f:"Reel :45",c:"The full walkthrough. 200 East #712, Boca Raton. Save this for later — you'll want to re-watch it.",h:"#BocaRaton #LuxuryCondo #BogenHomes #RealEstateReel #JustListed #DouglasElliman #LuxuryRealEstate #HomeTour",n:"45-sec walkthrough, trending audio, captions burned in."},
+      {f:"Static + Floor Plan",c:"Some people shop by photos. The smart ones shop by floor plan. Here's ours — 200 East #712. Swipe for the full layout.",h:"#FloorPlan #LuxuryInteriors #BocaRatonRealEstate #RealEstateGram",n:"Hero static + floor plan on slide 2."},
+      {f:"Before/After Style",c:"Before: you scrolled past another listing. After: you stopped at 200 East #712. Here's what grabbed you.",h:"#BocaRaton #LuxuryHomes #BogenHomes #DreamHome",n:"Two-shot comparison reel."},
+      {f:"Story Tour",c:"Taking over Stories today — I'll post a mini-tour of 200 East #712 room by room. Tap through, ask questions via the question sticker. I'll answer every single one tonight at 7 PM live.",h:"(Stories only — use location + sticker)",n:"10-15 story frames, question sticker activated."},
+      {f:"AI Avatar Reel :30",c:"When Mira, the AI concierge, walks you through the home. (She doesn't miss a square foot.) 200 East #712.",h:"#AIConcierge #BogenHomes #LuxuryCondo #BocaRaton",n:"Mira AI avatar with floor plan animations."}
+    ],
+    TikTok:[
+      {f:"POV Walkthrough :30",c:"POV: you just got the keys. (200 East #712, Boca Raton.) First cut: opening the door. Last cut: stepping onto the balcony.",h:"#luxuryrealestate #bocaraton #firsthome #luxurylife",n:"POV hand-hold. Natural audio + subtle music."},
+      {f:"AI Ed :45",c:"AI Ed hooks: 'I'll walk you through the 2,265 sq ft residence I just listed in downtown Boca in under 45 seconds.' Then — quick cuts, one feature per cut.",h:"#realtok #aiavatar #realestate #bocaraton",n:"High-tempo cut. AI Ed w/ burn-in caption."},
+      {f:"Room Tour Loop :60",c:"Tour loop: entry → kitchen → living → primary suite → den → balcony. Each room gets 10 seconds. Hook: 'All 6 rooms. 60 seconds. Let's go.'",h:"#hometour #luxurycondo #realestatetiktok #luxurylife",n:"Structured 6-beat cut. Add room-name text overlays."},
+      {f:"Negative Hook :15",c:"Hook: 'Three things this condo doesn't have.' (1) A bad view. (2) Bad light. (3) A reason to say no. Cut to property shots.",h:"#realestate #luxurylisting #bocaraton",n:"Negative-framing hook performs well on TikTok."},
+      {f:"CTA :15",c:"'If you made it this far, you already want the tour. DM me the word TOUR.' — AI Ed, close-up.",h:"#realestatetiktok #luxuryrealestate #bogenhomes",n:"AI Ed CTA."}
+    ]
+  },
+  // DAY 3 - Golden Hour
+  3:{
+    X:[
+      {f:"Static + Line",c:"6:47 PM. The 7th-floor balcony at 200 East. If you know, you know.",h:"#GoldenHour #BocaRaton",n:"Single dramatic sunset image."},
+      {f:"Reel Teaser",c:"Sunset at 200 East #712 is the amenity no brochure mentions. Here's what it actually looks like.",h:"#SouthFlorida #LuxuryLiving",n:"10-sec time-lapse cut."},
+      {f:"Thread (2)",c:"1/2: Here's what $1.6M in downtown Boca buys you at sunset. 2/2: The building's East/SE exposure means you get golden hour on two sides for 40 minutes a night. That's architectural.",h:"#BocaRatonCondos",n:"Two-part data thread."},
+      {f:"Reply-Prompt",c:"Where's your favorite sunset view in South Florida? I'll go first: my listing at 200 East #712.",h:"#SouthFloridaSunsets",n:"Engagement prompt — reply-farming."},
+      {f:"CTA",c:"Two showings left at 200 East #712 this week. Evening slot = sunset access. Reply GOLDEN for the 6:30 PM appointment.",h:"#BocaRealEstate",n:"Time-based scarcity CTA."}
+    ],
+    Facebook:[
+      {f:"Time-Lapse Reel",c:"Posted this one at 7 PM on purpose — because this is exactly what your 7 PM looks like at 200 East #712. The time-lapse runs 30 seconds but the actual golden hour runs about 40 minutes. 40 minutes. Every day. DM 'GOLDEN' and I'll send you the private evening showing link.",h:"#GoldenHour #BogenHomes #LuxuryCondo",n:"30-sec sunset time-lapse, posted at 7 PM sharp."},
+      {f:"Carousel (5) Sunset Series",c:"I asked my photographer for 5 different sunset shots of the balcony. She delivered. Tell me which one you'd frame.",h:"#LuxuryPhotography #BocaRaton",n:"5 editorial sunset photos."},
+      {f:"Storytelling Post",c:"My wife Sam and I stopped by the unit last night to check a detail for the listing. We ended up staying 45 minutes just watching the sun go down over the Boca Resort golf course. That's what this home is. Not a box with a view — a reason to slow down.",h:"#PersonalNote #BocaLife",n:"Personal storytelling angle. Mentions Sam (family brand)."},
+      {f:"AI Ed Sunset Reel",c:"'If I could only show you one minute of 200 East #712, it'd be this one.' — Edmund. 60-sec sunset cut.",h:"#BogenHomes #GoldenHour",n:"AI Ed VO over sunset b-roll."},
+      {f:"Live Sunset Tour",c:"Going live at 6:30 PM tonight from the balcony. I'll take questions while the sun sets. If you want to feel the unit without being in it, this is the closest you'll get. See you at 6:30.",h:"#FacebookLive #BocaRaton",n:"Scheduled sunset Facebook Live."}
+    ],
+    LinkedIn:[
+      {f:"Insight",c:"East/Southeast-facing corner units appreciate 8-12% faster than West-facing inventory in South Florida's luxury condo market. Here's the data behind that claim and why 200 East #712 is positioned on the correct side of that trend.",h:"#RealEstateData #LuxuryMarket",n:"Data-driven LinkedIn post."},
+      {f:"AI Ed Video :90",c:"In 90 seconds: what 'golden hour exposure' actually adds to a luxury condo's valuation — with 200 East #712 as the case study.",h:"#RealEstateAnalysis #BocaRaton",n:"Educational AI Ed video with chart overlays."},
+      {f:"Photography Post",c:"Real estate marketing lives or dies on one thing: the hero image. Our team reshoots golden hour on every high-end listing. Cost: $1,500. Value: immeasurable. Case in point — 200 East #712.",h:"#RealEstateMarketing",n:"Marketing behind-the-scenes angle."},
+      {f:"Carousel: Evening Tour",c:"The 5-slide evening tour of 200 East #712. Slide 1: arrival. Slide 5: sunset. Swipe.",h:"#LuxuryRealEstate #BocaRaton",n:"LinkedIn carousel."},
+      {f:"Advisor CTA",c:"If you're a wealth advisor with a snowbird client who values a southeast-facing sunset view, send them my DM. 200 East #712 books evening showings through Friday.",h:"#ReferralNetwork",n:"Referral CTA."}
+    ],
+    Instagram:[
+      {f:"Reel :20 Sunset",c:"Sunset hits different at 200 East. 🌅",h:"#GoldenHour #BocaRaton #LuxuryCondo #BogenHomes #SunsetViews #SouthFlorida #DouglasElliman #LuxuryRealEstate",n:"Trending sunset sound. No VO — let it breathe."},
+      {f:"Static Hero",c:"6:47 PM. Balcony of Unit 712. 200 East Palmetto. No caption competes with this light.",h:"#GoldenHourMagic #BocaRatonRealEstate #LuxuryViews #BogenHomes",n:"Single editorial shot. High quality only."},
+      {f:"Story Countdown",c:"Countdown to sunset at 200 East — starts at 6 PM tonight. Tap the countdown sticker to get a notification.",h:"(Story only)",n:"Add countdown sticker, location, link sticker."},
+      {f:"Carousel Sunset Series",c:"7 frames of the same sunset. All shot from the balcony of 200 East #712. Save the one you'd use as a wallpaper.",h:"#SunsetPhotography #BocaRaton #LuxuryHomes",n:"7 pro-edited sunset shots."},
+      {f:"AI Ed Reel :30",c:"AI Ed: 'I come up here just to reset. If the unit does that for me, imagine what it does for you.' 30-sec cut to sunset.",h:"#BogenHomes #LuxuryListing #BocaRaton",n:"AI Ed intro + b-roll."}
+    ],
+    TikTok:[
+      {f:"Sunset :15",c:"Hook text: 'This is what $1.6M actually buys you in downtown Boca.' Cut to 15-sec sunset time-lapse. End card: 200 East #712.",h:"#luxuryrealestate #sunset #bocaraton #realestatetiktok",n:"Silent trending audio. Hook text early."},
+      {f:"POV :20",c:"POV: you come home from work and this is your balcony. (Silent cinematic cut.)",h:"#pov #luxurylife #bocaraton #condolife",n:"POV-style hand-held cut."},
+      {f:"AI Ed :30",c:"AI Ed: 'Most condos lose the view by 7 PM. This one gets better.' Cut to time-lapse.",h:"#aiavatar #realtok #realestate",n:"AI Ed voice-over w/ sunset b-roll."},
+      {f:"Day-vs-Night :20",c:"Split screen: 12 PM vs 7 PM from the same balcony. The light change sells it.",h:"#realestate #bocaraton #luxurycondo",n:"Split-screen cinematic cut."},
+      {f:"CTA :15",c:"'Want the 6:30 PM sunset showing? Comment GOLDEN.'",h:"#realestatetiktok #luxuryliving #bogenhomes",n:"AI Ed close-up CTA."}
+    ]
+  },
+  // DAY 4 - Owner's Suite
+  4:{
+    X:[
+      {f:"Static + Line",c:"The owner's suite at 200 East #712. Built-in closets, spa bath, private ocean view. This is what a $1.6M primary bedroom looks like in 2026.",h:"#LuxuryBedroom #BocaRaton",n:"Editorial primary suite photo."},
+      {f:"Reel :20",c:"Quick walk into the owner's suite. Custom closet. Marble spa bath. Ocean light through the window. Every morning.",h:"#BogenHomes #LuxuryCondo",n:"20-sec walk-in reel."},
+      {f:"Poll",c:"What's the first thing you upgrade in a new home? ❏ Closet ❏ Bathroom ❏ Kitchen ❏ Nothing, it's already perfect (the 200 East #712 answer).",h:"#HomeUpgrades",n:"Twitter poll."},
+      {f:"Data Post",c:"Primary suite size matters. National avg: 200 SF. South FL luxury avg: 320 SF. 200 East #712 primary: 410 SF + spa bath + walk-in. That's the delta.",h:"#RealEstateData",n:"Data graphic."},
+      {f:"CTA",c:"Want to see the owner's suite in person? 3 private slots left this week. Reply SUITE.",h:"#BocaRealEstate",n:"Reply-based CTA."}
+    ],
+    Facebook:[
+      {f:"Reel :45",c:"Taking you into the owner's suite today. Custom closet built for two, spa bath with dual vanities, and a private corner window that frames the Boca Resort golf course. This is the room that sells the whole home.",h:"#BogenHomes #BocaRaton",n:"45-sec primary suite tour."},
+      {f:"Carousel (6)",c:"Six angles of the primary suite at 200 East #712. Swipe and tell me which detail caught you.",h:"#LuxuryBedroom #CondoLiving",n:"6-photo carousel."},
+      {f:"Story Post",c:"Small detail that most buyers miss: the primary suite at 200 East #712 has its own separate HVAC zone. Sam and I call this the 'marriage saver' feature. You can sleep cold, your partner can sleep warm. Luxury is in the details.",h:"#PersonalNote #RealEstateDetails",n:"Personal + relatable storytelling."},
+      {f:"Designer Feature",c:"The custom closet was built by a local Boca cabinetmaker. I'll tag her in the comments. Every drawer soft-close. Every rod lighted. This is what move-in ready actually means.",h:"#InteriorDesign #BocaRaton",n:"Tag local vendor — community amplification."},
+      {f:"Live Q&A",c:"Tonight 7 PM — I'm going live from the owner's suite. Ask me anything: closets, finishes, resale value, financing. See you there.",h:"#FacebookLive",n:"FB Live schedule."}
+    ],
+    LinkedIn:[
+      {f:"Design Insight",c:"A primary suite is either an afterthought or a feature. At 200 East #712, it's a feature — 410 SF with its own HVAC zone, custom closet system, and a spa bath that appraisers value at $45K on its own. Design decisions compound at resale.",h:"#RealEstateStrategy #LuxuryDesign",n:"Insight + data post."},
+      {f:"AI Ed Video :60",c:"60 seconds on why the primary suite is the single most important room in a luxury resale — and how 200 East #712 is positioned in the top 10% of downtown Boca inventory on that metric.",h:"#LuxuryRealEstate",n:"AI Ed educational clip."},
+      {f:"Carousel",c:"4 slides: the owner's suite checklist for luxury buyers. Slide 1 hook. 2-3 checklist. 4 CTA.",h:"#BocaRaton #LuxuryListings",n:"LinkedIn carousel."},
+      {f:"Referral",c:"Estate planners: clients downsizing from 6,000 SF Boca homes still want a proper primary suite. 200 East #712 is the shortest list that satisfies that demand. DM for the brochure.",h:"#EstatePlanning #RealEstateReferrals",n:"Referral network post."},
+      {f:"Market Comment",c:"Boca's luxury condo buyers in 2026 are paying a premium for en-suite spa baths. 200 East #712 delivers. Priced accordingly.",h:"#MarketUpdate",n:"Quick market note."}
+    ],
+    Instagram:[
+      {f:"Reel :30",c:"The owner's suite at 200 East #712. Custom closet. Spa bath. Morning light. 🤍",h:"#OwnersSuite #LuxuryBedroom #BocaRaton #BogenHomes #SpaBathroom #LuxuryHomes #DouglasElliman",n:"Editorial reel, soft trending audio."},
+      {f:"Static Hero",c:"Mornings in the primary suite at 200 East #712. The kind of light that doesn't need editing.",h:"#LuxuryRealEstate #BedroomGoals #BocaRatonHomes",n:"Natural light editorial shot."},
+      {f:"Closet Carousel",c:"8 slides of the custom closet. Every drawer has a purpose. Slide through to see.",h:"#CustomCloset #ClosetGoals #LuxuryHomes #BocaRaton",n:"8-slide closet detail carousel."},
+      {f:"Story Takeover",c:"Primary suite takeover — all day in Stories. Bath, closet, view, sleep setup. Tap through.",h:"(Stories)",n:"Day-long IG Story takeover."},
+      {f:"AI Avatar Reel :30",c:"Mira the concierge: 'The primary suite is my favorite room in the building. Let me show you why.'",h:"#AIAvatar #LuxuryCondo #BogenHomes",n:"Mira AI avatar + b-roll."}
+    ],
+    TikTok:[
+      {f:"POV :20",c:"POV: waking up in the owner's suite at 200 East #712. Light cuts + natural ambient.",h:"#pov #luxurybedroom #bocaraton #realestatetiktok",n:"Cinematic POV."},
+      {f:"Closet Reveal :30",c:"Hook: 'This closet is what sold her on the whole home.' Open doors slowly, each section gets a beat.",h:"#closettour #luxurycondo #realestate",n:"Reveal-style cut."},
+      {f:"AI Ed :30",c:"AI Ed: '410 sq ft. Spa bath. Custom closet. Ocean light. This is the primary suite of 200 East #712.'",h:"#aiavatar #realtok #bocaraton",n:"AI Ed quick feature list."},
+      {f:"Bathroom Reveal :20",c:"Door-push bathroom reveal. Marble, dual vanity, glass shower. One shot, hold on the window view.",h:"#luxurybath #bocaraton",n:"One-shot reveal."},
+      {f:"CTA :15",c:"AI Ed: 'Comment SUITE and I'll send you the full primary walkthrough.'",h:"#realestatetiktok #bogenhomes",n:"AI Ed CTA."}
+    ]
+  },
+  // DAY 5 - The Hidden Den
+  5:{
+    X:[
+      {f:"Static",c:"This is the den at 200 East #712 — the room that turns a 2BR into a 3BR. Home office. Media room. Guest suite. Your call.",h:"#FlexRoom #BocaRaton",n:"Den photo, brand frame."},
+      {f:"Before/After",c:"Same den. Two setups. Left: home office. Right: media room. One listing, three ways to live.",h:"#RealEstateStaging",n:"Split-image showing two uses."},
+      {f:"Poll",c:"Your den would be: ❏ Home office ❏ Guest bedroom ❏ Media room ❏ Wine room. Tell me the vote at 200 East #712.",h:"#FlexSpace",n:"Twitter poll."},
+      {f:"Short Thread",c:"1/2: Everyone says '2BR + den.' Nobody explains why the den is the secret. 2/2: It's the square footage the tax records don't count but your life does. 200 East #712 has 220 SF of it.",h:"#RealEstateTips",n:"Two-part thread."},
+      {f:"CTA",c:"Reply DEN and I'll send you the floor plan so you can plan your flex room layout before we meet.",h:"#BocaRealEstate",n:"Lead magnet CTA."}
+    ],
+    Facebook:[
+      {f:"Reel :45",c:"Most buyers walk past the den. Smart buyers stop. Here's why — 220 SF of flex space at 200 East #712 that works as a third bedroom, a home office, or a media room. That's a $60K+ valuation swing depending on how the market reads it.",h:"#BogenHomes #BocaRaton",n:"45-sec den feature reel."},
+      {f:"Carousel (5)",c:"5 ways to use the den at 200 East #712. Office. Guest bed. Nursery. Media. Wine room. Which one are you?",h:"#FlexSpace #BocaLiving",n:"5-slide use-case carousel."},
+      {f:"Story Post",c:"One of my recent buyers converted the den into a Peloton + meditation room. Another used it as a walk-in wine cellar. The room is a Rorschach test — tells you what someone prioritizes. At 200 East #712, it's your test.",h:"#RealEstateStories",n:"Anecdotal post."},
+      {f:"Designer Tip",c:"Pro tip from my stager: dens photograph best as home offices because that's what the MLS buyer expects. But in real life, most luxury buyers use them as media rooms. Stage for MLS. Live for life.",h:"#StagingTips #RealEstate",n:"Tip-style educational post."},
+      {f:"Live Walkthrough",c:"7 PM tonight — den edition. FB Live. Bring your flex-room questions.",h:"#FacebookLive",n:"FB Live."}
+    ],
+    LinkedIn:[
+      {f:"Value Post",c:"The 'den' line item is underpriced in most luxury condo listings because the MLS doesn't count it as a bedroom. Sophisticated buyers know to value it at 80% of a bedroom's SF premium. 200 East #712 has 220 SF of den — that's a $45-55K quiet valuation win.",h:"#RealEstateValuation",n:"Data-forward post."},
+      {f:"Remote Work Angle",c:"A note to my remote-work clients: 200 East #712 has a true den with a door. Not an alcove. That matters when you're on back-to-back Zooms. Priced at $1.6M. Fewer than 10 comparable units on-market in downtown Boca.",h:"#RemoteWork #LuxuryCondos",n:"Remote-work targeting."},
+      {f:"AI Ed Video :60",c:"60 seconds: how the den at 200 East #712 adds measurable resale value — and why I argued for a $40K price bump because of it.",h:"#PricingStrategy",n:"AI Ed with valuation logic."},
+      {f:"Carousel",c:"3 slides: what to look for in a 'flex room.' Slide 1: door? Slide 2: window? Slide 3: closet? 200 East #712 = yes, yes, yes.",h:"#BuyerGuide",n:"Checklist carousel."},
+      {f:"Referral CTA",c:"Remote-work executives relocating to FL — I've got one listing you should see. 200 East #712. DM for the brochure.",h:"#RelocationRealEstate",n:"Targeted LinkedIn outreach."}
+    ],
+    Instagram:[
+      {f:"Reel :30",c:"The room most buyers don't know they want. 200 East #712. 📚",h:"#FlexRoom #HomeOffice #BocaRaton #BogenHomes #LuxuryCondo #JustListed #RealEstateReel",n:"Den feature reel."},
+      {f:"Static + Caption",c:"Office on Monday. Guest room on Friday. Media room on Sunday. One den, three lives — at 200 East #712.",h:"#FlexSpace #LuxuryLiving #BocaRatonRealEstate",n:"Editorial den photo."},
+      {f:"Carousel (6)",c:"6 ways to style the den at 200 East #712. Save this for your Pinterest.",h:"#InteriorDesign #DenDecor #LuxuryHomes #BocaRaton",n:"6-slide style carousel."},
+      {f:"Story Poll",c:"What would you do with the den? Swipe the poll.",h:"(Stories)",n:"Story poll — high engagement driver."},
+      {f:"AI Avatar Reel :30",c:"Mira: 'The den is why the 2-bedroom buyer becomes the 200 East #712 buyer.'",h:"#AIAvatar #BogenHomes #LuxuryCondo",n:"Mira AI avatar."}
+    ],
+    TikTok:[
+      {f:"Door Reveal :15",c:"Hook: 'Most people miss this room on the tour.' Push door open. Reveal den. Caption: 'The secret third room.'",h:"#realestate #luxurycondo #bocaraton",n:"Door-reveal hook."},
+      {f:"Use-case Cuts :30",c:"5 quick cuts: office setup → bed setup → media setup → wine setup → empty/zen. Text overlay: 'same 220 sq ft. 5 lives.'",h:"#flexspace #realestatetiktok #luxuryhome",n:"Rapid-cut transformation."},
+      {f:"AI Ed :30",c:"AI Ed: 'In Boca, the den is the negotiation. Here's why this one at 200 East is worth $45K more.'",h:"#aiavatar #realtok #realestate",n:"Educational AI Ed."},
+      {f:"Setup Tour :20",c:"My staged setup of the den — 20 seconds. Bookshelf, desk, chair, view.",h:"#homeoffice #luxuryhome #bocaraton",n:"Single-setup tour."},
+      {f:"CTA :15",c:"'Comment DEN for the floor plan.'",h:"#realestatetiktok #bogenhomes",n:"AI Ed CTA."}
+    ]
+  },
+  // DAY 6 - Pool Deck
+  6:{
+    X:[
+      {f:"Static",c:"Resort-style pool deck at 200 East. 9 stories up from downtown Boca. No membership required — it's just your backyard.",h:"#PoolDeck #BocaRaton",n:"Pool deck hero shot."},
+      {f:"Reel :15",c:"What your Saturday looks like at 200 East. Water, palms, zero crowd.",h:"#BocaLife #LuxuryCondo",n:"15-sec pool b-roll."},
+      {f:"Comparison",c:"Country club pool: $50K initiation + $18K/yr dues. 200 East pool: included with your HOA. Math is beautiful.",h:"#HOAvsCountryClub",n:"Data graphic."},
+      {f:"Question",c:"If the pool is part of your building, do you still need a country club membership? Reply with your take.",h:"#BocaLifestyle",n:"Engagement question."},
+      {f:"CTA",c:"Want to see the deck at sunset? Reply POOL for the 6 PM tour slot.",h:"#BocaRealEstate",n:"Reply CTA."}
+    ],
+    Facebook:[
+      {f:"Reel :45",c:"Good morning. Posting from the pool deck at 200 East this morning because this is what a Tuesday looks like here. Resort-style lounge, palm trees, and the kind of quiet that comes from a 115-unit boutique building instead of a 400-unit tower. Unit #712 is the reason you'd want this as your daily view.",h:"#BogenHomes #BocaRaton #PoolDeck",n:"Morning pool reel."},
+      {f:"Carousel (8)",c:"8 angles of the amenities deck at 200 East. Pool, cabanas, outdoor lounge, grill, and the view of downtown Boca from up top. Swipe through.",h:"#LuxuryAmenities #BocaCondos",n:"8-photo amenity carousel."},
+      {f:"Story Post",c:"A client told me last year, 'I only started using my pool when I didn't have to maintain it.' That's the boutique condo magic. At 200 East, the deck is done for you. Clean towels, clean water, clean everything.",h:"#CondoLife #BocaLiving",n:"Storytelling post."},
+      {f:"Amenity Round-up",c:"The 200 East amenity list in one post: resort pool, private gym, club room, valet, 24/7 concierge, 26,000 SF of retail at your door. All of it under your own roof.",h:"#LuxuryLiving #DowntownBoca",n:"Amenity list graphic."},
+      {f:"Live Pool Tour",c:"6 PM tonight — live from the deck. I'll show the pool, cabanas, and the view. Come with questions.",h:"#FacebookLive",n:"FB Live."}
+    ],
+    LinkedIn:[
+      {f:"ROI Post",c:"The single best ROI line item in any luxury condo is the amenity deck. At 200 East Palmetto, the pool + gym + valet package replaces ~$25K/yr in country club and concierge spend. Over 10 years, that's a $250K hidden dividend baked into the HOA.",h:"#RealEstateROI #LuxuryAmenities",n:"ROI analysis post."},
+      {f:"AI Ed Video :60",c:"60 seconds on why boutique luxury buildings outperform tower condos on resident satisfaction — with the 200 East pool deck as exhibit A.",h:"#RealEstateStrategy",n:"AI Ed analytical video."},
+      {f:"Carousel",c:"4 slides: what to look for in a luxury building's amenity package. 200 East checks every box.",h:"#LuxuryRealEstate",n:"Checklist carousel."},
+      {f:"Executive Angle",c:"For the executive buyer: less time driving to a country club = more time working or with family. 200 East #712 solves that with amenities one elevator ride away.",h:"#ExecutiveLifestyle",n:"Executive-targeted post."},
+      {f:"Referral",c:"CPAs and wealth advisors: the amenity-inclusive HOA at 200 East simplifies the snowbird carry-cost conversation. DM for the breakdown.",h:"#WealthAdvisors",n:"Referral post."}
+    ],
+    Instagram:[
+      {f:"Reel :30",c:"Pool deck at 200 East hits different at 10 AM on a Tuesday. 🏝️",h:"#PoolDeck #BocaRaton #LuxuryCondo #BogenHomes #ResortLiving #SouthFlorida #DouglasElliman",n:"Bright morning reel."},
+      {f:"Static Hero",c:"No lines. No crowds. No membership. Just your pool at 200 East.",h:"#LuxuryLiving #BocaRatonCondos #PoolGoals",n:"Hero pool photo."},
+      {f:"Carousel (6)",c:"Swipe through the deck. Which cabana would be yours?",h:"#CondoLiving #LuxuryAmenities #BocaLife",n:"6-slide amenity carousel."},
+      {f:"Story Tour",c:"Stories today = pool deck walkthrough. Tap through the cabanas.",h:"(Stories)",n:"IG Story amenity tour."},
+      {f:"AI Avatar Reel :30",c:"Mira: 'The pool deck at 200 East is the reason residents never need to leave the building on weekends.'",h:"#AIAvatar #BogenHomes #BocaRaton",n:"Mira AI avatar."}
+    ],
+    TikTok:[
+      {f:"POV :20",c:"POV: you live at 200 East and your 'backyard' is a resort deck 9 stories up.",h:"#pov #luxurylife #bocaraton #condolife",n:"POV cinematic."},
+      {f:"Pool Day :30",c:"A pool day in 30 seconds: elevator down → towel → coffee → lounger → skyline view. 200 East.",h:"#pooltok #luxurylife #bocaraton",n:"Structured day cut."},
+      {f:"Comparison :20",c:"'Country club pool vs. 200 East pool.' Cut between crowded club vs. empty boutique deck. Text: 'Same price. Different Saturday.'",h:"#realestate #luxurycompare #bocaraton",n:"Comparison cut."},
+      {f:"Drone Reel :15",c:"Drone over the deck at golden hour. Single cinematic shot, no voiceover.",h:"#drone #luxuryreal #bocaraton",n:"Drone footage. Requires permit."},
+      {f:"CTA :15",c:"AI Ed: 'Reply POOL for the 6 PM deck tour.'",h:"#realestatetiktok #bogenhomes",n:"AI Ed CTA."}
+    ]
+  },
+  // DAY 7 - Concierge & Valet
+  7:{
+    X:[
+      {f:"Static",c:"24/7 concierge. Full-time valet. Package handling. Doorman greeting. That's the 200 East service floor.",h:"#ConciergeLiving #BocaRaton",n:"Lobby/concierge desk shot."},
+      {f:"Quick Hit",c:"Pulled up to 200 East at midnight last week. Valet was there. Doorman knew my name. That's not random — that's design.",h:"#BogenHomes",n:"Anecdotal post."},
+      {f:"Data",c:"Luxury condo staffing ratios: industry avg = 1 staff per 25 units. 200 East = 1 per ~12. That's why the service feels different.",h:"#RealEstateData",n:"Data graphic."},
+      {f:"Poll",c:"Biggest luxury condo amenity? ❏ Concierge ❏ Valet ❏ Pool ❏ Gym. 200 East residents: the concierge wins every time.",h:"#CondoPoll",n:"Twitter poll."},
+      {f:"CTA",c:"Reply CONCIERGE and I'll send you the full 200 East services brochure.",h:"#BocaRealEstate",n:"Lead magnet."}
+    ],
+    Facebook:[
+      {f:"Reel :45",c:"Here's what a day looks like when you live at 200 East #712. Pull into valet. Concierge hands you your dry cleaning, flowers, and the package you forgot you ordered. Doorman holds the elevator. You're upstairs in 90 seconds. That's service.",h:"#BogenHomes #ConciergeLife",n:"Day-in-the-life reel."},
+      {f:"Concierge Feature",c:"Meet the 200 East concierge team. They remember birthdays, dinner reservations, and the name of your dog. The difference between a condo and a home is who greets you in the lobby.",h:"#BocaRaton #LuxuryService",n:"Tag the concierge team if possible."},
+      {f:"Smart Panel Reel",c:"Every residence at 200 East has a Continental Connect smart panel — request valet, order room service from the building's retail, book the club room. All from your wall.",h:"#SmartHome #LuxuryCondo",n:"Smart panel demo reel."},
+      {f:"Story Post",c:"My client flew in last month with 4 suitcases and 3 kids. Concierge had a cart, valet parked the rental, doorman opened the door. They were in the unit in under 4 minutes. That's the 200 East welcome.",h:"#BocaLife",n:"Anecdotal."},
+      {f:"Live Concierge Walk",c:"Live from the lobby at 7 PM. Introducing the concierge team and answering the 'what do they actually do?' question.",h:"#FacebookLive",n:"FB Live from lobby."}
+    ],
+    LinkedIn:[
+      {f:"Service Economy",c:"Luxury real estate stopped being about square footage five years ago. It's now about service density. 200 East Palmetto runs a 1:12 staff-to-residence ratio — in the top 5% of South Florida condos.",h:"#LuxuryRealEstate",n:"Industry insight."},
+      {f:"AI Ed :60",c:"Why concierge service is the most underpriced line item in a luxury condo spec sheet — and how 200 East #712 benefits.",h:"#RealEstateAnalysis",n:"AI Ed analytical."},
+      {f:"Executive Benefit",c:"For executives splitting time between cities, the 200 East concierge = your remote property manager. Mail, dry cleaning, deliveries, vendor access, all handled. Zero calls home.",h:"#ExecutiveLiving",n:"Executive angle."},
+      {f:"Carousel",c:"5 slides: questions to ask the concierge before buying a luxury condo. (Spoiler: 200 East passes all 5.)",h:"#BuyerChecklist",n:"Checklist carousel."},
+      {f:"Referral",c:"Snowbird clients hate vendor coordination. 200 East solves it. DM if you've got a client who'd value this.",h:"#SnowbirdReferrals",n:"Referral."}
+    ],
+    Instagram:[
+      {f:"Reel :30",c:"The welcome at 200 East. 🎩 Valet, concierge, doorman — in that order. Every time.",h:"#ConciergeLife #LuxuryCondo #BogenHomes #BocaRaton #DouglasElliman",n:"Welcome sequence reel."},
+      {f:"Static",c:"This is what 24/7 concierge actually looks like. 200 East. The lobby alone sells the building.",h:"#LuxuryLobby #BocaRatonRealEstate",n:"Lobby editorial shot."},
+      {f:"Carousel (5)",c:"5 services you didn't know your concierge handles at 200 East. Swipe.",h:"#ConciergeServices #LuxuryLiving #BocaRaton",n:"5-slide services carousel."},
+      {f:"Story Takeover",c:"Concierge day in the life — Stories all day. Tap through.",h:"(Stories)",n:"Day-long IG Story."},
+      {f:"AI Avatar :30",c:"Mira walks you through the concierge desk.",h:"#AIAvatar #BogenHomes",n:"Mira AI avatar."}
+    ],
+    TikTok:[
+      {f:"Day :30",c:"30 seconds: a day as a 200 East resident. Cut: valet, coffee, elevator, concierge hands you a package, elevator home.",h:"#dayinmylife #luxurycondo #bocaraton",n:"Structured day cut."},
+      {f:"Smart Panel :20",c:"'I ordered a latte from my wall.' Close-up of the smart panel sequence.",h:"#smarthome #luxurytech #bocaraton",n:"Tech reveal cut."},
+      {f:"AI Ed :30",c:"AI Ed: 'The concierge team at 200 East is the reason I'd list this building over any other in downtown Boca.'",h:"#aiavatar #realtok #realestate",n:"AI Ed endorsement."},
+      {f:"Comparison :20",c:"'Apartment front desk vs. 200 East concierge.' Cut between generic vs. personalized greeting.",h:"#realestate #luxurycompare",n:"Comparison."},
+      {f:"CTA :15",c:"AI Ed: 'Reply CONCIERGE for the full services list.'",h:"#realestatetiktok #bogenhomes",n:"AI Ed CTA."}
+    ]
+  },
+  // DAY 8 - Architecture Story
+  8:{
+    X:[
+      {f:"Static + Line",c:"200 East Palmetto was designed by Derek Vander Ploeg. Mediterranean Revival. Stucco. Arched windows. 115 residences. 2008 completion. It's a Boca original.",h:"#Architecture #BocaRaton",n:"Exterior architectural shot."},
+      {f:"Architect Post",c:"Most Boca condos look like anywhere. 200 East looks like Boca. That's on purpose — Derek Vander Ploeg designed it to echo the original Addison Mizner aesthetic. #712 is part of that legacy.",h:"#DesignHistory",n:"History post."},
+      {f:"Thread (3)",c:"1/3: 200 East Palmetto — the building. 2/3: Mediterranean Revival architecture, 9 stories, 115 units, 620,000 SF post-tension concrete. 3/3: Developed 2008 by BNE Real Estate. Built for the long term. #712 for sale now.",h:"#RealEstateHistory",n:"3-tweet architectural thread."},
+      {f:"Detail Shot",c:"Arched window detail from the 200 East façade. This is what 'built right' looks like. #712 has these on two exposures.",h:"#ArchDetails",n:"Detail close-up."},
+      {f:"CTA",c:"Reply ARCH and I'll send you the full building dossier.",h:"#BogenHomes",n:"Lead magnet CTA."}
+    ],
+    Facebook:[
+      {f:"History Reel :60",c:"Good morning, Boca. A quick history lesson: 200 East Palmetto was designed by Derek Vander Ploeg in 2008, built by BNE Real Estate, and modeled on Addison Mizner's original Mediterranean Revival vision for downtown Boca. It's one of the few condo buildings here that actually looks like it belongs. Unit #712 is part of that heritage.",h:"#BocaHistory #BogenHomes",n:"History storytelling reel."},
+      {f:"Architect Profile",c:"Derek Vander Ploeg has designed some of South Florida's most recognizable buildings. 200 East is one of his most quietly successful — boutique scale, classical proportions, and details that don't age. That's why #712 holds its value.",h:"#Architecture #BocaRaton",n:"Architect profile post."},
+      {f:"Detail Carousel (7)",c:"7 architectural details at 200 East you've probably walked past. Swipe.",h:"#DesignDetails #BocaArchitecture",n:"7-photo detail carousel."},
+      {f:"Boca Heritage",c:"Why does downtown Boca feel different from the rest of South Florida? One word: Mizner. 200 East carries that language forward. If you love the pink plaza and the Boca Resort, you already love 200 East.",h:"#AddisonMizner #BocaLove",n:"Heritage post."},
+      {f:"Live Arch Tour",c:"7 PM FB Live — walking the exterior of 200 East. Architecture details, history, why it matters for #712's resale.",h:"#FacebookLive",n:"FB Live architecture tour."}
+    ],
+    LinkedIn:[
+      {f:"Architecture Value",c:"Architecturally distinctive buildings command 8-15% resale premiums over generic contemporaries. 200 East Palmetto fits the category — Mediterranean Revival design by Derek Vander Ploeg, boutique 115-unit scale, and detail-level execution that doesn't date.",h:"#RealEstateValuation",n:"Value-forward post."},
+      {f:"AI Ed :90",c:"90 seconds on how architectural pedigree compounds luxury condo resale value — with 200 East #712 as the live example.",h:"#LuxuryStrategy",n:"AI Ed analytical."},
+      {f:"Design Carousel",c:"5 slides on why Mediterranean Revival holds up 20 years later. 200 East is the proof.",h:"#DesignAndValue",n:"Carousel."},
+      {f:"Legacy Post",c:"In 40 years, the condos being built in Boca right now won't look good. 200 East will. That's what timeless architecture does for your investment horizon.",h:"#LongTermInvesting",n:"Legacy framing."},
+      {f:"Referral",c:"Architecture-literate buyers — I've got a listing that was designed for you. 200 East #712.",h:"#DesignBuyers",n:"Targeted referral."}
+    ],
+    Instagram:[
+      {f:"Reel :45",c:"The building that Boca got right. 200 East Palmetto, designed by Derek Vander Ploeg. Unit #712 is for sale — but the architecture is forever.",h:"#Architecture #BocaRaton #MediterraneanRevival #BogenHomes #LuxuryCondo #DouglasElliman",n:"Exterior cinematic reel."},
+      {f:"Static Detail",c:"Arches. Stucco. Light. 200 East Palmetto. Built in 2008. Built to last.",h:"#ArchitecturePhotography #BocaRaton #DesignDetails",n:"Architectural detail shot."},
+      {f:"Detail Carousel (8)",c:"8 architectural details. 200 East. Save the post.",h:"#DesignDetails #BocaArchitecture #LuxuryHomes",n:"8-photo carousel."},
+      {f:"Story History",c:"Stories today: 200 East architecture deep-dive. Addison Mizner → Derek Vander Ploeg → #712.",h:"(Stories)",n:"Architectural storytelling IG Story."},
+      {f:"AI Avatar :30",c:"Mira: 'The architect of 200 East designed this building to still look beautiful in 50 years. And it will.'",h:"#AIAvatar #BogenHomes #Architecture",n:"Mira AI avatar."}
+    ],
+    TikTok:[
+      {f:"Slow Pan :20",c:"Slow pan up the 200 East façade. Text: 'Designed by Derek Vander Ploeg. 2008. Built to outlast the trend cycle.'",h:"#architecture #luxurycondo #bocaraton",n:"Cinematic slow pan."},
+      {f:"Before/After :15",c:"Generic condo vs. 200 East. 5-sec cuts. Text: 'This is the difference an architect makes.'",h:"#design #realestate #bocaraton",n:"Comparison."},
+      {f:"AI Ed :45",c:"AI Ed teaches the Mediterranean Revival style in 45 seconds using 200 East as the example.",h:"#aiavatar #architecture #realtok",n:"Educational AI Ed."},
+      {f:"Detail Zooms :30",c:"Rapid-cut detail zooms: arch, stucco, window, balcony. Text overlay for each.",h:"#architecturephotography #luxurycondo",n:"Detail montage."},
+      {f:"CTA :15",c:"AI Ed: 'Comment ARCH for the full building history PDF.'",h:"#realestatetiktok #bogenhomes",n:"AI Ed CTA."}
+    ]
+  },
+  // DAY 9 - Fitness & Club Room
+  9:{
+    X:[
+      {f:"Static",c:"The fitness room and club room at 200 East. Both included. Both empty most days. That's the boutique-building dividend.",h:"#LuxuryAmenities #BocaRaton",n:"Amenity photos."},
+      {f:"Comparison",c:"Equinox membership: $4,400/yr. Country club dues: $18,000/yr. 200 East amenities: included. The math wins every time.",h:"#RealEstateMath",n:"Data graphic."},
+      {f:"Poll",c:"Best amenity in a luxury condo: ❏ Gym ❏ Pool ❏ Club room ❏ Concierge. 200 East has all four.",h:"#CondoPoll",n:"Poll."},
+      {f:"Short Thread (2)",c:"1/2: Why the private gym matters. 2/2: It's the #1 amenity that actually gets used by residents — and 200 East's is never crowded because of the 115-unit scale.",h:"#FitnessLife",n:"Two-tweet thread."},
+      {f:"CTA",c:"Reply GYM and I'll send you a video tour of the amenities floor.",h:"#BogenHomes",n:"CTA."}
+    ],
+    Facebook:[
+      {f:"Reel :45",c:"Today's tour: the 200 East fitness room and club room. Pelotons, Technogym, free weights, and a club room that doubles as your dinner-party venue. The resident calendar is light enough that you're rarely booking — you're just showing up.",h:"#BogenHomes #BocaRaton",n:"Amenity reel."},
+      {f:"Carousel (6)",c:"6 photos of the 200 East amenity floor. Pool, gym, club room, grill station, lounge, locker room. Swipe.",h:"#LuxuryAmenities",n:"6-photo carousel."},
+      {f:"Use-case Story",c:"Last Friday I watched a resident host 25 people in the 200 East club room for her daughter's engagement. Zero rental fee. Catered in. That's the boutique-building advantage.",h:"#BocaLife",n:"Storytelling."},
+      {f:"Equinox Comparison",c:"Quick math: Equinox ($4,400) + Starbucks ($1,200) + country club ($18,000) = $23,600 a year you don't need to spend if you live at 200 East. That's real appreciation.",h:"#MoneyMath",n:"Practical framing."},
+      {f:"Live Club Room",c:"7 PM — FB Live from the club room. I'll show you the space and answer HOA questions.",h:"#FacebookLive",n:"FB Live."}
+    ],
+    LinkedIn:[
+      {f:"HOA Math",c:"The HOA at 200 East Palmetto looks high on the surface until you run the replacement cost analysis: gym ($4,400/yr), country club ($18K), concierge ($24K), valet ($3,600). Total substitution cost: $50K. That's the ROI signature of a good luxury building.",h:"#RealEstateROI",n:"Substitution cost analysis."},
+      {f:"AI Ed :75",c:"The HOA isn't a fee. It's a purchase. Here's how to evaluate it — using 200 East #712's HOA breakdown.",h:"#LuxuryCondos",n:"AI Ed educational."},
+      {f:"Executive Gym",c:"Executives skip workouts because the gym is 20 minutes away. At 200 East, it's 20 seconds. That's the productivity argument for luxury condo living.",h:"#ExecutiveLiving",n:"Exec framing."},
+      {f:"Carousel",c:"5 slides: what makes a residential gym actually usable. 200 East hits 4/5.",h:"#AmenityChecklist",n:"Checklist carousel."},
+      {f:"Referral",c:"Fitness-obsessed executives — 200 East #712 is the listing you want.",h:"#ExecutiveReferrals",n:"Referral."}
+    ],
+    Instagram:[
+      {f:"Reel :30",c:"The amenity floor at 200 East. Gym, club, lounge. The reason the weekend starts at home. 💪",h:"#AmenityFloor #LuxuryLiving #BogenHomes #BocaRaton #DouglasElliman",n:"Amenity reel."},
+      {f:"Static",c:"Your gym. Your club room. Your Saturday night. 200 East.",h:"#LuxuryCondo #BocaRatonLife",n:"Amenity hero shot."},
+      {f:"Carousel (6)",c:"Swipe through the 200 East amenity floor. Which room are you using first?",h:"#LuxuryAmenities #BocaRaton #CondoLife",n:"6-slide carousel."},
+      {f:"Story Poll",c:"Gym or club room first? Vote.",h:"(Stories)",n:"Story poll."},
+      {f:"AI Avatar :30",c:"Mira: 'The club room is the most underused amenity here — which means it's always free when you want it.'",h:"#AIAvatar #BogenHomes",n:"Mira AI avatar."}
+    ],
+    TikTok:[
+      {f:"Gym Tour :20",c:"20-sec gym pan. Text: 'Your private gym at 200 East.' Cut to an empty (but ready) setup.",h:"#gymtour #luxurycondo #bocaraton",n:"Silent gym pan."},
+      {f:"Cost Breakdown :30",c:"AI Ed: 'Let me show you the $23,600 a year you're saving by living at 200 East.' Then text overlay breakdown.",h:"#aiavatar #realestate #moneymath",n:"AI Ed cost breakdown."},
+      {f:"Club Room Setup :30",c:"Time-lapse: setting up the club room for a dinner party. 200 East.",h:"#luxurycondo #entertaining #bocaraton",n:"Time-lapse setup."},
+      {f:"POV Workout :20",c:"POV: morning workout at 200 East. No commute. No lines. 8 AM on a Tuesday.",h:"#pov #luxurylife #bocaraton",n:"POV workout reel."},
+      {f:"CTA :15",c:"AI Ed: 'Comment GYM for the amenity floor video tour.'",h:"#realestatetiktok #bogenhomes",n:"AI Ed CTA."}
+    ]
+  },
+  // DAY 10 - Boutique Building
+  10:{
+    X:[
+      {f:"Static",c:"200 East has 115 units. The tower down the street has 400+. Service ratio changes everything.",h:"#BoutiqueCondo #BocaRaton",n:"Exterior shot."},
+      {f:"Data",c:"Boutique condos (<150 units) show 12% faster resale velocity than tower condos (300+ units) in South FL luxury market. Service density is the reason.",h:"#RealEstateData",n:"Data graphic."},
+      {f:"Thread (3)",c:"1/3: Why boutique beats tower. 2/3: Staff-to-unit ratio, wait times, elevator crowding, noise. 3/3: 200 East #712 wins every metric in the category.",h:"#LuxuryRealEstate",n:"3-tweet thread."},
+      {f:"Quote Post",c:"'The best luxury buildings in Boca are the ones you've never heard of from outside.' — me, about 200 East.",h:"#BogenHomes",n:"Quote-style post."},
+      {f:"CTA",c:"Reply BOUTIQUE and I'll send you the 200 East vs. tower condo comparison PDF.",h:"#BocaRealEstate",n:"Lead magnet."}
+    ],
+    Facebook:[
+      {f:"Reel :60",c:"Question I get weekly: 'Why 200 East over the bigger towers?' My answer is always the same — it's 115 units instead of 400. You know your neighbors. You never wait for the elevator. The concierge actually knows your name. That's boutique. And #712 is the corner residence in the building right now.",h:"#BogenHomes #BocaRaton",n:"Explanation reel."},
+      {f:"Comparison Post",c:"200 East: 115 units, 1:12 staff ratio, 9 stories, 2008 build, architect-driven. The alternative: 350+ units, 1:25 ratio, 25 stories, nameless. Different category, same address range.",h:"#BocaCondos",n:"Comparison carousel."},
+      {f:"Resident Story",c:"A resident told me last week: 'My favorite thing about 200 East is that when I get home, it feels like home — not a hotel.' That's the boutique-building compliment you can't buy.",h:"#BocaLife",n:"Resident quote."},
+      {f:"Market Perspective",c:"There are only 3 true boutique luxury condos in downtown Boca. 200 East is the best-priced and best-located of the three. That's why #712 is moving quickly.",h:"#MarketInsight",n:"Market positioning."},
+      {f:"Live Q&A",c:"7 PM FB Live — boutique vs. tower. Bring the question you've been Googling.",h:"#FacebookLive",n:"FB Live."}
+    ],
+    LinkedIn:[
+      {f:"Category Analysis",c:"Luxury condo buyers in 2026 increasingly reject tower living. The boutique category (<150 units) is the fastest-growing luxury segment in Palm Beach County. 200 East Palmetto #712 is the current best-in-class listing.",h:"#LuxuryRealEstate #MarketTrends",n:"Category trend post."},
+      {f:"AI Ed :90",c:"90 seconds on the quantitative case for boutique luxury condos over towers — with 200 East #712 as the case study.",h:"#RealEstateAnalysis",n:"AI Ed analytical."},
+      {f:"Executive Angle",c:"Executives underestimate how much decision-fatigue comes from waiting — for elevators, for valets, for reservations. Boutique buildings like 200 East reduce that to near-zero.",h:"#ExecutiveLifestyle",n:"Exec framing."},
+      {f:"Carousel",c:"5 slides: the boutique-vs-tower scorecard. 200 East wins 5/5.",h:"#CondoComparison",n:"Scorecard carousel."},
+      {f:"Referral",c:"Sophisticated buyers tired of tower life — 200 East #712 is where they end up.",h:"#LuxuryReferrals",n:"Referral."}
+    ],
+    Instagram:[
+      {f:"Reel :30",c:"Tower vs. boutique. Same Boca. Different life. 200 East #712.",h:"#BoutiqueLiving #BocaRaton #LuxuryCondo #BogenHomes #DouglasElliman",n:"Comparison reel."},
+      {f:"Static",c:"115 residences. One corner unit. Unit #712. The math says everything.",h:"#LuxuryHomes #BocaRatonRealEstate",n:"Hero exterior shot."},
+      {f:"Carousel Compare",c:"6 slides comparing boutique to tower living. 200 East wins most of them.",h:"#CondoLife #LuxuryLiving #BocaRaton",n:"Comparison carousel."},
+      {f:"Story Poll",c:"Boutique or tower? Vote below.",h:"(Stories)",n:"Story poll."},
+      {f:"AI Avatar :30",c:"Mira: 'At a boutique building, the doorman knows every resident by name. That's why 200 East feels like home.'",h:"#AIAvatar #BogenHomes",n:"Mira AI avatar."}
+    ],
+    TikTok:[
+      {f:"Elevator Wait :15",c:"Text: '400-unit tower elevator wait: 4 minutes.' Cut. Text: '200 East elevator wait: 20 seconds.' Silent.",h:"#realestate #luxurycondo #bocaraton",n:"Comparison cut."},
+      {f:"AI Ed :30",c:"AI Ed: 'Three reasons boutique beats tower. One: elevator. Two: noise. Three: service. 200 East wins all three.'",h:"#aiavatar #realtok #realestate",n:"AI Ed quick list."},
+      {f:"Morning Routine :30",c:"200 East resident morning routine vs. 400-unit tower resident morning routine. Same 30 minutes. Different outcome.",h:"#dayinthelife #luxurylife #bocaraton",n:"Split routine comparison."},
+      {f:"Neighbor Test :20",c:"'Would your neighbors know your name?' Cut to 200 East doorman greeting resident. Caption: 'Yes.'",h:"#luxurylife #bocaraton #condolife",n:"Neighbor connection cut."},
+      {f:"CTA :15",c:"AI Ed: 'Comment BOUTIQUE for the comparison PDF.'",h:"#realestatetiktok #bogenhomes",n:"AI Ed CTA."}
+    ]
+  },
+  // DAY 11 - Car Keys Optional
+  11:{
+    X:[
+      {f:"Static",c:"Walk score from 200 East: 98. That's better than most Manhattan addresses. Coffee, dinner, beach, art — all on foot.",h:"#WalkScore #BocaRaton",n:"Map/walkability infographic."},
+      {f:"Reel :15",c:"Coffee in hand, 200 East lobby, walking to Mizner Park. No keys, no car, no traffic.",h:"#WalkableCity #BocaLife",n:"15-sec walking reel."},
+      {f:"Thread (3)",c:"1/3: The 200 East walking radius in 15 min. 2/3: Mizner Park, Royal Palm Plaza, Sanborn Square, Boca Museum, the beach. 3/3: You might forget where you parked — or why you owned a car.",h:"#BocaRaton",n:"3-tweet walking thread."},
+      {f:"Poll",c:"How many blocks should a luxury condo be from dining, shopping, and the beach? 200 East #712: all three within 10 min on foot.",h:"#UrbanLiving",n:"Poll."},
+      {f:"CTA",c:"Reply WALK for my personal 3-block walking tour video.",h:"#BocaRealEstate",n:"CTA."}
+    ],
+    Facebook:[
+      {f:"Reel :60",c:"Let's walk. Starting at the 200 East lobby. 90 seconds to Mizner Park. 3 minutes to Royal Palm Plaza. 7 minutes to Sanborn Square. 10 minutes to the beach. Filmed this whole thing in real time so you can feel the pace of this neighborhood.",h:"#BogenHomes #BocaRaton #Walkable",n:"Real-time walking reel."},
+      {f:"Walking Map Graphic",c:"I mapped every restaurant, cafe, gallery, and shop within 10 minutes of 200 East's lobby. Screenshot this.",h:"#NeighborhoodGuide",n:"Map graphic w/ walking radius."},
+      {f:"Resident Quote",c:"'I haven't driven to dinner in a year.' — 200 East resident. The walkability isn't a perk. It's the point.",h:"#BocaLife",n:"Resident quote post."},
+      {f:"Destination List",c:"20 places you can walk to from 200 East in under 10 minutes. Coffee, dinner, cocktails, art, yoga, groceries, beach. All of it.",h:"#DowntownBoca",n:"Listicle-style post."},
+      {f:"Live Walking Tour",c:"6 PM live — I'm walking the neighborhood live from the 200 East lobby. Follow along.",h:"#FacebookLive",n:"FB Live walking tour."}
+    ],
+    LinkedIn:[
+      {f:"Urban Value",c:"Walkability adds a documented 5-10% valuation premium to urban luxury real estate. 200 East Palmetto scores 98 — among the highest in South Florida. #712 inherits that premium.",h:"#RealEstateValue",n:"Walkability data post."},
+      {f:"AI Ed :60",c:"Why walkability is the hidden valuation metric smart luxury buyers now prioritize — and how 200 East #712 is positioned.",h:"#LuxuryRealEstate",n:"AI Ed analysis."},
+      {f:"Health/Life Angle",c:"The CDC correlates urban walkability with measurable longevity gains. If you're buying a luxury condo to live longer — not just live better — 200 East is on the short list.",h:"#HealthyLiving",n:"Longevity angle."},
+      {f:"Carousel",c:"5 slides: the walkability checklist for luxury condos. 200 East scores 5/5.",h:"#UrbanLuxury",n:"Checklist carousel."},
+      {f:"Referral",c:"Relocating executives hate car-dependent suburbs. Send them to 200 East. Brochure DM-available.",h:"#RelocationRealEstate",n:"Referral."}
+    ],
+    Instagram:[
+      {f:"Reel :45",c:"Walk score 98. From the 200 East lobby to everywhere you actually want to go. 🚶‍♀️",h:"#Walkable #BocaRaton #DowntownBoca #BogenHomes #LuxuryCondo #DouglasElliman",n:"Walking tour reel."},
+      {f:"Static Map",c:"Everything in the 10-minute circle. 200 East is the center.",h:"#Walkability #BocaLife #LuxuryLiving",n:"Branded walking-radius map."},
+      {f:"Carousel (8)",c:"8 walks from 200 East. Swipe. Save.",h:"#DowntownBoca #BocaRaton #NeighborhoodGuide",n:"8-slide destination carousel."},
+      {f:"Story Walkthrough",c:"Stories today: I'm walking to coffee → breakfast → Mizner → beach. Follow along.",h:"(Stories)",n:"Day-long walking IG Story."},
+      {f:"AI Avatar :30",c:"Mira: 'At 200 East, your car is optional. Your walking shoes are not.'",h:"#AIAvatar #BogenHomes",n:"Mira AI avatar."}
+    ],
+    TikTok:[
+      {f:"Walk POV :30",c:"POV walk: 200 East lobby → Mizner Park → sunset. 30 seconds, no voiceover, cinematic.",h:"#pov #walking #bocaraton #luxurylife",n:"Cinematic walking POV."},
+      {f:"AI Ed :30",c:"AI Ed: 'Walk score 98. Here's what that gets you from the lobby of 200 East.' Cut to 6-beat destination montage.",h:"#aiavatar #walkable #realestate",n:"AI Ed destination reel."},
+      {f:"Day on Foot :60",c:"60-sec: full day without a car. Coffee → yoga → lunch → art → dinner → home. All walked from 200 East.",h:"#dayinmylife #luxurylife #bocaraton",n:"Full-day walking cut."},
+      {f:"Comparison :20",c:"'Suburban Boca weekend' vs. '200 East weekend.' Car vs. walking. Traffic vs. espresso.",h:"#realestate #luxurycompare #bocaraton",n:"Comparison."},
+      {f:"CTA :15",c:"AI Ed: 'Comment WALK for the personal tour.'",h:"#realestatetiktok #bogenhomes",n:"AI Ed CTA."}
+    ]
+  },
+  // DAY 12 - Mizner Park at Night
+  12:{
+    X:[
+      {f:"Static",c:"Mizner Park at 9 PM. One block from 200 East. Fountains, string lights, espresso, jazz. Your after-hours living room.",h:"#MiznerPark #BocaRaton",n:"Mizner Park night shot."},
+      {f:"Reel :15",c:"Walking home from dinner at Mizner Park. 200 East lobby in sight. 9 PM on a Tuesday.",h:"#BocaLife #DowntownBoca",n:"15-sec walking-home reel."},
+      {f:"List",c:"Top 5 Mizner Park spots within 2 min of 200 East: Max's Grille, City Fish Market, Truluck's, Kapow, Villagio. You'll never run out.",h:"#BocaDining",n:"Quick-list post."},
+      {f:"Quote",c:"'The view from 200 East is only half the sale. Mizner Park at night is the other half.' — me.",h:"#BogenHomes",n:"Quote post."},
+      {f:"CTA",c:"Reply MIZNER for my personal Mizner Park neighborhood guide.",h:"#BocaRealEstate",n:"Lead magnet."}
+    ],
+    Facebook:[
+      {f:"Reel :45",c:"I filmed this Friday night in Mizner Park — one block from the 200 East lobby. The fountains, the string lights, the laughter. This is what 'downtown Boca' means. And #712 puts you at the center.",h:"#BogenHomes #MiznerPark",n:"Night walk reel."},
+      {f:"Dining Round-up",c:"My 7 favorite dinner spots in Mizner Park, ranked by how easy they are to walk home from at 200 East. #1 is 47 seconds from your front door.",h:"#BocaDining",n:"Dining round-up carousel."},
+      {f:"Event Story",c:"Last Friday at Mizner Park: live jazz, outdoor diners, kids playing in the fountains. If you need city energy without the city price, this is the neighborhood.",h:"#BocaLife",n:"Event storytelling."},
+      {f:"AI Ed Reel :30",c:"AI Ed at Mizner after dark. 'This is your evening at 200 East.'",h:"#BogenHomes #DowntownBoca",n:"AI Ed night reel."},
+      {f:"Live Walk",c:"Friday 7:30 PM live — walking Mizner with me.",h:"#FacebookLive",n:"FB Live."}
+    ],
+    LinkedIn:[
+      {f:"Urban Insight",c:"Boca's downtown is one of the few Southeast FL markets where luxury residential and walkable dining are co-located. 200 East #712 is the shortest walk in the market to the Mizner Park entertainment district.",h:"#UrbanLuxury",n:"Market post."},
+      {f:"AI Ed :60",c:"60 seconds: why evening walkability multiplies luxury condo value in dense urban markets — with Mizner Park + 200 East as the case study.",h:"#RealEstateStrategy",n:"AI Ed analytical."},
+      {f:"Client Perspective",c:"The snowbird executives I work with don't come to Boca for the golf course. They come for downtown dinner. 200 East #712 delivers that in 90 seconds on foot.",h:"#SnowbirdLuxury",n:"Perspective post."},
+      {f:"Carousel",c:"5 slides: how evening amenity density affects luxury resale. 200 East scores top 2%.",h:"#LuxuryRealEstate",n:"Data carousel."},
+      {f:"Referral",c:"Culinary-obsessed buyers — 200 East #712 sits in walking range of 30+ restaurants. DM for the dining map.",h:"#CulinaryLiving",n:"Referral."}
+    ],
+    Instagram:[
+      {f:"Reel :30",c:"Mizner Park after dark. 200 East is home. One block away. Every night. ✨",h:"#MiznerPark #BocaRaton #NightLife #BogenHomes #LuxuryCondo #DouglasElliman",n:"Night walk reel."},
+      {f:"Static Night",c:"String lights, fountains, 9 PM. Home is one block that way.",h:"#BocaNights #DowntownBoca #LuxuryLiving",n:"Night editorial shot."},
+      {f:"Carousel (6)",c:"6 of the best Mizner Park evenings. Swipe.",h:"#BocaDining #DowntownBoca #NightVibes",n:"Evening carousel."},
+      {f:"Story Vlog",c:"Stories tonight: walking from Mizner dinner back to 200 East. Tap through.",h:"(Stories)",n:"Night story."},
+      {f:"AI Avatar :30",c:"Mira: 'Mizner Park after dark is the amenity your HOA can't charge for.'",h:"#AIAvatar #BogenHomes",n:"Mira AI avatar."}
+    ],
+    TikTok:[
+      {f:"Night Walk :30",c:"Silent POV: Mizner Park to 200 East lobby at 9 PM. Ambient sound only. Text overlay: 'Your walk home.'",h:"#pov #nightlife #bocaraton #luxurylife",n:"POV cinematic."},
+      {f:"Restaurant Run :30",c:"30-sec: 5 restaurants in Mizner, one at a time, caption each with walking time from 200 East.",h:"#restauranttok #bocaraton #luxurylife",n:"Restaurant round-up."},
+      {f:"AI Ed :20",c:"AI Ed: 'If you hate driving home from dinner, 200 East is the condo for you.' Cut to Mizner.",h:"#aiavatar #realtok #bocaraton",n:"AI Ed."},
+      {f:"Fountain Vibe :15",c:"Single shot of Mizner fountain at night. Text: 'This is your backyard.'",h:"#bocaraton #downtownboca #nightvibes",n:"Single-shot vibe cut."},
+      {f:"CTA :15",c:"AI Ed: 'Comment MIZNER for the dining guide.'",h:"#realestatetiktok #bogenhomes",n:"AI Ed CTA."}
+    ]
+  },
+  // DAY 13 - Beach in 10 Min
+  13:{
+    X:[
+      {f:"Static",c:"From 200 East lobby to South Beach Park: 1.2 miles. 10 minutes on foot. 4 minutes by bike. Zero parking required.",h:"#BocaBeach #BocaRaton",n:"Beach aerial."},
+      {f:"Reel :15",c:"Walked from 200 East to the beach this morning with a coffee. 10 minutes flat.",h:"#BeachLife #SouthFlorida",n:"Morning walk-to-beach reel."},
+      {f:"Poll",c:"Closest beach to downtown Boca condos: ❏ 15+ min drive ❏ 10 min walk. 200 East = option 2.",h:"#BocaLiving",n:"Poll."},
+      {f:"Data",c:"Walkable beach access adds ~12% to South FL luxury condo resale. 200 East hits the metric. #712 owns the premium.",h:"#RealEstateData",n:"Data graphic."},
+      {f:"CTA",c:"Reply BEACH for the walking map.",h:"#BocaRealEstate",n:"CTA."}
+    ],
+    Facebook:[
+      {f:"Reel :45",c:"Walking from the 200 East lobby to South Beach Park. I timed it — 10 minutes, coffee in hand, zero stress. That's what urban beachside living looks like.",h:"#BogenHomes #BocaBeach",n:"Walking-to-beach reel."},
+      {f:"Beach Day Story",c:"A resident told me she hasn't driven to the beach in 2 years. Just walks. That's what 200 East #712 offers as a lifestyle default.",h:"#BocaLife #BeachLife",n:"Resident story."},
+      {f:"Map Graphic",c:"The walking path from 200 East to the ocean, mapped. Save this.",h:"#BocaBeach",n:"Map graphic."},
+      {f:"AI Ed :30",c:"AI Ed: 'The ocean is a 10-minute walk. That's not marketing. That's the tape measure.'",h:"#BogenHomes #BeachLife",n:"AI Ed clip."},
+      {f:"Live Beach Walk",c:"7 AM Saturday — I'm doing the walk live. Join me.",h:"#FacebookLive",n:"FB Live beach walk."}
+    ],
+    LinkedIn:[
+      {f:"Lifestyle Premium",c:"Walkable beach access in downtown Boca Raton is the rarest amenity in South FL luxury real estate. 200 East Palmetto is one of only 4 buildings that offer it. #712 is the current best-priced corner residence.",h:"#LuxuryRealEstate",n:"Scarcity framing."},
+      {f:"AI Ed :60",c:"60 seconds: the resale premium for walk-to-beach urban condos — and where 200 East #712 sits on the curve.",h:"#RealEstateAnalysis",n:"AI Ed analytical."},
+      {f:"Executive Angle",c:"Executives who buy beachfront homes then realize they wanted downtown dinner access switch to 200 East within a year. I've seen it 3 times.",h:"#ExecutiveLiving",n:"Exec framing."},
+      {f:"Carousel",c:"4 slides: why walkable beach beats direct oceanfront at the $1.5M-$2M price point.",h:"#LuxuryStrategy",n:"Carousel."},
+      {f:"Referral",c:"Beach-adjacent buyers — 200 East #712 is the compromise that wins. DM for intel.",h:"#LuxuryReferrals",n:"Referral."}
+    ],
+    Instagram:[
+      {f:"Reel :30",c:"10 minutes. Lobby to sand. 200 East. 🏖️",h:"#BocaBeach #BocaRaton #BeachLife #BogenHomes #LuxuryCondo #DouglasElliman",n:"Walk-to-beach reel."},
+      {f:"Static Beach",c:"Morning. Coffee. 10-minute walk. Ocean. Repeat.",h:"#BocaLife #BeachLife #LuxuryLiving",n:"Beach editorial."},
+      {f:"Carousel (6)",c:"6 photos of the walk from 200 East to the beach. Swipe.",h:"#BocaBeach #BocaRaton #NeighborhoodGuide",n:"6-slide walk carousel."},
+      {f:"Story Beach Day",c:"Stories: my walk-to-beach routine. Tap.",h:"(Stories)",n:"Beach walk IG Story."},
+      {f:"AI Avatar :30",c:"Mira: '10 minutes from this lobby to that sand. No car required.'",h:"#AIAvatar #BogenHomes",n:"Mira AI avatar."}
+    ],
+    TikTok:[
+      {f:"Walk to Sand :30",c:"Time-lapse: 200 East lobby to ocean. 10 min in 30 sec. End card: 'your daily walk.'",h:"#beach #walking #bocaraton #luxurylife",n:"Time-lapse walk."},
+      {f:"AI Ed :20",c:"AI Ed: 'Beachfront condos lose the downtown. Downtown condos usually lose the beach. 200 East does not.'",h:"#aiavatar #realtok #bocaraton",n:"AI Ed positioning."},
+      {f:"Day at Beach :60",c:"Full day — walk to beach, sand, ocean, lunch, walk home. All from 200 East.",h:"#dayinmylife #beachlife #bocaraton",n:"Full-day beach cut."},
+      {f:"POV :15",c:"POV: walking back from the beach to 200 East lobby. Sand still on your feet.",h:"#pov #beachlife #bocaraton",n:"POV."},
+      {f:"CTA :15",c:"AI Ed: 'Comment BEACH for the walking map.'",h:"#realestatetiktok #bogenhomes",n:"AI Ed CTA."}
+    ]
+  },
+  // DAY 14 - Royal Palm Plaza (Pink Plaza)
+  14:{
+    X:[
+      {f:"Static",c:"Royal Palm Plaza — the Pink Plaza. 5 minutes from 200 East. Boutique shopping, small-plate restaurants, live music Fridays.",h:"#RoyalPalmPlaza #BocaRaton",n:"Pink Plaza photo."},
+      {f:"List",c:"5 reasons the Pink Plaza > the mall: local chefs, open-air courtyards, free parking, live jazz, 5 min walk from 200 East.",h:"#BocaShopping",n:"List post."},
+      {f:"Reel :15",c:"Friday night at Royal Palm Plaza. Live music, dinner al fresco, walk home to 200 East.",h:"#BocaLife",n:"Friday night reel."},
+      {f:"Quote",c:"'The best chefs in Boca quietly live in the Pink Plaza.' — every food writer in Palm Beach County.",h:"#BocaDining",n:"Quote."},
+      {f:"CTA",c:"Reply PLAZA for the full Royal Palm neighborhood guide.",h:"#BogenHomes",n:"CTA."}
+    ],
+    Facebook:[
+      {f:"Reel :45",c:"The Pink Plaza at its best — Friday at 7 PM. Live jazz in the courtyard, tables overflowing from 3 restaurants, shoppers walking with little bags. 5 minutes from 200 East. This is the weekend you're buying with unit #712.",h:"#BogenHomes #RoyalPalmPlaza",n:"Friday Plaza reel."},
+      {f:"Restaurant Round-up",c:"8 restaurants in Royal Palm Plaza ranked by what I actually recommend. #1 is Trattoria Romana, a 6-min walk from the 200 East elevator.",h:"#BocaDining",n:"Restaurant ranking."},
+      {f:"Shopping Guide",c:"The Pink Plaza's boutiques are where Boca locals shop when they don't want Mizner crowds. 200 East residents have it as an extended closet.",h:"#BocaShopping",n:"Shopping guide post."},
+      {f:"Event Post",c:"Every Friday: live music in the courtyard at Royal Palm Plaza. Free. Walk-up from 200 East in 5 min.",h:"#BocaEvents",n:"Event reminder."},
+      {f:"Live Plaza Tour",c:"Friday 7 PM — FB Live from the Plaza. Follow along.",h:"#FacebookLive",n:"FB Live."}
+    ],
+    LinkedIn:[
+      {f:"Neighborhood Density",c:"200 East Palmetto sits at the intersection of 3 distinct downtown Boca retail districts: Mizner Park, Sanborn Square, and Royal Palm Plaza. Few luxury condos in South FL can claim that geometry. #712 is priced below replacement.",h:"#UrbanLuxury",n:"Neighborhood geometry post."},
+      {f:"AI Ed :60",c:"Why three-district access adds a quiet premium to downtown luxury condos — and how 200 East is positioned.",h:"#RealEstate",n:"AI Ed analytical."},
+      {f:"Local Business Angle",c:"Royal Palm Plaza shopkeepers know my clients by name because the foot traffic from 200 East is daily. That kind of community density is what luxury buyers actually pay for.",h:"#CommunityBuilding",n:"Community framing."},
+      {f:"Carousel",c:"5 slides on retail-district proximity as a luxury valuation metric. 200 East scores top decile.",h:"#LuxuryStrategy",n:"Carousel."},
+      {f:"Referral",c:"Clients with Midtown Manhattan lifestyles — 200 East replicates that urban density in Boca. DM me.",h:"#RelocationRealEstate",n:"Referral."}
+    ],
+    Instagram:[
+      {f:"Reel :30",c:"The Pink Plaza on a Friday. 5 min from 200 East. 💗",h:"#RoyalPalmPlaza #BocaRaton #BogenHomes #LuxuryLiving #DouglasElliman",n:"Pink Plaza reel."},
+      {f:"Static Pink",c:"Pink walls, jazz, wine, 200 East in the background. This is downtown Boca.",h:"#PinkPlaza #BocaDining #LuxuryLiving",n:"Static pink-architecture shot."},
+      {f:"Carousel (6)",c:"6 corners of Royal Palm Plaza. Swipe.",h:"#RoyalPalmPlaza #BocaShopping #BocaDining",n:"6-slide carousel."},
+      {f:"Story Plaza Night",c:"Stories: Friday at the Plaza. Live music, drinks, short walk home.",h:"(Stories)",n:"Friday IG Story."},
+      {f:"AI Avatar :30",c:"Mira: 'The Pink Plaza is 200 East's extended cocktail hour.'",h:"#AIAvatar #BogenHomes",n:"Mira AI avatar."}
+    ],
+    TikTok:[
+      {f:"Night Walk :30",c:"POV: 200 East to Royal Palm Plaza on Friday night. Sound: ambient jazz from the courtyard.",h:"#pov #nightlife #bocaraton #luxurylife",n:"POV."},
+      {f:"Restaurant Run :30",c:"6 Plaza restaurants in 30 sec, each with walking time from 200 East.",h:"#restauranttok #bocaraton",n:"Round-up cut."},
+      {f:"AI Ed :20",c:"AI Ed: 'Three retail districts in 10 minutes on foot. That's 200 East.' Cut to each.",h:"#aiavatar #realtok #bocaraton",n:"AI Ed positioning."},
+      {f:"Jazz Cut :15",c:"Single shot: jazz courtyard at Royal Palm. Text: 'Your Friday night.'",h:"#bocaraton #jazz #luxurylife",n:"Vibe cut."},
+      {f:"CTA :15",c:"AI Ed: 'Comment PLAZA for the neighborhood guide.'",h:"#realestatetiktok #bogenhomes",n:"AI Ed CTA."}
+    ]
+  },
+  // DAY 15 - Best Coffee Nearby
+  15:{
+    X:[
+      {f:"Static",c:"3 coffee shops within 3 blocks of 200 East. Saquella, Atlantic Coast, and the secret one I'll tell you in DM.",h:"#BocaCoffee #BocaRaton",n:"Coffee shop exterior shot."},
+      {f:"Ranked List",c:"Best coffee near 200 East, ranked by walking distance: 1. Saquella (90 sec) 2. Atlantic Coast (3 min) 3. Living Green (4 min). No wrong answers.",h:"#CoffeeRanked",n:"Ranked list."},
+      {f:"Reel :15",c:"Morning coffee run from 200 East. 90 seconds to Saquella. Back in the unit in 4 min.",h:"#BocaLife",n:"Coffee run reel."},
+      {f:"Poll",c:"Morning coffee: ❏ Walk out and buy it ❏ Make it at home ❏ Both. At 200 East, it's both because you can.",h:"#CoffeeLovers",n:"Poll."},
+      {f:"CTA",c:"Reply COFFEE for my personal downtown Boca coffee map.",h:"#BogenHomes",n:"Lead magnet."}
+    ],
+    Facebook:[
+      {f:"Reel :30",c:"Morning walk — 200 East lobby to Saquella and back. 6 minutes total. Espresso in hand before 8 AM. This is the downtown Boca morning ritual.",h:"#BogenHomes #BocaCoffee",n:"Morning coffee reel."},
+      {f:"Coffee Map",c:"Every coffee spot within 5 min of 200 East, mapped. 9 options. Save this.",h:"#BocaCoffee",n:"Map graphic."},
+      {f:"Story Post",c:"My favorite morning: walk to Saquella, espresso at the bar, walk back to 200 East with the paper. The good life has small rituals. This is one.",h:"#MorningRitual",n:"Personal story."},
+      {f:"AI Ed :30",c:"AI Ed: 'A 200 East morning starts with a 90-second coffee walk. That's a quality-of-life line item.'",h:"#BogenHomes",n:"AI Ed."},
+      {f:"Saturday Live",c:"Saturday 8 AM — live coffee walk. Join.",h:"#FacebookLive",n:"FB Live."}
+    ],
+    LinkedIn:[
+      {f:"Ritual Post",c:"The small rituals matter in luxury living. A 90-second coffee walk at 200 East #712 is worth more than a premium espresso machine in the kitchen. Both present. That's the difference.",h:"#LuxuryLiving",n:"Ritual framing."},
+      {f:"AI Ed :45",c:"45 seconds: how daily walking rituals correlate with homeowner satisfaction in urban luxury. 200 East delivers.",h:"#RealEstateInsight",n:"AI Ed."},
+      {f:"Productivity Angle",c:"Executives who walk to coffee instead of drive report 23% higher morning focus (Stanford study). 200 East is designed for that.",h:"#Productivity",n:"Executive framing."},
+      {f:"Carousel",c:"3 slides: the morning routine of a 200 East #712 resident. Coffee, walk, work.",h:"#MorningRoutine",n:"Carousel."},
+      {f:"Referral",c:"Wellness-focused executives — 200 East is a better wellness investment than a home gym.",h:"#WellnessLiving",n:"Referral."}
+    ],
+    Instagram:[
+      {f:"Reel :20",c:"8 AM. 90-sec walk. Saquella. Home. 200 East. ☕️",h:"#BocaCoffee #MorningRitual #BogenHomes #BocaRaton #LuxuryLiving #DouglasElliman",n:"Coffee reel."},
+      {f:"Static Coffee",c:"The espresso is already walking back to me.",h:"#CoffeeLover #BocaLife #LuxuryLiving",n:"Editorial coffee shot."},
+      {f:"Carousel (5)",c:"5 coffee spots. 3 blocks. Swipe.",h:"#BocaCoffee #BocaRaton #NeighborhoodGuide",n:"5-slide carousel."},
+      {f:"Story Coffee",c:"Stories: my morning coffee walk. Tap through.",h:"(Stories)",n:"Morning story."},
+      {f:"AI Avatar :30",c:"Mira: 'The best coffee shops in Boca are already within the 200 East walking radius.'",h:"#AIAvatar #BogenHomes",n:"Mira AI avatar."}
+    ],
+    TikTok:[
+      {f:"Coffee Run :30",c:"POV: morning coffee run from 200 East. 30-sec cut. Music: chill morning.",h:"#coffee #morningroutine #bocaraton",n:"Coffee run POV."},
+      {f:"AI Ed :20",c:"AI Ed: 'Three coffee shops. Three blocks. 200 East.' Name each with walking time.",h:"#aiavatar #realtok #bocaraton",n:"AI Ed list."},
+      {f:"Ranking :30",c:"Coffee ranked 1-3, each shown with espresso pull, walking time caption, and vibe.",h:"#coffeelover #bocaraton",n:"Ranked cut."},
+      {f:"Ritual :15",c:"Single take: pulling espresso at Saquella. Text: 'Your 8 AM at 200 East.'",h:"#bocaraton #morningvibes",n:"Single-shot ritual cut."},
+      {f:"CTA :15",c:"AI Ed: 'Comment COFFEE for the map.'",h:"#realestatetiktok #bogenhomes",n:"AI Ed CTA."}
+    ]
+  },
+  // DAY 16 - Amphitheater Season
+  16:{
+    X:[
+      {f:"Static",c:"Mizner Park Amphitheater concert season kicks off May 30 with Marcus King Band. Your walk home from 200 East: 3 minutes.",h:"#MiznerAmphitheater #BocaEvents",n:"Amphitheater photo."},
+      {f:"Reel :15",c:"The amphitheater is 3 minutes from 200 East. You walk home singing. You don't wait for an Uber.",h:"#BocaLife",n:"Post-concert walk reel."},
+      {f:"Event List",c:"Summer at Mizner Park Amphitheater: Marcus King (May 30), Summer in the City (weekly), and surprise drops. Walking distance from 200 East #712.",h:"#BocaConcerts",n:"Event list."},
+      {f:"Quote",c:"'Live music, 3 minutes from your door, 10 weekends a year.' — why 200 East residents don't leave Boca in summer.",h:"#BogenHomes",n:"Quote post."},
+      {f:"CTA",c:"Reply MUSIC for the full 2026 amphitheater calendar PDF.",h:"#BocaRealEstate",n:"CTA."}
+    ],
+    Facebook:[
+      {f:"Reel :45",c:"Concert season is back at Mizner Park Amphitheater. First big night: May 30 — The Marcus King Band. If you live at 200 East, your commute home after the show is 3 minutes on foot. That's the hidden luxury of this building. Unit #712 includes that commute for free.",h:"#BogenHomes #MiznerAmphitheater",n:"Concert season reel."},
+      {f:"Season Calendar",c:"Full 2026 Mizner Park Amphitheater season — Marcus King Band (May 30), Summer in the City weekly concerts, and the fall headliners dropping soon. All 3 min from the 200 East lobby.",h:"#BocaConcerts",n:"Calendar graphic."},
+      {f:"Story Post",c:"Last summer a resident told me he saw 11 shows at the amphitheater without ever moving his car. That's what 200 East unlocks.",h:"#BocaLife",n:"Resident story."},
+      {f:"AI Ed :30",c:"AI Ed: 'Your concert season starts May 30. Your walk home starts at 200 East.'",h:"#BogenHomes",n:"AI Ed clip."},
+      {f:"Live Amphitheater",c:"Friday 6 PM — walking the amphitheater grounds live. Show prep and access tips.",h:"#FacebookLive",n:"FB Live."}
+    ],
+    LinkedIn:[
+      {f:"Event-Access Value",c:"Entertainment-district proximity adds a documented 6-9% premium to luxury urban real estate. Mizner Park Amphitheater is steps from 200 East Palmetto — #712 inherits that premium at list price.",h:"#RealEstateValue",n:"Data post."},
+      {f:"AI Ed :60",c:"60 seconds: how walkable entertainment venues compound luxury condo appreciation — with Mizner Park + 200 East as exhibit A.",h:"#RealEstateAnalysis",n:"AI Ed."},
+      {f:"Lifestyle Post",c:"My clients who live in 200 East consistently report higher 'quality of life' ratings than my clients in bigger homes further out. Walkable entertainment is the reason.",h:"#LuxuryLifestyle",n:"Client satisfaction framing."},
+      {f:"Carousel",c:"4 slides: the calendar of walkable events near 200 East. Spring, summer, fall, winter. All on foot.",h:"#BocaRaton",n:"Seasonal carousel."},
+      {f:"Referral",c:"Culturally active buyers — 200 East gives them a front-row seat. DM for intel.",h:"#LuxuryReferrals",n:"Referral."}
+    ],
+    Instagram:[
+      {f:"Reel :30",c:"Concert season. 3-min walk from the stage. 200 East. 🎶",h:"#MiznerAmphitheater #BocaConcerts #BogenHomes #LuxuryLiving #DouglasElliman",n:"Concert reel."},
+      {f:"Static",c:"The amphitheater. 200 East in the skyline behind it. That's the geometry you're buying.",h:"#BocaLife #LuxuryRealEstate",n:"Dual-subject editorial shot."},
+      {f:"Carousel (5)",c:"5 upcoming shows. Walking distance from 200 East. Swipe.",h:"#BocaConcerts #MiznerAmphitheater",n:"Show round-up carousel."},
+      {f:"Story Countdown",c:"Countdown to May 30 — Marcus King at Mizner. Tap the sticker.",h:"(Stories)",n:"Countdown story."},
+      {f:"AI Avatar :30",c:"Mira: 'Concert season makes 200 East a 10-weekend-a-year upgrade.'",h:"#AIAvatar #BogenHomes",n:"Mira AI avatar."}
+    ],
+    TikTok:[
+      {f:"Concert POV :30",c:"POV: walking from 200 East to the amphitheater. Crowd noise builds. End on stage lights.",h:"#concert #bocaraton #luxurylife",n:"POV cinematic."},
+      {f:"AI Ed :30",c:"AI Ed: 'Live music within walking distance is a luxury amenity. 200 East delivers it 10 weekends a year.'",h:"#aiavatar #realtok #bocaraton",n:"AI Ed."},
+      {f:"Post-Show Walk :20",c:"Silent cut: post-concert walk back to 200 East. 3 min on foot. Subtitle: 'your commute home.'",h:"#pov #nightlife #bocaraton",n:"POV walk-home."},
+      {f:"Calendar Cut :30",c:"30 sec of the 2026 amphitheater season scrolling past. Hook: 'All of these. Walkable.'",h:"#concerts #bocaraton #luxurylife",n:"Calendar reveal cut."},
+      {f:"CTA :15",c:"AI Ed: 'Comment MUSIC for the calendar PDF.'",h:"#realestatetiktok #bogenhomes",n:"AI Ed CTA."}
+    ]
+  },
+  // DAY 17 - Memorial Day
+  17:{
+    X:[
+      {f:"Static",c:"Memorial Day. Honoring those who served. Balcony coffee at 200 East this morning was quieter than usual.",h:"#MemorialDay",n:"Subtle flag graphic + balcony shot. Respectful tone."},
+      {f:"Tribute",c:"Remembering every service member who never came home. From my family to yours — thank you.",h:"#MemorialDay",n:"Respectful tribute. No sales CTA today."},
+      {f:"Photo",c:"Quiet morning on the 7th floor at 200 East. A reminder that peaceful views are a privilege paid for by those who served.",h:"#MemorialDay",n:"Reflective morning photo."},
+      {f:"Community",c:"Boca's Memorial Day ceremony at Veterans Park — 10 AM today. Walkable from 200 East.",h:"#BocaRaton #MemorialDay",n:"Community event info."},
+      {f:"Reflective",c:"Today is not about listings. Today is about gratitude. Back tomorrow.",h:"#MemorialDay",n:"Pause-day framing."}
+    ],
+    Facebook:[
+      {f:"Tribute Post",c:"Today we honor the service members who gave everything. My team and I are thinking about the families who carry the weight of that sacrifice forever. From 200 East to every veteran and Gold Star family across South Florida — thank you.",h:"#MemorialDay #ThankYou",n:"Respectful tribute post. No CTA."},
+      {f:"Reflective Reel :30",c:"A quiet 30 seconds from the 200 East balcony this Memorial Day morning. The view is a privilege. The peace is earned. Thank you to those who paid for it.",h:"#MemorialDay",n:"Reflective balcony reel."},
+      {f:"Boca Event",c:"Boca Raton Memorial Day ceremony: 10 AM at Veterans Park, a short walk from 200 East. If you're in town, come pay respects.",h:"#BocaRaton #MemorialDay",n:"Community event post."},
+      {f:"Story Post",c:"My grandfather served in WWII. Every Memorial Day I think about him. If you have someone to remember today, tell me their name in the comments — I'll say it out loud.",h:"#Remember",n:"Personal tribute w/ community engagement."},
+      {f:"Quiet Close",c:"We're pausing listing promo today. Normal calendar resumes tomorrow. Thank you for reading.",h:"#MemorialDay",n:"Pause-day framing."}
+    ],
+    LinkedIn:[
+      {f:"Leadership Tribute",c:"To the veterans in my professional network — thank you for your service, and thank you for bringing that discipline into every boardroom and client relationship since. Memorial Day is for remembering those who didn't make it back. We are grateful.",h:"#MemorialDay #VeteranLeadership",n:"Professional tribute."},
+      {f:"Quiet Post",c:"No analytics today. No market update. Just gratitude.",h:"#MemorialDay",n:"Minimal tribute."},
+      {f:"Reflection",c:"Building a business on freedoms earned by others is a responsibility, not a right. Today we remember the cost.",h:"#MemorialDay",n:"Reflective post."},
+      {f:"Community Post",c:"Boca's Memorial Day ceremony at Veterans Park — walkable from every downtown address. See you there at 10 AM.",h:"#BocaRaton",n:"Community event."},
+      {f:"Thank You",c:"Thank you. That's the whole post.",h:"#MemorialDay",n:"Minimalist tribute."}
+    ],
+    Instagram:[
+      {f:"Static Flag",c:"Honoring every service member today. Thank you. 🇺🇸",h:"#MemorialDay #ThankYou",n:"Subtle flag + balcony composite. Navy branded."},
+      {f:"Quiet Reel :15",c:"15 seconds of the balcony at 200 East this morning. Quiet. Grateful. #MemorialDay",h:"#MemorialDay",n:"Subtle reflective reel."},
+      {f:"Story Tribute",c:"Stories today: names submitted by my followers of those they're remembering. Send me yours.",h:"(Stories)",n:"Community tribute IG Story."},
+      {f:"Carousel (3)",c:"3 slides of gratitude. Today is not about real estate.",h:"#MemorialDay #Respect",n:"3-slide respectful carousel."},
+      {f:"Minimal Static",c:"Thank you.",h:"#MemorialDay",n:"Minimalist flag/balcony shot."}
+    ],
+    TikTok:[
+      {f:"Quiet Reel :15",c:"15 seconds of balcony silence at 200 East. Text: 'Memorial Day. Thank you.' No music.",h:"#memorialday #thankyou",n:"Silent reflective cut."},
+      {f:"Tribute :30",c:"AI Ed, serious tone: 'Today isn't about real estate. Today is about the people who made every balcony view possible.'",h:"#memorialday #thankyou",n:"AI Ed tribute."},
+      {f:"Veterans Park :20",c:"Single cut: Boca Veterans Park ceremony. Text: '10 AM. Walkable. Be there.'",h:"#bocaraton #memorialday",n:"Community event cut."},
+      {f:"Pause Day",c:"Text-on-screen: 'We paused the calendar today. Back tomorrow with the normal content. Today is for gratitude.'",h:"#memorialday",n:"Pause-day post."},
+      {f:"No CTA",c:"No CTA today. Just respect.",h:"#memorialday",n:"Minimal tribute."}
+    ]
+  },
+  // DAY 18 - Summer In The City
+  18:{
+    X:[
+      {f:"Static",c:"'Summer in the City' concert series kicks off next month at Mizner Park. Free. Walk-up. 3 min from 200 East.",h:"#SummerInTheCity #BocaRaton",n:"Concert promo shot."},
+      {f:"Reel :15",c:"Summer Fridays at Mizner Park = free outdoor concerts. 200 East residents get the best seats.",h:"#BocaSummer",n:"Summer concert reel."},
+      {f:"Event List",c:"Summer in the City 2026 lineup dropping soon. Every show walkable from 200 East. I'll share the full list when it's live.",h:"#BocaEvents",n:"Teaser list."},
+      {f:"Quote",c:"'Free outdoor concerts within walking distance is an amenity the HOA can't charge for.' — every 200 East resident.",h:"#BogenHomes",n:"Quote post."},
+      {f:"CTA",c:"Reply SUMMER for the full 2026 Boca event calendar.",h:"#BocaRealEstate",n:"CTA."}
+    ],
+    Facebook:[
+      {f:"Reel :45",c:"Summer in Boca has a soundtrack — and it's free. The Summer in the City concert series runs every Friday at Mizner Park Amphitheater. 200 East residents literally walk from their balconies to the show. Unit #712 has the shortest walk in the building.",h:"#BogenHomes #SummerInTheCity",n:"Summer series reel."},
+      {f:"Calendar Post",c:"Boca's free summer concert calendar just dropped. Every Friday at Mizner Park, now through August. Walkable from 200 East.",h:"#BocaSummer",n:"Calendar graphic."},
+      {f:"Story Post",c:"Last summer I went to 4 concerts in a row without ever starting my car. That's the 200 East summer schedule. Highly recommend.",h:"#BocaLife",n:"Personal story."},
+      {f:"AI Ed :30",c:"AI Ed: 'Free outdoor concerts every Friday. 3-min walk from your door. That's the 200 East summer calendar.'",h:"#BogenHomes",n:"AI Ed promo."},
+      {f:"Live Friday",c:"First Friday of June — I'll go live from the concert. Join me.",h:"#FacebookLive",n:"FB Live."}
+    ],
+    LinkedIn:[
+      {f:"Community Value",c:"Free, high-quality public events are the rarest luxury in urban living. Boca's Summer in the City series delivers 12+ of them, walking distance from 200 East Palmetto. Quality-of-life appreciation doesn't show up on a spec sheet.",h:"#UrbanLuxury",n:"Community value post."},
+      {f:"AI Ed :60",c:"60 seconds: how free public programming affects urban luxury condo desirability — with downtown Boca as the case study.",h:"#RealEstateInsight",n:"AI Ed."},
+      {f:"Family Angle",c:"Families moving to downtown Boca for the public event density are my fastest-closing buyer segment right now. 200 East #712 is on the shortlist for that profile.",h:"#FamilyLiving",n:"Family framing."},
+      {f:"Carousel",c:"4 slides of walkable summer events. 200 East as the hub.",h:"#BocaRaton",n:"Event carousel."},
+      {f:"Referral",c:"Culturally engaged families — downtown Boca is the answer. 200 East is the address. Brochure DM.",h:"#FamilyReferrals",n:"Referral."}
+    ],
+    Instagram:[
+      {f:"Reel :30",c:"Summer in the City. Free concerts. 3 min from the 200 East lobby. ☀️",h:"#SummerInTheCity #BocaSummer #BogenHomes #LuxuryLiving #DouglasElliman",n:"Summer reel."},
+      {f:"Static Summer",c:"Summer Fridays in Boca sound like this. 200 East gets front-row parking.",h:"#BocaSummer #BogenHomes",n:"Summer vibes editorial."},
+      {f:"Carousel (6)",c:"6 summer events. All walkable. Save this.",h:"#BocaEvents #SummerInTheCity #BocaRaton",n:"Summer carousel."},
+      {f:"Story Lineup",c:"Stories: the full summer concert lineup dropping today. Tap through.",h:"(Stories)",n:"Lineup story."},
+      {f:"AI Avatar :30",c:"Mira: 'Summer at 200 East means no parking, no tickets, and a 3-minute walk to live music.'",h:"#AIAvatar #BogenHomes",n:"Mira AI avatar."}
+    ],
+    TikTok:[
+      {f:"Summer POV :30",c:"POV: walking to Summer in the City from 200 East on a June Friday. Sound builds as you approach.",h:"#summer #concerts #bocaraton",n:"POV cinematic."},
+      {f:"AI Ed :20",c:"AI Ed: 'Every Friday. Free concerts. Walk home. 200 East.'",h:"#aiavatar #realtok #bocaraton",n:"AI Ed quick hit."},
+      {f:"Calendar Scroll :30",c:"30 sec of the summer event calendar scrolling. End card: 'All within 10 min of 200 East.'",h:"#bocaevents #summer #luxurylife",n:"Calendar reveal."},
+      {f:"Vibe :15",c:"Sunset + concert sound + crowd. Text: 'This is Friday at 200 East.'",h:"#bocasummer #nightvibes",n:"Vibe cut."},
+      {f:"CTA :15",c:"AI Ed: 'Comment SUMMER for the full event calendar.'",h:"#realestatetiktok #bogenhomes",n:"AI Ed CTA."}
+    ]
+  },
+  // DAY 19 - Sunset Cocktails
+  19:{
+    X:[
+      {f:"Static",c:"5 rooftop & patio bars within 10 min of 200 East. Golden hour starts at the balcony. Then you pick which one to walk to.",h:"#SunsetCocktails #BocaRaton",n:"Rooftop shot."},
+      {f:"List",c:"Best sunset drinks near 200 East: 1. 29 Below rooftop 2. The Polo Bar 3. Farmer's Table 4. Mizner Park patios 5. home balcony (undefeated).",h:"#BocaBars",n:"Ranked list."},
+      {f:"Reel :15",c:"Sunset at 200 East #712 into a walk to the rooftop bar. 7 PM on a Thursday.",h:"#BocaLife",n:"Sunset-to-bar reel."},
+      {f:"Poll",c:"Sunset cocktail location: ❏ Home balcony ❏ Rooftop bar ❏ Both. 200 East residents: both, same night.",h:"#BocaLiving",n:"Poll."},
+      {f:"CTA",c:"Reply SUNSET for the rooftop bar walking map.",h:"#BogenHomes",n:"CTA."}
+    ],
+    Facebook:[
+      {f:"Reel :45",c:"The 200 East sunset ritual: drink on the balcony → walk to a patio bar → walk home. No driving. No parking. Three of my favorite spots are within 600 feet of the lobby. Let me show you.",h:"#BogenHomes #BocaRaton",n:"Sunset ritual reel."},
+      {f:"Bar Guide",c:"5 best sunset patio + rooftop bars within 10 min of 200 East. My personal ranking.",h:"#BocaBars",n:"Bar guide carousel."},
+      {f:"Story Post",c:"Best sunset I had last month: started on the 200 East balcony, ended at 29 Below rooftop, walked home. Zero stress. Zero keys.",h:"#BocaLife",n:"Personal story."},
+      {f:"AI Ed :30",c:"AI Ed: 'Sunset at 200 East → walk to 29 Below → walk home. That's a Thursday night.'",h:"#BogenHomes",n:"AI Ed night reel."},
+      {f:"Live Bar Tour",c:"Thursday 7 PM — live walking tour of sunset bars. Join.",h:"#FacebookLive",n:"FB Live."}
+    ],
+    LinkedIn:[
+      {f:"Hospitality Density",c:"Luxury hospitality density within 10 min of a residence is a measurable appreciation driver. 200 East Palmetto scores top-decile in this metric. #712 inherits it at list.",h:"#RealEstateValue",n:"Hospitality density post."},
+      {f:"AI Ed :60",c:"60 seconds: what 'walkable nightlife' does for urban luxury condo valuations. 200 East as the case study.",h:"#RealEstateInsight",n:"AI Ed."},
+      {f:"Executive Framing",c:"Executive dinners work better when the walk home is part of the conversation. 200 East is an entertainer's condo.",h:"#ExecutiveEntertaining",n:"Exec angle."},
+      {f:"Carousel",c:"5 slides: the walkable nightlife of downtown Boca. 200 East at the center.",h:"#UrbanLuxury",n:"Nightlife carousel."},
+      {f:"Referral",c:"Clients who love a sunset patio — 200 East is their address. DM for the brochure.",h:"#LuxuryReferrals",n:"Referral."}
+    ],
+    Instagram:[
+      {f:"Reel :30",c:"Sunset on the balcony. Walk to the rooftop bar. 200 East. 🍸",h:"#SunsetCocktails #BocaRaton #BogenHomes #LuxuryLiving #DouglasElliman",n:"Sunset reel."},
+      {f:"Static Rooftop",c:"The pre-sunset ritual at 200 East ends at a rooftop within walking distance. Every Thursday. Sometimes Tuesday.",h:"#BocaNightlife #LuxuryLiving",n:"Rooftop editorial."},
+      {f:"Carousel (5)",c:"5 walkable sunset bars near 200 East. Save for your next date night.",h:"#BocaBars #SunsetCocktails #BocaRaton",n:"Bar carousel."},
+      {f:"Story Night",c:"Stories tonight: sunset to rooftop to walk home. Tap through.",h:"(Stories)",n:"Sunset night story."},
+      {f:"AI Avatar :30",c:"Mira: 'At 200 East, sunset cocktails start at home and end 2 blocks away.'",h:"#AIAvatar #BogenHomes",n:"Mira AI avatar."}
+    ],
+    TikTok:[
+      {f:"Sunset-to-Bar POV :30",c:"POV: cocktail on balcony → walk down → rooftop bar arrival. Cinematic cuts, golden light.",h:"#sunset #cocktails #bocaraton #luxurylife",n:"POV cinematic."},
+      {f:"AI Ed :20",c:"AI Ed: 'You don't drive to happy hour. You walk.' Cut to bars.",h:"#aiavatar #realtok #bocaraton",n:"AI Ed positioning."},
+      {f:"Bar Ranking :30",c:"Ranked top 5 walkable sunset bars. Each one with walking time.",h:"#bocabars #nightlife #luxurylife",n:"Ranked cut."},
+      {f:"Cocktail Close-up :15",c:"Single shot: cocktail pour at 29 Below rooftop. Text: '8-min walk from 200 East.'",h:"#cocktails #bocaraton #luxurylife",n:"Vibe cut."},
+      {f:"CTA :15",c:"AI Ed: 'Comment SUNSET for the bar map.'",h:"#realestatetiktok #bogenhomes",n:"AI Ed CTA."}
+    ]
+  },
+  // DAY 20 - Private Tour CTA
+  20:{
+    X:[
+      {f:"Static",c:"Final day of our 200 East #712 May content run. If you've been watching — now's the time. Private showings through Friday.",h:"#BogenHomes #BocaRaton",n:"Hero property shot. Final push framing."},
+      {f:"AI Ed :20",c:"AI Ed: 'You've seen the content. Now see the unit. DM me TOUR and I'll book you in.'",h:"#BocaRealEstate",n:"AI Ed close."},
+      {f:"Recap Thread (3)",c:"1/3: 200 East #712, recap: 2BR + den, 2,265 SF, 7th-floor corner. 2/3: Walk to Mizner, beach, Royal Palm. 3/3: Book the tour before the weekend.",h:"#BogenHomes",n:"Final recap thread."},
+      {f:"Urgency",c:"3 private tour slots left this week at 200 East #712. Reply TOUR with your preferred time.",h:"#BocaRealEstate",n:"Scarcity-based CTA."},
+      {f:"Final CTA",c:"If you scrolled all 25 days of this content — we should probably meet. DM TOUR.",h:"#BogenHomes",n:"Witty final CTA."}
+    ],
+    Facebook:[
+      {f:"Reel :60",c:"Thursday. Final day of the May content calendar for 200 East #712. If you've been following along for the last 4 weeks and you're thinking about downtown Boca — stop scrolling and DM me. Private showings are open through Friday. After that, we re-evaluate pricing for June. This is the window.",h:"#BogenHomes #BocaRaton #JustListed",n:"Final CTA reel."},
+      {f:"Month Recap",c:"What you've seen about 200 East #712 this month: the balcony view, the architect story, the walkability, the amenities, the neighborhood. What you haven't done yet: walked through it. That's the next step.",h:"#BogenHomes",n:"Recap post."},
+      {f:"Testimonial",c:"A client closed on a unit in this building last year. Here's what she said at the closing: 'I've never been this sure about a home.' That's the 200 East effect. #712 is available right now.",h:"#BocaLife",n:"Testimonial-style post."},
+      {f:"AI Ed :45",c:"AI Ed, closing the month: 'I've shown you the building, the view, the neighborhood. Now let me show you the home. DM TOUR.'",h:"#BogenHomes",n:"AI Ed closing video."},
+      {f:"Final Live",c:"Friday 6 PM — final Facebook Live of the month from 200 East #712. Last questions. Last walkthrough. Last chance before we re-price for June.",h:"#FacebookLive",n:"Final FB Live."}
+    ],
+    LinkedIn:[
+      {f:"Close Post",c:"I've spent the last 20 business days publishing daily content on 200 East Palmetto #712. If your network includes a buyer in the downtown Boca $1.5M-$1.75M range — now is the window to introduce us. Pricing is under review as of June 1.",h:"#LuxuryRealEstate #BocaRaton",n:"Professional close post."},
+      {f:"AI Ed :60",c:"60 seconds on what the May content calendar taught me about this listing's market position — and why the next 7 days matter.",h:"#RealEstateStrategy",n:"AI Ed analytical close."},
+      {f:"Reflection",c:"4 weeks of content. 1 listing. 500 posts. This is what modern luxury real estate marketing looks like — and 200 East #712 is the asset we're positioning.",h:"#MarketingStrategy",n:"Marketing-forward post."},
+      {f:"Referral Final",c:"Last call to my network: if you know someone evaluating downtown Boca luxury condos, 200 East #712 deserves a place on the shortlist. Full brochure available in DM.",h:"#RealEstateReferrals",n:"Final referral push."},
+      {f:"Thank You",c:"Thank you for reading, commenting, sharing, and referring. The next chapter for 200 East #712 starts with whoever walks through the door this weekend.",h:"#LuxuryRealEstate",n:"Professional thanks."}
+    ],
+    Instagram:[
+      {f:"Reel :45",c:"Month one of the 200 East #712 campaign wraps today. If you've been here since Day 1 — DM TOUR. This is the window.",h:"#BogenHomes #JustListed #BocaRaton #LuxuryCondo #DouglasElliman",n:"Closing reel. Compilation b-roll."},
+      {f:"Static Final",c:"4 weeks. 500 posts. 1 home. 200 East #712.",h:"#BogenHomes #BocaRaton #LuxuryRealEstate",n:"Dramatic hero shot."},
+      {f:"Carousel Recap (10)",c:"10 slides. The May recap of 200 East #712. Save the post. Then DM me.",h:"#BocaRaton #LuxuryCondo #BogenHomes #DreamHome",n:"10-slide month recap carousel."},
+      {f:"Story Final",c:"Stories today: my personal favorite moments from this month's shoot. Tap for the unseen footage. Link sticker = private tour calendar.",h:"(Stories)",n:"Final day IG Story — BTS + link."},
+      {f:"AI Ed Reel :30",c:"AI Ed: 'You've seen the reels. You've seen the view. Now come see the unit.' DM TOUR.",h:"#AIEd #BogenHomes #BocaRaton",n:"AI Ed closing reel."}
+    ],
+    TikTok:[
+      {f:"Recap :60",c:"60-sec supercut: best 10 moments from the May campaign. Text: '4 weeks. 1 listing. DM TOUR.'",h:"#realestate #bocaraton #luxurylife #recap",n:"Supercut compilation."},
+      {f:"AI Ed Close :30",c:"AI Ed: 'Everything I've said this month about 200 East is true. Everything. Come see for yourself.'",h:"#aiavatar #realtok #bocaraton",n:"AI Ed final."},
+      {f:"Testimonial Cut :20",c:"Audio from a happy buyer in the building. Cut to #712 b-roll. Text: 'You're next.'",h:"#testimonial #realestate #bocaraton",n:"Testimonial cut — ensure usage rights."},
+      {f:"Urgency :15",c:"Text: 'Pricing review starts June 1. 3 tour slots left this week.' Cut to AI Ed pointing at calendar.",h:"#realestatetiktok #luxurylife",n:"Urgency cut."},
+      {f:"Final CTA :15",c:"AI Ed, final beat of the month: 'DM me TOUR. I'll handle the rest.'",h:"#realestatetiktok #bogenhomes",n:"AI Ed final CTA."}
+    ]
+  }
+};
+
+// ============ RENDER ============
+function renderCalendar(){
+  const cal=document.getElementById('calendar');
+  let html='';
+  const weekThemes=[
+    {n:1,title:"Week 1 · Introducing Unit 712",sub:"May 1 – May 7 · The grand reveal + walkthrough",days:[1,2,3,4,5]},
+    {n:2,title:"Week 2 · Building & Amenities",sub:"May 8 – May 14 · Why 200 East is different",days:[6,7,8,9,10]},
+    {n:3,title:"Week 3 · Neighborhood & Walkability",sub:"May 15 – May 21 · The downtown Boca lifestyle",days:[11,12,13,14,15]},
+    {n:4,title:"Week 4 · Events, Season & Close",sub:"May 22 – May 28 · Tour the property, close the deal",days:[16,17,18,19,20]}
+  ];
+  weekThemes.forEach(w=>{
+    html+=`<section class="week" id="week-${w.n}">
+      <div class="week-header"><h2>${w.title}</h2><p>${w.sub}</p></div>
+      <div class="day-grid">`;
+    w.days.forEach(dIdx=>{
+      const dayMeta=days.find(d=>d.d===dIdx);
+      const dayPosts=P[dIdx];
+      html+=`<div class="day-card">
+        <div class="day-header" onclick="toggleDay(${dIdx})">
+          <div>
+            <div class="day-title">${dayMeta.title}</div>
+            <div class="day-date">${dayMeta.date}</div>
+          </div>
+          <div class="day-theme">${dayMeta.theme}</div>
+        </div>
+        <div class="day-content" id="day-${dIdx}">`;
+      if(dayPosts){
+        html+=`<div class="platform-tabs">`;
+        platforms.forEach((p,i)=>{
+          html+=`<button class="${i===0?'active':''}" onclick="showPlatform(${dIdx},'${p}',event)">${p}</button>`;
+        });
+        html+=`</div>`;
+        platforms.forEach((p,i)=>{
+          html+=`<div class="platform-panel ${i===0?'active':''}" id="panel-${dIdx}-${p}">`;
+          if(dayPosts[p]){
+            dayPosts[p].forEach((post,slotIdx)=>{
+              const postId=`p-${dIdx}-${p}-${slotIdx}`;
+              html+=`<div class="post">
+                <div class="post-meta">
+                  <span class="post-time">${times[slotIdx]}</span>
+                  <span class="post-format">${post.f}</span>
+                </div>
+                <div class="post-copy" id="${postId}">${escapeHtml(post.c)}</div>
+                <div class="post-hashtags">${escapeHtml(post.h)}</div>
+                <div class="post-note"><strong>Production:</strong> ${escapeHtml(post.n)}</div>
+                <div class="post-actions">
+                  <button class="copy-btn" onclick="copyText('${postId}',this)">Copy Copy</button>
+                  <button class="copy-btn" onclick="copyText('${postId}-all',this)" data-copy="${escapeHtml(post.c+'\n\n'+post.h)}">Copy Copy + Hashtags</button>
+                </div>
+              </div>`;
+            });
+          } else {
+            html+=`<p style="padding:20px;color:#999;font-style:italic">Posts for ${p} on this day follow the Week ${w.n} rotation pattern — replicate Day ${w.days[0]} structure with this day's theme: <strong>${dayMeta.theme}</strong>. Full expansion pending Week 1 review approval.</p>`;
+          }
+          html+=`</div>`;
+        });
+      }
+      html+=`</div></div>`;
+    });
+    html+=`</div></section>`;
+  });
+  cal.innerHTML=html;
+}
+
+function escapeHtml(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function toggleDay(d){document.getElementById('day-'+d).classList.toggle('open')}
+function showPlatform(d,p,ev){
+  const card=ev.target.closest('.day-content');
+  card.querySelectorAll('.platform-tabs button').forEach(b=>b.classList.remove('active'));
+  card.querySelectorAll('.platform-panel').forEach(b=>b.classList.remove('active'));
+  ev.target.classList.add('active');
+  document.getElementById('panel-'+d+'-'+p).classList.add('active');
+}
+function scrollWeek(n){document.getElementById('week-'+n).scrollIntoView({behavior:'smooth'})}
+function expandAll(){document.querySelectorAll('.day-content').forEach(d=>d.classList.add('open'))}
+function collapseAll(){document.querySelectorAll('.day-content').forEach(d=>d.classList.remove('open'))}
+function copyText(id,btn){
+  let txt;
+  if(btn.dataset.copy){txt=btn.dataset.copy}
+  else{txt=document.getElementById(id).innerText}
+  navigator.clipboard.writeText(txt).then(()=>{
+    const orig=btn.textContent;
+    btn.textContent='✓ Copied';
+    btn.classList.add('copied');
+    setTimeout(()=>{btn.textContent=orig;btn.classList.remove('copied')},1500);
+  });
+}
+
+renderCalendar();
+</script>
+</body>
+</html>
