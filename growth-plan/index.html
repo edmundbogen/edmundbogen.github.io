@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bogen Growth Plan Interactive</title>
+  <meta name="description" content="Interactive web-enabled version of The Edmund Bogen Team growth plan, built around The Bogen Method and the Final 20% framework." />
+  <meta property="og:title" content="Bogen Growth Plan Interactive" />
+  <meta property="og:description" content="A web-enabled interactive version of the board-approved Bogen Growth Plan." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&f[]=zodiak@400,700&display=swap" rel="stylesheet">
+  <style>
+    :root, [data-theme="light"] {
+      --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+      --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+      --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+      --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+      --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+      --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+      --text-3xl: clamp(2.5rem, 1rem + 4vw, 5rem);
+      --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem; --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem; --space-10: 2.5rem; --space-12: 3rem; --space-16: 4rem; --space-20: 5rem; --space-24: 6rem;
+      --color-bg:#f5f2ec; --color-surface:#faf8f4; --color-surface-2:#ffffff; --color-surface-offset:#ece7de; --color-surface-dynamic:#e0dbd2; --color-border:#d5cdc0; --color-divider:#ddd5c8;
+      --color-text:#1f1b17; --color-text-muted:#6d675f; --color-text-faint:#aaa39a; --color-text-inverse:#faf8f4;
+      --color-primary:#0c6b74; --color-primary-hover:#0a5259; --color-primary-highlight:#d7e7e5; --color-success:#4d7d2f; --color-orange:#c56a11; --color-blue:#155b86; --color-purple:#7b4bc4;
+      --radius-sm:0.375rem; --radius-md:0.75rem; --radius-lg:1rem; --radius-xl:1.5rem; --radius-full:9999px;
+      --shadow-sm:0 1px 2px rgba(23,20,16,.06); --shadow-md:0 10px 30px rgba(23,20,16,.08); --shadow-lg:0 22px 60px rgba(23,20,16,.12);
+      --content-default:1080px; --content-wide:1280px;
+      --font-body:'General Sans', Inter, sans-serif; --font-display:'Zodiak', Georgia, serif;
+      --transition-interactive:180ms cubic-bezier(0.16,1,0.3,1);
+    }
+    [data-theme="dark"] {
+      --color-bg:#12110f; --color-surface:#191714; --color-surface-2:#201d19; --color-surface-offset:#24211d; --color-surface-dynamic:#2f2b26; --color-border:#3a352f; --color-divider:#2b2723;
+      --color-text:#ece7df; --color-text-muted:#aea79d; --color-text-faint:#70695f; --color-text-inverse:#151311;
+      --color-primary:#6db3bc; --color-primary-hover:#4b98a3; --color-primary-highlight:#223336; --color-success:#7fb05d; --color-orange:#f0a24a; --color-blue:#6da4d7; --color-purple:#b48ff2;
+      --shadow-sm:0 1px 2px rgba(0,0,0,.2); --shadow-md:0 10px 30px rgba(0,0,0,.3); --shadow-lg:0 22px 60px rgba(0,0,0,.4);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;text-size-adjust:none;-webkit-font-smoothing:antialiased}
+    body{font-family:var(--font-body);font-size:var(--text-base);line-height:1.6;background:radial-gradient(circle at top right, color-mix(in oklab, var(--color-primary) 14%, transparent), transparent 30%), var(--color-bg);color:var(--color-text);min-height:100vh}
+    img,svg{display:block;max-width:100%}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+    .skip-link{position:absolute;left:-9999px;top:auto}.skip-link:focus{left:1rem;top:1rem;background:var(--color-surface-2);padding:.75rem 1rem;border-radius:var(--radius-md);z-index:999}
+    .shell{display:grid;grid-template-columns:300px 1fr;min-height:100vh}
+    .sidebar{position:sticky;top:0;height:100vh;padding:var(--space-8);border-right:1px solid color-mix(in oklab, var(--color-text) 10%, transparent);background:color-mix(in oklab, var(--color-surface) 88%, transparent);backdrop-filter:blur(14px);display:flex;flex-direction:column;gap:var(--space-8)}
+    .brand{display:flex;flex-direction:column;gap:var(--space-4)}
+    .brand-mark{display:flex;align-items:center;gap:var(--space-3)}
+    .logo{width:54px;height:54px;border-radius:18px;background:linear-gradient(145deg, color-mix(in oklab, var(--color-primary) 18%, var(--color-surface)), var(--color-surface-2));display:grid;place-items:center;border:1px solid color-mix(in oklab, var(--color-primary) 35%, transparent);box-shadow:var(--shadow-sm)}
+    .brand h1{font-family:var(--font-display);font-size:var(--text-lg);line-height:1.05}
+    .eyebrow{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.18em;color:var(--color-text-muted)}
+    .nav{display:grid;gap:var(--space-2)}
+    .nav a{padding:.75rem 1rem;border-radius:var(--radius-md);font-size:var(--text-sm);color:var(--color-text-muted);border:1px solid transparent;transition:all var(--transition-interactive)}
+    .nav a:hover,.nav a.active{color:var(--color-text);background:var(--color-surface-2);border-color:color-mix(in oklab, var(--color-text) 9%, transparent)}
+    .sidebar-card{padding:var(--space-5);border-radius:var(--radius-lg);background:linear-gradient(180deg, color-mix(in oklab, var(--color-primary) 10%, var(--color-surface)), var(--color-surface));border:1px solid color-mix(in oklab, var(--color-primary) 18%, transparent);box-shadow:var(--shadow-md)}
+    .sidebar-card p{font-size:var(--text-sm);color:var(--color-text-muted)}
+    .sidebar small{color:var(--color-text-faint);font-size:var(--text-xs)}
+    .main{min-width:0}
+    .topbar{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:var(--space-4) var(--space-6);border-bottom:1px solid color-mix(in oklab, var(--color-text) 8%, transparent);background:color-mix(in oklab, var(--color-bg) 84%, transparent);backdrop-filter:blur(14px)}
+    .actions{display:flex;gap:var(--space-3);align-items:center}
+    .btn{display:inline-flex;align-items:center;gap:.55rem;padding:.8rem 1rem;border-radius:var(--radius-full);font-size:var(--text-sm);border:1px solid color-mix(in oklab, var(--color-text) 10%, transparent);background:var(--color-surface);transition:all var(--transition-interactive)}
+    .btn:hover{transform:translateY(-1px);background:var(--color-surface-2)}
+    .btn-primary{background:var(--color-primary);color:var(--color-text-inverse);border-color:transparent}
+    .btn-primary:hover{background:var(--color-primary-hover)}
+    .page{padding:clamp(1.25rem,2vw,2rem)}
+    .hero{max-width:var(--content-wide);margin:0 auto;padding:var(--space-10) var(--space-2) var(--space-12);display:grid;grid-template-columns:1.15fr .85fr;gap:var(--space-8);align-items:end}
+    .hero h2{font-family:var(--font-display);font-size:var(--text-3xl);line-height:.95;max-width:12ch}
+    .hero p{margin-top:var(--space-5);max-width:58ch;color:var(--color-text-muted)}
+    .hero-panel,.card{background:linear-gradient(180deg, color-mix(in oklab, var(--color-surface-2) 70%, var(--color-surface)), var(--color-surface));border:1px solid color-mix(in oklab, var(--color-text) 9%, transparent);border-radius:var(--radius-xl);box-shadow:var(--shadow-md)}
+    .hero-panel{padding:var(--space-6);display:grid;gap:var(--space-5)}
+    .metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-3)}
+    .metric{padding:var(--space-4);border-radius:var(--radius-lg);background:color-mix(in oklab, var(--color-primary) 8%, var(--color-surface-2));border:1px solid color-mix(in oklab, var(--color-primary) 15%, transparent)}
+    .metric strong{display:block;font-size:var(--text-xl);line-height:1;font-variant-numeric:tabular-nums}
+    .metric span{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.12em;color:var(--color-text-muted)}
+    .section{max-width:var(--content-wide);margin:0 auto;padding:var(--space-8) var(--space-2);display:grid;gap:var(--space-6)}
+    .section-head{display:flex;justify-content:space-between;gap:var(--space-4);align-items:end;flex-wrap:wrap}
+    .section-head h3{font-family:var(--font-display);font-size:var(--text-xl);line-height:1}
+    .section-head p{max-width:56ch;color:var(--color-text-muted)}
+    .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-5)}
+    .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-5)}
+    .card{padding:var(--space-6)}
+    .card h4{font-size:var(--text-lg);line-height:1.15;margin-bottom:var(--space-3)}
+    .card p,.card li{font-size:var(--text-sm);color:var(--color-text-muted)}
+    .list{display:grid;gap:.7rem;padding-left:1rem}
+    .list li{margin-left:.35rem}
+    .phase-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-3)}
+    .phase{padding:var(--space-5);border-radius:var(--radius-lg);background:var(--color-surface-offset);border:1px solid color-mix(in oklab, var(--color-text) 8%, transparent)}
+    .phase strong{display:block;font-size:var(--text-lg)}
+    .phase small{color:var(--color-text-muted);font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.12em}
+    .ladder .card{position:relative;overflow:hidden}
+    .ladder .tier-tag{position:absolute;top:1rem;right:1rem;padding:.4rem .65rem;border-radius:var(--radius-full);font-size:var(--text-xs);background:color-mix(in oklab, var(--color-primary) 14%, var(--color-surface-2));color:var(--color-primary)}
+    table{width:100%;border-collapse:collapse;font-size:var(--text-sm)}
+    th,td{text-align:left;padding:1rem;border-bottom:1px solid color-mix(in oklab, var(--color-text) 8%, transparent);vertical-align:top}
+    th{color:var(--color-text-muted);font-weight:600;font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.12em}
+    .table-wrap{overflow:auto;border-radius:var(--radius-xl);border:1px solid color-mix(in oklab, var(--color-text) 9%, transparent);background:var(--color-surface);box-shadow:var(--shadow-sm)}
+    .timeline{display:grid;gap:var(--space-4)}
+    .timeline-item{display:grid;grid-template-columns:110px 1fr;gap:var(--space-4);padding:var(--space-5);border-radius:var(--radius-lg);background:var(--color-surface);border:1px solid color-mix(in oklab, var(--color-text) 8%, transparent)}
+    .timeline-item strong{font-size:var(--text-sm);text-transform:uppercase;letter-spacing:.1em;color:var(--color-primary)}
+    .risk{display:grid;grid-template-columns:1.2fr .6fr 1.2fr;gap:var(--space-3);padding:var(--space-4) 0;border-bottom:1px solid color-mix(in oklab, var(--color-text) 8%, transparent)}
+    .risk:last-child{border-bottom:none}
+    .pill{display:inline-flex;align-items:center;padding:.4rem .7rem;border-radius:var(--radius-full);font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.1em;background:color-mix(in oklab, var(--color-orange) 18%, var(--color-surface-2))}
+    .kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-4)}
+    .kpi .card strong{display:block;font-size:var(--text-2xl);line-height:1.05;font-variant-numeric:tabular-nums}
+    .footer{max-width:var(--content-wide);margin:0 auto;padding:var(--space-10) var(--space-2) var(--space-16);color:var(--color-text-muted);font-size:var(--text-sm)}
+    .mobile-menu{display:none}
+    @media (max-width: 1024px){
+      .shell{grid-template-columns:1fr}.sidebar{display:none}.mobile-menu{display:inline-flex}.hero,.grid-3,.grid-2,.kpi,.phase-bar{grid-template-columns:1fr}.metric-grid{grid-template-columns:1fr 1fr}.timeline-item,.risk{grid-template-columns:1fr}.topbar{padding:var(--space-4)}
+    }
+    @media (max-width: 640px){
+      .page{padding:var(--space-3)} .hero{padding-top:var(--space-8)} .metric-grid{grid-template-columns:1fr} .btn span.hide-mobile{display:none}
+    }
+    @media (prefers-reduced-motion: reduce){*{scroll-behavior:auto!important;transition-duration:.01ms!important}}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="shell">
+    <aside class="sidebar" aria-label="Report navigation">
+      <div class="brand">
+        <div class="brand-mark">
+          <div class="logo" aria-hidden="true">
+            <svg viewBox="0 0 64 64" width="30" height="30" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-label="Edmund Bogen brand mark">
+              <path d="M14 16h21c10 0 15 4 15 11 0 5-3 8-8 10 7 2 10 6 10 12 0 9-7 15-19 15H14V16Z"/>
+              <path d="M24 26h11c5 0 8 2 8 6s-3 6-8 6H24"/>
+              <path d="M24 44h13c6 0 9 2 9 7s-4 7-10 7H24"/>
+            </svg>
+          </div>
+          <div>
+            <div class="eyebrow">EB · Board Approved v3</div>
+            <h1>The Edmund Bogen Team</h1>
+          </div>
+        </div>
+        <p style="color:var(--color-text-muted);max-width:28ch">A web-enabled interactive report for The Bogen Method, The Final 20%, and the 3-year path from $1M to $3M ARR.</p>
+      </div>
+      <nav class="nav">
+        <a href="#overview" class="active">Overview</a>
+        <a href="#thesis">Thesis</a>
+        <a href="#ladder">Four-tier ladder</a>
+        <a href="#financials">Financials</a>
+        <a href="#launch">90-day launch</a>
+        <a href="#market">Market & content</a>
+        <a href="#ops">Operations</a>
+        <a href="#risk">Risk & legal</a>
+      </nav>
+      <div class="sidebar-card">
+        <div class="eyebrow">Core positioning</div>
+        <h3 style="font-size:var(--text-lg);line-height:1.1;margin:.35rem 0 .6rem">AI gets you 80% of the way. The last 20% is where the money is made.</h3>
+        <p>The interactive report reframes the PDF into a presentation-grade web experience with navigable sections, dashboards, and responsive layouts.</p>
+      </div>
+      <small>Built for web delivery, mobile review, and easy conversion into a standalone microsite.</small>
+    </aside>
+
+    <main class="main" id="content">
+      <header class="topbar">
+        <button class="btn mobile-menu" id="mobileNavBtn" aria-label="Open section navigation">☰</button>
+        <div>
+          <div class="eyebrow">The Bogen Method</div>
+          <strong>Interactive growth report</strong>
+        </div>
+        <div class="actions">
+          <button class="btn" data-theme-toggle aria-label="Switch color theme">◐ <span class="hide-mobile">Theme</span></button>
+          <a class="btn btn-primary" href="#launch">Open launch plan</a>
+        </div>
+      </header>
+
+      <div class="page">
+        <section class="hero" id="overview">
+          <div>
+            <div class="eyebrow">Growth plan · web edition</div>
+            <h2>The Bogen Method becomes a living operating system.</h2>
+            <p>This interactive version transforms the board-approved PDF into a web-enabled report that can be shared with partners, reviewed on mobile, and evolved into a public-facing positioning asset. It preserves the original structure while making the thesis, ladder, financials, launch plan, and operating constraints easier to scan and act on.</p>
+          </div>
+          <div class="hero-panel">
+            <div class="metric-grid">
+              <div class="metric"><span>Year 1 ARR</span><strong>$1M</strong></div>
+              <div class="metric"><span>Year 3 ARR</span><strong>$3M</strong></div>
+              <div class="metric"><span>Core frame</span><strong>80/20</strong></div>
+            </div>
+            <div class="phase-bar">
+              <div class="phase"><small>Phase 1</small><strong>Foundation</strong><p style="color:var(--color-text-muted)">Months 1–18</p></div>
+              <div class="phase"><small>Phase 2</small><strong>Scale</strong><p style="color:var(--color-text-muted)">Months 18–24</p></div>
+              <div class="phase"><small>Phase 3</small><strong>Leader</strong><p style="color:var(--color-text-muted)">Months 24–36</p></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="thesis">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">Executive summary</div>
+              <h3>The thesis</h3>
+            </div>
+            <p>The original plan positions AI as both the biggest business opportunity and the biggest trap. The winning posture is not full automation or full skepticism, but knowing how to exploit the 80% AI does well while monetizing the human 20% that still drives trust, negotiation, and execution.</p>
+          </div>
+          <div class="grid-2">
+            <article class="card">
+              <h4>Bogen’s Law</h4>
+              <p>AI handles lead generation workflows, listing descriptions, market analysis, nurture sequences, content production, and administrative automation. The Bogen Method teaches that layer, but the premium value sits in implementation quality and judgment.</p>
+            </article>
+            <article class="card">
+              <h4>The final 20%</h4>
+              <ul class="list">
+                <li>Judgment under uncertainty</li>
+                <li>Relationship leverage</li>
+                <li>Negotiation and closing</li>
+                <li>Strategic positioning</li>
+                <li>Implementation oversight</li>
+                <li>Human trust and authority</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="section ladder" id="ladder">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">Offer architecture</div>
+              <h3>The four-tier ladder</h3>
+            </div>
+            <p>Each tier maps to a different level of implementation intensity, client maturity, and price sensitivity, moving from learning the 80% to full implementation and enterprise advisory.</p>
+          </div>
+          <div class="grid-2">
+            <article class="card">
+              <span class="tier-tag">Tier 1</span>
+              <h4>Mastermind Membership — $497/mo</h4>
+              <p>Weekly live mastermind, private community, monthly AI tool teardown, template library, and a first-win milestone of one AI-built asset in the first week.</p>
+            </article>
+            <article class="card">
+              <span class="tier-tag">Tier 2</span>
+              <h4>Coaching+ Cohort — $2,500/mo</h4>
+              <p>Weekly cohort with Edmund, Loom reviews, private channel support, one automation build per month from Eytan’s team, and monthly 1-on-1 coaching.</p>
+            </article>
+            <article class="card">
+              <span class="tier-tag">Tier 3</span>
+              <h4>Done-With-You AI — $10,000/mo</h4>
+              <p>12-month implementation partnership with weekly strategy calls, dedicated backend build time, quarterly reviews, priority access, and measurable revenue impact targets.</p>
+            </article>
+            <article class="card">
+              <span class="tier-tag">Tier 4</span>
+              <h4>Enterprise / Advisory — $50,000+</h4>
+              <p>Phase 3 only. Invite-only AI transformation work for brokerages, multi-location operators, and enterprise teams, built on proof gathered from Tiers 1–3.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="financials">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">Revenue model</div>
+              <h3>Financials at a glance</h3>
+            </div>
+            <p>The plan targets roughly $3.3M in Phase 3 annualized revenue, led by Tier 1 membership volume, Tier 2 cohort revenue, Tier 3 DFY retainers, one enterprise engagement, and a speaking layer.</p>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Line</th><th>Math</th><th>Annual</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Tier 1 Mastermind</td><td>200 × $497/mo × 12</td><td>$1,192,800</td></tr>
+                <tr><td>Tier 2 Coaching+</td><td>30 × $2,500/mo × 12</td><td>$900,000</td></tr>
+                <tr><td>Tier 3 DFY</td><td>8 × $10,000/mo × 12</td><td>$960,000</td></tr>
+                <tr><td>Tier 4 Enterprise</td><td>1 × $50,000</td><td>$50,000</td></tr>
+                <tr><td>Speaking</td><td>8 gigs × avg $25K</td><td>$200,000</td></tr>
+                <tr><td><strong>Total</strong></td><td></td><td><strong>~$3.3M ARR</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="kpi">
+            <article class="card"><span class="eyebrow">Tier 1 churn</span><strong>3%</strong><p>Monthly churn assumption for membership.</p></article>
+            <article class="card"><span class="eyebrow">Tier 2 churn</span><strong>2%</strong><p>Monthly churn assumption for higher-commitment cohort.</p></article>
+            <article class="card"><span class="eyebrow">Tier 3 churn</span><strong>&lt;5%</strong><p>Annual churn assumption tied to 12-month MSA.</p></article>
+            <article class="card"><span class="eyebrow">Gross margin</span><strong>85/70/50</strong><p>Target gross margins for T1, T2, and T3.</p></article>
+          </div>
+        </section>
+
+        <section class="section" id="launch">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">Execution</div>
+              <h3>90-day launch plan</h3>
+            </div>
+            <p>The launch window is structured around brand setup, first conversions, first DFY close, and publication of the first case study, with strict non-negotiables around content cadence and Edmund staying client-facing.</p>
+          </div>
+          <div class="timeline">
+            <article class="timeline-item">
+              <strong>Days 1–30</strong>
+              <div><h4>Foundation and first conversions</h4><p>Brand launch, trademark filing, content cadence live, 25 Tier 1 members, and 3 Tier 2 cohort slots.</p></div>
+            </article>
+            <article class="timeline-item">
+              <strong>Days 31–60</strong>
+              <div><h4>First DFY close</h4><p>First Tier 3 client signed, first cohort running, speaker site live, and proof that the content engine produces demand.</p></div>
+            </article>
+            <article class="timeline-item">
+              <strong>Days 61–90</strong>
+              <div><h4>Proof and testimonials</h4><p>Second DFY close, first case study published, testimonial harvesting, and stronger social proof for all three sellable tiers.</p></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="market">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">Audience and attention</div>
+              <h3>Market, pipeline, and content engine</h3>
+            </div>
+            <p>The plan segments buyers by revenue maturity and implementation appetite, then uses omnipresent content for Tier 1, hybrid funnel plus discovery for Tier 2, and warm-audience depth for Tier 3.</p>
+          </div>
+          <div class="grid-3">
+            <article class="card">
+              <h4>Who buys</h4>
+              <ul class="list">
+                <li>Tier 1: Realtors doing $100K–$500K GCI</li>
+                <li>Tier 2: Realtors at $300K–$750K GCI</li>
+                <li>Tier 3: Top producers at $500K+ GCI</li>
+                <li>Tier 4: Brokerages and multi-location operators</li>
+              </ul>
+            </article>
+            <article class="card">
+              <h4>Weekly pipeline math</h4>
+              <ul class="list">
+                <li>20 intentional conversations</li>
+                <li>3 discovery calls booked</li>
+                <li>10 content pieces published</li>
+                <li>1 mastermind live session</li>
+                <li>1 cohort call once Tier 2 is active</li>
+              </ul>
+            </article>
+            <article class="card">
+              <h4>Content franchise</h4>
+              <p>Every piece of content reinforces the same frame: here is the 80% AI handles, and here is the 20% that still determines whether the operator wins.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="ops">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">Operating model</div>
+              <h3>Time, team, and scaling rules</h3>
+            </div>
+            <p>Edmund owns all client-facing work, sales, content, and keynotes, while Eytan stays fully backend on infrastructure and automations. The first operations hire is triggered at three active DFY clients.</p>
+          </div>
+          <div class="grid-2">
+            <article class="card">
+              <h4>Edmund’s weekly model</h4>
+              <ul class="list">
+                <li>2 hrs Tier 1 live session</li>
+                <li>3 hrs Tier 2 cohort + Loom reviews</li>
+                <li>3 hrs Tier 3 strategy calls</li>
+                <li>2 hrs async client support</li>
+                <li>8 hrs content creation</li>
+                <li>4 hrs sales</li>
+                <li>3 hrs speaking prep and travel</li>
+                <li>3 hrs business strategy</li>
+              </ul>
+            </article>
+            <article class="card">
+              <h4>Hire trigger</h4>
+              <p>At 3 active Tier 3 clients, margin supports a $60K–$80K client success operator who owns onboarding, scheduling, Slack moderation, and weekly client-health reporting.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="risk">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">Protection layer</div>
+              <h3>Risk, legal, and next 7 days</h3>
+            </div>
+            <p>The plan already anticipates delivery bottlenecks, backend capacity limits, trademark risk, content slippage, and revenue concentration, and it pairs them with concrete mitigations and immediate actions.</p>
+          </div>
+          <div class="card">
+            <div class="risk"><div><h4>Edmund becomes delivery bottleneck</h4></div><div><span class="pill">High</span></div><div><p>Hire Client Success Operator at 3 DFY clients and rely on async Loom reviews.</p></div></div>
+            <div class="risk"><div><h4>Eytan capacity limits backend queue</h4></div><div><span class="pill">High</span></div><div><p>Cap Tier 2 builds at one per month and bound Tier 3 backend hours.</p></div></div>
+            <div class="risk"><div><h4>Trademark infringement or copycat</h4></div><div><span class="pill">Medium</span></div><div><p>File marks immediately and publish case studies to reinforce common-law evidence.</p></div></div>
+            <div class="risk"><div><h4>Revenue concentration in Tier 3</h4></div><div><span class="pill">Medium</span></div><div><p>Keep Tier 3 below 40% of total ARR and diversify with Tier 1, Tier 2, and speaking.</p></div></div>
+          </div>
+          <div class="grid-2">
+            <article class="card">
+              <h4>Next 7 days</h4>
+              <ul class="list">
+                <li>File trademark applications</li>
+                <li>Lock all key domains</li>
+                <li>Rewrite sales pages using the 80/20 frame</li>
+                <li>Film the 60-second explainer video</li>
+                <li>Draft Eytan’s operator agreement</li>
+                <li>Set up the financial dashboard</li>
+                <li>Publish the first case study</li>
+              </ul>
+            </article>
+            <article class="card">
+              <h4>Required legal stack</h4>
+              <ul class="list">
+                <li>Tier 1 membership agreement, ToS, refund policy</li>
+                <li>Tier 2 cohort agreement and IP terms</li>
+                <li>Tier 3 MSA, SOW, confidentiality, IP assignment</li>
+                <li>Speaking contract template</li>
+                <li>FTC-compliant testimonial policy</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <footer class="footer">
+          <p><strong>The commitment:</strong> AI takes them 80% of the way. We coach them through the final 20%. This web edition turns that positioning into a cleaner, more usable asset for internal planning, stakeholder review, and future public launch.</p>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    (function(){
+      const html=document.documentElement;
+      const toggle=document.querySelector('[data-theme-toggle]');
+      let theme=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+      html.setAttribute('data-theme', theme);
+      function icon(){toggle.textContent = theme==='dark' ? '☀ Theme' : '☾ Theme';}
+      icon();
+      toggle.addEventListener('click',()=>{theme=theme==='dark'?'light':'dark';html.setAttribute('data-theme',theme);icon();});
+
+      const links=[...document.querySelectorAll('.nav a')];
+      const sections=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+      const io=new IntersectionObserver((entries)=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){
+            const id='#'+entry.target.id;
+            links.forEach(link=>link.classList.toggle('active', link.getAttribute('href')===id));
+          }
+        });
+      },{rootMargin:'-35% 0px -50% 0px',threshold:0.05});
+      sections.forEach(section=>io.observe(section));
+
+      document.getElementById('mobileNavBtn')?.addEventListener('click',()=>{
+        const list=links.map(link=>`${link.textContent} → ${link.getAttribute('href')}`).join('\n');
+        alert('Jump to sections:\n\n'+list+'\n\nUse the in-page buttons or scroll through the report.');
+      });
+    })();
+  </script>
+</body>
+</html>
