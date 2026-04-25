@@ -59,8 +59,13 @@
 
   /* HERO */
   .hero{
-    position:relative;height:100vh;min-height:680px;
-    background:url('exterior.png') center/cover no-repeat;
+    position:relative;
+    width:100%;
+    height:100vh;
+    height:100svh;
+    min-height:560px;
+    max-height:920px;
+    background:url('exterior.png') center 38%/cover no-repeat;
     display:flex;align-items:flex-end;
     color:var(--white);
   }
@@ -140,7 +145,7 @@
   .gallery .grid{
     display:grid;grid-template-columns:1fr 1fr;gap:0;
   }
-  .gallery .grid img{width:100%;height:520px;object-fit:cover}
+  .gallery .grid img{width:100%;aspect-ratio:4/3;height:auto;object-fit:cover}
   .gallery .grid .caption{
     background:var(--navy);color:var(--white);
     padding:50px 50px;display:flex;flex-direction:column;justify-content:center;
@@ -283,12 +288,17 @@
     font-size:11px;color:rgba(255,255,255,.5);letter-spacing:.1em;
   }
 
+  @media (min-width:1400px){
+    .hero{aspect-ratio:21/9;height:auto;max-height:780px;min-height:0}
+  }
   @media (max-width:900px){
     .nav{padding:14px 20px}
     .nav .brand small{display:none}
     section{padding:70px 24px}
     .hero-content{padding:0 24px 60px}
-    .hero h1{font-size:38px}
+    .hero h1{font-size:32px;letter-spacing:.01em}
+    .hero .sub{font-size:15px}
+    .hero{min-height:520px}
     h2{font-size:30px}
     .overview .grid,.community .grid,.cta .grid{grid-template-columns:1fr;gap:50px}
     .gallery .head{padding:70px 24px 30px}
@@ -337,7 +347,7 @@
         <p>Whether you're right-sizing, relocating, or buying your forever-Florida home, this property checks every box: location, lifestyle, and long-term value.</p>
       </div>
       <div>
-        <img src="exterior.png" alt="2257 Egret Cove Drive exterior" style="height:420px;object-fit:cover;width:100%" />
+        <img src="exterior.png" alt="2257 Egret Cove Drive exterior" style="aspect-ratio:4/3;object-fit:cover;width:100%" />
         <div class="stats">
           <div><div class="num">55+</div><div class="lbl">Active Adult Community</div></div>
           <div><div class="num">1,082</div><div class="lbl">Homes in Baywinds</div></div>
