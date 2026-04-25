@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2257 Egret Cove Drive | Baywinds | The Edmund Bogen Team</title>
+<meta name="description" content="Exclusive listing at 2257 Egret Cove Drive in Baywinds, a premier 55+ resort-style community in West Palm Beach. Presented by The Edmund Bogen Team at Douglas Elliman." />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1a3e5c;
+    --navy-deep:#0f2a40;
+    --cyan:#00a8e1;
+    --white:#ffffff;
+    --ink:#1a1a1a;
+    --gray:#f4f4f4;
+    --gray-2:#e8e8e8;
+    --text:#333333;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Montserrat',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;
+    color:var(--text);
+    background:var(--white);
+    line-height:1.7;
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block}
+  a{color:var(--cyan);text-decoration:none}
+  a:hover{opacity:.85}
+
+  /* NAV */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    background:rgba(26,62,92,.92);
+    backdrop-filter:blur(8px);
+    padding:18px 40px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .nav .brand{
+    display:flex;align-items:center;gap:14px;color:var(--white);
+    letter-spacing:.12em;font-size:13px;text-transform:uppercase;font-weight:500;
+  }
+  .nav .brand .mono{
+    width:42px;height:42px;border-radius:50%;
+    border:1.5px solid var(--white);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:600;letter-spacing:.05em;font-size:14px;
+  }
+  .nav .brand small{display:block;font-size:10px;opacity:.75;letter-spacing:.18em;margin-top:2px}
+  .nav .phone{
+    color:var(--white);font-weight:600;letter-spacing:.08em;font-size:14px;
+    border:1.5px solid var(--cyan);padding:10px 22px;border-radius:2px;
+    text-transform:uppercase;
+  }
+  .nav .phone:hover{background:var(--cyan);color:var(--white);opacity:1}
+
+  /* HERO */
+  .hero{
+    position:relative;height:100vh;min-height:680px;
+    background:url('exterior.png') center/cover no-repeat;
+    display:flex;align-items:flex-end;
+    color:var(--white);
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(15,42,64,.45) 0%,rgba(15,42,64,.15) 35%,rgba(15,42,64,.85) 100%);
+  }
+  .hero-content{
+    position:relative;z-index:2;
+    padding:0 60px 90px;max-width:1200px;
+  }
+  .accent-bar{
+    width:4px;height:64px;background:var(--cyan);margin-bottom:28px;
+  }
+  .eyebrow{
+    display:inline-block;
+    text-transform:uppercase;letter-spacing:.28em;font-size:13px;
+    font-weight:600;color:#fff;margin-bottom:22px;
+    background:var(--navy-deep);
+    padding:10px 18px;
+    border-left:3px solid var(--cyan);
+    text-shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+  .hero h1{
+    font-weight:300;font-size:64px;line-height:1.05;
+    letter-spacing:.02em;text-transform:uppercase;
+    margin-bottom:18px;
+  }
+  .hero h1 strong{font-weight:600}
+  .hero .sub{
+    font-size:18px;letter-spacing:.05em;font-weight:400;opacity:.95;max-width:640px;
+  }
+  .hero .scroll{
+    position:absolute;bottom:30px;left:50%;transform:translateX(-50%);
+    color:var(--white);font-size:11px;letter-spacing:.25em;text-transform:uppercase;
+    text-align:center;z-index:2;opacity:.85;
+  }
+  .hero .scroll span{display:block;font-size:18px;margin-top:6px}
+
+  /* SECTIONS */
+  section{padding:110px 60px}
+  .container{max-width:1200px;margin:0 auto}
+  .section-eyebrow{
+    text-transform:uppercase;letter-spacing:.28em;font-size:12px;
+    font-weight:500;color:var(--cyan);margin-bottom:14px;
+  }
+  h2{
+    font-weight:300;font-size:42px;letter-spacing:.04em;
+    text-transform:uppercase;color:var(--navy);margin-bottom:24px;line-height:1.15;
+  }
+  h2 strong{font-weight:600}
+  h3{
+    font-weight:600;font-size:22px;letter-spacing:.02em;
+    color:var(--navy);margin-bottom:14px;
+  }
+  p{margin-bottom:16px;font-size:17px}
+
+  /* PROPERTY OVERVIEW */
+  .overview{background:var(--white)}
+  .overview .grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+  .overview .stats{
+    display:grid;grid-template-columns:repeat(2,1fr);
+    gap:30px;margin-top:30px;
+    border-top:1px solid var(--gray-2);padding-top:30px;
+  }
+  .overview .stats div{border-left:3px solid var(--cyan);padding-left:18px}
+  .overview .stats .num{
+    font-size:32px;font-weight:300;color:var(--navy);letter-spacing:.02em;
+  }
+  .overview .stats .lbl{
+    font-size:11px;text-transform:uppercase;letter-spacing:.2em;color:#777;margin-top:4px;
+  }
+
+  /* GALLERY */
+  .gallery{background:var(--gray);padding-top:0}
+  .gallery .head{padding:110px 60px 50px;text-align:center;max-width:900px;margin:0 auto}
+  .gallery .grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:0;
+  }
+  .gallery .grid img{width:100%;height:520px;object-fit:cover}
+  .gallery .grid .caption{
+    background:var(--navy);color:var(--white);
+    padding:50px 50px;display:flex;flex-direction:column;justify-content:center;
+  }
+  .gallery .grid .caption .section-eyebrow{color:var(--cyan)}
+  .gallery .grid .caption h3{color:var(--white);font-size:28px;font-weight:300;letter-spacing:.06em;text-transform:uppercase}
+  .gallery .grid .caption p{color:rgba(255,255,255,.85);font-size:16px}
+
+  /* COMMUNITY */
+  .community{background:var(--navy);color:var(--white)}
+  .community h2{color:var(--white)}
+  .community p{color:rgba(255,255,255,.85)}
+  .community .grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+  .amenity-list{
+    list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:14px 30px;margin-top:14px;
+  }
+  .amenity-list li{
+    color:rgba(255,255,255,.92);font-size:15px;letter-spacing:.02em;
+    padding-left:18px;position:relative;
+  }
+  .amenity-list li::before{
+    content:"";position:absolute;left:0;top:11px;width:8px;height:1px;background:var(--cyan);
+  }
+
+  /* TEAM BRAG */
+  .team{background:var(--white);text-align:center}
+  .team .container{max-width:900px}
+  .team .badges{
+    display:flex;justify-content:center;gap:60px;margin-top:50px;flex-wrap:wrap;
+  }
+  .team .badge{
+    text-align:center;flex:1;min-width:200px;
+  }
+  .team .badge .num{
+    font-size:48px;font-weight:300;color:var(--navy);letter-spacing:.02em;
+  }
+  .team .badge .lbl{
+    font-size:11px;text-transform:uppercase;letter-spacing:.22em;color:#777;margin-top:6px;
+  }
+  .team .logo-block{
+    margin-top:60px;padding-top:50px;border-top:1px solid var(--gray-2);
+    display:flex;justify-content:center;align-items:center;gap:50px;flex-wrap:wrap;
+  }
+  .team .eb-mark{
+    display:inline-flex;align-items:center;gap:18px;color:var(--navy);
+    text-transform:uppercase;letter-spacing:.16em;font-size:13px;font-weight:500;
+  }
+  .team .eb-mark .mono{
+    width:54px;height:54px;border-radius:50%;
+    border:2px solid var(--navy);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:600;font-size:18px;letter-spacing:.05em;
+  }
+  .team .eb-mark small{display:block;font-size:10px;opacity:.7;letter-spacing:.2em;margin-top:3px}
+  .team .delliman{
+    color:var(--navy);font-weight:600;letter-spacing:.18em;
+    text-transform:uppercase;font-size:13px;border-left:1px solid var(--gray-2);padding-left:50px;
+  }
+  .team .delliman small{display:block;font-size:10px;opacity:.6;letter-spacing:.22em;margin-top:3px;font-weight:400}
+
+  /* CTA / FORM */
+  .cta{
+    background:linear-gradient(135deg,var(--navy) 0%,var(--navy-deep) 100%);
+    color:var(--white);
+  }
+  .cta h2{color:var(--white)}
+  .cta .grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+  .cta p{color:rgba(255,255,255,.9)}
+  .phone-block{
+    margin-top:34px;padding:32px;border:1px solid rgba(255,255,255,.18);
+    background:rgba(255,255,255,.04);
+  }
+  .phone-block .lbl{
+    font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--cyan);margin-bottom:12px;
+  }
+  .phone-block a{
+    color:var(--white);font-size:34px;font-weight:300;letter-spacing:.04em;display:inline-block;
+  }
+  .phone-block .note{font-size:13px;color:rgba(255,255,255,.7);margin-top:10px}
+
+  form{
+    background:var(--white);color:var(--text);padding:44px;
+  }
+  form h3{font-size:20px;letter-spacing:.04em;text-transform:uppercase;font-weight:600;margin-bottom:8px}
+  form .form-sub{font-size:14px;color:#666;margin-bottom:24px}
+  .field{margin-bottom:18px}
+  .field label{
+    display:block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+    color:#777;margin-bottom:6px;font-weight:500;
+  }
+  .field input,.field textarea,.field select{
+    width:100%;padding:14px 16px;border:1px solid var(--gray-2);
+    font-family:inherit;font-size:15px;color:var(--ink);
+    background:var(--white);border-radius:0;transition:border-color .2s;
+  }
+  .field input:focus,.field textarea:focus,.field select:focus{
+    outline:none;border-color:var(--cyan);
+  }
+  .field textarea{resize:vertical;min-height:90px}
+  button[type=submit]{
+    background:var(--cyan);color:var(--white);border:0;
+    padding:18px 40px;font-family:inherit;font-size:13px;font-weight:600;
+    letter-spacing:.18em;text-transform:uppercase;cursor:pointer;
+    width:100%;transition:background .2s;
+  }
+  button[type=submit]:hover{background:#0090c4}
+  .form-disclaimer{font-size:12px;color:#888;margin-top:14px;line-height:1.55}
+
+  /* FOOTER */
+  footer{
+    background:#0a1d2e;color:rgba(255,255,255,.7);
+    padding:60px 60px 40px;text-align:center;font-size:12px;letter-spacing:.1em;
+  }
+  footer .top{margin-bottom:14px;color:var(--white);letter-spacing:.18em;text-transform:uppercase;font-size:13px;font-weight:500}
+  footer a{color:var(--cyan)}
+
+  .legal-block{
+    max-width:900px;margin:40px auto 0;
+    text-align:left;
+    border-top:1px solid rgba(255,255,255,.12);
+    padding-top:30px;
+  }
+  .legal-heading{
+    color:var(--cyan);
+    text-transform:uppercase;letter-spacing:.22em;
+    font-size:11px;font-weight:600;
+    margin:18px 0 8px;
+  }
+  .legal-copy{
+    font-size:11px;line-height:1.7;letter-spacing:.02em;
+    color:rgba(255,255,255,.6);
+    margin-bottom:14px;
+  }
+  .disclaimer-caps{
+    font-size:10px;letter-spacing:.04em;color:rgba(255,255,255,.5);
+  }
+  .footer-bottom{
+    margin-top:30px;padding-top:20px;
+    border-top:1px solid rgba(255,255,255,.08);
+    font-size:11px;color:rgba(255,255,255,.5);letter-spacing:.1em;
+  }
+
+  @media (max-width:900px){
+    .nav{padding:14px 20px}
+    .nav .brand small{display:none}
+    section{padding:70px 24px}
+    .hero-content{padding:0 24px 60px}
+    .hero h1{font-size:38px}
+    h2{font-size:30px}
+    .overview .grid,.community .grid,.cta .grid{grid-template-columns:1fr;gap:50px}
+    .gallery .head{padding:70px 24px 30px}
+    .gallery .grid{grid-template-columns:1fr}
+    .gallery .grid img{height:340px}
+    .gallery .grid .caption{padding:36px 24px}
+    .amenity-list{grid-template-columns:1fr}
+    form{padding:30px 24px}
+    .team .delliman{border-left:0;padding-left:0;border-top:1px solid var(--gray-2);padding-top:20px}
+    footer{padding:40px 24px 30px}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#top" class="brand">
+    <span class="mono">EB</span>
+    <span>
+      The Edmund Bogen Team
+      <small>at Douglas Elliman</small>
+    </span>
+  </a>
+  <a href="tel:5614754386" class="phone">561.475.4386</a>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-content">
+    <div class="eyebrow">Just Listed &middot; Baywinds &middot; West Palm Beach</div>
+    <h1>2257 Egret Cove Drive<br><strong>A Resort Lifestyle Awaits</strong></h1>
+    <p class="sub">Refined living inside Baywinds — South Florida's premier 55+ resort-style community. Presented exclusively by The Edmund Bogen Team at Douglas Elliman.</p>
+  </div>
+  <div class="scroll">Scroll for Property Details<span>&#x2304;</span></div>
+</header>
+
+<!-- OVERVIEW -->
+<section class="overview">
+  <div class="container">
+    <div class="grid">
+      <div>
+        <div class="section-eyebrow">The Property</div>
+        <h2>An Address That <strong>Lives Like a Vacation</strong></h2>
+        <p>Tucked inside the gated enclave of Baywinds, 2257 Egret Cove Drive offers the easy elegance South Florida buyers are searching for — light-filled interiors, an entertainer's kitchen, and an exterior built for sunset patios and morning walks around the lake.</p>
+        <p>Whether you're right-sizing, relocating, or buying your forever-Florida home, this property checks every box: location, lifestyle, and long-term value.</p>
+      </div>
+      <div>
+        <img src="exterior.png" alt="2257 Egret Cove Drive exterior" style="height:420px;object-fit:cover;width:100%" />
+        <div class="stats">
+          <div><div class="num">55+</div><div class="lbl">Active Adult Community</div></div>
+          <div><div class="num">1,082</div><div class="lbl">Homes in Baywinds</div></div>
+          <div><div class="num">7,000</div><div class="lbl">Sq Ft Clubhouse</div></div>
+          <div><div class="num">10 mi</div><div class="lbl">to Downtown WPB</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery">
+  <div class="head">
+    <div class="section-eyebrow">Inside the Home</div>
+    <h2>Designed for the Way <strong>You Actually Live</strong></h2>
+    <p>Move-in ready interiors, indoor-outdoor flow, and finishes that feel current — not dated.</p>
+  </div>
+
+  <div class="grid">
+    <img src="livingroom.jpg" alt="Living room at 2257 Egret Cove Drive" />
+    <div class="caption">
+      <div class="section-eyebrow">Living</div>
+      <h3>Bright, Open, Effortless</h3>
+      <p>An open living area built for relaxed Florida days and easy entertaining — high ceilings, soft natural light, and a layout that works whether it's just the two of you or the grandkids are in town.</p>
+    </div>
+
+    <div class="caption">
+      <div class="section-eyebrow">Kitchen</div>
+      <h3>The Heart of the Home</h3>
+      <p>A chef-friendly kitchen with the workspace, storage, and gathering room today's buyers expect. Pour the coffee, plate the appetizers, and let conversation flow into the great room.</p>
+    </div>
+    <img src="kitchen.jpg" alt="Kitchen at 2257 Egret Cove Drive" />
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section class="community">
+  <div class="container">
+    <div class="grid">
+      <div>
+        <div class="section-eyebrow">The Community</div>
+        <h2>Welcome to <strong>Baywinds</strong></h2>
+        <p>Built by Lennar and bordered by serene wetlands, Baywinds is a 1,082-home gated 55+ community less than 10 miles from downtown West Palm Beach. The 7,000-square-foot Club Baywinds is the heartbeat — full-service fitness, resort pool, lap pool, spa, tennis, bocce, and a year-round social calendar run by a full-time activities director.</p>
+        <p>It's the rare community where you can be as active — or as private — as you want to be. World-class beaches, dining, PBI airport, and the Brightline are all minutes away.</p>
+      </div>
+      <div>
+        <h3 style="color:#fff;font-weight:300;letter-spacing:.06em;text-transform:uppercase;font-size:18px">Lifestyle &amp; Amenities</h3>
+        <ul class="amenity-list">
+          <li>Resort-Style Pool &amp; Spa</li>
+          <li>Lap &amp; Resistance Pools</li>
+          <li>Full-Service Fitness Center</li>
+          <li>Aerobics &amp; Dance Studio</li>
+          <li>Six Har-Tru Tennis Courts</li>
+          <li>Bocce &amp; Shuffleboard</li>
+          <li>Walking &amp; Biking Trails</li>
+          <li>Stocked Fishing Ponds</li>
+          <li>Card, Game &amp; Hobby Rooms</li>
+          <li>Performance Theater</li>
+          <li>Arts &amp; Crafts Studio</li>
+          <li>Gated, 24/7 Security</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team">
+  <div class="container">
+    <div class="section-eyebrow">Why The Edmund Bogen Team</div>
+    <h2>South Florida's <strong>Trusted Luxury Advisors</strong></h2>
+    <p style="max-width:720px;margin:0 auto">From Palm Beach to Miami, we deliver a proven track record of getting our sellers the most for their property — backed by the most powerful luxury brokerage in the country. When you list with us, you list with the team that delivers results.</p>
+
+    <div class="badges">
+      <div class="badge"><div class="num">$1B+</div><div class="lbl">In Career Sales Power</div></div>
+      <div class="badge"><div class="num">20+</div><div class="lbl">Years South Florida</div></div>
+      <div class="badge"><div class="num">5&#9733;</div><div class="lbl">Client Reviews</div></div>
+    </div>
+
+    <div class="logo-block">
+      <span class="eb-mark">
+        <span class="mono">EB</span>
+        <span>The Edmund Bogen Team<small>Luxury Real Estate</small></span>
+      </span>
+      <span class="delliman">
+        Douglas Elliman
+        <small>Real Estate</small>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / FORM -->
+<section class="cta" id="contact">
+  <div class="container">
+    <div class="grid">
+      <div>
+        <div class="section-eyebrow">Schedule a Private Showing</div>
+        <h2>Let's Find Your Place <strong>at 2257 Egret Cove</strong></h2>
+        <p>Serious buyers deserve a real conversation — not a chatbot. Call us directly, or send your information and we'll be in touch within the same business day with full property details, financials, and showing availability.</p>
+
+        <div class="phone-block">
+          <div class="lbl">Call or Text Edmund Directly</div>
+          <a href="tel:5614754386">561.475.4386</a>
+          <div class="note">Mon&ndash;Sat &middot; 8a&ndash;8p ET &middot; Habla Espa&ntilde;ol</div>
+        </div>
+      </div>
+
+      <form id="lead-form" action="https://formspree.io/f/mlgavjvz" method="POST">
+        <h3>Request Property Details</h3>
+        <p class="form-sub">Get full disclosures, floor plan, and HOA details delivered to your inbox.</p>
+        <div id="form-success" style="display:none;background:#0e7c4a;color:#fff;padding:18px 20px;margin-bottom:18px;font-size:14px;letter-spacing:.04em">
+          Thank you. Your request has been received — Edmund or a team member will be in touch within the same business day.
+        </div>
+        <div id="form-error" style="display:none;background:#a3231f;color:#fff;padding:14px 18px;margin-bottom:18px;font-size:13px">
+          Something went wrong. Please call us directly at 561.475.4386.
+        </div>
+
+        <div class="field">
+          <label for="name">Full Name</label>
+          <input id="name" name="name" type="text" required placeholder="Your full name" />
+        </div>
+        <div class="field">
+          <label for="email">Email Address</label>
+          <input id="email" name="email" type="email" required placeholder="you@email.com" />
+        </div>
+        <div class="field">
+          <label for="phone">Phone Number</label>
+          <input id="phone" name="phone" type="tel" required placeholder="(555) 555-5555" />
+        </div>
+        <div class="field">
+          <label for="interest">I am</label>
+          <select id="interest" name="interest">
+            <option>Interested in buying this home</option>
+            <option>Looking elsewhere in Baywinds</option>
+            <option>Considering selling a similar home</option>
+            <option>Just gathering information</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="message">Message (optional)</label>
+          <textarea id="message" name="message" placeholder="Anything we should know? Preferred showing times?"></textarea>
+        </div>
+        <input type="hidden" name="_subject" value="2257 Egret Cove Drive — Inquiry" />
+        <input type="hidden" name="property" value="2257 Egret Cove Drive, West Palm Beach, FL 33411" />
+        <button type="submit">Request Information</button>
+        <p class="form-disclaimer">By submitting, you consent to be contacted by The Edmund Bogen Team at Douglas Elliman regarding this property. We never share your information.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="top">The Edmund Bogen Team &middot; Douglas Elliman Real Estate</div>
+  <div>2257 Egret Cove Drive, West Palm Beach, FL 33411 &middot; <a href="tel:5614754386">561.475.4386</a></div>
+
+  <div class="legal-block">
+
+    <p class="legal-heading">AI Disclosure</p>
+    <p class="legal-copy">
+      This website and certain images presented herein have been enhanced or generated with the assistance of artificial intelligence tools. Visual representations may not depict the property in its exact current condition. Buyers are encouraged to inspect the property in person and to verify all material details prior to making any purchase decision.
+    </p>
+
+    <p class="legal-heading">Privacy Statement</p>
+    <p class="legal-copy">
+      The Edmund Bogen Team respects your privacy. Information you submit through this site (including name, email, phone number, and message content) is collected solely for the purpose of responding to your inquiry about this property or related real estate services. We do not sell, rent, or share your personal information with third parties for marketing purposes. Form submissions are processed and stored securely through our third-party form provider, Formspree. You may request removal of your information at any time by contacting us at 561.475.4386. By submitting any form on this site, you consent to be contacted by The Edmund Bogen Team via phone, text, or email.
+    </p>
+
+    <p class="legal-heading">Real Estate Disclaimer</p>
+    <p class="legal-copy disclaimer-caps">
+      &copy; 2026 DOUGLAS ELLIMAN REAL ESTATE. ALL MATERIAL PRESENTED HEREIN IS INTENDED FOR INFORMATION PURPOSES ONLY. WHILE THIS INFORMATION IS BELIEVED TO BE CORRECT, IT IS REPRESENTED SUBJECT TO ERRORS, OMISSIONS, CHANGES OR WITHDRAWAL WITHOUT NOTICE. ALL PROPERTY INFORMATION, INCLUDING, BUT NOT LIMITED TO SQUARE FOOTAGE, ROOM COUNT, NUMBER OF BEDROOMS AND THE SCHOOL DISTRICT IN PROPERTY LISTINGS SHOULD BE VERIFIED BY YOUR OWN ATTORNEY, ARCHITECT OR ZONING EXPERT. IF YOUR PROPERTY IS CURRENTLY LISTED WITH ANOTHER REAL ESTATE BROKER, PLEASE DISREGARD THIS OFFER. IT IS NOT OUR INTENTION TO SOLICIT THE OFFERINGS OF OTHER REAL ESTATE BROKERS. WE COOPERATE WITH THEM FULLY. EQUAL HOUSING OPPORTUNITY.
+    </p>
+
+  </div>
+
+  <div class="footer-bottom">&copy; 2026 The Edmund Bogen Team at Douglas Elliman Real Estate. All rights reserved.</div>
+</footer>
+
+<script>
+  (function(){
+    var form = document.getElementById('lead-form');
+    if(!form) return;
+    var success = document.getElementById('form-success');
+    var error   = document.getElementById('form-error');
+    var btn     = form.querySelector('button[type=submit]');
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      success.style.display = 'none';
+      error.style.display   = 'none';
+      btn.disabled = true;
+      var originalLabel = btn.textContent;
+      btn.textContent = 'Sending…';
+
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(function(res){
+        if(res.ok){
+          form.reset();
+          success.style.display = 'block';
+          success.scrollIntoView({behavior:'smooth', block:'center'});
+        } else {
+          res.json().then(function(data){
+            if(data && data.errors){
+              error.textContent = data.errors.map(function(er){return er.message}).join(', ');
+            }
+            error.style.display = 'block';
+          }).catch(function(){ error.style.display = 'block'; });
+        }
+      })
+      .catch(function(){ error.style.display = 'block'; })
+      .finally(function(){
+        btn.disabled = false;
+        btn.textContent = originalLabel;
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
