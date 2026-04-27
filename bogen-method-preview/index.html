@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<!--
+  THE BOGEN METHOD — Landing Page (rebuilt from Dream Team consensus, 2026-04-27)
+  CHANGE LOG vs. v1:
+   - Hero: H1 swapped to "You leave with the build, not the homework" (the remarkable line)
+   - Hero eyebrow now carries credibility chips ($1B+ closed, 200+ agents)
+   - Hero CTAs are imperative: "Join the Mastermind — $497/mo" + "Book a Discovery Call"
+   - Hero footer adds real dates (placeholder — Edmund to confirm)
+   - "$1B+ Closed" badge overlays the hero image
+   - Standing-promise band moved UP (under hero), content re-pointed so it doesn't duplicate H1
+   - Method section trimmed ~60% to a single paragraph
+   - New section: "This Is Not For You If…" — names the rejection (Godin)
+   - T3 price reveal changed from "By Engagement" to "Starting at $10,000/month" (Cardone anchor)
+   - Placeholder testimonials + yellow draft banner REMOVED — only real, sourced testimonials remain
+   - HTML comment marker left where Founding Member quotes drop in
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Bogen Method — You Leave With The Build, Not The Homework</title>
+  <meta name="description" content="The only AI program that doesn't stop at strategy. We execute with you. Three rooms — Learn, Apply, Install — for realtors and operators ready to deploy AI inside their business.">
+
+  <meta name="keywords" content="AI for realtors, AI mastermind, real estate AI coaching, Edmund Bogen, Bogen Method, AI implementation, brokerage AI, Douglas Elliman AI">
+  <meta name="author" content="Edmund Bogen">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://bogen.ai/the-bogen-method">
+
+  <meta property="og:type" content="product">
+  <meta property="og:url" content="https://bogen.ai/the-bogen-method">
+  <meta property="og:title" content="The Bogen Method — You Leave With The Build, Not The Homework">
+  <meta property="og:description" content="The only AI program that doesn't stop at strategy. We execute with you.">
+  <meta property="og:image" content="https://bogen.ai/images/edmund-bogen-method-hero.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/global.css">
+
+  <style>
+    :root {
+      --navy: #1a3e5c;
+      --navy-deep: #0d1620;
+      --cyan: #00a8e1;
+      --white: #ffffff;
+      --soft: rgba(255,255,255,0.85);
+      --muted: rgba(255,255,255,0.65);
+      --border: rgba(0, 168, 225, 0.25);
+    }
+
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+    /* HERO */
+    .method-hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+      color: var(--white);
+      padding: 5rem 1.5rem 4rem;
+      margin-top: 90px;
+      border-bottom: 2px solid var(--border);
+    }
+    .method-hero .hero-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .method-hero .hero-text { text-align: left; }
+    .method-hero .eyebrow {
+      letter-spacing: 0.2em;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+    }
+    .method-hero h1 {
+      font-size: clamp(2.4rem, 5.5vw, 4.5rem);
+      line-height: 1.05;
+      margin: 0 0 1.5rem;
+      font-weight: 700;
+    }
+    .method-hero h1 em {
+      color: var(--cyan);
+      font-style: normal;
+    }
+    .method-hero .tagline {
+      font-size: 1.35rem;
+      color: var(--soft);
+      margin: 0 0 1.5rem;
+      font-style: italic;
+      line-height: 1.5;
+    }
+    .method-hero .hero-body {
+      font-size: 1rem;
+      color: var(--muted);
+      margin: 0 0 2rem;
+      line-height: 1.7;
+      max-width: 560px;
+    }
+    .method-hero .cta-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.25rem;
+    }
+    .method-hero .hero-deadline {
+      font-size: 0.85rem;
+      color: var(--cyan);
+      letter-spacing: 0.05em;
+      margin: 0;
+    }
+
+    .hero-image-wrap { position: relative; }
+    .method-hero .hero-image {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+      border: 2px solid rgba(0, 168, 225, 0.3);
+      display: block;
+    }
+    .hero-badge {
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      background: var(--cyan);
+      color: var(--navy-deep);
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      padding: 0.6rem 1rem;
+      border-radius: 999px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 900px) {
+      .method-hero .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .method-hero .hero-text { text-align: center; }
+      .method-hero .cta-row { justify-content: center; }
+      .method-hero .hero-body { margin-left: auto; margin-right: auto; }
+    }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      font-size: 1rem;
+    }
+    .btn-primary { background: var(--cyan); color: var(--navy-deep); }
+    .btn-primary:hover { background: #4dc4ee; transform: translateY(-1px); }
+    .btn-outline { border: 2px solid var(--soft); color: var(--white); }
+    .btn-outline:hover { border-color: var(--cyan); color: var(--cyan); }
+
+    section { padding: 5rem 1.5rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .container-narrow { max-width: 760px; margin: 0 auto; }
+
+    /* STANDING PROMISE — moved directly under hero */
+    .standing-promise {
+      background: linear-gradient(135deg, var(--cyan) 0%, #007aa3 100%);
+      color: var(--navy-deep);
+      text-align: center;
+      padding: 4.5rem 1.5rem;
+    }
+    .standing-promise h2 {
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      margin-bottom: 0.75rem;
+      color: var(--navy-deep);
+    }
+    .standing-promise p {
+      font-size: 1.15rem;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.7;
+      color: rgba(13, 22, 32, 0.85);
+    }
+
+    /* PAIN */
+    .pain-section { background: #f8f9fb; color: #1a2332; }
+    .pain-section h2 { font-size: 2.5rem; margin-bottom: 2rem; text-align: center; }
+    .pain-list { font-size: 1.25rem; line-height: 2; text-align: center; color: #333; }
+    .pain-callout { margin-top: 2rem; font-size: 1.1rem; color: #555; text-align: center; font-style: italic; }
+
+    /* SHIFT */
+    .shift-section { background: var(--white); }
+    .shift-section h2 { font-size: 2.5rem; text-align: center; margin-bottom: 1.5rem; }
+    .shift-section p { font-size: 1.15rem; line-height: 1.8; color: #333; margin-bottom: 1.5rem; }
+
+    /* METHOD (TIGHT) */
+    .method-section { background: linear-gradient(180deg, #f8f9fb 0%, #ffffff 100%); }
+    .method-section h2 { font-size: 2.5rem; text-align: center; margin-bottom: 1.5rem; }
+    .method-section .lead { font-size: 1.2rem; line-height: 1.8; color: #333; text-align: center; max-width: 720px; margin: 0 auto; }
+    .method-section .closer { font-size: 1.2rem; line-height: 1.7; color: var(--navy); font-weight: 600; margin-top: 2rem; text-align: center; }
+
+    /* REJECTION */
+    .rejection-section { background: var(--navy-deep); color: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .rejection-section h2 { font-size: 2.25rem; text-align: center; margin-bottom: 2rem; color: var(--white); }
+    .rejection-list { list-style: none; padding: 0; max-width: 700px; margin: 0 auto; }
+    .rejection-list li { padding: 1rem 0 1rem 2rem; position: relative; font-size: 1.1rem; color: var(--soft); border-bottom: 1px solid rgba(255,255,255,0.06); line-height: 1.6; }
+    .rejection-list li::before { content: "✕"; position: absolute; left: 0; color: #ff7676; font-weight: 700; }
+    .rejection-callout { text-align: center; margin-top: 2.5rem; font-style: italic; color: var(--cyan); font-size: 1.15rem; }
+
+    /* THREE ROOMS */
+    .three-rooms { background: var(--navy-deep); color: var(--white); }
+    .three-rooms h2 { text-align: center; font-size: 2.5rem; margin-bottom: 1rem; }
+    .three-rooms .lead { text-align: center; color: var(--muted); font-size: 1.15rem; margin-bottom: 4rem; max-width: 700px; margin-left: auto; margin-right: auto; }
+    .room { background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 12px; padding: 2.5rem; margin-bottom: 2rem; }
+    .room-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; }
+    .room-eyebrow { letter-spacing: 0.2em; font-size: 0.75rem; text-transform: uppercase; color: var(--cyan); font-weight: 600; }
+    .room h3 { font-size: 2rem; margin: 0.25rem 0 0; }
+    .room-price { font-size: 1.5rem; font-weight: 600; color: var(--cyan); text-align: right; }
+    .room-price small { display: block; font-size: 0.8rem; color: var(--muted); font-weight: 400; margin-top: 0.25rem; }
+    .room-promise { font-size: 1.1rem; color: var(--soft); margin-bottom: 1.5rem; line-height: 1.7; }
+    .room ul { list-style: none; padding: 0; margin: 0 0 1.5rem; }
+    .room ul li { padding: 0.5rem 0 0.5rem 1.75rem; position: relative; color: var(--soft); line-height: 1.6; }
+    .room ul li::before { content: "→"; position: absolute; left: 0; color: var(--cyan); font-weight: 700; }
+    .room-guarantee { background: rgba(0, 168, 225, 0.08); border-left: 3px solid var(--cyan); padding: 1rem 1.25rem; margin: 1.5rem 0; font-style: italic; color: var(--soft); border-radius: 4px; }
+    .room-cta { text-align: center; margin-top: 1.5rem; }
+
+    /* TESTIMONIALS */
+    .testimonials { background: #f8f9fb; padding: 5rem 1.5rem; }
+    .testimonials h2 { text-align: center; font-size: 2.5rem; margin-bottom: 1rem; color: var(--navy); }
+    .testimonials .lead { text-align: center; font-size: 1.05rem; color: #555; margin-bottom: 3.5rem; max-width: 700px; margin-left: auto; margin-right: auto; }
+    .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; max-width: 900px; margin: 0 auto; }
+    .testimonial { background: var(--white); border-radius: 10px; padding: 2rem; border-left: 4px solid var(--cyan); box-shadow: 0 4px 16px rgba(26, 62, 92, 0.06); }
+    .testimonial-quote { font-size: 1.05rem; line-height: 1.7; color: #333; font-style: italic; margin-bottom: 1.25rem; }
+    .testimonial-attribution { font-size: 0.9rem; color: #666; font-weight: 600; }
+    .testimonial-source { font-size: 0.8rem; color: #888; margin-top: 0.25rem; font-weight: 400; }
+
+    /* HOW TO START */
+    .start-section { background: var(--white); }
+    .start-section h2 { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; }
+    .start-paths { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .start-path { border: 1px solid #e5e7eb; border-radius: 8px; padding: 2rem; text-align: center; transition: all 0.2s ease; }
+    .start-path:hover { border-color: var(--cyan); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26, 62, 92, 0.08); }
+    .start-path h4 { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 0.75rem; color: var(--navy); }
+    .start-path p { color: #555; font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.6; }
+    .start-path .btn { width: 100%; }
+
+    /* ABOUT */
+    .about-section { background: var(--navy-deep); color: var(--white); padding: 5rem 1.5rem; }
+    .about-section h3 { font-size: 2rem; margin-bottom: 1.5rem; color: var(--cyan); }
+    .about-section p { color: var(--soft); font-size: 1.05rem; line-height: 1.8; margin-bottom: 1rem; }
+
+    @media (max-width: 768px) {
+      .method-hero { padding: 4rem 1rem 3.5rem; }
+      .room { padding: 1.75rem; }
+      .room-header { flex-direction: column; align-items: flex-start; }
+      .room-price { text-align: left; }
+      .hero-badge { font-size: 0.75rem; padding: 0.5rem 0.85rem; bottom: 0.75rem; right: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="method-hero">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <div class="eyebrow">Bogen.ai · Luxury Real Estate Operator · Douglas Elliman</div>
+        <h1>You leave with <em>the build</em>,<br>not the homework.</h1>
+        <p class="tagline">The only AI program where you don't just learn the strategy — you leave with the build installed.</p>
+        <p class="hero-credibility" style="font-weight: 600; color: var(--cyan); font-size: 1.05rem; margin: 1rem 0; letter-spacing: 0.5px;">
+          Built inside REIGNation — the mastermind that has guided 200+ agents.
+        </p>
+        <p class="hero-body">
+          Three rooms. One promise. Built by a luxury real estate operator at Douglas Elliman who built the AI stack his business runs on — and now installs it inside yours.
+        </p>
+        <div class="cta-row">
+          <a href="#three-rooms" class="btn btn-primary">Join the Mastermind — $497/mo</a>
+        </div>
+        <p class="hero-deadline">
+          <strong>Founding 50 lock $497/mo as long as you stay an active member.</strong> Price climbs at every 50-member milestone. <a href="#ladder" style="color: var(--cyan); font-weight: 600;">See the ladder ↓</a>
+        </p>
+      </div>
+      <div class="hero-image-wrap">
+        <img src="edmund-bogen-method-hero.png" alt="Edmund Bogen" class="hero-image">
+      </div>
+    </div>
+  </section>
+
+  <!-- PHASE LADDER — new-construction pricing escalator (Founding 50 → Phase 4) -->
+  <section class="phase-ladder" id="ladder" style="background: linear-gradient(180deg, #f7fbfd 0%, #ffffff 100%); padding: 4rem 2rem; border-top: 3px solid var(--cyan);">
+    <div class="container" style="max-width: 1100px; margin: 0 auto;">
+      <div style="text-align: center; margin-bottom: 2.5rem;">
+        <div style="display: inline-block; background: var(--cyan); color: white; padding: 0.4rem 1rem; border-radius: 30px; font-size: 0.85rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1rem;">The Founding 50 → Phase 4 Ladder</div>
+        <h2 style="color: var(--navy); font-size: 2.2rem; margin: 0.5rem 0;">Like new construction — the price climbs as the build sells out.</h2>
+        <p style="font-size: 1.15rem; color: var(--muted); max-width: 720px; margin: 1rem auto 0;">
+          50 seats per phase. <strong style="color: var(--navy);">Each member locks the rate they join at — for as long as their membership stays active.</strong> When the program reaches 200 members, T1 closes to new buyers.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; margin: 2rem 0;">
+
+        <div style="background: white; border: 2px solid var(--cyan); border-radius: 12px; padding: 1.75rem 1.25rem; text-align: center; position: relative; box-shadow: 0 8px 24px rgba(0,168,225,0.12);">
+          <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--cyan); color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.7rem; font-weight: 700; letter-spacing: 1px;">OPEN NOW</div>
+          <div style="font-size: 0.85rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-bottom: 0.5rem;">Phase 1</div>
+          <div style="font-size: 1.05rem; color: var(--navy); font-weight: 700; margin-bottom: 1rem;">Founding 50</div>
+          <div style="font-size: 2.4rem; color: var(--navy); font-weight: 800; line-height: 1;">$497<span style="font-size: 1rem; color: var(--muted); font-weight: 500;">/mo</span></div>
+          <div style="font-size: 0.85rem; color: var(--muted); margin-top: 0.5rem;">Members 1–50</div>
+        </div>
+
+        <div style="background: white; border: 1px solid #d8e1e8; border-radius: 12px; padding: 1.75rem 1.25rem; text-align: center;">
+          <div style="font-size: 0.85rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-bottom: 0.5rem;">Phase 2</div>
+          <div style="font-size: 1.05rem; color: var(--navy); font-weight: 700; margin-bottom: 1rem;">Next 50</div>
+          <div style="font-size: 2.4rem; color: var(--navy); font-weight: 800; line-height: 1;">$597<span style="font-size: 1rem; color: var(--muted); font-weight: 500;">/mo</span></div>
+          <div style="font-size: 0.85rem; color: var(--muted); margin-top: 0.5rem;">Members 51–100</div>
+        </div>
+
+        <div style="background: white; border: 1px solid #d8e1e8; border-radius: 12px; padding: 1.75rem 1.25rem; text-align: center;">
+          <div style="font-size: 0.85rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-bottom: 0.5rem;">Phase 3</div>
+          <div style="font-size: 1.05rem; color: var(--navy); font-weight: 700; margin-bottom: 1rem;">Next 50</div>
+          <div style="font-size: 2.4rem; color: var(--navy); font-weight: 800; line-height: 1;">$697<span style="font-size: 1rem; color: var(--muted); font-weight: 500;">/mo</span></div>
+          <div style="font-size: 0.85rem; color: var(--muted); margin-top: 0.5rem;">Members 101–150</div>
+        </div>
+
+        <div style="background: white; border: 1px solid #d8e1e8; border-radius: 12px; padding: 1.75rem 1.25rem; text-align: center;">
+          <div style="font-size: 0.85rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-bottom: 0.5rem;">Phase 4</div>
+          <div style="font-size: 1.05rem; color: var(--navy); font-weight: 700; margin-bottom: 1rem;">Final 50</div>
+          <div style="font-size: 2.4rem; color: var(--navy); font-weight: 800; line-height: 1;">$797<span style="font-size: 1rem; color: var(--muted); font-weight: 500;">/mo</span></div>
+          <div style="font-size: 0.85rem; color: var(--muted); margin-top: 0.5rem;">Members 151–200</div>
+        </div>
+
+      </div>
+
+      <div style="background: var(--navy); color: white; padding: 1.5rem 2rem; border-radius: 10px; text-align: center; margin: 2rem 0 0;">
+        <p style="margin: 0; font-size: 1.05rem; line-height: 1.6;">
+          <strong style="color: var(--cyan);">When Phase 4 closes at 200 members, T1 closes to new buyers.</strong><br>
+          New buyers will be routed to the Coaching+ Cohort or a waitlist.
+        </p>
+      </div>
+
+      <p style="text-align: center; margin: 2rem 0 0; font-size: 0.95rem; color: var(--muted);">
+        Existing Mastermind members are grandfathered at their original rate as long as their membership stays active. Founding 50 status is in addition to grandfather status.
+      </p>
+
+      <div style="text-align: center; margin: 2rem 0 0;">
+        <a href="#three-rooms" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2rem;">Lock the Founding 50 Rate — $497/mo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STANDING PROMISE — moved here, content re-pointed so it doesn't duplicate H1 -->
+  <section class="standing-promise">
+    <div class="container-narrow">
+      <h2>Every tier. Every month. Every member.</h2>
+      <p>If you wanted theory, you would have stayed on YouTube for free.</p>
+    </div>
+  </section>
+
+  <!-- PAIN -->
+  <section class="pain-section">
+    <div class="container-narrow">
+      <h2>You've seen this before.</h2>
+      <div class="pain-list">
+        You've watched the videos.<br>
+        You've taken the courses.<br>
+        You've sat through the webinars.
+      </div>
+      <p class="pain-callout">
+        And you still don't have AI working <em>inside</em> your business. You have notes. Ideas. A folder of prompts you'll &ldquo;get to soon.&rdquo; You have homework — and a calendar that keeps eating it.
+      </p>
+      <p class="pain-callout" style="margin-top: 1rem; font-style: normal; font-weight: 500; color: var(--navy);">
+        That's not your fault. Almost every program in this space is built to teach. Not one of them is built to <strong>install</strong>.
+      </p>
+    </div>
+  </section>
+
+  <!-- SHIFT -->
+  <section class="shift-section">
+    <div class="container-narrow">
+      <h2>The Shift</h2>
+      <p>The realtors and operators who win the next decade won't be the ones who <em>understand</em> AI the best. They'll be the ones who <strong>deployed</strong> it the fastest.</p>
+      <p>Two agents at the same brokerage. Same market. Same database. One spends Saturday writing a CMA from scratch. The other has a custom GPT that produces a publication-ready CMA in nine minutes — branded, formatted, ready to send.</p>
+      <p>Same Saturday. Different business.</p>
+      <p style="font-weight: 600; color: var(--navy);">That gap is widening every week.</p>
+    </div>
+  </section>
+
+  <!-- METHOD (TRIMMED ~60%) -->
+  <section class="method-section">
+    <div class="container-narrow">
+      <h2>The Bogen Method</h2>
+      <p class="lead">
+        This program was built by a luxury real estate operator at Douglas Elliman who built the AI stack his own business runs on. Then realtors started asking how. So I started installing it. <strong>That's the program.</strong>
+      </p>
+      <p class="closer">
+        Three rooms. One promise: <em>we don't just strategize — we execute.</em>
+      </p>
+    </div>
+  </section>
+
+  <!-- REJECTION (NEW) -->
+  <section class="rejection-section">
+    <div class="container-narrow">
+      <h2>This Is Not For You If…</h2>
+      <ul class="rejection-list">
+        <li>You're a tire-kicker still in research mode — save your money and stay on YouTube</li>
+        <li>You want another video library to "get to someday" — there are free ones</li>
+        <li>You won't deploy what we build — execution is the deal, not optional</li>
+      </ul>
+      <p class="rejection-callout">If you're still here, you're our kind of operator.</p>
+    </div>
+  </section>
+
+  <!-- THREE ROOMS -->
+  <section class="three-rooms" id="three-rooms">
+    <div class="container">
+      <h2>The Three Rooms</h2>
+      <p class="lead">Two ways in: self-serve at the entry tier, application or discovery call for everything else.</p>
+
+      <div class="room">
+        <div class="room-header">
+          <div>
+            <div class="room-eyebrow">Room One — Learn</div>
+            <h3>Mastermind Membership</h3>
+          </div>
+          <div class="room-price">
+            $497<span style="font-size: 1rem; color: var(--muted);">/month</span>
+            <small>or $4,997/year (save $967)</small>
+          </div>
+        </div>
+        <p class="room-promise">
+          For realtors and operators starting their AI journey. You learn The Bogen Method alongside hundreds of operators, and you ship one deployable AI workflow every single month.
+        </p>
+        <p style="font-weight: 600; color: var(--navy); margin: 1rem 0 0.5rem;">Builds you'll ship in your first 90 days:</p>
+        <ul style="margin-bottom: 1.25rem;">
+          <li><strong>Listing Description Generator</strong> — branded, MLS-ready descriptions in under a minute</li>
+          <li><strong>CMA Engine</strong> — publication-ready Comparative Market Analysis in nine minutes</li>
+          <li><strong>Lead Nurture Sequence</strong> — automated multi-touch follow-up wired to your CRM</li>
+        </ul>
+        <p style="font-weight: 600; color: var(--navy); margin: 1rem 0 0.5rem;">What's included:</p>
+        <ul>
+          <li>Weekly group coaching call with Edmund — not a recording, a room</li>
+          <li>Quarterly 1:1 financial planning session at the start of every quarter</li>
+          <li><strong>Build of the Month</strong> — a named, deployable workflow you actually deploy</li>
+          <li>The AI Audit — a living document tracking your stack, gaps, and 90-day targets</li>
+          <li>Tech onboarding session — a Bogen team member ships one automation in your first 30 days</li>
+          <li>Private community where Edmund shows up daily</li>
+        </ul>
+        <div class="room-guarantee">
+          The guarantee: Deploy your first AI workflow in 30 days, or your next month is free.
+        </div>
+        <p style="color: var(--muted); font-size: 0.95rem; margin-top: 1rem;">
+          <strong style="color: var(--cyan);">Founding 50:</strong> First 50 new members lock $497/mo as long as their membership stays active. After that, the price climbs $100 every 50 members → $597 → $697 → $797. <a href="#ladder" style="color: var(--cyan); font-weight: 600;">See the ladder</a>.
+        </p>
+        <div class="room-cta">
+          <a href="#" class="btn btn-primary">Join Now — $497/month</a>
+        </div>
+      </div>
+
+      <div class="room">
+        <div class="room-header">
+          <div>
+            <div class="room-eyebrow">Room Two — Apply</div>
+            <h3>Coaching+ Cohort</h3>
+          </div>
+          <div class="room-price" style="font-size: 1.1rem;">
+            Application Required
+            <small>$2,500/month · 3-month minimum · 8–12 members</small>
+          </div>
+        </div>
+        <p class="room-promise">
+          For operators past the basics, ready to build alongside Edmund in a small cohort. This is where you go from "I'm using AI" to "AI is running my business."
+        </p>
+        <p style="font-weight: 600; color: var(--navy); margin: 1rem 0 0.5rem;">Custom builds we'll ship together:</p>
+        <ul style="margin-bottom: 1.25rem;">
+          <li><strong>Custom GPT for your niche</strong> — trained on your transactions, your voice, your market</li>
+          <li><strong>Listing-to-Launch Pipeline</strong> — listing intake → description → social → email blast, automated end-to-end</li>
+          <li><strong>Pipeline Intelligence Dashboard</strong> — your CRM data turned into weekly action items</li>
+        </ul>
+        <p style="font-weight: 600; color: var(--navy); margin: 1rem 0 0.5rem;">What's included:</p>
+        <ul>
+          <li>Weekly 90-minute cohort call — every member, every week, hot seats and live builds</li>
+          <li>Monthly 45-minute 1:1 with Edmund — strategy, pipeline, what to build next</li>
+          <li>One member-specific automation built collaboratively every month</li>
+          <li>Weekly Loom reviews of your builds</li>
+          <li>Direct Slack access — daily response from Edmund</li>
+          <li>Full Mastermind access bundled in</li>
+        </ul>
+        <div class="room-guarantee">
+          The guarantee: Ship one fully deployed AI workflow in your first 30 days, with measurable time savings, or your next month is free.
+        </div>
+        <p style="color: var(--muted); font-size: 0.95rem; margin-top: 1rem;">
+          <strong style="color: var(--cyan);">Graduation built in:</strong> When you've installed The Bogen Method and don't need ongoing coaching, you graduate. We tell you when to leave.
+        </p>
+        <div class="room-cta">
+          <a href="#" class="btn btn-primary">Apply Today</a>
+        </div>
+      </div>
+
+      <div class="room">
+        <div class="room-header">
+          <div>
+            <div class="room-eyebrow">Room Three — Install</div>
+            <h3>Done-With-You Partnership</h3>
+          </div>
+          <div class="room-price">
+            Starting at $10,000<span style="font-size: 1rem; color: var(--muted);">/month</span>
+            <small>12-month commitment · custom-priced per scope</small>
+          </div>
+        </div>
+        <p class="room-promise">
+          For brokerages, real estate teams, and business owners with $1M+ in revenue and a team to support. We don't coach you. We install The Bogen Method inside your operation.
+        </p>
+        <p style="font-weight: 600; color: var(--navy); margin: 1rem 0 0.5rem;">Examples of what we install:</p>
+        <ul style="margin-bottom: 1.25rem;">
+          <li><strong>Brokerage-wide Listing Engine</strong> — every agent ships branded listings in minutes, not hours</li>
+          <li><strong>Lead Routing &amp; Nurture Automation</strong> — inbound leads triaged, scored, and nurtured 24/7</li>
+          <li><strong>Operations Intelligence Layer</strong> — weekly market briefs, pipeline health, agent activity dashboards</li>
+        </ul>
+        <p style="font-weight: 600; color: var(--navy); margin: 1rem 0 0.5rem;">What's included:</p>
+        <ul>
+          <li>Weekly 60-minute strategy call with Edmund</li>
+          <li>12 hours per month of dedicated build capacity — workflows, automations, custom GPTs</li>
+          <li>Custom 12-month implementation roadmap delivered in your first 30 days</li>
+          <li>Quarterly business reviews against measurable outcomes</li>
+          <li>Priority Slack access, same-day response</li>
+          <li>Up to 5 Mastermind seats and 1 cohort seat for your team</li>
+        </ul>
+        <div class="room-guarantee">
+          The guarantee: First measurable revenue impact OR documented operational savings within 90 days, or we extend the engagement at no charge until delivered.
+        </div>
+        <p style="color: var(--muted); font-size: 0.95rem; margin-top: 1rem;">
+          For a $5M brokerage, the engagement floor is roughly 2.4% of revenue for a full AI transformation. The first build typically covers it.
+        </p>
+        <div class="room-cta">
+          <a href="#" class="btn btn-primary">Book My Discovery Call</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS — real-estate quotes pulled (wrong proof for an AI page).
+       Replace this section with Founding Member quotes as they come in. -->
+  <section class="testimonials">
+    <div class="container-narrow">
+      <h2>Founding Member Voices</h2>
+      <p class="lead">We're collecting quotes from the Founding Members deploying The Bogen Method right now. This page updates weekly as their builds ship.</p>
+      <div style="background: rgba(0,168,225,0.08); border-left: 4px solid var(--cyan); padding: 1.5rem 2rem; margin: 2rem auto; max-width: 720px; border-radius: 6px;">
+        <p style="margin: 0; font-style: italic; color: var(--navy); font-size: 1.05rem;">
+          Founding Member quotes loading. Want yours featured here? Join before May 31, 2026 — Founding Members get the page real estate AND the locked rate.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW TO START -->
+  <section class="start-section" id="start">
+    <div class="container">
+      <h2>How to Start</h2>
+      <div class="start-paths">
+        <div class="start-path">
+          <h4>Just Getting Started?</h4>
+          <p>You're a realtor or operator beginning your AI journey. Self-serve. No call required.</p>
+          <a href="#" class="btn btn-primary">Join Now — $497/mo</a>
+        </div>
+        <div class="start-path">
+          <h4>Already Using AI?</h4>
+          <p>You want a small cohort and direct work alongside Edmund. Apply for the next cohort.</p>
+          <a href="#" class="btn btn-primary">Apply Today</a>
+        </div>
+        <div class="start-path">
+          <h4>Run a Brokerage or Team?</h4>
+          <p>You want it installed across your operation. Schedule a discovery call with Edmund directly.</p>
+          <a href="#" class="btn btn-primary">Book My Call</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT EDMUND -->
+  <section class="about-section">
+    <div class="container-narrow">
+      <h3>About Edmund</h3>
+      <p>Edmund Bogen leads The Edmund Bogen Team at Douglas Elliman in South Florida and is the founder of Bogen.ai, an AI consulting firm. He is a luxury real estate operator, advises teams across multiple verticals on AI adoption, and has built the operating system his own business runs on.</p>
+      <p>He is the founder of REIGNation, a national mastermind that has guided over 200 agents across the country, and speaks at industry events on AI and the future of luxury real estate. He lives in Boca Raton with his wife Sam, their daughters Chloe and Sophie, and Coco the dog.</p>
+    </div>
+  </section>
+
+</body>
+</html>
