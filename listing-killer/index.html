@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The 10-Minute Listing Appointment Killer | Edmund Bogen</title>
-<meta name="description" content="The implementation workbook from Edmund Bogen's mastermind session. Win listing appointments in 10 minutes — proven scripts, frameworks, and AI-powered prep.">
+<meta name="description" content="The full implementation workbook from Edmund Bogen's mastermind session. Win listing appointments in 10 minutes with the Property X-Ray, Neighborhood Dossier, and Seller Psychology systems.">
 <meta property="og:title" content="The 10-Minute Listing Appointment Killer">
-<meta property="og:description" content="The implementation workbook from Edmund Bogen's mastermind session. Win listing appointments in 10 minutes.">
+<meta property="og:description" content="Win listing appointments in 10 minutes — proven AI-powered prep systems and 18 ready-to-use prompts.">
 <meta property="og:image" content="https://edmundbogen.github.io/listing-killer-hero.png">
 <meta property="og:url" content="https://edmundbogen.github.io/listing-killer/">
 <style>
@@ -15,33 +15,33 @@
     --navy-deep: #0d2436;
     --cyan: #00a8e1;
     --white: #ffffff;
-    --gray-light: #f4f4f4;
-    --gray-mid: #e8e8e8;
-    --text: #333333;
-
     --bg: #ffffff;
-    --bg-alt: #f4f4f4;
+    --bg-alt: #f6f8fa;
     --surface: #ffffff;
-    --text-color: #333333;
+    --text-color: #2a2a2a;
+    --text-muted: #5a6470;
     --heading: #1a3e5c;
-    --border: #e8e8e8;
-    --shadow: 0 4px 24px rgba(26, 62, 92, 0.08);
+    --border: #e3e8ec;
+    --prompt-bg: #f4f7fa;
+    --prompt-border: #00a8e1;
+    --shadow: 0 4px 24px rgba(26, 62, 92, 0.06);
 }
 
 [data-theme="dark"] {
     --bg: #0d2436;
     --bg-alt: #0a1c2a;
     --surface: #14304a;
-    --text-color: #e8e8e8;
+    --text-color: #d9e1ea;
+    --text-muted: #8da3b8;
     --heading: #ffffff;
     --border: #1f4565;
+    --prompt-bg: #0a1c2a;
+    --prompt-border: #00a8e1;
     --shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-
 html { scroll-behavior: smooth; }
-
 body {
     font-family: 'Helvetica Neue', 'Lato', 'Montserrat', Arial, sans-serif;
     background: var(--bg);
@@ -58,33 +58,24 @@ body {
     z-index: 100;
     background: var(--bg);
     border-bottom: 1px solid var(--border);
-    padding: 18px 40px;
+    padding: 16px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     transition: background 0.3s ease, border-color 0.3s ease;
+    backdrop-filter: blur(8px);
 }
 
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-}
+.brand { display: flex; align-items: center; gap: 14px; }
 
 .brand-mark {
-    width: 42px;
-    height: 42px;
+    width: 40px; height: 40px;
     border-radius: 50%;
     background: var(--navy);
     color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    font-size: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; letter-spacing: 0.05em; font-size: 13px;
 }
-
 [data-theme="dark"] .brand-mark { background: var(--cyan); color: var(--navy-deep); }
 
 .brand-text {
@@ -94,7 +85,6 @@ body {
     color: var(--heading);
     font-weight: 500;
 }
-
 .brand-text small {
     display: block;
     font-size: 9px;
@@ -103,29 +93,42 @@ body {
     margin-top: 2px;
 }
 
+.nav-actions { display: flex; align-items: center; gap: 12px; }
+
+.nav-pdf {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--cyan);
+    color: white;
+    padding: 9px 18px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+.nav-pdf:hover { background: #0095c8; transform: translateY(-1px); }
+.nav-pdf svg { width: 14px; height: 14px; }
+
 .theme-toggle {
     background: transparent;
     border: 1.5px solid var(--border);
     color: var(--heading);
-    padding: 8px 16px;
+    padding: 8px 14px;
     border-radius: 999px;
     cursor: pointer;
-    font-size: 13px;
+    font-size: 12px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    display: flex; align-items: center; gap: 8px;
     transition: all 0.2s ease;
 }
-
-.theme-toggle:hover {
-    border-color: var(--cyan);
-    color: var(--cyan);
-}
-
-.theme-toggle svg { width: 16px; height: 16px; }
+.theme-toggle:hover { border-color: var(--cyan); color: var(--cyan); }
+.theme-toggle svg { width: 15px; height: 15px; }
 [data-theme="light"] .icon-sun { display: none; }
 [data-theme="dark"] .icon-moon { display: none; }
 
@@ -133,27 +136,20 @@ body {
 .hero {
     background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
     color: white;
-    padding: 100px 40px 120px;
+    padding: 90px 40px 110px;
     text-align: center;
     position: relative;
     overflow: hidden;
     border-left: 6px solid var(--cyan);
 }
-
 .hero::before {
     content: '';
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
+    inset: 0;
     background: url('https://edmundbogen.github.io/listing-killer-hero.png') center/cover;
-    opacity: 0.15;
+    opacity: 0.13;
 }
-
-.hero-inner {
-    position: relative;
-    max-width: 900px;
-    margin: 0 auto;
-}
-
+.hero-inner { position: relative; max-width: 900px; margin: 0 auto; }
 .eyebrow {
     color: var(--cyan);
     font-size: 13px;
@@ -163,42 +159,30 @@ body {
     margin-bottom: 20px;
     display: inline-block;
 }
-
 .hero h1 {
-    font-size: clamp(36px, 6vw, 64px);
+    font-size: clamp(34px, 5.5vw, 60px);
     font-weight: 300;
     letter-spacing: 0.04em;
     text-transform: uppercase;
     line-height: 1.15;
     margin-bottom: 24px;
 }
-
-.hero h1 strong {
-    font-weight: 600;
-    color: var(--cyan);
-}
-
+.hero h1 strong { font-weight: 600; color: var(--cyan); }
 .hero-sub {
     font-size: 19px;
     line-height: 1.6;
-    max-width: 680px;
+    max-width: 700px;
     margin: 0 auto 40px;
     opacity: 0.92;
     font-weight: 300;
 }
-
-.cta-row {
-    display: flex;
-    gap: 16px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
+.cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
 .btn {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    padding: 18px 36px;
+    padding: 17px 34px;
     font-size: 14px;
     font-weight: 600;
     letter-spacing: 0.12em;
@@ -209,40 +193,30 @@ body {
     transition: all 0.2s ease;
     cursor: pointer;
 }
-
-.btn-primary {
-    background: var(--cyan);
-    color: var(--white);
-}
-
-.btn-primary:hover {
-    background: #0095c8;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0, 168, 225, 0.4);
-}
-
-.btn-secondary {
-    background: transparent;
-    color: var(--white);
-    border-color: var(--white);
-}
-
-.btn-secondary:hover {
-    background: var(--white);
-    color: var(--navy);
-}
-
+.btn-primary { background: var(--cyan); color: white; }
+.btn-primary:hover { background: #0095c8; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0, 168, 225, 0.4); }
+.btn-secondary { background: transparent; color: white; border-color: white; }
+.btn-secondary:hover { background: white; color: var(--navy); }
 .btn svg { width: 18px; height: 18px; }
 
-/* SECTIONS */
-section {
-    padding: 100px 40px;
+.file-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 28px;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.7;
 }
+.file-meta span::before { content: '•'; margin-right: 16px; color: var(--cyan); }
+.file-meta span:first-child::before { display: none; }
 
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-}
+/* SECTIONS */
+section { padding: 90px 40px; }
+.bg-alt { background: var(--bg-alt); }
+.container { max-width: 980px; margin: 0 auto; }
+.container-wide { max-width: 1100px; margin: 0 auto; }
 
 .section-eyebrow {
     color: var(--cyan);
@@ -250,12 +224,12 @@ section {
     font-weight: 600;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
 }
 
 .section-title {
     color: var(--heading);
-    font-size: clamp(32px, 4vw, 44px);
+    font-size: clamp(30px, 4vw, 42px);
     font-weight: 300;
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -265,157 +239,330 @@ section {
     padding-left: 20px;
 }
 
+h3.sub {
+    color: var(--heading);
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin: 36px 0 14px;
+    line-height: 1.3;
+}
+
+h4.sub {
+    color: var(--cyan);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 28px 0 10px;
+}
+
+p { margin-bottom: 16px; }
+ul, ol { margin: 14px 0 18px 26px; }
+li { margin-bottom: 8px; }
+
 .lead {
     font-size: 19px;
     line-height: 1.7;
     margin-bottom: 24px;
-    max-width: 800px;
+    max-width: 820px;
 }
 
-/* WHAT'S INSIDE - GRID */
-.bg-alt { background: var(--bg-alt); }
-
-.grid {
+/* MISSION GRID */
+.two-col {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 28px;
-    margin-top: 50px;
+    margin: 28px 0;
 }
 
-.card {
+.callout {
     background: var(--surface);
-    padding: 36px 32px;
+    border-left: 4px solid var(--cyan);
+    padding: 24px 28px;
     border-radius: 4px;
-    border-left: 3px solid var(--cyan);
     box-shadow: var(--shadow);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin: 16px 0;
 }
+.callout strong { color: var(--heading); }
 
-.card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 36px rgba(26, 62, 92, 0.12);
+.callout-dark {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+    color: white;
+    padding: 28px 32px;
+    border-left: 6px solid var(--cyan);
+    border-radius: 4px;
+    margin: 24px 0;
 }
-
-.card-num {
+.callout-dark h4 {
     color: var(--cyan);
-    font-size: 13px;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+/* TOOL TABLE */
+.tool-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    border-radius: 4px;
+    overflow: hidden;
+}
+.tool-table th {
+    background: var(--navy);
+    color: white;
+    text-align: left;
+    padding: 14px 18px;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+.tool-table td {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    font-size: 15px;
+}
+.tool-table tr:last-child td { border-bottom: none; }
+.tool-table strong { color: var(--heading); }
+
+/* SYSTEM SECTION */
+.system-tag {
+    display: inline-block;
+    background: var(--cyan);
+    color: white;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    font-weight: 700;
+    border-radius: 2px;
+    margin-bottom: 18px;
+}
+.system-subtitle {
+    color: var(--cyan);
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 28px;
+    letter-spacing: 0.02em;
+}
+
+/* PROMPTS */
+.prompts-intro {
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-bottom: 28px;
+    font-style: italic;
+}
+
+.prompt-card {
+    background: var(--prompt-bg);
+    border-left: 4px solid var(--cyan);
+    padding: 24px 28px;
+    border-radius: 4px;
+    margin-bottom: 22px;
+    position: relative;
+}
+
+.prompt-label {
+    color: var(--cyan);
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.15em;
+    text-transform: uppercase;
     margin-bottom: 12px;
 }
 
-.card h3 {
-    color: var(--heading);
-    font-size: 20px;
+.prompt-body {
+    font-family: 'SF Mono', 'Monaco', 'Menlo', 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--text-color);
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.copy-btn {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background: transparent;
+    border: 1.5px solid var(--cyan);
+    color: var(--cyan);
+    padding: 6px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
     font-weight: 600;
-    letter-spacing: 0.02em;
-    margin-bottom: 12px;
-    line-height: 1.3;
+    transition: all 0.2s ease;
+}
+.copy-btn:hover { background: var(--cyan); color: white; }
+.copy-btn.copied { background: var(--cyan); color: white; }
+
+/* 30-DAY PLAN */
+.week-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 22px;
+    margin-top: 30px;
+}
+.week-card {
+    background: var(--surface);
+    border-top: 4px solid var(--cyan);
+    padding: 26px 26px 22px;
+    border-radius: 4px;
+    box-shadow: var(--shadow);
+}
+.week-card h4 {
+    color: var(--heading);
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    font-weight: 700;
+}
+.week-card ul { list-style: none; margin: 0; padding: 0; }
+.week-card li {
+    padding: 8px 0 8px 28px;
+    position: relative;
+    font-size: 14.5px;
+    line-height: 1.5;
+    border-bottom: 1px solid var(--border);
+}
+.week-card li:last-child { border-bottom: none; }
+.week-card li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 12px;
+    width: 16px; height: 16px;
+    border: 1.5px solid var(--cyan);
+    border-radius: 3px;
 }
 
-.card p {
-    font-size: 15px;
-    line-height: 1.6;
-    opacity: 0.85;
+/* MANIFESTO */
+.manifesto {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+    color: white;
+    padding: 60px 50px;
+    border-left: 6px solid var(--cyan);
+    border-radius: 4px;
+    font-style: italic;
+    font-size: 19px;
+    line-height: 1.8;
+    margin: 30px 0;
 }
+.manifesto p { margin-bottom: 18px; }
+.manifesto p:last-child { margin-bottom: 0; }
 
-/* DOWNLOAD CTA SECTION */
+/* DOWNLOAD SECTION */
 .download-section {
     background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
     color: white;
     text-align: center;
     border-left: 6px solid var(--cyan);
 }
-
 .download-section .section-title {
     color: white;
-    border-left-color: var(--cyan);
-    display: inline-block;
     border-left: none;
     padding-left: 0;
+    display: inline-block;
 }
-
 .download-section p {
     font-size: 19px;
     max-width: 680px;
-    margin: 0 auto 40px;
+    margin: 0 auto 36px;
     opacity: 0.92;
     font-weight: 300;
 }
 
-.file-meta {
-    display: inline-flex;
-    align-items: center;
-    gap: 16px;
-    margin-top: 28px;
-    font-size: 13px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    opacity: 0.7;
-}
-
-.file-meta span::before {
-    content: '•';
-    margin-right: 16px;
-    color: var(--cyan);
-}
-
-.file-meta span:first-child::before { display: none; }
-
 /* FOOTER */
 footer {
     background: var(--bg-alt);
-    padding: 60px 40px 40px;
+    padding: 56px 40px 36px;
     text-align: center;
     border-top: 1px solid var(--border);
 }
-
 .footer-brand {
     color: var(--heading);
     font-size: 12px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     font-weight: 500;
 }
-
-.footer-tagline {
-    font-size: 14px;
-    opacity: 0.7;
-    margin-bottom: 24px;
-}
-
+.footer-tagline { font-size: 14px; opacity: 0.7; margin-bottom: 22px; }
 .footer-links {
     display: flex;
     justify-content: center;
     gap: 24px;
     flex-wrap: wrap;
-    font-size: 13px;
+    font-size: 12px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
 }
-
 .footer-links a {
     color: var(--cyan);
     text-decoration: none;
     transition: opacity 0.2s ease;
 }
-
 .footer-links a:hover { opacity: 0.7; }
-
 .footer-fineprint {
-    margin-top: 32px;
+    margin-top: 28px;
     font-size: 11px;
     opacity: 0.5;
     letter-spacing: 0.08em;
 }
 
-@media (max-width: 640px) {
-    .nav { padding: 14px 20px; }
+/* TOC */
+.toc {
+    background: var(--surface);
+    padding: 32px 36px;
+    border-left: 4px solid var(--cyan);
+    border-radius: 4px;
+    box-shadow: var(--shadow);
+    margin: 30px 0;
+}
+.toc h4 {
+    color: var(--heading);
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    font-weight: 700;
+}
+.toc ol {
+    margin: 0;
+    padding-left: 22px;
+}
+.toc li {
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+.toc a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    border-bottom: 1px dotted transparent;
+}
+.toc a:hover { color: var(--cyan); border-bottom-color: var(--cyan); }
+
+@media (max-width: 720px) {
+    .nav { padding: 12px 18px; flex-wrap: wrap; gap: 10px; }
     .brand-text { font-size: 10px; }
-    .hero { padding: 70px 24px 90px; }
-    section { padding: 70px 24px; }
-    .btn { padding: 16px 26px; font-size: 13px; }
+    .brand-text small { font-size: 8px; }
+    .hero { padding: 60px 22px 80px; }
+    section { padding: 60px 22px; }
+    .btn { padding: 14px 24px; font-size: 13px; }
+    .manifesto { padding: 40px 28px; font-size: 17px; }
+    .prompt-card { padding: 20px 20px 22px; }
+    .copy-btn { position: static; margin-bottom: 14px; }
 }
 </style>
 </head>
@@ -425,89 +572,479 @@ footer {
     <div class="brand">
         <div class="brand-mark">EB</div>
         <div class="brand-text">
-            The Edmund Bogen Team
-            <small>at Douglas Elliman Real Estate</small>
+            Bogen.ai
+            <small>AI Systems for Real Estate</small>
         </div>
     </div>
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        <span id="themeLabel">Dark</span>
-    </button>
+    <div class="nav-actions">
+        <a href="https://edmundbogen.github.io/listing-killer-workbook.pdf" class="nav-pdf" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            PDF
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <span id="themeLabel">Dark</span>
+        </button>
+    </div>
 </nav>
 
 <header class="hero">
     <div class="hero-inner">
         <span class="eyebrow">Mastermind Implementation Workbook</span>
         <h1>The 10-Minute<br><strong>Listing Appointment Killer</strong></h1>
-        <p class="hero-sub">A field-tested playbook for winning listings in the first 10 minutes — proven scripts, AI-powered prep, and the exact frameworks Edmund's team uses to convert sellers on the spot.</p>
+        <p class="hero-sub">A field-tested playbook for winning listing appointments in the first 10 minutes — three intelligence systems, eighteen ready-to-use prompts, and the exact frameworks that turn unprepared agents into closing machines.</p>
         <div class="cta-row">
             <a href="https://edmundbogen.github.io/listing-killer-workbook.pdf" class="btn btn-primary" download>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
                 Download the PDF
             </a>
-            <a href="#whats-inside" class="btn btn-secondary">What's Inside +</a>
+            <a href="#mission" class="btn btn-secondary">Read Online +</a>
         </div>
         <div class="file-meta">
-            <span>PDF</span>
-            <span>2.5 MB</span>
-            <span>Print-Ready</span>
+            <span>15 Pages</span>
+            <span>18 Prompts</span>
+            <span>Print-Ready PDF</span>
         </div>
     </div>
 </header>
 
-<section id="whats-inside" class="bg-alt">
+<!-- MISSION -->
+<section id="mission">
     <div class="container">
-        <div class="section-eyebrow">What's Inside</div>
-        <h2 class="section-title">The Workbook</h2>
-        <p class="lead">An implementation guide built for working agents — not theory. Every page is designed to be filled out, used in the field, and applied to your next listing appointment.</p>
+        <div class="section-eyebrow">Your Money-Making Mission</div>
+        <h2 class="section-title">Why You're Here</h2>
 
-        <div class="grid">
-            <div class="card">
-                <div class="card-num">01</div>
-                <h3>The 10-Minute Framework</h3>
-                <p>The exact pacing, sequence, and language patterns that turn a seller's first impression into a signed listing.</p>
+        <div class="two-col">
+            <div>
+                <h4 class="sub">The Mission</h4>
+                <p>To install a 10-minute intelligence system that turns every listing appointment into a signed contract — by walking in more prepared than any agent you'll ever compete against.</p>
             </div>
-            <div class="card">
-                <div class="card-num">02</div>
-                <h3>AI-Powered Pre-Appointment Prep</h3>
-                <p>Prompts and workflows for instant comp pulls, neighborhood briefs, and seller profiling before you walk in the door.</p>
+            <div>
+                <h4 class="sub">The Goal</h4>
+                <p>Master the Property X-Ray, Neighborhood Dossier, and Seller Psychology Profile — and run your first live research cycle today.</p>
             </div>
-            <div class="card">
-                <div class="card-num">03</div>
-                <h3>Objection Handlers</h3>
-                <p>Word-for-word scripts for the seven objections that kill 90% of listing appointments — and how to flip them.</p>
+        </div>
+
+        <div class="callout-dark">
+            <h4>Success Metric — 30 Days</h4>
+            <p style="margin-bottom: 0;">Win <strong style="color: var(--cyan);">at least 2 additional listings</strong> this month using your new intelligence system — conservatively worth <strong style="color: var(--cyan);">$15,000–$40,000+</strong> in commission.</p>
+        </div>
+
+        <h3 class="sub">The Three Intelligence Systems</h3>
+
+        <div class="callout">
+            <p style="margin: 0;"><strong>1. The Property X-Ray</strong> — Know the property better than the seller. Purchase history, permits, liens, ownership chain, and market positioning in 10 minutes.</p>
+        </div>
+        <div class="callout">
+            <p style="margin: 0;"><strong>2. The Neighborhood Dossier</strong> — Build a 12-page hyper-local market intelligence report that makes every other agent's CMA look like a grocery receipt.</p>
+        </div>
+        <div class="callout">
+            <p style="margin: 0;"><strong>3. The Seller Psychology Profile</strong> — Decode motivation before you knock. Know their "why," their pressure points, and the exact number that gets the signature.</p>
+        </div>
+
+        <h3 class="sub">The Tool Stack</h3>
+        <table class="tool-table">
+            <thead>
+                <tr><th>Tool</th><th>Best For</th><th>Cost</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>ChatGPT Deep Research</strong></td><td>Full-property dossiers, multi-source synthesis</td><td>$20/mo (Plus)</td></tr>
+                <tr><td><strong>Perplexity Pro</strong></td><td>Real-time web data, recent listings, local news</td><td>$20/mo</td></tr>
+                <tr><td><strong>Claude</strong></td><td>Seller psychology, motivation analysis, scripting</td><td>$20/mo</td></tr>
+            </tbody>
+        </table>
+        <p style="font-style: italic; color: var(--text-muted); font-size: 15px;">You don't need all three to start. Pick one and run the system today.</p>
+
+        <div class="toc">
+            <h4>What's In This Workbook</h4>
+            <ol>
+                <li><a href="#system-1">System 01 — The Property X-Ray</a></li>
+                <li><a href="#system-2">System 02 — The Neighborhood Dossier</a></li>
+                <li><a href="#system-3">System 03 — The Seller Psychology Profile</a></li>
+                <li><a href="#plan">Your 30-Day Implementation Plan</a></li>
+                <li><a href="#manifesto">Closing Manifesto</a></li>
+                <li><a href="#download">Download the Printable Workbook (PDF)</a></li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+<!-- SYSTEM 1 -->
+<section class="bg-alt" id="system-1">
+    <div class="container">
+        <div class="system-tag">System 01</div>
+        <h2 class="section-title">The Property X-Ray</h2>
+        <p class="system-subtitle">The $40,000 Preparation Gap Killer</p>
+
+        <h3 class="sub">What This Means for Your Bank Account</h3>
+        <ul>
+            <li><strong>Win more listings:</strong> Every appointment you out-prepare is a commission you capture.</li>
+            <li><strong>Win at higher prices:</strong> Sellers sign faster when they believe you understand the asset better than they do.</li>
+            <li><strong>Win against local "veterans":</strong> Neutralize 20-year market experience with 10 minutes of AI-powered intelligence.</li>
+        </ul>
+
+        <h3 class="sub">The Intelligence Technology Behind Your Advantage</h3>
+
+        <h4 class="sub">What Deep Research Actually Does</h4>
+        <p>Deep research tools don't "search" — they investigate. ChatGPT Deep Research, Perplexity Pro, and Claude can spend 5–15 minutes reading 30–50 web sources on your behalf, cross-referencing public records, tax data, MLS history, news, and permit filings, then synthesize it all into a single intelligence brief. This is the equivalent of handing an unpaid junior analyst a full research assignment — except it's done before you finish your coffee.</p>
+
+        <h4 class="sub">Why This Changes Everything in Listings</h4>
+        <p>The listing appointment has always been decided in the first 90 seconds. It's a competence test. The agent who sounds most prepared wins. Historically, "most prepared" meant "most experienced." Now it means "most intelligent" — and intelligence is now on-demand. A 30-year veteran is still guessing at the permit history. You'll quote the dates.</p>
+
+        <h4 class="sub">The Early Adopter Advantage</h4>
+        <p>In six months this will be table stakes. Right now, fewer than 3% of agents are running deep research before listing appointments. That gap is your moat — but only if you act before your market catches up.</p>
+
+        <h4 class="sub">Real Revenue Applications</h4>
+        <ul>
+            <li>Pre-appointment briefing (10 min before you walk in the door)</li>
+            <li>Pricing confidence — knowing permit investments justifies your number</li>
+            <li>Objection preemption — you address the seller's concern before they raise it</li>
+            <li>Marketing angle generation — the renovation history IS the listing's story</li>
+            <li>Due diligence warnings — flag title issues before they kill a deal</li>
+        </ul>
+
+        <h3 class="sub">The Profit-Generating Prompts</h3>
+        <p class="prompts-intro">Copy directly into ChatGPT Deep Research, Perplexity Pro, or Claude. Replace bracketed text with the listing details.</p>
+
+        <div class="prompt-card">
+            <div class="prompt-label">Prompt 1 — Full Property Intelligence Dossier</div>
+            <button class="copy-btn" data-copy>Copy</button>
+            <div class="prompt-body">You are a senior real estate research analyst preparing a listing appointment brief. Build a complete intelligence dossier on the property at [FULL ADDRESS, CITY, STATE, ZIP].
+
+Include: (1) purchase history with dates and prices, (2) tax assessment history for the last 5 years, (3) permit filings and recorded renovations, (4) any recorded liens, judgments, or encumbrances, (5) prior listing attempts with dates, list prices, DOM, and withdrawal/sale outcomes, (6) estimated current mortgage balance based on public records, (7) any news mentions or public records about the property or its owners.
+
+Cite every source. Flag anything unverifiable. End with a "Listing Appointment Briefing" section summarizing the 5 things I must know before I walk in the door.</div>
+        </div>
+
+        <div class="prompt-card">
+            <div class="prompt-label">Prompt 2 — Ownership Chain & Owner Profile</div>
+            <button class="copy-btn" data-copy>Copy</button>
+            <div class="prompt-body">Research the current owners of [ADDRESS]. I need: (1) full ownership history including prior owners, (2) how long current owners have held the property, (3) any LLC or trust ownership structures, (4) the owners' business affiliations and professional backgrounds (LinkedIn, business filings, news), (5) any other properties they own in [COUNTY/STATE], (6) recent life-event signals — job changes, relocations, divorces, deaths, business sales — that might be motivating the sale.
+
+Be thorough but only use public sources. Flag anything speculative.</div>
+        </div>
+
+        <div class="prompt-card">
+            <div class="prompt-label">Prompt 3 — Renovation & Permit Archaeology</div>
+            <button class="copy-btn" data-copy>Copy</button>
+            <div class="prompt-body">Pull the complete permit history for [ADDRESS]. For each permit: date filed, type of work, estimated value, contractor on record, and whether it was closed/finalized. Then calculate the total documented capital investment in the property and identify any major systems that have NOT been updated (roof, HVAC, electrical, plumbing, impact windows if Florida).
+
+End with a one-paragraph summary of the "renovation story" I can use to justify my listing price.</div>
+        </div>
+
+        <div class="prompt-card">
+            <div class="prompt-label">Prompt 4 — Prior Listing Attempts & Market History</div>
+            <button class="copy-btn" data-copy>Copy</button>
+            <div class="prompt-body">Has [ADDRESS] been listed for sale before? If so, for each prior listing: the list agent, brokerage, list date, original price, final price, days on market, whether it sold or was withdrawn, and any price reductions with dates. If it was withdrawn, investigate why (news, owner changes, refinance events). Include any rental listings as well.
+
+Conclude with: what this listing history tells me about the owner's expectations and past disappointments.</div>
+        </div>
+
+        <div class="prompt-card">
+            <div class="prompt-label">Prompt 5 — The "What the Seller Doesn't Want You to Know" Audit</div>
+            <button class="copy-btn" data-copy>Copy</button>
+            <div class="prompt-body">Investigate [ADDRESS] for any issues a seller might not volunteer: open permits, code violations, unpaid HOA dues, pending litigation, insurance claims, flood zone or sinkhole risk changes, boundary disputes, environmental concerns, or adverse proximity issues (new development, zoning changes, infrastructure projects). Check local news, municipal records, and public databases.
+
+Flag everything as "Confirmed" or "Signal — verify before listing."</div>
+        </div>
+
+        <div class="prompt-card">
+            <div class="prompt-label">Prompt 6 — The 10-Minute Appointment Briefing Summary</div>
+            <button class="copy-btn" data-copy>Copy</button>
+            <div class="prompt-body">Take everything you've gathered on [ADDRESS] and the owners and compress it into a 1-page listing appointment briefing. Structure:
+
+1. THE 3 THINGS I MUST KNOW before I walk in
+2. THE SELLER'S LIKELY MOTIVATION (best guess based on signals)
+3. 3 TALKING POINTS that will demonstrate I've done my homework
+4. 2 POTENTIAL OBJECTIONS and how to preempt them
+5. MY CONFIDENCE PRICE RANGE with rationale
+
+Keep it tight. I'm reading this in the car 10 minutes before I knock.</div>
+        </div>
+    </div>
+</section>
+
+<!-- SYSTEM 2 -->
+<section id="system-2">
+    <div class="container">
+        <div class="system-tag">System 02</div>
+        <h2 class="section-title">The Neighborhood Dossier</h2>
+        <p class="system-subtitle">The CMA-Killer That Wins Luxury Listings</p>
+
+        <h3 class="sub">What This Means for Your Bank Account</h3>
+        <ul>
+            <li><strong>Higher list prices accepted:</strong> Sellers sign at YOUR number when you document the market story.</li>
+            <li><strong>Luxury listings won:</strong> High-end sellers demand institutional-grade analysis. Now you can deliver it.</li>
+            <li><strong>Referrals multiplied:</strong> The Neighborhood Dossier becomes a leave-behind that ends up on neighbors' coffee tables.</li>
+        </ul>
+
+        <h3 class="sub">The Market Intelligence Layer Above the MLS</h3>
+
+        <h4 class="sub">Why a CMA Is No Longer Enough</h4>
+        <p>Every agent pulls the same comps. The MLS is a commoditized data source. The Neighborhood Dossier adds the layers the MLS doesn't capture: new development pipelines, zoning shifts, school boundary changes, tax increment districts, luxury amenity openings, and — critically — what the other agents in this zip code are doing right now. Sellers don't sign because of comps. They sign because they believe you understand the market's <em>future</em>, not just its past.</p>
+
+        <h4 class="sub">Why This Changes Everything</h4>
+        <p>For 40 years, the agent with the thickest CMA won. Now the agent with the best <em>market narrative</em> wins. Deep research tools can build that narrative in minutes — pulling news, permits, municipal planning docs, real estate industry reports, and competitive agent activity into a single cohesive story about where this specific neighborhood is headed.</p>
+
+        <h4 class="sub">The Early Adopter Advantage</h4>
+        <p>Most agents are still copying Zillow's "market trends" graph into a listing presentation. That's embarrassing. You'll deliver a 12-page branded intelligence brief that reads like something a private wealth firm would produce. That's the gap. It's wide right now. It will close.</p>
+
+        <h4 class="sub">Real Revenue Applications</h4>
+        <ul>
+            <li>Listing presentation leave-behind (sellers show it to neighbors — free referrals)</li>
+            <li>Pre-listing seller education (softens them to your pricing)</li>
+            <li>Buyer presentation at a new price point ("why this neighborhood is underpriced")</li>
+            <li>Open house lead magnet (emails for the full report)</li>
+            <li>Social media content engine (pull quotes, charts, insights for weeks)</li>
+        </ul>
+
+        <h3 class="sub">The Profit-Generating Prompts</h3>
+
+        <div class="prompt-card">
+            <div class="prompt-label">Prompt 1 — Hyper-Local Market Intelligence Report</div>
+            <button class="copy-btn" data-copy>Copy</button>
+            <div class="prompt-body">Build a comprehensive market intelligence report on [NEIGHBORHOOD/COMMUNITY NAME], [CITY, STATE, ZIP].
+
+Cover: (1) 5-year price-per-square-foot trend, (2) average days-on-market trend by year, (3) inventory levels and absorption rate, (4) list-to-sale price ratios, (5) recent notable sales above $[PRICE POINT], (6) active and upcoming new construction projects, (7) infrastructure or zoning changes in the last 24 months, (8) school rating changes, (9) any news about luxury amenities opening nearby, (10) demographic shifts.
+
+End with a "Where This Market Is Heading" section — 3 paragraphs of narrative about the next 18 months. Cite every source.</div>
+        </div>
+
+        <div class="prompt-card">
+            <div class="prompt-label">Prompt 2 — Days-on-Market Pattern Analysis by Street / Micro-Market</div>
+            <button class="copy-btn" data-copy>Copy</button>
+            <div class="prompt-body">Within [NEIGHBORHOOD / ZIP CODE], analyze DOM patterns at the street level or sub-section level. Identify which streets or sections sell fastest, which sit longest, and why. Factor in: lot size, proximity to amenities, street noise, flood zone, school assignment, view, and recent renovations.
+
+Give me a ranked "fastest-moving sub-markets" list within this neighborhood.</div>
+        </div>
+
+        <div class="prompt-card">
+            <div class="prompt-label">Prompt 3 — Competing Agent Activity Audit</div>
+            <button class="copy-btn" data-copy>Copy</button>
+            <div class="prompt-body">Who are the top-producing listing agents in [ZIP CODE / NEIGHBORHOOD] over the last 12 months?
+
+For each of the top 5: (1) agent name and brokerage, (2) number of listings taken, (3) list-to-sale ratio, (4) average DOM, (5) average sale price, (6) notable listings, (7) their public marketing/social media angle, (8) any weaknesses I can identify (slow social presence, dated listing photos, weak video, etc.).
+
+End with: "How I can position against these agents in a listing appointment."</div>
+        </div>
+
+        <div class="prompt-card">
+            <div class="prompt-label">Prompt 4 — New Development Pipeline & Zoning Shift Report</div>
+            <button class="copy-btn" data-copy>Copy</button>
+            <div class="prompt-body">What new construction, redevelopment, or zoning changes are planned, approved, or rumored within 2 miles of [ADDRESS / NEIGHBORHOOD]?
+
+Include: (1) approved projects with timelines, (2) rezoning applications, (3) infrastructure upgrades (roads, utilities, transit), (4) school construction, (5) commercial development, (6) any luxury brand openings (restaurants, hotels, retail).
+
+For each, explain how it could impact property values in [NEIGHBORHOOD] — positive or negative.</div>
+        </div>
+
+        <div class="prompt-card">
+            <div class="prompt-label">Prompt 5 — The Luxury Amenity & Lifestyle Narrative</div>
+            <button class="copy-btn" data-copy>Copy</button>
+            <div class="prompt-body">Write the luxury lifestyle narrative for [NEIGHBORHOOD] as if I'm pitching a high-net-worth seller on why now is the right time to list at a premium.
+
+Pull from: local dining scene, country club activity, private school prestige, marina/golf/beach access, celebrity or executive residents, recent high-profile sales, recognition in luxury publications, and any "brand in-migration" (new luxury retailers, fitness brands, wellness concepts).
+
+Keep it narrative and aspirational — 3-4 paragraphs.</div>
+        </div>
+
+        <div class="prompt-card">
+            <div class="prompt-label">Prompt 6 — The Neighborhood Dossier Executive Summary</div>
+            <button class="copy-btn" data-copy>Copy</button>
+            <div class="prompt-body">Compress everything you've gathered into a 1-page Neighborhood Executive Summary formatted as a listing presentation leave-behind.
+
+Structure: (1) The Headline (one sentence on what's happening in this market), (2) The Numbers (5 bullet stats), (3) The Story (2 paragraphs), (4) The Outlook (3 bullet forecasts), (5) Why List Now.
+
+Tone: Private wealth / institutional research. Confident. Data-backed. Not salesy.</div>
+        </div>
+    </div>
+</section>
+
+<!-- SYSTEM 3 -->
+<section class="bg-alt" id="system-3">
+    <div class="container">
+        <div class="system-tag">System 03</div>
+        <h2 class="section-title">The Seller Psychology Profile</h2>
+        <p class="system-subtitle">The Motivation Decoder That Closes Signatures</p>
+
+        <h3 class="sub">What This Means for Your Bank Account</h3>
+        <ul>
+            <li><strong>Faster signatures:</strong> When you speak to their real motivation, the contract gets signed at the kitchen table.</li>
+            <li><strong>Better pricing conversations:</strong> Knowing their urgency level tells you exactly where to price.</li>
+            <li><strong>Fewer wasted appointments:</strong> Know before you drive over whether this seller is actually selling.</li>
+        </ul>
+
+        <h3 class="sub">The Psychology of Why People Really Sell</h3>
+
+        <h4 class="sub">The "Why" Hides in the Public Record</h4>
+        <p>Sellers rarely tell you the real reason they're selling. They say "thinking about downsizing" when they mean "going through a divorce." They say "relocating for work" when they mean "carrying two mortgages since the new baby." The real motivation is almost always a life event — and life events leave a trail in public records, business filings, social media, and local news.</p>
+
+        <h4 class="sub">Why Motivation Changes the Entire Appointment</h4>
+        <p>A seller motivated by <em>upgrade</em> wants to maximize price and will wait. A seller motivated by <em>urgency</em> (divorce, estate, relocation, financial pressure) wants speed and certainty. A seller motivated by <em>legacy</em> (downsizing late in life) wants to feel heard and respected. Each requires a completely different listing presentation, pricing strategy, and follow-up cadence. Getting this wrong is why good agents lose "easy" listings.</p>
+
+        <h4 class="sub">The Early Adopter Advantage</h4>
+        <p>No one is doing this. The agents who do this feel like mind-readers. Sellers describe them as "the agent who just got it." That's not charisma — it's 15 minutes of AI-assisted research before the appointment.</p>
+
+        <div class="callout-dark">
+            <h4>Ethical Note — Read This</h4>
+            <p style="margin-bottom: 0;">This system uses <strong style="color: var(--cyan);">only public information</strong>. You're not spying. You're preparing. The same information would take a sharp analyst 4 hours to compile manually. You're just doing it in 15 minutes. Never reference the research directly in the appointment — use it to inform your questions, your pacing, and your positioning. The seller should feel understood, not investigated.</p>
+        </div>
+
+        <h3 class="sub">The Profit-Generating Prompts</h3>
+
+        <div class="prompt-card">
+            <div class="prompt-label">Prompt 1 — Full Seller Profile (Public Sources Only)</div>
+            <button class="copy-btn" data-copy>Copy</button>
+            <div class="prompt-body">Build a public-information profile on [SELLER FULL NAME], homeowner at [ADDRESS], [CITY, STATE].
+
+Use only public sources: LinkedIn, business filings, news, public records, social media set to public, professional profiles, press releases. Do NOT speculate. Cite every source.
+
+Capture: (1) professional background and current role, (2) business ownership or board positions, (3) other real estate holdings, (4) any recent life events reflected in public records — marriage, divorce, death in family, business sale, job change, relocation, retirement, (5) philanthropic or community involvement, (6) any news mentions in the last 24 months.
+
+End with: "Likely Motivation for Selling — Best Guess With Rationale."</div>
+        </div>
+
+        <div class="prompt-card">
+            <div class="prompt-label">Prompt 2 — The Life-Event Trigger Scan</div>
+            <button class="copy-btn" data-copy>Copy</button>
+            <div class="prompt-body">Investigate whether [SELLER NAME] at [ADDRESS] has experienced any of the following life events in the last 18 months, using only public sources:
+
+- Divorce filing
+- Death of spouse or parent
+- Business sale or liquidity event
+- Corporate relocation announcement
+- Retirement announcement
+- Major health event (if publicly disclosed)
+- New child / growing family signals
+- Bankruptcy or financial distress signals
+- Estate probate
+
+For each: "Confirmed" / "Signal — weak" / "Signal — strong" / "No evidence." Cite sources. This is for preparing a listing appointment — not for confronting the seller.</div>
+        </div>
+
+        <div class="prompt-card">
+            <div class="prompt-label">Prompt 3 — The Motivation Spectrum Placement</div>
+            <button class="copy-btn" data-copy>Copy</button>
+            <div class="prompt-body">Based on everything you know about [SELLER NAME] and the property at [ADDRESS], place them on the Motivation Spectrum:
+
+URGENT (must sell fast, price-sensitive down) ←→ FLEXIBLE (wants best price, will wait) ←→ LEGACY (wants respectful transaction, emotional)
+
+Explain your placement with 3-5 specific signals. Then give me: (1) the pricing strategy this seller will respond to, (2) the listing timeline to propose, (3) the tone to use in the appointment (transactional / warm / reverent), (4) the 2 things to AVOID saying.</div>
+        </div>
+
+        <div class="prompt-card">
+            <div class="prompt-label">Prompt 4 — The Custom Talking-Points Generator</div>
+            <button class="copy-btn" data-copy>Copy</button>
+            <div class="prompt-body">Given what you know about [SELLER NAME]'s background, business, community involvement, and likely motivation, generate 5 specific conversation opening lines I can use in the first 5 minutes of the listing appointment.
+
+These should NOT reference the research directly. They should feel like natural observations a well-prepared agent would make about the neighborhood, the home, the market, or timing — that happen to land exactly where their motivation lives.
+
+Tone: Warm, confident, respectful, zero sales pressure.</div>
+        </div>
+
+        <div class="prompt-card">
+            <div class="prompt-label">Prompt 5 — The Objection Pre-Emption Map</div>
+            <button class="copy-btn" data-copy>Copy</button>
+            <div class="prompt-body">Based on the profile you've built on [SELLER NAME], what are the 3 most likely objections they'll raise during the listing appointment?
+
+For each: (1) the likely wording of the objection, (2) the real concern underneath, (3) my ideal response, (4) a question I can ask to surface the concern BEFORE they have to voice it.</div>
+        </div>
+
+        <div class="prompt-card">
+            <div class="prompt-label">Prompt 6 — The Seller Psychology Briefing Card</div>
+            <button class="copy-btn" data-copy>Copy</button>
+            <div class="prompt-body">Compress everything into a 1-page Seller Psychology Briefing I can read in the car before the appointment.
+
+Structure: (1) WHO THEY ARE (3 bullets), (2) WHY THEY'RE LIKELY SELLING (one sentence), (3) THEIR POSITION ON THE MOTIVATION SPECTRUM, (4) 3 OPENING LINES, (5) 3 THINGS TO AVOID, (6) MY IDEAL PACING (aggressive / measured / patient).
+
+Keep it under 250 words. This is my pre-appointment cheat sheet.</div>
+        </div>
+    </div>
+</section>
+
+<!-- 30-DAY PLAN -->
+<section id="plan">
+    <div class="container-wide">
+        <div class="section-eyebrow">Implementation</div>
+        <h2 class="section-title">Your 30-Day Listing Killer Plan</h2>
+        <p class="lead">A week-by-week installation plan. Print the PDF workbook to track your checkboxes and ROI by hand.</p>
+
+        <div class="week-grid">
+            <div class="week-card">
+                <h4>Week 1 — Foundation</h4>
+                <ul>
+                    <li>Subscribe to ChatGPT Plus, Perplexity Pro, OR Claude (pick at least one)</li>
+                    <li>Save all 18 prompts in a Notes doc</li>
+                    <li>Run Property X-Ray on 3 real addresses from your pipeline</li>
+                    <li>Run Neighborhood Dossier on your primary farm area</li>
+                    <li>Share one insight with a client to test the system</li>
+                </ul>
             </div>
-            <div class="card">
-                <div class="card-num">04</div>
-                <h3>The Pricing Conversation</h3>
-                <p>How to anchor expectations, defend your number, and walk out with a price the market will reward.</p>
+            <div class="week-card">
+                <h4>Week 2 — Integration</h4>
+                <ul>
+                    <li>Use the Property X-Ray before your next listing appointment</li>
+                    <li>Build Seller Psychology Profile for your next 2 appointments</li>
+                    <li>Create a branded Neighborhood Dossier template</li>
+                    <li>Measure appointment-to-signature conversion rate</li>
+                    <li>Debrief: what worked, what didn't</li>
+                </ul>
             </div>
-            <div class="card">
-                <div class="card-num">05</div>
-                <h3>Implementation Checklists</h3>
-                <p>Ready-to-print checklists for pre-appointment, in-appointment, and post-appointment follow-through.</p>
+            <div class="week-card">
+                <h4>Week 3 — Optimization</h4>
+                <ul>
+                    <li>Refine your 3 favorite prompts based on real results</li>
+                    <li>Turn the Neighborhood Dossier into a monthly email asset</li>
+                    <li>Train your assistant on the full workflow</li>
+                    <li>Use dossier insights in 2 social media posts</li>
+                    <li>Pull dossier data into an open house lead magnet</li>
+                </ul>
             </div>
-            <div class="card">
-                <div class="card-num">06</div>
-                <h3>Action Plan Template</h3>
-                <p>A fillable 30-day plan to install the system into your weekly workflow and measure conversion lift.</p>
+            <div class="week-card">
+                <h4>Week 4 — ROI Measurement</h4>
+                <ul>
+                    <li>Count new appointments booked this month</li>
+                    <li>Count new listings signed</li>
+                    <li>Calculate GCI attributable to this system</li>
+                    <li>Identify your "signature prompt" (the one that works best)</li>
+                    <li>Commit to the 90-day scaling plan</li>
+                </ul>
             </div>
         </div>
     </div>
 </section>
 
+<!-- MANIFESTO -->
+<section class="bg-alt" id="manifesto">
+    <div class="container">
+        <div class="section-eyebrow">Closing</div>
+        <h2 class="section-title">Your Closing Manifesto</h2>
+
+        <div class="manifesto">
+            <p>"While my competitors show up to listing appointments with the same generic CMA every agent has been pulling for 30 years, I walk in with battlefield-grade intelligence on the property, the neighborhood, and the seller. I don't guess. I don't wing it. I don't hope. I know more than the seller about their own house — because I did the work they didn't know was possible.</p>
+            <p>AI doesn't replace me. It arms me. Every minute I save on research is a minute I spend building relationships, winning trust, and closing signatures. This is my competitive weapon, and I will master it."</p>
+        </div>
+
+        <div class="callout-dark" style="text-align: center; margin-top: 30px;">
+            <p style="font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cyan); font-weight: 700; margin-bottom: 10px;">Remember</p>
+            <p style="font-size: 17px; margin: 0;">Your success with these systems is directly proportional to your commitment to implementation. The difference between those who win listings and those who get left behind is <strong style="color: var(--cyan);">action</strong>, not knowledge.</p>
+        </div>
+    </div>
+</section>
+
+<!-- DOWNLOAD -->
 <section class="download-section" id="download">
     <div class="container">
-        <div class="section-eyebrow" style="color: var(--cyan);">Download Now</div>
-        <h2 class="section-title">Get the Workbook</h2>
-        <p>Click below to download the full implementation workbook. Print it, mark it up, and bring it to your next appointment.</p>
+        <div class="section-eyebrow" style="color: var(--cyan);">Take It With You</div>
+        <h2 class="section-title">Download the Printable Workbook</h2>
+        <p>The PDF includes everything on this page plus fillable worksheets, a Profit Commitment Contract, an ROI tracker, and printable session notes. Bring it to your next appointment.</p>
         <a href="https://edmundbogen.github.io/listing-killer-workbook.pdf" class="btn btn-primary" download>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
             Download PDF Workbook
         </a>
         <div class="file-meta">
-            <span>PDF</span>
+            <span>15 Pages</span>
             <span>2.5 MB</span>
             <span>Print-Ready</span>
         </div>
@@ -515,14 +1052,14 @@ footer {
 </section>
 
 <footer>
-    <div class="footer-brand">The Edmund Bogen Team</div>
-    <div class="footer-tagline">Luxury Real Estate · Palm Beach to Miami · Douglas Elliman</div>
+    <div class="footer-brand">Bogen.ai · Edmund's Mastermind</div>
+    <div class="footer-tagline">AI Systems & Coaching for Top Producers</div>
     <div class="footer-links">
         <a href="https://bogen.ai">Bogen.ai</a>
         <a href="https://edmundbogen.github.io">Main Site</a>
         <a href="mailto:edmund@bogen.ai">Contact</a>
     </div>
-    <div class="footer-fineprint">© 2026 Edmund Bogen · All Rights Reserved</div>
+    <div class="footer-fineprint">© 2026 Edmund's Mastermind · Your AI-Powered Listing Domination System</div>
 </footer>
 
 <script>
@@ -533,8 +1070,7 @@ footer {
 
     const saved = localStorage.getItem('theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const initial = saved || (prefersDark ? 'dark' : 'light');
-    setTheme(initial);
+    setTheme(saved || (prefersDark ? 'dark' : 'light'));
 
     toggle.addEventListener('click', function() {
         const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
@@ -546,6 +1082,23 @@ footer {
         root.setAttribute('data-theme', theme);
         label.textContent = theme === 'dark' ? 'Light' : 'Dark';
     }
+
+    // Copy buttons
+    document.querySelectorAll('[data-copy]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            const card = btn.closest('.prompt-card');
+            const text = card.querySelector('.prompt-body').innerText;
+            navigator.clipboard.writeText(text).then(function() {
+                const original = btn.textContent;
+                btn.textContent = 'Copied!';
+                btn.classList.add('copied');
+                setTimeout(function() {
+                    btn.textContent = original;
+                    btn.classList.remove('copied');
+                }, 1800);
+            });
+        });
+    });
 })();
 </script>
 
