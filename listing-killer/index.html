@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The 10-Minute Listing Appointment Killer | Edmund Bogen</title>
+<meta name="description" content="The implementation workbook from Edmund Bogen's mastermind session. Win listing appointments in 10 minutes — proven scripts, frameworks, and AI-powered prep.">
+<meta property="og:title" content="The 10-Minute Listing Appointment Killer">
+<meta property="og:description" content="The implementation workbook from Edmund Bogen's mastermind session. Win listing appointments in 10 minutes.">
+<meta property="og:image" content="https://edmundbogen.github.io/listing-killer-hero.png">
+<meta property="og:url" content="https://edmundbogen.github.io/listing-killer/">
+<style>
+:root {
+    --navy: #1a3e5c;
+    --navy-deep: #0d2436;
+    --cyan: #00a8e1;
+    --white: #ffffff;
+    --gray-light: #f4f4f4;
+    --gray-mid: #e8e8e8;
+    --text: #333333;
+
+    --bg: #ffffff;
+    --bg-alt: #f4f4f4;
+    --surface: #ffffff;
+    --text-color: #333333;
+    --heading: #1a3e5c;
+    --border: #e8e8e8;
+    --shadow: 0 4px 24px rgba(26, 62, 92, 0.08);
+}
+
+[data-theme="dark"] {
+    --bg: #0d2436;
+    --bg-alt: #0a1c2a;
+    --surface: #14304a;
+    --text-color: #e8e8e8;
+    --heading: #ffffff;
+    --border: #1f4565;
+    --shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Helvetica Neue', 'Lato', 'Montserrat', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text-color);
+    line-height: 1.7;
+    font-size: 17px;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* NAV */
+.nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.brand-mark {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    font-size: 14px;
+}
+
+[data-theme="dark"] .brand-mark { background: var(--cyan); color: var(--navy-deep); }
+
+.brand-text {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--heading);
+    font-weight: 500;
+}
+
+.brand-text small {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    opacity: 0.65;
+    margin-top: 2px;
+}
+
+.theme-toggle {
+    background: transparent;
+    border: 1.5px solid var(--border);
+    color: var(--heading);
+    padding: 8px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.theme-toggle:hover {
+    border-color: var(--cyan);
+    color: var(--cyan);
+}
+
+.theme-toggle svg { width: 16px; height: 16px; }
+[data-theme="light"] .icon-sun { display: none; }
+[data-theme="dark"] .icon-moon { display: none; }
+
+/* HERO */
+.hero {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+    color: white;
+    padding: 100px 40px 120px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-left: 6px solid var(--cyan);
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url('https://edmundbogen.github.io/listing-killer-hero.png') center/cover;
+    opacity: 0.15;
+}
+
+.hero-inner {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.eyebrow {
+    color: var(--cyan);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.hero h1 {
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    line-height: 1.15;
+    margin-bottom: 24px;
+}
+
+.hero h1 strong {
+    font-weight: 600;
+    color: var(--cyan);
+}
+
+.hero-sub {
+    font-size: 19px;
+    line-height: 1.6;
+    max-width: 680px;
+    margin: 0 auto 40px;
+    opacity: 0.92;
+    font-weight: 300;
+}
+
+.cta-row {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 18px 36px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: var(--cyan);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background: #0095c8;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 168, 225, 0.4);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--white);
+    border-color: var(--white);
+}
+
+.btn-secondary:hover {
+    background: var(--white);
+    color: var(--navy);
+}
+
+.btn svg { width: 18px; height: 18px; }
+
+/* SECTIONS */
+section {
+    padding: 100px 40px;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.section-eyebrow {
+    color: var(--cyan);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+
+.section-title {
+    color: var(--heading);
+    font-size: clamp(32px, 4vw, 44px);
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    border-left: 4px solid var(--cyan);
+    padding-left: 20px;
+}
+
+.lead {
+    font-size: 19px;
+    line-height: 1.7;
+    margin-bottom: 24px;
+    max-width: 800px;
+}
+
+/* WHAT'S INSIDE - GRID */
+.bg-alt { background: var(--bg-alt); }
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 28px;
+    margin-top: 50px;
+}
+
+.card {
+    background: var(--surface);
+    padding: 36px 32px;
+    border-radius: 4px;
+    border-left: 3px solid var(--cyan);
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 36px rgba(26, 62, 92, 0.12);
+}
+
+.card-num {
+    color: var(--cyan);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    margin-bottom: 12px;
+}
+
+.card h3 {
+    color: var(--heading);
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 12px;
+    line-height: 1.3;
+}
+
+.card p {
+    font-size: 15px;
+    line-height: 1.6;
+    opacity: 0.85;
+}
+
+/* DOWNLOAD CTA SECTION */
+.download-section {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+    color: white;
+    text-align: center;
+    border-left: 6px solid var(--cyan);
+}
+
+.download-section .section-title {
+    color: white;
+    border-left-color: var(--cyan);
+    display: inline-block;
+    border-left: none;
+    padding-left: 0;
+}
+
+.download-section p {
+    font-size: 19px;
+    max-width: 680px;
+    margin: 0 auto 40px;
+    opacity: 0.92;
+    font-weight: 300;
+}
+
+.file-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 28px;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.7;
+}
+
+.file-meta span::before {
+    content: '•';
+    margin-right: 16px;
+    color: var(--cyan);
+}
+
+.file-meta span:first-child::before { display: none; }
+
+/* FOOTER */
+footer {
+    background: var(--bg-alt);
+    padding: 60px 40px 40px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+}
+
+.footer-brand {
+    color: var(--heading);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.footer-tagline {
+    font-size: 14px;
+    opacity: 0.7;
+    margin-bottom: 24px;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.footer-links a {
+    color: var(--cyan);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.footer-links a:hover { opacity: 0.7; }
+
+.footer-fineprint {
+    margin-top: 32px;
+    font-size: 11px;
+    opacity: 0.5;
+    letter-spacing: 0.08em;
+}
+
+@media (max-width: 640px) {
+    .nav { padding: 14px 20px; }
+    .brand-text { font-size: 10px; }
+    .hero { padding: 70px 24px 90px; }
+    section { padding: 70px 24px; }
+    .btn { padding: 16px 26px; font-size: 13px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+    <div class="brand">
+        <div class="brand-mark">EB</div>
+        <div class="brand-text">
+            The Edmund Bogen Team
+            <small>at Douglas Elliman Real Estate</small>
+        </div>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <span id="themeLabel">Dark</span>
+    </button>
+</nav>
+
+<header class="hero">
+    <div class="hero-inner">
+        <span class="eyebrow">Mastermind Implementation Workbook</span>
+        <h1>The 10-Minute<br><strong>Listing Appointment Killer</strong></h1>
+        <p class="hero-sub">A field-tested playbook for winning listings in the first 10 minutes — proven scripts, AI-powered prep, and the exact frameworks Edmund's team uses to convert sellers on the spot.</p>
+        <div class="cta-row">
+            <a href="https://edmundbogen.github.io/listing-killer-workbook.pdf" class="btn btn-primary" download>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                Download the PDF
+            </a>
+            <a href="#whats-inside" class="btn btn-secondary">What's Inside +</a>
+        </div>
+        <div class="file-meta">
+            <span>PDF</span>
+            <span>2.5 MB</span>
+            <span>Print-Ready</span>
+        </div>
+    </div>
+</header>
+
+<section id="whats-inside" class="bg-alt">
+    <div class="container">
+        <div class="section-eyebrow">What's Inside</div>
+        <h2 class="section-title">The Workbook</h2>
+        <p class="lead">An implementation guide built for working agents — not theory. Every page is designed to be filled out, used in the field, and applied to your next listing appointment.</p>
+
+        <div class="grid">
+            <div class="card">
+                <div class="card-num">01</div>
+                <h3>The 10-Minute Framework</h3>
+                <p>The exact pacing, sequence, and language patterns that turn a seller's first impression into a signed listing.</p>
+            </div>
+            <div class="card">
+                <div class="card-num">02</div>
+                <h3>AI-Powered Pre-Appointment Prep</h3>
+                <p>Prompts and workflows for instant comp pulls, neighborhood briefs, and seller profiling before you walk in the door.</p>
+            </div>
+            <div class="card">
+                <div class="card-num">03</div>
+                <h3>Objection Handlers</h3>
+                <p>Word-for-word scripts for the seven objections that kill 90% of listing appointments — and how to flip them.</p>
+            </div>
+            <div class="card">
+                <div class="card-num">04</div>
+                <h3>The Pricing Conversation</h3>
+                <p>How to anchor expectations, defend your number, and walk out with a price the market will reward.</p>
+            </div>
+            <div class="card">
+                <div class="card-num">05</div>
+                <h3>Implementation Checklists</h3>
+                <p>Ready-to-print checklists for pre-appointment, in-appointment, and post-appointment follow-through.</p>
+            </div>
+            <div class="card">
+                <div class="card-num">06</div>
+                <h3>Action Plan Template</h3>
+                <p>A fillable 30-day plan to install the system into your weekly workflow and measure conversion lift.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="download-section" id="download">
+    <div class="container">
+        <div class="section-eyebrow" style="color: var(--cyan);">Download Now</div>
+        <h2 class="section-title">Get the Workbook</h2>
+        <p>Click below to download the full implementation workbook. Print it, mark it up, and bring it to your next appointment.</p>
+        <a href="https://edmundbogen.github.io/listing-killer-workbook.pdf" class="btn btn-primary" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            Download PDF Workbook
+        </a>
+        <div class="file-meta">
+            <span>PDF</span>
+            <span>2.5 MB</span>
+            <span>Print-Ready</span>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-brand">The Edmund Bogen Team</div>
+    <div class="footer-tagline">Luxury Real Estate · Palm Beach to Miami · Douglas Elliman</div>
+    <div class="footer-links">
+        <a href="https://bogen.ai">Bogen.ai</a>
+        <a href="https://edmundbogen.github.io">Main Site</a>
+        <a href="mailto:edmund@bogen.ai">Contact</a>
+    </div>
+    <div class="footer-fineprint">© 2026 Edmund Bogen · All Rights Reserved</div>
+</footer>
+
+<script>
+(function() {
+    const root = document.documentElement;
+    const toggle = document.getElementById('themeToggle');
+    const label = document.getElementById('themeLabel');
+
+    const saved = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initial = saved || (prefersDark ? 'dark' : 'light');
+    setTheme(initial);
+
+    toggle.addEventListener('click', function() {
+        const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        setTheme(next);
+        localStorage.setItem('theme', next);
+    });
+
+    function setTheme(theme) {
+        root.setAttribute('data-theme', theme);
+        label.textContent = theme === 'dark' ? 'Light' : 'Dark';
+    }
+})();
+</script>
+
+</body>
+</html>
