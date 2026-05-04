@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>St. Andrews at the Crossroads | The Edmund Bogen Team</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #1a1a1a;
+    background: #fafafa;
+    line-height: 1.7;
+  }
+
+  /* Nav */
+  nav {
+    background: #1a3e5c;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  nav .logo {
+    color: #fff;
+    font-weight: 300;
+    letter-spacing: 3px;
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+  nav .logo strong { font-weight: 600; letter-spacing: 4px; }
+  nav .links a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 28px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 400;
+  }
+  nav .links a:hover { color: #00a8e1; }
+
+  /* Hero image (full bleed) */
+  .hero-image {
+    width: 100%;
+    display: block;
+    background: #1a3e5c;
+  }
+  .hero-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    /* full natural aspect, no cropping */
+  }
+
+  /* Article header */
+  .article-header {
+    background: #1a3e5c;
+    color: #fff;
+    padding: 50px 40px 55px;
+    text-align: center;
+  }
+  .article-header .eyebrow {
+    color: #00a8e1;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 18px;
+  }
+  .article-header h1 {
+    font-size: 42px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    line-height: 1.2;
+    max-width: 880px;
+    margin: 0 auto 22px;
+    color: #fff;
+  }
+  .article-header .meta {
+    color: rgba(255,255,255,0.85);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 400;
+  }
+
+  /* Article container */
+  .article {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 70px 40px 80px;
+    background: #fff;
+  }
+  .article p {
+    font-size: 17px;
+    line-height: 1.85;
+    color: #2a2a2a;
+    margin-bottom: 22px;
+  }
+  .article h2 {
+    font-size: 28px;
+    font-weight: 400;
+    color: #1a3e5c;
+    margin: 50px 0 22px;
+    line-height: 1.3;
+    border-left: 3px solid #00a8e1;
+    padding-left: 18px;
+  }
+  .article h3 {
+    font-size: 20px;
+    font-weight: 500;
+    color: #1a3e5c;
+    margin: 32px 0 14px;
+  }
+  .article hr {
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    margin: 50px 0;
+  }
+  .article ul, .article ol { margin: 0 0 22px 24px; }
+  .article ul li, .article ol li {
+    font-size: 17px;
+    line-height: 1.85;
+    margin-bottom: 10px;
+    color: #2a2a2a;
+  }
+
+  /* Lede / pull quote */
+  .pullquote {
+    border-left: 4px solid #00a8e1;
+    padding: 24px 28px;
+    background: #f4f4f4;
+    margin: 35px 0;
+    font-style: normal;
+  }
+  .pullquote p {
+    font-size: 18px;
+    color: #1a3e5c;
+    margin-bottom: 0;
+    line-height: 1.7;
+  }
+
+  /* Stat callout (the teardown comp box) */
+  .stat-callout {
+    background: linear-gradient(135deg, #1a3e5c 0%, #0d2540 100%);
+    color: #fff;
+    padding: 36px;
+    margin: 40px 0;
+    border-radius: 4px;
+    text-align: center;
+  }
+  .stat-callout .label {
+    color: #00a8e1;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 11px;
+    margin-bottom: 18px;
+    font-weight: 500;
+  }
+  .stat-callout .address {
+    font-size: 22px;
+    font-weight: 300;
+    margin-bottom: 28px;
+    letter-spacing: 1px;
+  }
+  .stat-callout .delta {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+  }
+  .stat-callout .delta .item {
+    text-align: center;
+  }
+  .stat-callout .delta .item .px {
+    font-size: 32px;
+    font-weight: 300;
+    color: #fff;
+  }
+  .stat-callout .delta .item .meta {
+    font-size: 11px;
+    color: rgba(255,255,255,0.75);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 6px;
+  }
+  .stat-callout .arrow {
+    align-self: center;
+    color: #00a8e1;
+    font-size: 28px;
+  }
+  .stat-callout .summary {
+    font-size: 15px;
+    color: rgba(255,255,255,0.92);
+    font-weight: 500;
+    margin-top: 12px;
+    letter-spacing: 1px;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 28px 0;
+    font-size: 14px;
+  }
+  table th {
+    background: #1a3e5c;
+    color: #fff;
+    padding: 14px 12px;
+    text-align: left;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 11px;
+  }
+  table td {
+    padding: 14px 12px;
+    border-bottom: 1px solid #e8e8e8;
+    color: #2a2a2a;
+  }
+  table tr:nth-child(even) td { background: #fafafa; }
+  table strong { color: #1a3e5c; font-weight: 600; }
+
+  /* Bifurcation chart (CSS bar chart) */
+  .bifurcation {
+    background: #f4f4f4;
+    padding: 30px;
+    margin: 35px 0;
+    border-radius: 4px;
+  }
+  .bifurcation h4 {
+    color: #1a3e5c;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+  .bar-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 18px;
+  }
+  .bar-row .label {
+    width: 220px;
+    font-size: 13px;
+    color: #1a3e5c;
+    font-weight: 500;
+  }
+  .bar-row .bar-wrap {
+    flex: 1;
+    background: #e0e0e0;
+    height: 38px;
+    position: relative;
+    border-radius: 2px;
+  }
+  .bar-row .bar {
+    height: 100%;
+    background: linear-gradient(90deg, #1a3e5c, #00a8e1);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    padding-left: 14px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .bar-row .n {
+    margin-left: 14px;
+    font-size: 12px;
+    color: #666;
+    width: 70px;
+  }
+
+  /* Author bio */
+  .bio {
+    background: #1a3e5c;
+    color: #fff;
+    padding: 50px 40px;
+    margin-top: 60px;
+  }
+  .bio-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+  }
+  .bio-inner .photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 2px solid #00a8e1;
+  }
+  .bio-inner h3 {
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 6px;
+    color: #fff;
+  }
+  .bio-inner .title {
+    color: #00a8e1;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 11px;
+    margin-bottom: 14px;
+  }
+  .bio-inner p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.9);
+  }
+
+  /* Footer disclaimer */
+  .disclaimer {
+    background: #f4f4f4;
+    padding: 30px 40px;
+    text-align: center;
+    font-size: 11px;
+    color: #888;
+    line-height: 1.7;
+    letter-spacing: 0.5px;
+  }
+  .disclaimer p { max-width: 800px; margin: 0 auto 8px; }
+
+  @media (max-width: 720px) {
+    .hero h1 { font-size: 32px; }
+    .article { padding: 40px 22px; }
+    .stat-callout .delta { gap: 22px; }
+    .stat-callout .delta .item .px { font-size: 24px; }
+    .bar-row { flex-direction: column; align-items: flex-start; }
+    .bar-row .label { width: 100%; margin-bottom: 6px; }
+    .bar-row .n { margin: 6px 0 0 0; }
+    nav { padding: 14px 20px; flex-wrap: wrap; }
+    nav .links a { margin-left: 14px; font-size: 10px; }
+    table { font-size: 12px; }
+    table th, table td { padding: 10px 6px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">THE <strong>EDMUND BOGEN</strong> TEAM</div>
+  <div class="links">
+    <a href="https://bogenhomes.com">Properties</a>
+    <a href="../market-dashboard/">Dashboard</a>
+    <a href="mailto:edmund@bogenhomes.com">Contact</a>
+  </div>
+</nav>
+
+<div class="hero-image">
+  <img src="hero.png" alt="St. Andrews Country Club — clubhouse rebuild decision">
+</div>
+
+<section class="article-header">
+  <div class="eyebrow">Market Intelligence · St. Andrews Country Club</div>
+  <h1>St. Andrews at the Crossroads</h1>
+  <div class="meta">A Data Brief on the Proposed Clubhouse Rebuild and Home Values Inside the Gates &nbsp;·&nbsp; May 5, 2026 &nbsp;·&nbsp; By Edmund Bogen</div>
+</section>
+
+<article class="article">
+
+  <h2>The lede I keep coming back to</h2>
+
+  <p>In October 2023, <strong>7234 Ayrshire Lane</strong> — a 1984-built home inside St. Andrews — sold for <strong>$2,020,000</strong> at $471 per square foot. Eighteen months later, in March 2025, the same address closed again at <strong>$10,500,000</strong> at $1,292 per square foot — this time as a 2025 ground-up new construction.</p>
+
+  <div class="stat-callout">
+    <div class="label">7234 Ayrshire Lane · Same Lot, Two Closings</div>
+    <div class="address">Inside the gates of St. Andrews Country Club</div>
+    <div class="delta">
+      <div class="item">
+        <div class="px">$2,020,000</div>
+        <div class="meta">Oct 2023 · 1984 build · $471/sqft</div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="item">
+        <div class="px">$10,500,000</div>
+        <div class="meta">Mar 2025 · 2025 build · $1,292/sqft</div>
+      </div>
+    </div>
+    <div class="summary">5.2x value creation in 18 months — same dirt, rebuilt structure</div>
+  </div>
+
+  <p>Same dirt. Same gate. <strong>5.2x the price.</strong></p>
+
+  <p>That single comp tells you most of what you need to know about where the St. Andrews market actually sits today. The structure on the lot is depreciating. The land — and what you're allowed to build on it — is the asset. And buyers are paying a premium that, on a per-square-foot basis, is now roughly 50% above the rest of the original-condition stock inside the gates.</p>
+
+  <p>This piece is my best attempt at an honest, balanced look at what the numbers say about the proposed major capital program at St. Andrews — including a full demolition and ground-up rebuild of the clubhouse — and what comparable clubs have actually experienced when they've taken on programs of this scale. I'm a member here. I also list and sell here. Both perspectives shape what I think matters in this conversation, and I've tried to lay the data out so members can draw their own conclusions.</p>
+
+  <p>I am deliberately <strong>not</strong> publishing a project cost figure. Final scope, contingency, and assessment structure are still being refined by the club's leadership. What I can do is show you what peer clubs have spent, what their per-square-foot economics looked like, and what happened to home values during and after their programs.</p>
+
+  <hr>
+
+  <h2>What's actually being proposed</h2>
+
+  <p>The headline change is straightforward to describe: a <strong>complete demolition of the existing clubhouse and a ground-up rebuild</strong> — not a renovation, not a refresh — alongside a golf course program. The exact square footage, amenity mix, and final budget are still being shaped, and the figures circulating among members vary widely. I'm not going to anchor on any single number until the membership package is final.</p>
+
+  <p>What I will say is that the question facing St. Andrews is not unusual. Across South Florida and the country, peer private clubs have run major capital programs in the last five years — some larger, some smaller — and the outcomes are well-documented enough that members here can reason from comparable evidence rather than from speculation.</p>
+
+  <p>A few facts that frame the conversation:</p>
+
+  <ul>
+    <li><strong>St. Andrews has 728 lots</strong> inside the gates.</li>
+    <li><strong>Current initiation cost is $500,000 total</strong> — $450,000 to the club plus $50,000 to the POA.</li>
+    <li>The club has been operating in a 1980s-vintage clubhouse footprint and infrastructure that has been refreshed but not rebuilt.</li>
+  </ul>
+
+  <p>Whatever the final number, the program will be funded through some combination of assessment, financing, and member resources. The questions members are asking — <em>Will this affect my home value? Will it affect carrying cost? Is the timing right?</em> — are exactly the right questions. The numbers below are the ones I'd want to look at if I were on either side of the decision.</p>
+
+  <hr>
+
+  <h2>The market has already voted: a 50% per-square-foot premium for new and renovated stock</h2>
+
+  <p>The most important chart in any conversation about a clubhouse rebuild isn't the rebuild's price tag. It's the spread that already exists inside the gates between <strong>new or fully-renovated homes</strong> and <strong>original-condition 1980s/early-1990s homes</strong> sitting on the same streets.</p>
+
+  <p>I pulled every closed sale at St. Andrews from January 2023 through April 2026 — 97 closings — and split them into three cohorts:</p>
+
+  <table>
+    <thead>
+      <tr><th>Cohort</th><th>N</th><th>Median Sale Price</th><th>Median $/sqft</th><th>$/sqft Range</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>New construction</strong> (year built ≥ 2018)</td><td>14</td><td>$7,050,000</td><td><strong>$1,031</strong></td><td>$542 – $1,292</td></tr>
+      <tr><td><strong>Fully renovated</strong> (year built &lt; 2018, $/sqft ≥ $900)</td><td>14</td><td>$5,337,500</td><td><strong>$982</strong></td><td>$905 – $1,253</td></tr>
+      <tr><td><strong>Dated, original-condition</strong> (year built &lt; 2018, $/sqft &lt; $900)</td><td>69</td><td>$2,500,000</td><td><strong>$661</strong></td><td>$375 – $898</td></tr>
+    </tbody>
+  </table>
+
+  <div class="bifurcation">
+    <h4>Median $/sqft by Cohort · St. Andrews · 2023 – 2026 YTD</h4>
+    <div class="bar-row">
+      <div class="label">New construction</div>
+      <div class="bar-wrap"><div class="bar" style="width: 100%;">$1,031</div></div>
+      <div class="n">N=14</div>
+    </div>
+    <div class="bar-row">
+      <div class="label">Fully renovated</div>
+      <div class="bar-wrap"><div class="bar" style="width: 95%;">$982</div></div>
+      <div class="n">N=14</div>
+    </div>
+    <div class="bar-row">
+      <div class="label">Dated, original</div>
+      <div class="bar-wrap"><div class="bar" style="width: 64%;">$661</div></div>
+      <div class="n">N=69</div>
+    </div>
+  </div>
+
+  <p>The headline takeaway: a roughly <strong>50% per-square-foot premium</strong> for new or fully-renovated homes versus dated stock, with a 3.4x spread between the lowest and highest $/sqft closings inside the gates.</p>
+
+  <p>Read another way: 28 of the last 97 closings — about <strong>29% of recent volume</strong> — happened in the new-or-renovated cohort. The remaining 71% closed at dated-stock $/sqft levels. The market is not pricing the gate alone; it is pricing the gate <strong>plus the condition of the structure on the lot</strong>.</p>
+
+  <p>This is the bifurcation that any major capital program needs to be evaluated against. A new clubhouse does not change the year built on a 1985 home. What it can do — based on peer-club experience — is move the <em>floor</em> of the gate's value proposition, and over time, narrow or widen the cohort spread depending on how the program is executed.</p>
+
+  <hr>
+
+  <h2>True St. Andrews YoY: what the closed sales actually show</h2>
+
+  <p>Public-facing aggregators (Redfin, Zillow) have shown St. Andrews running roughly <strong>+12% year-over-year</strong>. Members who've watched specific streets for two decades sometimes question whether that figure is right, and the honest answer is: <strong>the data is more nuanced than a single percentage.</strong></p>
+
+  <p>Here is what the 97 closed sales actually show, broken out by close year:</p>
+
+  <table>
+    <thead>
+      <tr><th>Close Year</th><th>Closings</th><th>Median Sale Price</th><th>Median $/sqft</th><th>Median DOM</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>2023</td><td>16</td><td>$2,352,500</td><td>$600</td><td>20</td></tr>
+      <tr><td>2024</td><td>43</td><td>$2,750,000</td><td>$684</td><td>66</td></tr>
+      <tr><td>2025</td><td>33</td><td>$3,050,000</td><td>$746</td><td>49</td></tr>
+      <tr><td>2026 YTD <em>(MLS-documented only)</em></td><td>5</td><td>$6,150,000</td><td>$1,020</td><td>141</td></tr>
+    </tbody>
+  </table>
+
+  <p>YoY moves on the median:</p>
+
+  <ul>
+    <li><strong>2023 → 2024: +16.9% on price, +14.1% on $/sqft</strong></li>
+    <li><strong>2024 → 2025: +10.9% on price, +9.1% on $/sqft</strong></li>
+    <li><strong>2025 → 2026 YTD: incomplete picture; do not read the percentage as a trend.</strong> Only five 2026 closings are currently MLS-documented, weighted heavily toward new construction, which is why the documented median jumps to $6.15M. To the best of my knowledge there have been roughly <strong>13 total sales at St. Andrews so far this year</strong> — the remainder are pending, off-market, or otherwise not yet publicly recorded. I will update this analysis when those closings appear in the public record.</li>
+  </ul>
+
+  <div class="pullquote">
+    <p>St. Andrews has held low-double-digit appreciation on the median for two consecutive years. That puts the +12% public-feed figure in the right ballpark — even if the underlying mix (renovated vs. dated) is doing a lot of the work.</p>
+  </div>
+
+  <p>Days-on-market is the other number worth watching. The 2023 frenzy compressed DOM to a 20-day median; 2024 normalized to 66 days; 2025 settled at 49 days. That's a market that is liquid, not euphoric — buyers are taking time, but the right product is moving.</p>
+
+  <hr>
+
+  <h2>What peer clubs have actually spent</h2>
+
+  <p>The most useful exercise — and the one I've been doing for the last week with a research team — is to look at what peer private clubs have actually spent on full clubhouse rebuilds and major capital programs, and what their economics looked like on a per-square-foot basis.</p>
+
+  <p>A few documented benchmarks from the last five years:</p>
+
+  <table>
+    <thead>
+      <tr><th>Club</th><th>Project</th><th>Reported Cost</th><th>Square Footage</th><th>$/sqft</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Frenchman's Creek</strong> (Palm Beach Gardens, FL)</td><td>Clubhouse rebuild</td><td>~$74M</td><td>124,450 sqft</td><td>~$594</td></tr>
+      <tr><td><strong>Bighorn Golf Club</strong> (Palm Desert, CA)</td><td>Clubhouse rebuild</td><td>~$70M</td><td>80,000 sqft</td><td>~$875</td></tr>
+      <tr><td><strong>Oakland Hills Country Club</strong> (Bloomfield Hills, MI)</td><td>Clubhouse rebuild after fire</td><td>~$104M</td><td>110,000 sqft</td><td>~$945</td></tr>
+      <tr><td><strong>Boca West Country Club</strong></td><td>Multi-phase capital program</td><td>~$95M (announced)</td><td>Multiple facilities</td><td>Varies by phase</td></tr>
+      <tr><td><strong>BallenIsles Country Club</strong></td><td>Sports Complex + Rees Jones short course</td><td>$19M + $6M</td><td>Two facilities</td><td>n/a</td></tr>
+    </tbody>
+  </table>
+
+  <p>A few honest observations from the peer set:</p>
+
+  <ol>
+    <li><strong>$/sqft for full ground-up clubhouse rebuilds in this asset class is currently running roughly $600 – $950 per square foot</strong>, with the higher end reflecting more elaborate amenity programs, post-pandemic construction inflation, and complex sites.</li>
+    <li><strong>Contingency allowances of 15–20% are now standard</strong> in private-club capital programs of this size, given materials volatility and labor pricing in 2024–2026.</li>
+    <li><strong>Cost overruns happen</strong>, and they happen often enough that any membership conversation about a rebuild should include a clear discussion of who absorbs them. Oakland Hills, for example, ran materially above its initial budget; so have several other clubs quietly.</li>
+  </ol>
+
+  <p>I include those facts not to scare anyone — peer clubs have generally come through these programs with stronger amenity offerings and stronger membership demand on the other side — but because the membership conversation is a healthier one when those numbers are visible up front rather than discovered late.</p>
+
+  <hr>
+
+  <h2>How clubhouse rebuilds typically affect home values</h2>
+
+  <p>Members reasonably want to know: <strong>what happens to home values during and after a major capital program?</strong></p>
+
+  <p>The pattern across peer clubs that have run programs of this scale tends to look something like this:</p>
+
+  <h3>During construction (Year 0 – Year 2 typically)</h3>
+  <ul>
+    <li>Days-on-market often expands. Buyers ask harder questions about ongoing assessments, dust, noise, and amenity disruption.</li>
+    <li>Sale prices on dated-stock homes can soften modestly, particularly for sellers who need to move during peak construction phases.</li>
+    <li>The new-and-renovated cohort tends to be more resilient because those buyers are less price-sensitive and more amenity-focused.</li>
+    <li>Members who <em>can</em> defer a sale until the program completes generally do.</li>
+  </ul>
+
+  <h3>Post-completion (Year 2 onward)</h3>
+  <ul>
+    <li>Documented lift in the new-and-renovated cohort, where the new amenity package supports the buyer narrative.</li>
+    <li>Compression in the spread between dated and renovated stock — <em>but only if</em> the dated cohort responds with renovation activity. If owners hold without modernizing, the spread can actually widen.</li>
+    <li>Increased buyer inquiry from out-of-market luxury buyers, who use peer-club rebuilds as a signal that the community is investing in itself.</li>
+  </ul>
+
+  <p>I want to be careful here: <strong>none of this is guaranteed</strong>. The peer-club outcomes I've reviewed are documented but not deterministic. Execution matters. Governance matters. Whether the program comes in close to budget matters. And the broader luxury market matters. A clubhouse rebuild does not insulate a community from a national luxury correction.</p>
+
+  <p>What I will say is that, across the peer set, the clubs that ran these programs <strong>with strong member communication, transparent assessments, and disciplined contingency</strong> generally came out the other side with stronger pricing and tighter inventory. The clubs that didn't are still working through it.</p>
+
+  <hr>
+
+  <h2>Frictions and risks worth naming</h2>
+
+  <p>A balanced piece names the frictions, not just the upside.</p>
+
+  <p><strong>1. Initiation and total cost of entry.</strong> $500,000 in initiation ($450K club + $50K POA) is a real number. For buyers entering at the dated-stock price tier ($1.5M – $2.5M), the initiation is 20–30% of acquisition price. For buyers in the new-construction tier ($7M – $10M), it's roughly 5–7% of acquisition. The program's economics will land differently across those cohorts.</p>
+
+  <p><strong>2. Assessment uncertainty.</strong> Until the membership package is final, individual member exposure isn't fully knowable. Members making short-term decisions on whether to renovate, sell, or hold should ask the club directly for the most current scope and assessment guidance.</p>
+
+  <p><strong>3. Contingency and overruns.</strong> As noted above, peer-club programs of this size have run 15–20% contingency. Whether that proves sufficient depends on materials pricing, labor availability, and scope discipline through the build.</p>
+
+  <p><strong>4. Governance precedent.</strong> It's worth knowing that the <strong>Carolina Golf Club</strong> (Charlotte, NC) became a public case study after a major capital program ran ~33% over budget. The club's membership voted 229-166 to proceed with revised assessments, and a member lawsuit challenging the process was dismissed in January 2026. Most members report being satisfied with the outcome today. The takeaway isn't "don't do it" — it's "communicate early and often, and document the assumptions."</p>
+
+  <p><strong>5. The dated-stock owner's question.</strong> If you own an original-condition 1980s home inside the gates, the most consequential decision in front of you may not be how to vote on the clubhouse program — it may be whether to renovate, sell as a renovation candidate, or hold and accept the spread. The MLS data above shows that this is already the largest delta inside the gates today.</p>
+
+  <hr>
+
+  <h2>What I'd tell a member, what I'd tell a buyer</h2>
+
+  <p>As a member: read the package carefully when it arrives, ask for the contingency assumptions, and weigh the program against your personal timeline. If you're planning to be at the club for 10+ years, the calculus is different than if you're three years from a move. There is no single right answer.</p>
+
+  <div class="pullquote">
+    <p>The bifurcation is the story. Renovated and new-construction homes are commanding $982 – $1,031 per square foot at the median. Dated, original-condition homes are clearing $661. That spread exists today, before the rebuild conversation reaches its conclusion. Whatever happens with the capital program, that spread will keep mattering.</p>
+  </div>
+
+  <p>As a buyer: the same bifurcation is your opportunity. You can buy into the gate at $1.5M – $2.5M with a renovation budget, at $5M – $7M for fully-renovated existing stock, or at $7M – $10.5M for new construction. Three different cost bases. Three different return profiles. All inside the same 728-lot community.</p>
+
+  <hr>
+
+  <h2>What stays open</h2>
+
+  <p>I expect the questions members are asking right now to keep evolving as the membership package gets finalized. When it does, I will update this analysis with the official numbers and adjust the modeling accordingly. In the meantime, the data above — closed sales, peer-club benchmarks, and historical patterns — is what I'm working from.</p>
+
+  <p>If you want to walk through any specific street, sale, or scenario, my line is open. I am genuinely trying to give members and buyers an honest read on what the numbers actually say, with no advocacy in either direction. The decision in front of the membership is a real one. It deserves real data.</p>
+
+</article>
+
+<section class="bio">
+  <div class="bio-inner">
+    <img class="photo" src="https://edmundbogen.github.io/edmund-profile.jpg" alt="Edmund Bogen">
+    <div>
+      <h3>Edmund Bogen</h3>
+      <div class="title">Member · St. Andrews Country Club &nbsp;|&nbsp; The Edmund Bogen Team · Douglas Elliman</div>
+      <p>Edmund Bogen is a luxury real estate advisor in South Florida and a member of St. Andrews Country Club. He works with members and buyers across the Boca Raton private-club market and writes a weekly market intelligence brief covering 21 luxury communities.</p>
+    </div>
+  </div>
+</section>
+
+<div class="disclaimer">
+  <p>The closed-sales analysis above is based on 97 St. Andrews closings recorded in BeachesMLS between January 2023 and April 2026. Peer-club figures are drawn from publicly reported sources and are summarized in a research file maintained for this analysis.</p>
+  <p>Market data courtesy of BeachesMLS. Information is deemed reliable but not guaranteed. If your property is currently listed with another broker, this is not a solicitation of that listing.</p>
+  <p>© 2026 The Edmund Bogen Team · Douglas Elliman Real Estate</p>
+</div>
+
+</body>
+</html>

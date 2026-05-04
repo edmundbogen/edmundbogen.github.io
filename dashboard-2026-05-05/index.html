@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luxury Communities Market Intelligence Dashboard | The Edmund Bogen Team</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #1a1a1a;
+    background: #f4f4f4;
+    line-height: 1.6;
+  }
+
+  /* Top nav */
+  nav {
+    background: #1a3e5c;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  nav .logo { color: #fff; font-weight: 300; letter-spacing: 3px; font-size: 14px; text-transform: uppercase; }
+  nav .logo strong { font-weight: 600; letter-spacing: 4px; }
+  nav .links a {
+    color: #fff; text-decoration: none; margin-left: 28px;
+    font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 400;
+  }
+  nav .links a:hover { color: #00a8e1; }
+
+  /* Header */
+  .dash-header {
+    background: linear-gradient(135deg, #1a3e5c 0%, #0d2540 100%);
+    color: #fff;
+    padding: 50px 40px 40px;
+    text-align: center;
+  }
+  .dash-header .eyebrow { color: #00a8e1; text-transform: uppercase; letter-spacing: 5px; font-size: 11px; margin-bottom: 14px; font-weight: 500; }
+  .dash-header h1 { font-size: 34px; font-weight: 300; letter-spacing: 1px; margin-bottom: 10px; color: #fff; }
+  .dash-header .meta { color: rgba(255,255,255,0.8); font-size: 12px; text-transform: uppercase; letter-spacing: 3px; }
+
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+
+  /* St Andrews CTA bar */
+  .sa-cta {
+    background: #00a8e1;
+    color: #fff;
+    padding: 18px 40px;
+    text-align: center;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 500;
+  }
+  .sa-cta a {
+    color: #fff;
+    text-decoration: underline;
+    margin-left: 8px;
+  }
+
+  /* Featured article */
+  .featured {
+    background: #fff;
+    margin: 40px auto;
+    max-width: 1200px;
+    border: 1px solid #e0e0e0;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .featured img {
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+    object-fit: cover;
+    display: block;
+  }
+  .featured .body {
+    padding: 36px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .featured .label {
+    color: #00a8e1; text-transform: uppercase; letter-spacing: 4px;
+    font-size: 11px; font-weight: 500; margin-bottom: 14px;
+  }
+  .featured h2 {
+    font-size: 26px; font-weight: 400; color: #1a3e5c;
+    line-height: 1.3; margin-bottom: 16px;
+  }
+  .featured p {
+    color: #555; font-size: 15px; margin-bottom: 22px; line-height: 1.7;
+  }
+  .featured .read-cta {
+    display: inline-block;
+    background: #1a3e5c;
+    color: #fff;
+    padding: 14px 28px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-size: 11px;
+    font-weight: 500;
+    align-self: flex-start;
+  }
+  .featured .read-cta:hover { background: #00a8e1; }
+
+  /* Section title */
+  .section-title {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: #1a3e5c;
+    border-left: 3px solid #00a8e1;
+    padding-left: 14px;
+    margin: 50px 0 22px;
+    font-weight: 500;
+  }
+
+  /* Exec summary */
+  .exec {
+    background: #fff;
+    padding: 36px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+    border: 1px solid #e0e0e0;
+    margin-bottom: 40px;
+  }
+  .exec .stat {
+    border-left: 3px solid #00a8e1;
+    padding: 6px 18px;
+  }
+  .exec .stat .label { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: #666; margin-bottom: 8px; font-weight: 500; }
+  .exec .stat .value { font-size: 26px; color: #1a3e5c; font-weight: 500; line-height: 1.1; }
+  .exec .stat .sub { font-size: 11px; color: #888; margin-top: 4px; }
+
+  /* Charts */
+  .charts {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    padding: 30px;
+    margin-bottom: 40px;
+  }
+  .chart-tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 20px;
+  }
+  .chart-tabs button {
+    background: transparent;
+    border: none;
+    padding: 14px 22px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #888;
+    cursor: pointer;
+    font-family: inherit;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    font-weight: 500;
+  }
+  .chart-tabs button.active { color: #1a3e5c; border-bottom-color: #00a8e1; }
+  .chart-panel { display: none; height: 360px; }
+  .chart-panel.active { display: block; }
+
+  /* Mastermind CTA */
+  .sa-member-cta {
+    background: linear-gradient(135deg, #1a3e5c 0%, #0d2540 100%);
+    color: #fff;
+    padding: 50px 40px;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .sa-member-cta h3 {
+    font-size: 24px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    color: #fff;
+  }
+  .sa-member-cta p {
+    color: rgba(255,255,255,0.85);
+    font-size: 15px;
+    max-width: 620px;
+    margin: 0 auto 22px;
+  }
+  .sa-member-cta a {
+    background: #00a8e1;
+    color: #fff;
+    padding: 14px 32px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 12px;
+    font-weight: 500;
+    display: inline-block;
+  }
+
+  /* Community grid */
+  .communities {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .community {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-left: 3px solid #00a8e1;
+    padding: 18px 20px;
+  }
+  .community.featured-community {
+    border-left-color: #c8102e;
+    background: linear-gradient(135deg, #fff 0%, #fafafa 100%);
+  }
+  .community .name {
+    font-size: 13px;
+    color: #1a3e5c;
+    font-weight: 600;
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+  .community .row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #555;
+    margin-bottom: 4px;
+  }
+  .community .row .v {
+    color: #1a3e5c;
+    font-weight: 600;
+  }
+
+  /* Bio */
+  .bio {
+    background: #1a3e5c;
+    color: #fff;
+    padding: 50px 40px;
+    margin-top: 60px;
+  }
+  .bio-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+  }
+  .bio-inner img.photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #00a8e1;
+    flex-shrink: 0;
+  }
+  .bio-inner h3 { font-size: 22px; font-weight: 400; margin-bottom: 6px; color: #fff; }
+  .bio-inner .title { color: #00a8e1; text-transform: uppercase; letter-spacing: 2px; font-size: 11px; margin-bottom: 14px; }
+  .bio-inner p { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.9); }
+
+  /* Footer */
+  .disclaimer {
+    background: #0d2540;
+    padding: 32px 40px;
+    text-align: center;
+    font-size: 11px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.7;
+  }
+  .disclaimer p { max-width: 800px; margin: 0 auto 6px; }
+
+  @media (max-width: 900px) {
+    .featured { grid-template-columns: 1fr; }
+    .exec { grid-template-columns: repeat(2, 1fr); }
+    .featured img { min-height: 220px; }
+  }
+  @media (max-width: 600px) {
+    nav { padding: 14px 20px; flex-wrap: wrap; }
+    nav .links a { margin-left: 14px; font-size: 10px; }
+    .dash-header h1 { font-size: 24px; }
+    .container { padding: 0 18px; }
+    .communities { grid-template-columns: repeat(2, 1fr); }
+    .exec { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">THE <strong>EDMUND BOGEN</strong> TEAM</div>
+  <div class="links">
+    <a href="https://bogenhomes.com">Properties</a>
+    <a href="../st-andrews-renovation-investment/">Article</a>
+    <a href="mailto:edmund@bogenhomes.com">Contact</a>
+  </div>
+</nav>
+
+<header class="dash-header">
+  <div class="eyebrow">Luxury Communities Market Intelligence</div>
+  <h1>South Florida Private-Club Market Dashboard</h1>
+  <div class="meta">21 Communities &nbsp;·&nbsp; Updated May 5, 2026</div>
+</header>
+
+<div class="sa-cta">
+  Inside the gates · 12 active homes at St. Andrews · $1.895M – $9.999M ·
+  <a href="st-andrews-listings.html">View St. Andrews Listings →</a>
+</div>
+
+<section class="featured">
+  <img src="https://edmundbogen.github.io/st-andrews-renovation-investment/hero.png" alt="St. Andrews Country Club — clubhouse rebuild decision">
+  <div class="body">
+    <div class="label">This Week's Brief · Member-Agent Insight</div>
+    <h2>St. Andrews at the Crossroads: A Data Brief on the Proposed Clubhouse Rebuild</h2>
+    <p>A balanced, data-first look at what the closed-sales numbers actually say about home values inside the gates — including a 50% per-square-foot premium for new and renovated stock, peer-club rebuild benchmarks, and what members and buyers should know.</p>
+    <a class="read-cta" href="https://edmundbogen.github.io/st-andrews-renovation-investment/">Read the Full Brief →</a>
+  </div>
+</section>
+
+<div class="container">
+
+  <h3 class="section-title">Executive Market Summary · 21 Luxury Communities</h3>
+
+  <div class="exec">
+    <div class="stat">
+      <div class="label">St. Andrews Range</div>
+      <div class="value">$1.895M – $9.999M</div>
+      <div class="sub">Active inventory</div>
+    </div>
+    <div class="stat">
+      <div class="label">St. Andrews Active</div>
+      <div class="value">12</div>
+      <div class="sub">13 sold YTD</div>
+    </div>
+    <div class="stat">
+      <div class="label">Total Active</div>
+      <div class="value">236</div>
+      <div class="sub">Across 21 communities</div>
+    </div>
+    <div class="stat">
+      <div class="label">Total Sold YTD</div>
+      <div class="value">310</div>
+      <div class="sub">2026 closings to date</div>
+    </div>
+  </div>
+
+  <h3 class="section-title">Inventory & Velocity by Community</h3>
+
+  <div class="charts">
+    <div class="chart-tabs">
+      <button class="active" data-tab="absorption">Absorption Rates</button>
+      <button data-tab="inventory">Inventory</button>
+      <button data-tab="sold">Sold YTD</button>
+    </div>
+    <div class="chart-panel active" id="absorption"><canvas id="chart-absorption"></canvas></div>
+    <div class="chart-panel" id="inventory"><canvas id="chart-inventory"></canvas></div>
+    <div class="chart-panel" id="sold"><canvas id="chart-sold"></canvas></div>
+  </div>
+
+  <section class="sa-member-cta">
+    <h3>Members + Buyers — Let's Talk</h3>
+    <p>I'm a member at St. Andrews. I list and sell here. If you want to walk through any specific street, sale, or scenario — including how the proposed capital program may affect your situation — my line is open.</p>
+    <a href="mailto:edmund@bogenhomes.com">Contact Edmund</a>
+  </section>
+
+  <h3 class="section-title">All 21 Communities · Active vs. Sold YTD</h3>
+
+  <div class="communities">
+
+    <div class="community featured-community">
+      <div class="name">St. Andrews Country Club</div>
+      <div class="row"><span>Active</span><span class="v">12</span></div>
+      <div class="row"><span>Sold YTD</span><span class="v">13</span></div>
+    </div>
+    <div class="community">
+      <div class="name">Addison Reserve</div>
+      <div class="row"><span>Active</span><span class="v">4</span></div>
+      <div class="row"><span>Sold YTD</span><span class="v">18</span></div>
+    </div>
+    <div class="community">
+      <div class="name">The Oaks</div>
+      <div class="row"><span>Active</span><span class="v">12</span></div>
+      <div class="row"><span>Sold YTD</span><span class="v">16</span></div>
+    </div>
+    <div class="community">
+      <div class="name">Delaire Country Club</div>
+      <div class="row"><span>Active</span><span class="v">3</span></div>
+      <div class="row"><span>Sold YTD</span><span class="v">1</span></div>
+    </div>
+    <div class="community">
+      <div class="name">The Bridges</div>
+      <div class="row"><span>Active</span><span class="v">9</span></div>
+      <div class="row"><span>Sold YTD</span><span class="v">11</span></div>
+    </div>
+    <div class="community">
+      <div class="name">Seven Bridges</div>
+      <div class="row"><span>Active</span><span class="v">10</span></div>
+      <div class="row"><span>Sold YTD</span><span class="v">12</span></div>
+    </div>
+    <div class="community">
+      <div class="name">Boca Grove</div>
+      <div class="row"><span>Active</span><span class="v">14</span></div>
+      <div class="row"><span>Sold YTD</span><span class="v">6</span></div>
+    </div>
+    <div class="community">
+      <div class="name">Boca West Country Club</div>
+      <div class="row"><span>Active</span><span class="v">33</span></div>
+      <div class="row"><span>Sold YTD</span><span class="v">54</span></div>
+    </div>
+    <div class="community">
+      <div class="name">Boca Bridges</div>
+      <div class="row"><span>Active</span><span class="v">9</span></div>
+      <div class="row"><span>Sold YTD</span><span class="v">11</span></div>
+    </div>
+    <div class="community">
+      <div class="name">Lotus</div>
+      <div class="row"><span>Active</span><span class="v">15</span></div>
+      <div class="row"><span>Sold YTD</span><span class="v">16</span></div>
+    </div>
+    <div class="community">
+      <div class="name">Bocaire Country Club</div>
+      <div class="row"><span>Active</span><span class="v">6</span></div>
+      <div class="row"><span>Sold YTD</span><span class="v">12</span></div>
+    </div>
+    <div class="community">
+      <div class="name">The Sanctuary</div>
+      <div class="row"><span>Active</span><span class="v">9</span></div>
+      <div class="row"><span>Sold YTD</span><span class="v">1</span></div>
+    </div>
+    <div class="community">
+      <div class="name">Polo Club</div>
+      <div class="row"><span>Active</span><span class="v">10</span></div>
+      <div class="row"><span>Sold YTD</span><span class="v">35</span></div>
+    </div>
+    <div class="community">
+      <div class="name">Mizner Country Club</div>
+      <div class="row"><span>Active</span><span class="v">8</span></div>
+      <div class="row"><span>Sold YTD</span><span class="v">6</span></div>
+    </div>
+    <div class="community">
+      <div class="name">Long Lake Estates</div>
+      <div class="row"><span>Active</span><span class="v">5</span></div>
+      <div class="row"><span>Sold YTD</span><span class="v">2</span></div>
+    </div>
+    <div class="community">
+      <div class="name">Broken Sound</div>
+      <div class="row"><span>Active</span><span class="v">20</span></div>
+      <div class="row"><span>Sold YTD</span><span class="v">45</span></div>
+    </div>
+    <div class="community">
+      <div class="name">Royal Palm Yacht Club</div>
+      <div class="row"><span>Active</span><span class="v">30</span></div>
+      <div class="row"><span>Sold YTD</span><span class="v">19</span></div>
+    </div>
+    <div class="community">
+      <div class="name">Le Lac</div>
+      <div class="row"><span>Active</span><span class="v">0</span></div>
+      <div class="row"><span>Sold YTD</span><span class="v">0</span></div>
+    </div>
+    <div class="community">
+      <div class="name">Seasons</div>
+      <div class="row"><span>Active</span><span class="v">4</span></div>
+      <div class="row"><span>Sold YTD</span><span class="v">5</span></div>
+    </div>
+    <div class="community">
+      <div class="name">Woodfield</div>
+      <div class="row"><span>Active</span><span class="v">13</span></div>
+      <div class="row"><span>Sold YTD</span><span class="v">19</span></div>
+    </div>
+    <div class="community">
+      <div class="name">Stonebridge</div>
+      <div class="row"><span>Active</span><span class="v">10</span></div>
+      <div class="row"><span>Sold YTD</span><span class="v">8</span></div>
+    </div>
+
+  </div>
+
+</div>
+
+<section class="bio">
+  <div class="bio-inner">
+    <img class="photo" src="https://edmundbogen.github.io/edmund-profile.jpg" alt="Edmund Bogen">
+    <div>
+      <h3>Edmund Bogen</h3>
+      <div class="title">Member · St. Andrews CC &nbsp;|&nbsp; The Edmund Bogen Team · Douglas Elliman</div>
+      <p>Luxury real estate advisor in South Florida, member of St. Andrews Country Club, and author of a weekly market intelligence brief covering 21 luxury communities in Boca Raton and Palm Beach County.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="disclaimer">
+  <p>Market data courtesy of BeachesMLS. Information is deemed reliable but not guaranteed.</p>
+  <p>If your property is currently listed with another broker, this is not a solicitation of that listing.</p>
+  <p>© 2026 The Edmund Bogen Team · Douglas Elliman Real Estate</p>
+</footer>
+
+<script>
+  const communityData = [
+    {name:'St. Andrews', a:12, s:13},
+    {name:'Addison Reserve', a:4, s:18},
+    {name:'The Oaks', a:12, s:16},
+    {name:'Delaire', a:3, s:1},
+    {name:'The Bridges', a:9, s:11},
+    {name:'Seven Bridges', a:10, s:12},
+    {name:'Boca Grove', a:14, s:6},
+    {name:'Boca West', a:33, s:54},
+    {name:'Boca Bridges', a:9, s:11},
+    {name:'Lotus', a:15, s:16},
+    {name:'Bocaire', a:6, s:12},
+    {name:'The Sanctuary', a:9, s:1},
+    {name:'Polo Club', a:10, s:35},
+    {name:'Mizner', a:8, s:6},
+    {name:'Long Lake Estates', a:5, s:2},
+    {name:'Broken Sound', a:20, s:45},
+    {name:'Royal Palm YC', a:30, s:19},
+    {name:'Le Lac', a:0, s:0},
+    {name:'Seasons', a:4, s:5},
+    {name:'Woodfield', a:13, s:19},
+    {name:'Stonebridge', a:10, s:8}
+  ];
+  const labels = communityData.map(c => c.name);
+  const active = communityData.map(c => c.a);
+  const sold = communityData.map(c => c.s);
+  const absorption = communityData.map(c => {
+    const total = c.a + c.s;
+    return total === 0 ? 0 : Math.round((c.s / total) * 100);
+  });
+
+  const navy = '#1a3e5c';
+  const cyan = '#00a8e1';
+
+  const baseOpts = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { position: 'top', labels: { font: { family: 'Montserrat', size: 11 } } } },
+    scales: {
+      x: { ticks: { font: { family: 'Montserrat', size: 9 }, maxRotation: 60, minRotation: 45 } },
+      y: { beginAtZero: true, ticks: { font: { family: 'Montserrat', size: 10 } } }
+    }
+  };
+
+  new Chart(document.getElementById('chart-absorption'), {
+    type: 'bar',
+    data: { labels, datasets: [{ label: 'Sold ÷ (Active + Sold) %', data: absorption, backgroundColor: cyan, borderColor: navy, borderWidth: 1 }] },
+    options: baseOpts
+  });
+
+  new Chart(document.getElementById('chart-inventory'), {
+    type: 'bar',
+    data: { labels, datasets: [{ label: 'Active Listings', data: active, backgroundColor: navy }] },
+    options: baseOpts
+  });
+
+  new Chart(document.getElementById('chart-sold'), {
+    type: 'bar',
+    data: { labels, datasets: [{ label: 'Sold YTD 2026', data: sold, backgroundColor: cyan }] },
+    options: baseOpts
+  });
+
+  document.querySelectorAll('.chart-tabs button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.chart-tabs button').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.chart-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
