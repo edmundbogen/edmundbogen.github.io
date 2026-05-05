@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Evaluate a Country Club Capital Program: A Framework for Members and Buyers | The Edmund Bogen Team</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #1a1a1a;
+    background: #fafafa;
+    line-height: 1.7;
+  }
+
+  nav {
+    background: #1a3e5c;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  nav .logo { color: #fff; font-weight: 300; letter-spacing: 3px; font-size: 14px; text-transform: uppercase; }
+  nav .logo strong { font-weight: 600; letter-spacing: 4px; }
+  nav .links a { color: #fff; text-decoration: none; margin-left: 28px; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 400; }
+  nav .links a:hover { color: #00a8e1; }
+
+  .article-header {
+    background: linear-gradient(135deg, #1a3e5c 0%, #0d2540 100%);
+    color: #fff;
+    padding: 80px 40px 90px;
+    text-align: center;
+  }
+  .article-header .eyebrow { color: #00a8e1; text-transform: uppercase; letter-spacing: 5px; font-size: 12px; font-weight: 500; margin-bottom: 22px; }
+  .article-header h1 { font-size: 44px; font-weight: 300; letter-spacing: 1px; line-height: 1.2; max-width: 920px; margin: 0 auto 22px; color: #fff; }
+  .article-header .sub { color: rgba(255,255,255,0.85); font-size: 17px; font-weight: 300; max-width: 720px; margin: 0 auto 26px; line-height: 1.6; }
+  .article-header .meta { color: rgba(255,255,255,0.75); font-size: 11px; text-transform: uppercase; letter-spacing: 3px; font-weight: 400; }
+
+  .article {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 70px 40px 80px;
+    background: #fff;
+  }
+  .article p { font-size: 17px; line-height: 1.85; color: #2a2a2a; margin-bottom: 22px; }
+  .article h2 {
+    font-size: 28px;
+    font-weight: 400;
+    color: #1a3e5c;
+    margin: 50px 0 22px;
+    line-height: 1.3;
+    border-left: 3px solid #00a8e1;
+    padding-left: 18px;
+  }
+  .article h3 { font-size: 20px; font-weight: 500; color: #1a3e5c; margin: 32px 0 14px; }
+  .article hr { border: none; border-top: 1px solid #e0e0e0; margin: 50px 0; }
+  .article ul, .article ol { margin: 0 0 22px 24px; }
+  .article ul li, .article ol li { font-size: 17px; line-height: 1.85; margin-bottom: 10px; color: #2a2a2a; }
+
+  .pullquote {
+    border-left: 4px solid #00a8e1;
+    padding: 24px 28px;
+    background: #f4f4f4;
+    margin: 35px 0;
+  }
+  .pullquote p { font-size: 18px; color: #1a3e5c; margin-bottom: 0; line-height: 1.7; }
+
+  .checklist {
+    background: linear-gradient(135deg, #1a3e5c 0%, #0d2540 100%);
+    color: #fff;
+    padding: 36px 40px;
+    margin: 40px 0;
+    border-radius: 4px;
+  }
+  .checklist h4 { color: #00a8e1; text-transform: uppercase; letter-spacing: 3px; font-size: 12px; font-weight: 500; margin-bottom: 22px; }
+  .checklist ul { margin: 0; padding-left: 20px; }
+  .checklist ul li { color: rgba(255,255,255,0.92); font-size: 15px; line-height: 1.7; margin-bottom: 12px; }
+  .checklist ul li strong { color: #fff; }
+
+  table { width: 100%; border-collapse: collapse; margin: 28px 0; font-size: 14px; }
+  table th { background: #1a3e5c; color: #fff; padding: 14px 12px; text-align: left; font-weight: 500; text-transform: uppercase; letter-spacing: 1.5px; font-size: 11px; }
+  table td { padding: 14px 12px; border-bottom: 1px solid #e8e8e8; color: #2a2a2a; }
+  table tr:nth-child(even) td { background: #fafafa; }
+  table strong { color: #1a3e5c; font-weight: 600; }
+
+  .bifurcation { background: #f4f4f4; padding: 30px; margin: 35px 0; border-radius: 4px; }
+  .bifurcation h4 { color: #1a3e5c; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 24px; font-weight: 500; }
+  .bar-row { display: flex; align-items: center; margin-bottom: 18px; }
+  .bar-row .label { width: 220px; font-size: 13px; color: #1a3e5c; font-weight: 500; }
+  .bar-row .bar-wrap { flex: 1; background: #e0e0e0; height: 38px; position: relative; border-radius: 2px; }
+  .bar-row .bar { height: 100%; background: linear-gradient(90deg, #1a3e5c, #00a8e1); border-radius: 2px; display: flex; align-items: center; padding-left: 14px; color: #fff; font-weight: 600; font-size: 14px; }
+  .bar-row .n { margin-left: 14px; font-size: 12px; color: #666; width: 80px; }
+
+  .bio { background: #1a3e5c; color: #fff; padding: 50px 40px; margin-top: 60px; }
+  .bio-inner { max-width: 760px; margin: 0 auto; display: flex; gap: 30px; align-items: flex-start; }
+  .bio-inner .photo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid #00a8e1; }
+  .bio-inner h3 { font-size: 22px; font-weight: 400; margin-bottom: 6px; color: #fff; }
+  .bio-inner .title { color: #00a8e1; text-transform: uppercase; letter-spacing: 2px; font-size: 11px; margin-bottom: 14px; }
+  .bio-inner p { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.9); }
+
+  .disclaimer { background: #f4f4f4; padding: 30px 40px; text-align: center; font-size: 11px; color: #888; line-height: 1.7; letter-spacing: 0.5px; }
+  .disclaimer p { max-width: 800px; margin: 0 auto 8px; }
+
+  @media (max-width: 720px) {
+    .article-header h1 { font-size: 30px; }
+    .article-header { padding: 50px 24px 60px; }
+    .article { padding: 40px 22px; }
+    .bar-row { flex-direction: column; align-items: flex-start; }
+    .bar-row .label { width: 100%; margin-bottom: 6px; }
+    .bar-row .n { margin: 6px 0 0 0; }
+    nav { padding: 14px 20px; flex-wrap: wrap; }
+    nav .links a { margin-left: 14px; font-size: 10px; }
+    table { font-size: 12px; }
+    table th, table td { padding: 10px 6px; }
+    .bio-inner { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">THE <strong>EDMUND BOGEN</strong> TEAM</div>
+  <div class="links">
+    <a href="https://bogenhomes.com">Properties</a>
+    <a href="../market-dashboard/">Dashboard</a>
+    <a href="https://www.bogen.ai/contact?tab=client">Contact</a>
+  </div>
+</nav>
+
+<section class="article-header">
+  <div class="eyebrow">A Framework Brief · Luxury Private-Club Decisions</div>
+  <h1>How to Evaluate a Country Club Capital Program</h1>
+  <div class="sub">An educational framework for members and buyers evaluating major capital programs at luxury private clubs — covering the cohort math, the questions worth asking, and the patterns that separate well-executed programs from troubled ones.</div>
+  <div class="meta">May 5, 2026 &nbsp;·&nbsp; By Edmund Bogen</div>
+</section>
+
+<article class="article">
+
+  <h2>Why this framework exists</h2>
+
+  <p>Many luxury private clubs eventually face a major capital decision: a clubhouse rebuild, a phased amenity refresh, a golf-program investment, or some combination. These decisions are large in scale and consequential for both members and buyers. Yet most members and buyers walk into the conversation without a structured framework for evaluating what is actually being proposed.</p>
+
+  <p>This brief is that framework. It does not advocate for or against any specific program at any specific club. It is meant to help readers ask better questions, understand the patterns that show up across the industry, and make decisions that fit their own timelines and circumstances.</p>
+
+  <p>Nothing in this brief is investment advice, legal advice, or tax advice. It is general market education.</p>
+
+  <hr>
+
+  <h2>Disclosure before the framework</h2>
+
+  <p>I owe you the disclosure before the analysis.</p>
+
+  <p>I am a luxury real estate advisor. I work with members and buyers across multiple luxury communities. My commission as a listing agent is a percentage of sale price, which means I have a commercial bias toward higher-value transactions. <strong>That is a real bias and you should weigh it as you read this.</strong> What I have tried to do is build a framework that is useful to a member, a buyer, a renovator, or a long-term holder — not to point any reader toward a particular outcome.</p>
+
+  <hr>
+
+  <h2>The first thing to understand: outcomes vary widely</h2>
+
+  <p>The most important fact about country club capital programs is that <strong>outcomes vary widely</strong>. Some programs produce a clear lift — stronger amenities, stronger demand, stronger home values. Others produce beautiful facilities without the corresponding lift in membership demand or real estate values. Industry trade publications such as <em>Club &amp; Resort Business</em>, <em>Boardroom Magazine</em>, and <em>Golf Inc.</em> have documented both kinds of outcomes over the last fifteen years.</p>
+
+  <p>The factors that consistently separate the well-received programs from the troubled ones are not architectural. They are:</p>
+
+  <ul>
+    <li><strong>Execution discipline.</strong> Did the program come in close to budget, or did it run materially over?</li>
+    <li><strong>Governance posture.</strong> Did leadership communicate transparently before, during, and after, or did members find out about overruns late?</li>
+    <li><strong>Macro timing.</strong> Did the build window overlap with a stable luxury market, or with a correction?</li>
+    <li><strong>Cohort structure.</strong> Did the assessment structure account for the different impacts on different home-value tiers, or was it applied flatly?</li>
+  </ul>
+
+  <p>None of these factors is guaranteed in advance. All of them are visible in the package, the communications, and the leadership track record before the vote — if a member or buyer knows where to look.</p>
+
+  <hr>
+
+  <h2>The bifurcation framework</h2>
+
+  <p>Across most luxury private-club communities, three distinct cohorts of homes trade at meaningfully different per-square-foot values:</p>
+
+  <table>
+    <thead>
+      <tr><th>Cohort</th><th>Pattern</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>New construction</strong> (recently built homes)</td><td>Top of the $/sqft range — turnkey, modern systems, current finishes, less price-sensitive buyer pool</td></tr>
+      <tr><td><strong>Fully renovated</strong> (older lot, modernized)</td><td>Trades close to new construction $/sqft when the renovation is comprehensive</td></tr>
+      <tr><td><strong>Dated, original-condition</strong> (no major modernization)</td><td>Trades as a renovation candidate — the lot is the asset, not the structure</td></tr>
+    </tbody>
+  </table>
+
+  <div class="bifurcation">
+    <h4>Illustrative Cohort Spread (Pattern Only)</h4>
+    <div class="bar-row">
+      <div class="label">New construction</div>
+      <div class="bar-wrap"><div class="bar" style="width: 100%;">Highest</div></div>
+      <div class="n">range high</div>
+    </div>
+    <div class="bar-row">
+      <div class="label">Fully renovated</div>
+      <div class="bar-wrap"><div class="bar" style="width: 92%;">Near-top</div></div>
+      <div class="n">range mid-high</div>
+    </div>
+    <div class="bar-row">
+      <div class="label">Dated, original</div>
+      <div class="bar-wrap"><div class="bar" style="width: 60%;">Bottom</div></div>
+      <div class="n">range low</div>
+    </div>
+  </div>
+
+  <p>The exact ratios vary by community. The pattern is consistent: a meaningful per-square-foot premium for new and renovated stock, with the spread sometimes wider than members realize until they look at recent closings cohort by cohort.</p>
+
+  <p>This bifurcation is the lens through which any capital program should be evaluated. <strong>A new clubhouse does not change the year built on an existing home.</strong> What it can do — when executed well — is move the floor of the gate's value proposition, shift buyer perception of the community, and influence how the cohort spread evolves over time.</p>
+
+  <hr>
+
+  <h2>The cohort-asymmetry problem</h2>
+
+  <p>One of the least-discussed dimensions of any capital program is what I call the cohort-asymmetry problem.</p>
+
+  <p>When an assessment is applied as a flat dollar amount per lot, it lands very differently on different homeowners. The same dollar assessment is a meaningfully larger percentage of the dated cohort's home value than of the new-construction cohort's home value. The table below is purely illustrative — the figures are not associated with any specific club or program — but it makes the asymmetry visible.</p>
+
+  <table>
+    <thead>
+      <tr><th>Per-lot assessment</th><th>$2.5M home<br><small>(dated cohort)</small></th><th>$5.3M home<br><small>(renovated cohort)</small></th><th>$7M home<br><small>(new construction)</small></th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>$100,000</strong></td><td>4.0%</td><td>1.9%</td><td>1.4%</td></tr>
+      <tr><td><strong>$200,000</strong></td><td>8.0%</td><td>3.8%</td><td>2.9%</td></tr>
+      <tr><td><strong>$300,000</strong></td><td>12.0%</td><td>5.7%</td><td>4.3%</td></tr>
+      <tr><td><strong>$400,000</strong></td><td>16.0%</td><td>7.5%</td><td>5.7%</td></tr>
+    </tbody>
+  </table>
+
+  <p>The same dollar assessment can represent two to three times the percentage of acquisition price for a dated-cohort owner versus a new-construction owner. <strong>That is not, by itself, an argument against any program.</strong> It is a reason to ask whether and how the program addresses cohort asymmetry — through phased assessments, financing options, graduated participation, or other mechanisms.</p>
+
+  <p>A well-designed program acknowledges the asymmetry. A poorly designed one ignores it.</p>
+
+  <hr>
+
+  <h2>How clubhouse rebuilds typically affect home values</h2>
+
+  <p>The patterns observed across the industry tend to look something like this:</p>
+
+  <h3>During construction (Year 0 – Year 2 typically)</h3>
+  <ul>
+    <li>Days-on-market often expands. Buyers ask harder questions about ongoing assessments, dust, noise, and amenity disruption.</li>
+    <li>Sale prices on dated-stock homes can soften modestly, particularly for sellers who need to move during peak construction phases.</li>
+    <li>The new-and-renovated cohort tends to be more resilient because those buyers are less price-sensitive and more amenity-focused.</li>
+    <li>Members who can defer a sale until the program completes generally do.</li>
+  </ul>
+
+  <h3>Post-completion (Year 2 onward)</h3>
+  <ul>
+    <li>When execution and macro timing are favorable: documented lift in the new-and-renovated cohort, where the new amenity package supports the buyer narrative.</li>
+    <li>Compression in the spread between dated and renovated stock — but only if the dated cohort responds with renovation activity.</li>
+    <li>Increased buyer inquiry from out-of-market luxury buyers, who use the program as a signal that the community is investing in itself.</li>
+    <li>When execution or macro timing is unfavorable: the disruption arrives without the corresponding lift, and the cohort spread can widen rather than narrow.</li>
+  </ul>
+
+  <p>Worth saying clearly: <strong>none of this is guaranteed.</strong> The patterns are observed but not deterministic. Execution matters. Governance matters. Whether the program comes in close to budget matters. And the broader luxury market matters. A clubhouse rebuild does not insulate any community from a national luxury correction.</p>
+
+  <hr>
+
+  <h2>The three plausible outcomes for any membership decision</h2>
+
+  <p>The framework is not honest if it only models the build scenario. Most membership decisions land on one of three paths:</p>
+
+  <ol>
+    <li><strong>Full ground-up rebuild as proposed.</strong> Highest cost, highest disruption, highest theoretical lift if execution is clean and the macro luxury market cooperates.</li>
+    <li><strong>Phased or scaled-back program.</strong> Lower assessment exposure, lower disruption, more modest amenity lift. Many clubs across the industry have run multi-phase programs rather than a single ground-up rebuild.</li>
+    <li><strong>Status quo / renovation-only.</strong> No major assessment, no major disruption. Also: no amenity reset, and continued aging of older infrastructure.</li>
+  </ol>
+
+  <p>Each path carries a different cost basis and a different risk profile. <strong>None of the three options is risk-free.</strong> Status quo is not "no decision" — it is a decision to let existing infrastructure continue to age, with the inventory and amenity consequences that follow. Full rebuild is not a guaranteed lift. Phased programs sit in between on both axes.</p>
+
+  <p>The question facing any membership is rarely "rebuild yes or no." It is <strong>which version of which path</strong>, on what timeline, with what assessment structure, and with what governance discipline through the build.</p>
+
+  <hr>
+
+  <h2>The four questions most worth asking</h2>
+
+  <p>Across the industry, the most thoughtful skeptical questions consistently fall into four categories. Any well-designed membership package should answer all four directly.</p>
+
+  <div class="checklist">
+    <h4>The Four Questions</h4>
+    <ul>
+      <li><strong>1. Has the existing footprint been refreshed before, and how did those refreshes perform?</strong> If incremental approaches have a track record, a ground-up rebuild needs to clearly justify the step change in cost and disruption.</li>
+      <li><strong>2. How does the assessment structure address cohort asymmetry?</strong> If the program lifts $/sqft most strongly in the new-and-renovated cohort while the assessment lands as a much higher percentage of the dated cohort's home value, that cross-subsidy deserves to be named and addressed.</li>
+      <li><strong>3. What are the macro-timing assumptions?</strong> Construction inflation, labor availability, and the broader luxury market all factor in. A rebuild that runs into a softer macro environment can produce the disruption without the lift.</li>
+      <li><strong>4. What is the governance posture on overruns?</strong> Industry experience consistently shows that the difference between programs that work and programs that don't is rarely the architecture. It is the contingency discipline, the communication cadence, and the willingness to slow down or restage when numbers shift.</li>
+    </ul>
+  </div>
+
+  <p>None of these questions is a reason not to do a program. All of them are reasons to do one well — and to expect the package to address them on the front end.</p>
+
+  <hr>
+
+  <h2>What to ask before voting, before buying, before renovating</h2>
+
+  <p>Whether you are a current member preparing to vote, a prospective buyer considering a community with an active capital program, or a current owner deciding whether to renovate, the same set of practical questions applies.</p>
+
+  <h3>If you are a member preparing to vote</h3>
+  <ul>
+    <li>What is the contingency assumption, and who absorbs overruns beyond it?</li>
+    <li>How does the assessment structure account for cohort asymmetry?</li>
+    <li>What is the projected disruption window?</li>
+    <li>How does the program align with my personal timeline at the club?</li>
+    <li>What is leadership's communication plan during construction?</li>
+  </ul>
+
+  <h3>If you are a buyer considering a community with an active program</h3>
+  <ul>
+    <li>What is my exposure to the assessment as a percentage of acquisition price?</li>
+    <li>Which cohort am I buying into, and how does that cohort tend to perform during and after capital programs?</li>
+    <li>How long am I planning to be at the club?</li>
+    <li>What is the macro outlook for the luxury market in this geography?</li>
+  </ul>
+
+  <h3>If you are an owner deciding whether to renovate</h3>
+  <ul>
+    <li>What is the current cohort spread inside the gate?</li>
+    <li>What is my expected hold period?</li>
+    <li>Does my renovation budget plus my acquisition cost approach the renovated cohort's clearing range — or stay below it?</li>
+    <li>Is the capital program likely to widen or narrow the cohort spread over my hold period?</li>
+  </ul>
+
+  <hr>
+
+  <h2>The frame I keep coming back to</h2>
+
+  <div class="pullquote">
+    <p>The bifurcation is the story. The cohort spread exists today, before any capital-program conversation reaches its conclusion. Whatever any membership decides, that spread will keep mattering — and how a program is structured determines whether it narrows, holds, or widens.</p>
+  </div>
+
+  <p>A capital program is one input into the value equation of a luxury private-club community. It is rarely the only input, and almost never the decisive one. Execution, governance, macro timing, and the cohort response over time matter at least as much as the program itself. The framework above is meant to help readers think clearly about all of those inputs together.</p>
+
+  <hr>
+
+  <h2>What stays open</h2>
+
+  <p>The questions in front of any membership facing a capital decision will keep evolving as packages get finalized, as macro conditions shift, and as construction realities land. The framework above is meant to be useful regardless of which gate you sit behind, which decision is in front of you, or which side of it you ultimately come down on.</p>
+
+  <p>If you want to walk through how the framework applies to a specific community, a specific cohort, or your own decision — buying, selling, renovating, or holding — my line is open.</p>
+
+</article>
+
+<section class="bio">
+  <div class="bio-inner">
+    <img class="photo" src="https://edmundbogen.github.io/edmund-profile.jpg" alt="Edmund Bogen">
+    <div>
+      <h3>Edmund Bogen</h3>
+      <div class="title">The Edmund Bogen Team · Douglas Elliman</div>
+      <p>Edmund Bogen is a luxury real estate advisor working with members and buyers across multiple luxury communities. He writes a weekly market intelligence brief and analytical frameworks for the luxury private-club market.</p>
+    </div>
+  </div>
+</section>
+
+<div class="disclaimer">
+  <p>This brief is general educational content and an analytical framework. It is not investment advice, legal advice, tax advice, or a recommendation regarding any specific club, capital program, vote, transaction, or property. Industry patterns referenced are drawn from publicly available trade publications and industry sources. Illustrative figures are not associated with any specific club or program.</p>
+  <p>If your property is currently listed with another broker, this is not a solicitation of that listing.</p>
+  <p>© 2026 The Edmund Bogen Team · Douglas Elliman Real Estate</p>
+</div>
+
+</body>
+</html>
