@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>When a Country Club Rebuilds: What the Data Says About Home Values | The Edmund Bogen Team</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #1a1a1a;
+    background: #fafafa;
+    line-height: 1.7;
+  }
+
+  nav {
+    background: #1a3e5c;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  nav .logo { color: #fff; font-weight: 300; letter-spacing: 3px; font-size: 14px; text-transform: uppercase; }
+  nav .logo strong { font-weight: 600; letter-spacing: 4px; }
+  nav .links a { color: #fff; text-decoration: none; margin-left: 28px; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 400; }
+  nav .links a:hover { color: #00a8e1; }
+
+  .article-header {
+    background: linear-gradient(135deg, #1a3e5c 0%, #0d2540 100%);
+    color: #fff;
+    padding: 80px 40px 90px;
+    text-align: center;
+  }
+  .article-header .eyebrow {
+    color: #00a8e1;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 22px;
+  }
+  .article-header h1 {
+    font-size: 46px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    line-height: 1.2;
+    max-width: 920px;
+    margin: 0 auto 22px;
+    color: #fff;
+  }
+  .article-header .sub {
+    color: rgba(255,255,255,0.85);
+    font-size: 17px;
+    font-weight: 300;
+    max-width: 720px;
+    margin: 0 auto 26px;
+    line-height: 1.6;
+  }
+  .article-header .meta {
+    color: rgba(255,255,255,0.75);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 400;
+  }
+
+  .article {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 70px 40px 80px;
+    background: #fff;
+  }
+  .article p {
+    font-size: 17px;
+    line-height: 1.85;
+    color: #2a2a2a;
+    margin-bottom: 22px;
+  }
+  .article h2 {
+    font-size: 28px;
+    font-weight: 400;
+    color: #1a3e5c;
+    margin: 50px 0 22px;
+    line-height: 1.3;
+    border-left: 3px solid #00a8e1;
+    padding-left: 18px;
+  }
+  .article h3 {
+    font-size: 20px;
+    font-weight: 500;
+    color: #1a3e5c;
+    margin: 32px 0 14px;
+  }
+  .article hr { border: none; border-top: 1px solid #e0e0e0; margin: 50px 0; }
+  .article ul, .article ol { margin: 0 0 22px 24px; }
+  .article ul li, .article ol li {
+    font-size: 17px;
+    line-height: 1.85;
+    margin-bottom: 10px;
+    color: #2a2a2a;
+  }
+
+  .pullquote {
+    border-left: 4px solid #00a8e1;
+    padding: 24px 28px;
+    background: #f4f4f4;
+    margin: 35px 0;
+    font-style: normal;
+  }
+  .pullquote p {
+    font-size: 18px;
+    color: #1a3e5c;
+    margin-bottom: 0;
+    line-height: 1.7;
+  }
+
+  .stat-callout {
+    background: linear-gradient(135deg, #1a3e5c 0%, #0d2540 100%);
+    color: #fff;
+    padding: 36px;
+    margin: 40px 0;
+    border-radius: 4px;
+    text-align: center;
+  }
+  .stat-callout .label { color: #00a8e1; text-transform: uppercase; letter-spacing: 4px; font-size: 11px; margin-bottom: 18px; font-weight: 500; }
+  .stat-callout .address { font-size: 18px; font-weight: 300; margin-bottom: 28px; letter-spacing: 1px; color: rgba(255,255,255,0.85); }
+  .stat-callout .delta { display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; margin-bottom: 18px; }
+  .stat-callout .delta .item { text-align: center; }
+  .stat-callout .delta .item .px { font-size: 32px; font-weight: 300; color: #fff; }
+  .stat-callout .delta .item .meta { font-size: 11px; color: rgba(255,255,255,0.75); text-transform: uppercase; letter-spacing: 2px; margin-top: 6px; }
+  .stat-callout .arrow { align-self: center; color: #00a8e1; font-size: 28px; }
+  .stat-callout .summary { font-size: 14px; color: rgba(255,255,255,0.85); font-weight: 400; margin-top: 12px; letter-spacing: 0.5px; font-style: italic; }
+
+  table { width: 100%; border-collapse: collapse; margin: 28px 0; font-size: 14px; }
+  table th { background: #1a3e5c; color: #fff; padding: 14px 12px; text-align: left; font-weight: 500; text-transform: uppercase; letter-spacing: 1.5px; font-size: 11px; }
+  table td { padding: 14px 12px; border-bottom: 1px solid #e8e8e8; color: #2a2a2a; }
+  table tr:nth-child(even) td { background: #fafafa; }
+  table strong { color: #1a3e5c; font-weight: 600; }
+
+  .bifurcation { background: #f4f4f4; padding: 30px; margin: 35px 0; border-radius: 4px; }
+  .bifurcation h4 { color: #1a3e5c; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 24px; font-weight: 500; }
+  .bar-row { display: flex; align-items: center; margin-bottom: 18px; }
+  .bar-row .label { width: 220px; font-size: 13px; color: #1a3e5c; font-weight: 500; }
+  .bar-row .bar-wrap { flex: 1; background: #e0e0e0; height: 38px; position: relative; border-radius: 2px; }
+  .bar-row .bar { height: 100%; background: linear-gradient(90deg, #1a3e5c, #00a8e1); border-radius: 2px; display: flex; align-items: center; padding-left: 14px; color: #fff; font-weight: 600; font-size: 14px; }
+  .bar-row .n { margin-left: 14px; font-size: 12px; color: #666; width: 70px; }
+
+  .bio { background: #1a3e5c; color: #fff; padding: 50px 40px; margin-top: 60px; }
+  .bio-inner { max-width: 760px; margin: 0 auto; display: flex; gap: 30px; align-items: flex-start; }
+  .bio-inner .photo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid #00a8e1; }
+  .bio-inner h3 { font-size: 22px; font-weight: 400; margin-bottom: 6px; color: #fff; }
+  .bio-inner .title { color: #00a8e1; text-transform: uppercase; letter-spacing: 2px; font-size: 11px; margin-bottom: 14px; }
+  .bio-inner p { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.9); }
+
+  .disclaimer { background: #f4f4f4; padding: 30px 40px; text-align: center; font-size: 11px; color: #888; line-height: 1.7; letter-spacing: 0.5px; }
+  .disclaimer p { max-width: 800px; margin: 0 auto 8px; }
+
+  @media (max-width: 720px) {
+    .article-header h1 { font-size: 32px; }
+    .article-header { padding: 50px 24px 60px; }
+    .article { padding: 40px 22px; }
+    .stat-callout .delta { gap: 22px; }
+    .stat-callout .delta .item .px { font-size: 24px; }
+    .bar-row { flex-direction: column; align-items: flex-start; }
+    .bar-row .label { width: 100%; margin-bottom: 6px; }
+    .bar-row .n { margin: 6px 0 0 0; }
+    nav { padding: 14px 20px; flex-wrap: wrap; }
+    nav .links a { margin-left: 14px; font-size: 10px; }
+    table { font-size: 12px; }
+    table th, table td { padding: 10px 6px; }
+    .bio-inner { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">THE <strong>EDMUND BOGEN</strong> TEAM</div>
+  <div class="links">
+    <a href="https://bogenhomes.com">Properties</a>
+    <a href="../market-dashboard/">Dashboard</a>
+    <a href="https://www.bogen.ai/contact?tab=client">Contact</a>
+  </div>
+</nav>
+
+<section class="article-header">
+  <div class="eyebrow">Market Intelligence · Luxury Private-Club Capital Programs</div>
+  <h1>When a Country Club Rebuilds: What the Data Says About Home Values</h1>
+  <div class="sub">An analytical framework for members and buyers facing major capital programs in South Florida's luxury private-club communities — drawn from the closed-sales record, peer-club benchmarks, and the patterns that separate the rebuilds that work from the ones that don't.</div>
+  <div class="meta">May 5, 2026 &nbsp;·&nbsp; By Edmund Bogen</div>
+</section>
+
+<article class="article">
+
+  <h2>A tale of two country clubs</h2>
+
+  <p>Across South Florida and the country, some private clubs run major capital programs and emerge on the other side with stronger amenities, stronger demand, and stronger home values. <strong>Other clubs spend comparable money — and the lift never arrives.</strong> Beautiful facilities, depleted reserves, declining membership, soft real estate. In a handful of well-known cases over the last fifteen years, capital programs have been followed by sales of land for redevelopment, mergers, or quiet financial restructurings.</p>
+
+  <p>The honest reading of the peer-club record is not "rebuilds always work." It is: <strong>execution, governance, and macro timing decide which version of the story a club ends up writing.</strong> That is the question on the table at any club currently weighing a major capital program — not whether a new clubhouse <em>could</em> add value, but whether the program, as it gets finalized, lands on the side of the ledger that produces lift.</p>
+
+  <p>This piece is a framework — built from the closed-sales record, peer-club benchmarks, and the patterns I have watched across the luxury private-club market in South Florida over the last decade. It is meant for members weighing assessment decisions, buyers weighing entry, and anyone trying to think clearly about the economics of the country-club rebuild question.</p>
+
+  <hr>
+
+  <h2>Disclosure before the data</h2>
+
+  <p>I owe you the disclosure before the analysis.</p>
+
+  <p>I am a <strong>member</strong> of a South Florida private equity club, and I am a <strong>listing agent</strong> who works across twenty-one luxury communities in Palm Beach and Broward counties. Those two roles do not point in the same direction. As a member, I bear my share of any assessment in the community I belong to. As a listing agent, my commission is a percentage of sale price, which means I earn materially more on a high-value new-construction closing than on a dated-stock closing in the same gate. <strong>That is a real bias and you should weigh it as you read this.</strong></p>
+
+  <p>Nothing in this brief is investment advice or a recommendation about any specific club, capital program, vote, or transaction. The frameworks below are general. The figures cited are illustrative and drawn from public sources. The decisions are yours.</p>
+
+  <hr>
+
+  <h2>The teardown signal: one comp, not a market</h2>
+
+  <p>Inside one of the major Boca Raton private-club communities, a documented teardown comp tells a familiar story. A 1984-built home closed in October 2023 at roughly <strong>$470 per square foot</strong>. Eighteen months later, the same lot closed again at roughly <strong>$1,290 per square foot</strong> — this time as a 2025 ground-up new construction. Same dirt. Same gate. <strong>Roughly 5x the price per foot.</strong></p>
+
+  <div class="stat-callout">
+    <div class="label">Teardown Comp · Same Lot, Two Closings · Boca Raton Private Club</div>
+    <div class="address">Read with the rest of the data, not as the headline</div>
+    <div class="delta">
+      <div class="item">
+        <div class="px">~$470/sqft</div>
+        <div class="meta">Oct 2023 · 1984 build</div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="item">
+        <div class="px">~$1,290/sqft</div>
+        <div class="meta">Mar 2025 · 2025 build</div>
+      </div>
+    </div>
+    <div class="summary">One comp. Not a market. Context follows.</div>
+  </div>
+
+  <p>This is the single most pro-investment data point I can put in front of you, and it is also the most misleading one if read alone. <strong>One teardown is not a market.</strong> The cohort data below is the market. The comp matters only because it sits inside a much larger pattern — a structural premium for new and renovated stock that exists across these communities <em>before</em> any clubhouse rebuild conversation begins.</p>
+
+  <hr>
+
+  <h2>The bifurcation: a 40–55% per-square-foot premium for new and renovated stock</h2>
+
+  <p>The most important pattern in any conversation about a private-club capital program isn't the program's price tag. It's the spread that already exists inside the gates between <strong>new or fully-renovated homes</strong> and <strong>original-condition 1980s/early-1990s homes</strong> sitting on the same streets.</p>
+
+  <p>Across the major Boca Raton private-club communities the closed-sales record consistently shows three cohorts:</p>
+
+  <table>
+    <thead>
+      <tr><th>Cohort</th><th>Typical Median $/sqft</th><th>Pattern</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>New construction</strong> (year built ≥ 2018)</td><td><strong>$950 – $1,300</strong></td><td>Driven by buyer preference for turnkey, modern systems, current finishes</td></tr>
+      <tr><td><strong>Fully renovated</strong> (older lot, modernized to current standard)</td><td><strong>$900 – $1,100</strong></td><td>Trades close to new-construction $/sqft when renovation is comprehensive</td></tr>
+      <tr><td><strong>Dated, original-condition</strong> (year built &lt; 2018, no major modernization)</td><td><strong>$500 – $750</strong></td><td>Trades as a renovation candidate — the lot is the asset</td></tr>
+    </tbody>
+  </table>
+
+  <div class="bifurcation">
+    <h4>Illustrative Median $/sqft by Cohort · Boca Raton Private Clubs · 2023 – 2026 YTD</h4>
+    <div class="bar-row">
+      <div class="label">New construction</div>
+      <div class="bar-wrap"><div class="bar" style="width: 100%;">~$1,030</div></div>
+      <div class="n">range high</div>
+    </div>
+    <div class="bar-row">
+      <div class="label">Fully renovated</div>
+      <div class="bar-wrap"><div class="bar" style="width: 95%;">~$980</div></div>
+      <div class="n">range mid</div>
+    </div>
+    <div class="bar-row">
+      <div class="label">Dated, original</div>
+      <div class="bar-wrap"><div class="bar" style="width: 64%;">~$660</div></div>
+      <div class="n">range low</div>
+    </div>
+  </div>
+
+  <p>The headline takeaway across these communities: a roughly <strong>40–55% per-square-foot premium</strong> for new or fully-renovated homes versus dated stock, with a 3x or wider spread between the lowest and highest $/sqft closings inside the same gate.</p>
+
+  <p>This is the bifurcation that any major capital program needs to be evaluated against. A new clubhouse does not change the year built on a 1985 home. What it can do — based on peer-club experience — is move the <em>floor</em> of the gate's value proposition, and over time, narrow or widen the cohort spread depending on how the program is executed.</p>
+
+  <hr>
+
+  <h2>What peer clubs have actually spent</h2>
+
+  <p>The most useful exercise — and one any member or buyer should run — is to look at what peer private clubs have actually spent on full clubhouse rebuilds and major capital programs, and what their economics looked like on a per-square-foot basis. The figures below are drawn from publicly reported sources.</p>
+
+  <table>
+    <thead>
+      <tr><th>Club</th><th>Project</th><th>Reported Cost</th><th>Square Footage</th><th>$/sqft</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Frenchman's Creek</strong> (Palm Beach Gardens, FL)</td><td>Clubhouse rebuild</td><td>~$74M</td><td>~124,450 sqft</td><td>~$594</td></tr>
+      <tr><td><strong>Bighorn Golf Club</strong> (Palm Desert, CA)</td><td>Clubhouse rebuild</td><td>~$70M</td><td>~80,000 sqft</td><td>~$875</td></tr>
+      <tr><td><strong>Oakland Hills Country Club</strong> (Bloomfield Hills, MI)</td><td>Clubhouse rebuild after fire</td><td>~$104M</td><td>~110,000 sqft</td><td>~$945</td></tr>
+      <tr><td><strong>Boca West Country Club</strong></td><td>Multi-phase capital program</td><td>~$95M (announced)</td><td>Multiple facilities</td><td>Varies by phase</td></tr>
+      <tr><td><strong>BallenIsles Country Club</strong></td><td>Sports complex + Rees Jones short course</td><td>$19M + $6M</td><td>Two facilities</td><td>n/a</td></tr>
+    </tbody>
+  </table>
+
+  <p>A few honest observations from the peer set:</p>
+
+  <ol>
+    <li><strong>$/sqft for full ground-up clubhouse rebuilds in this asset class is currently running roughly $600 – $950 per square foot</strong>, with the higher end reflecting more elaborate amenity programs, post-pandemic construction inflation, and complex sites.</li>
+    <li><strong>Contingency allowances of 15–20% are now standard</strong> in private-club capital programs of this size, given materials volatility and labor pricing in 2024–2026.</li>
+    <li><strong>Cost overruns happen.</strong> One widely-reported public case: the <strong>Carolina Golf Club</strong> in Charlotte, NC, where a major capital program ran approximately 33% over budget. Membership voted 229-166 to proceed with revised assessments, and a member lawsuit challenging the process was dismissed in January 2026. The club is operating today and most members report being satisfied with the outcome — but the path was contentious.</li>
+  </ol>
+
+  <p>I include those facts not to scare anyone — peer clubs that execute well have generally come through these programs with stronger amenity offerings and stronger membership demand on the other side — but because the membership conversation is a healthier one when those numbers are visible up front rather than discovered late.</p>
+
+  <hr>
+
+  <h2>How clubhouse rebuilds typically affect home values</h2>
+
+  <p>Members and buyers reasonably want to know: <strong>what happens to home values during and after a major capital program?</strong></p>
+
+  <p>The pattern across peer clubs that have run programs of this scale tends to look something like this:</p>
+
+  <h3>During construction (Year 0 – Year 2 typically)</h3>
+  <ul>
+    <li>Days-on-market often expands. Buyers ask harder questions about ongoing assessments, dust, noise, and amenity disruption.</li>
+    <li>Sale prices on dated-stock homes can soften modestly, particularly for sellers who need to move during peak construction phases.</li>
+    <li>The new-and-renovated cohort tends to be more resilient because those buyers are less price-sensitive and more amenity-focused.</li>
+    <li>Members who <em>can</em> defer a sale until the program completes generally do.</li>
+  </ul>
+
+  <h3>Post-completion (Year 2 onward)</h3>
+  <ul>
+    <li>Documented lift in the new-and-renovated cohort, where the new amenity package supports the buyer narrative.</li>
+    <li>Compression in the spread between dated and renovated stock — <em>but only if</em> the dated cohort responds with renovation activity. If owners hold without modernizing, the spread can actually widen.</li>
+    <li>Increased buyer inquiry from out-of-market luxury buyers, who use peer-club rebuilds as a signal that the community is investing in itself.</li>
+  </ul>
+
+  <p>I want to be careful here: <strong>none of this is guaranteed.</strong> The peer-club outcomes I have reviewed are documented but not deterministic. Execution matters. Governance matters. Whether the program comes in close to budget matters. And the broader luxury market matters. A clubhouse rebuild does not insulate a community from a national luxury correction.</p>
+
+  <p>What I will say is that, across the peer set, the clubs that ran these programs <strong>with strong member communication, transparent assessments, and disciplined contingency</strong> generally came out the other side with stronger pricing and tighter inventory. The clubs that didn't are still working through it.</p>
+
+  <hr>
+
+  <h2>Frictions and risks worth naming</h2>
+
+  <p>A balanced framework names the frictions, not just the upside.</p>
+
+  <p><strong>1. Initiation and total cost of entry.</strong> In the major Boca Raton private clubs, member initiation costs typically range from $200,000 to over $500,000, depending on the club. For buyers entering at the dated-stock price tier, initiation can represent 15–30% of acquisition cost. For buyers in the new-construction tier, it can drop to 5–7%. The economics of any capital program land differently across those cohorts.</p>
+
+  <p><strong>2. Assessment uncertainty.</strong> Until a club's membership package is final, individual member exposure is not fully knowable. Members making short-term decisions on whether to renovate, sell, or hold should ask the club directly for the most current scope and assessment guidance.</p>
+
+  <p><strong>3. Contingency and overruns.</strong> As noted above, peer-club programs of this size have run 15–20% contingency. Whether that proves sufficient depends on materials pricing, labor availability, and scope discipline through the build.</p>
+
+  <p><strong>4. Governance precedent.</strong> The Carolina Golf Club case noted above is the most-cited public example of how a contested capital program can play out — overrun, vote, lawsuit, dismissal, eventual completion. The takeaway isn't "don't do it." It's "communicate early and often, and document the assumptions."</p>
+
+  <p><strong>5. The dated-stock owner's question.</strong> If you own an original-condition 1980s home inside one of these gates, the most consequential decision in front of you may not be how to vote on a capital program — it may be whether to renovate, sell as a renovation candidate, or hold and accept the cohort spread. The closed-sales record shows that this is already the largest delta inside these communities today.</p>
+
+  <hr>
+
+  <h2>What an assessment looks like across cohorts</h2>
+
+  <p>The math worth running — without anchoring on any specific club's program cost — is the assessment-as-percentage-of-acquisition-price across the three cohorts. The table below shows what different per-lot assessment levels would represent as a percentage of typical home values in each cohort across these communities.</p>
+
+  <table>
+    <thead>
+      <tr><th>Per-lot assessment</th><th>Dated cohort<br><small>(typical $2.5M home)</small></th><th>Renovated cohort<br><small>(typical $5.3M home)</small></th><th>New construction<br><small>(typical $7M home)</small></th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>$100,000</strong></td><td>4.0%</td><td>1.9%</td><td>1.4%</td></tr>
+      <tr><td><strong>$200,000</strong></td><td>8.0%</td><td>3.8%</td><td>2.9%</td></tr>
+      <tr><td><strong>$300,000</strong></td><td>12.0%</td><td>5.7%</td><td>4.3%</td></tr>
+      <tr><td><strong>$400,000</strong></td><td>16.0%</td><td>7.5%</td><td>5.7%</td></tr>
+    </tbody>
+  </table>
+
+  <p><em>The figures above are illustrative scenarios — not assessments associated with any specific club or program.</em> They are meant to make the cohort asymmetry visible. The same dollar assessment lands very differently across the three cohorts — and lands hardest on the dated-stock owners, who are also the cohort with the largest absolute number of lots in most of these communities.</p>
+
+  <p>This is the cohort-asymmetry problem any well-designed program has to grapple with. <strong>Whether a given program does grapple with it — through phased assessments, financing options, or graduated participation — is one of the most important questions worth raising during any membership process.</strong></p>
+
+  <hr>
+
+  <h2>What if the membership says no, or scales it back</h2>
+
+  <p>The framework would not be honest if it only modeled the build scenario. There are three plausible outcomes any membership can land on:</p>
+
+  <ol>
+    <li><strong>Full ground-up rebuild as proposed.</strong> Highest peer-club benchmark cost. Highest disruption window. Highest theoretical lift if execution is clean and the macro luxury market cooperates.</li>
+    <li><strong>Phased or scaled-back program.</strong> Lower assessment exposure, lower disruption, more modest amenity lift. Several peer clubs have run multi-phase programs rather than a single ground-up rebuild.</li>
+    <li><strong>Status quo / renovation-only.</strong> The clubhouse continues to be refreshed within its existing footprint. No major assessment, no major disruption. Also: no amenity reset, and continued aging of older infrastructure.</li>
+  </ol>
+
+  <p>Each path carries a different cost basis and a different risk profile. <strong>None of the three options is risk-free.</strong> Status quo is not "no decision" — it is a decision to let existing infrastructure continue to age, with the inventory and amenity consequences that follow. Full rebuild is not a guaranteed lift — it is a bet on execution, contingency discipline, and the macro luxury market through the build window. Phased programs sit in between on both axes.</p>
+
+  <p>The question for any membership is rarely "rebuild yes or no." It is <strong>which version of which path</strong>, on what timeline, with what assessment structure, and with what governance discipline through the build.</p>
+
+  <hr>
+
+  <h2>The four objections most worth taking seriously</h2>
+
+  <p>Across the conversations I have had with members weighing capital programs, the most thoughtful skeptical questions tend to fall into four categories. They are worth naming because a balanced framework does not just list risks in the abstract — it acknowledges what real members are actually saying.</p>
+
+  <ul>
+    <li><strong>"The existing footprint has been refreshed, not rebuilt — and the refreshes have generally worked."</strong> Members at long-standing clubs have often watched the clubhouse improved multiple times over decades. The argument is that a more incremental approach has a track record, and that a ground-up rebuild is a step change in cost and disruption that may not be necessary.</li>
+    <li><strong>"The dated-cohort owners are being asked to underwrite the new-construction cohort's amenity package."</strong> If a program lifts $/sqft most strongly in the new-and-renovated cohort, while the assessment lands as a much higher percentage of the dated cohort's home value, that is a real cross-subsidy. It does not make a program wrong, but it deserves to be named.</li>
+    <li><strong>"Macro timing is uncertain."</strong> Construction inflation has cooled but not reversed. The luxury market has held but is not euphoric. A rebuild that runs into a softer macro environment can produce the disruption without the lift, particularly if it overlaps with a national luxury correction.</li>
+    <li><strong>"Governance is the variable."</strong> Members who have watched peer-club programs note that the difference between the clubs that thrived and the clubs that didn't was rarely the architecture. It was the governance — the contingency discipline, the communication cadence, the willingness to slow down or restage when the numbers shifted. Many members want to see that governance posture demonstrated before, not after, the vote.</li>
+  </ul>
+
+  <p>I include these because they are the questions any well-designed membership package should answer directly. None of them is a reason not to do a program. All of them are reasons to do one well.</p>
+
+  <hr>
+
+  <h2>What I'd tell a member, what I'd tell a buyer</h2>
+
+  <p><strong>As a member of any club facing this decision:</strong> read the package carefully when it arrives. Ask for the contingency assumptions. Ask how cohort asymmetry is being handled. Ask what the governance posture is on overruns. Weigh the program against your personal timeline. If you are planning to be at the club for ten or more years, the calculus is different than if you are three years from a move. There is no single right answer for every member.</p>
+
+  <div class="pullquote">
+    <p>The bifurcation is the story. Renovated and new-construction homes across these communities are commanding $900–$1,300 per square foot at the upper end. Dated, original-condition homes are clearing in the $500s and $600s. That spread exists today, before any rebuild conversation reaches its conclusion. Whatever any membership decides, that spread will keep mattering — and how a program is structured determines whether it narrows, holds, or widens.</p>
+  </div>
+
+  <p><strong>As a buyer evaluating one of these communities:</strong> ask the same questions a member would ask. The right entry point depends on your appetite for the assessment exposure, the disruption window, and the cohort you are buying into. I would not tell you that any one cost basis is the right one without knowing your timeline.</p>
+
+  <hr>
+
+  <h2>What stays open</h2>
+
+  <p>The questions members and buyers are asking right now will keep evolving as specific membership packages get finalized at specific clubs. When they do, the analysis adjusts to the official numbers and the cohort modeling firms up.</p>
+
+  <p>The framework above is meant to be useful regardless of which gate you sit behind. The data is real. The patterns are documented. The decisions are personal.</p>
+
+  <p>If you want to walk through a specific community, a specific cohort, or how the math applies to your own home, my line is open.</p>
+
+</article>
+
+<section class="bio">
+  <div class="bio-inner">
+    <img class="photo" src="https://edmundbogen.github.io/edmund-profile.jpg" alt="Edmund Bogen">
+    <div>
+      <h3>Edmund Bogen</h3>
+      <div class="title">The Edmund Bogen Team · Douglas Elliman</div>
+      <p>Edmund Bogen is a luxury real estate advisor in South Florida and a member of a Boca Raton private-club community. He works with members and buyers across twenty-one luxury communities in Palm Beach and Broward counties and writes a weekly market intelligence brief.</p>
+    </div>
+  </div>
+</section>
+
+<div class="disclaimer">
+  <p>This brief is general market commentary and analytical framework. It is not investment advice, legal advice, tax advice, or a recommendation regarding any specific club, capital program, vote, transaction, or property. Specific cohort figures cited are illustrative ranges drawn from publicly reported sources and aggregated closed-sales data across multiple South Florida luxury private-club communities, January 2023 through April 2026.</p>
+  <p>Market data courtesy of BeachesMLS. Information is deemed reliable but not guaranteed. If your property is currently listed with another broker, this is not a solicitation of that listing.</p>
+  <p>© 2026 The Edmund Bogen Team · Douglas Elliman Real Estate</p>
+</div>
+
+</body>
+</html>
