@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Code for Daily Real Estate Work — Edmund's Mastermind | Episode 2</title>
+<meta name="description" content="Live mastermind session — Thursday, June 11, 2026 at 11:00 AM ET. Listing kits, lead follow-ups, and weekly content — all generated in your voice in under 60 seconds. Episode 2 of 3.">
+<meta property="og:title" content="Claude Code for Daily Real Estate Work — Edmund's Mastermind">
+<meta property="og:description" content="Run your listing business from a single terminal window. Live, on-screen, June 11 at 11 AM ET.">
+<meta property="og:image" content="https://edmundbogen.github.io/claude-code-2-hero.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://edmundbogen.github.io/claude-code-2/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1a3e5c;
+    --navy-deep: #0a1a28;
+    --cyan: #00a8e1;
+    --cyan-bright: #00c2ff;
+    --white: #ffffff;
+    --gray-50: #f8f9fb;
+    --gray-100: #f1f4f8;
+    --gray-200: #e4e9ef;
+    --gray-500: #6b7280;
+    --gray-700: #374151;
+
+    --bg-hero-from: #ffffff;
+    --bg-hero-to: var(--gray-50);
+    --bg-promise: var(--gray-50);
+    --bg-systems-from: var(--gray-50);
+    --bg-systems-to: var(--gray-100);
+    --bg-takeaways-from: var(--gray-100);
+    --bg-takeaways-mid: #5a7591;
+    --bg-takeaways-to: var(--navy);
+    --bg-logistics: var(--navy);
+    --bg-footer: var(--navy-deep);
+    --fg-body: #222;
+    --fg-muted: var(--gray-700);
+    --fg-heading: var(--navy);
+    --card-bg: #ffffff;
+    --card-border: var(--gray-200);
+    --code-bg: #f4f4f4;
+    --hero-shadow: 0 30px 80px rgba(26, 62, 92, 0.18);
+    --card-shadow: 0 4px 20px rgba(26, 62, 92, 0.06);
+  }
+
+  [data-theme="dark"] {
+    --bg-hero-from: #0a1a28;
+    --bg-hero-to: #102234;
+    --bg-promise: #102234;
+    --bg-systems-from: #102234;
+    --bg-systems-to: #0e1d2c;
+    --bg-takeaways-from: #0e1d2c;
+    --bg-takeaways-mid: #061320;
+    --bg-takeaways-to: #03080f;
+    --bg-logistics: #03080f;
+    --bg-footer: #000000;
+    --fg-body: #e6edf3;
+    --fg-muted: #9fb4c8;
+    --fg-heading: #ffffff;
+    --card-bg: #14283c;
+    --card-border: #1e4060;
+    --code-bg: #0a1a28;
+    --hero-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+    --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--fg-body);
+    line-height: 1.7;
+    font-size: 17px;
+    background: var(--bg-hero-from);
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
+
+  .theme-toggle {
+    position: fixed; top: 20px; right: 20px; z-index: 200;
+    background: var(--card-bg); color: var(--fg-heading);
+    border: 1px solid var(--card-border); border-radius: 999px;
+    padding: 10px 16px;
+    font-family: 'Montserrat', sans-serif; font-weight: 600;
+    font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+    cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+    transition: transform 0.2s, background 0.2s, color 0.2s;
+  }
+  .theme-toggle:hover { transform: translateY(-1px); }
+  .theme-toggle .icon { font-size: 14px; line-height: 1; }
+  [data-theme="light"] .theme-toggle .dark-label,
+  [data-theme="light"] .theme-toggle .dark-icon { display: inline; }
+  [data-theme="light"] .theme-toggle .light-label,
+  [data-theme="light"] .theme-toggle .light-icon { display: none; }
+  [data-theme="dark"] .theme-toggle .dark-label,
+  [data-theme="dark"] .theme-toggle .dark-icon { display: none; }
+  [data-theme="dark"] .theme-toggle .light-label,
+  [data-theme="dark"] .theme-toggle .light-icon { display: inline; }
+
+  .hero {
+    background: linear-gradient(180deg, var(--bg-hero-from) 0%, var(--bg-hero-to) 100%);
+    padding: 60px 24px 80px; text-align: center;
+    border-bottom: 1px solid var(--card-border);
+    transition: background 0.3s ease;
+  }
+  .hero-inner { max-width: 1100px; margin: 0 auto; }
+  .eyebrow {
+    color: var(--cyan);
+    font-family: 'Montserrat', sans-serif; font-size: 13px;
+    letter-spacing: 0.25em; text-transform: uppercase; font-weight: 600;
+    margin-bottom: 18px;
+  }
+  .hero h1 {
+    color: var(--fg-heading);
+    font-size: clamp(34px, 5.5vw, 56px); font-weight: 300;
+    line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 20px;
+    max-width: 900px; margin-left: auto; margin-right: auto;
+  }
+  .hero h1 strong { font-weight: 800; }
+  .hero-tagline {
+    color: var(--fg-muted);
+    font-size: clamp(17px, 2vw, 21px); max-width: 720px;
+    margin: 0 auto 32px;
+  }
+  .hero-meta {
+    display: inline-flex; flex-wrap: wrap; justify-content: center;
+    gap: 16px 28px; color: var(--fg-heading);
+    font-family: 'Montserrat', sans-serif; font-weight: 600;
+    font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase;
+    margin-bottom: 38px;
+  }
+  .hero-meta span { display: inline-flex; align-items: center; gap: 8px; }
+  .hero-meta .dot { color: var(--cyan); }
+  .hero-img {
+    width: 100%; max-width: 1000px; margin: 0 auto 40px; display: block;
+    border-radius: 8px; box-shadow: var(--hero-shadow);
+  }
+  .cta-row {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 14px; margin-top: 8px;
+  }
+  .cta {
+    display: inline-block; background: var(--cyan); color: #fff !important;
+    padding: 18px 44px; text-decoration: none;
+    font-family: 'Montserrat', sans-serif; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase; font-size: 14px;
+    border-radius: 4px;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    box-shadow: 0 8px 24px rgba(0, 168, 225, 0.3);
+  }
+  .cta:hover { transform: translateY(-2px); background: #0094c8; box-shadow: 0 14px 30px rgba(0, 168, 225, 0.4); }
+  .cta.secondary {
+    background: transparent; color: var(--fg-heading) !important;
+    border: 2px solid var(--fg-heading); box-shadow: none;
+  }
+  .cta.secondary:hover { background: var(--fg-heading); color: var(--bg-hero-from) !important; }
+
+  .promise { background: var(--bg-promise); padding: 80px 24px; transition: background 0.3s ease; }
+  .promise-inner { max-width: 920px; margin: 0 auto; text-align: center; }
+  .section-title {
+    color: var(--fg-heading);
+    font-size: clamp(28px, 4vw, 40px); font-weight: 700;
+    line-height: 1.2; margin-bottom: 22px;
+  }
+  .lead { font-size: 19px; color: var(--fg-muted); margin-bottom: 18px; }
+  .lead strong { color: var(--fg-heading); }
+
+  .systems {
+    background: linear-gradient(180deg, var(--bg-systems-from) 0%, var(--bg-systems-to) 100%);
+    padding: 80px 24px; transition: background 0.3s ease;
+  }
+  .systems-inner { max-width: 1100px; margin: 0 auto; }
+  .systems h2 { text-align: center; margin-bottom: 48px; }
+  .system-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+  }
+  .system-card {
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    border-left: 4px solid var(--cyan);
+    padding: 32px 28px; border-radius: 4px;
+    box-shadow: var(--card-shadow);
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+  .system-num {
+    color: var(--cyan); font-family: 'Montserrat', sans-serif;
+    font-weight: 800; font-size: 28px; line-height: 1; margin-bottom: 8px;
+  }
+  .system-card h3 {
+    color: var(--fg-heading);
+    font-size: 20px; font-weight: 700; margin-bottom: 14px; line-height: 1.3;
+  }
+  .system-card p { font-size: 15.5px; color: var(--fg-muted); margin-bottom: 14px; }
+  .system-card .opp {
+    background: var(--navy); color: #fff;
+    padding: 12px 16px; margin-top: 12px; font-size: 14px; border-radius: 3px;
+  }
+  .system-card .opp strong { color: var(--cyan); }
+
+  .takeaways {
+    background: linear-gradient(180deg, var(--bg-takeaways-from) 0%, var(--bg-takeaways-mid) 50%, var(--bg-takeaways-to) 100%);
+    padding: 90px 24px; color: #fff;
+    transition: background 0.3s ease;
+  }
+  .takeaways-inner { max-width: 920px; margin: 0 auto; }
+  .takeaways h2 { color: #fff; text-align: center; margin-bottom: 14px; }
+  .takeaways .sub {
+    text-align: center; color: rgba(255,255,255,0.85);
+    margin-bottom: 40px; font-size: 17px;
+  }
+  .takeaway-list {
+    list-style: none; display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 14px 28px;
+  }
+  .takeaway-list li {
+    padding: 14px 18px 14px 44px;
+    background: rgba(255,255,255,0.08); border-left: 3px solid var(--cyan);
+    border-radius: 3px; position: relative; font-size: 15.5px;
+  }
+  .takeaway-list li::before {
+    content: "✓"; position: absolute; left: 16px; top: 14px;
+    color: var(--cyan); font-weight: 700; font-size: 18px;
+  }
+  .takeaway-list li strong { color: #fff; }
+
+  .logistics {
+    background: var(--bg-logistics); color: #fff;
+    padding: 80px 24px; border-top: 1px solid rgba(255,255,255,0.08);
+    transition: background 0.3s ease;
+  }
+  .logistics-inner { max-width: 720px; margin: 0 auto; text-align: center; }
+  .logistics h2 {
+    color: #fff;
+    font-size: clamp(28px, 4vw, 40px); font-weight: 700; margin-bottom: 14px;
+  }
+  .logistics .accent { color: var(--cyan); }
+  .logistics-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px; margin: 36px 0; text-align: left;
+  }
+  .logistics-item {
+    background: rgba(255,255,255,0.05);
+    padding: 18px 20px; border-left: 3px solid var(--cyan); border-radius: 3px;
+  }
+  .logistics-item .label {
+    color: var(--cyan); font-family: 'Montserrat', sans-serif;
+    font-weight: 600; font-size: 11px; letter-spacing: 0.18em;
+    text-transform: uppercase; margin-bottom: 6px;
+  }
+  .logistics-item .value { color: #fff; font-size: 16px; font-weight: 500; }
+
+  .footer {
+    background: var(--bg-footer); color: rgba(255,255,255,0.7);
+    padding: 50px 24px 40px; text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    transition: background 0.3s ease;
+  }
+  .footer p { margin-bottom: 8px; font-size: 14px; }
+  .footer .tagline {
+    color: var(--cyan); font-family: 'Montserrat', sans-serif;
+    font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+    font-size: 12px; margin-top: 18px;
+  }
+  .footer a { color: var(--cyan); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    .hero { padding: 40px 18px 60px; }
+    .promise, .systems, .takeaways, .logistics { padding: 60px 18px; }
+    .cta { padding: 16px 30px; font-size: 13px; }
+    .system-card { padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode">
+  <span class="icon dark-icon">🌙</span>
+  <span class="icon light-icon">☀️</span>
+  <span class="dark-label">Dark</span>
+  <span class="light-label">Light</span>
+</button>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Edmund's Mastermind &nbsp;•&nbsp; Episode 2 of 3</div>
+    <h1>Claude Code for Daily Real Estate Work<br><strong>Run Your Listing Business From a Single Terminal Window</strong></h1>
+    <p class="hero-tagline">Property address in. Full marketing kit out. In your voice. In under 60 seconds. Last month we installed Claude Code. This month we put it to work.</p>
+    <div class="hero-meta">
+      <span><span class="dot">●</span> Thursday, June 11, 2026</span>
+      <span><span class="dot">●</span> 11:00 AM ET</span>
+      <span><span class="dot">●</span> Live on Zoom</span>
+    </div>
+    <img class="hero-img" src="https://edmundbogen.github.io/claude-code-2-hero.png" alt="Claude Code for Daily Real Estate Work — Edmund Bogen">
+    <div class="cta-row">
+      <a class="cta" href="#register">Register Free</a>
+      <a class="cta secondary" href="https://edmundbogen.github.io/claude-code-2-daily-real-estate-workbook.pdf" target="_blank">Download Workbook</a>
+    </div>
+  </div>
+</section>
+
+<section class="promise">
+  <div class="promise-inner">
+    <h2 class="section-title">Real Estate Is the Most Repetitive Knowledge Job in America</h2>
+    <p class="lead">The same 30 tasks every week, on a loop. Listings. CMAs. Follow-ups. Social posts. Email drips. Every single one is a one-time build away from being a <strong>10-second command</strong>.</p>
+    <p class="lead">Most agents treat AI as a "writing tool." A small group has turned it into a <strong>production engine</strong> — generating listing kits, lead nurture sequences, and content calendars on demand, without losing voice or quality.</p>
+    <p class="lead"><strong>This session is where you build that engine — live, on screen, alongside me.</strong></p>
+    <p class="lead" style="font-size: 16px; opacity: 0.85;"><em>New to Claude Code? No problem. We cover the install in the first 10 minutes. Episode 2 stands alone.</em></p>
+  </div>
+</section>
+
+<section class="systems">
+  <div class="systems-inner">
+    <h2 class="section-title">The 3 Systems You'll Build LIVE</h2>
+    <div class="system-grid">
+      <div class="system-card">
+        <div class="system-num">01</div>
+        <h3>The Listing Production Engine</h3>
+        <p>Property address in, complete marketing kit out — in under 60 seconds. Description, social post, email blast, SMS blast, MLS-ready remarks. All in your voice, formatted for each channel, ready to ship.</p>
+        <p>Live build with a member's actual listing. Bring an address.</p>
+        <div class="opp"><strong>Your opportunity:</strong> Eliminate 8–12 hours per listing currently spent on marketing copy. Reclaim your weekends.</div>
+      </div>
+      <div class="system-card">
+        <div class="system-num">02</div>
+        <h3>The Client Communication System</h3>
+        <p>One-line lead context → personalized text + email + CRM entry. In seconds. In your voice. Never generic. We'll demo on cold leads, warm leads, post-showing follow-ups, and the dreaded "thinking about it" stalls.</p>
+        <p>Buyer onboarding, post-closing thank-yous, sphere re-engagement, agent referrals — all from the same engine.</p>
+        <div class="opp"><strong>Your opportunity:</strong> Convert 2x more leads while spending 75% less time on follow-up.</div>
+      </div>
+      <div class="system-card">
+        <div class="system-num">03</div>
+        <h3>The Content Multiplication Machine</h3>
+        <p>One weekly content idea → full week of content across Instagram, Facebook, LinkedIn, YouTube Community, and email. Same insight, six platform-native versions. Live demo with this week's market data.</p>
+        <p>The agents winning the algorithm in 2026 publish on volume <em>with</em> quality. You're about to be one of them.</p>
+        <div class="opp"><strong>Your opportunity:</strong> Stop paying $1,500–$3,000/mo for an agency that produces less in a week than this engine produces in 20 minutes.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="takeaways">
+  <div class="takeaways-inner">
+    <h2 class="section-title">What You'll Leave With</h2>
+    <p class="sub">Three slash commands. A 30-day plan. A shipped kit. Before the call ends.</p>
+    <ul class="takeaway-list">
+      <li>A working <strong>/listing</strong> slash command — your listing kit generator</li>
+      <li>A working <strong>/lead</strong> slash command — your follow-up workflow</li>
+      <li>A working <strong>/content</strong> slash command — your weekly content multiplier</li>
+      <li>The <strong>30-day Listing Engine sprint plan</strong> — ship 10+ kits in your first month</li>
+      <li>Complete <strong>prompt library</strong> — every workflow, copy-paste ready</li>
+      <li><strong>Production ROI Tracker</strong> — measure hours saved, deals closed, content shipped</li>
+      <li><strong>Recording for life</strong> — review and reshare with your team</li>
+      <li><strong>15-page implementation workbook</strong> — your playbook</li>
+    </ul>
+  </div>
+</section>
+
+<section class="logistics" id="register">
+  <div class="logistics-inner">
+    <h2>Reserve Your <span class="accent">Seat</span></h2>
+    <p style="opacity: 0.85; font-size: 17px;">Free for Mastermind members. Drop your email, get the Zoom link 24 hours before the session. Bring a property address — we'll generate the kit live.</p>
+    <div class="logistics-grid">
+      <div class="logistics-item">
+        <div class="label">Date</div>
+        <div class="value">Thursday, June 11, 2026</div>
+      </div>
+      <div class="logistics-item">
+        <div class="label">Time</div>
+        <div class="value">11:00 AM ET</div>
+      </div>
+      <div class="logistics-item">
+        <div class="label">Format</div>
+        <div class="value">Live on Zoom + recording</div>
+      </div>
+      <div class="logistics-item">
+        <div class="label">Workbook</div>
+        <div class="value"><a href="https://edmundbogen.github.io/claude-code-2-daily-real-estate-workbook.pdf" style="color:#fff;text-decoration:underline;" target="_blank">Download (PDF)</a></div>
+      </div>
+    </div>
+    <a class="cta" href="https://www.reignation.com/claude-code-2">Register Free Now</a>
+    <p style="margin-top: 28px; opacity: 0.7; font-size: 14px;">Episode 1 (Foundations) covered the install. Episode 3 (Power Plays) covers skills, agents, and MCP integrations. Each is fully standalone. The series recycles every quarter.</p>
+  </div>
+</section>
+
+<footer class="footer">
+  <p><strong style="color:#fff;">Edmund Bogen &amp; Team</strong></p>
+  <p>Edmund's Mastermind &amp; Group Coaching</p>
+  <p style="margin-top: 14px;"><a href="https://www.reignation.com">www.reignation.com</a></p>
+  <p class="tagline">Because Falling Behind is NOT an Option</p>
+</footer>
+
+<script>
+  (function () {
+    var html = document.documentElement;
+    var btn = document.getElementById('themeToggle');
+    var stored = localStorage.getItem('cc2-theme');
+    if (stored === 'dark' || stored === 'light') {
+      html.setAttribute('data-theme', stored);
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      html.setAttribute('data-theme', 'dark');
+    }
+    btn.addEventListener('click', function () {
+      var next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('cc2-theme', next);
+    });
+  })();
+</script>
+
+</body>
+</html>
