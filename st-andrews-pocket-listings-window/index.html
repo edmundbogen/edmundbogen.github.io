@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Quiet Sale Is Getting Loud: What's Really Happening Inside St. Andrews | The Edmund Bogen Team</title>
+    <meta name="description" content="A general market commentary on pocket listings, NAR's Clear Cooperation Policy, and the current state of luxury real estate inside St. Andrews Country Club, Boca Raton.">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #1a1a1a;
+            background: #fff;
+            line-height: 1.7;
+            font-size: 17px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Nav */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background: rgba(255,255,255,0.97);
+            border-bottom: 1px solid #e8e8e8;
+            z-index: 100;
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav .logo {
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 3px;
+            color: #1a3e5c;
+            text-transform: uppercase;
+        }
+        nav .nav-links a {
+            color: #1a3e5c;
+            text-decoration: none;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-left: 32px;
+            font-weight: 500;
+        }
+        nav .nav-links a:hover { color: #00a8e1; }
+
+        /* Hero */
+        .hero {
+            margin-top: 65px;
+            min-height: 70vh;
+            background: linear-gradient(135deg, rgba(26,62,92,0.85), rgba(26,62,92,0.65)), url('hero.png');
+            background-size: cover;
+            background-position: center;
+            background-color: #1a3e5c;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 24px;
+            position: relative;
+        }
+        .hero-inner { max-width: 1000px; }
+        .hero .category {
+            font-size: 12px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: #00a8e1;
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+        .hero h1 {
+            font-weight: 300;
+            font-size: clamp(32px, 5vw, 60px);
+            line-height: 1.15;
+            letter-spacing: -0.5px;
+            margin-bottom: 32px;
+        }
+        .hero h1 strong { font-weight: 600; }
+        .hero .meta {
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.85);
+            font-weight: 400;
+        }
+        .hero .meta span { margin: 0 12px; color: #00a8e1; }
+
+        /* Key stat strip */
+        .stat-strip {
+            background: #1a3e5c;
+            padding: 60px 24px;
+            color: #fff;
+        }
+        .stat-strip-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+        .stat-card {
+            text-align: center;
+            border-left: 2px solid #00a8e1;
+            padding-left: 24px;
+            text-align: left;
+        }
+        .stat-card .value {
+            font-size: clamp(36px, 4vw, 52px);
+            font-weight: 300;
+            color: #fff;
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+        .stat-card .label {
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #00a8e1;
+            font-weight: 500;
+        }
+        .stat-card .sublabel {
+            font-size: 13px;
+            color: rgba(255,255,255,0.75);
+            margin-top: 8px;
+            font-weight: 300;
+        }
+
+        /* Article body */
+        article {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 80px 24px;
+        }
+        article p {
+            margin-bottom: 24px;
+            font-size: 17px;
+            color: #2a2a2a;
+        }
+        article h2 {
+            font-weight: 300;
+            font-size: 32px;
+            letter-spacing: -0.5px;
+            color: #1a3e5c;
+            margin: 64px 0 24px;
+            line-height: 1.25;
+        }
+        article h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 2px;
+            background: #00a8e1;
+            margin-top: 16px;
+        }
+        article h3 {
+            font-weight: 500;
+            font-size: 20px;
+            color: #1a3e5c;
+            margin: 40px 0 16px;
+            letter-spacing: 0.5px;
+        }
+        article strong { color: #1a3e5c; font-weight: 600; }
+        article em { color: #555; }
+        article ul { margin: 0 0 28px 24px; }
+        article ul li { margin-bottom: 12px; color: #2a2a2a; }
+
+        .pull-quote {
+            border-left: 4px solid #00a8e1;
+            padding: 16px 28px;
+            margin: 40px 0;
+            background: #f4f4f4;
+            font-size: 19px;
+            line-height: 1.6;
+            color: #1a3e5c;
+            font-weight: 400;
+        }
+        .pull-quote strong { font-weight: 600; }
+
+        .small-note {
+            font-size: 14px;
+            color: #666;
+            font-style: italic;
+            padding: 16px 0;
+            border-top: 1px solid #e8e8e8;
+            border-bottom: 1px solid #e8e8e8;
+            margin: 32px 0;
+        }
+
+        /* Three-min read box */
+        .tldr {
+            background: #f4f4f4;
+            border-left: 4px solid #1a3e5c;
+            padding: 32px;
+            margin: 48px 0;
+        }
+        .tldr .tldr-label {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #00a8e1;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .tldr p { font-size: 17px; color: #1a1a1a; margin-bottom: 16px; }
+        .tldr p:last-child { margin-bottom: 0; }
+
+        /* Peer-club table */
+        .peer-list {
+            background: #fafafa;
+            border: 1px solid #e8e8e8;
+            padding: 32px;
+            margin: 32px 0;
+        }
+        .peer-list h3 {
+            margin-top: 0;
+            font-size: 18px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #1a3e5c;
+            font-weight: 600;
+            border-bottom: 1px solid #e8e8e8;
+            padding-bottom: 12px;
+            margin-bottom: 24px;
+        }
+        .peer-list ul { list-style: none; margin: 0; }
+        .peer-list ul li {
+            padding: 16px 0;
+            border-bottom: 1px solid #e8e8e8;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+        .peer-list ul li:last-child { border-bottom: none; }
+        .peer-list .club-name { color: #1a3e5c; font-weight: 600; }
+
+        /* Author block */
+        .author-section {
+            background: #f4f4f4;
+            padding: 64px 24px;
+            margin-top: 80px;
+        }
+        .author-inner {
+            max-width: 780px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 160px 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        .author-photo {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: #1a3e5c url('https://edmundbogen.github.io/edmund-headshot.jpg') center/cover;
+            border: 4px solid #fff;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .author-info .author-label {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #00a8e1;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .author-info h3 {
+            font-size: 26px;
+            font-weight: 400;
+            color: #1a3e5c;
+            margin: 0 0 12px;
+        }
+        .author-info p {
+            font-size: 15px;
+            color: #444;
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+        .author-contact {
+            font-size: 13px;
+            color: #1a3e5c;
+            line-height: 2;
+        }
+        .author-contact a { color: #1a3e5c; text-decoration: none; }
+        .author-contact a:hover { color: #00a8e1; }
+
+        /* CTA */
+        .cta-section {
+            background: #1a3e5c;
+            color: #fff;
+            padding: 80px 24px;
+            text-align: center;
+        }
+        .cta-section h2 {
+            color: #fff;
+            font-weight: 300;
+            font-size: clamp(28px, 4vw, 40px);
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+        .cta-section h2::after { display: none; }
+        .cta-section p {
+            font-size: 17px;
+            color: rgba(255,255,255,0.85);
+            max-width: 600px;
+            margin: 0 auto 32px;
+            font-weight: 300;
+        }
+        .cta-button {
+            display: inline-block;
+            background: #00a8e1;
+            color: #fff;
+            padding: 18px 40px;
+            text-decoration: none;
+            font-size: 13px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        .cta-button:hover { background: #0090c2; }
+
+        /* Disclosures + Footer */
+        .disclosures {
+            background: #fafafa;
+            padding: 48px 24px;
+            border-top: 1px solid #e8e8e8;
+        }
+        .disclosures-inner {
+            max-width: 780px;
+            margin: 0 auto;
+            font-size: 13px;
+            line-height: 1.7;
+            color: #666;
+        }
+        .disclosures-inner h4 {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #1a3e5c;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+        .disclosures-inner p { margin-bottom: 16px; }
+        .disclosures-inner strong { color: #1a3e5c; }
+
+        footer {
+            background: #1a3e5c;
+            color: rgba(255,255,255,0.7);
+            padding: 32px 24px;
+            text-align: center;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+        footer strong { color: #fff; }
+
+        @media (max-width: 768px) {
+            nav { padding: 16px 20px; }
+            nav .nav-links a { margin-left: 16px; font-size: 11px; }
+            .stat-strip-inner { grid-template-columns: 1fr; gap: 24px; }
+            .author-inner { grid-template-columns: 1fr; text-align: center; }
+            .author-photo { margin: 0 auto; }
+            article { padding: 48px 20px; }
+            article h2 { font-size: 26px; margin-top: 48px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo">THE EDMUND BOGEN TEAM</div>
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/market-dashboard/">Dashboard</a>
+        <a href="mailto:edmund.bogen@elliman.com">Contact</a>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="hero-inner">
+        <div class="category">Market Intelligence · St. Andrews Country Club</div>
+        <h1>The Quiet Sale Is Getting Loud<br><strong>What's Really Happening Inside St. Andrews</strong></h1>
+        <div class="meta">Edmund Bogen, REALTOR®<span>·</span>May 11, 2026</div>
+    </div>
+</section>
+
+<section class="stat-strip">
+    <div class="stat-strip-inner">
+        <div class="stat-card">
+            <div class="value">53 days</div>
+            <div class="label">Average Days On Market</div>
+            <div class="sublabel">Down from ~132 days in the prior period</div>
+        </div>
+        <div class="stat-card">
+            <div class="value">+12%</div>
+            <div class="label">Median Sale Price YoY</div>
+            <div class="sublabel">Late 2025 published market data</div>
+        </div>
+        <div class="stat-card">
+            <div class="value">~1-2%</div>
+            <div class="label">Inventory Turnover</div>
+            <div class="sublabel">8-13 active listings of 740 estate homes</div>
+        </div>
+    </div>
+</section>
+
+<article>
+
+    <div class="tldr">
+        <div class="tldr-label">The Three-Minute Read</div>
+        <p>Something is shifting inside the gates of St. Andrews Country Club. The clubhouse is finished. The peer clubs are all under scaffolding. The waiting list of buyers who circled this community for two years is starting to move. And the "pocket listing" — the quietest tool in the luxury playbook — is colliding with a new reality.</p>
+        <p>If you've ever wondered what a pocket listing actually is, whether your neighbor sold theirs that way, or whether it's the right move for an estate you own here, this article is for you. General information. No pressure. Just the picture.</p>
+    </div>
+
+    <h2>What People Mean When They Say "Pocket Listing"</h2>
+
+    <p>A pocket listing is industry shorthand for a property offered for sale with intentionally limited public exposure. No yard sign. No MLS distribution. No Zillow. A handful of agents whisper to a handful of buyers. Sometimes a deal happens. Sometimes the home sits in the pocket until the seller and the agent agree to bring it into the light.</p>
+
+    <p>In 2026, the cleaner term is <strong>"office exclusive."</strong> That language comes from the National Association of REALTORS®, which adopted a national rule called the <strong>Clear Cooperation Policy</strong> effective January 1, 2020 — and updated it again in March 2025 with a framework called Multiple Listing Options for Sellers.</p>
+
+    <p>The short version of the rule: once a listing is marketed publicly, it has to be submitted to the MLS within one business day. Yard signs count. Brokerage websites count. Email blasts count. Multi-brokerage sharing apps count. Going public is now a defined moment, not a gray area.</p>
+
+    <p>There are two legitimate exempt categories under the 2025 framework:</p>
+
+    <ul>
+        <li><strong>Office Exclusive</strong> — the seller directs the broker not to publicly market and not to disseminate through the MLS. Signed seller disclosure required.</li>
+        <li><strong>Delayed Marketing</strong> — listed in the MLS, but public IDX and syndication exposure is delayed for a period the local MLS allows. Signed seller disclosure required.</li>
+    </ul>
+
+    <p>Both require a signed seller acknowledgment that they understand the benefits of MLS-wide exposure are being waived.</p>
+
+    <p>In Florida, there is no statewide statutory ban on pocket listings. The operative rules are local MLS rules and the listing broker's fiduciary duty to the seller. St. Andrews falls under Beaches MLS, so a property listed inside the gates that wants to stay quiet has to follow Beaches MLS exempt-listing procedures and Clear Cooperation timing.</p>
+
+    <div class="small-note">This is general information about how pocket listings work. It is not legal advice. Listing agreements, exempt-listing disclosures, and state agency law are situation-specific — please consult your attorney for any specific transaction question.</div>
+
+    <h2>The Pocket Listing Inside A Private Club</h2>
+
+    <p>Here is why pocket listings have a home in places like St. Andrews.</p>
+
+    <p>The community has <strong>740 custom estate homes</strong> on 720 acres. At any moment, eight to thirteen properties are publicly listed. Do the math: roughly <strong>1-2% of the community</strong> is on the market on any given day. Inventory is structurally low. The buyers who want in know it.</p>
+
+    <p>Add the financial bar to enter: a non-refundable initiation fee of approximately $400,000, plus a $25,000 POA owner's capital contribution at closing, on top of the home itself. That is a serious threshold. Buyers who clear it tend to know exactly what they want. They wait. Sometimes they wait a long time.</p>
+
+    <p>That waiting creates a private channel. Agents who farm the club hear about a sale before the listing goes live. A few buyers get a phone call. Occasionally a deal happens before the yard sign would have gone up.</p>
+
+    <div class="pull-quote">Pocket listings are not a scandal. They are a tool. But the data on whether they serve sellers — particularly in seller's markets — has gotten harder to ignore.</div>
+
+    <h2>What The Research Says</h2>
+
+    <p>Bright MLS, in partnership with researchers at Drexel University, studied on-MLS sales versus off-MLS sales from 2019 through early 2023. Their published finding: <strong>on-MLS sales transacted for 17.5% more than comparable off-MLS sales.</strong> That is a publicly cited figure across industry trade press and a significant gap.</p>
+
+    <p>A separate Bright MLS office-exclusive study found two more facts worth knowing:</p>
+
+    <ul>
+        <li><strong>Nearly two-thirds of office exclusives eventually end up on the MLS anyway.</strong> The quiet sale didn't conclude. The market needed to see the property.</li>
+        <li><strong>Properties that started as office exclusives generally took longer to sell</strong> than properties listed openly from day one.</li>
+    </ul>
+
+    <p>None of this means pocket listings are wrong for every seller. Privacy matters. Timing matters. There are legitimate reasons — divorce, estate transitions, public-figure exposure, prep work on the property — to keep a sale quiet for a window. But the data has shifted the conversation. Privacy is a real benefit. It is also a real cost.</p>
+
+    <div class="small-note">These are published research findings shared as general information. Past results are not a guarantee of future results in any specific transaction.</div>
+
+    <h2>So What Is Actually Changing In St. Andrews</h2>
+
+    <p>This is the part of the story that matters most.</p>
+
+    <p><strong>The clubhouse is done.</strong> St. Andrews completed a $27.5 million Club Enhancement Plan in late 2023 — a full upgrade of the 125,000-square-foot clubhouse, dining venues, aquatic center, and recreation facilities. The amenity refresh has been digested into current pricing. Buyers walking the property today are seeing the finished product.</p>
+
+    <p><strong>Days on market have collapsed.</strong> Per published market data, average days on market in St. Andrews dropped from approximately 132 days in the prior period to roughly <strong>53 days</strong> in the most recent period. That is a 60% reduction. Velocity is up.</p>
+
+    <p><strong>Prices are moving up.</strong> Published market sources report median sale prices in St. Andrews up approximately <strong>12% year-over-year as of late 2025</strong>, with trailing-twelve-month averages for premium properties cited in the $4M+ range and per-square-foot figures in the $670+ range. Different data providers report slightly different figures depending on segment and timeframe — verify with current MLS data for any specific transaction.</p>
+
+    <p><strong>Peer clubs are in the middle of their renovations, not after.</strong> Look at the field around St. Andrews:</p>
+
+    <div class="peer-list">
+        <h3>South Florida Peer-Club Capital Programs</h3>
+        <ul>
+            <li><span class="club-name">Boca West Country Club</span> — executing a $95 million capital improvement plan. Course 1 broke ground in March 2026. The pickleball center is targeting May 2026 completion. Members are living through construction.</li>
+            <li><span class="club-name">Mirasol Country Club</span> — mid-execution on an $82 million Phase 2 master plan, with new multipurpose buildings, indoor pickleball, and course restorations underway.</li>
+            <li><span class="club-name">The Polo Club of Boca Raton</span> — in a three-year clubhouse transformation running through mid-2027.</li>
+            <li><span class="club-name">Broken Sound Club</span> — completed a $40 million clubhouse renovation in 2023; finished and absorbed.</li>
+            <li><span class="club-name">Frenchman's Creek Beach & Country Club</span> — opened a new $74 million, 124,450-square-foot clubhouse in late 2024, raising initiation to approximately $475,000 plus a $25,000 POA capital contribution effective March 1, 2026.</li>
+            <li><span class="club-name">Addison Reserve Country Club</span> — completed a $24 million Rees Jones golf renovation and raised full-golf initiation from $325,000 to $400,000 effective January 1, 2026.</li>
+        </ul>
+    </div>
+
+    <p>Two things are happening simultaneously. First, the <strong>St. Andrews fee structure</strong> that looked aggressive two years ago now sits comfortably inside the peer-club range. Frenchman's Creek crossed $475K. Addison Reserve crossed $400K. The St. Andrews $400,000 number is no longer an outlier — it is the new normal in South Florida luxury golf.</p>
+
+    <p>Second, <strong>the construction noise next door creates a quiet preference for St. Andrews right now.</strong> Buyers who were touring Boca West, Mirasol, or Polo and could not get past the scaffolding sometimes redirect to clubs that are already finished. St. Andrews is finished.</p>
+
+    <p><strong>New supply is coming.</strong> Custom estate builds inside St. Andrews with anticipated Q2-Q3 2026 delivery dates are in the pipeline. When those close, they reset comparable prices at the high end of the per-square-foot range.</p>
+
+    <h2>Why This Matters For Anyone Thinking About A Sale</h2>
+
+    <p>The market reading is not a prediction. It is a description of current conditions:</p>
+
+    <ul>
+        <li>Inventory is at structural lows.</li>
+        <li>Days on market are down approximately 60%.</li>
+        <li>Median prices are up double-digits year-over-year.</li>
+        <li>The amenity story inside the gates is "finished and proven," not "promised and uncertain."</li>
+        <li>Peer clubs are mid-renovation; some of their buyers are looking around.</li>
+        <li>New construction supply is on the way later in 2026.</li>
+    </ul>
+
+    <p>In conditions like these, the pocket listing — the quiet sale, the off-market channel — is competing against some of the strongest open-market dynamics St. Andrews has seen in years. The published data from Bright MLS suggests on-MLS exposure produces stronger sale prices on average. The conditions inside St. Andrews right now suggest open exposure has more buyers competing for it than usual.</p>
+
+    <p>That does not mean every seller should list publicly. Personal circumstances vary. Privacy may matter more than the last dollar. An estate, a relocation, a divorce — there are real reasons a quiet sale is the right call. But the conversation an owner has with their REALTOR® in 2026 should include the current data, the current peer-club landscape, and an honest read of what is gained and lost on each path.</p>
+
+    <div class="pull-quote">The pocket listing isn't dead. It is just no longer the default smart move it sometimes was. <strong>The market caught up.</strong></div>
+
+    <h2>A Final Thought On Timing</h2>
+
+    <p>There is a saying in luxury real estate: the best window is the one where buyers are still waiting and supply is not yet flowing. Inside St. Andrews right now, buyers have been waiting through two years of peer-club construction and tight inventory. New construction supply lands later this year. That is the picture. Make of it what you will.</p>
+
+    <p>If you live in St. Andrews and you have been thinking about a sale — quiet or otherwise — the most useful thing you can do this month is pull a current snapshot of your home's likely market position. Not a pitch. Just the data.</p>
+
+    <p>That is the kind of conversation that gets sellers comfortable with whichever path is right for them.</p>
+
+</article>
+
+<section class="cta-section">
+    <h2>A Conversation, Not A Pitch.</h2>
+    <p>If you live inside St. Andrews and you have been quietly weighing a sale, a current market snapshot of your specific home is a useful starting point. Confidential, no obligation.</p>
+    <a href="mailto:edmund.bogen@elliman.com?subject=St.%20Andrews%20Market%20Snapshot%20Request" class="cta-button">Request A Confidential Market Read</a>
+</section>
+
+<section class="author-section">
+    <div class="author-inner">
+        <div class="author-photo"></div>
+        <div class="author-info">
+            <div class="author-label">About The Author</div>
+            <h3>Edmund Bogen, REALTOR®</h3>
+            <p>Edmund Bogen leads The Edmund Bogen Team at Douglas Elliman Real Estate, serving the luxury communities of South Florida with a focus on St. Andrews Country Club and the Boca Raton private-club market. Edmund is also the founder of Edmund's Mastermind and partner at Bogen.ai, where he works with realtors, executives, and entrepreneurs on scaling with AI.</p>
+            <div class="author-contact">
+                📞 <a href="tel:+15617157211">561-715-7211</a><br>
+                ✉️ <a href="mailto:edmund.bogen@elliman.com">edmund.bogen@elliman.com</a><br>
+                🌐 <a href="https://edmundbogen.com">edmundbogen.com</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="disclosures">
+    <div class="disclosures-inner">
+        <h4>Disclosures &amp; Information</h4>
+        <p>This article is <strong>general market commentary and educational information</strong> for owners and prospective buyers in the South Florida luxury private-club market. It is <strong>not legal advice, financial advice, tax advice, or transactional advice</strong> for any specific property or seller. Specific listing decisions, exempt-listing disclosures, and agency questions should be reviewed with a licensed attorney and your own REALTOR®.</p>
+        <p><strong>Market data</strong> referenced is drawn from publicly available sources including the National Association of REALTORS®, Bright MLS published research, Redfin published market reports, and trade press coverage of peer-club capital programs. Data is <strong>deemed reliable but not guaranteed</strong>. Market conditions change; <strong>past performance is not a guarantee of future results</strong>.</p>
+        <p><strong>If your property is currently listed with another broker, this is not a solicitation of that listing.</strong></p>
+        <p>The Edmund Bogen Team at Douglas Elliman Real Estate is an <strong>Equal Housing Opportunity</strong> brokerage. We do not discriminate on the basis of race, color, religion, sex, handicap, familial status, national origin, sexual orientation, gender identity, or any other classification protected by federal, state, or local law.</p>
+        <p>REALTOR® is a registered collective membership mark which may be used only by real estate professionals who are members of the NATIONAL ASSOCIATION OF REALTORS® and subscribe to its strict Code of Ethics.</p>
+    </div>
+</section>
+
+<footer>
+    <p><strong>THE EDMUND BOGEN TEAM</strong> · Douglas Elliman Real Estate · Boca Raton, FL</p>
+    <p style="margin-top:8px;">© 2026 The Edmund Bogen Team. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
