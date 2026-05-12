@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Quiet Sale Is Getting Loud: What's Really Happening Inside St. Andrews | The Edmund Bogen Team</title>
-    <meta name="description" content="A general market commentary on pocket listings, NAR's Clear Cooperation Policy, and the current state of luxury real estate inside St. Andrews Country Club, Boca Raton.">
+    <title>Pocket Listings at St. Andrews Country Club: An Owner's Guide for 2026 | The Edmund Bogen Team</title>
+    <meta name="description" content="A respectful, general-information guide for St. Andrews Country Club owners and prospective buyers on how pocket listings work in 2026, what current research shows, and what to consider.">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -12,12 +12,11 @@
             font-family: 'Montserrat', sans-serif;
             color: #1a1a1a;
             background: #fff;
-            line-height: 1.7;
+            line-height: 1.75;
             font-size: 17px;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Nav */
         nav {
             position: fixed;
             top: 0; left: 0; right: 0;
@@ -47,11 +46,10 @@
         }
         nav .nav-links a:hover { color: #00a8e1; }
 
-        /* Hero */
         .hero {
             margin-top: 65px;
-            min-height: 70vh;
-            background: linear-gradient(135deg, rgba(26,62,92,0.85), rgba(26,62,92,0.65)), url('hero.png');
+            min-height: 60vh;
+            background: linear-gradient(135deg, rgba(26,62,92,0.88), rgba(26,62,92,0.72)), url('hero.png');
             background-size: cover;
             background-position: center;
             background-color: #1a3e5c;
@@ -61,75 +59,41 @@
             justify-content: center;
             text-align: center;
             padding: 80px 24px;
-            position: relative;
         }
-        .hero-inner { max-width: 1000px; }
+        .hero-inner { max-width: 980px; }
         .hero .category {
             font-size: 12px;
             letter-spacing: 5px;
             text-transform: uppercase;
             color: #00a8e1;
-            margin-bottom: 24px;
+            margin-bottom: 28px;
             font-weight: 500;
         }
         .hero h1 {
             font-weight: 300;
-            font-size: clamp(32px, 5vw, 60px);
-            line-height: 1.15;
+            font-size: clamp(30px, 4.5vw, 54px);
+            line-height: 1.2;
             letter-spacing: -0.5px;
             margin-bottom: 32px;
         }
         .hero h1 strong { font-weight: 600; }
+        .hero .subtitle {
+            font-size: 17px;
+            color: rgba(255,255,255,0.85);
+            font-weight: 300;
+            max-width: 720px;
+            margin: 0 auto 32px;
+            line-height: 1.6;
+        }
         .hero .meta {
-            font-size: 14px;
+            font-size: 13px;
             letter-spacing: 2px;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.85);
+            color: rgba(255,255,255,0.9);
             font-weight: 400;
         }
         .hero .meta span { margin: 0 12px; color: #00a8e1; }
 
-        /* Key stat strip */
-        .stat-strip {
-            background: #1a3e5c;
-            padding: 60px 24px;
-            color: #fff;
-        }
-        .stat-strip-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-        }
-        .stat-card {
-            text-align: center;
-            border-left: 2px solid #00a8e1;
-            padding-left: 24px;
-            text-align: left;
-        }
-        .stat-card .value {
-            font-size: clamp(36px, 4vw, 52px);
-            font-weight: 300;
-            color: #fff;
-            line-height: 1;
-            margin-bottom: 12px;
-        }
-        .stat-card .label {
-            font-size: 12px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: #00a8e1;
-            font-weight: 500;
-        }
-        .stat-card .sublabel {
-            font-size: 13px;
-            color: rgba(255,255,255,0.75);
-            margin-top: 8px;
-            font-weight: 300;
-        }
-
-        /* Article body */
         article {
             max-width: 780px;
             margin: 0 auto;
@@ -142,11 +106,11 @@
         }
         article h2 {
             font-weight: 300;
-            font-size: 32px;
-            letter-spacing: -0.5px;
+            font-size: 30px;
+            letter-spacing: -0.3px;
             color: #1a3e5c;
             margin: 64px 0 24px;
-            line-height: 1.25;
+            line-height: 1.3;
         }
         article h2::after {
             content: '';
@@ -156,87 +120,52 @@
             background: #00a8e1;
             margin-top: 16px;
         }
-        article h3 {
-            font-weight: 500;
-            font-size: 20px;
-            color: #1a3e5c;
-            margin: 40px 0 16px;
-            letter-spacing: 0.5px;
-        }
         article strong { color: #1a3e5c; font-weight: 600; }
-        article em { color: #555; }
+        article em { color: #555; font-style: italic; }
         article ul { margin: 0 0 28px 24px; }
-        article ul li { margin-bottom: 12px; color: #2a2a2a; }
+        article ul li { margin-bottom: 14px; color: #2a2a2a; }
 
-        .pull-quote {
-            border-left: 4px solid #00a8e1;
-            padding: 16px 28px;
-            margin: 40px 0;
+        .opening-note {
             background: #f4f4f4;
-            font-size: 19px;
-            line-height: 1.6;
-            color: #1a3e5c;
-            font-weight: 400;
+            border-left: 4px solid #1a3e5c;
+            padding: 32px 36px;
+            margin: 48px 0;
         }
-        .pull-quote strong { font-weight: 600; }
+        .opening-note p {
+            font-size: 17px;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+        .opening-note p:last-child { margin-bottom: 0; }
+        .opening-note em {
+            color: #1a3e5c;
+            font-style: italic;
+            font-weight: 500;
+        }
 
         .small-note {
             font-size: 14px;
             color: #666;
             font-style: italic;
-            padding: 16px 0;
+            padding: 18px 0;
             border-top: 1px solid #e8e8e8;
             border-bottom: 1px solid #e8e8e8;
             margin: 32px 0;
+            line-height: 1.6;
         }
 
-        /* Three-min read box */
-        .tldr {
-            background: #f4f4f4;
-            border-left: 4px solid #1a3e5c;
-            padding: 32px;
-            margin: 48px 0;
-        }
-        .tldr .tldr-label {
-            font-size: 11px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: #00a8e1;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-        .tldr p { font-size: 17px; color: #1a1a1a; margin-bottom: 16px; }
-        .tldr p:last-child { margin-bottom: 0; }
-
-        /* Peer-club table */
-        .peer-list {
+        .pull-quote {
+            border-left: 4px solid #00a8e1;
+            padding: 20px 30px;
+            margin: 40px 0;
             background: #fafafa;
-            border: 1px solid #e8e8e8;
-            padding: 32px;
-            margin: 32px 0;
-        }
-        .peer-list h3 {
-            margin-top: 0;
-            font-size: 18px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            font-size: 19px;
+            line-height: 1.6;
             color: #1a3e5c;
-            font-weight: 600;
-            border-bottom: 1px solid #e8e8e8;
-            padding-bottom: 12px;
-            margin-bottom: 24px;
+            font-weight: 400;
         }
-        .peer-list ul { list-style: none; margin: 0; }
-        .peer-list ul li {
-            padding: 16px 0;
-            border-bottom: 1px solid #e8e8e8;
-            font-size: 15px;
-            line-height: 1.5;
-        }
-        .peer-list ul li:last-child { border-bottom: none; }
-        .peer-list .club-name { color: #1a3e5c; font-weight: 600; }
 
-        /* Author block */
         .author-section {
             background: #f4f4f4;
             padding: 64px 24px;
@@ -286,7 +215,6 @@
         .author-contact a { color: #1a3e5c; text-decoration: none; }
         .author-contact a:hover { color: #00a8e1; }
 
-        /* CTA */
         .cta-section {
             background: #1a3e5c;
             color: #fff;
@@ -296,17 +224,18 @@
         .cta-section h2 {
             color: #fff;
             font-weight: 300;
-            font-size: clamp(28px, 4vw, 40px);
+            font-size: clamp(26px, 3.5vw, 36px);
             margin-bottom: 16px;
-            letter-spacing: -0.5px;
+            letter-spacing: -0.3px;
         }
         .cta-section h2::after { display: none; }
         .cta-section p {
-            font-size: 17px;
+            font-size: 16px;
             color: rgba(255,255,255,0.85);
-            max-width: 600px;
+            max-width: 620px;
             margin: 0 auto 32px;
             font-weight: 300;
+            line-height: 1.7;
         }
         .cta-button {
             display: inline-block;
@@ -322,7 +251,6 @@
         }
         .cta-button:hover { background: #0090c2; }
 
-        /* Disclosures + Footer */
         .disclosures {
             background: #fafafa;
             padding: 48px 24px;
@@ -332,7 +260,7 @@
             max-width: 780px;
             margin: 0 auto;
             font-size: 13px;
-            line-height: 1.7;
+            line-height: 1.75;
             color: #666;
         }
         .disclosures-inner h4 {
@@ -348,7 +276,7 @@
 
         footer {
             background: #1a3e5c;
-            color: rgba(255,255,255,0.7);
+            color: rgba(255,255,255,0.75);
             padding: 32px 24px;
             text-align: center;
             font-size: 12px;
@@ -359,11 +287,10 @@
         @media (max-width: 768px) {
             nav { padding: 16px 20px; }
             nav .nav-links a { margin-left: 16px; font-size: 11px; }
-            .stat-strip-inner { grid-template-columns: 1fr; gap: 24px; }
             .author-inner { grid-template-columns: 1fr; text-align: center; }
             .author-photo { margin: 0 auto; }
             article { padding: 48px 20px; }
-            article h2 { font-size: 26px; margin-top: 48px; }
+            article h2 { font-size: 24px; margin-top: 48px; }
         }
     </style>
 </head>
@@ -381,150 +308,108 @@
 <section class="hero">
     <div class="hero-inner">
         <div class="category">Market Intelligence · St. Andrews Country Club</div>
-        <h1>The Quiet Sale Is Getting Loud<br><strong>What's Really Happening Inside St. Andrews</strong></h1>
+        <h1>Pocket Listings at St. Andrews Country Club<br><strong>An Owner's Guide for 2026</strong></h1>
+        <p class="subtitle">A respectful, general-information primer on how pocket listings work inside our community, what current research shows, and how to think about the conversation if a sale is on your mind.</p>
         <div class="meta">Edmund Bogen, REALTOR®<span>·</span>May 11, 2026</div>
-    </div>
-</section>
-
-<section class="stat-strip">
-    <div class="stat-strip-inner">
-        <div class="stat-card">
-            <div class="value">53 days</div>
-            <div class="label">Average Days On Market</div>
-            <div class="sublabel">Down from ~132 days in the prior period</div>
-        </div>
-        <div class="stat-card">
-            <div class="value">+12%</div>
-            <div class="label">Median Sale Price YoY</div>
-            <div class="sublabel">Late 2025 published market data</div>
-        </div>
-        <div class="stat-card">
-            <div class="value">~1-2%</div>
-            <div class="label">Inventory Turnover</div>
-            <div class="sublabel">8-13 active listings of 740 estate homes</div>
-        </div>
     </div>
 </section>
 
 <article>
 
-    <div class="tldr">
-        <div class="tldr-label">The Three-Minute Read</div>
-        <p>Something is shifting inside the gates of St. Andrews Country Club. The clubhouse is finished. The peer clubs are all under scaffolding. The waiting list of buyers who circled this community for two years is starting to move. And the "pocket listing" — the quietest tool in the luxury playbook — is colliding with a new reality.</p>
-        <p>If you've ever wondered what a pocket listing actually is, whether your neighbor sold theirs that way, or whether it's the right move for an estate you own here, this article is for you. General information. No pressure. Just the picture.</p>
+    <div class="opening-note">
+        <p>I have lived and worked inside the St. Andrews community for years, and one question comes up at the gate, at the grill room, and in quiet conversations more than almost any other: <em>"What about a pocket listing?"</em></p>
+        <p>Owners are curious about what it actually means, how it works inside a private club like ours, and whether it's the right choice when the time comes to think about selling. This guide is meant to answer those questions calmly and clearly — as general information, not legal advice — and to share what current market data is showing inside the gates this year.</p>
+        <p>If you're an owner here, my hope is that this gives you a useful framework. If you're considering St. Andrews as a future home, it should help you understand how the resale market inside the community really works.</p>
     </div>
 
-    <h2>What People Mean When They Say "Pocket Listing"</h2>
+    <h2>What A Pocket Listing Actually Is</h2>
 
-    <p>A pocket listing is industry shorthand for a property offered for sale with intentionally limited public exposure. No yard sign. No MLS distribution. No Zillow. A handful of agents whisper to a handful of buyers. Sometimes a deal happens. Sometimes the home sits in the pocket until the seller and the agent agree to bring it into the light.</p>
+    <p>"Pocket listing" is an industry term for a home offered for sale with intentionally limited public exposure. No yard sign. No MLS distribution. No public marketing. The home is shown to a small, hand-selected group of buyers, often through the listing agent's personal network.</p>
 
-    <p>In 2026, the cleaner term is <strong>"office exclusive."</strong> That language comes from the National Association of REALTORS®, which adopted a national rule called the <strong>Clear Cooperation Policy</strong> effective January 1, 2020 — and updated it again in March 2025 with a framework called Multiple Listing Options for Sellers.</p>
-
-    <p>The short version of the rule: once a listing is marketed publicly, it has to be submitted to the MLS within one business day. Yard signs count. Brokerage websites count. Email blasts count. Multi-brokerage sharing apps count. Going public is now a defined moment, not a gray area.</p>
-
-    <p>There are two legitimate exempt categories under the 2025 framework:</p>
+    <p>In 2026, the more precise term used by the National Association of REALTORS® is <strong>"office exclusive."</strong> Under NAR's <strong>Clear Cooperation Policy</strong> — effective January 1, 2020, and refined again on March 25, 2025, under a framework called Multiple Listing Options for Sellers — there are now two clearly defined exempt categories:</p>
 
     <ul>
-        <li><strong>Office Exclusive</strong> — the seller directs the broker not to publicly market and not to disseminate through the MLS. Signed seller disclosure required.</li>
-        <li><strong>Delayed Marketing</strong> — listed in the MLS, but public IDX and syndication exposure is delayed for a period the local MLS allows. Signed seller disclosure required.</li>
+        <li><strong>Office Exclusive</strong> — the seller instructs the broker not to publicly market the property and not to disseminate it through the MLS. A signed seller disclosure is required.</li>
+        <li><strong>Delayed Marketing</strong> — the listing is filed with the MLS, but public IDX and syndication exposure is delayed for a period the local MLS allows. A signed seller disclosure is also required.</li>
     </ul>
 
-    <p>Both require a signed seller acknowledgment that they understand the benefits of MLS-wide exposure are being waived.</p>
+    <p>Both exist for legitimate reasons. Both require informed written consent from the seller acknowledging that the broader benefits of MLS-wide exposure are being temporarily set aside.</p>
 
-    <p>In Florida, there is no statewide statutory ban on pocket listings. The operative rules are local MLS rules and the listing broker's fiduciary duty to the seller. St. Andrews falls under Beaches MLS, so a property listed inside the gates that wants to stay quiet has to follow Beaches MLS exempt-listing procedures and Clear Cooperation timing.</p>
+    <p>The general rule under Clear Cooperation is straightforward: <strong>once a listing is marketed publicly — through a sign, a brokerage website, an email blast, or a multi-brokerage app — it must be submitted to the MLS within one business day.</strong> That clarifies what was once a gray area.</p>
 
-    <div class="small-note">This is general information about how pocket listings work. It is not legal advice. Listing agreements, exempt-listing disclosures, and state agency law are situation-specific — please consult your attorney for any specific transaction question.</div>
+    <p>In Florida, there is no statewide statutory ban on pocket listings. The operative rules are the local MLS rules and the listing broker's fiduciary duty to the seller. St. Andrews properties fall under Beaches MLS, so any pocket listing inside the gates must follow Beaches MLS exempt-listing procedures along with Clear Cooperation timing.</p>
 
-    <h2>The Pocket Listing Inside A Private Club</h2>
+    <div class="small-note">This is general information about how pocket listings work. It is not legal advice — listing agreements, exempt-listing disclosures, and agency rules are situation-specific and should be reviewed with your attorney.</div>
 
-    <p>Here is why pocket listings have a home in places like St. Andrews.</p>
+    <h2>Why Pocket Listings Exist Inside Private Clubs</h2>
 
-    <p>The community has <strong>740 custom estate homes</strong> on 720 acres. At any moment, eight to thirteen properties are publicly listed. Do the math: roughly <strong>1-2% of the community</strong> is on the market on any given day. Inventory is structurally low. The buyers who want in know it.</p>
+    <p>There are real, legitimate reasons sellers in private-club communities sometimes prefer a quieter sale.</p>
 
-    <p>Add the financial bar to enter: a non-refundable initiation fee of approximately $400,000, plus a $25,000 POA owner's capital contribution at closing, on top of the home itself. That is a serious threshold. Buyers who clear it tend to know exactly what they want. They wait. Sometimes they wait a long time.</p>
+    <p><strong>Privacy.</strong> For families with public visibility, financial discretion concerns, or sensitive personal circumstances — a divorce, an estate transition, a health-driven move — keeping the sale out of public view matters. That's a perfectly valid preference.</p>
 
-    <p>That waiting creates a private channel. Agents who farm the club hear about a sale before the listing goes live. A few buyers get a phone call. Occasionally a deal happens before the yard sign would have gone up.</p>
+    <p><strong>Controlled exposure.</strong> Some sellers prefer not to have a parade of unqualified showings through their home. A pocket listing allows the agent to filter for buyers who already understand the community, the membership commitment, and the price range.</p>
 
-    <div class="pull-quote">Pocket listings are not a scandal. They are a tool. But the data on whether they serve sellers — particularly in seller's markets — has gotten harder to ignore.</div>
+    <p><strong>Quiet pre-marketing.</strong> Sometimes a seller wants time to finish updates, complete photography, or prepare the property properly before launch. A short period of quiet pre-marketing can serve that goal.</p>
 
-    <h2>What The Research Says</h2>
+    <p><strong>A natural fit for tight communities.</strong> In a community like ours — 740 custom estate homes on 720 beautifully maintained acres, with mandatory membership and a structured buyer pool — agents who serve the club regularly know which buyers have been waiting, what they want, and when to make the introduction. That kind of careful matchmaking has value.</p>
 
-    <p>Bright MLS, in partnership with researchers at Drexel University, studied on-MLS sales versus off-MLS sales from 2019 through early 2023. Their published finding: <strong>on-MLS sales transacted for 17.5% more than comparable off-MLS sales.</strong> That is a publicly cited figure across industry trade press and a significant gap.</p>
+    <div class="pull-quote">Pocket listings are a tool used by professional agents for legitimate reasons. They are part of how a private-club market like ours operates.</div>
 
-    <p>A separate Bright MLS office-exclusive study found two more facts worth knowing:</p>
+    <h2>What The Research Shows About Outcomes</h2>
+
+    <p>It's also worth being honest about what the published research says, so owners can make an informed decision.</p>
+
+    <p>Bright MLS, working with researchers at Drexel University, studied on-MLS sales versus off-MLS sales from 2019 through early 2023. Their published finding is that <strong>on-MLS sales transacted for approximately 17.5% more than comparable off-MLS sales</strong> on average. That figure is widely cited in industry trade press and represents a meaningful gap in average outcomes.</p>
+
+    <p>A separate Bright MLS study of office exclusives reported two additional findings:</p>
 
     <ul>
-        <li><strong>Nearly two-thirds of office exclusives eventually end up on the MLS anyway.</strong> The quiet sale didn't conclude. The market needed to see the property.</li>
-        <li><strong>Properties that started as office exclusives generally took longer to sell</strong> than properties listed openly from day one.</li>
+        <li><strong>Nearly two-thirds of office exclusives eventually ended up on the MLS anyway.</strong> The quiet sale didn't conclude, and the property ultimately needed broader exposure.</li>
+        <li><strong>Properties that began as office exclusives generally took longer to sell</strong> than properties listed openly from the start.</li>
     </ul>
 
-    <p>None of this means pocket listings are wrong for every seller. Privacy matters. Timing matters. There are legitimate reasons — divorce, estate transitions, public-figure exposure, prep work on the property — to keep a sale quiet for a window. But the data has shifted the conversation. Privacy is a real benefit. It is also a real cost.</p>
+    <p>These are averages across many markets and many price points. They don't dictate the right answer for any single seller. But they do mean the conversation about a pocket listing should be a real conversation — weighing privacy, timing, and circumstance on one side against statistical exposure benefits on the other.</p>
 
-    <div class="small-note">These are published research findings shared as general information. Past results are not a guarantee of future results in any specific transaction.</div>
+    <div class="small-note">These are published research findings shared as general information. Past results are not a guarantee of future outcomes in any specific transaction.</div>
 
-    <h2>So What Is Actually Changing In St. Andrews</h2>
+    <h2>Why 2026 Is Worth Paying Attention To Inside St. Andrews</h2>
 
-    <p>This is the part of the story that matters most.</p>
+    <p>A few things are happening in the broader market and inside the community that are worth understanding if you're an owner or a prospective buyer here.</p>
 
-    <p><strong>The clubhouse is done.</strong> St. Andrews completed a $27.5 million Club Enhancement Plan in late 2023 — a full upgrade of the 125,000-square-foot clubhouse, dining venues, aquatic center, and recreation facilities. The amenity refresh has been digested into current pricing. Buyers walking the property today are seeing the finished product.</p>
+    <p><strong>The market inside the gates is moving briskly.</strong> Per published market data sources, average days on market for St. Andrews homes have come down meaningfully year-over-year — recent figures show properties moving in roughly half the time they were a year ago. Median sale prices in St. Andrews have shown double-digit year-over-year growth as of late 2025, and the high end of the community continues to set new benchmarks per square foot. Different data providers report somewhat different figures depending on segment and timeframe; current MLS data should always be the reference point for any specific decision.</p>
 
-    <p><strong>Days on market have collapsed.</strong> Per published market data, average days on market in St. Andrews dropped from approximately 132 days in the prior period to roughly <strong>53 days</strong> in the most recent period. That is a 60% reduction. Velocity is up.</p>
+    <p><strong>Inventory remains structurally tight.</strong> With roughly 740 estate homes and only a small number publicly listed at any given moment, supply represents a very small percentage of the community on any given day. Qualified buyers who want into St. Andrews often wait patiently for the right opportunity to surface.</p>
 
-    <p><strong>Prices are moving up.</strong> Published market sources report median sale prices in St. Andrews up approximately <strong>12% year-over-year as of late 2025</strong>, with trailing-twelve-month averages for premium properties cited in the $4M+ range and per-square-foot figures in the $670+ range. Different data providers report slightly different figures depending on segment and timeframe — verify with current MLS data for any specific transaction.</p>
+    <p><strong>The membership cost of entry continues to evolve.</strong> As of 2026, the total cost due at closing for new St. Andrews membership is approximately <strong>$500,000, which includes a $50,000 POA owner's capital contribution</strong>. That financial commitment naturally produces a buyer pool that is serious, well-prepared, and committed to the community for the long term.</p>
 
-    <p><strong>Peer clubs are in the middle of their renovations, not after.</strong> Look at the field around St. Andrews:</p>
+    <p><strong>The broader South Florida private-club market is investing heavily in its future.</strong> Across the region, peer clubs are executing significant capital programs — investments that speak to the underlying strength and confidence in the South Florida luxury private-club lifestyle as a whole. That rising tide of regional investment is good news for everyone who owns inside any of these communities.</p>
 
-    <div class="peer-list">
-        <h3>South Florida Peer-Club Capital Programs</h3>
-        <ul>
-            <li><span class="club-name">Boca West Country Club</span> — executing a $95 million capital improvement plan. Course 1 broke ground in March 2026. The pickleball center is targeting May 2026 completion. Members are living through construction.</li>
-            <li><span class="club-name">Mirasol Country Club</span> — mid-execution on an $82 million Phase 2 master plan, with new multipurpose buildings, indoor pickleball, and course restorations underway.</li>
-            <li><span class="club-name">The Polo Club of Boca Raton</span> — in a three-year clubhouse transformation running through mid-2027.</li>
-            <li><span class="club-name">Broken Sound Club</span> — completed a $40 million clubhouse renovation in 2023; finished and absorbed.</li>
-            <li><span class="club-name">Frenchman's Creek Beach & Country Club</span> — opened a new $74 million, 124,450-square-foot clubhouse in late 2024, raising initiation to approximately $475,000 plus a $25,000 POA capital contribution effective March 1, 2026.</li>
-            <li><span class="club-name">Addison Reserve Country Club</span> — completed a $24 million Rees Jones golf renovation and raised full-golf initiation from $325,000 to $400,000 effective January 1, 2026.</li>
-        </ul>
-    </div>
+    <p><strong>The St. Andrews community itself continues to invest in and evaluate its long-term direction.</strong> Member engagement around the club's future is active and thoughtful. Owners who take pride in this community know that its leadership and membership care deeply about what it should be a decade from now. That ongoing dialogue is part of what keeps St. Andrews distinctive.</p>
 
-    <p>Two things are happening simultaneously. First, the <strong>St. Andrews fee structure</strong> that looked aggressive two years ago now sits comfortably inside the peer-club range. Frenchman's Creek crossed $475K. Addison Reserve crossed $400K. The St. Andrews $400,000 number is no longer an outlier — it is the new normal in South Florida luxury golf.</p>
+    <h2>What All Of This Means For An Owner Considering A Sale</h2>
 
-    <p>Second, <strong>the construction noise next door creates a quiet preference for St. Andrews right now.</strong> Buyers who were touring Boca West, Mirasol, or Polo and could not get past the scaffolding sometimes redirect to clubs that are already finished. St. Andrews is finished.</p>
+    <p>If you are an owner at St. Andrews quietly weighing whether and how to bring your home to market, here is a balanced way to think about it:</p>
 
-    <p><strong>New supply is coming.</strong> Custom estate builds inside St. Andrews with anticipated Q2-Q3 2026 delivery dates are in the pipeline. When those close, they reset comparable prices at the high end of the per-square-foot range.</p>
+    <p><strong>A pocket listing remains a legitimate option</strong> when privacy, timing, or specific circumstances make it the right call. Used appropriately, with informed consent and proper compliance, it is a tool that experienced agents in this community use effectively.</p>
 
-    <h2>Why This Matters For Anyone Thinking About A Sale</h2>
+    <p><strong>An open MLS listing offers measurable exposure benefits</strong> that, on average, correlate with stronger sale outcomes — particularly in markets where qualified buyer demand is healthy, as it is in St. Andrews this year.</p>
 
-    <p>The market reading is not a prediction. It is a description of current conditions:</p>
+    <p><strong>The right answer depends on you</strong> — your privacy needs, your timeline, your situation, and your goals. There is no universal right path, and any good agent will walk you through both options honestly before recommending one.</p>
 
-    <ul>
-        <li>Inventory is at structural lows.</li>
-        <li>Days on market are down approximately 60%.</li>
-        <li>Median prices are up double-digits year-over-year.</li>
-        <li>The amenity story inside the gates is "finished and proven," not "promised and uncertain."</li>
-        <li>Peer clubs are mid-renovation; some of their buyers are looking around.</li>
-        <li>New construction supply is on the way later in 2026.</li>
-    </ul>
+    <div class="pull-quote">The conversation worth having in 2026 is not "should I do a pocket listing or list publicly." It's <strong>"given my specific situation and the current market, what approach best serves my goals?"</strong> That conversation deserves real care.</div>
 
-    <p>In conditions like these, the pocket listing — the quiet sale, the off-market channel — is competing against some of the strongest open-market dynamics St. Andrews has seen in years. The published data from Bright MLS suggests on-MLS exposure produces stronger sale prices on average. The conditions inside St. Andrews right now suggest open exposure has more buyers competing for it than usual.</p>
+    <h2>A Final Note</h2>
 
-    <p>That does not mean every seller should list publicly. Personal circumstances vary. Privacy may matter more than the last dollar. An estate, a relocation, a divorce — there are real reasons a quiet sale is the right call. But the conversation an owner has with their REALTOR® in 2026 should include the current data, the current peer-club landscape, and an honest read of what is gained and lost on each path.</p>
+    <p>St. Andrews is a special community, and I consider it a privilege to serve owners and buyers here. If you have questions about the market, how pocket listings work, or simply want a confidential, no-pressure read on your own home's current market position, I'm always happy to have that conversation.</p>
 
-    <div class="pull-quote">The pocket listing isn't dead. It is just no longer the default smart move it sometimes was. <strong>The market caught up.</strong></div>
-
-    <h2>A Final Thought On Timing</h2>
-
-    <p>There is a saying in luxury real estate: the best window is the one where buyers are still waiting and supply is not yet flowing. Inside St. Andrews right now, buyers have been waiting through two years of peer-club construction and tight inventory. New construction supply lands later this year. That is the picture. Make of it what you will.</p>
-
-    <p>If you live in St. Andrews and you have been thinking about a sale — quiet or otherwise — the most useful thing you can do this month is pull a current snapshot of your home's likely market position. Not a pitch. Just the data.</p>
-
-    <p>That is the kind of conversation that gets sellers comfortable with whichever path is right for them.</p>
+    <p>This article is general information meant to help, not a sales pitch. The best decisions in real estate happen when owners are well-informed and feel respected throughout the process. That's the standard I try to bring to every conversation inside the gates.</p>
 
 </article>
 
 <section class="cta-section">
     <h2>A Conversation, Not A Pitch.</h2>
-    <p>If you live inside St. Andrews and you have been quietly weighing a sale, a current market snapshot of your specific home is a useful starting point. Confidential, no obligation.</p>
-    <a href="mailto:edmund.bogen@elliman.com?subject=St.%20Andrews%20Market%20Snapshot%20Request" class="cta-button">Request A Confidential Market Read</a>
+    <p>If you'd like a confidential, no-obligation read on your home's current market position — or simply want to talk through how pocket listings and open listings compare for your situation — I'm here whenever you'd like to chat.</p>
+    <a href="mailto:edmund.bogen@elliman.com?subject=St.%20Andrews%20Conversation" class="cta-button">Start A Confidential Conversation</a>
 </section>
 
 <section class="author-section">
@@ -533,7 +418,7 @@
         <div class="author-info">
             <div class="author-label">About The Author</div>
             <h3>Edmund Bogen, REALTOR®</h3>
-            <p>Edmund Bogen leads The Edmund Bogen Team at Douglas Elliman Real Estate, serving the luxury communities of South Florida with a focus on St. Andrews Country Club and the Boca Raton private-club market. Edmund is also the founder of Edmund's Mastermind and partner at Bogen.ai, where he works with realtors, executives, and entrepreneurs on scaling with AI.</p>
+            <p>Edmund Bogen leads The Edmund Bogen Team at Douglas Elliman Real Estate, serving the luxury communities of South Florida with a particular focus on St. Andrews Country Club and the Boca Raton private-club market. Edmund is also the founder of Edmund's Mastermind and a partner at Bogen.ai.</p>
             <div class="author-contact">
                 📞 <a href="tel:+15617157211">561-715-7211</a><br>
                 ✉️ <a href="mailto:edmund.bogen@elliman.com">edmund.bogen@elliman.com</a><br>
@@ -546,8 +431,8 @@
 <section class="disclosures">
     <div class="disclosures-inner">
         <h4>Disclosures &amp; Information</h4>
-        <p>This article is <strong>general market commentary and educational information</strong> for owners and prospective buyers in the South Florida luxury private-club market. It is <strong>not legal advice, financial advice, tax advice, or transactional advice</strong> for any specific property or seller. Specific listing decisions, exempt-listing disclosures, and agency questions should be reviewed with a licensed attorney and your own REALTOR®.</p>
-        <p><strong>Market data</strong> referenced is drawn from publicly available sources including the National Association of REALTORS®, Bright MLS published research, Redfin published market reports, and trade press coverage of peer-club capital programs. Data is <strong>deemed reliable but not guaranteed</strong>. Market conditions change; <strong>past performance is not a guarantee of future results</strong>.</p>
+        <p>This article is <strong>general market commentary and educational information</strong> for owners and prospective buyers in the South Florida luxury private-club market. It is <strong>not legal advice, financial advice, tax advice, or transactional advice</strong> for any specific property or situation. Listing decisions, exempt-listing disclosures, and agency-related questions should always be reviewed with a licensed attorney and your own REALTOR®.</p>
+        <p><strong>Market data</strong> referenced is drawn from publicly available sources including the National Association of REALTORS®, Bright MLS published research, Redfin published market reports, and trade press coverage of South Florida private-club capital programs. Data is <strong>deemed reliable but not guaranteed</strong>. Market conditions change; <strong>past performance is not a guarantee of future results</strong>. Membership fees, capital contributions, and club programs are subject to change — current figures should always be confirmed directly with the club before any decision.</p>
         <p><strong>If your property is currently listed with another broker, this is not a solicitation of that listing.</strong></p>
         <p>The Edmund Bogen Team at Douglas Elliman Real Estate is an <strong>Equal Housing Opportunity</strong> brokerage. We do not discriminate on the basis of race, color, religion, sex, handicap, familial status, national origin, sexual orientation, gender identity, or any other classification protected by federal, state, or local law.</p>
         <p>REALTOR® is a registered collective membership mark which may be used only by real estate professionals who are members of the NATIONAL ASSOCIATION OF REALTORS® and subscribe to its strict Code of Ethics.</p>
