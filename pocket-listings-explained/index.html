@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Pocket Listings: What They Are, How They Work, and When They Make Sense | The Edmund Bogen Team</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #1a1a1a;
+    background: #fafafa;
+    line-height: 1.7;
+  }
+
+  nav {
+    background: #1a3e5c;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  nav .logo { color: #fff; font-weight: 300; letter-spacing: 3px; font-size: 14px; text-transform: uppercase; }
+  nav .logo strong { font-weight: 600; letter-spacing: 4px; }
+  nav .links a { color: #fff; text-decoration: none; margin-left: 28px; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 400; }
+  nav .links a:hover { color: #00a8e1; }
+
+  .hero-image { width: 100%; display: block; }
+
+  .article-header {
+    background: linear-gradient(135deg, #1a3e5c 0%, #0d2540 100%);
+    color: #fff;
+    padding: 70px 40px 80px;
+    text-align: center;
+  }
+  .article-header .eyebrow { color: #00a8e1; text-transform: uppercase; letter-spacing: 5px; font-size: 12px; font-weight: 500; margin-bottom: 22px; }
+  .article-header h1 { font-size: 42px; font-weight: 300; letter-spacing: 1px; line-height: 1.2; max-width: 920px; margin: 0 auto 22px; color: #fff; }
+  .article-header .sub { color: rgba(255,255,255,0.85); font-size: 17px; font-weight: 300; max-width: 720px; margin: 0 auto 26px; line-height: 1.6; }
+  .article-header .meta { color: rgba(255,255,255,0.75); font-size: 11px; text-transform: uppercase; letter-spacing: 3px; font-weight: 400; }
+
+  .article {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 70px 40px 80px;
+    background: #fff;
+  }
+  .article p { font-size: 17px; line-height: 1.85; color: #2a2a2a; margin-bottom: 22px; }
+  .article h2 {
+    font-size: 28px;
+    font-weight: 400;
+    color: #1a3e5c;
+    margin: 50px 0 22px;
+    line-height: 1.3;
+    border-left: 3px solid #00a8e1;
+    padding-left: 18px;
+  }
+  .article h3 { font-size: 20px; font-weight: 500; color: #1a3e5c; margin: 32px 0 14px; }
+  .article hr { border: none; border-top: 1px solid #e0e0e0; margin: 50px 0; }
+  .article ul, .article ol { margin: 0 0 22px 24px; }
+  .article ul li, .article ol li { font-size: 17px; line-height: 1.85; margin-bottom: 10px; color: #2a2a2a; }
+  .article strong { color: #1a3e5c; }
+
+  .pullquote {
+    border-left: 4px solid #00a8e1;
+    padding: 24px 28px;
+    background: #f4f4f4;
+    margin: 35px 0;
+  }
+  .pullquote p { font-size: 18px; color: #1a3e5c; margin-bottom: 0; line-height: 1.7; font-style: italic; }
+
+  .note {
+    background: #f7faff;
+    border-left: 3px solid #00a8e1;
+    padding: 14px 18px;
+    font-style: italic;
+    font-size: 14.5px;
+    color: #555;
+    margin: 24px 0;
+    line-height: 1.65;
+  }
+
+  .market-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 26px 0 14px;
+    font-size: 15px;
+  }
+  .market-table th {
+    background: #1a3e5c;
+    color: #fff;
+    padding: 11px 14px;
+    text-align: left;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 500;
+  }
+  .market-table th.num { text-align: right; }
+  .market-table td {
+    padding: 9px 14px;
+    border-bottom: 1px solid #eaeaea;
+    color: #2a2a2a;
+  }
+  .market-table td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .market-table tr:nth-child(even) td { background: #fafafa; }
+  .market-table tr.highlight td {
+    background: #fff8e6;
+    font-weight: 600;
+    color: #1a3e5c;
+  }
+
+  .decision-box {
+    background: linear-gradient(135deg, #1a3e5c 0%, #0d2540 100%);
+    color: #fff;
+    padding: 32px 36px;
+    margin: 32px 0;
+    border-radius: 4px;
+  }
+  .decision-box.alt {
+    background: linear-gradient(135deg, #fefaf3 0%, #fdf5e6 100%);
+    color: #1a3e5c;
+    border: 1px solid #f0e2c4;
+  }
+  .decision-box h4 {
+    color: #00a8e1;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 18px;
+  }
+  .decision-box.alt h4 { color: #7a5230; }
+  .decision-box ul { margin: 0; padding-left: 20px; }
+  .decision-box ul li {
+    color: rgba(255,255,255,0.95);
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+  .decision-box.alt ul li { color: #2a2a2a; }
+
+  .listings-cta {
+    background: #f4f4f4;
+    border-left: 3px solid #00a8e1;
+    padding: 28px 32px;
+    margin: 50px 0;
+  }
+  .listings-cta .eyebrow { color: #1a3e5c; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 600; margin-bottom: 10px; }
+  .listings-cta h3 { color: #1a3e5c; font-size: 22px; font-weight: 400; margin-bottom: 8px; }
+  .listings-cta p { color: #555; margin-bottom: 16px; font-size: 15px; }
+  .listings-cta a {
+    color: #fff;
+    background: #1a3e5c;
+    padding: 12px 24px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 11px;
+    font-weight: 500;
+    display: inline-block;
+  }
+  .listings-cta a:hover { background: #00a8e1; }
+
+  .bio {
+    background: #1a3e5c;
+    color: #fff;
+    padding: 50px 40px;
+    margin-top: 60px;
+  }
+  .bio-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+  }
+  .bio-inner img.photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #00a8e1;
+    flex-shrink: 0;
+  }
+  .bio-inner h3 { font-size: 22px; font-weight: 400; margin-bottom: 6px; color: #fff; }
+  .bio-inner .title { color: #00a8e1; text-transform: uppercase; letter-spacing: 2px; font-size: 11px; margin-bottom: 14px; }
+  .bio-inner p { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.9); margin-bottom: 10px; }
+  .bio-inner .contact { font-size: 13px; color: rgba(255,255,255,0.95); }
+  .bio-inner .contact a { color: #00a8e1; text-decoration: none; }
+
+  .disclaimer {
+    background: #0d2540;
+    padding: 32px 40px;
+    text-align: center;
+    font-size: 11px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.75;
+  }
+  .disclaimer p { max-width: 800px; margin: 0 auto 8px; }
+  .disclaimer strong { color: rgba(255,255,255,0.85); }
+
+  @media (max-width: 720px) {
+    nav { padding: 14px 20px; flex-wrap: wrap; }
+    nav .links a { margin-left: 14px; font-size: 10px; }
+    .article-header { padding: 40px 22px 50px; }
+    .article-header h1 { font-size: 28px; }
+    .article { padding: 40px 22px; }
+    .article h2 { font-size: 22px; }
+    .bio-inner { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">THE <strong>EDMUND BOGEN</strong> TEAM</div>
+  <div class="links">
+    <a href="https://bogenhomes.com">Properties</a>
+    <a href="../market-dashboard/">Dashboard</a>
+    <a href="https://www.bogen.ai/contact?tab=client">Contact</a>
+  </div>
+</nav>
+
+<img src="https://edmundbogen.github.io/pocket-listings-explained/hero.png" alt="Edmund Bogen, REALTOR® — South Florida luxury real estate" class="hero-image">
+
+<header class="article-header">
+  <div class="eyebrow">This Week's Brief · A Plain-English Guide</div>
+  <h1>Pocket Listings: What They Are, How They Work, and When They Make Sense</h1>
+  <div class="sub">A guide for owners and buyers in the South Florida luxury market — the trade-offs, the mechanics, and the current Boca Raton market context.</div>
+  <div class="meta">Edmund Bogen, REALTOR® &nbsp;·&nbsp; May 12, 2026</div>
+</header>
+
+<article class="article">
+
+  <h2>Why This Question Keeps Coming Up</h2>
+  <p>In moments of market uncertainty, the same question lands in my inbox more than almost any other: <em>"Can we do this as a pocket listing?"</em></p>
+  <p>Sellers ask it for a reason. They don't necessarily want neighbors, friends at the club, or the broader market to see they're on the market. They want optionality. They want privacy. And in periods when prices feel less predictable, they want to test the water without signaling anything to anyone.</p>
+  <p>A pocket listing can be the right tool for that. It can also leave money on the table. The honest answer is that it depends — and this guide is meant to lay out the trade-offs in plain English so owners can make a clear-headed decision.</p>
+
+  <h2>What A Pocket Listing Actually Is</h2>
+  <p>"Pocket listing" is the industry term for a home offered for sale with intentionally limited public exposure. No yard sign. No MLS distribution. No public marketing. The home is shown to a small, hand-selected group of buyers, usually through the listing agent's personal network.</p>
+  <p>In 2026, the more precise term used by the National Association of REALTORS® is <strong>"office exclusive."</strong> Under NAR's <strong>Clear Cooperation Policy</strong> — effective January 1, 2020, and refined again on March 25, 2025, under a framework called Multiple Listing Options for Sellers — there are two clearly defined exempt categories:</p>
+  <ul>
+    <li><strong>Office Exclusive</strong> — the seller instructs the broker not to publicly market the property and not to disseminate it through the MLS. A signed seller disclosure is required.</li>
+    <li><strong>Delayed Marketing</strong> — the listing is filed with the MLS, but public IDX and syndication exposure is delayed for a period the local MLS allows. A signed seller disclosure is also required.</li>
+  </ul>
+  <p>Both exist for legitimate reasons. Both require informed written consent from the seller acknowledging that the broader benefits of MLS-wide exposure are being temporarily set aside.</p>
+  <p>The general rule under Clear Cooperation is straightforward: <strong>once a listing is marketed publicly — through a sign, a brokerage website, an email blast, or a multi-brokerage app — it must be submitted to the MLS within one business day.</strong></p>
+  <p>In Florida, there is no statewide statutory ban on pocket listings. The operative rules are the local MLS rules and the listing broker's fiduciary duty to the seller.</p>
+  <div class="note">This is general information about how pocket listings work. It is not legal advice — listing agreements, exempt-listing disclosures, and agency rules are situation-specific and should be reviewed with your attorney.</div>
+
+  <h2>How To Actually List As A Pocket Listing</h2>
+  <p>The mechanics are straightforward when handled by a broker who does this regularly:</p>
+  <ol>
+    <li><strong>Sign a standard listing agreement</strong> with your broker, just as you would for any sale.</li>
+    <li><strong>Sign the office-exclusive seller disclosure</strong> required under Clear Cooperation, confirming you understand you're forgoing MLS exposure.</li>
+    <li><strong>Agree on the buyer-network strategy</strong> — which agents and which buyers will be approached, and how the property will be shown.</li>
+    <li><strong>Set a defined window.</strong> Most sellers I work with agree to a 30-, 60-, or 90-day private window. If no qualified offer materializes, the listing rolls out publicly with full MLS exposure, professional photography, and a coordinated launch.</li>
+  </ol>
+  <p>That structure protects the seller. You get the privacy of a quiet attempt, with a clear off-ramp if the quiet attempt doesn't deliver.</p>
+
+  <h2>The Pros</h2>
+  <p><strong>Privacy.</strong> For families with public visibility, financial discretion concerns, or sensitive circumstances — a divorce, an estate transition, a health-driven move — keeping the sale out of public view matters. That's a valid preference.</p>
+  <p><strong>Controlled exposure.</strong> A pocket listing filters out unqualified showings. Buyers come in pre-screened by an agent who already knows them and the price range.</p>
+  <p><strong>No public signal in an uncertain market.</strong> This is the one driving the conversation right now. Sellers don't want to be seen as "needing to sell." A pocket listing lets you explore the market without putting your hand on the table.</p>
+  <p><strong>Quiet pre-marketing time.</strong> Sometimes a seller wants time to finish updates, complete photography, or stage properly before launch. A short private period can serve that goal.</p>
+  <p><strong>Curated matchmaking.</strong> Inside tight communities, agents who serve the area regularly know which buyers have been waiting and what they want. That targeted introduction has real value when the buyer pool is small and specific.</p>
+
+  <h2>The Cons</h2>
+  <div class="pullquote">
+    <p>"The biggest risk with a pocket listing is that you're not making a market on the home. With limited buyers seeing it, you don't get true price discovery — you get one or two offers from a curated pool, not the competitive tension that comes from open exposure."</p>
+  </div>
+  <p><strong>You're not making a market on the home.</strong> This is the single most important trade-off. With limited buyers seeing the property, you don't get true price discovery. You get one or two offers from a curated pool — not the competitive tension that comes from open exposure. If you genuinely know your value and you're confident in your price, that may be fine. If you're hoping the market will surprise you to the upside, it almost never does in a pocket sale.</p>
+  <p><strong>The published research isn't kind to off-MLS outcomes.</strong> Bright MLS, working with researchers at Drexel University, studied on-MLS sales versus off-MLS sales from 2019 through early 2023. Their published finding is that <strong>on-MLS sales transacted for approximately 17.5% more than comparable off-MLS sales</strong> on average. A separate Bright MLS study of office exclusives found that <strong>nearly two-thirds of office exclusives eventually ended up on the MLS anyway</strong>, and that properties beginning as office exclusives <strong>generally took longer to sell</strong> than properties listed openly from the start.</p>
+  <p><strong>Fewer eyes means fewer backup offers.</strong> If your first negotiation falls apart, you don't have a deep bench of interested buyers waiting in the wings. You start over.</p>
+  <p><strong>It can signal the wrong thing later.</strong> A property that quietly circulated for months before hitting the MLS sometimes carries a "what's wrong with it?" question into the open market.</p>
+  <div class="note">Past results are not a guarantee of future outcomes in any specific transaction.</div>
+
+  <h2>Where The Boca Raton Private-Club Market Stands Right Now</h2>
+  <p>Whether a pocket listing makes sense also depends on the market velocity in your specific community. Below is a current snapshot of active inventory versus recently sold homes across the Boca Raton private-club and luxury-community landscape.</p>
+
+  <table class="market-table">
+    <thead>
+      <tr>
+        <th>Community</th>
+        <th class="num">Active</th>
+        <th class="num">Sold</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Boca West</td><td class="num">29</td><td class="num">65</td></tr>
+      <tr><td>Broken Sound</td><td class="num">20</td><td class="num">49</td></tr>
+      <tr><td>Polo Club</td><td class="num">9</td><td class="num">35</td></tr>
+      <tr><td>Addison Reserve</td><td class="num">5</td><td class="num">20</td></tr>
+      <tr><td>Woodfield</td><td class="num">9</td><td class="num">19</td></tr>
+      <tr><td>Lotus</td><td class="num">18</td><td class="num">17</td></tr>
+      <tr><td>The Oaks</td><td class="num">11</td><td class="num">17</td></tr>
+      <tr><td>Bocaire Country Club</td><td class="num">8</td><td class="num">14</td></tr>
+      <tr class="highlight"><td>St. Andrews Country Club</td><td class="num">12</td><td class="num">13</td></tr>
+      <tr><td>Seven Bridges</td><td class="num">7</td><td class="num">12</td></tr>
+      <tr><td>Boca Bridges</td><td class="num">9</td><td class="num">12</td></tr>
+      <tr><td>The Bridges</td><td class="num">7</td><td class="num">11</td></tr>
+      <tr><td>Stonebridge</td><td class="num">7</td><td class="num">8</td></tr>
+      <tr><td>Mizner Country Club</td><td class="num">5</td><td class="num">6</td></tr>
+      <tr><td>Boca Grove</td><td class="num">14</td><td class="num">6</td></tr>
+      <tr><td>Seasons</td><td class="num">3</td><td class="num">5</td></tr>
+      <tr><td>Long Lake Estates</td><td class="num">5</td><td class="num">2</td></tr>
+      <tr><td>Delaire</td><td class="num">3</td><td class="num">1</td></tr>
+      <tr><td>The Sanctuary</td><td class="num">9</td><td class="num">1</td></tr>
+      <tr><td>Royal Palm Yacht Club</td><td class="num">29</td><td class="num">20</td></tr>
+      <tr><td>Le Lac</td><td class="num">0</td><td class="num">0</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>How to read this:</strong> Communities where sold volume meaningfully exceeds active inventory — Addison Reserve, Polo Club, Broken Sound, Boca West, Woodfield — are absorbing inventory quickly. There's depth in the buyer pool, and a pocket listing in those communities has a reasonable chance of finding a real buyer because real buyers are actively transacting.</p>
+  <p>Communities where active inventory equals or exceeds sold volume — Royal Palm Yacht Club, Boca Grove, The Sanctuary, Long Lake Estates — are slower. In those markets, a pocket listing means even fewer eyes on a home that already has to compete for attention. Public MLS exposure tends to matter more, not less.</p>
+  <p>For reference, current St. Andrews active inventory ranges from approximately <strong>$1,895,000 on the low end to $12,000,000 at the high end</strong> — a wide band that reflects the diversity of homes inside the community.</p>
+  <div class="note">Market snapshot reflects current active inventory and trailing sold activity as reported by MLS sources as of May 12, 2026. Counts include single-family residences within each community and are deemed reliable but not guaranteed.</div>
+
+  <div class="listings-cta">
+    <div class="eyebrow">Inside the Gates</div>
+    <h3>St. Andrews Country Club — Active Listings</h3>
+    <p>See all 12 active homes currently on the market at St. Andrews, from $1.895M to $12M.</p>
+    <a href="../dashboard-2026-05-12/st-andrews-listings.html">View St. Andrews Listings →</a>
+  </div>
+
+  <h2>How To Decide</h2>
+  <p>The conversation worth having in 2026 is not "should I do a pocket listing or list publicly." It's <strong>"given my specific situation and the current market, what approach best serves my goals?"</strong></p>
+
+  <div class="decision-box">
+    <h4>A Pocket Listing Makes Sense When:</h4>
+    <ul>
+      <li>Privacy is genuinely material to you</li>
+      <li>You already know your value and aren't trying to maximize price</li>
+      <li>You're in a community with deep, active buyer demand</li>
+      <li>You're comfortable defining a clear window with a public-launch off-ramp</li>
+    </ul>
+  </div>
+
+  <div class="decision-box alt">
+    <h4>An Open MLS Listing Makes Sense When:</h4>
+    <ul>
+      <li>You want true price discovery and competitive tension</li>
+      <li>You're in a slower-velocity community where exposure matters more</li>
+      <li>You want a deep bench of backup offers</li>
+      <li>You'd rather sell once, cleanly, than circulate quietly for months</li>
+    </ul>
+  </div>
+
+  <p>Any good agent should walk you through both options honestly before recommending one.</p>
+
+  <h2>A Final Note</h2>
+  <p>If you're weighing whether and how to bring your home to market, the right move is to have the full conversation — pros, cons, market velocity in your specific community, and your specific goals — before you commit to a path. I'm always happy to have that conversation confidentially and without pressure.</p>
+
+</article>
+
+<section class="bio">
+  <div class="bio-inner">
+    <img class="photo" src="https://edmundbogen.github.io/edmund-profile.jpg" alt="Edmund Bogen">
+    <div>
+      <h3>Edmund Bogen</h3>
+      <div class="title">Member · St. Andrews CC &nbsp;|&nbsp; The Edmund Bogen Team · Douglas Elliman</div>
+      <p>Luxury real estate advisor in South Florida, member of St. Andrews Country Club, and author of a weekly market intelligence brief covering 21 luxury communities in Boca Raton and Palm Beach County.</p>
+      <div class="contact">561-235-7575 &nbsp;·&nbsp; <a href="mailto:edmund@bogenhomes.com">edmund@bogenhomes.com</a> &nbsp;·&nbsp; <a href="https://edmundbogen.com">edmundbogen.com</a></div>
+    </div>
+  </div>
+</section>
+
+<footer class="disclaimer">
+  <p><strong>General market commentary and educational information.</strong> Not legal, financial, tax, or transactional advice. Listing decisions, exempt-listing disclosures, agency questions, and brokerage-relationship disclosures under Florida law (Chapter 475, Florida Statutes) should be reviewed with a licensed Florida attorney and your own REALTOR®.</p>
+  <p>Market data courtesy of BeachesMLS and publicly available NAR and Bright MLS research. Data deemed reliable but not guaranteed. Past performance is not a guarantee of future results.</p>
+  <p>This article is consumer education, not a solicitation. If your property is currently listed with another broker, this is not a solicitation of that listing. Edmund Bogen respects the exclusive agency relationships of fellow REALTORS® consistent with Article 16 of the NAR Code of Ethics, the principle of cooperation under Article 3, and the true-picture standard under Article 12.</p>
+  <p>The Edmund Bogen Team at Douglas Elliman Real Estate is an Equal Housing Opportunity brokerage. Default brokerage relationship in Florida residential transactions is Transaction Broker unless another relationship is established in writing pursuant to §475.278, Florida Statutes.</p>
+  <p>© 2026 The Edmund Bogen Team · Douglas Elliman Real Estate</p>
+</footer>
+
+</body>
+</html>
