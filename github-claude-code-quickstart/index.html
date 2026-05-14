@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GitHub + Claude Code Quick Start | The Edmund Bogen Team</title>
+<meta name="description" content="A two-part quick start for real estate professionals: open a GitHub account, then connect Claude Code. From Edmund's Mastermind.">
+<meta property="og:title" content="GitHub + Claude Code Quick Start">
+<meta property="og:description" content="A two-part quick start for real estate professionals from Edmund's Mastermind at The Edmund Bogen Team.">
+<meta property="og:type" content="article">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #333333;
+    line-height: 1.6;
+    background: #f4f4f4;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    max-width: 880px;
+    margin: 0 auto;
+    background: #ffffff;
+    min-height: 100vh;
+    padding: 0 0 60px 0;
+  }
+  .hero {
+    background: #1a3e5c;
+    color: #ffffff;
+    padding: 60px 48px 48px;
+    border-left: 6px solid #00a8e1;
+    position: relative;
+  }
+  .hero .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.24em;
+    color: #00a8e1;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-size: 42px;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    line-height: 1.1;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin-bottom: 18px;
+  }
+  .hero h1 .accent { color: #00a8e1; font-weight: 400; }
+  .hero .sub {
+    font-size: 17px;
+    font-weight: 300;
+    color: #ffffff;
+    opacity: 0.88;
+    max-width: 620px;
+    line-height: 1.55;
+  }
+  .hero .brandbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 36px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #ffffff;
+    opacity: 0.92;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .hero .brandbar .right { color: #00a8e1; }
+  .section { padding: 48px 48px 16px; }
+  .section-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-left: 14px;
+    border-left: 5px solid #00a8e1;
+  }
+  .section-num {
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    color: #00a8e1;
+    font-weight: 500;
+    margin-right: 18px;
+    text-transform: uppercase;
+  }
+  .section-title {
+    font-size: 24px;
+    color: #1a3e5c;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .section-intro {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.65;
+    margin-bottom: 24px;
+    padding-left: 19px;
+    max-width: 700px;
+  }
+  .step {
+    background: #f8f8f8;
+    border-left: 4px solid #00a8e1;
+    padding: 20px 26px;
+    margin-bottom: 14px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .step:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(26, 62, 92, 0.08);
+  }
+  .step-head {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 8px;
+  }
+  .step-number {
+    font-size: 26px;
+    font-weight: 300;
+    color: #00a8e1;
+    margin-right: 16px;
+    min-width: 36px;
+    line-height: 1;
+  }
+  .step-title {
+    font-size: 17px;
+    color: #1a3e5c;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .step-body {
+    font-size: 15px;
+    color: #333;
+    line-height: 1.65;
+    padding-left: 52px;
+  }
+  .step-body code {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    background: #1a3e5c;
+    color: #ffffff;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+  }
+  .step-body .url {
+    color: #00a8e1;
+    font-weight: 600;
+  }
+  .code-block {
+    background: #1a3e5c;
+    color: #ffffff;
+    padding: 16px 20px;
+    margin: 10px 0 0 52px;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.65;
+    border-left: 4px solid #00a8e1;
+    overflow-x: auto;
+    white-space: pre;
+    position: relative;
+  }
+  .code-block .comment { color: #88c5e1; }
+  .code-block .copy-btn {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    background: rgba(0,168,225,0.15);
+    border: 1px solid #00a8e1;
+    color: #00a8e1;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    transition: background 0.15s ease;
+  }
+  .code-block .copy-btn:hover {
+    background: rgba(0,168,225,0.3);
+  }
+  .code-block .copy-btn.copied {
+    background: #00a8e1;
+    color: #1a3e5c;
+  }
+  .callout {
+    background: #1a3e5c;
+    color: #ffffff;
+    padding: 22px 28px;
+    margin-top: 22px;
+    border-left: 5px solid #00a8e1;
+  }
+  .callout-label {
+    font-size: 11px;
+    color: #00a8e1;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .callout-text {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #ffffff;
+  }
+  .callout-text strong { color: #00a8e1; font-weight: 500; }
+  .closer {
+    margin: 48px 48px 0;
+    padding: 36px 40px;
+    background: #1a3e5c;
+    color: #ffffff;
+    border-left: 6px solid #00a8e1;
+  }
+  .closer h2 {
+    font-size: 26px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    color: #ffffff;
+  }
+  .closer .accent { color: #00a8e1; }
+  .closer p {
+    font-size: 16px;
+    line-height: 1.6;
+    opacity: 0.92;
+    max-width: 92%;
+  }
+  .closer .sig {
+    margin-top: 18px;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #00a8e1;
+  }
+  .footer {
+    text-align: center;
+    padding: 40px 24px 0;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #888;
+  }
+  .footer a {
+    color: #1a3e5c;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .footer a:hover { color: #00a8e1; }
+  @media (max-width: 720px) {
+    .hero { padding: 40px 28px 32px; }
+    .hero h1 { font-size: 30px; }
+    .section, .closer { padding: 36px 28px 12px; margin-left: 0; margin-right: 0; }
+    .closer { margin: 36px 20px 0; padding: 28px 24px; }
+    .step { padding: 16px 18px; }
+    .step-body, .code-block { padding-left: 0; margin-left: 44px; }
+    .code-block { margin-left: 44px; }
+  }
+  @media print {
+    body { background: #fff; }
+    .page { box-shadow: none; }
+    .copy-btn { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="hero">
+    <div class="eyebrow">Edmund's Mastermind &nbsp;|&nbsp; AI Quick Start</div>
+    <h1>GitHub <span class="accent">+</span> Claude Code</h1>
+    <div class="sub">A two-part quick start for real estate professionals. Open a GitHub account, then connect Claude Code so you can save, version, and share your AI work like a pro.</div>
+    <div class="brandbar">
+      <span>The Edmund Bogen Team</span>
+      <span class="right">At Douglas Elliman Real Estate</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">Part 01</span>
+      <span class="section-title">Start a GitHub Account</span>
+    </div>
+    <div class="section-intro">GitHub is where you'll store your prompts, skills, scripts, and AI-generated assets. Think of it as a digital filing cabinet that never loses anything and keeps a clean history of every change.</div>
+
+    <div class="step">
+      <div class="step-head"><div class="step-number">1</div><div class="step-title">Go to GitHub</div></div>
+      <div class="step-body">Open your browser and visit <a href="https://github.com" class="url" target="_blank" rel="noopener">github.com</a>. Click the <strong>Sign up</strong> button in the top right corner.</div>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><div class="step-number">2</div><div class="step-title">Enter Your Email</div></div>
+      <div class="step-body">Use a professional email you'll keep long-term — your business address is ideal (e.g., name@yourdomain.com). Avoid throwaway accounts.</div>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><div class="step-number">3</div><div class="step-title">Create a Strong Password</div></div>
+      <div class="step-body">15+ characters, stored in 1Password or your password manager. Enable two-factor authentication immediately after signup — non-negotiable.</div>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><div class="step-number">4</div><div class="step-title">Pick a Username</div></div>
+      <div class="step-body">Choose something professional — your name or business handle. This becomes your public identity (e.g., <code>github.com/yourname</code>). Hard to change later, so pick well.</div>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><div class="step-number">5</div><div class="step-title">Verify Your Email</div></div>
+      <div class="step-body">Open the verification email from GitHub and click the link. You're now in.</div>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><div class="step-number">6</div><div class="step-title">Create Your First Repository</div></div>
+      <div class="step-body">Click the green <strong>New</strong> button on your dashboard. Name it something like <code>my-ai-operations</code>. Set it to <strong>Private</strong>. Check "Add a README file." Click <strong>Create repository</strong>. Done — you have your first repo.</div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Edmund's Rule</div>
+      <div class="callout-text">Default to <strong>Private</strong> repos for client work, business operations, and anything proprietary. Public is for open-source contributions and portfolio pieces only. Your prompts and workflows are your edge — protect them.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">Part 02</span>
+      <span class="section-title">Connect Claude Code</span>
+    </div>
+    <div class="section-intro">Claude Code is Anthropic's command-line tool that lets Claude work directly with your files and your GitHub repos. Once connected, you can ask Claude to build, edit, and commit code from your terminal — no copy-paste required.</div>
+
+    <div class="step">
+      <div class="step-head"><div class="step-number">1</div><div class="step-title">Install Node.js</div></div>
+      <div class="step-body">Claude Code runs on Node.js. Go to <a href="https://nodejs.org" class="url" target="_blank" rel="noopener">nodejs.org</a> and download the LTS version. Install it with the default settings. One-time setup.</div>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><div class="step-number">2</div><div class="step-title">Open Your Terminal</div></div>
+      <div class="step-body">On Mac: open <strong>Terminal</strong> (Cmd+Space, type "Terminal"). On Windows: open <strong>PowerShell</strong> or <strong>Windows Terminal</strong>. This is where you'll talk to Claude Code.</div>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><div class="step-number">3</div><div class="step-title">Install Claude Code</div></div>
+      <div class="step-body">Paste this command and hit Enter:</div>
+      <div class="code-block"><button class="copy-btn" data-copy="npm install -g @anthropic-ai/claude-code">Copy</button>npm install -g @anthropic-ai/claude-code</div>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><div class="step-number">4</div><div class="step-title">Install Git (if you don't have it)</div></div>
+      <div class="step-body">Git is what connects your computer to GitHub. Mac users usually have it. To check, type <code>git --version</code>. If missing, download from <a href="https://git-scm.com" class="url" target="_blank" rel="noopener">git-scm.com</a>.</div>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><div class="step-number">5</div><div class="step-title">Clone Your Repository</div></div>
+      <div class="step-body">On GitHub, open your repo and click the green <strong>Code</strong> button. Copy the HTTPS URL. In your terminal, navigate to where you want the folder, then run:</div>
+      <div class="code-block"><button class="copy-btn" data-copy="git clone https://github.com/yourname/my-ai-operations.git&#10;cd my-ai-operations">Copy</button>git clone https://github.com/yourname/my-ai-operations.git
+cd my-ai-operations</div>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><div class="step-number">6</div><div class="step-title">Launch Claude Code</div></div>
+      <div class="step-body">From inside your project folder, type:</div>
+      <div class="code-block"><button class="copy-btn" data-copy="claude">Copy</button>claude</div>
+      <div class="step-body" style="margin-top:10px;">First time only: Claude Code will open your browser and ask you to log in with your Anthropic account. Approve it. You're connected.</div>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><div class="step-number">7</div><div class="step-title">Test It</div></div>
+      <div class="step-body">At the Claude Code prompt, try:</div>
+      <div class="code-block"><span class="comment"># Ask Claude to build something</span>
+&gt; Create a simple buyer questionnaire template
+   in markdown and save it as questionnaire.md</div>
+      <div class="step-body" style="margin-top:10px;">When you're happy with it, ask Claude to commit and push:</div>
+      <div class="code-block">&gt; Commit this and push to GitHub</div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">What This Unlocks</div>
+      <div class="callout-text">You now have a <strong>versioned, AI-powered workspace</strong>. Every prompt, every skill, every script you build with Claude is saved, dated, and recoverable. Lose your laptop? Clone the repo on a new machine and you're back in business in 90 seconds.</div>
+    </div>
+  </div>
+
+  <div class="closer">
+    <h2>Build Once. <span class="accent">Use Forever.</span></h2>
+    <p>This is the foundation. Every skill we build, every workflow we automate, every prompt we refine — it all lives here. Treat your GitHub like the operating system of your business.</p>
+    <div class="sig">Edmund's Mastermind &nbsp;·&nbsp; The Edmund Bogen Team</div>
+  </div>
+
+  <div class="footer">
+    &copy; The Edmund Bogen Team &nbsp;|&nbsp; At Douglas Elliman Real Estate &nbsp;|&nbsp; <a href="https://bogen.ai" target="_blank" rel="noopener">bogen.ai</a>
+  </div>
+
+</div>
+
+<script>
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const text = btn.getAttribute('data-copy').replace(/&#10;/g, '\n');
+      navigator.clipboard.writeText(text).then(() => {
+        const original = btn.textContent;
+        btn.textContent = 'Copied';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = original;
+          btn.classList.remove('copied');
+        }, 1500);
+      });
+    });
+  });
+</script>
+</body>
+</html>
