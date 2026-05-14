@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Open House Check-In — 1234 Banana Street</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal:#2C4A5C;
+    --teal-dark:#1F3645;
+    --teal-overlay:rgba(31,54,69,0.72);
+    --gold:#C9A227;
+    --gold-bright:#D4A93C;
+    --white:#FFFFFF;
+    --soft:#E8EEF2;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{min-height:100vh;font-family:'Inter',-apple-system,sans-serif;color:var(--white);overflow-x:hidden}
+  body{
+    background:
+      linear-gradient(var(--teal-overlay),var(--teal-overlay)),
+      linear-gradient(135deg,#3a6a82 0%,#1F3645 100%);
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+  }
+  /* Nav */
+  nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:1.5rem 3rem;
+    z-index:10;
+  }
+  .logo{
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.6rem;
+    font-weight:700;
+    letter-spacing:0.15em;
+    color:var(--white);
+  }
+  .logo span{color:var(--gold)}
+  .nav-right{
+    font-size:0.75rem;
+    letter-spacing:0.25em;
+    text-transform:uppercase;
+    color:var(--soft);
+  }
+  /* Hero */
+  .hero{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:2rem 1.5rem 4rem;
+  }
+  .eyebrow{
+    font-size:0.78rem;
+    letter-spacing:0.35em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:1.5rem;
+  }
+  .eyebrow span{margin:0 0.6rem;opacity:0.6}
+  h1{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:600;
+    font-size:clamp(2.5rem,5.5vw,4.5rem);
+    line-height:1.05;
+    letter-spacing:0.01em;
+    margin-bottom:1.25rem;
+    max-width:900px;
+  }
+  .subhead{
+    font-size:1.05rem;
+    font-weight:300;
+    line-height:1.6;
+    max-width:620px;
+    color:var(--soft);
+    margin-bottom:2.5rem;
+  }
+  .meta{
+    display:flex;
+    gap:2.5rem;
+    flex-wrap:wrap;
+    justify-content:center;
+    margin-bottom:3rem;
+    font-size:0.85rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+  }
+  .meta div{display:flex;flex-direction:column;align-items:center;gap:0.35rem}
+  .meta .label{color:var(--gold);font-size:0.7rem;letter-spacing:0.3em}
+  .meta .value{color:var(--white);font-weight:500}
+  /* Form */
+  .form-wrap{
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.15);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    padding:2.5rem;
+    width:100%;
+    max-width:640px;
+    border-radius:2px;
+  }
+  .form-title{
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.75rem;
+    font-weight:600;
+    text-align:center;
+    margin-bottom:0.5rem;
+  }
+  .form-sub{
+    text-align:center;
+    font-size:0.85rem;
+    color:var(--soft);
+    margin-bottom:2rem;
+    letter-spacing:0.05em;
+  }
+  .field{margin-bottom:1.25rem;text-align:left}
+  .field label{
+    display:block;
+    font-size:0.72rem;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:0.5rem;
+    font-weight:500;
+  }
+  .field input, .field select, .field textarea{
+    width:100%;
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.25);
+    color:var(--white);
+    padding:0.95rem 1rem;
+    font-size:1rem;
+    font-family:inherit;
+    border-radius:0;
+    transition:border-color 0.2s,background 0.2s;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{
+    outline:none;
+    border-color:var(--gold);
+    background:rgba(255,255,255,0.12);
+  }
+  .field input::placeholder, .field textarea::placeholder{color:rgba(255,255,255,0.45)}
+  .field select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%23C9A227' d='M6 8L0 0h12z'/></svg>");background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.5rem}
+  .field select option{background:var(--teal-dark);color:var(--white)}
+  .field textarea{min-height:90px;resize:vertical}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  @media(max-width:520px){.row{grid-template-columns:1fr}}
+  .submit{
+    width:100%;
+    background:var(--gold);
+    color:var(--white);
+    border:none;
+    padding:1.15rem;
+    font-size:0.85rem;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    font-weight:600;
+    cursor:pointer;
+    margin-top:1rem;
+    transition:background 0.2s,transform 0.1s;
+    font-family:inherit;
+  }
+  .submit:hover{background:var(--gold-bright)}
+  .submit:active{transform:scale(0.99)}
+  .submit:disabled{opacity:0.6;cursor:not-allowed}
+  /* Thank you */
+  .thanks{
+    display:none;
+    text-align:center;
+    padding:4rem 2rem;
+    max-width:640px;
+    margin:0 auto;
+  }
+  .thanks.show{display:block}
+  .thanks .check{
+    width:80px;
+    height:80px;
+    border:2px solid var(--gold);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto 2rem;
+    font-size:2.5rem;
+    color:var(--gold);
+    font-family:'Cormorant Garamond',serif;
+  }
+  .thanks h2{
+    font-family:'Cormorant Garamond',serif;
+    font-size:3rem;
+    font-weight:600;
+    margin-bottom:1rem;
+  }
+  .thanks p{
+    color:var(--soft);
+    font-size:1.1rem;
+    line-height:1.6;
+    margin-bottom:2rem;
+  }
+  .thanks .next{
+    font-size:0.75rem;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    color:var(--gold);
+  }
+  /* Footer */
+  footer{
+    text-align:center;
+    padding:1.5rem;
+    font-size:0.7rem;
+    letter-spacing:0.25em;
+    text-transform:uppercase;
+    color:rgba(255,255,255,0.5);
+  }
+  @media(max-width:600px){
+    nav{padding:1rem 1.25rem}
+    .nav-right{display:none}
+    .form-wrap{padding:1.75rem}
+    .meta{gap:1.5rem}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">THE EDMUND <span>BOGEN</span> TEAM</div>
+  <div class="nav-right">Douglas Elliman</div>
+</nav>
+
+<main class="hero" id="hero">
+  <div class="eyebrow">South Florida <span>·</span> Open House <span>·</span> Welcome</div>
+  <h1>Welcome to<br>1234 Banana Street</h1>
+  <p class="subhead">Please take a moment to sign in. We'd love to know who stopped by — and we'll follow up with property details, comps, and any questions you have after the visit.</p>
+
+  <div class="meta">
+    <div><span class="label">Date</span><span class="value">Saturday, May 16</span></div>
+    <div><span class="label">Hours</span><span class="value">11:00 AM – 2:00 PM</span></div>
+    <div><span class="label">Address</span><span class="value">1234 Banana Street</span></div>
+  </div>
+
+  <form class="form-wrap" id="checkinForm" action="https://formspree.io/f/mlgavjvz" method="POST">
+    <div class="form-title">Visitor Check-In</div>
+    <div class="form-sub">Takes 20 seconds</div>
+
+    <input type="hidden" name="_subject" value="Open House Check-In — 1234 Banana Street">
+    <input type="hidden" name="source" value="Open House Check-In — 1234 Banana Street (May 16, 2026)">
+
+    <div class="row">
+      <div class="field">
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" name="firstName" required autocomplete="given-name">
+      </div>
+      <div class="field">
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastName" name="lastName" required autocomplete="family-name">
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required autocomplete="email" placeholder="you@email.com">
+    </div>
+
+    <div class="field">
+      <label for="phone">Phone</label>
+      <input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="(555) 555-5555">
+    </div>
+
+    <div class="field">
+      <label for="agent">Are you working with a real estate agent?</label>
+      <select id="agent" name="workingWithAgent" required>
+        <option value="">Please select...</option>
+        <option value="No">No</option>
+        <option value="Yes">Yes</option>
+        <option value="Just looking">Just looking</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="interest">What brings you in today?</label>
+      <select id="interest" name="interest" required>
+        <option value="">Please select...</option>
+        <option value="Serious buyer">Serious buyer</option>
+        <option value="Browsing the market">Browsing the market</option>
+        <option value="Neighbor / curious about value">Neighbor / curious about value</option>
+        <option value="Investor">Investor</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="notes">Anything we should know? (optional)</label>
+      <textarea id="notes" name="notes" placeholder="Timeline, must-haves, questions..."></textarea>
+    </div>
+
+    <button type="submit" class="submit" id="submitBtn">Sign In</button>
+  </form>
+</main>
+
+<section class="thanks" id="thanks">
+  <div class="check">✓</div>
+  <h2>Thank You</h2>
+  <p>Welcome to 1234 Banana Street. Please make yourself at home — Edmund or a team member will be right with you. We'll follow up shortly with anything you asked about.</p>
+  <div class="next">Resetting for next visitor...</div>
+</section>
+
+<footer>
+  The Edmund Bogen Team <span style="margin:0 0.8rem;color:var(--gold)">·</span> Douglas Elliman
+</footer>
+
+<script>
+  const form = document.getElementById('checkinForm');
+  const hero = document.getElementById('hero');
+  const thanks = document.getElementById('thanks');
+  const submitBtn = document.getElementById('submitBtn');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Signing in...';
+    try {
+      const data = new FormData(form);
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        showThanks();
+      } else {
+        // Still show thanks to visitor; log error for owner
+        console.error('Submission error', await res.text());
+        showThanks();
+      }
+    } catch (err) {
+      console.error(err);
+      showThanks();
+    }
+  });
+
+  function showThanks(){
+    hero.style.display = 'none';
+    thanks.classList.add('show');
+    // Auto-reset after 30 seconds for next visitor (kiosk mode)
+    setTimeout(() => {
+      form.reset();
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Sign In';
+      thanks.classList.remove('show');
+      hero.style.display = 'flex';
+      document.getElementById('firstName').focus();
+    }, 30000);
+  }
+
+  // Kiosk mode: focus first field on load
+  window.addEventListener('load', () => {
+    document.getElementById('firstName').focus();
+  });
+</script>
+
+</body>
+</html>
