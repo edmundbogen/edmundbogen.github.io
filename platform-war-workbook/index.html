@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platform War Survival Session — Implementation Workbook</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f4f4f4;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --navy: #1a3e5c;
+            --cyan: #00a8e1;
+            --border: #ddd;
+            --code-bg: #f9f9f9;
+        }
+
+        html.dark-mode {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2d2d2d;
+            --text-primary: #f0f0f0;
+            --text-secondary: #b0b0b0;
+            --border: #444;
+            --code-bg: #2a2a2a;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Lato', 'Helvetica', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Header/Navigation */
+        header {
+            background-color: var(--navy);
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left {
+            flex: 1;
+        }
+
+        .header-left h1 {
+            font-size: 20px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-weight: 400;
+        }
+
+        .header-left p {
+            font-size: 12px;
+            color: var(--cyan);
+            margin-top: 4px;
+        }
+
+        .header-right {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .toggle-theme {
+            background-color: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .toggle-theme:hover {
+            background-color: rgba(255,255,255,0.3);
+        }
+
+        .download-btn {
+            background-color: var(--cyan);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .download-btn:hover {
+            background-color: #0088bb;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px 20px;
+            background-color: var(--bg-secondary);
+            border-radius: 4px;
+        }
+
+        .hero-section h2 {
+            font-size: 36px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--navy);
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .hero-section .subtitle {
+            font-size: 18px;
+            color: var(--cyan);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .hero-section .meta {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .hero-section .tagline {
+            font-size: 16px;
+            color: var(--navy);
+            font-style: italic;
+            margin: 20px 0;
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 50px;
+        }
+
+        h2 {
+            font-size: 28px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--navy);
+            background-color: var(--bg-secondary);
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--cyan);
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--cyan);
+            margin: 20px 0 10px 0;
+        }
+
+        p {
+            margin: 12px 0;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        strong {
+            color: var(--navy);
+            font-weight: 600;
+        }
+
+        ul, ol {
+            margin: 15px 0 15px 30px;
+            font-size: 15px;
+        }
+
+        li {
+            margin: 8px 0;
+            line-height: 1.7;
+        }
+
+        /* Info boxes */
+        .section-intro {
+            background-color: var(--bg-secondary);
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-left: 4px solid var(--cyan);
+            border-radius: 2px;
+        }
+
+        .stat-callout {
+            background-color: var(--navy);
+            color: white;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-left: 4px solid var(--cyan);
+            border-radius: 2px;
+        }
+
+        .stat-callout strong {
+            color: var(--cyan);
+        }
+
+        /* Prompts */
+        .prompts-section {
+            margin: 20px 0;
+        }
+
+        .prompt-box {
+            background-color: var(--code-bg);
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 3px solid var(--cyan);
+            border-radius: 2px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+
+        .prompt-label {
+            font-weight: 600;
+            color: var(--cyan);
+            font-size: 13px;
+            margin-bottom: 8px;
+            font-family: sans-serif;
+        }
+
+        /* Worksheets */
+        .worksheet {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 2px;
+        }
+
+        .worksheet-field {
+            margin: 12px 0;
+            font-size: 14px;
+        }
+
+        .worksheet-field label {
+            font-weight: 600;
+            color: var(--navy);
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        input[type="text"] {
+            border-bottom: 1px solid var(--border);
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            padding: 4px 6px;
+            font-family: inherit;
+            font-size: 14px;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 13px;
+            overflow-x: auto;
+        }
+
+        th {
+            background-color: var(--navy);
+            color: white;
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+            border: 1px solid var(--border);
+        }
+
+        td {
+            padding: 10px;
+            border: 1px solid var(--border);
+        }
+
+        tr:nth-child(even) {
+            background-color: var(--bg-secondary);
+        }
+
+        /* Checkboxes */
+        .checkbox-list {
+            margin: 10px 0 10px 20px;
+        }
+
+        .checkbox-list li {
+            margin: 8px 0;
+            list-style: none;
+        }
+
+        /* Commitment box */
+        .commitment-box {
+            background-color: var(--bg-secondary);
+            padding: 20px;
+            margin: 15px 0;
+            border: 2px solid var(--navy);
+            border-radius: 2px;
+        }
+
+        .signature-line {
+            border-bottom: 1px solid var(--text-primary);
+            display: inline-block;
+            width: 150px;
+            margin: 0 10px;
+        }
+
+        /* Closing section */
+        .closing {
+            background-color: var(--navy);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            margin: 40px 0 0 0;
+            border-radius: 4px;
+        }
+
+        .closing p {
+            color: white;
+            margin: 10px 0;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .closing-tagline {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--cyan);
+            margin: 15px 0;
+        }
+
+        /* Utilities */
+        hr {
+            border: none;
+            border-top: 2px solid var(--cyan);
+            margin: 30px 0;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 15px 0;
+        }
+
+        .column {
+            padding: 15px;
+            background-color: var(--bg-secondary);
+            border-radius: 2px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+
+            .header-right {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .hero-section h2 {
+                font-size: 24px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+
+            .prompt-box {
+                font-size: 12px;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            header {
+                position: static;
+            }
+
+            .download-btn,
+            .toggle-theme {
+                display: none;
+            }
+
+            body {
+                background-color: white;
+                color: black;
+            }
+        }
+
+        /* Smooth transitions */
+        * {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="header-left">
+                <h1>Platform War Survival</h1>
+                <p>Complete Implementation Workbook</p>
+            </div>
+            <div class="header-right">
+                <button class="toggle-theme" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+                <a href="#" class="download-btn" onclick="downloadPDF(); return false;">⬇ Download PDF</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <h2>Complete Implementation Workbook</h2>
+            <div class="subtitle">The Platform War Survival Session</div>
+            <div class="meta">
+                Wednesday, May 20, 2026 · 9:00 AM ET<br>
+                Edmund's Mastermind & Group Coaching<br>
+                <strong>www.reignation.com/platform-war</strong>
+            </div>
+            <div class="tagline">"Because Letting AI Commoditize Your Business is NOT an Option!"</div>
+        </div>
+
+        <!-- SECTION 1: MISSION -->
+        <section>
+            <h2>Your Money-Making Mission</h2>
+
+            <h3>Why You're Here</h3>
+            <div class="section-intro">
+                <p>Three companies just bought the U.S. residential real estate industry in 14 months. Most agents have zero visibility into their platform dependencies, which revenue streams are at risk, and where their competitive moat actually exists. Your mission today: build a defense.</p>
+            </div>
+
+            <h3>Your Goal</h3>
+            <div class="section-intro">
+                <p><strong>Segment your business intentionally.</strong> Own your platform strategy. Build a luxury defense that AI can't commoditize. Reclaim 10-15 hours per week from platform friction. Increase your take-home income by identifying which transactions are defensible and which ones require automation, not personal bandwidth.</p>
+            </div>
+
+            <h3>Success Metric (30 days)</h3>
+            <div class="stat-callout">
+                <strong>✅ 30-Day Goal:</strong> Platform audit complete (which company owns what), luxury defense foundation built (1 private inventory source identified + 1 Tier 1 publication pitch drafted), AI operator stack deployed (sub-5-min lead response live). Estimated time saved: 8-12 hours. Revenue protected: $15K–$40K (based on your segment mix).
+            </div>
+
+            <h3>Workshop Overview: Your Profit-Generating Toolkit</h3>
+            <p style="margin: 15px 0;">The three systems you'll master over this 60-minute session:</p>
+
+            <div class="two-column">
+                <div class="column">
+                    <h3 style="color: var(--cyan); margin-top: 0;">1️⃣ Platform Stack Audit</h3>
+                    <p><strong>Outcome:</strong> You own your dependencies. Know exactly which company controls which system. Identify your exit risk.</p>
+                </div>
+                <div class="column">
+                    <h3 style="color: var(--cyan); margin-top: 0;">2️⃣ Luxury Defense System</h3>
+                    <p><strong>Outcome:</strong> Private inventory engine, editorial authority moat, concierge architecture. Defensible, high-margin business.</p>
+                </div>
+            </div>
+
+            <div style="padding: 15px; background-color: var(--bg-secondary); border-left: 4px solid var(--cyan); border-radius: 2px;">
+                <h3 style="color: var(--cyan); margin-top: 0;">3️⃣ Solo + AI Operator Stack</h3>
+                <p><strong>Outcome:</strong> $300/month replaces 2-4 FTEs. Automate admin. Reclaim time for relationship-building in luxury segment.</p>
+            </div>
+
+            <div class="stat-callout" style="margin-top: 20px;">
+                <strong>The Credibility Foundation:</strong> 70–95% of South Florida $1M+ condo sales closed all-cash in 2025 (Miami REALTORS®). 361 South Florida sales over $10M in 2025 (second-highest year on record). 141 Palm Beach $10M+ sales. These numbers prove luxury IS insulated—but only if you build the defense.
+            </div>
+        </section>
+
+        <!-- SECTION 2: SYSTEM 1 -->
+        <section>
+            <h2>System #1: The Platform Stack Audit</h2>
+
+            <h3>The $100,000 Platform Dependency Killer</h3>
+
+            <div class="section-intro">
+                <p><strong>What This Means for Your Bank Account:</strong></p>
+                <ul>
+                    <li>💰 Identify $15K–$100K in annual platform taxes you're paying (commissions, data, margin lost to platform algorithms)</li>
+                    <li>📍 Know which customer segments are most vulnerable to platform commoditization</li>
+                    <li>⚠️ Spot single points of failure (if Zillow goes down, if Follow Up Boss changes pricing, if Compass launches a competing product)</li>
+                </ul>
+            </div>
+
+            <p><strong>The Technology Behind Your Dependency:</strong></p>
+            <p>Over 14 months (July 2025–January 2026), $25B+ in M&A consolidated U.S. residential real estate into five platforms. Each owns a different layer:</p>
+
+            <ul>
+                <li><strong>Zillow Pro:</strong> agent operating system (CRM + tour-booking + closing docs + sphere)</li>
+                <li><strong>Compass/Anywhere:</strong> listing inventory + agent loyalty (340K agents)</li>
+                <li><strong>Rocket/Redfin/Mr. Cooper:</strong> homeownership lifecycle (10M homeowners)</li>
+                <li><strong>CoStar/Homes.com:</strong> agent loyalty via "Your Listing, Your Lead"</li>
+                <li><strong>OpenAI/Google/Perplexity:</strong> the first question (before any portal)</li>
+            </ul>
+
+            <p><strong>Why This Changes Everything:</strong></p>
+            <p>Each platform monitors your transactions. Each tests new verticals (Zillow's mortgage launch, Compass's iBuying tests). Each has a business model that depends on eventually making you less necessary. The mid-market is being commoditized at speed. Margins are compressing. Customer acquisition costs are rising.</p>
+
+            <h3>Your Opportunity</h3>
+            <div class="stat-callout">
+                <strong>Segment defensibility.</strong> Identify which transactions are commoditizable (mid-market, frequent-buyer sellers, FSBO-prone markets) and which are defensible (luxury, off-market, relationship-deep). Then operate accordingly: automate the commoditizable, defend the defensible.
+            </div>
+
+            <h3>Copy-Paste Prompts</h3>
+
+            <div class="prompts-section">
+                <div class="prompt-box">
+                    <div class="prompt-label">📋 PROMPT 1: Mapping Your Current Dependencies</div>
+                    <div>"I operate in [your market]. My main tools are: [list your CRM, MLS, showing software, transaction coordination, database, social media, email, analytics]. For each tool, research and tell me: (1) Who owns this company? (2) When was it last acquired or funded? (3) What other real estate companies do they own? (4) What's their stated growth strategy for real estate agents? (5) On a scale of 1-10, how dependent am I on this tool—if it changed pricing or strategy, how much would my business be disrupted?"</div>
+                </div>
+
+                <div class="prompt-box">
+                    <div class="prompt-label">💰 PROMPT 2: Identifying Your Platform Tax</div>
+                    <div>"I did $[your GCI] last year. My platform costs are: [list monthly/annual costs]. Tell me what percentage of my revenue goes to platforms. Then estimate: (1) How much of my customer data leaves my control? (2) If I lost access to [top 3 platforms], what % of my business would I lose? (3) What's my estimated 'platform tax'—the invisible margin loss from algorithm changes, commission sharing, or platform feature changes I can't control?"</div>
+                </div>
+
+                <div class="prompt-box">
+                    <div class="prompt-label">🎯 PROMPT 3: Picking Your Platform Stack</div>
+                    <div>"I want to stay on [e.g., Zillow Pro] because I need their distribution. But I'm concerned about platform risk. Design a 'platform risk mitigation stack' for me: (1) What's the one tool I should invest in building myself (not renting)? (2) What's a second platform I should integrate that isn't owned by the Big 3? (3) What data should I back up locally to reduce vendor lock-in? (4) What's the first step toward owning more of my customer relationships?"</div>
+                </div>
+
+                <div class="prompt-box">
+                    <div class="prompt-label">📊 PROMPT 4: Auditing Your Book's Succession Value</div>
+                    <div>"I have a real estate business worth ~$[estimate]. [% of my business] depends on platforms I don't own. In a sale or succession, how much of that value is at risk if: (1) The platform owner changes their agent strategy? (2) Commissions compress from 4% to 3%? (3) AI commoditizes my market segment? (4) What % of my book's value is defensible? What % is rented?"</div>
+                </div>
+            </div>
+
+            <h3>Success Notes</h3>
+            <div class="worksheet">
+                <div class="worksheet-field">
+                    <label>Top 3 platforms I depend on:</label>
+                    <p>1. <input type="text"></p>
+                    <p>2. <input type="text"></p>
+                    <p>3. <input type="text"></p>
+                </div>
+                <div class="worksheet-field" style="margin-top: 10px;">
+                    <label>Estimated platform tax (% of annual revenue):</label>
+                    <p><input type="text" style="max-width: 100px;"> %</p>
+                </div>
+                <div class="worksheet-field" style="margin-top: 10px;">
+                    <label>Single biggest platform dependency risk:</label>
+                    <p><input type="text"></p>
+                </div>
+                <div class="worksheet-field" style="margin-top: 10px;">
+                    <label>First audit step (this week):</label>
+                    <p><input type="text"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: SYSTEM 2 -->
+        <section>
+            <h2>System #2: The Luxury Defense</h2>
+
+            <h3>Why $1M+ Is The One Segment AI Can't Commoditize</h3>
+
+            <div class="section-intro">
+                <p><strong>What This Means for Your Bank Account:</strong></p>
+                <ul>
+                    <li>💎 Luxury transactions are relationship-protected. Off-market inventory sells for 5.8% higher median price. Higher margin. Fewer commoditized competitors.</li>
+                    <li>🏆 Editorial authority = referrals. When wealth managers, tax attorneys, family-office coordinators recommend a realtor, that's not algorithmic—that's relationship.</li>
+                    <li>⏱️ Concierge architecture = defensibility. The agents who own the vendor ecosystem (movers, designers, contractors, attorneys, accountants) own the client relationship.</li>
+                </ul>
+            </div>
+
+            <p><strong>The Proof (Parallel Industries):</strong></p>
+            <ul>
+                <li><strong>Private Banking:</strong> Morgan Stanley + OpenAI partnership (2023) = AI handles 60–70% of portfolio analytics. Advisor headcount: stable to UP. AUM per advisor: double-digit growth.</li>
+                <li><strong>Robo-Advisors:</strong> Capped at ~$1.2T AUM globally = under 5% of investable assets. HNW capital stayed with humans.</li>
+                <li><strong>Luxury Travel:</strong> Virtuoso advisors hit $32B+ bookings in 2024 despite AI booking tool growth.</li>
+                <li><strong>Concierge Medicine:</strong> Practices using AI grew patient panels 30%+ while RAISING fees.</li>
+            </ul>
+
+            <p><strong>Your Three-Part Defense Stack:</strong></p>
+            <ol>
+                <li><strong>Private Inventory Engine:</strong> Repeatable system for sourcing off-market sellers, developer-direct allocations, family-office gatekeeper relationships.</li>
+                <li><strong>Editorial Authority Moat:</strong> Original market analysis, contributed columns (Mansion Global, Robb Report, Haute Living), positioning as luxury market expert.</li>
+                <li><strong>Concierge Service Architecture:</strong> Sub-15-minute response, vetted vendor list, cross-border tax/legal partners, post-closing concierge cadence.</li>
+            </ol>
+
+            <div class="stat-callout">
+                <strong>Credibility Data:</strong> 70–95% of $1M+ South Florida condos closed all-cash (2025). 141 Palm Beach $10M+ sales (record). 114 Miami-Dade $10M+ sales. 49% of new construction condos went to foreign buyers. These deals don't close on Zillow. They close on relationships.
+            </div>
+
+            <h3>Luxury Defense Prompts</h3>
+
+            <div class="prompts-section">
+                <div class="prompt-box">
+                    <div class="prompt-label">🔐 PROMPT 1: Building Your Private Inventory Engine</div>
+                    <div>"I want to source off-market luxury deals. Create a repeatable outreach sequence for: (1) Past clients in the $1M+ segment (personalized 'What's your home worth today?' email), (2) Neighbors of recent sales in [specific luxury neighborhoods], (3) Wealth managers and family offices in [your market]. Include subject lines, send timing, follow-up cadence, and qualification criteria."</div>
+                </div>
+
+                <div class="prompt-box">
+                    <div class="prompt-label">📰 PROMPT 2: Drafting a Private Exclusive Announcement</div>
+                    <div>"I just got an off-market luxury listing. Write a 200-word 'Private Exclusive' email that goes to my A-list buyers (UHNW) and strategic referral partners. Include: scarcity positioning, property highlights (don't mention address), off-market advantage, call-to-action, and a 'preview by appointment only' close. Make it feel exclusive, not salesy."</div>
+                </div>
+
+                <div class="prompt-box">
+                    <div class="prompt-label">✍️ PROMPT 3: Pitching Tier 1 Luxury Publications</div>
+                    <div>"I want to contribute a monthly column to [Mansion Global / Robb Report / Haute Living]. Draft 3 different pitch emails to editorial directors. Each pitch should: (1) Explain why I'm a credible market expert, (2) Propose a column topic (market trends, buyer psychology, luxury segment insights), (3) Offer exclusivity (monthly contributor), (4) Include sample article titles. Make it professional and insider."</div>
+                </div>
+
+                <div class="prompt-box">
+                    <div class="prompt-label">🤝 PROMPT 4: Building Your Family-Office Referral Network</div>
+                    <div>"I want to position myself as the go-to realtor for family offices in my market. Create an outreach strategy: (1) How do I find decision-makers at family offices? (2) What's the compelling value prop? (3) Draft a 'relationship initiation' email that doesn't pitch homes—it pitches partnership. (4) Design a quarterly 'Market Intelligence' email to send family offices, featuring trends, opportunities, and insights they'd find valuable."</div>
+                </div>
+
+                <div class="prompt-box">
+                    <div class="prompt-label">🏪 PROMPT 5: Codifying Your Concierge Service Architecture</div>
+                    <div>"I want to systematize the concierge services I offer. Create a checklist for: (1) Post-closing vendor coordination (mover, designer, contractor recommendations), (2) Tax/legal coordination (CPA, attorney referrals for cross-border deals), (3) Follow-up cadence (month 1, month 3, month 12 check-ins), (4) Unexpected issue protocol (who handles what if buyer has problem post-close). Make it a repeatable system, not ad-hoc."</div>
+                </div>
+
+                <div class="prompt-box">
+                    <div class="prompt-label">🎯 PROMPT 6: Stress-Testing Your Luxury Positioning</div>
+                    <div>"I'm a luxury realtor in [market]. Simulate a buyer interview with tough questions: (1) Why should I use you instead of a team that has 50 agents? (2) How is off-market different from On-MLS? (3) What's your actual response time? (4) Can you handle international buyers / complex financing / estate sales? (5) What's your post-closing support like? Answer each as if you were in the room—be honest about gaps."</div>
+                </div>
+            </div>
+
+            <h3>Success Notes & Tracking</h3>
+            <div class="worksheet">
+                <div class="worksheet-field">
+                    <label><strong>Luxury Defense Foundation (Week 2 Plan)</strong></label>
+                </div>
+                <div class="checkbox-list">
+                    <li><span>☐</span> Private inventory source identified: <input type="text"></li>
+                    <li><span>☐</span> First outreach list built (past clients $1M+): <input type="text"> names</li>
+                    <li><span>☐</span> Tier 1 publication: <input type="text"></li>
+                    <li><span>☐</span> Pitch draft completed: ☐ Yes</li>
+                    <li><span>☐</span> Family office contacts identified: <input type="text"> initial contacts</li>
+                    <li><span>☐</span> Concierge vendor list audit: ☐ Complete</li>
+                    <li><span>☐</span> Post-closing checklist drafted: ☐ Yes</li>
+                </div>
+
+                <div class="worksheet-field" style="margin-top: 15px;">
+                    <label><strong>First Luxury Win (30-day goal)</strong></label>
+                    <p>Private inventory source to approach: <input type="text"></p>
+                    <p>Publication pitch to send: <input type="text"></p>
+                    <p>Family office relationship to initiate: <input type="text"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: SYSTEM 3 -->
+        <section>
+            <h2>System #3: The Solo + AI Operator Stack</h2>
+
+            <h3>The $300/Month Team Replacement</h3>
+
+            <div class="section-intro">
+                <p><strong>What This Means for Your Bank Account:</strong></p>
+                <ul>
+                    <li>⚡ Operate at a 5-person team's production with a solo budget (sub-5-min lead response, AI receptionist, transaction coordination, listing marketing, database re-engagement)</li>
+                    <li>⏰ Reclaim 10-15 hours per week from admin friction and let AI handle top-of-funnel</li>
+                    <li>💰 Redirect reclaimed time to relationship-building in luxury segment = higher-margin clients</li>
+                </ul>
+            </div>
+
+            <p><strong>The Proof That It Works:</strong></p>
+            <ul>
+                <li>Real Brokerage grew agents 31% in 2025; posted first profitable quarter; $20B+ Q2 sales volume</li>
+                <li>82% of real estate agents now use AI daily (up from 30% in 2024)</li>
+                <li>Rocket's agentic AI already handles top-of-funnel prospecting, saving 2 hours/day of loan officer time</li>
+            </ul>
+
+            <h3>The 10 Highest-ROI AI Automations</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 5%;">#</th>
+                        <th style="width: 35%;">Automation</th>
+                        <th style="width: 20%;">Cost/mo</th>
+                        <th style="width: 40%;">Revenue Impact</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1</strong></td>
+                        <td>Sub-5-min lead response (SMS+voice)</td>
+                        <td>$179–$500</td>
+                        <td>+$25K–$90K/yr</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2</strong></td>
+                        <td>AI receptionist (after-hours)</td>
+                        <td>$200–$500</td>
+                        <td>+$15K–$60K/yr</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3</strong></td>
+                        <td>Custom GPT (your voice, closings)</td>
+                        <td>$20–$60</td>
+                        <td>+$10K–$30K/yr</td>
+                    </tr>
+                    <tr>
+                        <td><strong>4</strong></td>
+                        <td>Database re-engagement (predictive)</td>
+                        <td>$300–$1,200</td>
+                        <td>+$60K–$250K/yr</td>
+                    </tr>
+                    <tr>
+                        <td><strong>5</strong></td>
+                        <td>Weekly hyperlocal market report</td>
+                        <td>$0–$100</td>
+                        <td>+$20K–$80K/yr</td>
+                    </tr>
+                    <tr>
+                        <td><strong>6</strong></td>
+                        <td>AI transaction coordination</td>
+                        <td>$100–$500</td>
+                        <td>+$10K–$40K/yr</td>
+                    </tr>
+                    <tr>
+                        <td><strong>7</strong></td>
+                        <td>AI listing video/reel pipeline</td>
+                        <td>$100–$300</td>
+                        <td>+$30K–$100K/yr</td>
+                    </tr>
+                    <tr>
+                        <td><strong>8</strong></td>
+                        <td>AI showing/buyer-tour curation</td>
+                        <td>$50–$300</td>
+                        <td>+$40K–$150K/yr</td>
+                    </tr>
+                    <tr>
+                        <td><strong>9</strong></td>
+                        <td>AI-powered editorial/PR engine</td>
+                        <td>$500–$3,000</td>
+                        <td>+$50K–$500K/yr</td>
+                    </tr>
+                    <tr>
+                        <td><strong>10</strong></td>
+                        <td>Call recording + CRM auto-update</td>
+                        <td>$20–$100</td>
+                        <td>+$15K–$50K/yr</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="stat-callout" style="margin-top: 15px;">
+                <strong>Starter Stack for Solo $5–15M GCI:</strong> Items 1, 3, 5, 10 = ~$300/month total, ~+$70K/year revenue impact. Start here.
+            </div>
+
+            <h3>Copy-Paste Prompts</h3>
+
+            <div class="prompts-section">
+                <div class="prompt-box">
+                    <div class="prompt-label">🤖 PROMPT 1: Designing Your Personal AI Team</div>
+                    <div>"I'm a solo agent doing $[your GCI] and I want to build an AI team. My biggest time-killers are: [list]. I want to spend more time on: [list]. Design me a 3-month stack deployment plan: Month 1 (lead response + AI receptionist), Month 2 (custom GPT + database re-engagement), Month 3 (content + transaction automation). For each, include setup time, cost, expected time saved, and revenue impact."</div>
+                </div>
+
+                <div class="prompt-box">
+                    <div class="prompt-label">💬 PROMPT 2: Drafting Sub-5-Minute Lead Response Scripts</div>
+                    <div>"I want SMS and voice response to leads within 5 minutes (24/7). Write 4 different auto-response templates: (1) Buyer inquiry about specific property, (2) Seller inquiry about home valuation, (3) Past client re-engagement, (4) Referral follow-up. Each should sound like me—professional but warm—and include a clear CTA. Include the human handoff point (when AI response triggers a human callback)."</div>
+                </div>
+
+                <div class="prompt-box">
+                    <div class="prompt-label">📊 PROMPT 3: Building Your Database Re-Engagement Sequence</div>
+                    <div>"I have [#] past clients and contacts. I want to systematically re-engage them with personalized market insights. Design a 12-month re-engagement sequence: (1) Months 1-3: quarterly 'Market Brief' email, (2) Months 4-9: monthly 'Neighborhood Report,' (3) Months 10-12: 'Tax Planning' + 'Year-End Review.' Each email should be personalized by geography, use predictive scoring to prioritize highest-value contacts, and include a soft CTA (ask for coffee, not a listing). Draft 3 sample emails."</div>
+                </div>
+
+                <div class="prompt-box">
+                    <div class="prompt-label">🎬 PROMPT 4: Generating Listing Launch Packages</div>
+                    <div>"When I list a property, I want an AI-powered launch package ready in 24 hours: 3 short-form videos (TikTok, Reels, YouTube Shorts), 5 carousel posts (Instagram/Facebook), 1 LinkedIn thought leadership post, 1 market newsletter feature, 1 'market insights' email to past buyers. Design the workflow: (1) Property data input, (2) AI video generation prompts, (3) Copy templates, (4) Distribution schedule. Show me the exact prompts I'd paste into ChatGPT/Claude to generate each asset."</div>
+                </div>
+
+                <div class="prompt-box">
+                    <div class="prompt-label">⏰ PROMPT 5: Auditing Your Weekly Time Allocation</div>
+                    <div>"I work [#] hours per week. My current time is spent: showing properties [#]h, admin/CRM [#]h, follow-up [#]h, content [#]h, prospecting [#]h. Design an AI automation audit: For each category, tell me what AI can handle (and how). Show me the time savings. Then redesign my week: what would my ideal time allocation be after full AI integration? What time do I reclaim?"</div>
+                </div>
+
+                <div class="prompt-box">
+                    <div class="prompt-label">💰 PROMPT 6: Modeling Your Solo + AI P&L</div>
+                    <div>"I want to forecast my P&L with AI automation. I currently do $[GCI] with $[expenses] and [#] employees. Design a 12-month financial model: (1) Current state (costs, team size, GCI), (2) With AI stack (new cost: ~$300–$500/mo platform costs), (3) Expected outcomes (time saved → more transactions or higher-margin work). Show me: break-even point, ROI on AI investment, and profit per hour worked before/after."</div>
+                </div>
+            </div>
+
+            <h3>Success Notes & Tracking</h3>
+            <div class="worksheet">
+                <div class="worksheet-field">
+                    <label><strong>AI Operator Starter Stack (Week 3 Plan)</strong></label>
+                </div>
+                <div class="checkbox-list">
+                    <li><span>☐</span> Lead response automation: <input type="text"></li>
+                    <li><span>☐</span> Custom GPT created: ☐ Live</li>
+                    <li><span>☐</span> Hyperlocal market report automated: ☐ Yes</li>
+                    <li><span>☐</span> Database re-engagement sequence drafted: ☐ Yes</li>
+                    <li><span>☐</span> Call recording + CRM sync wired: ☐ Yes</li>
+                    <li><span>☐</span> Time audit completed: ☐ Yes</li>
+                    <li><span>☐</span> Monthly cost: $<input type="text" style="max-width: 100px;"></li>
+                </div>
+
+                <div class="worksheet-field" style="margin-top: 15px;">
+                    <label><strong>Expected Impact (30-day goal)</strong></label>
+                    <p>Hours reclaimed per week: <input type="text" style="max-width: 100px;"></p>
+                    <p>Estimated lead response time: <input type="text" style="max-width: 100px;"> minutes</p>
+                    <p>Database re-engagement volume: <input type="text" style="max-width: 100px;"> contacts/month</p>
+                    <p>Estimated revenue impact: $<input type="text" style="max-width: 150px;"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: IMPLEMENTATION & COMMITMENT -->
+        <section>
+            <h2>Your 30-Day Profit Plan</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Week 1: Foundation</th>
+                        <th>Week 2: Luxury Defense</th>
+                        <th>Week 3: AI Operator</th>
+                        <th>Week 4: Measure</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <ul style="margin: 0; padding-left: 20px;">
+                                <li>Platform audit (30 min)</li>
+                                <li>Platform tax calc</li>
+                                <li>Top 3 risks identified</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul style="margin: 0; padding-left: 20px;">
+                                <li>Private inventory source</li>
+                                <li>Tier 1 pub pitch</li>
+                                <li>Family office list</li>
+                                <li>Concierge audit</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul style="margin: 0; padding-left: 20px;">
+                                <li>Lead response live</li>
+                                <li>Custom GPT live</li>
+                                <li>Market report live</li>
+                                <li>DB re-eng live</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul style="margin: 0; padding-left: 20px;">
+                                <li>Hours reclaimed: __</li>
+                                <li>Leads generated: __</li>
+                                <li>Revenue: $__</li>
+                                <li>Refinement plan</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <hr>
+
+            <h2>Your Profit Commitment Contract</h2>
+
+            <div class="commitment-box">
+                <p style="margin-bottom: 15px;"><strong>Based on today's workshop, I commit to:</strong></p>
+
+                <div style="margin: 12px 0;">
+                    <p><strong>Primary System Focus:</strong> I will master <input type="text" style="max-width: 250px;"> first because it will save me <input type="text" style="max-width: 80px;"> hours per week and increase my income by $<input type="text" style="max-width: 100px;"> per month.</p>
+                </div>
+
+                <div style="margin: 12px 0;">
+                    <p><strong>Time Investment:</strong> I will invest <input type="text" style="max-width: 60px;"> hours per week learning and implementing these systems.</p>
+                </div>
+
+                <div style="margin: 12px 0;">
+                    <p><strong>Success Metrics:</strong></p>
+                    <ul style="margin: 5px 0 5px 20px; font-size: 14px;">
+                        <li>Time savings target: <input type="text" style="max-width: 80px;"> hours per week</li>
+                        <li>Quality improvement: <input type="text" style="max-width: 60px;"> % better deliverables</li>
+                        <li>Revenue increase: $<input type="text" style="max-width: 100px;"> per month within 90 days</li>
+                    </ul>
+                </div>
+
+                <div style="margin: 12px 0;">
+                    <p><strong>Accountability Partner:</strong> <input type="text" style="max-width: 200px;"></p>
+                    <p><strong>Weekly Check-in:</strong> Every <input type="text" style="max-width: 80px;"> at <input type="text" style="max-width: 80px;"></p>
+                    <p><strong>30-Day Review Date:</strong> <input type="text" style="max-width: 150px;"></p>
+                </div>
+
+                <div style="margin: 20px 0; padding-top: 15px; border-top: 1px solid var(--border);">
+                    <p><strong>My Signature:</strong> <span class="signature-line"></span> <strong>Date:</strong> <span class="signature-line"></span></p>
+                </div>
+            </div>
+
+            <hr>
+
+            <h2>Weekly Progress Scorecard & ROI Tracker</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="4">Week of: ___________</th>
+                    </tr>
+                    <tr>
+                        <th>System Used</th>
+                        <th>Projects/Tasks</th>
+                        <th>Time Saved</th>
+                        <th>$ Impact</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Platform Audit</td>
+                        <td>___</td>
+                        <td>___ hrs</td>
+                        <td>$___</td>
+                    </tr>
+                    <tr>
+                        <td>Luxury Defense</td>
+                        <td>___</td>
+                        <td>___ hrs</td>
+                        <td>$___</td>
+                    </tr>
+                    <tr>
+                        <td>AI Operator</td>
+                        <td>___</td>
+                        <td>___ hrs</td>
+                        <td>$___</td>
+                    </tr>
+                    <tr style="background-color: var(--bg-secondary); font-weight: 600;">
+                        <td colspan="2"><strong>WEEKLY TOTAL</strong></td>
+                        <td><strong>___ hrs</strong></td>
+                        <td><strong>$___</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <hr style="margin: 30px 0;">
+
+            <h3>30-Day ROI Assessment</h3>
+            <table>
+                <tbody>
+                    <tr style="background-color: var(--bg-secondary);">
+                        <td style="width: 60%;"><strong>Quantifiable Results</strong></td>
+                        <td style="width: 40%;"><strong>Outcome</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Total hours saved (4 weeks)</td>
+                        <td>___ hours</td>
+                    </tr>
+                    <tr>
+                        <td>Time value: ___ hrs × $__ = ___</td>
+                        <td>$___</td>
+                    </tr>
+                    <tr>
+                        <td>Direct revenue attributed to systems</td>
+                        <td>$___</td>
+                    </tr>
+                    <tr>
+                        <td>Cost savings (vs. outsourcing)</td>
+                        <td>$___</td>
+                    </tr>
+                    <tr style="background-color: var(--navy); color: white; font-weight: 600;">
+                        <td><strong>TOTAL 30-DAY ROI</strong></td>
+                        <td><strong>$___</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Quality Improvements</h3>
+            <ul>
+                <li>Client feedback improvements: <input type="text"></li>
+                <li>Project completion speed: <input type="text" style="max-width: 80px;"> % faster</li>
+                <li>Error reduction: <input type="text" style="max-width: 60px;"> %</li>
+            </ul>
+
+            <h3>Competitive Advantages Gained</h3>
+            <ol>
+                <li><input type="text"></li>
+                <li><input type="text"></li>
+                <li><input type="text"></li>
+            </ol>
+        </section>
+
+        <!-- SECTION 6: CLOSING -->
+        <section>
+            <h2>Resources & Support</h2>
+
+            <h3>When You Need Help</h3>
+
+            <div style="margin: 15px 0;">
+                <h3 style="color: var(--navy); font-size: 14px;">Technical Issues</h3>
+                <ul style="font-size: 14px;">
+                    <li><strong>Edmund's Mastermind Support:</strong> hello@reignation.com or Slack #platform-war</li>
+                    <li><strong>Tool-Specific Help:</strong> Each platform has docs; links in your workbook downloads</li>
+                    <li><strong>Weekly Office Hours:</strong> Tuesdays 10am ET, live Q&A</li>
+                </ul>
+            </div>
+
+            <div style="margin: 15px 0;">
+                <h3 style="color: var(--navy); font-size: 14px;">Implementation Questions</h3>
+                <ul style="font-size: 14px;">
+                    <li><strong>Peer Mentorship:</strong> Match with member 5+ days in via mastermind Slack</li>
+                    <li><strong>Success Stories:</strong> See how others implemented—live case studies in Slack #wins</li>
+                    <li><strong>Advanced Training:</strong> Monthly deep-dives on luxury defense + AI operator stack</li>
+                </ul>
+            </div>
+
+            <hr>
+
+            <h2>Before You Leave Today: Final Checklist</h2>
+
+            <div class="checkbox-list" style="margin: 10px 0; font-size: 14px;">
+                <li><span>☐</span> Platform audit started (at least top 5 tools identified)</li>
+                <li><span>☐</span> Luxury defense system choice made (which pillar first?)</li>
+                <li><span>☐</span> AI operator stack decision made (which 3 tools to deploy?)</li>
+                <li><span>☐</span> Accountability partner identified and contact exchanged</li>
+                <li><span>☐</span> 30-day action plan written in commitment contract</li>
+                <li><span>☐</span> Success metrics defined and calendar reminders set</li>
+            </div>
+
+            <hr>
+
+            <div class="closing">
+                <p><strong>CLOSING MANIFESTO</strong></p>
+                <p style="margin: 15px 0 10px 0;">"While my competitors debate whether AI will replace them, I'm using it to replace their market share. These systems don't make me lazy—they make me unstoppable.</p>
+                <p style="margin: 10px 0;">Every hour I save is an hour I can spend building relationships, creating strategy, and dominating the segment where I have leverage.</p>
+                <p style="margin: 10px 0;">My luxury positioning is defensible. My mid-market is automated. My platform dependencies are mapped.</p>
+                <p style="margin: 10px 0 15px 0;">This is my competitive weapon. I will master it."</p>
+
+                <p style="margin: 20px 0; font-size: 14px;"><strong>Personal Success Statement (30 days from now):</strong></p>
+                <p style="border-bottom: 1px solid rgba(255,255,255,0.3); padding: 8px 0; min-height: 60px;"></p>
+
+                <hr style="border-color: var(--cyan); margin: 20px 0;">
+                <p style="font-size: 12px; margin-top: 15px;">© 2026 Edmund's Mastermind — Your Platform Independence Toolkit</p>
+                <p class="closing-tagline">"Because Letting AI Commoditize Your Business is NOT an Option!"</p>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            const btn = document.querySelector('.toggle-theme');
+
+            if (html.classList.contains('dark-mode')) {
+                html.classList.remove('dark-mode');
+                localStorage.setItem('darkMode', 'false');
+                btn.textContent = '🌙 Dark Mode';
+            } else {
+                html.classList.add('dark-mode');
+                localStorage.setItem('darkMode', 'true');
+                btn.textContent = '☀️ Light Mode';
+            }
+        }
+
+        // Check for saved preference on page load
+        function loadDarkModePreference() {
+            const darkMode = localStorage.getItem('darkMode') === 'true';
+            const html = document.documentElement;
+            const btn = document.querySelector('.toggle-theme');
+
+            if (darkMode) {
+                html.classList.add('dark-mode');
+                btn.textContent = '☀️ Light Mode';
+            }
+        }
+
+        function downloadPDF() {
+            // For now, direct to the workbook PDF
+            // In production, this would trigger a proper PDF download
+            alert('PDF download will be available once hosted on GitHub. For now, you can use your browser\'s Print function (Cmd+P or Ctrl+P) and save as PDF.');
+        }
+
+        // Load dark mode preference on page load
+        window.addEventListener('DOMContentLoaded', loadDarkModePreference);
+    </script>
+</body>
+</html>
