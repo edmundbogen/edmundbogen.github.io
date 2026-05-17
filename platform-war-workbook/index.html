@@ -456,7 +456,8 @@
             </div>
             <div class="header-right">
                 <button class="toggle-theme" onclick="toggleDarkMode()">🌙 Dark Mode</button>
-                <a href="#" class="download-btn" onclick="downloadPDF(); return false;">⬇ Download PDF</a>
+                <a href="01-invitation.pdf" class="download-btn">📧 Invitation</a>
+                <a href="#" class="download-btn" onclick="downloadPDF(); return false;">📖 Workbook</a>
             </div>
         </div>
     </header>
@@ -1113,9 +1114,13 @@
         }
 
         function downloadPDF() {
-            // For now, direct to the workbook PDF
-            // In production, this would trigger a proper PDF download
-            alert('PDF download will be available once hosted on GitHub. For now, you can use your browser\'s Print function (Cmd+P or Ctrl+P) and save as PDF.');
+            // Download the workbook PDF
+            const link = document.createElement('a');
+            link.href = '02-workbook.pdf';
+            link.download = 'Platform-War-Workbook.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
 
         // Load dark mode preference on page load
