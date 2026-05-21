@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Buyer-Broker Objection Playbook | Edmund's Mastermind</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+        font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+        font-weight: 400;
+        line-height: 1.7;
+        color: #333333;
+        background: #f4f4f4;
+        font-size: 16px;
+    }
+    .container {
+        max-width: 720px;
+        margin: 0 auto;
+        background: #ffffff;
+        padding: 0;
+    }
+    .hero-image {
+        width: 100%;
+        line-height: 0;
+    }
+    .hero-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+    .body-content {
+        padding: 60px 50px;
+    }
+    h1, h2, h3 {
+        font-weight: 400;
+        letter-spacing: 0.05em;
+        color: #1a3e5c;
+        line-height: 1.3;
+    }
+    h2 {
+        font-size: 26px;
+        text-transform: uppercase;
+        margin: 40px 0 20px;
+        border-left: 4px solid #00a8e1;
+        padding-left: 20px;
+    }
+    h3 {
+        font-size: 20px;
+        font-weight: 600;
+        margin: 30px 0 12px;
+        color: #1a3e5c;
+    }
+    p {
+        margin-bottom: 18px;
+        color: #333333;
+    }
+    .session-title {
+        background: #1a3e5c;
+        color: #ffffff;
+        padding: 30px;
+        text-align: center;
+        margin: 40px -50px;
+    }
+    .session-title h2 {
+        color: #ffffff;
+        border: none;
+        padding: 0;
+        margin-bottom: 8px;
+        font-size: 28px;
+    }
+    .session-title .date {
+        color: #00a8e1;
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: 0.05em;
+    }
+    .system-block {
+        background: #f4f4f4;
+        padding: 25px 30px;
+        margin: 20px 0;
+        border-left: 4px solid #00a8e1;
+    }
+    .system-block h3 {
+        margin-top: 0;
+    }
+    .system-block ul {
+        margin: 12px 0;
+        padding-left: 20px;
+    }
+    .system-block li {
+        margin-bottom: 6px;
+    }
+    .opportunity {
+        font-style: italic;
+        color: #1a3e5c;
+        margin-top: 12px;
+        font-weight: 500;
+    }
+    .deliverables {
+        background: #ffffff;
+        border: 2px solid #1a3e5c;
+        padding: 30px;
+        margin: 30px 0;
+    }
+    .deliverables ul {
+        list-style: none;
+        padding: 0;
+    }
+    .deliverables li {
+        padding: 10px 0;
+        border-bottom: 1px solid #e8e8e8;
+        font-size: 15px;
+    }
+    .deliverables li:last-child { border-bottom: none; }
+    .logistics {
+        background: #1a3e5c;
+        color: #ffffff;
+        padding: 30px;
+        margin: 30px -50px;
+    }
+    .logistics h2 {
+        color: #ffffff;
+        border-left-color: #00a8e1;
+        margin-top: 0;
+    }
+    .logistics .row {
+        padding: 8px 0;
+        font-size: 15px;
+        border-bottom: 1px solid rgba(255,255,255,0.15);
+    }
+    .logistics .label {
+        color: #00a8e1;
+        font-weight: 600;
+        display: inline-block;
+        min-width: 130px;
+        text-transform: uppercase;
+        font-size: 13px;
+        letter-spacing: 0.08em;
+    }
+    .cta {
+        text-align: center;
+        margin: 50px 0;
+    }
+    .cta a {
+        display: inline-block;
+        background: #00a8e1;
+        color: #ffffff;
+        text-decoration: none;
+        padding: 18px 50px;
+        font-size: 15px;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        font-weight: 600;
+    }
+    .choice-box {
+        background: #f4f4f4;
+        padding: 30px;
+        margin: 30px 0;
+        border-top: 4px solid #00a8e1;
+    }
+    .choice-box h3 {
+        margin-top: 0;
+    }
+    .option {
+        margin: 16px 0;
+        padding: 16px;
+        background: #ffffff;
+        border-left: 4px solid #00a8e1;
+    }
+    .option strong {
+        color: #1a3e5c;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+    .signature {
+        text-align: center;
+        margin: 50px 0 30px;
+        padding-top: 30px;
+        border-top: 2px solid #00a8e1;
+    }
+    .signature .name {
+        font-size: 18px;
+        font-weight: 600;
+        color: #1a3e5c;
+        letter-spacing: 0.05em;
+    }
+    .signature .org {
+        font-style: italic;
+        color: #555;
+        margin-bottom: 16px;
+    }
+    .tagline {
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #00a8e1;
+        font-weight: 600;
+        margin-top: 16px;
+    }
+    .pull-quote {
+        font-size: 18px;
+        font-weight: 500;
+        color: #1a3e5c;
+        padding: 20px 30px;
+        background: #f4f4f4;
+        border-left: 5px solid #00a8e1;
+        margin: 24px 0;
+    }
+    hr {
+        border: none;
+        border-top: 1px solid #e8e8e8;
+        margin: 40px 0;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+
+    <!-- HERO IMAGE -->
+    <div class="hero-image">
+        <img src="buyer-broker-objections-hero.png" alt="The Buyer-Broker Objection Playbook — 5 Objections, 3 Forms, Zero Fumbles">
+    </div>
+
+    <div class="body-content">
+
+        <p>While you're still stumbling through the buyer-broker conversation, fumbling the paperwork, and watching buyers walk out the door to "think about it"… the top 1% of agents in your market are signing exclusives on the first appointment, mapping the right Florida Realtors form to the right scenario in under 60 seconds, and closing buyer-sides at 2x your conversion rate.</p>
+
+        <p>It's been twenty-one months since the NAR settlement reshaped this industry. Twenty-one months. And the same agents who said "I'll figure it out" are the same agents losing deals to the agents who actually did.</p>
+
+        <p>This is not a legal seminar. This is not another panel of brokers telling you "it depends." This is the live, verbatim, role-played objection playbook that fixes the single biggest revenue leak on your buyer-side business — TODAY.</p>
+
+        <div class="pull-quote">
+            <strong>If you're tired</strong> of buyers ghosting you after the first showing because you couldn't articulate why you matter…<br><br>
+            <strong>If you're ready</strong> to stop apologizing for asking buyers to sign and start enrolling them with confidence…<br><br>
+            <strong>If you want</strong> the exact words, the exact forms, and the exact sequence the top producers are using to lock in representation BEFORE they tour the first house…
+        </div>
+
+        <div class="session-title">
+            <h2>The Buyer-Broker Objection<br>DOMINATION Session</h2>
+            <div class="date">Wednesday, May 27, 2026 — 9:00 AM Eastern</div>
+        </div>
+
+        <p>This isn't theory. You'll get battlefield-tested, verbatim rebuttals to the 5 objections every buyer is throwing at you right now — and you'll role-play them LIVE before you leave.</p>
+
+        <h2>The 3 Systems You'll Master</h2>
+
+        <div class="system-block">
+            <h3>1️⃣ The 5-Objection Verbatim Rebuttal Stack: "The Counter-Punch"</h3>
+            <p>The five objections every buyer is firing at you right now — and the exact word-for-word rebuttals that turn each one into a signature. No improvisation. No "winging it." No more freezing when a buyer says "I'll just call the listing agent."</p>
+            <p><strong>You'll get the verbatim script for:</strong></p>
+            <ul>
+                <li>"I'll just call the listing agent"</li>
+                <li>"Why am I paying you?"</li>
+                <li>"What if I want to see one home?"</li>
+                <li>"I'm not ready to sign anything"</li>
+                <li>"What if I find a home on my own?"</li>
+            </ul>
+            <p class="opportunity">Your opportunity: Stop losing buyer-sides to indecision. Convert 70%+ of first appointments into signed representation.</p>
+        </div>
+
+        <div class="system-block">
+            <h3>2️⃣ The 3-Form Decision Matrix: "The Right Paper, Every Time"</h3>
+            <p>Florida Realtors gives you three buyer-broker forms — Property Pre-Touring, Showing Agreement, and Exclusive Buyer Brokerage Agreement. Most agents pick wrong. They jump to exclusivity on a skeptical buyer (and lose them) or stay too loose with a serious one (and get cut out of the deal).</p>
+            <p>You'll get the live decision matrix: which form, which scenario, which language, which compensation structure — mapped to seven specific buyer profiles you'll meet this week.</p>
+            <p class="opportunity">Your opportunity: End the form-paralysis. Use the right document for the right buyer in under 60 seconds.</p>
+        </div>
+
+        <div class="system-block">
+            <h3>3️⃣ The Double Role-Play Drill: "Reps Before the Real Thing"</h3>
+            <p>You will not leave this session having "heard" the playbook. You will leave having RUN it — twice. Every member role-plays the full five-objection sequence with a partner, gets coached, then runs it again with a different partner. Reps make the difference. We do reps.</p>
+            <p class="opportunity">Your opportunity: Walk into your next buyer appointment having already practiced the entire objection sequence twice. Muscle memory beats memorized scripts every time.</p>
+        </div>
+
+        <h2>What Makes This Different</h2>
+        <ul style="padding-left: 20px;">
+            <li>LIVE objection role-plays — you're up, twice, no spectating</li>
+            <li>VERBATIM scripts written for South Florida buyers in May 2026, not 2024 webinar leftovers</li>
+            <li>Florida Realtors form mapping — actual form names, actual scenarios, actual language</li>
+            <li>Workbook with copy-paste rebuttal scripts you can deploy tomorrow morning</li>
+            <li>Peer coaching — real-time feedback on your delivery, not just the content</li>
+            <li>Zero "it depends" — every objection gets a real answer</li>
+        </ul>
+
+        <h2>What You'll Leave With</h2>
+        <div class="deliverables">
+            <ul>
+                <li>📋 <strong>The 5-Objection Rebuttal Card</strong> — verbatim scripts, laminate-ready</li>
+                <li>🗂️ <strong>The 3-Form Decision Matrix</strong> — which form, which buyer, which scenario</li>
+                <li>🎯 <strong>Two completed live role-plays</strong> — practiced, coached, locked in</li>
+                <li>💬 <strong>The 7-Buyer-Profile Cheat Sheet</strong> — recognize and route the buyer in under 60 seconds</li>
+                <li>📊 <strong>Your personal Objection Confidence Score</strong> — pre/post measured during the session</li>
+                <li>📈 <strong>30-day implementation tracker</strong> — first 10 buyer conversations, results logged</li>
+                <li>⚡ <strong>The "First 90 Seconds" framework</strong> — what you say before the buyer ever raises an objection</li>
+            </ul>
+        </div>
+
+        <h2>The Mastermind Reality Check</h2>
+        <p>Unlike other "trainings," you'll get:</p>
+        <ul style="padding-left: 20px;">
+            <li>⚡ Live objection role-plays — not slides, not theory, REPS</li>
+            <li>⚡ Verbatim rebuttals — written for May 2026, not generic legal-speak</li>
+            <li>⚡ Florida-specific form mapping — not "consult your broker"</li>
+            <li>⚡ Coached delivery — peers and Edmund call out your tells and weak phrasing</li>
+            <li>⚡ Implementation accountability — you leave with a 10-buyer tracker and a partner</li>
+        </ul>
+
+        <div class="logistics">
+            <h2>Session Logistics</h2>
+            <div class="row"><span class="label">Date:</span> Wednesday, May 27, 2026</div>
+            <div class="row"><span class="label">Time:</span> 9:00 AM Eastern (8:00 AM CT / 6:00 AM PT)</div>
+            <div class="row"><span class="label">Zoom:</span> [ZOOM_LINK_TBD]</div>
+            <div class="row"><span class="label">Meeting ID:</span> [MEETING_ID_TBD]</div>
+            <div class="row"><span class="label">Workbook:</span> [WORKBOOK_PDF_LINK]</div>
+            <div class="row"><span class="label">Recording:</span> Available in member portal within 24 hours</div>
+            <div class="row"><span class="label">Register:</span> www.reignation.com/[SLUG_TBD]</div>
+        </div>
+
+        <h2>The Million-Dollar Question</h2>
+        <p>What if you could:</p>
+        <ul style="padding-left: 20px;">
+            <li>Walk into your next buyer appointment with verbatim answers to every objection BEFORE the buyer even opens their mouth?</li>
+            <li>Pick the right Florida Realtors form on the spot — knowing exactly which one protects you AND closes the buyer?</li>
+            <li>Convert 70% of first appointments into signed representation while your competitors are still emailing buyers "thanks for considering me"?</li>
+        </ul>
+        <p>…all while the agents who are still "figuring it out" twenty-one months later watch their buyer-side production collapse?</p>
+
+        <div class="choice-box">
+            <h3>The Choice Is Simple</h3>
+            <div class="option">
+                <strong>Option A:</strong> Keep fumbling the buyer-broker conversation. Keep losing buyers to "I want to think about it." Keep getting cut out when buyers call listing agents direct. Keep blaming the settlement.
+            </div>
+            <div class="option">
+                <strong>Option B:</strong> Show up Wednesday, May 27 at 9:00 AM Eastern. Master the 5 objections. Map the 3 forms. Run the role-plays twice. Walk out with a signed-representation system that prints buyer-side commissions for the rest of 2026.
+            </div>
+            <p style="margin-top: 20px;">The agents who treat the settlement as an excuse are losing.<br>The agents who treat it as a competitive moat are winning. <strong>Pick a side.</strong></p>
+        </div>
+
+        <div class="cta">
+            <a href="https://www.reignation.com/[SLUG_TBD]">REGISTER NOW</a>
+        </div>
+
+        <div class="signature">
+            <p>To Your Buyer-Broker Domination,</p>
+            <div class="name">Edmund Bogen &amp; Team</div>
+            <div class="org">Edmund's Mastermind &amp; Group Coaching</div>
+            <div class="tagline">Because Fumbling the Buyer-Broker Conversation is NOT an Option!</div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
