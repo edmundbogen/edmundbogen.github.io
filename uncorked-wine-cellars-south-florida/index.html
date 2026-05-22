@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNCORKED — Why Wine Cellars Became South Florida's New Status Symbol | The Edmund Bogen Team</title>
+<meta name="description" content="Inside the $500K–$2M+ wine-cellar arms race in Boca Raton, Delray Beach, and Palm Beach — and what it's doing to resale values in St. Andrews, Royal Palm Yacht Club, Boca Bridges, and beyond.">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #1a1a1a;
+    background: #fff;
+    line-height: 1.7;
+  }
+
+  /* Nav */
+  nav.top {
+    background: #1a3e5c;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  nav.top .logo { color: #fff; font-weight: 300; letter-spacing: 3px; font-size: 14px; text-transform: uppercase; }
+  nav.top .logo strong { font-weight: 600; letter-spacing: 4px; }
+  nav.top .links a {
+    color: #fff; text-decoration: none; margin-left: 28px;
+    font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 400;
+  }
+  nav.top .links a:hover { color: #00a8e1; }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    width: 100%;
+    background: #0d2540;
+  }
+  .hero img {
+    width: 100%;
+    height: auto;
+    display: block;
+    opacity: 0.92;
+  }
+  .hero .ai-tag {
+    position: absolute;
+    bottom: 14px;
+    right: 18px;
+    color: rgba(255,255,255,0.85);
+    background: rgba(0,0,0,0.45);
+    padding: 6px 12px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 500;
+  }
+
+  /* Article header */
+  .article-header {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 60px 40px 30px;
+    text-align: center;
+  }
+  .article-header .category {
+    color: #00a8e1;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 11px;
+    font-weight: 500;
+    margin-bottom: 22px;
+  }
+  .article-header h1 {
+    font-size: 40px;
+    font-weight: 300;
+    color: #1a3e5c;
+    line-height: 1.2;
+    letter-spacing: 0.5px;
+    margin-bottom: 24px;
+  }
+  .article-header .byline {
+    font-size: 13px;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 400;
+  }
+  .article-header .byline strong { color: #1a3e5c; font-weight: 600; }
+
+  /* Stat callouts */
+  .stats {
+    max-width: 1100px;
+    margin: 30px auto 50px;
+    padding: 0 40px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+  .stats .stat {
+    background: #f4f4f4;
+    border-left: 4px solid #00a8e1;
+    padding: 24px 26px;
+  }
+  .stats .stat .v {
+    font-size: 30px;
+    color: #1a3e5c;
+    font-weight: 500;
+    margin-bottom: 6px;
+    line-height: 1.1;
+  }
+  .stats .stat .l {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #666;
+    font-weight: 500;
+  }
+
+  /* Body */
+  article.body {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 40px 60px;
+  }
+  article.body p {
+    font-size: 17px;
+    color: #2a2a2a;
+    margin-bottom: 22px;
+    line-height: 1.85;
+  }
+  article.body h2 {
+    font-size: 26px;
+    font-weight: 400;
+    color: #1a3e5c;
+    margin: 50px 0 22px;
+    line-height: 1.3;
+    letter-spacing: 0.3px;
+  }
+  article.body h3 {
+    font-size: 18px;
+    color: #1a3e5c;
+    font-weight: 600;
+    margin: 30px 0 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  article.body blockquote {
+    border-left: 4px solid #00a8e1;
+    padding: 14px 24px;
+    margin: 30px 0;
+    font-size: 19px;
+    font-style: italic;
+    color: #1a3e5c;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+  article.body blockquote .attrib {
+    display: block;
+    margin-top: 10px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #888;
+    font-style: normal;
+    font-weight: 500;
+  }
+  article.body .inline-img {
+    margin: 40px -40px;
+    position: relative;
+  }
+  article.body .inline-img img {
+    width: calc(100% + 0px);
+    height: auto;
+    display: block;
+  }
+  article.body .inline-img .caption {
+    font-size: 12px;
+    color: #666;
+    text-align: center;
+    padding: 12px 20px;
+    background: #f4f4f4;
+    border-bottom: 3px solid #00a8e1;
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  /* CTA Section */
+  .cta-section {
+    background: linear-gradient(135deg, #1a3e5c 0%, #0d2540 100%);
+    color: #fff;
+    padding: 70px 40px;
+    text-align: center;
+  }
+  .cta-section h2 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin-bottom: 18px;
+    color: #fff;
+  }
+  .cta-section p {
+    color: rgba(255,255,255,0.88);
+    font-size: 16px;
+    max-width: 640px;
+    margin: 0 auto 28px;
+    line-height: 1.7;
+  }
+  .cta-section a {
+    background: #00a8e1;
+    color: #fff;
+    padding: 16px 38px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 12px;
+    font-weight: 500;
+    display: inline-block;
+  }
+
+  /* Bio */
+  .bio {
+    background: #f4f4f4;
+    padding: 60px 40px;
+    border-top: 1px solid #e0e0e0;
+  }
+  .bio-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+  }
+  .bio-inner img.photo {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #00a8e1;
+    flex-shrink: 0;
+  }
+  .bio-inner h3 { font-size: 22px; font-weight: 500; color: #1a3e5c; margin-bottom: 4px; }
+  .bio-inner .title { color: #00a8e1; text-transform: uppercase; letter-spacing: 2px; font-size: 11px; margin-bottom: 14px; font-weight: 500; }
+  .bio-inner p { font-size: 14px; line-height: 1.7; color: #333; margin-bottom: 12px; }
+  .bio-inner .contact { font-size: 13px; color: #1a3e5c; font-weight: 500; }
+  .bio-inner .contact a { color: #1a3e5c; text-decoration: none; }
+  .bio-inner .contact a:hover { color: #00a8e1; }
+
+  /* Disclosures */
+  .disclosures {
+    background: #0d2540;
+    padding: 36px 40px;
+    text-align: center;
+    font-size: 11px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.8;
+  }
+  .disclosures p { max-width: 800px; margin: 0 auto 6px; }
+  .disclosures .ai-disclosure {
+    color: rgba(255,255,255,0.85);
+    font-style: italic;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+  }
+
+  /* Footer */
+  footer.site {
+    background: #1a3e5c;
+    padding: 22px 40px;
+    text-align: center;
+    font-size: 11px;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 1px;
+  }
+
+  @media (max-width: 768px) {
+    .stats { grid-template-columns: 1fr; }
+    .article-header h1 { font-size: 28px; }
+    .article-header { padding: 40px 20px 20px; }
+    article.body { padding: 0 20px 40px; }
+    article.body p { font-size: 16px; }
+    article.body .inline-img { margin: 30px -20px; }
+    .bio-inner { flex-direction: column; align-items: center; text-align: center; }
+    nav.top { padding: 14px 20px; flex-wrap: wrap; }
+    nav.top .links a { margin-left: 14px; font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="logo">THE <strong>EDMUND BOGEN</strong> TEAM</div>
+  <div class="links">
+    <a href="https://bogenhomes.com">Properties</a>
+    <a href="../market-dashboard/">Dashboard</a>
+    <a href="https://www.bogen.ai/contact?tab=client">Contact</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <img src="hero.png" alt="Edmund Bogen with a glass of wine in front of a museum-grade South Florida wine cellar — UNCORKED">
+  <div class="ai-tag">Image: AI-generated illustration</div>
+</div>
+
+<header class="article-header">
+  <div class="category">This Week's Brief · Luxury Design &amp; Resale</div>
+  <h1>UNCORKED — Why Wine Cellars Became South Florida's New Status Symbol</h1>
+  <div class="byline">By <strong>Edmund Bogen</strong> &nbsp;·&nbsp; May 22, 2026</div>
+</header>
+
+<section class="stats">
+  <div class="stat">
+    <div class="v">$812,500</div>
+    <div class="l">Record bottle · 1945 DRC · Acker, March 2026</div>
+  </div>
+  <div class="stat">
+    <div class="v">$500K – $2M+</div>
+    <div class="l">Tier driving the cellar arms race in Boca &amp; Delray</div>
+  </div>
+  <div class="stat">
+    <div class="v">$127.5M</div>
+    <div class="l">Sotheby's 2025 wine &amp; spirits — up 12% YoY</div>
+  </div>
+</section>
+
+<article class="body">
+
+<p>On March 27, 2026, on the second night of Acker's La Paulée auction in New York, a single 750ml bottle of 1945 Domaine de la Romanée-Conti from Robert Drouhin's personal cellar sold for $812,500 — a new world record for a single bottle of wine sold at auction, surpassing the previous $558,000 mark set in October 2018. The three-day sale crossed $25 million and set 460 new world records along the way. The serious wine market did not slow down. It accelerated.</p>
+
+<p>That number — $812,500 for one bottle — is the cleanest macro signal you can find for what's happening at the top of the South Florida luxury market right now. Because the same buyer who is comfortable bidding on a single bottle at that level is also the buyer who has now decided that a wine cellar is no longer a basement amenity, no longer a closet under the staircase, no longer an afterthought. In Boca Raton, Delray Beach, and Palm Beach, the wine cellar has been pulled out of the basement, walled in glass, and parked on the main floor — directly across from the kitchen, often visible from the front door.</p>
+
+<p>And the price tag has moved with it.</p>
+
+<h2>The $500K–$2M+ Tier</h2>
+
+<p>At the entry level of the broader South Florida market, you can still get a respectable wine room — a temperature-controlled walk-in with custom racking and a small tasting counter — in the $30,000 to $75,000 range. That's what the trade calls a "starter" cellar, and it's what most of the U.S. luxury market treats as the upgrade tier. Builders like Toll Brothers have reported, since 2013, a roughly 50% increase in wine-cellar requests from new-home buyers, with most upgrades coming in between $15,000 and $60,000.</p>
+
+<p>That is not what's being built in St. Andrews, Royal Palm Yacht Club, Boca Bridges, or the new construction along Delray's Intracoastal.</p>
+
+<p>The tier I'm tracking — and the one driving most of the conversations I'm having with $5M+ buyers and sellers — is the $500,000 to $2,000,000+ build. At that level, the cellar isn't a feature. It is the feature. It's the room every guest is walked through. It's the photograph that anchors the listing. It's the architectural moment that justifies the rest of the house.</p>
+
+<blockquote>
+  "Gone are the days of hidden wine cellars. Glass-enclosed designs are trending, turning wine collections into stunning showpieces."
+  <span class="attrib">— Revel Custom Wine Cellars, 2025 Design Trend Report</span>
+</blockquote>
+
+<p>At this tier, you are paying for: a fully sealed insulated room that holds 55°F and 60% relative humidity year-round in a sub-tropical climate; floor-to-ceiling low-iron architectural glass with multi-zone tinting; redundant cooling (often a primary plus a backup unit so a failed compressor doesn't cook a six-figure collection); imported European hardwoods — French oak, walnut, mahogany — or in some cases brass, blackened steel, or stone; label-forward metal display systems like VintageView's Vino Series for the showpiece bottles, plus traditional racking for the working collection; integrated lighting on dimmers; humidity vapor barriers behind the walls; and frequently a separate tasting alcove with seating, a chiller, and serving counter.</p>
+
+<p>For the buyers I work with, that's the bottom of the range. The top of the range — and there are several of these now in Boca and on the Palm Beach barrier island — adds vault-style entry doors, hand-laid stone floors imported from Burgundy, hidden bottle libraries behind tasting walls, and in two cases I'm aware of, museum-grade UV protection comparable to what an institutional collector would specify.</p>
+
+<div class="inline-img">
+  <img src="statement-gallery.png" alt="Glass-enclosed museum-grade wine gallery on the main floor of a South Florida luxury home">
+  <div class="caption">The "statement gallery" cellar — glass-enclosed, main-floor, label-forward — has replaced the basement wine room as the South Florida luxury standard. (Image: AI-generated illustration.)</div>
+</div>
+
+<h2>Why Now</h2>
+
+<p>The cellar boom in South Florida is downstream of a much larger shift in the global fine-wine market, and the auction houses have been the loudest signal.</p>
+
+<p>Sotheby's posted $127.5 million in 2025 wine &amp; spirits sales, up 12% year-over-year — wine accounted for $106 million, spirits for $21.5 million, across 69 sales in 8 cities with bidders from 63 countries. It was Sotheby's fourth-highest annual total since the department opened in 1970. Roughly half of all wine buyers were under 50. 35% of buyers were entirely new to Sotheby's. New York surpassed Hong Kong as the leading sales city for the second consecutive year.</p>
+
+<blockquote>
+  "Our 2025 results underscore the strength and momentum of Sotheby's Wine &amp; Spirits business."
+  <span class="attrib">— Nick Pegna, Global Head of Wine &amp; Spirits, Sotheby's</span>
+</blockquote>
+
+<p>Christie's, meanwhile, ran what may be the most important single-collection sale in modern American auction history: the William I. Koch cellar, June 12-14, 2025, at Rockefeller Center. The result: $28.8 million total, 154% of the low estimate, every single one of the 1,500 lots sold, with 42% of registered bidders new to Christie's wine auctions. The top lot — a 1999 Domaine de la Romanée-Conti in a 6-liter Methuselah format — sold for $275,000.</p>
+
+<blockquote>
+  "Today concluded a once-in-a-generation sale from the truly iconic cellar of William I. Koch."
+  <span class="attrib">— Adam Bilbey, Global Head of Wine &amp; Spirits, Christie's</span>
+</blockquote>
+
+<p>Acker, the firm behind the $812,500 record bottle, posted $175 million in 2024 sales, holds roughly a 35% share of the global fine-wine auction market, and has now surpassed $2 billion in cumulative lifetime sales.</p>
+
+<p>The Liv-ex indices — the closest thing the wine market has to a Dow Jones — confirmed the shift. The Fine Wine 50 and Fine Wine 100 both rose approximately 2.5% over the final four months of 2025; the broader Fine Wine 1000 rose roughly 1%. November 2025 was the third consecutive month of gains, signaling a clear recovery from the roughly 15-20% correction the market endured between the mid-2022 peak and the 2024 trough. Italian wines — led by producers like Bruno Giacosa — were among the standout regional performers heading into 2026.</p>
+
+<blockquote>
+  "After three years of steady decline, optimism is returning — albeit fragile."
+  <span class="attrib">— Tom Burchfield, Head of Market Intelligence, Liv-ex (December 2025)</span>
+</blockquote>
+
+<p>That global signal — younger buyers, new buyers, North American liquidity, recovering index, record-setting single bottles — is what is showing up in my listings, in my buyer conversations, and in the floor plans I'm being asked to react to.</p>
+
+<div class="inline-img">
+  <img src="auction-vault.png" alt="A vault-style private cellar designed for a serious collector — South Florida 2026">
+  <div class="caption">The vault-style cellar: heavy entry door, label-forward metal racking, redundant cooling, and a separate climate from the rest of the house. (Image: AI-generated illustration.)</div>
+</div>
+
+<h2>The South Florida Building Corps</h2>
+
+<p>South Florida is one of the harder places in the United States to build a serious wine cellar, and the firms doing the high-end work locally have built their entire businesses around solving for our climate.</p>
+
+<p>The core problem, in the words of CRu Custom Wine Cellars &amp; Saunas founder Gary Chapdelaine — a Florida-based builder who has been working in this category since the early 2000s — is that "a wine cellar is essentially a walk-in refrigerator, and in a sub-tropical climate like Florida it has to be 100% sealed." Vapor barriers behind every wall surface. Insulated glass that doesn't sweat in August. Cooling units engineered for our load. Skip any of those steps and you don't have a cellar — you have a $300,000 mistake that grows mold by year three.</p>
+
+<p>The firms doing this work at the high end in our market include:</p>
+
+<p><strong>Dragon Cellars</strong> (Boca Raton) — Founded in Spain in 2007 and expanded to Miami in 2014, Dragon serves Boca Raton, Delray Beach, Palm Beach, Fort Lauderdale, and Miami. Their public portfolio mixes modern glass-enclosed cellars, traditional wood-paneled rooms, and custom wine walls — and they are increasingly the firm I hear named when an owner is doing a clean-sheet new build at the $500K+ tier.</p>
+
+<p><strong>Cool Wine Cellar</strong> (Boca Raton) — Established 2014, with a documented project portfolio at Woodfield Country Club and other Boca communities. Their work tends toward the integrated, architectural end: cellar walls that read as built-in millwork rather than retrofits.</p>
+
+<p><strong>Wine Cellar International</strong> (Fort Lauderdale) — Founded 2008, led by designer Jake Duquette. Their work is the most frequently cited at the top of the South Florida market when an owner is building a fully custom showpiece. Insulated glass and humidity engineering are the two problems Duquette has spent the better part of two decades solving for our climate.</p>
+
+<p><strong>CRu Custom Wine Cellars &amp; Saunas</strong> (Florida) — Chapdelaine's firm; statewide reach; well-respected for build-science discipline.</p>
+
+<p>On the equipment side, the three cooling-unit brands you will hear named in every serious build conversation are Wine Guardian, Breezaire, and WhisperKOOL. For racking, VintageView's Vino Series (Vino Pins and Vino Rails) has become the default label-forward display system at the architectural tier. None of those are paid placements — they are simply the brands that keep showing up on the spec sheets.</p>
+
+<h2>The Design Moment</h2>
+
+<p>The reason the cellar has moved from the basement to the front of the house is that, in 2026, the people most likely to invest at this level want their collection visible. They want the cellar to be the experience.</p>
+
+<p>The Wine Enthusiast 2026 cellar-design coverage put it cleanly. Sara Lynn Brennan, founder of Sara Lynn Brennan Interiors (Waxhaw, NC), is one of several designers now placing glass-enclosed cellars directly in the middle of open-plan kitchens — designing the room so that a guest standing at the island looks straight into floor-to-ceiling stacks of label-forward bottles. The cellar is no longer storage. It's a sculptural element.</p>
+
+<blockquote>
+  "We want to show off the beautiful bottles in a way that honors them."
+  <span class="attrib">— Sara Lynn Brennan, Sara Lynn Brennan Interiors (Wine Enthusiast, 2026)</span>
+</blockquote>
+
+<p>The dominant design moves at the $500K+ tier in our market right now: glass walls on at least one side (often two), label-forward metal racking for 30-40% of the collection with wood racking for the working bottles, integrated dimmable LED lighting, a separate tasting alcove with seating, and — increasingly — a vault-style entry door that telegraphs "this is the serious room."</p>
+
+<p>The single biggest mistake I see at this level is over-personalization. A $1.2M cellar with the owner's initials lasered into the door, or a wine-country mural that locks the room visually to one specific aesthetic, can hurt resale by 50-70% of build cost. The cellars that hold their value are the ones built around the bottles, not the owner.</p>
+
+<div class="inline-img">
+  <img src="tasting-alcove.png" alt="A tasting alcove off a main-floor cellar — South Florida luxury 2026">
+  <div class="caption">The tasting alcove: a separate climate from the cellar itself, with seating, a chiller, and a serving counter. Increasingly standard at the $500K+ tier. (Image: AI-generated illustration.)</div>
+</div>
+
+<h2>What This Does to Resale</h2>
+
+<p>Per an NAHB survey cited by Realtor.com (writer Kristine Hansen), 31% of new-home buyers in the $150,000+ household-income tier named a wine cellar as a most-desired amenity. That data point is somewhat dated and the underlying survey year should be verified before quoting in negotiation — but the directional signal has held up across every conversation I've had with high-income buyers in the last three years. At the $5M+ price point in our market, an absent or poorly executed cellar is now a deficiency to be addressed in negotiation, not a neutral feature.</p>
+
+<p>Here is the resale math the way I work through it with clients:</p>
+
+<p><strong>Cellar adds value when:</strong> the room is glass-enclosed and architecturally integrated; located on the main floor or directly visible from a primary living area; sealed and engineered for South Florida humidity (with documentation); racked label-forward; designed for the bottles, not the owner; and built by one of the recognized firms with a paper trail. In that scenario, owners at the $5M+ tier typically recover 60-80% of the build cost on resale, and — more importantly — the cellar materially accelerates time-to-contract.</p>
+
+<p><strong>Cellar does not add value when:</strong> it is buried in a basement-style configuration; over-personalized; built by a non-specialist contractor without proper vapor barriers (these almost always fail by year four or five); equipped with consumer-grade cooling that won't handle our climate; or, worst of all, "added" to a home where the architecture does not support it (cellar awkwardly sliced into a former closet). I have seen $400K builds add less than $50K to defensible value because the execution was wrong.</p>
+
+<p>Preston Mohr, the Wine Scholar Guild educator, has noted that only about 1% of the world's wine actually improves with age. That's the part of this story most owners don't want to hear. A truly investment-grade collection is rare. What the cellar is really storing, for most owners at this level, is a lifestyle posture — the social, hospitality, and design value of a room that signals you take wine seriously, even if most of what's in there is meant to be drunk within five years.</p>
+
+<p>For resale, that's actually a positive. The lifestyle value of the room is durable. The investment math of the bottles is fragile.</p>
+
+<h2>The Build Science</h2>
+
+<p>If you are building or buying a cellar at this level, here are the specifications I look for in our market:</p>
+
+<p><strong>Temperature.</strong> 55°F (approximately 12.8°C) is the global standard. An acceptable working band is 55-59°F. Anything north of 65°F begins to degrade bottles over time; anything below 45°F slows aging to the point of stalling it.</p>
+
+<p><strong>Humidity.</strong> 60% relative humidity is the target; 50-70% is the acceptable band. Below 50%, corks dry out and bottles oxidize. Above 70%, labels deteriorate and mold becomes a real risk — and in our climate, the natural ambient humidity is regularly in the 70-85% range, which is why vapor barriers and dedicated cooling are non-negotiable.</p>
+
+<p><strong>Cooling.</strong> Wine Guardian, Breezaire, and WhisperKOOL are the three brands most often specified at the high end. At the $500K+ tier I now expect redundancy — a primary unit plus a backup, with an alarm system that pings the owner's phone if either fails.</p>
+
+<p><strong>Sealing.</strong> Vapor barriers behind every wall surface. Insulated glass rated for our climate. Floor and ceiling continuity. This is where a non-specialist contractor will save the owner $30,000 on the build and cost them $200,000 in remediation by year five.</p>
+
+<p><strong>Lighting.</strong> Dimmable LED, never UV-emitting. The cellars I see failing on this point are usually the ones designed first for photography and second for the bottles.</p>
+
+<p>The Court of Master Sommeliers and the broader sommelier community converge on essentially the same storage guidance: a constant temperature in the mid-50s°F, roughly 60% humidity, bottles lying flat to keep corks moist, vibration minimized, light minimized. Any cellar build that meaningfully departs from those parameters — for design reasons, for cost reasons, for shortcut reasons — should be a "no" at this price point.</p>
+
+<h2>The Bottom Line</h2>
+
+<p>Wine cellars at the $500,000 to $2,000,000+ tier are no longer a feature of the South Florida luxury market. They are increasingly a structural element of how the most aspirational homes in St. Andrews Country Club, Royal Palm Yacht Club, Boca Bridges, The Sanctuary, the Delray Intracoastal, and the Palm Beach barrier island are designed, priced, and sold. The global signal from Acker, Sotheby's, Christie's, and Liv-ex says this is a durable trend, not a cycle. The buyer pool — younger, newer, more global, more architecturally literate — is reinforcing it.</p>
+
+<p>For owners considering a build, the conversation I'd want to have is: which firm, which budget tier, and how does the cellar integrate with your specific home's architecture and your specific exit timeline. A $500K cellar in the wrong room of the wrong house is a write-down. The same $500K, properly placed, can be the single highest-leverage upgrade in the home.</p>
+
+<p>For buyers shopping at the $5M+ tier, you should be evaluating the cellar as a serious part of the price negotiation — its build quality, its sealing, its cooling redundancy, its design durability. A bad cellar is a future expense item. A great one is the room that closes the deal.</p>
+
+<p>If you'd like to talk through your specific situation — build, buy, or sell — my line is open.</p>
+
+</article>
+
+<section class="cta-section">
+  <h2>Building, Buying, or Selling a Home With a Serious Cellar?</h2>
+  <p>I work with owners, buyers, and developers across the $2M–$25M+ South Florida luxury market — including some of the most architecturally significant cellar builds in St. Andrews, Royal Palm Yacht Club, Boca Bridges, and the Delray Intracoastal. If you're weighing a build, evaluating a purchase, or preparing a home with a cellar for sale, my line is open for a confidential conversation.</p>
+  <a href="https://www.bogen.ai/contact?tab=client">Contact Edmund</a>
+</section>
+
+<section class="bio">
+  <div class="bio-inner">
+    <img class="photo" src="https://edmundbogen.github.io/edmund-profile.jpg" alt="Edmund Bogen">
+    <div>
+      <h3>Edmund Bogen</h3>
+      <div class="title">Member · St. Andrews CC &nbsp;|&nbsp; The Edmund Bogen Team · Douglas Elliman</div>
+      <p>Luxury real estate advisor in South Florida, member of St. Andrews Country Club, and author of a weekly market intelligence brief covering 21 luxury communities in Boca Raton and Palm Beach County. AI consultant and speaker (Bogen.ai). Founder, Edmund's Mastermind.</p>
+      <p class="contact">561-235-7575 &nbsp;·&nbsp; <a href="https://www.bogen.ai/contact?tab=client">bogen.ai/contact</a> &nbsp;·&nbsp; 444 E Palmetto Park Rd, Boca Raton, FL 33432</p>
+    </div>
+  </div>
+</section>
+
+<footer class="disclosures">
+  <p>Market data courtesy of BeachesMLS. Information is deemed reliable but not guaranteed.</p>
+  <p>Auction figures sourced from Acker, Sotheby's, Christie's, Hart Davis Hart, and Liv-ex 2025–2026 reports. Design and build references sourced from Wine Enthusiast (2026), Revel Cellars 2025 Trend Report, and direct interviews with South Florida cellar builders.</p>
+  <p>If your property is currently listed with another broker, this is not a solicitation of that listing.</p>
+  <p>© 2026 The Edmund Bogen Team · Douglas Elliman Real Estate</p>
+  <p class="ai-disclosure">AI Imagery Disclosure: The hero image and the three supporting images in this article are AI-generated illustrations created for editorial purposes. No actual property is depicted. Pursuant to Douglas Elliman's company guidance on AI-assisted content, this disclosure is provided in the interest of full transparency.</p>
+</footer>
+
+<footer class="site">
+  THE EDMUND BOGEN TEAM &nbsp;·&nbsp; DOUGLAS ELLIMAN REAL ESTATE &nbsp;·&nbsp; BOCA RATON, FL
+</footer>
+
+</body>
+</html>
