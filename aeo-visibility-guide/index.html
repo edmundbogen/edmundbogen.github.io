@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>The Visibility Guide — Bogen.ai</title>
+<meta name="description" content="The Bogen.ai field guide to Answer Engine Optimization. How to become the name AI systems trust and recommend. Three editions: real estate, entrepreneurs, service providers."/>
+<meta property="og:title" content="The Visibility Guide — Bogen.ai"/>
+<meta property="og:description" content="Become the answer AI systems trust and recommend. Free field guide by Eytan Benzeno."/>
+<meta property="og:image" content="assets/hero-eytan-edmund.png"/>
+<meta property="og:type" content="website"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1a3e5c;
+  --navy-deep: #0c1c2c;
+  --cyan: #00a8e1;
+  --cyan-2: #38c0f0;
+  --gold: #c89b3c;
+  --bg: #ffffff;
+  --bg-alt: #f4f7fa;
+  --bg-elev: #ffffff;
+  --ink: #0c1c2c;
+  --ink-2: #5a6b7a;
+  --line: #e6ecf1;
+  --shadow: 0 8px 30px rgba(12, 28, 44, 0.08);
+  --shadow-lg: 0 16px 50px rgba(12, 28, 44, 0.14);
+}
+html[data-theme="dark"] {
+  --bg: #0c1c2c;
+  --bg-alt: #132b41;
+  --bg-elev: #173852;
+  --ink: #ffffff;
+  --ink-2: #b8cad8;
+  --line: rgba(255,255,255,0.10);
+  --shadow: 0 8px 30px rgba(0,0,0,0.35);
+  --shadow-lg: 0 16px 50px rgba(0,0,0,0.45);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.55;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+a { color: var(--cyan); text-decoration: none; }
+a:hover { color: var(--cyan-2); }
+img { max-width: 100%; display: block; }
+
+/* NAV */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 36px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(8px);
+}
+.brand {
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  font-size: 13px;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.brand .dot { color: var(--cyan); }
+.nav-right { display: flex; align-items: center; gap: 18px; }
+.nav-link {
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  font-weight: 600;
+}
+.nav-link:hover { color: var(--cyan); }
+.theme-toggle {
+  width: 44px;
+  height: 26px;
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  position: relative;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.25s ease;
+}
+.theme-toggle::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  background: var(--cyan);
+  border-radius: 50%;
+  transition: transform 0.25s ease;
+}
+html[data-theme="dark"] .theme-toggle::after { transform: translateX(18px); }
+
+/* HERO */
+.hero {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  align-items: center;
+  gap: 56px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 36px 60px;
+}
+.hero-text .eyebrow {
+  color: var(--cyan);
+  font-size: 12px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+.hero-text h1 {
+  font-weight: 300;
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.06;
+  letter-spacing: -0.01em;
+  margin-bottom: 22px;
+}
+.hero-text h1 .em { color: var(--cyan); font-weight: 600; }
+.hero-text .lead {
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  margin-bottom: 30px;
+  max-width: 520px;
+}
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--cyan);
+  color: #fff;
+  padding: 16px 28px;
+  border-radius: 4px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 12px;
+  transition: background 0.2s ease;
+}
+.hero-cta:hover { background: var(--cyan-2); color: #fff; }
+.hero-meta {
+  margin-top: 28px;
+  display: flex;
+  gap: 22px;
+  font-size: 12px;
+  color: var(--ink-2);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  flex-wrap: wrap;
+}
+.hero-meta span strong { color: var(--ink); font-weight: 700; }
+.hero-image {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+/* THESIS */
+.thesis {
+  background: var(--bg-alt);
+  padding: 70px 36px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.thesis-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+.thesis blockquote {
+  font-size: clamp(22px, 2.6vw, 30px);
+  line-height: 1.35;
+  font-weight: 300;
+  color: var(--ink);
+  border-left: 4px solid var(--cyan);
+  padding: 8px 0 8px 24px;
+  text-align: left;
+  max-width: 760px;
+  margin: 0 auto;
+}
+.thesis blockquote em { color: var(--cyan); font-style: normal; font-weight: 600; }
+.thesis .attrib {
+  margin-top: 22px;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  text-align: left;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 28px;
+}
+
+/* SECTION HEADERS */
+section { padding: 80px 36px; }
+.section-head { max-width: 1200px; margin: 0 auto 50px; text-align: center; }
+.section-head .eyebrow {
+  color: var(--cyan);
+  font-size: 12px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.section-head h2 {
+  font-weight: 300;
+  font-size: clamp(28px, 3.4vw, 40px);
+  line-height: 1.12;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+}
+.section-head h2 .em { color: var(--cyan); font-weight: 600; }
+.section-head p {
+  margin-top: 16px;
+  font-size: 16px;
+  color: var(--ink-2);
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* EDITIONS GRID */
+.editions {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.edition-card {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--cyan);
+  border-radius: 6px;
+  padding: 32px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.edition-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.edition-card .num {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--cyan);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.edition-card h3 {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+.edition-card .for {
+  font-size: 13px;
+  color: var(--ink-2);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+.edition-card p {
+  font-size: 14.5px;
+  color: var(--ink-2);
+  line-height: 1.55;
+  margin-bottom: 22px;
+  flex: 1;
+}
+.edition-card .dl {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--cyan);
+  color: #fff;
+  padding: 14px 18px;
+  border-radius: 4px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: 11.5px;
+  transition: background 0.2s ease;
+}
+.edition-card .dl:hover { background: var(--cyan-2); color: #fff; }
+.edition-card .meta {
+  margin-top: 14px;
+  font-size: 11px;
+  color: var(--ink-2);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* INSIDE LIST */
+.inside {
+  background: var(--bg-alt);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.inside-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.inside-item {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 22px 20px;
+}
+.inside-item .n {
+  color: var(--cyan);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  margin-bottom: 8px;
+}
+.inside-item h4 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.35;
+}
+
+/* GALLERY */
+.gallery {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.gallery figure {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.gallery img {
+  display: block;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  background: #0c1c2c;
+}
+.gallery figcaption {
+  padding: 14px 16px 18px;
+  font-size: 13px;
+  color: var(--ink-2);
+  line-height: 1.45;
+}
+.gallery figcaption strong {
+  display: block;
+  color: var(--ink);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+/* AUTHOR */
+.author-block {
+  max-width: 980px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 48px;
+  align-items: center;
+}
+.author-photo {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.author-body .eyebrow {
+  color: var(--cyan);
+  font-size: 12px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.author-body h3 {
+  font-size: 30px;
+  font-weight: 300;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+.author-body h3 strong { font-weight: 600; color: var(--ink); }
+.author-body p {
+  font-size: 15.5px;
+  color: var(--ink-2);
+  line-height: 1.65;
+  margin-bottom: 14px;
+}
+
+/* CTA */
+.cta {
+  background: var(--navy-deep);
+  color: #fff;
+  padding: 90px 36px;
+  text-align: center;
+}
+.cta h2 {
+  font-size: clamp(28px, 3.6vw, 42px);
+  font-weight: 300;
+  margin-bottom: 18px;
+  color: #fff;
+  line-height: 1.15;
+}
+.cta h2 .em { color: var(--cyan); font-weight: 600; }
+.cta p {
+  font-size: 17px;
+  color: #b8cad8;
+  max-width: 620px;
+  margin: 0 auto 32px;
+}
+.cta-row {
+  display: inline-flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 16px 28px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 12px;
+  border-radius: 4px;
+  border: 1.5px solid transparent;
+  transition: all 0.2s ease;
+}
+.btn.primary { background: var(--cyan); color: #fff; border-color: var(--cyan); }
+.btn.primary:hover { background: var(--cyan-2); border-color: var(--cyan-2); color: #fff; }
+.btn.ghost { background: transparent; color: var(--cyan); border-color: var(--cyan); }
+.btn.ghost:hover { background: var(--cyan); color: #fff; }
+
+/* FOOTER */
+.footer {
+  background: var(--bg);
+  padding: 40px 36px;
+  text-align: center;
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+  color: var(--ink-2);
+  letter-spacing: 0.12em;
+}
+.footer strong { color: var(--ink); }
+.footer .row { margin-bottom: 8px; }
+
+@media (max-width: 880px) {
+  .hero { grid-template-columns: 1fr; padding: 50px 24px; }
+  .hero-image { order: -1; }
+  .editions, .inside-grid { grid-template-columns: 1fr; }
+  .gallery { grid-template-columns: 1fr; }
+  .author-block { grid-template-columns: 1fr; }
+  .nav { padding: 14px 20px; }
+  section { padding: 60px 24px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="brand">BOGEN<span class="dot">.AI</span> · EDMUND'S MASTERMIND</div>
+  <div class="nav-right">
+    <a class="nav-link" href="#editions">EDITIONS</a>
+    <a class="nav-link" href="#inside">INSIDE</a>
+    <a class="nav-link" href="#preview">PREVIEW</a>
+    <a class="nav-link" href="https://bogen.ai">BOGEN.AI</a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode"></button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-text">
+    <div class="eyebrow">Field Guide · Free Download</div>
+    <h1>Become the answer <span class="em">AI recommends</span>.</h1>
+    <p class="lead">A working playbook for businesses that want to be the name ChatGPT, Claude, Gemini, and Perplexity trust enough to recommend by name. Three editions. Built for real operators. Authored by Eytan Benzeno.</p>
+    <a class="hero-cta" href="#editions">CHOOSE YOUR EDITION →</a>
+    <div class="hero-meta">
+      <span><strong>16</strong> pages</span>
+      <span><strong>5</strong> diagrams</span>
+      <span><strong>3</strong> editions</span>
+      <span><strong>No email wall</strong></span>
+    </div>
+  </div>
+  <div class="hero-image">
+    <img src="assets/hero-eytan-edmund.png" alt="Eytan Benzeno and Edmund Bogen — Bogen.ai"/>
+  </div>
+</section>
+
+<section class="thesis">
+  <div class="thesis-inner">
+    <blockquote>Businesses are no longer just competing to rank. They are competing to become <em>the answer AI systems trust and recommend</em>.</blockquote>
+    <div class="attrib">— Core Thesis · The Visibility Guide</div>
+  </div>
+</section>
+
+<section id="editions">
+  <div class="section-head">
+    <div class="eyebrow">The Editions</div>
+    <h2>Pick the version <span class="em">built for your business</span>.</h2>
+    <p>Identical framework. Three different opening chapters — written for the exact audience you serve.</p>
+  </div>
+  <div class="editions">
+    <div class="edition-card">
+      <div class="num">Edition 01</div>
+      <h3>Real Estate Agents</h3>
+      <div class="for">Luxury · Resale · New Construction</div>
+      <p>How buyers and sellers are now asking AI which Realtor to trust — and exactly how to become the name the algorithms recommend.</p>
+      <a class="dl" href="pdf/bogen-ai-visibility-guide-v1-real-estate.pdf" download>DOWNLOAD PDF</a>
+      <div class="meta">16 PAGES · 1.1 MB</div>
+    </div>
+    <div class="edition-card">
+      <div class="num">Edition 02</div>
+      <h3>Entrepreneurs & Owners</h3>
+      <div class="for">Founders · Operators · SMB Leaders</div>
+      <p>How AI systems are quietly deciding which companies in your category get recommended — and why category authority is now an algorithmic asset.</p>
+      <a class="dl" href="pdf/bogen-ai-visibility-guide-v2-entrepreneurs.pdf" download>DOWNLOAD PDF</a>
+      <div class="meta">16 PAGES · 1.1 MB</div>
+    </div>
+    <div class="edition-card">
+      <div class="num">Edition 03</div>
+      <h3>Service Providers</h3>
+      <div class="for">Roofers · Plumbers · HVAC · Pool · Contractors</div>
+      <p>How homeowners now ask AI for the best local pro — and exactly how to make sure the answer is your business, not your competitor's.</p>
+      <a class="dl" href="pdf/bogen-ai-visibility-guide-v3-service-providers.pdf" download>DOWNLOAD PDF</a>
+      <div class="meta">16 PAGES · 1.1 MB</div>
+    </div>
+  </div>
+</section>
+
+<section id="inside" class="inside">
+  <div class="section-head">
+    <div class="eyebrow">What's Inside</div>
+    <h2>Fifteen chapters. <span class="em">Zero filler.</span></h2>
+    <p>Every page is built to be read once, applied this week, and referenced for years.</p>
+  </div>
+  <div class="inside-grid">
+    <div class="inside-item"><div class="n">01</div><h4>Why This Matters Now</h4></div>
+    <div class="inside-item"><div class="n">02</div><h4>From Search Engines to Answer Engines</h4></div>
+    <div class="inside-item"><div class="n">03</div><h4>Why AI Visibility ≠ SEO</h4></div>
+    <div class="inside-item"><div class="n">04</div><h4>How AI Decides Who to Recommend</h4></div>
+    <div class="inside-item"><div class="n">05</div><h4>Why Generic Marketing Is Dying</h4></div>
+    <div class="inside-item"><div class="n">06</div><h4>The Six Pillars of AI Trust</h4></div>
+    <div class="inside-item"><div class="n">07</div><h4>How AI Reads Your Website</h4></div>
+    <div class="inside-item"><div class="n">08</div><h4>Good vs. Bad Content — Side by Side</h4></div>
+    <div class="inside-item"><div class="n">09</div><h4>The Content Ecosystem That Compounds</h4></div>
+    <div class="inside-item"><div class="n">10</div><h4>Common Mistakes Costing You Authority</h4></div>
+    <div class="inside-item"><div class="n">11</div><h4>The Six-Step AI Visibility Framework</h4></div>
+    <div class="inside-item"><div class="n">12</div><h4>Prompt, FAQ & Query Library</h4></div>
+    <div class="inside-item"><div class="n">13</div><h4>Predictions: The Next 5 Years</h4></div>
+    <div class="inside-item"><div class="n">14</div><h4>The AI Authority Flywheel</h4></div>
+    <div class="inside-item"><div class="n">15</div><h4>Where to Go From Here</h4></div>
+  </div>
+</section>
+
+<section id="preview">
+  <div class="section-head">
+    <div class="eyebrow">A Look Inside</div>
+    <h2>Diagrams built to be <span class="em">remembered</span>.</h2>
+    <p>Six of the visuals you'll find inside the guide.</p>
+  </div>
+  <div class="gallery">
+    <figure>
+      <img src="assets/before-after.jpg" alt="Before and after: invisible to AI vs AI recommends you"/>
+      <figcaption><strong>The Two Futures</strong>Same buyer, two outcomes — your business absent, or named in the AI answer.</figcaption>
+    </figure>
+    <figure>
+      <img src="assets/consumer-evolution.jpg" alt="Five eras of how consumers discover businesses"/>
+      <figcaption><strong>Five Eras of Discovery</strong>From Yellow Pages to AI answer engines — the shift most businesses are unprepared for.</figcaption>
+    </figure>
+    <figure>
+      <img src="assets/decision-factors.jpg" alt="Weighted factors that influence AI answer engines"/>
+      <figcaption><strong>What AI Weighs</strong>The signals AI answer engines use to choose who to recommend — ranked by weight.</figcaption>
+    </figure>
+    <figure>
+      <img src="assets/anatomy-sentence.jpg" alt="Anatomy of an AI-search-friendly sentence"/>
+      <figcaption><strong>Anatomy of a Cited Sentence</strong>One sentence, six trust signals — WHO, WHAT, WHERE, SPECIALTY, OUTCOME, TRUST.</figcaption>
+    </figure>
+    <figure>
+      <img src="assets/business-analyzed.jpg" alt="Your business through the AI recommendation engine"/>
+      <figcaption><strong>Through the Model's Eyes</strong>How a real business looks to an AI — reviews, listings, video, podcasts, and local signals.</figcaption>
+    </figure>
+    <figure>
+      <img src="assets/ai-recommendation-engines.jpg" alt="AI recommendation engines consolidate visibility"/>
+      <figcaption><strong>The Consolidation Curve</strong>Early → Evolution → Consolidation → Dominance. The window is open now.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section>
+  <div class="author-block">
+    <div class="author-photo">
+      <img src="assets/hero-eytan-edmund.png" alt="Eytan Benzeno"/>
+    </div>
+    <div class="author-body">
+      <div class="eyebrow">Authored By</div>
+      <h3><strong>Eytan Benzeno</strong> — Technical Strategist, Bogen.ai</h3>
+      <p>Eytan leads the build side of Bogen.ai. He works directly with operators — agents, founders, contractors — to turn AI from a buzzword into a recommendation engine that brings them business.</p>
+      <p>This guide is the playbook he uses in client engagements, condensed into something you can read in an hour and start applying tomorrow.</p>
+      <p style="font-size:13px; letter-spacing:0.06em; color:var(--ink-2); margin-top:18px;">Published by <strong style="color:var(--ink);">Bogen.ai</strong> in partnership with <strong style="color:var(--ink);">Edmund's Mastermind</strong>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>Ready to be the name <span class="em">AI recommends</span>?</h2>
+  <p>Two paths. Pick the one that fits where you are.</p>
+  <div class="cta-row">
+    <a class="btn primary" href="https://bogen.ai">BOOK A STRATEGY CALL</a>
+    <a class="btn ghost" href="https://edmundbogenmastermind.com">JOIN THE MASTERMIND</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="row"><strong>BOGEN.AI</strong> · EDMUND'S MASTERMIND · THE VISIBILITY GUIDE</div>
+  <div class="row">© 2026 Bogen.ai · All rights reserved · For the reader named on the download · Not for redistribution</div>
+</footer>
+
+<script>
+// Force open at top on every load (incl. iOS Safari bfcache + late image layout shift)
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+(function(){
+  var jumpTop = function(){
+    // Respect intentional in-page anchor clicks AFTER initial load
+    if (window._userScrolled) return;
+    window.scrollTo(0, 0);
+  };
+  // Run on multiple lifecycle events
+  document.addEventListener('DOMContentLoaded', jumpTop);
+  window.addEventListener('load', jumpTop);
+  window.addEventListener('pageshow', jumpTop);
+  // Re-run a few times to beat late-loading image layout shift
+  [50, 200, 600, 1200].forEach(function(t){ setTimeout(jumpTop, t); });
+  // After a short grace period, stop forcing so anchor links work
+  setTimeout(function(){ window._userScrolled = true; }, 1500);
+})();
+</script>
+<script>
+(function(){
+  var KEY = 'bogen-theme';
+  var toggle = document.getElementById('themeToggle');
+  var stored = localStorage.getItem(KEY);
+  if (stored) document.documentElement.setAttribute('data-theme', stored);
+  toggle.addEventListener('click', function(){
+    var current = document.documentElement.getAttribute('data-theme');
+    var next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem(KEY, next);
+  });
+})();
+</script>
+
+</body>
+</html>

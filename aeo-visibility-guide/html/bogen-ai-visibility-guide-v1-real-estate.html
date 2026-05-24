@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>The Bogen.ai Visibility Guide — EDITION: Real Estate Agents</title>
+  <style>
+@page {
+  size: Letter;
+  margin: 0;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  color: #0c1c2c;
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 400;
+  font-size: 11pt;
+  line-height: 1.55;
+}
+
+.page {
+  width: 8.5in;
+  height: 11in;
+  padding: 0.7in 0.75in;
+  page-break-after: always;
+  page-break-inside: avoid;
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+}
+.page:last-child { page-break-after: auto; }
+
+.page.dark {
+  background: #1a3e5c;
+  color: #fff;
+}
+
+/* ---------- COVER ---------- */
+.cover {
+  padding: 0;
+  background: #1a3e5c;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.cover-hero {
+  display: block;
+  width: 8.5in;
+  height: 4.78in;
+  object-fit: cover;
+  object-position: center;
+}
+.cover-lower {
+  position: relative;
+  width: 100%;
+  height: 6.22in;
+  background: #1a3e5c;
+  padding: 0;
+}
+.cover-lower-inner {
+  padding: 0.55in 0.85in 0.7in 0.85in;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+.cover-bar {
+  position: absolute;
+  top: 0; left: 0;
+  width: 6px; height: 100%;
+  background: #00a8e1;
+}
+.cover-tag {
+  font-size: 9pt;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #00a8e1;
+  font-weight: 600;
+}
+.cover-title {
+  font-size: 32pt;
+  line-height: 1.08;
+  font-weight: 300;
+  letter-spacing: -0.005em;
+  margin-top: 18px;
+  color: #fff;
+  max-width: 6.2in;
+}
+.cover-title strong { font-weight: 600; color: #00a8e1; }
+.cover-sub {
+  font-size: 11.5pt;
+  line-height: 1.45;
+  margin-top: 16px;
+  max-width: 5.6in;
+  color: #d8e7f2;
+  font-weight: 300;
+}
+
+.hero-zone {
+  margin-top: 38px;
+  width: 100%;
+  height: 3.7in;
+  border: 1.5px dashed rgba(0,168,225,0.55);
+  border-radius: 6px;
+  background:
+    repeating-linear-gradient(45deg,
+      rgba(255,255,255,0.025) 0 14px,
+      rgba(255,255,255,0.045) 14px 28px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+.hero-zone .label {
+  font-size: 9pt;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #00a8e1;
+}
+.hero-zone .desc {
+  font-size: 10.5pt;
+  color: #cfdfee;
+  margin-top: 10px;
+  font-style: italic;
+  max-width: 4.6in;
+  line-height: 1.5;
+}
+.hero-zone .spec {
+  position: absolute;
+  bottom: 12px;
+  right: 16px;
+  font-size: 7.5pt;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.08em;
+}
+
+.cover-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.cover-brand {
+  font-size: 10pt;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: 600;
+}
+.cover-brand span { color: #00a8e1; }
+.cover-author {
+  text-align: right;
+  font-size: 9.5pt;
+  color: #d8e7f2;
+  letter-spacing: 0.05em;
+}
+.cover-author .by {
+  font-size: 7.5pt;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #00a8e1;
+  display: block;
+  margin-bottom: 4px;
+}
+.cover-author .name {
+  font-size: 14pt;
+  color: #fff;
+  letter-spacing: 0.02em;
+  font-weight: 500;
+}
+
+/* ---------- INTERIOR HEADER / FOOTER ---------- */
+.eyebrow {
+  font-size: 8pt;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #00a8e1;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+h1.section {
+  font-size: 30pt;
+  font-weight: 300;
+  letter-spacing: -0.005em;
+  line-height: 1.1;
+  color: #1a3e5c;
+  margin-bottom: 22px;
+  max-width: 6.4in;
+}
+h1.section .em { color: #00a8e1; font-weight: 500; }
+h2.sub {
+  font-size: 14pt;
+  font-weight: 600;
+  color: #1a3e5c;
+  margin-top: 22px;
+  margin-bottom: 10px;
+  letter-spacing: 0.01em;
+}
+h3.mini {
+  font-size: 10.5pt;
+  font-weight: 700;
+  color: #1a3e5c;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+p { margin-bottom: 11px; max-width: 6.6in; }
+.lead {
+  font-size: 13pt;
+  line-height: 1.5;
+  color: #1a3e5c;
+  font-weight: 400;
+  max-width: 6.2in;
+  margin-bottom: 18px;
+}
+.bold { font-weight: 700; color: #1a3e5c; }
+.cyan { color: #00a8e1; font-weight: 600; }
+
+.rule {
+  width: 60px;
+  height: 3px;
+  background: #00a8e1;
+  margin: 0 0 22px 0;
+}
+
+.page-footer {
+  position: absolute;
+  bottom: 0.4in;
+  left: 0.75in;
+  right: 0.75in;
+  display: flex;
+  justify-content: space-between;
+  font-size: 8pt;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #5a6b7a;
+}
+.page-footer .b { color: #1a3e5c; font-weight: 600; }
+.page-footer .b span { color: #00a8e1; }
+
+/* ---------- CALLOUTS / PULL QUOTES ---------- */
+.pullquote {
+  border-left: 4px solid #00a8e1;
+  padding: 12px 0 12px 18px;
+  margin: 18px 0;
+  font-size: 13pt;
+  font-weight: 300;
+  line-height: 1.45;
+  color: #1a3e5c;
+  font-style: normal;
+  max-width: 6.2in;
+}
+.pullquote em { color: #00a8e1; font-style: normal; font-weight: 600; }
+.chimg {
+  display: block;
+  width: 100%;
+  max-width: 6.6in;
+  margin: 14px auto;
+  border-radius: 4px;
+  box-shadow: 0 4px 16px rgba(12,28,44,0.10);
+}
+.chimg-cap {
+  font-size: 8pt;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #5a6b7a;
+  margin-top: -6px;
+  margin-bottom: 14px;
+  max-width: 6.6in;
+}
+.chimg-cap span { color: #00a8e1; font-weight: 700; }
+.chimg-cap em { color: #1a3e5c; font-style: normal; font-weight: 600; }
+
+.callout {
+  background: #f4f4f4;
+  border-left: 4px solid #00a8e1;
+  padding: 16px 18px;
+  margin: 14px 0;
+  font-size: 10.5pt;
+  line-height: 1.55;
+}
+.callout .label {
+  font-size: 8pt;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #00a8e1;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.callout.gold { border-left-color: #c89b3c; }
+.callout.gold .label { color: #c89b3c; }
+
+ul.clean, ol.clean {
+  margin: 6px 0 12px 18px;
+  padding: 0;
+}
+ul.clean li, ol.clean li {
+  margin-bottom: 6px;
+  padding-left: 6px;
+  font-size: 10.5pt;
+  line-height: 1.5;
+}
+
+/* ---------- TWO COLUMN COMPARE ---------- */
+.compare {
+  display: flex;
+  gap: 16px;
+  margin: 14px 0;
+}
+.compare .col {
+  flex: 1;
+  padding: 16px 16px 18px;
+  border-radius: 4px;
+  background: #fff;
+}
+.compare .bad {
+  border: 1px solid #e8d6d6;
+  background: #fbf5f4;
+}
+.compare .good {
+  border: 1px solid #d4e8f4;
+  background: #f3faff;
+}
+.compare .col .tag {
+  font-size: 8pt;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.compare .bad .tag { color: #a64545; }
+.compare .good .tag { color: #00a8e1; }
+.compare .col p, .compare .col .sample {
+  font-size: 10pt;
+  line-height: 1.5;
+  margin-bottom: 6px;
+}
+.compare .sample {
+  background: #fff;
+  padding: 10px 12px;
+  border-left: 3px solid #1a3e5c;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 9.5pt;
+  color: #0c1c2c;
+}
+.compare .bad .sample { border-left-color: #c47171; }
+.compare .good .sample { border-left-color: #00a8e1; }
+
+/* ---------- DIAGRAMS ---------- */
+.diagram {
+  width: 100%;
+  margin: 18px 0;
+  padding: 22px 18px;
+  background: #f4f4f4;
+  border-radius: 6px;
+  page-break-inside: avoid;
+}
+.diagram .caption {
+  font-size: 8.5pt;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #00a8e1;
+  font-weight: 700;
+  margin-bottom: 4px;
+  text-align: center;
+}
+.diagram .title {
+  font-size: 14pt;
+  font-weight: 600;
+  color: #1a3e5c;
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+/* Flywheel */
+.flywheel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+.fly-node {
+  width: 0.95in;
+  height: 0.95in;
+  border-radius: 50%;
+  background: #fff;
+  border: 2.5px solid #1a3e5c;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 7.5pt;
+  font-weight: 700;
+  color: #1a3e5c;
+  letter-spacing: 0.03em;
+  line-height: 1.15;
+  flex-shrink: 0;
+}
+.fly-node .ln { display: block; }
+.fly-node.accent {
+  background: #00a8e1;
+  border-color: #00a8e1;
+  color: #fff;
+}
+.fly-arrow {
+  color: #00a8e1;
+  font-size: 14pt;
+  font-weight: 300;
+  flex-shrink: 0;
+  padding: 0 2px;
+}
+
+/* Trust pyramid */
+.trust-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin: 0 auto;
+}
+.trust-row {
+  background: #1a3e5c;
+  color: #fff;
+  text-align: center;
+  padding: 12px 14px;
+  font-size: 10pt;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border-radius: 3px;
+}
+.trust-row .lbl {
+  display: block;
+  font-size: 8pt;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #00a8e1;
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+.tr-1 { width: 95%; background: #1a3e5c; }
+.tr-2 { width: 80%; background: #234d70; }
+.tr-3 { width: 65%; background: #0d6b8a; }
+.tr-4 { width: 50%; background: #00a8e1; }
+.tr-5 { width: 35%; background: #c89b3c; color: #0c1c2c; }
+.tr-5 .lbl { color: #1a3e5c; }
+
+/* Ecosystem hub-and-spoke */
+.ecosystem {
+  position: relative;
+  width: 6.5in;
+  height: 3.2in;
+  margin: 0 auto;
+}
+.hub {
+  position: absolute;
+  left: 50%; top: 50%;
+  margin-left: -0.7in;
+  margin-top: -0.7in;
+  width: 1.4in;
+  height: 1.4in;
+  border-radius: 50%;
+  background: #00a8e1;
+  color: #fff;
+  display: table;
+  text-align: center;
+  font-size: 10pt;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.25;
+}
+.hub .hub-inner {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 8px;
+}
+.hub .hub-inner .ln { display: block; }
+.spoke {
+  position: absolute;
+  background: #fff;
+  border: 1.5px solid #1a3e5c;
+  border-radius: 3px;
+  padding: 8px 10px;
+  font-size: 8.5pt;
+  font-weight: 600;
+  color: #1a3e5c;
+  text-align: center;
+  width: 1.05in;
+  letter-spacing: 0.03em;
+  line-height: 1.2;
+}
+.spoke.tl { top: 0;     left: 0.2in; }
+.spoke.tc { top: -0.1in; left: 50%; transform: translateX(-50%); }
+.spoke.tr { top: 0;     right: 0.2in; }
+.spoke.ml { top: 50%; left: 0; transform: translateY(-50%); }
+.spoke.mr { top: 50%; right: 0; transform: translateY(-50%); }
+.spoke.bl { bottom: 0; left: 0.2in; }
+.spoke.bc { bottom: -0.1in; left: 50%; transform: translateX(-50%); }
+.spoke.br { bottom: 0; right: 0.2in; }
+
+/* Loop */
+.loop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  flex-wrap: nowrap;
+}
+.loop-step {
+  text-align: center;
+  width: 1.15in;
+  flex-shrink: 0;
+}
+.loop-step .num {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: #1a3e5c;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 13pt;
+  margin: 0 auto 8px;
+}
+.loop-step .lbl {
+  font-size: 9pt;
+  color: #1a3e5c;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0.03em;
+}
+.loop-step .lbl .ln { display: block; }
+.loop-arrow {
+  color: #00a8e1;
+  font-size: 15pt;
+  font-weight: 300;
+  padding: 0 4px;
+}
+
+/* Stack */
+.vstack {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.vrow {
+  display: flex;
+  align-items: stretch;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid #e6ecf1;
+}
+.vrow .num {
+  width: 0.55in;
+  background: #1a3e5c;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14pt;
+}
+.vrow .body {
+  flex: 1;
+  background: #fff;
+  padding: 10px 14px;
+}
+.vrow .body .t {
+  font-size: 10.5pt;
+  font-weight: 700;
+  color: #1a3e5c;
+  letter-spacing: 0.03em;
+  margin-bottom: 2px;
+}
+.vrow .body .d {
+  font-size: 9.5pt;
+  color: #5a6b7a;
+  line-height: 1.4;
+}
+.vrow.accent .num { background: #00a8e1; }
+
+/* Cards grid */
+.cards3 {
+  display: flex;
+  gap: 12px;
+  margin: 12px 0;
+}
+.cards3 .card {
+  flex: 1;
+  padding: 14px 14px;
+  background: #fff;
+  border: 1px solid #e6ecf1;
+  border-top: 3px solid #00a8e1;
+  border-radius: 3px;
+}
+.cards3 .card .t {
+  font-size: 10pt;
+  font-weight: 700;
+  color: #1a3e5c;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.cards3 .card .d {
+  font-size: 9.5pt;
+  color: #0c1c2c;
+  line-height: 1.5;
+}
+
+/* CTA closing page */
+.cta-page {
+  background: #1a3e5c;
+  color: #fff;
+  padding: 1in 0.9in;
+}
+.cta-page h1 {
+  font-size: 36pt;
+  font-weight: 300;
+  line-height: 1.1;
+  color: #fff;
+  margin-bottom: 20px;
+  max-width: 6.4in;
+}
+.cta-page h1 em { color: #00a8e1; font-style: normal; font-weight: 500; }
+.cta-page p { color: #d8e7f2; font-size: 12pt; max-width: 6.0in; line-height: 1.55; }
+.cta-buttons {
+  display: flex;
+  gap: 14px;
+  margin-top: 28px;
+  margin-bottom: 28px;
+}
+.cta-btn {
+  display: inline-block;
+  padding: 16px 28px;
+  background: #00a8e1;
+  color: #fff;
+  font-size: 10pt;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  border-radius: 3px;
+  text-decoration: none;
+}
+.cta-btn.outline {
+  background: transparent;
+  border: 1.5px solid #00a8e1;
+  color: #00a8e1;
+}
+.cta-meta {
+  margin-top: 38px;
+  border-top: 1px solid rgba(255,255,255,0.18);
+  padding-top: 22px;
+  font-size: 9.5pt;
+  color: #b8cad8;
+  letter-spacing: 0.04em;
+}
+.cta-meta .row { margin-bottom: 4px; }
+.cta-meta .row span { color: #00a8e1; font-weight: 600; }
+
+/* TOC */
+.toc-list {
+  margin-top: 12px;
+}
+.toc-list .item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #e6ecf1;
+  font-size: 11pt;
+  color: #1a3e5c;
+}
+.toc-list .item .n {
+  color: #00a8e1;
+  font-weight: 700;
+  width: 0.4in;
+}
+.toc-list .item .t { flex: 1; font-weight: 500; }
+.toc-list .item .p { color: #5a6b7a; font-size: 9.5pt; letter-spacing: 0.1em; }
+</style>
+</head>
+<body>
+
+<div class="page cover">
+  <img class="cover-hero" src="assets/hero-eytan-edmund.png" alt="Eytan Benzeno and Edmund Bogen — Bogen.ai"/>
+  <div class="cover-lower">
+    <div class="cover-bar"></div>
+    <div class="cover-lower-inner">
+      <div class="cover-tag">Bogen.ai · Edmund's Mastermind · Field Guide</div>
+      <div class="cover-title">The <strong>Visibility</strong> Guide<br/>To Answer Engine Optimization</div>
+      <div class="cover-sub">How luxury buyers and sellers are now asking AI which Realtor to trust — and how to become the name the algorithms recommend by name.</div>
+      <div class="cover-foot">
+        <div>
+          <div class="cover-brand">BOGEN<span>.AI</span> · EDMUND'S MASTERMIND</div>
+          <div style="font-size:8.5pt; color:#b8cad8; margin-top:6px; letter-spacing:0.05em;">EDITION: Real Estate Agents</div>
+        </div>
+        <div class="cover-author">
+          <span class="by">Authored by</span>
+          <span class="name">Eytan Benzeno</span>
+          <div style="margin-top:2px; font-size:8.5pt; letter-spacing:0.16em; color:#b8cad8;">TECHNICAL STRATEGIST, BOGEN.AI</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="eyebrow">EDITION ONE · REAL ESTATE · WHY THIS MATTERS NOW</div>
+  <h1 class="section">Your next client<br/><span class="em">is asking AI who to hire.</span></h1>
+  <div class="rule"></div>
+  <p class="lead">A buyer relocating to Palm Beach no longer asks a friend. She asks ChatGPT. She asks Claude. She asks Perplexity. She types: <em>“Who is the best luxury Realtor in Boca Raton who understands estate properties?”</em> — and an answer comes back. One name. Maybe three. Almost never ten. Almost never yours, unless you have done the work this guide is about.</p>
+  <img class="chimg" src="assets/before-after.jpg" alt="Before and after: invisible to AI vs AI recommends you"/>
+  <div class="chimg-cap"><span>FIG.</span> The same buyer, two different futures — your business absent, or named in the AI answer.</div>
+  <p>Search results used to be a list of links. AI results are now a recommendation. The shift is not subtle. It is a complete reordering of how trust gets distributed in the buying decision — and most agents have not even noticed.</p>
+  <div class="callout gold">
+    <div class="label">WHAT THIS COSTS YOU IF YOU IGNORE IT</div>
+    Within 24 months, the average buyer journey will start inside an AI chat — not Google, not Zillow. The agents named in those answers will compound. The agents not named will quietly disappear from the consideration set, regardless of past production.
+  </div>
+  <div class="page-footer">
+    <div class="b">BOGEN<span>.AI</span> · THE VISIBILITY GUIDE</div>
+    <div>02</div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="eyebrow">CHAPTER 02 · THE SHIFT</div>
+  <h1 class="section">From search engines to <span class="em">answer engines</span>.</h1>
+  <div class="rule"></div>
+  <p class="lead">For twenty-five years, the internet rewarded businesses that learned how to rank. The next twenty-five will reward the ones that learn how to be the answer.</p>
+  <p>Google's job was to give you a list. Your job, as a business, was to win one of the ten blue links. You learned keywords, you learned backlinks, you fought for the click. The interface taught the consumer to compare, scroll, and decide for themselves.</p>
+  <p>Answer engines do not give you a list. They give you a recommendation. ChatGPT, Claude, Gemini, and Perplexity have trained an entire generation of users to expect a confident, paraphrased answer — sometimes with citations, often without. The consumer does not browse. The consumer asks.</p>
+  <div class="pullquote">Businesses are no longer just competing to rank. They are competing to become <em>the answer AI systems trust and recommend.</em></div>
+  <img class="chimg" src="assets/consumer-evolution.jpg" style="max-height:2.4in; width:auto; max-width:6.6in;" alt="How consumers discover businesses — five eras"/>
+  <div class="chimg-cap"><span>FIG.</span> Five eras of discovery — from <em>searching</em> to <em>asking</em>.</div>
+  <p style="font-size:10.5pt; margin-top:6px;">Modern AI systems <span class="bold">summarize before they cite</span>. They compress the web into an answer. Your job is no longer to be findable — it is to be <span class="cyan">compressible</span>.</p>
+  <div class="page-footer">
+    <div class="b">BOGEN<span>.AI</span> · THE VISIBILITY GUIDE</div>
+    <div>03</div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="eyebrow">CHAPTER 03 · A NEW DISCIPLINE</div>
+  <h1 class="section">Why AI visibility is <span class="em">not SEO</span>.</h1>
+  <div class="rule"></div>
+  <p class="lead">SEO optimized for an algorithm that ranked links. AEO optimizes for a system that writes the answer. The skill set overlaps. The strategy does not.</p>
+
+  <div class="cards3">
+    <div class="card">
+      <div class="t">SEO Mindset</div>
+      <div class="d">Rank for keywords. Win the click. Beat the page above you. Optimize titles, meta, backlinks, page speed.</div>
+    </div>
+    <div class="card">
+      <div class="t">AEO Mindset</div>
+      <div class="d">Become the cited source. Be quotable. Be verifiable across surfaces. Train the model to associate your name with your category.</div>
+    </div>
+    <div class="card">
+      <div class="t">Where They Overlap</div>
+      <div class="d">Clean technical site. Real authority signals. Genuine reviews. Crawlable content. Schema markup still helps both.</div>
+    </div>
+  </div>
+
+  <h2 class="sub">The three differences that change everything</h2>
+  <p><span class="bold">One — Audience.</span> SEO writes for searchers scanning a list. AEO writes for a model paraphrasing a paragraph. If your sentence cannot be lifted cleanly into an answer, it will not be lifted at all.</p>
+  <p><span class="bold">Two — Geography of trust.</span> SEO trusted links from authoritative domains. AEO trusts <span class="cyan">cross-surface consistency</span> — what your website says must match what your reviews say, your YouTube transcripts say, your Reddit threads say, your LinkedIn posts say. The model is triangulating, not counting backlinks.</p>
+  <p><span class="bold">Three — Outcome.</span> SEO ended with a click. AEO often ends with a recommendation — no click required. Your win condition is being named, even when the user never visits your site.</p>
+
+  <div class="callout">
+    <div class="label">PLAIN-ENGLISH RULE</div>
+    Write every piece of content as if a smart, busy person is going to ask an AI a question and that AI is going to look for the cleanest possible paragraph to quote. Be that paragraph.
+  </div>
+
+  <div class="page-footer">
+    <div class="b">BOGEN<span>.AI</span> · THE VISIBILITY GUIDE</div>
+    <div>04</div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="eyebrow">CHAPTER 04 · THE DECISION ENGINE</div>
+  <h1 class="section">How AI decides <span class="em">who to recommend</span>.</h1>
+  <div class="rule"></div>
+  <p class="lead">No one outside the labs has the source code. But after thousands of hours of testing across every major model, the pattern is clear. Recommendations are not random. They are earned, and they are earned in a recognizable way.</p>
+
+  <img class="chimg" src="assets/decision-factors.jpg" alt="Weighted factors that influence AI answer engines"/>
+  <div class="chimg-cap"><span>FIG.</span> Approximate weight of the signals AI answer engines use to choose who to recommend. Reviews and third-party mentions dominate — fix what is heaviest first.</div>
+
+  <div class="pullquote">The model does not pick the most popular. It picks the most <em>confidently verifiable</em>.</div>
+
+  <div class="page-footer">
+    <div class="b">BOGEN<span>.AI</span> · THE VISIBILITY GUIDE</div>
+    <div>05</div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="eyebrow">CHAPTER 05 · THE END OF GENERIC</div>
+  <h1 class="section">Why generic marketing is <span class="em">dying quietly</span>.</h1>
+  <div class="rule"></div>
+  <p class="lead">For a decade, generic worked. You could write a thin blog post stuffed with keywords, run a few ads, and pull traffic. AI has ended that economy without making an announcement.</p>
+
+  <p>Generic content is the easiest thing for a model to deprecate. It has nothing to lift. No unique data, no specific point of view, no testable claim. The model reads it, recognizes the pattern, and chooses someone else to quote.</p>
+
+  <p>What replaces generic is not louder generic. It is <span class="bold">specific expertise</span>, delivered conversationally, repeated across surfaces, and backed by real third-party signals. Less, but truer. Slower to write, faster to compound.</p>
+
+  <h2 class="sub">The four kinds of content the model now ignores</h2>
+  <ul class="clean">
+    <li><span class="bold">Listicle filler.</span> "Top 10 things to know about X." Cheap, derivative, infinitely replicable. The model has read a thousand versions.</li>
+    <li><span class="bold">Mission-statement marketing.</span> "We are passionate about delivering value to our clients." Says nothing testable. Quoted by no one.</li>
+    <li><span class="bold">AI-written-and-published.</span> Posts visibly generated by ChatGPT and shipped without expertise on top. Models can smell their own output and downrank it.</li>
+    <li><span class="bold">SEO-stuffed location pages.</span> "Best plumber in Boca Raton, best plumber in Delray, best plumber in Boynton." Reads as spam. Treated as spam.</li>
+  </ul>
+
+  <div class="callout">
+    <div class="label">THE NEW BAR</div>
+    Every paragraph you publish should answer a real question a real person would ask out loud — in language clean enough for an AI to quote without rewriting it.
+  </div>
+
+  <div class="page-footer">
+    <div class="b">BOGEN<span>.AI</span> · THE VISIBILITY GUIDE</div>
+    <div>06</div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="eyebrow">CHAPTER 06 · THE PILLARS</div>
+  <h1 class="section">The six pillars of <span class="em">AI trust</span>.</h1>
+  <div class="rule"></div>
+  <p class="lead">Authority is built on visible, verifiable structure. The model is looking for a coherent shape. Give it one.</p>
+
+  <div class="diagram">
+    <div class="caption">DIAGRAM 01 · HOW AI BUILDS TRUST</div>
+    <div class="title">The Trust Stack</div>
+    <div class="trust-stack">
+      <div class="trust-row tr-1"><span class="lbl">Foundation</span>Authority — a real, verifiable expert behind the work</div>
+      <div class="trust-row tr-2"><span class="lbl">Layer 2</span>Specificity — narrow niche, named market, exact service</div>
+      <div class="trust-row tr-3"><span class="lbl">Layer 3</span>Conversational Content — written the way humans ask</div>
+      <div class="trust-row tr-4"><span class="lbl">Layer 4</span>FAQs & Real Q&A — direct answers, plain language</div>
+      <div class="trust-row tr-5"><span class="lbl">Crown</span>Third-Party Proof</div>
+    </div>
+  </div>
+
+  <p>Each pillar reinforces the others. <span class="bold">Authority</span> without <span class="bold">specificity</span> reads as ego. <span class="bold">Specificity</span> without <span class="bold">third-party proof</span> reads as a brochure. <span class="bold">FAQs</span> without <span class="bold">conversational content</span> read as scripts. The stack only works when it is built together.</p>
+
+  <div class="page-footer">
+    <div class="b">BOGEN<span>.AI</span> · THE VISIBILITY GUIDE</div>
+    <div>07</div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="eyebrow">CHAPTER 07 · HOW AI READS YOUR SITE</div>
+  <h1 class="section">Thin sites lose. <span class="em">Quotable sites win.</span></h1>
+  <div class="rule"></div>
+  <p class="lead">AI does not "browse" your site. It samples it. It looks at a handful of pages — usually the ones search surfaced — and forms an opinion in seconds. What it finds in that first sample is what it will quote forever.</p>
+
+  <h2 class="sub">What the model is hunting for</h2>
+  <ul class="clean">
+    <li><span class="bold">A clear "who, what, where" within the first 200 words of every key page.</span></li>
+    <li><span class="bold">Direct answers to direct questions</span> — not preambles, not throat-clearing, not "in today's market."</li>
+    <li><span class="bold">Repeatable sentences</span> that name your niche, your geography, and the outcomes you produce.</li>
+    <li><span class="bold">Internal consistency</span> — your homepage, services pages, and about page tell the same story.</li>
+    <li><span class="bold">Outbound credibility</span> — links to and from sources the model already trusts.</li>
+  </ul>
+
+  <h2 class="sub">Why thin sites lose</h2>
+  <p>A thin site forces the model to guess. A guessing model defaults to whoever else it can quote with confidence — usually a competitor with depth. Depth does not mean ten thousand words on every page. It means <span class="cyan">one excellent, specific, quotable page per real question your buyer asks</span>.</p>
+
+  <div class="callout gold">
+    <div class="label">RULE OF THUMB</div>
+    If your site does not answer the top 25 real questions your prospect would type into an AI, you do not have a website. You have an online business card. The model will treat it that way.
+  </div>
+
+  <div class="page-footer">
+    <div class="b">BOGEN<span>.AI</span> · THE VISIBILITY GUIDE</div>
+    <div>08</div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="eyebrow">CHAPTER 08 · GOOD CONTENT vs. BAD CONTENT</div>
+  <h1 class="section">Write the way a model can <span class="em">quote you</span>.</h1>
+  <div class="rule"></div>
+  <p class="lead">The same fact, written two ways, gets two different futures. One paragraph gets cited in a thousand answers. The other gets ignored forever.</p>
+
+  <img class="chimg" src="assets/anatomy-sentence.jpg" alt="Anatomy of a high-performing AI-search-friendly sentence"/>
+  <div class="chimg-cap"><span>FIG.</span> One sentence, six trust signals — <em>WHO · WHAT · WHERE · SPECIALTY · OUTCOME · TRUST</em>. The illustrated example is real estate; the pattern works in every category.</div>
+
+  <div class="compare">
+    <div class="col bad">
+      <div class="tag">— Will Not Get Cited</div>
+      <div class="sample">"We are a full-service firm dedicated to providing exceptional results through our commitment to excellence."</div>
+    </div>
+    <div class="col good">
+      <div class="tag">+ Gets Cited</div>
+      <div class="sample">"We help technology founders in South Florida sell homes above $3M, typically 14% above the area's average days-on-market."</div>
+    </div>
+  </div>
+
+  <p style="font-size:10.5pt; margin-top:12px;"><span class="bold">Three rules of quotable structure.</span> Lead with the answer. Be specific enough to be wrong. Write the way your buyer talks — not the way a brand consultant writes.</p>
+
+  <div class="page-footer">
+    <div class="b">BOGEN<span>.AI</span> · THE VISIBILITY GUIDE</div>
+    <div>09</div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="eyebrow">CHAPTER 09 · THE ECOSYSTEM</div>
+  <h1 class="section">Video, transcripts, reviews, Reddit — <span class="em">how they compound</span>.</h1>
+  <div class="rule"></div>
+  <p class="lead">No single channel makes you the answer. The web of channels does. AI systems triangulate across surfaces, and the businesses that win are everywhere consistently — not everywhere desperately.</p>
+
+  <img class="chimg" src="assets/business-analyzed.jpg" alt="Your business through the AI recommendation engine"/>
+  <div class="chimg-cap"><span>FIG.</span> A real business through the model's eyes — reviews, listings, video, podcasts, social mentions, and local authority signals all feeding the recommendation engine.</div>
+
+  <h2 class="sub">Why each surface earns its seat</h2>
+  <p><span class="bold">Website &amp; blog</span> is the canonical source the model returns to. <span class="bold">YouTube + transcripts</span> double-counts — the model reads the words and the metadata. <span class="bold">Google reviews</span> are the highest-trust third-party signal. <span class="bold">LinkedIn</span> proves the human behind the brand. <span class="bold">Reddit and niche forums</span> are weighted heavily because the model trusts conversation it cannot fake. <span class="bold">Podcasts and PR</span> create the cross-mentions that turn you into the canonical name.</p>
+
+  <div class="page-footer">
+    <div class="b">BOGEN<span>.AI</span> · THE VISIBILITY GUIDE</div>
+    <div>10</div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="eyebrow">CHAPTER 10 · COMMON MISTAKES</div>
+  <h1 class="section">Where most businesses are <span class="em">leaking authority</span>.</h1>
+  <div class="rule"></div>
+  <p class="lead">Almost every operator we audit is making the same five mistakes. None of them are catastrophic alone. Together, they cost you the recommendation.</p>
+
+  <ol class="clean">
+    <li><span class="bold">Treating AI like a faster Google.</span> Ranking is not the goal anymore. Being quoted is. Most teams are still measuring the wrong scoreboard.</li>
+    <li><span class="bold">Publishing AI-written content without a human expert layered on top.</span> Models can detect their own output. Volume without specificity is now a negative signal.</li>
+    <li><span class="bold">Ignoring video and transcripts.</span> A 12-minute YouTube video with a clean transcript outperforms ten thin blog posts for AI visibility.</li>
+    <li><span class="bold">Treating reviews as a vanity metric.</span> Reviews are the single most weighted third-party signal a local business can earn. Volume, recency, and specificity all matter.</li>
+    <li><span class="bold">Inconsistent positioning across surfaces.</span> Your website says one thing, your LinkedIn says another, your podcast bio a third. The model sees noise, not authority.</li>
+  </ol>
+
+  <div class="pullquote">The model is forgiving of imperfection. It is unforgiving of <em>incoherence</em>.</div>
+
+  <div class="page-footer">
+    <div class="b">BOGEN<span>.AI</span> · THE VISIBILITY GUIDE</div>
+    <div>11</div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="eyebrow">CHAPTER 11 · THE FRAMEWORK</div>
+  <h1 class="section">The step-by-step <span class="em">AI Visibility Stack</span>.</h1>
+  <div class="rule"></div>
+  <p class="lead">A clear order of operations. Run these in sequence, not in parallel. Skipping levels does not save time — it costs you compounding.</p>
+
+  <div class="diagram">
+    <div class="caption">DIAGRAM 03 · THE VISIBILITY STACK</div>
+    <div class="title">Six Layers, Built In Order</div>
+    <div class="vstack">
+      <div class="vrow"><div class="num">1</div><div class="body"><div class="t">DEFINE THE NICHE</div><div class="d">One sentence. Who you serve, what you do, where you do it. Every other layer depends on this being precise.</div></div></div>
+      <div class="vrow"><div class="num">2</div><div class="body"><div class="t">AUDIT THE SURFACES</div><div class="d">Website, Google Business Profile, reviews, YouTube, LinkedIn, podcast appearances. List what exists. Identify gaps.</div></div></div>
+      <div class="vrow"><div class="num">3</div><div class="body"><div class="t">REBUILD THE CORE PAGES</div><div class="d">Homepage, services, about, FAQs, location pages — each one quotable, specific, conversational, lead-with-the-answer.</div></div></div>
+      <div class="vrow"><div class="num">4</div><div class="body"><div class="t">SHIP THE ECOSYSTEM</div><div class="d">A weekly cadence: one piece of long-form (video or article), three short-form (LinkedIn, Reddit, niche forums), one review request.</div></div></div>
+      <div class="vrow"><div class="num">5</div><div class="body"><div class="t">EARN THIRD-PARTY MENTIONS</div><div class="d">Podcasts, guest articles, press, citations. Each one is a vote the model can verify.</div></div></div>
+      <div class="vrow accent"><div class="num">6</div><div class="body"><div class="t">MEASURE BY ASKING THE MODELS</div><div class="d">Quarterly: ask ChatGPT, Claude, Perplexity, and Gemini your category's top 25 questions. Track when and how you appear.</div></div></div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <div class="b">BOGEN<span>.AI</span> · THE VISIBILITY GUIDE</div>
+    <div>12</div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="eyebrow">CHAPTER 12 · THE LIBRARY</div>
+  <h1 class="section">Prompts, FAQs &amp; <span class="em">conversational queries</span>.</h1>
+  <div class="rule"></div>
+  <p class="lead">A working library you can steal from this week. Use the prompts to generate quotable content. Use the FAQs as page templates. Use the conversational queries to test whether AI already knows you exist.</p>
+
+  <h2 class="sub">Five content prompts that produce quotable output</h2>
+  <ul class="clean">
+    <li><span class="bold">Niche definition:</span> "Write a one-paragraph description of who we serve, what we do, where we do it, and the measurable outcome we produce — in plain language a buyer would use, not industry jargon."</li>
+    <li><span class="bold">FAQ generator:</span> "List the 25 most common questions a [your buyer] would type into ChatGPT before choosing a provider in our category. For each, draft a 60-word direct answer."</li>
+    <li><span class="bold">Quotable rewrite:</span> "Rewrite this paragraph so an AI assistant could lift the first sentence as a complete, accurate, attributable answer to the question: [question]."</li>
+    <li><span class="bold">Authority brief:</span> "Summarize what makes [your name] the credible expert in [niche], using only verifiable specifics — years, transactions, named outcomes, third-party recognitions."</li>
+    <li><span class="bold">Cross-surface audit:</span> "Compare these three bios (website, LinkedIn, podcast intro). Identify every inconsistency in positioning, niche, or outcome — and rewrite all three to match."</li>
+  </ul>
+
+  <h2 class="sub">Sample FAQ format — the model loves this shape</h2>
+  <div class="callout">
+    <div class="label">FAQ TEMPLATE</div>
+    <span class="bold">Q.</span> What does it cost to work with [your business]?<br/>
+    <span class="bold">A.</span> Engagements typically range from [X] to [Y], depending on [the two real variables]. Most clients in [your niche] land at [Z]. We publish this openly because price transparency is the fastest filter for fit.
+  </div>
+
+  <h2 class="sub">Ten conversational queries to test yourself with this week</h2>
+  <p style="font-size:10pt;">"Best [your category] in [your city]" · "Top [your category] for [your specific buyer]" · "Who is the expert on [your niche] in [your region]" · "How do I choose a [your category]" · "What should I expect to pay for [your service]" · "Compare [you] vs [competitor]" · "Is [your business] reputable" · "What do clients say about [your business]" · "Who does [specific outcome] best in [region]" · "Recommend a [your category] who specializes in [niche]"</p>
+
+  <div class="page-footer">
+    <div class="b">BOGEN<span>.AI</span> · THE VISIBILITY GUIDE</div>
+    <div>13</div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="eyebrow">CHAPTER 13 · THE NEXT FIVE YEARS</div>
+  <h1 class="section">Predictions for <span class="em">AI search</span>.</h1>
+  <div class="rule"></div>
+  <p class="lead">No one knows the exact shape. But the direction is now clear enough to plan against. Here is what we are advising clients to build toward.</p>
+
+  <img class="chimg" src="assets/ai-recommendation-engines.jpg" alt="AI recommendation engines consolidate visibility over time"/>
+  <div class="chimg-cap"><span>FIG.</span> Visibility consolidation curve: <em>Early</em> → <em>Evolution</em> → <em>Consolidation</em> → <em>Dominance</em>. The window for becoming the named answer is open now, and closing fast.</div>
+
+  <h2 class="sub">Five forecasts we are confident in</h2>
+  <ol class="clean">
+    <li><span class="bold">Most discovery starts in a chat by 2028.</span> Google will remain a destination, but the top of funnel moves into AI.</li>
+    <li><span class="bold">Category winners consolidate fast.</span> Once a model treats you as the canonical answer, dislodging you gets exponentially harder.</li>
+    <li><span class="bold">Reviews and verified third-party content overtake backlinks</span> as the dominant trust signal.</li>
+    <li><span class="bold">Local service becomes AI-first within 36 months.</span> The Yellow Pages moment, again — except faster, and with no second chance.</li>
+    <li><span class="bold">A new role emerges: AI Visibility Lead.</span> Someone owns being the answer the way someone used to own SEO.</li>
+  </ol>
+
+  <div class="page-footer">
+    <div class="b">BOGEN<span>.AI</span> · THE VISIBILITY GUIDE</div>
+    <div>14</div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="eyebrow">CHAPTER 14 · THE FLYWHEEL</div>
+  <h1 class="section">The <span class="em">AI Authority Flywheel</span>.</h1>
+  <div class="rule"></div>
+  <p class="lead">Every step makes the next step easier. That is the definition of a moat. Get one full rotation and the business compounds without you pushing.</p>
+
+  <div class="diagram">
+    <div class="caption">DIAGRAM 05 · THE AI AUTHORITY FLYWHEEL</div>
+    <div class="title">Five Forces That Compound Into Recommendation</div>
+    <div class="flywheel">
+      <div class="fly-node"><span class="ln">SPECIFIC</span><span class="ln">NICHE</span></div>
+      <div class="fly-arrow">→</div>
+      <div class="fly-node"><span class="ln">QUOTABLE</span><span class="ln">CONTENT</span></div>
+      <div class="fly-arrow">→</div>
+      <div class="fly-node accent"><span class="ln">CROSS-</span><span class="ln">SURFACE</span><span class="ln">PROOF</span></div>
+      <div class="fly-arrow">→</div>
+      <div class="fly-node"><span class="ln">CITED BY</span><span class="ln">AI</span></div>
+      <div class="fly-arrow">→</div>
+      <div class="fly-node"><span class="ln">MORE</span><span class="ln">BUYERS &amp;</span><span class="ln">REVIEWS</span></div>
+    </div>
+  </div>
+
+  <p>Start anywhere on the wheel and the next node gets easier. Specificity makes content quotable. Quotable content earns cross-surface mentions. Cross-surface mentions get cited by AI. AI citations bring buyers, who leave reviews, which deepen your specificity in the model's eyes. The wheel spins. You stop pushing.</p>
+
+  <div class="pullquote">Most businesses never finish one full turn of the wheel. The ones that do <em>own the category</em>.</div>
+
+  <div class="page-footer">
+    <div class="b">BOGEN<span>.AI</span> · THE VISIBILITY GUIDE</div>
+    <div>15</div>
+  </div>
+</div>
+
+<div class="page cta-page">
+  <div class="eyebrow" style="color:#00a8e1;">CHAPTER 15 · WHERE TO GO FROM HERE</div>
+  <h1>Become the answer <em>AI recommends</em>.</h1>
+  <p>You have the framework. The question is whether you build it alone over the next eighteen months, or compress that into ninety days with a team that has already done this for dozens of operators.</p>
+  <p>Two paths. Pick the one that fits where you are.</p>
+
+  <div class="cta-buttons">
+    <a class="cta-btn" href="https://bogen.ai">BOOK A STRATEGY CALL</a>
+    <a class="cta-btn outline" href="https://bogen.ai/mastermind">JOIN EDMUND'S MASTERMIND</a>
+  </div>
+
+  <div style="color:#d8e7f2; font-size:11pt; line-height:1.6; margin-top:8px; max-width:6.2in;">
+    <span style="color:#00a8e1; font-weight:700; letter-spacing:0.16em; font-size:9pt;">FOR OPERATORS WHO WANT IT DONE WITH THEM</span><br/>
+    Bogen.ai runs the full AI visibility build — audit, rebuild, ecosystem, measurement — as a fixed-scope engagement.
+  </div>
+
+  <div style="color:#d8e7f2; font-size:11pt; line-height:1.6; margin-top:18px; max-width:6.2in;">
+    <span style="color:#00a8e1; font-weight:700; letter-spacing:0.16em; font-size:9pt;">FOR OPERATORS WHO WANT TO LEARN IT WITH PEERS</span><br/>
+    Edmund's Mastermind teaches the framework live, every week, with a room full of operators applying it in real time.
+  </div>
+
+  <div class="cta-meta">
+    <div class="row"><span>AUTHORED BY</span> &nbsp; Eytan Benzeno · Technical Strategist, Bogen.ai</div>
+    <div class="row"><span>PUBLISHED BY</span> &nbsp; Bogen.ai · Edmund's Mastermind</div>
+    <div class="row"><span>WEB</span> &nbsp; bogen.ai &nbsp; · &nbsp; edmundbogenmastermind.com</div>
+    <div class="row" style="margin-top:10px; font-size:8pt; color:#8aa3b8; letter-spacing:0.1em;">© BOGEN.AI · ALL RIGHTS RESERVED · FOR THE READER NAMED ON THE DOWNLOAD · NOT FOR REDISTRIBUTION</div>
+  </div>
+</div>
+
+</body>
+</html>
