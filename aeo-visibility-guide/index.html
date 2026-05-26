@@ -483,6 +483,94 @@ section { padding: 80px 36px; }
   .nav { padding: 14px 20px; }
   section { padding: 60px 24px; }
 }
+
+/* LEAD-GATE FORM */
+.gate {
+  max-width: 720px;
+  margin: 0 auto 56px;
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 32px 28px;
+  box-shadow: var(--shadow);
+}
+.gate h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--ink);
+}
+.gate p.gate-sub {
+  font-size: 14px;
+  color: var(--ink-2);
+  margin-bottom: 20px;
+}
+.gate form { display: grid; gap: 12px; }
+.gate .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.gate input[type="text"],
+.gate input[type="email"] {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+.gate input:focus { border-color: var(--cyan); }
+.gate label.check {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: 12px;
+  color: var(--ink-2);
+  line-height: 1.45;
+}
+.gate label.check input { margin-top: 3px; flex-shrink: 0; }
+.gate button {
+  background: var(--cyan);
+  color: #fff;
+  border: 0;
+  padding: 14px 22px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.gate button:hover { background: var(--cyan-2); }
+.gate button:disabled { opacity: 0.55; cursor: not-allowed; }
+.gate .err { color: #e74c3c; font-size: 13px; min-height: 18px; }
+.gate.success .form-wrap { display: none; }
+.gate .success-msg { display: none; }
+.gate.success .success-msg {
+  display: block;
+  text-align: center;
+}
+.gate.success .success-msg h3 {
+  color: var(--cyan);
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+.gate.success .success-msg p { color: var(--ink-2); font-size: 14px; }
+
+/* LOCKED DOWNLOAD BUTTON STATE */
+.edition-card .dl[data-locked="true"] {
+  background: var(--ink-2);
+  cursor: pointer;
+  position: relative;
+}
+.edition-card .dl[data-locked="true"]::before {
+  content: "🔒  ";
+}
+.edition-card .dl[data-locked="true"]:hover {
+  background: var(--cyan);
+}
 </style>
 </head>
 <body>
@@ -529,13 +617,40 @@ section { padding: 80px 36px; }
     <h2>Pick the version <span class="em">built for your business</span>.</h2>
     <p>Identical framework. Three different opening chapters — written for the exact audience you serve.</p>
   </div>
+
+  <div class="gate" id="leadGate">
+    <div class="form-wrap">
+      <h3>Enter your email to unlock all three editions.</h3>
+      <p class="gate-sub">No spam. We'll send you the PDFs and occasional Bogen.ai field notes you can actually use.</p>
+      <form id="gateForm" action="https://formspree.io/f/mlgavjvz" method="POST">
+        <div class="row2">
+          <input type="text" name="name" placeholder="Your name" required autocomplete="name"/>
+          <input type="email" name="email" placeholder="Your email" required autocomplete="email"/>
+        </div>
+        <input type="text" name="company" placeholder="Company or brokerage (optional)" autocomplete="organization"/>
+        <input type="hidden" name="_subject" value="New AEO Visibility Guide Lead"/>
+        <input type="hidden" name="source" value="aeo-visibility-guide-landing"/>
+        <div class="err" id="gateErr"></div>
+        <button type="submit" id="gateBtn">UNLOCK THE PDFS</button>
+        <label class="check">
+          <input type="checkbox" required/>
+          <span>I agree Bogen.ai may email me the guide and occasional AI visibility insights. Unsubscribe anytime.</span>
+        </label>
+      </form>
+    </div>
+    <div class="success-msg">
+      <h3>You're in. All three editions unlocked below.</h3>
+      <p>The download buttons are now live. Click any edition to grab the PDF.</p>
+    </div>
+  </div>
+
   <div class="editions">
     <div class="edition-card">
       <div class="num">Edition 01</div>
       <h3>Real Estate Agents</h3>
       <div class="for">Luxury · Resale · New Construction</div>
       <p>How buyers and sellers are now asking AI which Realtor to trust — and exactly how to become the name the algorithms recommend.</p>
-      <a class="dl" href="pdf/bogen-ai-visibility-guide-v1-real-estate.pdf" download>DOWNLOAD PDF</a>
+      <a class="dl" data-locked="true" data-pdf="pdf/bogen-ai-visibility-guide-v1-real-estate.pdf" href="#leadGate">UNLOCK TO DOWNLOAD</a>
       <div class="meta">16 PAGES · 1.1 MB</div>
     </div>
     <div class="edition-card">
@@ -543,7 +658,7 @@ section { padding: 80px 36px; }
       <h3>Entrepreneurs & Owners</h3>
       <div class="for">Founders · Operators · SMB Leaders</div>
       <p>How AI systems are quietly deciding which companies in your category get recommended — and why category authority is now an algorithmic asset.</p>
-      <a class="dl" href="pdf/bogen-ai-visibility-guide-v2-entrepreneurs.pdf" download>DOWNLOAD PDF</a>
+      <a class="dl" data-locked="true" data-pdf="pdf/bogen-ai-visibility-guide-v2-entrepreneurs.pdf" href="#leadGate">UNLOCK TO DOWNLOAD</a>
       <div class="meta">16 PAGES · 1.1 MB</div>
     </div>
     <div class="edition-card">
@@ -551,7 +666,7 @@ section { padding: 80px 36px; }
       <h3>Service Providers</h3>
       <div class="for">Roofers · Plumbers · HVAC · Pool · Contractors</div>
       <p>How homeowners now ask AI for the best local pro — and exactly how to make sure the answer is your business, not your competitor's.</p>
-      <a class="dl" href="pdf/bogen-ai-visibility-guide-v3-service-providers.pdf" download>DOWNLOAD PDF</a>
+      <a class="dl" data-locked="true" data-pdf="pdf/bogen-ai-visibility-guide-v3-service-providers.pdf" href="#leadGate">UNLOCK TO DOWNLOAD</a>
       <div class="meta">16 PAGES · 1.1 MB</div>
     </div>
   </div>
@@ -662,6 +777,79 @@ if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   [50, 200, 600, 1200].forEach(function(t){ setTimeout(jumpTop, t); });
   // After a short grace period, stop forcing so anchor links work
   setTimeout(function(){ window._userScrolled = true; }, 1500);
+})();
+</script>
+<script>
+// Lead gate: Formspree submission + unlock downloads
+(function(){
+  var UNLOCK_KEY = 'aeo-guide-unlocked';
+  var gate = document.getElementById('leadGate');
+  var form = document.getElementById('gateForm');
+  var btn = document.getElementById('gateBtn');
+  var err = document.getElementById('gateErr');
+  var locked = document.querySelectorAll('.edition-card .dl[data-locked="true"]');
+
+  function unlock() {
+    locked.forEach(function(el){
+      var pdf = el.getAttribute('data-pdf');
+      el.removeAttribute('data-locked');
+      el.setAttribute('href', pdf);
+      el.setAttribute('download', '');
+      el.textContent = 'DOWNLOAD PDF';
+    });
+  }
+
+  // If returning visitor, auto-unlock and hide form
+  if (localStorage.getItem(UNLOCK_KEY) === '1') {
+    gate.classList.add('success');
+    unlock();
+  }
+
+  // Intercept locked button clicks → scroll to form
+  locked.forEach(function(el){
+    el.addEventListener('click', function(e){
+      if (el.getAttribute('data-locked') === 'true') {
+        e.preventDefault();
+        gate.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        var nameInput = form.querySelector('input[name="name"]');
+        if (nameInput) setTimeout(function(){ nameInput.focus(); }, 400);
+      }
+    });
+  });
+
+  // Submit form via AJAX to Formspree
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    err.textContent = '';
+    btn.disabled = true;
+    btn.textContent = 'SUBMITTING…';
+    var data = new FormData(form);
+    fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    }).then(function(res){
+      if (res.ok) {
+        localStorage.setItem(UNLOCK_KEY, '1');
+        gate.classList.add('success');
+        unlock();
+        // Scroll back to editions so they see unlocked buttons
+        setTimeout(function(){
+          document.getElementById('editions').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 600);
+      } else {
+        return res.json().then(function(j){
+          err.textContent = (j && j.error) ? j.error : 'Something went wrong. Please try again.';
+          btn.disabled = false;
+          btn.textContent = 'UNLOCK THE PDFS';
+        });
+      }
+    }).catch(function(){
+      err.textContent = 'Network error. Please try again.';
+      btn.disabled = false;
+      btn.textContent = 'UNLOCK THE PDFS';
+    });
+  });
 })();
 </script>
 <script>
