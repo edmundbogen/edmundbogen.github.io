@@ -41,67 +41,69 @@
   }
   nav .links a:hover { color: #00a8e1; }
 
-  /* Hero */
+  /* Hero — image only, no overlay text */
   .hero {
     position: relative;
-    height: 78vh;
-    min-height: 560px;
-    max-height: 820px;
-    background-image: linear-gradient(180deg, rgba(13,37,64,0.35) 0%, rgba(13,37,64,0.55) 60%, rgba(13,37,64,0.92) 100%), url('hero.png');
+    height: 56vh;
+    min-height: 380px;
+    max-height: 620px;
+    background-image: url('hero.png');
     background-size: cover;
-    background-position: center 30%;
-    display: flex;
-    align-items: flex-end;
-    color: #fff;
+    background-position: center 35%;
   }
-  .hero-inner {
-    max-width: 1100px;
+
+  /* Masthead block — title/dek beneath image */
+  .masthead-block {
+    background: #ffffff;
+    border-bottom: 1px solid #e6e6e6;
+    padding: 56px 32px 48px;
+    text-align: center;
+  }
+  .masthead-inner {
+    max-width: 880px;
     margin: 0 auto;
-    padding: 0 40px 70px;
-    width: 100%;
   }
-  .hero .masthead {
+  .masthead-block .masthead {
     font-family: 'Playfair Display', Georgia, serif;
-    font-size: 18px;
+    font-size: 16px;
     letter-spacing: 8px;
     color: #00a8e1;
     text-transform: uppercase;
     font-weight: 400;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
   }
-  .hero .issue {
+  .masthead-block .issue {
     font-size: 10px;
     letter-spacing: 4px;
-    color: rgba(255,255,255,0.7);
+    color: #888;
     text-transform: uppercase;
     margin-bottom: 22px;
   }
-  .hero h1 {
+  .masthead-block h1 {
     font-family: 'Playfair Display', Georgia, serif;
     font-size: 54px;
     font-weight: 400;
     line-height: 1.15;
     letter-spacing: -0.5px;
     margin-bottom: 22px;
-    color: #fff;
-    max-width: 900px;
+    color: #1a3e5c;
   }
-  .hero .dek {
+  .masthead-block .dek {
     font-size: 18px;
-    color: rgba(255,255,255,0.92);
+    color: #444;
     line-height: 1.55;
     font-weight: 300;
-    max-width: 760px;
-    margin-bottom: 26px;
+    max-width: 720px;
+    margin: 0 auto 26px;
   }
-  .hero .byline {
+  .masthead-block .byline {
     font-size: 11px;
     letter-spacing: 3px;
-    color: rgba(255,255,255,0.85);
+    color: #666;
     text-transform: uppercase;
     font-weight: 500;
   }
-  .hero .byline span { color: #00a8e1; }
+  .masthead-block .byline span { color: #00a8e1; }
 
   /* Article container */
   .article {
@@ -377,11 +379,11 @@
   @media (max-width: 768px) {
     nav { padding: 14px 20px; }
     nav .links a { margin-left: 14px; font-size: 10px; letter-spacing: 1.5px; }
-    .hero { height: auto; min-height: 520px; }
-    .hero-inner { padding: 40px 24px 50px; }
-    .hero .masthead { font-size: 14px; letter-spacing: 6px; }
-    .hero h1 { font-size: 34px; }
-    .hero .dek { font-size: 16px; }
+    .hero { height: 40vh; min-height: 260px; }
+    .masthead-block { padding: 40px 22px 36px; }
+    .masthead-block .masthead { font-size: 13px; letter-spacing: 6px; }
+    .masthead-block h1 { font-size: 34px; }
+    .masthead-block .dek { font-size: 16px; }
     .article { padding: 50px 24px 30px; }
     .article h2 { font-size: 26px; margin: 45px 0 18px; }
     .article p { font-size: 16px; }
@@ -407,8 +409,10 @@
   </div>
 </nav>
 
-<section class="hero">
-  <div class="hero-inner">
+<section class="hero" role="img" aria-label="Quiet Money — Issue 001 hero illustration"></section>
+
+<section class="masthead-block">
+  <div class="masthead-inner">
     <div class="masthead">QUIET MONEY</div>
     <div class="issue">Issue 001 · May 27, 2026</div>
     <h1>Wealth Gravity</h1>
