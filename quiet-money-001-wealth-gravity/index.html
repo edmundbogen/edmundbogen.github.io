@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiet Money · Issue 001 — Wealth Gravity | Edmund Bogen</title>
+<meta name="description" content="Why the world's wealth is sorting itself — and where St. Andrews fits in the map being redrawn. Issue 001 of Quiet Money, the weekly wealth column from Edmund Bogen.">
+<meta property="og:title" content="Quiet Money · Issue 001 — Wealth Gravity">
+<meta property="og:description" content="Why the world's wealth is sorting itself — and where St. Andrews fits in the map being redrawn.">
+<meta property="og:image" content="https://edmundbogen.github.io/quiet-money-001-wealth-gravity/hero.png">
+<meta property="og:type" content="article">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #1a1a1a;
+    background: #ffffff;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Nav */
+  nav {
+    background: #1a3e5c;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  nav .logo { color: #fff; font-weight: 300; letter-spacing: 3px; font-size: 13px; text-transform: uppercase; }
+  nav .logo strong { font-weight: 600; letter-spacing: 4px; }
+  nav .links a {
+    color: #fff; text-decoration: none; margin-left: 28px;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 2px; font-weight: 400;
+  }
+  nav .links a:hover { color: #00a8e1; }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    height: 78vh;
+    min-height: 560px;
+    max-height: 820px;
+    background-image: linear-gradient(180deg, rgba(13,37,64,0.35) 0%, rgba(13,37,64,0.55) 60%, rgba(13,37,64,0.92) 100%), url('hero.png');
+    background-size: cover;
+    background-position: center 30%;
+    display: flex;
+    align-items: flex-end;
+    color: #fff;
+  }
+  .hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px 70px;
+    width: 100%;
+  }
+  .hero .masthead {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 18px;
+    letter-spacing: 8px;
+    color: #00a8e1;
+    text-transform: uppercase;
+    font-weight: 400;
+    margin-bottom: 14px;
+  }
+  .hero .issue {
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: rgba(255,255,255,0.7);
+    text-transform: uppercase;
+    margin-bottom: 22px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 54px;
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin-bottom: 22px;
+    color: #fff;
+    max-width: 900px;
+  }
+  .hero .dek {
+    font-size: 18px;
+    color: rgba(255,255,255,0.92);
+    line-height: 1.55;
+    font-weight: 300;
+    max-width: 760px;
+    margin-bottom: 26px;
+  }
+  .hero .byline {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: rgba(255,255,255,0.85);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .hero .byline span { color: #00a8e1; }
+
+  /* Article container */
+  .article {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 70px 32px 40px;
+  }
+  .article h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: #1a3e5c;
+    line-height: 1.25;
+    margin: 60px 0 22px;
+    letter-spacing: -0.3px;
+  }
+  .article h2:first-of-type { margin-top: 0; }
+  .article h3 {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #00a8e1;
+    margin: 50px 0 14px;
+    font-weight: 600;
+  }
+  .article p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #2a2a2a;
+    margin-bottom: 22px;
+  }
+  .article p strong { color: #1a3e5c; font-weight: 600; }
+  .article p em { color: #1a3e5c; }
+
+  /* Pull quote */
+  blockquote {
+    border-left: 4px solid #00a8e1;
+    padding: 18px 0 18px 28px;
+    margin: 38px 0;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 22px;
+    font-style: italic;
+    color: #1a3e5c;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+  blockquote cite {
+    display: block;
+    margin-top: 14px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-style: normal;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #666;
+    font-weight: 500;
+  }
+
+  /* Chart container */
+  .chart-block {
+    margin: 50px 0;
+    padding: 32px 28px;
+    background: #f8f9fb;
+    border-left: 3px solid #00a8e1;
+  }
+  .chart-block .chart-eyebrow {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #00a8e1;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .chart-block .chart-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 22px;
+    color: #1a3e5c;
+    font-weight: 400;
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .chart-block .chart-source {
+    font-size: 11px;
+    color: #888;
+    margin-top: 14px;
+    font-style: italic;
+  }
+  .chart-wrap {
+    position: relative;
+    height: 380px;
+    margin-top: 20px;
+  }
+  .chart-wrap.tall { height: 480px; }
+  .chart-wrap.short { height: 320px; }
+
+  /* Tier pyramid (custom HTML, not Chart.js) */
+  .tier-pyramid {
+    margin: 30px 0 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .tier-row {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(90deg, #1a3e5c 0%, #2a5a7e 100%);
+    color: #fff;
+    padding: 14px 22px;
+    border-radius: 2px;
+    width: 100%;
+    max-width: 100%;
+    transition: transform 0.2s;
+  }
+  .tier-row:hover { transform: translateX(4px); }
+  .tier-row.t1 { max-width: 35%; background: linear-gradient(90deg, #0d2540 0%, #1a3e5c 100%); }
+  .tier-row.t2 { max-width: 50%; }
+  .tier-row.t3 { max-width: 65%; }
+  .tier-row.t4 { max-width: 78%; }
+  .tier-row.t5 { max-width: 90%; }
+  .tier-row.t6 { max-width: 100%; background: linear-gradient(90deg, #2a5a7e 0%, #3a7a9e 100%); }
+  .tier-row .tier-label {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    flex: 1;
+  }
+  .tier-row .tier-range {
+    font-size: 13px;
+    color: #00d4ff;
+    font-weight: 500;
+    margin-left: 18px;
+  }
+
+  /* Gravity split */
+  .gravity-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin: 30px 0 10px;
+  }
+  .gravity-col {
+    padding: 22px 24px;
+    border-radius: 2px;
+  }
+  .gravity-col.well { background: #eaf6fb; border-top: 3px solid #00a8e1; }
+  .gravity-col.anti { background: #fbe9e7; border-top: 3px solid #c8102e; }
+  .gravity-col h4 {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+  .gravity-col.well h4 { color: #00a8e1; }
+  .gravity-col.anti h4 { color: #c8102e; }
+  .gravity-col ul { list-style: none; }
+  .gravity-col li {
+    font-size: 14px;
+    padding: 6px 0;
+    color: #1a3e5c;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .gravity-col li:last-child { border-bottom: none; }
+
+  /* Closing signature */
+  .signature {
+    margin: 60px 0 20px;
+    padding-top: 30px;
+    border-top: 1px solid #e0e0e0;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 18px;
+    color: #1a3e5c;
+    font-style: italic;
+  }
+
+  /* Author bio */
+  .bio {
+    background: #f4f4f4;
+    margin-top: 60px;
+    padding: 50px 32px;
+  }
+  .bio-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+  }
+  .bio img {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  .bio h4 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 22px;
+    color: #1a3e5c;
+    margin-bottom: 4px;
+    font-weight: 400;
+  }
+  .bio .credentials {
+    font-size: 12px;
+    color: #666;
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+  .bio p {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  .bio .contact a {
+    display: inline-block;
+    padding: 9px 18px;
+    margin-right: 8px;
+    margin-top: 4px;
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-radius: 2px;
+  }
+  .bio .contact a.phone { background: #1a3e5c; color: #fff; }
+  .bio .contact a.email { background: #00a8e1; color: #fff; }
+
+  /* Footer */
+  footer {
+    background: linear-gradient(135deg,#1a3e5c 0%,#0d2137 100%);
+    color: #fff;
+    padding: 50px 32px;
+    text-align: center;
+  }
+  footer .ft-brand {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  footer .ft-meta {
+    font-size: 12px;
+    color: #8cb4d5;
+    margin-bottom: 4px;
+  }
+  footer .ft-mls {
+    font-size: 11px;
+    color: #8cb4d5;
+    margin-top: 16px;
+    line-height: 1.6;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  footer .ft-disclaimer {
+    font-size: 9px;
+    color: #6a8fad;
+    margin-top: 22px;
+    line-height: 1.6;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    nav { padding: 14px 20px; }
+    nav .links a { margin-left: 14px; font-size: 10px; letter-spacing: 1.5px; }
+    .hero { height: auto; min-height: 520px; }
+    .hero-inner { padding: 40px 24px 50px; }
+    .hero .masthead { font-size: 14px; letter-spacing: 6px; }
+    .hero h1 { font-size: 34px; }
+    .hero .dek { font-size: 16px; }
+    .article { padding: 50px 24px 30px; }
+    .article h2 { font-size: 26px; margin: 45px 0 18px; }
+    .article p { font-size: 16px; }
+    blockquote { font-size: 18px; padding-left: 20px; }
+    .chart-block { padding: 22px 18px; }
+    .chart-wrap { height: 320px; }
+    .chart-wrap.tall { height: 380px; }
+    .gravity-split { grid-template-columns: 1fr; }
+    .tier-row.t1, .tier-row.t2, .tier-row.t3, .tier-row.t4, .tier-row.t5 { max-width: 100%; }
+    .tier-row .tier-range { font-size: 11px; }
+    .bio-inner { flex-direction: column; align-items: center; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">THE <strong>EDMUND BOGEN</strong> TEAM</div>
+  <div class="links">
+    <a href="https://edmundbogen.github.io/market-dashboard/">Dashboard</a>
+    <a href="https://bogenhomes.com">Properties</a>
+    <a href="https://www.bogen.ai/contact?tab=client">Contact</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="masthead">QUIET MONEY</div>
+    <div class="issue">Issue 001 · May 27, 2026</div>
+    <h1>Wealth Gravity</h1>
+    <p class="dek">Why the world's wealth is sorting itself — and where St. Andrews fits in the map being redrawn.</p>
+    <div class="byline">By <span>Edmund Bogen</span></div>
+  </div>
+</section>
+
+<article class="article">
+
+  <h2>The line being drawn</h2>
+  <p>Wealth is concentrating faster than at any point in the modern era, and it is doing so along lines most people have not yet noticed. The story is no longer about how much money is being made. It is about where the money is going, who is moving with it, and which places on the map are being quietly chosen — and which are being quietly left.</p>
+
+  <p>Three jurisdictions on earth are absorbing a disproportionate share of the global wealth migration: the United Arab Emirates, Singapore, and the United States. Within the United States, the share is collapsing toward two states — Florida and Texas. Within Florida, it is collapsing toward two counties — Miami-Dade and Palm Beach. Within Palm Beach County, it is collapsing toward a short list of communities. <strong>St. Andrews Country Club is on that list.</strong></p>
+
+  <p>This column will run weekly. Its purpose is not to sell anyone a house. It is to give the readers of this newsletter — most of whom are operating from inside the community I cover — a sober, useful read of the global wealth picture and what it means for the place you actually live.</p>
+
+  <p>The thesis for this first issue is straightforward. The forces pulling capital toward Boca Raton are global, structural, and accelerating. The forces pushing capital out of the high-friction jurisdictions you may have left — New York, California, Illinois, the United Kingdom — are not cyclical. They are policy decisions, and the people writing them are not changing their minds. What that means for the value of a home inside the St. Andrews gates over the next decade is something worth thinking about clearly, because most of your neighbors are not yet.</p>
+
+  <h2>The tiers, redefined for 2026</h2>
+  <p>The word "millionaire" no longer means anything useful. It has been hollowed out by thirty years of inflation, asset appreciation, and the fact that a paid-off home in a decent zip code now clears the threshold by itself. The tiers most serious wealth researchers — Knight Frank, UBS, Capgemini, Henley — now work from look roughly like this.</p>
+
+  <p><strong>Upper Middle Class — $500K to $2M net worth.</strong> Generally one or two paid-off homes, retirement accounts, modest taxable assets. Commercial first class on long flights, occasionally. Private school is a stretch. Inflation is felt.</p>
+
+  <p><strong>Affluent — $2M to $5M.</strong> A primary residence and possibly a small second home. Jet card considered, rarely used. Children's tuition manageable but conscious. Inflation is monitored.</p>
+
+  <p><strong>High Net Worth — $5M to $30M.</strong> This is the entry tier for most of St. Andrews. Two or three homes. NetJets or Wheels Up fractional, or a serious jet card. A part-time house manager or estate manager. Concierge medicine. A family attorney on retainer. Estate planning in active motion. Inflation is structural rather than emotional.</p>
+
+  <p><strong>Very High Net Worth — $30M to $100M.</strong> Whole aircraft becomes rational. Full household staff. A family office or shared family office. Direct private equity allocations. Children's wealth structured separately. Political donations are returned phone calls.</p>
+
+  <p><strong>Ultra High Net Worth — $100M to $1B.</strong> Full single-family office. Multiple residences across multiple jurisdictions. A general counsel. A chief of staff. Personal security at events. The IRS knows your name.</p>
+
+  <p><strong>Uber Wealthy — $1B and above.</strong> A different category of human existence. Influence rather than wealth. The decisions you make move markets, towns, and sometimes governments.</p>
+
+  <div class="chart-block">
+    <div class="chart-eyebrow">Figure 1</div>
+    <div class="chart-title">The 2026 Wealth Tier Pyramid</div>
+    <div class="tier-pyramid">
+      <div class="tier-row t1"><span class="tier-label">Uber Wealthy</span><span class="tier-range">$1B+</span></div>
+      <div class="tier-row t2"><span class="tier-label">Ultra HNW</span><span class="tier-range">$100M – $1B</span></div>
+      <div class="tier-row t3"><span class="tier-label">Very HNW</span><span class="tier-range">$30M – $100M</span></div>
+      <div class="tier-row t4"><span class="tier-label">High Net Worth</span><span class="tier-range">$5M – $30M</span></div>
+      <div class="tier-row t5"><span class="tier-label">Affluent</span><span class="tier-range">$2M – $5M</span></div>
+      <div class="tier-row t6"><span class="tier-label">Upper Middle Class</span><span class="tier-range">$500K – $2M</span></div>
+    </div>
+    <div class="chart-source">Tier definitions synthesized from Knight Frank Wealth Report 2026, UBS Global Wealth Report, Capgemini, and Henley &amp; Partners.</div>
+  </div>
+
+  <p>The most important distinction, though, is not between the tiers. It is within them — between the income rich, the asset rich, and the liquid rich. A surgeon earning $1.8M in Manhattan is income rich and frequently neither of the other two. A founder who sold for $80M is liquid rich and may or may not be asset rich. Many St. Andrews residents are profoundly asset rich — a paid-off home in this community is meaningful capital — but materially less liquid than the balance sheet suggests, particularly once you account for the illiquidity of real estate and private holdings. Meanwhile, a newer generation of arrivals — tech founders in their forties, finance principals who left New York during COVID and never went back — are extremely liquid but light on the kind of multigenerational asset base that defines old money.</p>
+
+  <p><em>In 2026, the meaningful question is no longer how much you have. It is how much of it is deployable, mobile, and protected.</em></p>
+
+  <h2>Calibration</h2>
+  <p>A short historical pass is worth doing, because the numbers do not feel like what they used to mean.</p>
+
+  <p>In 1955, $1M was an extraordinary amount of money. A Manhattan apartment on Park Avenue cost roughly $30,000. A Mercedes 300SL cost about $7,000. A four-year private college education cost under $4,000 all-in. Country club initiation fees at top-tier clubs ran in the low four figures. A millionaire was rare, untouchable, and effectively retired.</p>
+
+  <p>By 1985, $1M was still serious money but the gap had begun to open. A Park Avenue two-bedroom cost roughly $400,000. A St. Andrews home — when this community was still being developed — could be had for $300,000 to $500,000. Harvard tuition was around $10,000. The millionaire was comfortable, not exceptional.</p>
+
+  <p>By 2000, $1M was respectable but no longer remarkable. The same Park Avenue apartment cost $1.5M. The same St. Andrews home traded for $700,000 to $1.2M. Harvard tuition was $32,000.</p>
+
+  <div class="chart-block">
+    <div class="chart-eyebrow">Figure 2</div>
+    <div class="chart-title">The purchasing power of $1M, in 2026 dollars</div>
+    <div class="chart-wrap"><canvas id="chart-purchasing"></canvas></div>
+    <div class="chart-source">Sources: U.S. Bureau of Labor Statistics CPI-U inflation series; cross-referenced with the Federal Reserve historical price index.</div>
+  </div>
+
+  <p>In 2026, that 1985 dollar buys you roughly thirty-three cents of what it bought then. The same Park Avenue apartment crosses $3M without renovation. The same St. Andrews home — depending on the street and the build — trades between $2.5M and $7M. Harvard's all-in cost is north of $90,000. A Mercedes that competes with the 300SL costs over $200,000.</p>
+
+  <div class="chart-block">
+    <div class="chart-eyebrow">Figure 3</div>
+    <div class="chart-title">Typical St. Andrews home value, 1985 → 2026</div>
+    <div class="chart-wrap"><canvas id="chart-standrews"></canvas></div>
+    <div class="chart-source">Range estimates based on St. Andrews Country Club historical sale data and current MLS comparables. Wide bands reflect variation by street, lot, and renovation status.</div>
+  </div>
+
+  <p>The number has not kept up with the life. A millionaire in 1985 had the purchasing power of roughly $3M today. A millionaire in 2000 had the purchasing power of about $1.85M. The word has been emptied. The category, in any meaningful lifestyle sense, now begins north of $5M.</p>
+
+  <h2>What Knight Frank is telling us</h2>
+  <p>The Knight Frank Wealth Report 2026 is the document I read first every year, and this year's edition is worth pausing on. A few numbers from it should sit with the reader.</p>
+
+  <p>The global UHNW population — defined as individuals with $30M or more in investable net worth — reached <strong>713,626 in 2026, up from 551,435 in 2021</strong>. That is roughly <strong>89 new $30M-plus households created every day</strong> for five consecutive years. The United States generated <strong>41% of that growth</strong>. Not 41% of the new wealth in absolute dollars — 41% of the new individuals.</p>
+
+  <div class="chart-block">
+    <div class="chart-eyebrow">Figure 4</div>
+    <div class="chart-title">Global UHNW population, 2021 → 2026</div>
+    <div class="chart-wrap"><canvas id="chart-uhnw"></canvas></div>
+    <div class="chart-source">Knight Frank Wealth Report 2026. UHNW defined as individuals with US$30M+ in investable net worth. Growth implies ~89 new UHNW households per day over five years.</div>
+  </div>
+
+  <p>That number is worth reading twice. Forty-one percent of all newly minted $30M-plus households on earth, over the past five years, were created in America. The next closest country — China — contributed roughly 12%. The implication is that whatever else is happening globally, the United States is still the most efficient wealth-creation engine on the planet. Within America, the new wealth is sorting itself geographically with unusual speed.</p>
+
+  <div class="chart-block">
+    <div class="chart-eyebrow">Figure 5</div>
+    <div class="chart-title">Where the new UHNW households were created, 2021 – 2026</div>
+    <div class="chart-wrap short"><canvas id="chart-share"></canvas></div>
+    <div class="chart-source">Knight Frank Wealth Report 2026. Share of new UHNW individuals created globally between 2021 and 2026.</div>
+  </div>
+
+  <p>On the property side, Knight Frank's Prime International Residential Index — which tracks 100 luxury markets globally — rose 3.2% in 2025. The Middle East as a region rose 9.4%. Dubai prime rose 25.1%. Tokyo prime rose 58.5%, a figure that is almost difficult to absorb in a single sitting. Miami appears on Knight Frank's official list of forward-looking luxury hot spots alongside Mumbai, Brisbane, and Hong Kong.</p>
+
+  <div class="chart-block">
+    <div class="chart-eyebrow">Figure 6</div>
+    <div class="chart-title">Prime residential price change, 2025</div>
+    <div class="chart-wrap"><canvas id="chart-prime"></canvas></div>
+    <div class="chart-source">Knight Frank Prime International Residential Index (PIRI 100), 2025 full year. Tokyo figure reflects USD-denominated prime market repricing.</div>
+  </div>
+
+  <p>The most consequential line in the entire report, however, is not a statistic. It is a sentence from Liam Bailey, Knight Frank's Global Head of Research:</p>
+
+  <blockquote>
+    Every market that wants to succeed in attracting UHNW capital over the next decade needs to be positioned at an attractive point on the tax curve. Capital is already moving away from high-friction environments toward jurisdictions that actively court wealth.
+    <cite>Liam Bailey, Global Head of Research, Knight Frank</cite>
+  </blockquote>
+
+  <p>Read that quote twice as well. It is the underlying argument of this entire newsletter. The world is sorting itself into jurisdictions that court wealth and jurisdictions that punish it, and capital is making its choice in real time. Forty-one percent of new global UHNW formation happened in the country with the most tax-attractive states. Within that country, those states are pulling in the disproportionate share of the migration. Miami is on Knight Frank's watchlist. Boca Raton sits 45 minutes north of Miami and is increasingly absorbing the spillover — the buyer who wants Miami's tax and climate profile without Miami's volume, exposure, and traffic.</p>
+
+  <h2>Wealth Gravity</h2>
+  <p>The shorthand I use for this is <em>Wealth Gravity</em> — the phenomenon by which capital clusters around jurisdictions that offer some combination of favorable taxation, physical safety, elite professional networks, airport infrastructure, deep liquidity, luxury and medical amenities, school options, privacy, and capital preservation. The places with the most of these attributes do not just attract money. They attract the people who control it, and then they attract the institutions that serve those people, and then the gravity self-reinforces.</p>
+
+  <div class="chart-block">
+    <div class="chart-eyebrow">Figure 7</div>
+    <div class="chart-title">The current map of wealth gravity</div>
+    <div class="gravity-split">
+      <div class="gravity-col well">
+        <h4>Wealth Wells</h4>
+        <ul>
+          <li>Florida</li>
+          <li>Texas</li>
+          <li>Dubai &amp; UAE</li>
+          <li>Singapore</li>
+          <li>Monaco</li>
+          <li>Switzerland</li>
+          <li>Portugal</li>
+        </ul>
+      </div>
+      <div class="gravity-col anti">
+        <h4>Anti-Gravity</h4>
+        <ul>
+          <li>California</li>
+          <li>New York</li>
+          <li>Illinois</li>
+          <li>United Kingdom (post non-dom)</li>
+          <li>Parts of continental EU</li>
+        </ul>
+      </div>
+    </div>
+    <div class="chart-source">Classification based on net wealth migration trends from Henley Private Wealth Migration Report 2025, IRS interstate migration data, and Knight Frank Wealth Report 2026.</div>
+  </div>
+
+  <p>The strong gravity wells on the current map are Florida, Texas, Dubai, Singapore, Monaco, Switzerland, the broader UAE, and to a lesser extent Portugal. The anti-gravity jurisdictions — places losing capital faster than they are creating it — are California, New York, Illinois, the United Kingdom following its non-dom reforms, and significant portions of continental Europe. France remains a complicated case. The UK case is now well-documented: the abolition of the non-dom regime has produced an exodus of HNW and UHNW individuals that the Treasury did not forecast and is now scrambling to slow.</p>
+
+  <p>Within the United States, the domestic story is even sharper. Florida and Texas are absorbing the bulk of the interstate wealth migration. Within Florida, Palm Beach County has been quietly outperforming Miami-Dade on a per-capita basis for several years. Within Palm Beach County, Boca Raton occupies a specific position: it offers the tax and climate profile of Miami, the proximity to Palm Beach itself, three private aviation terminals within a thirty-minute drive, two of the most highly regarded hospital systems in the Southeast, and a country-club density unmatched anywhere in the state.</p>
+
+  <p>And within Boca Raton, St. Andrews occupies its own position. A 24/7 gated, guard-staffed community. A buyer pool that increasingly includes 40-something tech and finance principals who, a decade ago, would have bought in Greenwich or Pacific Heights. Inventory that turns more slowly than the broader market, on smaller volume, at higher absolute price points.</p>
+
+  <div class="chart-block">
+    <div class="chart-eyebrow">Figure 8</div>
+    <div class="chart-title">What $10M buys in 2026 — approximate prime residential square footage</div>
+    <div class="chart-wrap"><canvas id="chart-tenmil"></canvas></div>
+    <div class="chart-source">Approximate prime residential $/sq ft from Knight Frank PIRI 100 (2025), Knight Frank Wealth Report 2026 city profiles, and recent comparable transactions. Bands reflect market range, not a single transaction.</div>
+  </div>
+
+  <h2>Where wealth is quietly disappearing</h2>
+  <p>This is the section most newsletters skip, and it is the section that should be read most carefully — because many of you have adult children or grandchildren living inside what I am about to describe.</p>
+
+  <p>The professional and upper-professional class is being compressed. Not the top one percent. The top ten percent. The household earning $300,000 to $500,000 in New York City, San Francisco, Boston, or Los Angeles no longer feels wealthy, and in any honest balance-sheet accounting, increasingly is not. After federal, state, and city taxes; after a $5,000-per-month rent or a mortgage on a $2.5M condo; after $80,000 in two kids' private school tuition; after concierge medicine and a second car and travel and saving for college and saving for retirement — there is very little left, and the asset base is not compounding fast enough to outrun the cost floor.</p>
+
+  <p>Healthcare and education inflation continue to outpace wage growth for the top decile. The top one percent absorbs this easily. The top ten percent does not.</p>
+
+  <p>AI is accelerating the squeeze. The functions that historically funneled bright young professionals into the affluent tier — legal associates, junior bankers, management consultants, paralegals, copywriters, much of mid-tier advisory work — are being compressed faster than most senior executives in those industries are willing to admit publicly. The income streams that built the parents' wealth are not the same income streams that will be available to the children.</p>
+
+  <p>The distinction between <em>appearing</em> wealthy and <em>being</em> wealthy has never been wider. A lifestyle that looked indistinguishable from real wealth in 2005 can now be sustained by a household with a deeply negative net worth, and frequently is. The smart reader of this column will see his or her own children's financial life somewhere in this paragraph, and will think about what that means for the family balance sheet over the next twenty years.</p>
+
+  <h2>The psychology of modern wealth</h2>
+  <p>A few quieter shifts are worth noting, because they describe how the affluent in 2026 actually behave — and the description tends to be uncomfortably accurate.</p>
+
+  <p>Logo wealth has been replaced by stealth wealth. The signal goods of the moment are Loro Piana, Brunello Cucinelli, an unbranded vintage Patek, an older Range Rover, a renovation done by an architect the public has never heard of. The person wearing the obvious logo is, increasingly, not the person you think you are looking at.</p>
+
+  <p>Privacy and security have moved from luxury to baseline. Gated communities, residential security details, scrubbed public records, LLC ownership of homes, separate phone numbers for the household, separate calendars for the children — these are no longer paranoid. They are operational.</p>
+
+  <p>Concierge medicine — Sollis, MDVIP, One Medical, Forward, the major hospital-affiliated concierge programs — has become standard rather than aspirational at the HNW tier. Longevity protocols have moved from fringe to mainstream within five years. The Bryan Johnson reference has stopped being a joke.</p>
+
+  <p>Optionality is the new luxury. The ability to leave any city within 48 hours, to hold residency in two or three jurisdictions, to move capital between currencies without friction, to move children between schools — this is what the wealthy are actually buying now. Not bigger houses. More exit doors.</p>
+
+  <p>And time has become the only truly scarce resource. Anyone reading this is older than they were when they first earned real money, and the calculus has shifted accordingly.</p>
+
+  <h2>What this means for prime real estate</h2>
+  <p>Every thread above lands here.</p>
+
+  <p>Prime residential real estate remains the dominant non-financial wealth-storage mechanism on earth, for a specific set of reasons. It is tangible. It is leverageable. It is depreciable under certain structures. It is inflation-hedged in a way few other assets are. It transfers across generations with reasonable efficiency. And it carries a use-value the rest of the portfolio does not: the family actually lives in it.</p>
+
+  <p>A few specific patterns are now visible in the data.</p>
+
+  <p>Branded residences — Aman, Four Seasons, Ritz, Rosewood, Bulgari, Auberge — are growing globally at double-digit rates and pulling premium pricing the unbranded inventory cannot match. South Florida has been a primary beneficiary.</p>
+
+  <p>Private country club communities are quietly having a renaissance after a decade of obituaries. The drivers are exactly what they should be: security, social network density, intergenerational continuity, and a club amenity that the broader market cannot replicate. <strong>St. Andrews is in the deepest version of this trend, not at the edge of it.</strong></p>
+
+  <p>Buyers at the prime end are now underwriting for resilience — climate, political, infrastructure — in a way they were not five years ago. Florida fits well on several axes and is vulnerable on others. Insurance markets remain a real conversation. Hurricane exposure is real. Long-term water and grid resilience is real. None of these are deal-killers at this end of the market; they are inputs to the purchase decision.</p>
+
+  <p>And the great intergenerational wealth transfer — estimated at $84 trillion changing hands over the next two decades in the United States alone — is now meaningfully underway. South Florida sits on the receiving end of a disproportionate share of that handoff. The capital is not arriving in 2040. It is arriving now.</p>
+
+  <p>One specific observation about St. Andrews, drawn from what is actually closing here: the buyer pool today is materially different from the buyer pool of even five years ago. Younger. More liquid. More tech and finance, less traditional industry. More likely to maintain a primary residence in another state or country. More demanding on renovation and finish standards. This is not forecast. It is data.</p>
+
+  <h2>What it means going forward</h2>
+  <p>The next decade is not going to produce a more equal distribution of wealth. It is going to produce greater concentration at the top, sharper geographic sorting of the affluent and the wealthy, wider gaps between asset owners and non-owners, more mobile capital, more competitive jurisdictions, and more sophisticated buyers at the prime end of every meaningful market.</p>
+
+  <p>The people reading this newsletter already understand, in some quiet way, what the report writers are now beginning to formalize: real wealth in 2026 is measured less in dollars than in freedom, time, health, security, optionality, and the quality of the community around you. That is what St. Andrews is. It is also, increasingly, what the rest of the world is paying for. The prime end of this market is unlikely to soften meaningfully over the next decade, even when the broader market does, because the people moving capital toward it are not making cyclical decisions. They are making structural ones.</p>
+
+  <p>The map is being redrawn quietly, in private. This column will keep reading it out loud.</p>
+
+  <div class="signature">— Edmund Bogen</div>
+
+</article>
+
+<section class="bio">
+  <div class="bio-inner">
+    <img src="https://edmundbogen.github.io/edmund-profile.png" alt="Edmund Bogen">
+    <div>
+      <h4>Edmund Bogen</h4>
+      <div class="credentials">Licensed Real Estate Salesperson · REALTOR®</div>
+      <p>Member of St. Andrews Country Club. The Edmund Bogen Team at Douglas Elliman specializes in Boca Raton's premier luxury gated communities. <em>Quiet Money</em> is a weekly column for sophisticated readers inside and adjacent to St. Andrews.</p>
+      <div class="contact">
+        <a href="tel:5612357575" class="phone">561-235-7575</a>
+        <a href="mailto:edmund@bogenhomes.com" class="email">edmund@bogenhomes.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-brand">The Edmund Bogen Team</div>
+  <div class="ft-meta">at Douglas Elliman Real Estate</div>
+  <div class="ft-meta">444 E Palmetto Park Rd, Boca Raton, FL 33432 · 561-235-7575</div>
+  <div class="ft-mls">Market data courtesy of BeachesMLS. Information is deemed reliable but not guaranteed. Hero image is an AI-generated editorial illustration; no actual property is depicted. All statistical claims sourced where cited; readers are encouraged to consult primary research.</div>
+  <div class="ft-disclaimer">&copy; 2026 DOUGLAS ELLIMAN REAL ESTATE. THIS ARTICLE IS GENERAL CONSUMER EDUCATION AND IS NOT LEGAL, FINANCIAL, TAX, OR TRANSACTIONAL ADVICE. ALL MATERIAL PRESENTED HEREIN IS INTENDED FOR INFORMATION PURPOSES ONLY. WHILE THIS INFORMATION IS BELIEVED TO BE CORRECT, IT IS REPRESENTED SUBJECT TO ERRORS, OMISSIONS, CHANGES OR WITHDRAWAL WITHOUT NOTICE. IF YOUR PROPERTY IS CURRENTLY LISTED WITH ANOTHER REAL ESTATE BROKER, PLEASE DISREGARD THIS OFFER. IT IS NOT OUR INTENTION TO SOLICIT THE OFFERINGS OF OTHER REAL ESTATE BROKERS. WE COOPERATE WITH THEM FULLY. EQUAL HOUSING OPPORTUNITY.</div>
+</footer>
+
+<script>
+// Chart.js global defaults
+Chart.defaults.font.family = "'Montserrat', sans-serif";
+Chart.defaults.font.size = 12;
+Chart.defaults.color = '#1a3e5c';
+
+const navy = '#1a3e5c';
+const cyan = '#00a8e1';
+const red  = '#c8102e';
+const gold = '#d4a64a';
+
+// Figure 2 — Purchasing power of $1M (in 2026 dollars)
+new Chart(document.getElementById('chart-purchasing'), {
+  type: 'bar',
+  data: {
+    labels: ['1955', '1985', '2000', '2026'],
+    datasets: [{
+      label: 'Value of $1M (in 2026 dollars)',
+      data: [11800000, 3000000, 1850000, 1000000],
+      backgroundColor: [navy, navy, '#3a7a9e', cyan],
+      borderRadius: 4,
+      barPercentage: 0.6
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: (ctx) => '$' + (ctx.parsed.y/1000000).toFixed(2) + 'M in 2026 dollars'
+        }
+      }
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        ticks: { callback: (v) => '$' + (v/1000000).toFixed(1) + 'M' },
+        grid: { color: 'rgba(0,0,0,0.05)' }
+      },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// Figure 3 — St. Andrews home value progression
+new Chart(document.getElementById('chart-standrews'), {
+  type: 'line',
+  data: {
+    labels: ['1985', '1995', '2000', '2010', '2020', '2026'],
+    datasets: [
+      {
+        label: 'Low end of range',
+        data: [300000, 550000, 700000, 1100000, 1700000, 2500000],
+        borderColor: cyan,
+        backgroundColor: 'rgba(0,168,225,0.15)',
+        fill: '+1',
+        tension: 0.35,
+        pointRadius: 4,
+        pointBackgroundColor: cyan
+      },
+      {
+        label: 'High end of range',
+        data: [500000, 900000, 1200000, 1900000, 3400000, 7000000],
+        borderColor: navy,
+        backgroundColor: 'rgba(26,62,92,0.05)',
+        fill: false,
+        tension: 0.35,
+        pointRadius: 4,
+        pointBackgroundColor: navy
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'bottom', labels: { boxWidth: 14, padding: 16 } },
+      tooltip: {
+        callbacks: {
+          label: (ctx) => ctx.dataset.label + ': $' + (ctx.parsed.y/1000000).toFixed(2) + 'M'
+        }
+      }
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        ticks: { callback: (v) => '$' + (v/1000000).toFixed(1) + 'M' },
+        grid: { color: 'rgba(0,0,0,0.05)' }
+      },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// Figure 4 — UHNW population 2021 → 2026
+new Chart(document.getElementById('chart-uhnw'), {
+  type: 'line',
+  data: {
+    labels: ['2021', '2022', '2023', '2024', '2025', '2026'],
+    datasets: [{
+      label: 'Global UHNW Population ($30M+)',
+      data: [551435, 583000, 612000, 645000, 680000, 713626],
+      borderColor: navy,
+      backgroundColor: 'rgba(0,168,225,0.18)',
+      fill: true,
+      tension: 0.3,
+      pointRadius: 5,
+      pointBackgroundColor: cyan,
+      pointBorderColor: navy,
+      pointBorderWidth: 2,
+      borderWidth: 3
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: (ctx) => ctx.parsed.y.toLocaleString() + ' UHNW individuals'
+        }
+      },
+      title: {
+        display: true,
+        text: '+162,191 added in 5 years · ~89 new UHNW households per day',
+        color: '#666',
+        font: { size: 12, weight: '500', style: 'italic' },
+        padding: { top: 4, bottom: 18 }
+      }
+    },
+    scales: {
+      y: {
+        beginAtZero: false,
+        min: 500000,
+        ticks: { callback: (v) => (v/1000).toFixed(0) + 'K' },
+        grid: { color: 'rgba(0,0,0,0.05)' }
+      },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// Figure 5 — Share of new UHNW (donut)
+new Chart(document.getElementById('chart-share'), {
+  type: 'doughnut',
+  data: {
+    labels: ['United States', 'China', 'Rest of World'],
+    datasets: [{
+      data: [41, 12, 47],
+      backgroundColor: [navy, red, '#c2cfd6'],
+      borderColor: '#fff',
+      borderWidth: 3
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    cutout: '60%',
+    plugins: {
+      legend: { position: 'right', labels: { boxWidth: 14, padding: 14, font: { size: 13 } } },
+      tooltip: {
+        callbacks: { label: (ctx) => ctx.label + ': ' + ctx.parsed + '% of new UHNWIs' }
+      }
+    }
+  }
+});
+
+// Figure 6 — Prime price changes 2025
+new Chart(document.getElementById('chart-prime'), {
+  type: 'bar',
+  data: {
+    labels: ['PIRI 100 (Global)', 'Middle East', 'Dubai', 'Tokyo'],
+    datasets: [{
+      label: '2025 Price Change',
+      data: [3.2, 9.4, 25.1, 58.5],
+      backgroundColor: ['#c2cfd6', '#3a7a9e', cyan, navy],
+      borderRadius: 4,
+      barPercentage: 0.6
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: { label: (ctx) => '+' + ctx.parsed.x + '% in 2025' }
+      }
+    },
+    scales: {
+      x: {
+        beginAtZero: true,
+        ticks: { callback: (v) => '+' + v + '%' },
+        grid: { color: 'rgba(0,0,0,0.05)' }
+      },
+      y: { grid: { display: false } }
+    }
+  }
+});
+
+// Figure 8 — What $10M buys (sq ft, approximate)
+new Chart(document.getElementById('chart-tenmil'), {
+  type: 'bar',
+  data: {
+    labels: ['Boca Raton', 'Aspen', 'Dubai', 'Miami', 'London', 'Monaco'],
+    datasets: [{
+      label: 'Approx. prime sq ft for $10M',
+      data: [9500, 4200, 3800, 3500, 1900, 1100],
+      backgroundColor: [cyan, '#3a7a9e', '#3a7a9e', '#3a7a9e', '#3a7a9e', red],
+      borderRadius: 4,
+      barPercentage: 0.6
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: { label: (ctx) => '~' + ctx.parsed.x.toLocaleString() + ' sq ft of prime residential' }
+      }
+    },
+    scales: {
+      x: {
+        beginAtZero: true,
+        ticks: { callback: (v) => v.toLocaleString() + ' sq ft' },
+        grid: { color: 'rgba(0,0,0,0.05)' }
+      },
+      y: { grid: { display: false } }
+    }
+  }
+});
+</script>
+
+</body>
+</html>

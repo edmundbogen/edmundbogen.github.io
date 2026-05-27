@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luxury Communities Market Intelligence Dashboard · May 27, 2026 | The Edmund Bogen Team</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #1a1a1a;
+    background: #f4f4f4;
+    line-height: 1.6;
+  }
+
+  nav {
+    background: #1a3e5c;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  nav .logo { color: #fff; font-weight: 300; letter-spacing: 3px; font-size: 14px; text-transform: uppercase; }
+  nav .logo strong { font-weight: 600; letter-spacing: 4px; }
+  nav .links a {
+    color: #fff; text-decoration: none; margin-left: 28px;
+    font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 400;
+  }
+  nav .links a:hover { color: #00a8e1; }
+
+  .dash-header {
+    background: linear-gradient(135deg, #1a3e5c 0%, #0d2540 100%);
+    color: #fff;
+    padding: 50px 40px 40px;
+    text-align: center;
+  }
+  .dash-header .eyebrow { color: #00a8e1; text-transform: uppercase; letter-spacing: 5px; font-size: 11px; margin-bottom: 14px; font-weight: 500; }
+  .dash-header h1 { font-size: 34px; font-weight: 300; letter-spacing: 1px; margin-bottom: 10px; color: #fff; font-family: 'Playfair Display', serif; }
+  .dash-header .meta { color: rgba(255,255,255,0.8); font-size: 12px; text-transform: uppercase; letter-spacing: 3px; }
+
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+
+  .sa-cta {
+    background: #00a8e1;
+    color: #fff;
+    padding: 18px 40px;
+    text-align: center;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 500;
+  }
+  .sa-cta a {
+    color: #fff;
+    text-decoration: underline;
+    margin-left: 8px;
+  }
+
+  /* Featured article */
+  .featured {
+    background: #fff;
+    margin: 40px auto;
+    max-width: 1200px;
+    border: 1px solid #e0e0e0;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+  }
+  .featured img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .featured .body {
+    padding: 40px 44px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .featured .label {
+    color: #00a8e1; text-transform: uppercase; letter-spacing: 4px;
+    font-size: 11px; font-weight: 600; margin-bottom: 14px;
+  }
+  .featured h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px; font-weight: 400; color: #1a3e5c;
+    line-height: 1.25; margin-bottom: 8px;
+  }
+  .featured .dek {
+    font-style: italic; color: #555; font-size: 15px; margin-bottom: 18px;
+  }
+  .featured p {
+    color: #444; font-size: 15px; margin-bottom: 22px; line-height: 1.7;
+  }
+  .featured .read-cta {
+    display: inline-block;
+    background: #1a3e5c;
+    color: #fff;
+    padding: 14px 28px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-size: 11px;
+    font-weight: 600;
+    align-self: flex-start;
+  }
+  .featured .read-cta:hover { background: #00a8e1; }
+
+  .section-title {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: #1a3e5c;
+    border-left: 3px solid #00a8e1;
+    padding-left: 14px;
+    margin: 50px 0 22px;
+    font-weight: 600;
+  }
+
+  /* Exec summary stats */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 40px;
+  }
+  .stat-card {
+    background: #fff;
+    border-left: 3px solid #00a8e1;
+    padding: 22px 24px;
+  }
+  .stat-card .label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #666;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .stat-card .value {
+    font-size: 22px;
+    color: #1a3e5c;
+    font-weight: 600;
+  }
+  .stat-card .sub {
+    font-size: 11px;
+    color: #888;
+    margin-top: 4px;
+  }
+
+  /* Charts */
+  .charts-wrap {
+    background: #fff;
+    padding: 36px 40px;
+    margin-bottom: 40px;
+    border: 1px solid #e0e0e0;
+  }
+  .chart-tabs {
+    display: flex;
+    border-bottom: 2px solid #f0f0f0;
+    margin-bottom: 24px;
+    gap: 4px;
+  }
+  .chart-tab {
+    padding: 12px 22px;
+    cursor: pointer;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #888;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    transition: all 0.2s;
+  }
+  .chart-tab.active {
+    color: #1a3e5c;
+    border-bottom-color: #00a8e1;
+  }
+  .chart-tab:hover { color: #1a3e5c; }
+  .chart-panel { display: none; }
+  .chart-panel.active { display: block; }
+  .chart-canvas-wrap {
+    position: relative;
+    height: 440px;
+  }
+  .chart-note {
+    font-size: 11px;
+    color: #888;
+    margin-top: 14px;
+    font-style: italic;
+    text-align: center;
+  }
+
+  /* Mastermind CTA */
+  .mastermind-cta {
+    background: linear-gradient(135deg,#1a3e5c 0%,#0d2540 100%);
+    color: #fff;
+    padding: 50px 40px;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .mastermind-cta .eyebrow { color: #00a8e1; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; font-weight: 600; margin-bottom: 12px; }
+  .mastermind-cta h3 { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 400; margin-bottom: 12px; }
+  .mastermind-cta p { color: rgba(255,255,255,0.85); font-size: 15px; max-width: 660px; margin: 0 auto 22px; line-height: 1.7; }
+  .mastermind-cta a {
+    display: inline-block; background: #00a8e1; color: #fff;
+    padding: 14px 32px; text-decoration: none;
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 600;
+  }
+
+  /* Community grid */
+  .community-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 50px;
+  }
+  .community-card {
+    background: #fff;
+    padding: 18px 20px;
+    border-left: 3px solid #c2cfd6;
+    transition: all 0.2s;
+  }
+  .community-card.standrews { border-left-color: #c8102e; background: #fef7f7; }
+  .community-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+  .community-card .name {
+    font-size: 13px;
+    color: #1a3e5c;
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .community-card.standrews .name { color: #c8102e; }
+  .community-card .stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 12px;
+    color: #666;
+  }
+  .community-card .stats strong { color: #1a3e5c; font-size: 14px; font-weight: 700; }
+
+  /* Bio */
+  .bio {
+    background: #fff;
+    margin: 0 auto 40px;
+    max-width: 1200px;
+    padding: 40px;
+    border: 1px solid #e0e0e0;
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+  }
+  .bio img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  .bio h4 { font-family: 'Playfair Display', serif; font-size: 24px; color: #1a3e5c; margin-bottom: 4px; font-weight: 400; }
+  .bio .creds { font-size: 11px; color: #666; letter-spacing: 1px; margin-bottom: 14px; text-transform: uppercase; }
+  .bio p { font-size: 14px; color: #333; line-height: 1.6; margin-bottom: 14px; }
+  .bio .contact a {
+    display: inline-block; padding: 9px 18px; margin-right: 8px;
+    text-decoration: none; font-size: 11px; letter-spacing: 2px;
+    text-transform: uppercase; font-weight: 600; border-radius: 2px;
+  }
+  .bio .contact a.phone { background: #1a3e5c; color: #fff; }
+  .bio .contact a.email { background: #00a8e1; color: #fff; }
+
+  footer {
+    background: linear-gradient(135deg,#1a3e5c 0%,#0d2137 100%);
+    color: #fff;
+    padding: 40px;
+    text-align: center;
+  }
+  footer .ft-brand { font-size: 14px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; margin-bottom: 6px; }
+  footer .ft-meta { font-size: 12px; color: #8cb4d5; margin-bottom: 4px; }
+  footer .ft-mls { font-size: 11px; color: #8cb4d5; margin-top: 16px; line-height: 1.6; max-width: 800px; margin-left: auto; margin-right: auto; }
+  footer .ft-disclaimer { font-size: 9px; color: #6a8fad; margin-top: 22px; line-height: 1.6; max-width: 900px; margin-left: auto; margin-right: auto; }
+
+  @media (max-width: 768px) {
+    nav { padding: 14px 20px; }
+    nav .links a { margin-left: 14px; font-size: 10px; }
+    .dash-header { padding: 36px 20px 26px; }
+    .dash-header h1 { font-size: 26px; }
+    .container { padding: 0 20px; }
+    .featured { grid-template-columns: 1fr; }
+    .featured .body { padding: 30px 24px; }
+    .featured h2 { font-size: 24px; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .community-grid { grid-template-columns: 1fr; }
+    .chart-canvas-wrap { height: 320px; }
+    .charts-wrap { padding: 22px 18px; }
+    .chart-tabs { overflow-x: auto; }
+    .chart-tab { padding: 10px 14px; font-size: 10px; white-space: nowrap; }
+    .bio { flex-direction: column; align-items: center; text-align: center; padding: 30px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">THE <strong>EDMUND BOGEN</strong> TEAM</div>
+  <div class="links">
+    <a href="https://edmundbogen.github.io/quiet-money-001-wealth-gravity/">Quiet Money</a>
+    <a href="https://bogenhomes.com">Properties</a>
+    <a href="https://www.bogen.ai/contact?tab=client">Contact</a>
+  </div>
+</nav>
+
+<header class="dash-header">
+  <div class="eyebrow">Luxury Communities Market Intelligence</div>
+  <h1>Boca Raton · Delray Beach · Palm Beach Corridor</h1>
+  <div class="meta">Week of May 27, 2026 · 21 luxury communities tracked</div>
+</header>
+
+<div class="sa-cta">
+  Looking inside the gates? <a href="st-andrews-listings.html">View the 12 active St. Andrews listings →</a>
+</div>
+
+<div class="featured">
+  <a href="https://edmundbogen.github.io/quiet-money-001-wealth-gravity/" style="display:block;">
+    <img src="https://edmundbogen.github.io/quiet-money-001-wealth-gravity/hero.png" alt="Quiet Money — Wealth Gravity">
+  </a>
+  <div class="body">
+    <div class="label">This Week's Column · Issue 001</div>
+    <h2>Quiet Money — Wealth Gravity</h2>
+    <div class="dek">Why the world's wealth is sorting itself — and where St. Andrews fits in the map being redrawn.</div>
+    <p>713,626 UHNW households globally in 2026 — up 162,000+ from 2021, with the U.S. generating 41% of that growth. The forces pulling capital toward Boca Raton are structural, not cyclical. Eight interactive charts, 2,900 words.</p>
+    <a href="https://edmundbogen.github.io/quiet-money-001-wealth-gravity/" class="read-cta">Read the Full Column →</a>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="section-title">Executive Market Summary</div>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="label">St. Andrews Range</div>
+      <div class="value">$1.895M – $16.995M</div>
+      <div class="sub">12 active listings</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">St. Andrews YTD</div>
+      <div class="value">14 sold</div>
+      <div class="sub">2026 year-to-date</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">Total Active</div>
+      <div class="value">225</div>
+      <div class="sub">across 21 communities</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">Total Sold YTD</div>
+      <div class="value">377</div>
+      <div class="sub">2026 closings</div>
+    </div>
+  </div>
+
+  <div class="section-title">Interactive Market Analysis</div>
+  <div class="charts-wrap">
+    <div class="chart-tabs">
+      <div class="chart-tab active" data-tab="absorption">Absorption Rates</div>
+      <div class="chart-tab" data-tab="inventory">Active Inventory</div>
+      <div class="chart-tab" data-tab="velocity">YTD Closings</div>
+    </div>
+
+    <div class="chart-panel active" id="panel-absorption">
+      <div class="chart-canvas-wrap"><canvas id="chart-absorption"></canvas></div>
+      <div class="chart-note">Absorption rate = YTD closings ÷ active inventory. Higher = faster-moving market.</div>
+    </div>
+    <div class="chart-panel" id="panel-inventory">
+      <div class="chart-canvas-wrap"><canvas id="chart-inventory"></canvas></div>
+      <div class="chart-note">Active listings as of May 27, 2026. Boca West remains the largest inventory pool; Le Lac and Seasons the tightest.</div>
+    </div>
+    <div class="chart-panel" id="panel-velocity">
+      <div class="chart-canvas-wrap"><canvas id="chart-velocity"></canvas></div>
+      <div class="chart-note">2026 YTD closings by community. Boca West and Broken Sound carrying the volume; Polo Club leading on velocity per active.</div>
+    </div>
+  </div>
+
+  <div class="mastermind-cta">
+    <div class="eyebrow">Quiet Money · A Weekly Column</div>
+    <h3>Issue 001: Wealth Gravity</h3>
+    <p>The first in a recurring weekly read for sophisticated readers inside and adjacent to St. Andrews. Knight Frank data. Wealth tier redefinitions. The map of capital migration. Subscribe via the email list — or just bookmark the column.</p>
+    <a href="https://edmundbogen.github.io/quiet-money-001-wealth-gravity/">Read Issue 001 →</a>
+  </div>
+
+  <div class="section-title">21 Luxury Communities · Active / Sold YTD</div>
+  <div class="community-grid">
+    <div class="community-card standrews"><div class="name">St. Andrews CC</div><div class="stats"><span>Active <strong>12</strong></span><span>Sold YTD <strong>14</strong></span></div></div>
+    <div class="community-card"><div class="name">Addison Reserve</div><div class="stats"><span>Active <strong>5</strong></span><span>Sold YTD <strong>22</strong></span></div></div>
+    <div class="community-card"><div class="name">The Oaks</div><div class="stats"><span>Active <strong>12</strong></span><span>Sold YTD <strong>18</strong></span></div></div>
+    <div class="community-card"><div class="name">Delaire CC</div><div class="stats"><span>Active <strong>4</strong></span><span>Sold YTD <strong>5</strong></span></div></div>
+    <div class="community-card"><div class="name">The Bridges</div><div class="stats"><span>Active <strong>6</strong></span><span>Sold YTD <strong>14</strong></span></div></div>
+    <div class="community-card"><div class="name">Seven Bridges</div><div class="stats"><span>Active <strong>8</strong></span><span>Sold YTD <strong>12</strong></span></div></div>
+    <div class="community-card"><div class="name">Boca Grove</div><div class="stats"><span>Active <strong>15</strong></span><span>Sold YTD <strong>6</strong></span></div></div>
+    <div class="community-card"><div class="name">Boca West CC</div><div class="stats"><span>Active <strong>33</strong></span><span>Sold YTD <strong>75</strong></span></div></div>
+    <div class="community-card"><div class="name">Boca Bridges</div><div class="stats"><span>Active <strong>14</strong></span><span>Sold YTD <strong>13</strong></span></div></div>
+    <div class="community-card"><div class="name">Lotus</div><div class="stats"><span>Active <strong>19</strong></span><span>Sold YTD <strong>20</strong></span></div></div>
+    <div class="community-card"><div class="name">Bocaire CC</div><div class="stats"><span>Active <strong>7</strong></span><span>Sold YTD <strong>15</strong></span></div></div>
+    <div class="community-card"><div class="name">The Sanctuary</div><div class="stats"><span>Active <strong>8</strong></span><span>Sold YTD <strong>1</strong></span></div></div>
+    <div class="community-card"><div class="name">Polo Club</div><div class="stats"><span>Active <strong>8</strong></span><span>Sold YTD <strong>42</strong></span></div></div>
+    <div class="community-card"><div class="name">Mizner CC</div><div class="stats"><span>Active <strong>4</strong></span><span>Sold YTD <strong>6</strong></span></div></div>
+    <div class="community-card"><div class="name">Long Lake Estates</div><div class="stats"><span>Active <strong>5</strong></span><span>Sold YTD <strong>3</strong></span></div></div>
+    <div class="community-card"><div class="name">Broken Sound</div><div class="stats"><span>Active <strong>21</strong></span><span>Sold YTD <strong>56</strong></span></div></div>
+    <div class="community-card"><div class="name">Royal Palm YC</div><div class="stats"><span>Active <strong>27</strong></span><span>Sold YTD <strong>22</strong></span></div></div>
+    <div class="community-card"><div class="name">Le Lac</div><div class="stats"><span>Active <strong>0</strong></span><span>Sold YTD <strong>0</strong></span></div></div>
+    <div class="community-card"><div class="name">Seasons</div><div class="stats"><span>Active <strong>2</strong></span><span>Sold YTD <strong>6</strong></span></div></div>
+    <div class="community-card"><div class="name">Woodfield</div><div class="stats"><span>Active <strong>10</strong></span><span>Sold YTD <strong>19</strong></span></div></div>
+    <div class="community-card"><div class="name">Stonebridge</div><div class="stats"><span>Active <strong>5</strong></span><span>Sold YTD <strong>8</strong></span></div></div>
+  </div>
+
+  <div class="bio">
+    <img src="https://edmundbogen.github.io/edmund-profile.png" alt="Edmund Bogen">
+    <div>
+      <h4>Edmund Bogen</h4>
+      <div class="creds">Licensed Real Estate Salesperson · REALTOR® · The Edmund Bogen Team at Douglas Elliman</div>
+      <p>Member of St. Andrews Country Club. Specializing in Boca Raton's premier luxury gated communities. <em>Quiet Money</em> is a weekly column for sophisticated readers inside and adjacent to St. Andrews.</p>
+      <div class="contact">
+        <a href="tel:5612357575" class="phone">561-235-7575</a>
+        <a href="mailto:edmund@bogenhomes.com" class="email">edmund@bogenhomes.com</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="ft-brand">The Edmund Bogen Team</div>
+  <div class="ft-meta">at Douglas Elliman Real Estate</div>
+  <div class="ft-meta">444 E Palmetto Park Rd, Boca Raton, FL 33432 · 561-235-7575</div>
+  <div class="ft-mls">Market data courtesy of BeachesMLS. Information is deemed reliable but not guaranteed. Market data as of May 27, 2026. Featured article hero image is an AI-generated editorial illustration; no actual property is depicted.</div>
+  <div class="ft-disclaimer">&copy; 2026 DOUGLAS ELLIMAN REAL ESTATE. THIS DASHBOARD IS GENERAL CONSUMER EDUCATION AND IS NOT LEGAL, FINANCIAL, TAX, OR TRANSACTIONAL ADVICE. ALL MATERIAL PRESENTED HEREIN IS INTENDED FOR INFORMATION PURPOSES ONLY. WHILE THIS INFORMATION IS BELIEVED TO BE CORRECT, IT IS REPRESENTED SUBJECT TO ERRORS, OMISSIONS, CHANGES OR WITHDRAWAL WITHOUT NOTICE. ALL PROPERTY INFORMATION, INCLUDING, BUT NOT LIMITED TO SQUARE FOOTAGE, ROOM COUNT, NUMBER OF BEDROOMS AND THE SCHOOL DISTRICT IN PROPERTY LISTINGS SHOULD BE VERIFIED BY YOUR OWN ATTORNEY, ARCHITECT OR ZONING EXPERT. IF YOUR PROPERTY IS CURRENTLY LISTED WITH ANOTHER REAL ESTATE BROKER, PLEASE DISREGARD THIS OFFER. IT IS NOT OUR INTENTION TO SOLICIT THE OFFERINGS OF OTHER REAL ESTATE BROKERS. WE COOPERATE WITH THEM FULLY. EQUAL HOUSING OPPORTUNITY.</div>
+</footer>
+
+<script>
+Chart.defaults.font.family = "'Montserrat', sans-serif";
+Chart.defaults.font.size = 11;
+Chart.defaults.color = '#1a3e5c';
+
+const navy = '#1a3e5c';
+const cyan = '#00a8e1';
+const red  = '#c8102e';
+
+const communities = [
+  { name: 'St. Andrews CC',     active: 12, sold: 14, highlight: true },
+  { name: 'Boca West CC',       active: 33, sold: 75 },
+  { name: 'Broken Sound',       active: 21, sold: 56 },
+  { name: 'Royal Palm YC',      active: 27, sold: 22 },
+  { name: 'Polo Club',          active: 8,  sold: 42 },
+  { name: 'Addison Reserve',    active: 5,  sold: 22 },
+  { name: 'Lotus',              active: 19, sold: 20 },
+  { name: 'Woodfield',          active: 10, sold: 19 },
+  { name: 'The Oaks',           active: 12, sold: 18 },
+  { name: 'Bocaire CC',         active: 7,  sold: 15 },
+  { name: 'The Bridges',        active: 6,  sold: 14 },
+  { name: 'Boca Bridges',       active: 14, sold: 13 },
+  { name: 'Seven Bridges',      active: 8,  sold: 12 },
+  { name: 'Stonebridge',        active: 5,  sold: 8 },
+  { name: 'Boca Grove',         active: 15, sold: 6 },
+  { name: 'Mizner CC',          active: 4,  sold: 6 },
+  { name: 'Seasons',            active: 2,  sold: 6 },
+  { name: 'Delaire CC',         active: 4,  sold: 5 },
+  { name: 'Long Lake Estates',  active: 5,  sold: 3 },
+  { name: 'The Sanctuary',      active: 8,  sold: 1 },
+  { name: 'Le Lac',             active: 0,  sold: 0 }
+];
+
+const labels = communities.map(c => c.name);
+const colorsActive = communities.map(c => c.highlight ? red : navy);
+const colorsSold = communities.map(c => c.highlight ? red : cyan);
+
+const absorption = communities.map(c => c.active > 0 ? +(c.sold / c.active * 100).toFixed(0) : 0);
+
+new Chart(document.getElementById('chart-absorption'), {
+  type: 'bar',
+  data: {
+    labels: labels,
+    datasets: [{
+      label: 'Absorption Rate (%)',
+      data: absorption,
+      backgroundColor: communities.map(c => c.highlight ? red : cyan),
+      borderRadius: 3
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: (ctx) => 'Absorption: ' + ctx.parsed.x + '%' } }
+    },
+    scales: {
+      x: { beginAtZero: true, ticks: { callback: (v) => v + '%' }, grid: { color: 'rgba(0,0,0,0.05)' } },
+      y: { grid: { display: false } }
+    }
+  }
+});
+
+new Chart(document.getElementById('chart-inventory'), {
+  type: 'bar',
+  data: {
+    labels: labels,
+    datasets: [{
+      label: 'Active Listings',
+      data: communities.map(c => c.active),
+      backgroundColor: colorsActive,
+      borderRadius: 3
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: (ctx) => ctx.parsed.x + ' active listings' } }
+    },
+    scales: {
+      x: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' } },
+      y: { grid: { display: false } }
+    }
+  }
+});
+
+new Chart(document.getElementById('chart-velocity'), {
+  type: 'bar',
+  data: {
+    labels: labels,
+    datasets: [{
+      label: 'Closings YTD',
+      data: communities.map(c => c.sold),
+      backgroundColor: colorsSold,
+      borderRadius: 3
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: (ctx) => ctx.parsed.x + ' closings YTD' } }
+    },
+    scales: {
+      x: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' } },
+      y: { grid: { display: false } }
+    }
+  }
+});
+
+document.querySelectorAll('.chart-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.chart-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.chart-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+  });
+});
+</script>
+
+</body>
+</html>
