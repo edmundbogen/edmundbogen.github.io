@@ -139,6 +139,18 @@
   .result .lbl{font-size:11.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);}
   .result small{display:block;color:var(--muted);font-size:12px;margin-top:6px;}
 
+  /* itemized breakdown */
+  .fields-2{display:grid;grid-template-columns:1fr 1fr;gap:0 14px;}
+  .breakdown{margin-top:2px;}
+  .breakdown .row{display:flex;justify-content:space-between;align-items:baseline;font-size:13.5px;padding:8px 0;border-bottom:1px dashed var(--line);color:var(--muted);}
+  .breakdown .row span:last-child{color:var(--navy);font-weight:600;font-variant-numeric:tabular-nums;}
+  .breakdown .row.total{border-bottom:none;border-top:2px solid var(--gold);margin-top:6px;padding-top:13px;font-size:14px;color:var(--navy);font-weight:600;}
+  .breakdown .row.total span:last-child{color:var(--gold);font-size:19px;}
+  .equity-note{margin-top:14px;padding:13px 15px;background:var(--bg-2);border-radius:var(--radius);font-size:12.5px;color:var(--muted);line-height:1.6;}
+  .equity-note b{color:var(--navy);}
+  .cmp-line{margin-top:10px;font-size:13px;color:var(--navy);font-weight:500;}
+  .assumptions{font-size:11px;color:var(--muted);margin-top:14px;line-height:1.65;}
+
   .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:8px;}
   .stat{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);padding:18px;text-align:center;}
   .stat .v{font-size:24px;font-weight:600;color:var(--gold);}
@@ -206,6 +218,7 @@
     .topbar,.navbar,.hero,section.module,.value-banner,footer{padding-left:22px;padding-right:22px;}
     .hero h1{font-size:34px;}
     .grid.cols-2,.grid.cols-3{grid-template-columns:1fr;}
+    .fields-2{grid-template-columns:1fr;}
     .stat-row{grid-template-columns:repeat(2,1fr);}
     .topbar .powered{font-size:9px;}
     .navbar{top:60px;}
@@ -251,6 +264,7 @@
     <a href="#costs">Cost Tools</a>
     <a href="#moving">Moving &amp; Logistics</a>
     <a href="#neighborhoods">Neighborhoods &amp; Housing</a>
+    <a href="#vendors">Trusted Network</a>
     <a href="#concierge">Your Concierge</a>
   </nav>
 
@@ -369,6 +383,43 @@
         <p class="lead">Plan the financial side of your move with quick, transparent estimates. These tools are for budgeting guidance — your concierge can refine the numbers for your situation.</p>
       </div>
     </div>
+    <!-- Cost of Ownership — itemized -->
+    <div class="calc" style="margin-bottom:18px">
+      <h3>Monthly Cost of Ownership</h3>
+      <div class="grid cols-2">
+        <div>
+          <div class="fields-2">
+            <div class="field"><label>Purchase price</label><input type="number" id="own-price" value="850000" step="10000"></div>
+            <div class="field"><label>Down payment %</label><input type="number" id="own-down" value="20" min="0" max="100" step="1"></div>
+            <div class="field"><label>Mortgage rate %</label><input type="number" id="own-rate" value="6.5" min="0" max="15" step="0.125"></div>
+            <div class="field"><label>Term (years)</label>
+              <select id="own-term"><option value="30" selected>30</option><option value="15">15</option></select>
+            </div>
+            <div class="field"><label>Property tax % / yr</label><input type="number" id="own-tax" value="1.8" min="0" max="5" step="0.05"></div>
+            <div class="field"><label>Insurance % / yr</label><input type="number" id="own-ins" value="0.9" min="0" max="5" step="0.05"></div>
+            <div class="field"><label>HOA / condo $ / mo</label><input type="number" id="own-hoa" value="0" min="0" step="50"></div>
+            <div class="field"><label>Compare to rent $ / mo</label><input type="number" id="own-rent" value="5000" min="0" step="100"></div>
+          </div>
+        </div>
+        <div>
+          <div class="breakdown">
+            <div class="row"><span>Principal &amp; interest</span><span id="own-pi">—</span></div>
+            <div class="row"><span id="own-tax-lbl">Property tax</span><span id="own-taxout">—</span></div>
+            <div class="row"><span id="own-ins-lbl">Insurance</span><span id="own-insout">—</span></div>
+            <div class="row"><span>HOA / condo</span><span id="own-hoaout">—</span></div>
+            <div class="row total"><span>Total monthly carry</span><span id="own-total">—</span></div>
+          </div>
+          <div class="equity-note">
+            Of that total, <b id="own-equity">—</b>/mo goes to principal (equity you keep) in year one.
+            Net carrying cost excluding equity build: <b id="own-net">—</b>/mo.
+            <div class="cmp-line" id="own-cmp"></div>
+          </div>
+        </div>
+      </div>
+      <div class="assumptions" id="own-assume"></div>
+    </div>
+
+    <!-- Moving estimator + FL tax advantage -->
     <div class="grid cols-2">
       <div class="calc">
         <h3>Interstate Moving Cost Estimator</h3>
@@ -387,27 +438,20 @@
           <select id="mv-pack"><option value="1">No, I'll pack</option><option value="1.25" selected>Yes, pack for me</option></select>
         </div>
         <div class="result">
-          <div class="lbl">Estimated move cost</div>
-          <div class="big" id="mv-out">$7,500</div>
-          <small>Typical interstate range. Get exact quotes from vetted carriers in Module 4.</small>
+          <div class="lbl">Estimated move cost (range)</div>
+          <div class="big" id="mv-out">—</div>
+          <small>Ballpark for a long-distance move. Your concierge will source firm quotes from vetted carriers (Module 4).</small>
         </div>
       </div>
       <div class="calc">
-        <h3>Rent vs. Buy — Monthly Snapshot</h3>
-        <div class="field"><label>Monthly rent you're considering</label>
-          <input type="number" id="rb-rent" value="5000" step="100">
+        <h3>The Florida Tax Advantage</h3>
+        <div class="breakdown">
+          <div class="row"><span>State income tax</span><span>0%</span></div>
+          <div class="row"><span>State estate / inheritance tax</span><span>None</span></div>
+          <div class="row"><span>Homestead exemption (primary)</span><span>up to $50,000</span></div>
+          <div class="row"><span>"Save Our Homes" assessment cap</span><span>3% / yr</span></div>
         </div>
-        <div class="field"><label>Purchase price you're considering</label>
-          <input type="number" id="rb-price" value="850000" step="10000">
-        </div>
-        <div class="field"><label>Down payment %</label>
-          <input type="number" id="rb-down" value="20" min="0" max="100">
-        </div>
-        <div class="result">
-          <div class="lbl">Est. monthly cost to own</div>
-          <div class="big" id="rb-out">$6,400</div>
-          <small id="rb-note">Includes mortgage (≈6.5%), taxes &amp; insurance estimate. Illustrative only.</small>
-        </div>
+        <div class="equity-note">For relocating executives, establishing Florida residency can materially change after-tax income and estate planning. Your concierge can connect you with a CPA and an estate attorney for residency and homestead guidance.</div>
       </div>
     </div>
 
@@ -415,7 +459,7 @@
     <div class="stat-row">
       <div class="stat"><div class="v">0%</div><div class="l">State income tax</div></div>
       <div class="stat"><div class="v">$5K+</div><div class="l">Avg. luxury rent / mo</div></div>
-      <div class="stat"><div class="v">~1.0%</div><div class="l">Property tax (effective)</div></div>
+      <div class="stat"><div class="v">~1.8%</div><div class="l">Property tax / yr (of price)</div></div>
       <div class="stat"><div class="v">300+</div><div class="l">Days of sun / yr</div></div>
     </div>
     <div class="fh-note">Figures are general illustrations for budgeting and may vary by city, property, and lender. Your concierge can provide current, address-specific numbers.</div>
@@ -511,6 +555,50 @@
     </div>
   </section>
 
+  <!-- ── MODULE 6: TRUSTED NETWORK ── -->
+  <section class="module" id="vendors">
+    <div class="mod-head">
+      <div class="mod-num">6</div>
+      <div>
+        <h2>Trusted Network</h2>
+        <p class="lead">A curated directory of professionals our clients rely on across South Florida. Ask your concierge for a personal introduction to any of them.</p>
+      </div>
+    </div>
+    <div class="grid cols-3">
+      <div class="card"><div class="accent"></div>
+        <h3>Concierge Medicine</h3>
+        <p>Direct-access physicians and executive health programs for your family. <i>[EB Team to add vetted partner]</i></p>
+        <a class="lk" href="#concierge">Request an introduction &rarr;</a>
+      </div>
+      <div class="card"><div class="accent"></div>
+        <h3>School Consultants</h3>
+        <p>K&ndash;12 placement and admissions advisors for public, private, and independent schools. <i>[EB Team to add vetted partner]</i></p>
+        <a class="lk" href="#concierge">Request an introduction &rarr;</a>
+      </div>
+      <div class="card"><div class="accent"></div>
+        <h3>College Consultants</h3>
+        <p>University admissions strategy, applications, and standardized-test planning. <i>[EB Team to add vetted partner]</i></p>
+        <a class="lk" href="#concierge">Request an introduction &rarr;</a>
+      </div>
+      <div class="card"><div class="accent"></div>
+        <h3>Home Services &amp; Trades</h3>
+        <p>Vetted plumbers, electricians, HVAC, handymen, and general contractors. <i>[EB Team to add vetted partner]</i></p>
+        <a class="lk" href="#concierge">Request an introduction &rarr;</a>
+      </div>
+      <div class="card"><div class="accent"></div>
+        <h3>Interior Design &amp; Furnishing</h3>
+        <p>Designers and white-glove furnishing to make your home move-in ready. <i>[EB Team to add vetted partner]</i></p>
+        <a class="lk" href="#concierge">Request an introduction &rarr;</a>
+      </div>
+      <div class="card"><div class="accent"></div>
+        <h3>Wealth, Tax &amp; Legal</h3>
+        <p>CPAs, estate attorneys, and Florida residency &amp; homestead guidance. <i>[EB Team to add vetted partner]</i></p>
+        <a class="lk" href="#concierge">Request an introduction &rarr;</a>
+      </div>
+    </div>
+    <div class="fh-note">These are independent third-party professionals offered as a convenience to Kayne Anderson team members. The selection of any vendor is entirely your own; The Edmund Bogen Team makes no warranty as to their services.</div>
+  </section>
+
   <!-- ── CONCIERGE CTA ── -->
   <section class="module" id="concierge" style="border-bottom:none">
     <div class="concierge">
@@ -582,32 +670,72 @@
     li.addEventListener('click',()=>li.classList.toggle('done'));
   });
 
-  /* ── MOVING COST ESTIMATOR ── */
-  function fmt(n){return '$'+Math.round(n).toLocaleString();}
+  /* ── HELPERS ── */
+  const $=id=>document.getElementById(id);
+  const num=id=>{const x=parseFloat($(id).value);return isNaN(x)?0:x;};
+  const fmt=n=>'$'+Math.round(n).toLocaleString();
+
+  /* ── MONTHLY COST OF OWNERSHIP (itemized) ── */
+  function calcOwn(){
+    const price=num('own-price');
+    const down=num('own-down')/100;
+    const rate=num('own-rate')/100;
+    const term=num('own-term')||30;
+    const taxPct=num('own-tax')/100;
+    const insPct=num('own-ins')/100;
+    const hoa=num('own-hoa');
+    const rent=num('own-rent');
+
+    const loan=Math.max(price*(1-down),0);
+    const r=rate/12, n=term*12;
+    let pi;
+    if(loan<=0) pi=0;
+    else if(r===0) pi=loan/n;
+    else pi=loan*(r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
+
+    const tax=price*taxPct/12;
+    const ins=price*insPct/12;
+    const total=pi+tax+ins+hoa;
+
+    const interest1=loan*r;                 // month-one interest
+    const principal1=Math.max(pi-interest1,0);
+    const net=total-principal1;             // carrying cost excl. equity build
+
+    $('own-pi').textContent=fmt(pi);
+    $('own-taxout').textContent=fmt(tax);
+    $('own-insout').textContent=fmt(ins);
+    $('own-hoaout').textContent=fmt(hoa);
+    $('own-total').textContent=fmt(total);
+    $('own-equity').textContent=fmt(principal1);
+    $('own-net').textContent=fmt(net);
+    $('own-tax-lbl').textContent='Property tax ('+num('own-tax')+'%)';
+    $('own-ins-lbl').textContent='Insurance ('+num('own-ins')+'%)';
+
+    const cmp=$('own-cmp');
+    if(rent>0){
+      const d=total-rent;
+      cmp.textContent = d>=0
+        ? 'Owning runs '+fmt(d)+'/mo above '+fmt(rent)+' rent (before equity, tax effects & appreciation).'
+        : 'Owning runs '+fmt(-d)+'/mo below '+fmt(rent)+' rent (before equity, tax effects & appreciation).';
+    } else cmp.textContent='';
+
+    $('own-assume').innerHTML='Assumes a '+term+'-yr fixed mortgage. Property tax shown on purchase price (year-one, non-homesteaded Palm Beach County basis); after homesteading, Florida’s Save Our Homes provision caps assessed-value growth at 3%/yr. Insurance varies by location and coverage (coastal / flood higher). Equity figure is month-one principal and rises over the loan term. Excludes the opportunity cost of the down payment, mortgage-interest tax treatment, and expected appreciation — your concierge can model a full rent-vs-own NPV on request.';
+  }
+  ['own-price','own-down','own-rate','own-term','own-tax','own-ins','own-hoa','own-rent']
+    .forEach(id=>$(id).addEventListener('input',calcOwn));
+
+  /* ── INTERSTATE MOVING ESTIMATOR (range) ── */
   function calcMove(){
-    const base=+document.getElementById('mv-size').value;
-    const dist=+document.getElementById('mv-dist').value||0;
-    const pack=+document.getElementById('mv-pack').value;
-    const est=(base + dist*2.4) * pack;
-    document.getElementById('mv-out').textContent=fmt(est);
+    const base=num('mv-size');
+    const dist=num('mv-dist');
+    const pack=num('mv-pack');
+    const mid=(base + dist*2.4) * pack;
+    const low=mid*0.85, high=mid*1.20;
+    $('mv-out').textContent=fmt(low)+' – '+fmt(high);
   }
-  ['mv-size','mv-dist','mv-pack'].forEach(id=>document.getElementById(id).addEventListener('input',calcMove));
+  ['mv-size','mv-dist','mv-pack'].forEach(id=>$(id).addEventListener('input',calcMove));
 
-  /* ── RENT VS BUY ── */
-  function calcRB(){
-    const price=+document.getElementById('rb-price').value||0;
-    const downPct=(+document.getElementById('rb-down').value||0)/100;
-    const loan=price*(1-downPct);
-    const r=0.065/12, n=360;
-    const mortgage=loan>0 ? loan*(r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1) : 0;
-    const taxes=price*0.01/12;
-    const insurance=price*0.006/12;
-    const total=mortgage+taxes+insurance;
-    document.getElementById('rb-out').textContent=fmt(total);
-  }
-  ['rb-price','rb-down','rb-rent'].forEach(id=>document.getElementById(id).addEventListener('input',calcRB));
-
-  calcMove(); calcRB();
+  calcOwn(); calcMove();
 
   /* ── CONCIERGE FORM (Formspree) ── */
   document.getElementById('concierge-form').addEventListener('submit',async function(e){
