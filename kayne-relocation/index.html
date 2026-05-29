@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kayne Anderson | Relocation Portal</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="The Kayne Anderson Relocation Portal — your private concierge for relocating to South Florida.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+  :root{
+    --bg:#0b0f16;            /* near-black navy */
+    --panel:#121823;         /* card */
+    --panel-2:#0f1520;       /* darker card */
+    --line:rgba(201,168,106,0.18);
+    --gold:#c5a572;          /* Kayne champagne gold */
+    --gold-bright:#dcc08a;
+    --text:#eceef2;
+    --muted:#93a0b2;
+    --cyan:#00a8e1;          /* EB accent — used sparingly */
+    --ok:#6fcf97;
+    --radius:6px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Montserrat',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--gold);text-decoration:none;}
+  a:hover{color:var(--gold-bright);}
+
+  /* ── LOGIN GATE ── */
+  #gate{position:fixed;inset:0;background:
+      radial-gradient(1200px 600px at 50% -10%, rgba(197,165,106,0.10), transparent 60%),
+      var(--bg);
+    display:flex;align-items:center;justify-content:center;z-index:9999;flex-direction:column;padding:24px;}
+  #gate.hidden{display:none;}
+  #content{display:none;}
+  #content.visible{display:block;}
+  .gate-inner{text-align:center;max-width:420px;width:100%;padding:40px;}
+  .gate-chevron{color:var(--gold);font-size:22px;letter-spacing:0.4em;margin-bottom:26px;}
+  .gate-inner .eyebrow{font-size:12px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;}
+  .gate-inner h1{font-size:26px;font-weight:300;letter-spacing:0.16em;text-transform:uppercase;margin-bottom:10px;}
+  .gate-inner p{font-size:13.5px;color:var(--muted);margin-bottom:28px;}
+  .gate-inner input{width:100%;padding:15px 20px;background:rgba(255,255,255,0.04);border:1px solid var(--line);border-radius:var(--radius);color:#fff;font-family:inherit;font-size:16px;text-align:center;letter-spacing:0.12em;outline:none;transition:border-color .25s;}
+  .gate-inner input:focus{border-color:var(--gold);}
+  .gate-inner input::placeholder{color:#5a6577;letter-spacing:0.06em;}
+  .gate-inner button{margin-top:14px;width:100%;padding:15px;background:var(--gold);color:#10151d;border:none;border-radius:var(--radius);font-family:inherit;font-size:13px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;transition:background .25s;}
+  .gate-inner button:hover{background:var(--gold-bright);}
+  .gate-error{color:#ff6b6b;font-size:13px;margin-top:12px;display:none;}
+  .gate-foot{margin-top:34px;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#5a6577;}
+  .gate-foot b{color:var(--muted);font-weight:500;}
+
+  /* ── TOP BAR ── */
+  .topbar{position:sticky;top:0;z-index:100;display:flex;justify-content:space-between;align-items:center;
+    padding:16px 40px;background:rgba(11,15,22,0.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  .topbar .brand{display:flex;flex-direction:column;}
+  .topbar .brand .k{font-size:15px;font-weight:600;letter-spacing:0.26em;text-transform:uppercase;color:var(--text);}
+  .topbar .brand .sub{font-size:10px;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:var(--gold);margin-top:2px;}
+  .topbar .powered{font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);text-align:right;}
+  .topbar .powered b{color:var(--text);font-weight:600;}
+
+  /* ── SECTION NAV ── */
+  .navbar{position:sticky;top:62px;z-index:90;display:flex;gap:6px;overflow-x:auto;padding:12px 40px;background:var(--panel-2);border-bottom:1px solid var(--line);}
+  .navbar a{white-space:nowrap;font-size:11.5px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);padding:8px 14px;border-radius:40px;transition:.2s;}
+  .navbar a:hover{color:var(--text);background:rgba(255,255,255,0.04);}
+
+  /* ── HERO ── */
+  .hero{position:relative;padding:90px 40px 80px;text-align:center;overflow:hidden;
+    background:
+      radial-gradient(900px 400px at 50% 0%, rgba(197,165,106,0.10), transparent 65%),
+      linear-gradient(180deg,#0c1119,#0b0f16);}
+  .hero .chevron{color:var(--gold);font-size:24px;letter-spacing:0.5em;margin-bottom:24px;}
+  .hero .eyebrow{font-size:12px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
+  .hero h1{font-size:46px;font-weight:300;letter-spacing:0.04em;line-height:1.15;margin-bottom:20px;}
+  .hero h1 b{font-weight:600;}
+  .hero p{max-width:660px;margin:0 auto;color:var(--muted);font-size:17px;}
+  .hero .cta-row{margin-top:36px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+  .btn{display:inline-block;padding:14px 34px;border-radius:var(--radius);font-size:12.5px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;border:none;transition:.25s;}
+  .btn-gold{background:var(--gold);color:#10151d;}
+  .btn-gold:hover{background:var(--gold-bright);color:#10151d;}
+  .btn-ghost{background:transparent;color:var(--text);border:1px solid var(--line);}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+
+  /* ── SECTION SHELL ── */
+  section.module{max-width:1080px;margin:0 auto;padding:72px 40px;border-bottom:1px solid rgba(255,255,255,0.05);}
+  .mod-head{display:flex;align-items:flex-start;gap:18px;margin-bottom:34px;}
+  .mod-num{font-size:13px;font-weight:600;letter-spacing:0.1em;color:#10151d;background:var(--gold);min-width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:4px;}
+  .mod-head h2{font-size:30px;font-weight:300;letter-spacing:0.04em;}
+  .mod-head .lead{color:var(--muted);font-size:15px;margin-top:6px;max-width:680px;}
+
+  /* cards grid */
+  .grid{display:grid;gap:18px;}
+  .grid.cols-2{grid-template-columns:repeat(2,1fr);}
+  .grid.cols-3{grid-template-columns:repeat(3,1fr);}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:24px;position:relative;transition:.25s;}
+  .card:hover{border-color:var(--gold);transform:translateY(-2px);}
+  .card .accent{position:absolute;left:0;top:18px;bottom:18px;width:3px;background:var(--gold);border-radius:3px;}
+  .card h3{font-size:16px;font-weight:600;letter-spacing:0.02em;margin-bottom:8px;padding-left:14px;}
+  .card p{font-size:13.5px;color:var(--muted);padding-left:14px;}
+  .card .lk{display:inline-block;margin-top:12px;margin-left:14px;font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;}
+
+  /* checklist / timeline */
+  .timeline{position:relative;padding-left:28px;}
+  .timeline::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:var(--line);}
+  .tl-item{position:relative;padding:14px 0 14px 8px;}
+  .tl-item::before{content:"";position:absolute;left:-25px;top:20px;width:12px;height:12px;border-radius:50%;background:var(--panel);border:2px solid var(--gold);}
+  .tl-item .when{font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);}
+  .tl-item .what{font-size:14.5px;color:var(--text);margin-top:3px;}
+  .tl-item .det{font-size:12.5px;color:var(--muted);margin-top:2px;}
+
+  .checklist{list-style:none;}
+  .checklist li{display:flex;align-items:flex-start;gap:12px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:14px;cursor:pointer;}
+  .checklist li .box{min-width:20px;height:20px;border:1.5px solid var(--gold);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:12px;color:transparent;transition:.2s;margin-top:2px;}
+  .checklist li.done .box{background:var(--gold);color:#10151d;}
+  .checklist li.done span{color:var(--muted);text-decoration:line-through;}
+
+  /* calculators */
+  .calc{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:26px;}
+  .calc h3{font-size:16px;font-weight:600;margin-bottom:18px;letter-spacing:0.02em;}
+  .field{margin-bottom:16px;}
+  .field label{display:block;font-size:12px;letter-spacing:0.06em;color:var(--muted);text-transform:uppercase;margin-bottom:7px;}
+  .field input,.field select{width:100%;padding:12px 14px;background:var(--panel-2);border:1px solid var(--line);border-radius:var(--radius);color:#fff;font-family:inherit;font-size:15px;outline:none;}
+  .field input:focus,.field select:focus{border-color:var(--gold);}
+  .result{margin-top:8px;padding:18px;background:linear-gradient(135deg,rgba(197,165,106,0.12),rgba(197,165,106,0.04));border:1px solid var(--line);border-radius:var(--radius);}
+  .result .big{font-size:26px;font-weight:600;color:var(--gold-bright);}
+  .result .lbl{font-size:11.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);}
+  .result small{display:block;color:var(--muted);font-size:12px;margin-top:6px;}
+
+  .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:8px;}
+  .stat{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:18px;text-align:center;}
+  .stat .v{font-size:24px;font-weight:600;color:var(--gold-bright);}
+  .stat .l{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-top:4px;}
+
+  /* fair housing note */
+  .fh-note{margin-top:20px;font-size:12px;color:var(--muted);background:var(--panel-2);border-left:3px solid var(--gold);padding:14px 18px;border-radius:0 var(--radius) var(--radius) 0;}
+
+  /* concierge CTA */
+  .concierge{background:linear-gradient(135deg,#10151d,#0c1119);border:1px solid var(--line);border-radius:8px;padding:44px;text-align:center;max-width:740px;margin:0 auto;}
+  .concierge h2{font-size:28px;font-weight:300;letter-spacing:0.04em;margin-bottom:12px;}
+  .concierge p{color:var(--muted);margin-bottom:26px;}
+  .concierge form{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
+  .concierge input{flex:1;min-width:200px;padding:14px 16px;background:var(--panel-2);border:1px solid var(--line);border-radius:var(--radius);color:#fff;font-family:inherit;font-size:15px;outline:none;}
+  .concierge input:focus{border-color:var(--gold);}
+  .form-msg{margin-top:16px;font-size:13px;color:var(--ok);display:none;}
+
+  /* value banner */
+  .value-banner{background:linear-gradient(135deg,rgba(197,165,106,0.14),rgba(197,165,106,0.03));border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:40px;text-align:center;}
+  .value-banner .eyebrow{font-size:11.5px;font-weight:600;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+  .value-banner .amt{font-size:34px;font-weight:300;letter-spacing:0.04em;}
+  .value-banner .amt b{font-weight:600;color:var(--gold-bright);}
+  .value-banner p{max-width:620px;margin:14px auto 0;color:var(--muted);font-size:14px;}
+  .placeholder-tag{display:inline-block;background:rgba(255,107,107,0.14);color:#ff9b9b;font-size:11px;letter-spacing:0.08em;padding:2px 8px;border-radius:4px;border:1px dashed rgba(255,107,107,0.4);}
+
+  /* footer */
+  footer{padding:46px 40px;text-align:center;color:var(--muted);font-size:12px;background:var(--panel-2);}
+  footer .eb{font-size:13px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text);font-weight:600;margin-bottom:8px;}
+  footer .de{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;}
+  footer .legal{max-width:760px;margin:0 auto;font-size:11px;line-height:1.7;color:#6c7888;}
+  footer .demo{margin-top:18px;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#566;}
+  .eho{font-size:11px;color:var(--muted);margin-top:10px;}
+
+  @media(max-width:760px){
+    .topbar,.navbar,.hero,section.module,.value-banner,footer{padding-left:22px;padding-right:22px;}
+    .hero h1{font-size:33px;}
+    .grid.cols-2,.grid.cols-3{grid-template-columns:1fr;}
+    .stat-row{grid-template-columns:repeat(2,1fr);}
+    .topbar .powered{font-size:9px;}
+    .navbar{top:60px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════ LOGIN GATE ══════════ -->
+<div id="gate">
+  <div class="gate-inner">
+    <div class="gate-chevron">&#8743;&#8743;&#8743;</div>
+    <div class="eyebrow">Kayne Anderson</div>
+    <h1>Relocation Portal</h1>
+    <p>Private access for Kayne Anderson team members relocating to South Florida. Please enter your access code.</p>
+    <input type="password" id="pw" placeholder="Access Code" autofocus
+      onkeydown="if(event.key==='Enter')unlock()">
+    <button onclick="unlock()">Enter Portal</button>
+    <div class="gate-error" id="err">Incorrect access code. Please try again.</div>
+    <div class="gate-foot">Concierge service by <b>The Edmund Bogen Team</b></div>
+  </div>
+</div>
+
+<!-- ══════════ PORTAL CONTENT ══════════ -->
+<div id="content">
+
+  <!-- top bar -->
+  <div class="topbar">
+    <div class="brand">
+      <span class="k">Kayne Anderson</span>
+      <span class="sub">Relocation Portal</span>
+    </div>
+    <div class="powered">Powered by<br><b>The Edmund Bogen Team</b></div>
+  </div>
+
+  <!-- section nav -->
+  <nav class="navbar">
+    <a href="#schools">Schools</a>
+    <a href="#timeline">Timeline &amp; Deadlines</a>
+    <a href="#costs">Cost Tools</a>
+    <a href="#moving">Moving &amp; Logistics</a>
+    <a href="#neighborhoods">Neighborhoods &amp; Housing</a>
+    <a href="#concierge">Your Concierge</a>
+  </nav>
+
+  <!-- hero -->
+  <div class="hero">
+    <div class="chevron">&#8743;&#8743;&#8743;</div>
+    <div class="eyebrow">Welcome to South Florida</div>
+    <h1>Your move, <b>handled</b>.</h1>
+    <p>Everything a Kayne Anderson team member needs to relocate to South Florida with confidence — schools, deadlines, costs, movers, and neighborhoods — in one private portal, backed by a dedicated concierge.</p>
+    <div class="cta-row">
+      <a href="#timeline" class="btn btn-gold">Start with your timeline</a>
+      <a href="#concierge" class="btn btn-ghost">Talk to your concierge</a>
+    </div>
+  </div>
+
+  <!-- ── MODULE 1: SCHOOLS ── -->
+  <section class="module" id="schools">
+    <div class="mod-head">
+      <div class="mod-num">1</div>
+      <div>
+        <h2>Schools Hub</h2>
+        <p class="lead">Find the right school for your family using official, authoritative sources. Verify exactly which school serves any address, and gather everything you need to enroll.</p>
+      </div>
+    </div>
+    <div class="grid cols-3">
+      <div class="card"><div class="accent"></div>
+        <h3>Verify Your School Boundary</h3>
+        <p>Enter any address to see the assigned public schools, straight from the district's official locator.</p>
+        <a class="lk" href="https://www.palmbeachschools.org/cms/one.aspx?pageId=712301" target="_blank" rel="noopener">Palm Beach Locator &rarr;</a>
+      </div>
+      <div class="card"><div class="accent"></div>
+        <h3>Broward County Schools</h3>
+        <p>Official district site and school boundary lookup for the Fort Lauderdale area.</p>
+        <a class="lk" href="https://www.browardschools.com/Page/35864" target="_blank" rel="noopener">Find a School &rarr;</a>
+      </div>
+      <div class="card"><div class="accent"></div>
+        <h3>Miami-Dade County Schools</h3>
+        <p>Official district portal and attendance-boundary finder for the greater Miami area.</p>
+        <a class="lk" href="https://www2.dadeschools.net/schools/schoolinformation/" target="_blank" rel="noopener">School Information &rarr;</a>
+      </div>
+      <div class="card"><div class="accent"></div>
+        <h3>Florida School Data</h3>
+        <p>Statewide school directory and report cards published directly by the Florida Department of Education.</p>
+        <a class="lk" href="https://www.fldoe.org/schools/" target="_blank" rel="noopener">FL DOE Directory &rarr;</a>
+      </div>
+      <div class="card"><div class="accent"></div>
+        <h3>Private &amp; Independent Schools</h3>
+        <p>Directory of accredited independent schools across South Florida via the Florida Council.</p>
+        <a class="lk" href="https://www.fcis.org/" target="_blank" rel="noopener">FCIS Directory &rarr;</a>
+      </div>
+      <div class="card"><div class="accent"></div>
+        <h3>Higher Education</h3>
+        <p>State universities and colleges if family members are continuing their education in Florida.</p>
+        <a class="lk" href="https://www.flbog.edu/universities/" target="_blank" rel="noopener">State Universities &rarr;</a>
+      </div>
+    </div>
+
+    <h3 style="margin:34px 0 14px;font-weight:500;letter-spacing:0.04em;font-size:15px;color:var(--gold)">Enrollment Document Checklist</h3>
+    <ul class="checklist" data-key="schools">
+      <li><span class="box">&#10003;</span><span>Proof of residency (lease or closing documents + utility bill)</span></li>
+      <li><span class="box">&#10003;</span><span>Child's birth certificate or passport</span></li>
+      <li><span class="box">&#10003;</span><span>Florida Certificate of Immunization (DH Form 680)</span></li>
+      <li><span class="box">&#10003;</span><span>School-entry physical exam (DH Form 3040)</span></li>
+      <li><span class="box">&#10003;</span><span>Records / transcripts from the prior school</span></li>
+      <li><span class="box">&#10003;</span><span>Parent/guardian photo ID</span></li>
+    </ul>
+
+    <div class="fh-note">
+      In keeping with Fair Housing principles, this portal links to objective, official data sources so your family can make its own informed decision. We do not rate or rank schools or neighborhoods. Your concierge is glad to help you gather and verify information for any address you're considering.
+    </div>
+  </section>
+
+  <!-- ── MODULE 2: TIMELINE ── -->
+  <section class="module" id="timeline">
+    <div class="mod-head">
+      <div class="mod-num">2</div>
+      <div>
+        <h2>Timeline &amp; Deadlines</h2>
+        <p class="lead">A relocation runs on dates. Here's the sequence that keeps your move on track — check items off as you go.</p>
+      </div>
+    </div>
+    <div class="grid cols-2">
+      <div class="timeline">
+        <div class="tl-item"><div class="when">8 Weeks Out</div><div class="what">Define your search &amp; budget</div><div class="det">Set neighborhoods, rent-vs-buy decision, and a target move date with your concierge.</div></div>
+        <div class="tl-item"><div class="when">6 Weeks Out</div><div class="what">Tour homes &amp; verify schools</div><div class="det">Schedule property tours; confirm school boundaries for your top addresses.</div></div>
+        <div class="tl-item"><div class="when">4 Weeks Out</div><div class="what">Secure your home</div><div class="det">Sign lease or go under contract. Request moving-company quotes (see Module 4).</div></div>
+        <div class="tl-item"><div class="when">3 Weeks Out</div><div class="what">Book your mover</div><div class="det">Confirm the moving date with your interstate carrier; reserve elevators / certificates of insurance if needed.</div></div>
+        <div class="tl-item"><div class="when">2 Weeks Out</div><div class="what">Set up services</div><div class="det">Transfer/establish utilities, internet, mail forwarding, and update your address.</div></div>
+        <div class="tl-item"><div class="when">Move Week</div><div class="what">Arrive &amp; enroll</div><div class="det">Walk-through, key handoff, and submit your school-enrollment packet.</div></div>
+        <div class="tl-item"><div class="when">Settling In</div><div class="what">Florida essentials</div><div class="det">Driver's license, vehicle registration, voter registration, and homestead exemption (if buying).</div></div>
+      </div>
+      <div>
+        <div class="calc">
+          <h3>Master Move Checklist</h3>
+          <ul class="checklist" data-key="timeline">
+            <li><span class="box">&#10003;</span><span>Neighborhood &amp; budget confirmed</span></li>
+            <li><span class="box">&#10003;</span><span>Home secured (lease signed / under contract)</span></li>
+            <li><span class="box">&#10003;</span><span>School boundaries verified</span></li>
+            <li><span class="box">&#10003;</span><span>Moving company booked</span></li>
+            <li><span class="box">&#10003;</span><span>Utilities &amp; internet scheduled</span></li>
+            <li><span class="box">&#10003;</span><span>Mail forwarding &amp; address changes</span></li>
+            <li><span class="box">&#10003;</span><span>School enrollment packet submitted</span></li>
+            <li><span class="box">&#10003;</span><span>Florida driver's license &amp; registration</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── MODULE 3: COST TOOLS ── -->
+  <section class="module" id="costs">
+    <div class="mod-head">
+      <div class="mod-num">3</div>
+      <div>
+        <h2>Cost Tools</h2>
+        <p class="lead">Plan the financial side of your move with quick, transparent estimates. These tools are for budgeting guidance — your concierge can refine the numbers for your situation.</p>
+      </div>
+    </div>
+    <div class="grid cols-2">
+      <div class="calc">
+        <h3>Interstate Moving Cost Estimator</h3>
+        <div class="field"><label>Home size</label>
+          <select id="mv-size">
+            <option value="3500">Studio / 1 bedroom</option>
+            <option value="6000" selected>2&ndash;3 bedrooms</option>
+            <option value="9500">4 bedrooms</option>
+            <option value="14000">5+ bedrooms / large home</option>
+          </select>
+        </div>
+        <div class="field"><label>Distance to South Florida (miles)</label>
+          <input type="number" id="mv-dist" value="1200" min="100" step="50">
+        </div>
+        <div class="field"><label>Full-service packing?</label>
+          <select id="mv-pack"><option value="1">No, I'll pack</option><option value="1.25" selected>Yes, pack for me</option></select>
+        </div>
+        <div class="result">
+          <div class="lbl">Estimated move cost</div>
+          <div class="big" id="mv-out">$7,500</div>
+          <small>Typical interstate range. Get exact quotes from vetted carriers in Module 4.</small>
+        </div>
+      </div>
+      <div class="calc">
+        <h3>Rent vs. Buy — Monthly Snapshot</h3>
+        <div class="field"><label>Monthly rent you're considering</label>
+          <input type="number" id="rb-rent" value="5000" step="100">
+        </div>
+        <div class="field"><label>Purchase price you're considering</label>
+          <input type="number" id="rb-price" value="850000" step="10000">
+        </div>
+        <div class="field"><label>Down payment %</label>
+          <input type="number" id="rb-down" value="20" min="0" max="100">
+        </div>
+        <div class="result">
+          <div class="lbl">Est. monthly cost to own</div>
+          <div class="big" id="rb-out">$6,400</div>
+          <small id="rb-note">Includes mortgage (≈6.5%), taxes &amp; insurance estimate. Illustrative only.</small>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin:34px 0 14px;font-weight:500;letter-spacing:0.04em;font-size:15px;color:var(--gold)">South Florida Cost-of-Living Snapshot</h3>
+    <div class="stat-row">
+      <div class="stat"><div class="v">0%</div><div class="l">State income tax</div></div>
+      <div class="stat"><div class="v">$5K+</div><div class="l">Avg. luxury rent / mo</div></div>
+      <div class="stat"><div class="v">~1.0%</div><div class="l">Property tax (effective)</div></div>
+      <div class="stat"><div class="v">300+</div><div class="l">Days of sun / yr</div></div>
+    </div>
+    <div class="fh-note">Figures are general illustrations for budgeting and may vary by city, property, and lender. Your concierge can provide current, address-specific numbers.</div>
+  </section>
+
+  <!-- ── MODULE 4: MOVING & LOGISTICS ── -->
+  <section class="module" id="moving">
+    <div class="mod-head">
+      <div class="mod-num">4</div>
+      <div>
+        <h2>Moving &amp; Logistics</h2>
+        <p class="lead">The actual move, coordinated for you. We connect you with vetted interstate moving companies, help you compare quotes, and keep the logistics on schedule.</p>
+      </div>
+    </div>
+    <div class="grid cols-3">
+      <div class="card"><div class="accent"></div>
+        <h3>Vetted Mover Partner A</h3>
+        <p>Full-service interstate relocation. <i>[EB Team to confirm partner &amp; preferred rate]</i></p>
+        <a class="lk" href="#concierge">Request a quote &rarr;</a>
+      </div>
+      <div class="card"><div class="accent"></div>
+        <h3>Vetted Mover Partner B</h3>
+        <p>White-glove packing &amp; storage. <i>[EB Team to confirm partner &amp; preferred rate]</i></p>
+        <a class="lk" href="#concierge">Request a quote &rarr;</a>
+      </div>
+      <div class="card"><div class="accent"></div>
+        <h3>Vetted Mover Partner C</h3>
+        <p>Budget-friendly container option. <i>[EB Team to confirm partner &amp; preferred rate]</i></p>
+        <a class="lk" href="#concierge">Request a quote &rarr;</a>
+      </div>
+    </div>
+
+    <div class="grid cols-2" style="margin-top:18px">
+      <div class="calc">
+        <h3>Request Movers Through Your Concierge</h3>
+        <p style="color:var(--muted);font-size:13.5px;margin-bottom:16px">Tell us your move date and home size — we'll line up quotes from our vetted carriers so you can compare in one place. As a Kayne Anderson team member you receive our preferred-partner pricing.</p>
+        <a href="#concierge" class="btn btn-gold">Get my moving quotes</a>
+      </div>
+      <div class="calc">
+        <h3>Packing &amp; Move-Week Checklist</h3>
+        <ul class="checklist" data-key="moving">
+          <li><span class="box">&#10003;</span><span>Confirm carrier, date &amp; inventory</span></li>
+          <li><span class="box">&#10003;</span><span>Declutter / donate before packing</span></li>
+          <li><span class="box">&#10003;</span><span>Label boxes by room &amp; priority</span></li>
+          <li><span class="box">&#10003;</span><span>Pack an "essentials" first-night bag</span></li>
+          <li><span class="box">&#10003;</span><span>Reserve building elevator / COI</span></li>
+          <li><span class="box">&#10003;</span><span>Confirm delivery window in Florida</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── MODULE 5: NEIGHBORHOODS & HOUSING ── -->
+  <section class="module" id="neighborhoods">
+    <div class="mod-head">
+      <div class="mod-num">5</div>
+      <div>
+        <h2>Neighborhoods &amp; Housing</h2>
+        <p class="lead">Explore where Kayne Anderson team members are landing — minutes from One Town Center — plus rentals, homes for sale, and temporary housing while you settle.</p>
+      </div>
+    </div>
+    <div class="grid cols-3">
+      <div class="card"><div class="accent"></div>
+        <h3>Boca Raton</h3>
+        <p>Walk-to-work convenience near the office, top amenities, and a range from luxury condos to gated estates.</p>
+        <a class="lk" href="#concierge">See available homes &rarr;</a>
+      </div>
+      <div class="card"><div class="accent"></div>
+        <h3>Delray Beach</h3>
+        <p>Vibrant downtown, beaches, and a lively dining scene — popular with younger professionals.</p>
+        <a class="lk" href="#concierge">See available homes &rarr;</a>
+      </div>
+      <div class="card"><div class="accent"></div>
+        <h3>Parkland &amp; Coral Springs</h3>
+        <p>Family-oriented communities with parks and strong public schools, an easy commute south.</p>
+        <a class="lk" href="#concierge">See available homes &rarr;</a>
+      </div>
+      <div class="card"><div class="accent"></div>
+        <h3>Fort Lauderdale</h3>
+        <p>Waterfront living, marinas, and an urban core — a short drive to Boca.</p>
+        <a class="lk" href="#concierge">See available homes &rarr;</a>
+      </div>
+      <div class="card"><div class="accent"></div>
+        <h3>Temporary &amp; Corporate Housing</h3>
+        <p>Furnished short-term residences so you can move now and choose your permanent home unhurried.</p>
+        <a class="lk" href="#concierge">Explore options &rarr;</a>
+      </div>
+      <div class="card"><div class="accent"></div>
+        <h3>Live Inventory</h3>
+        <p>A curated, always-current list of rentals and homes for sale matched to your criteria.</p>
+        <a class="lk" href="#concierge">Request my list &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONCIERGE CTA ── -->
+  <section class="module" id="concierge" style="border-bottom:none">
+    <div class="concierge">
+      <div class="chevron" style="color:var(--gold);font-size:20px;letter-spacing:0.5em;margin-bottom:18px">&#8743;&#8743;&#8743;</div>
+      <h2>Your dedicated concierge</h2>
+      <p>One point of contact for your entire move — schools, housing, movers, and timing. Share your details and The Edmund Bogen Team will reach out personally.</p>
+      <form id="concierge-form">
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="text" name="detail" placeholder="Move date or what you need" >
+        <input type="hidden" name="_subject" value="Kayne Anderson Relocation Portal — concierge request">
+        <input type="hidden" name="source" value="Kayne Relocation Portal">
+        <button type="submit" class="btn btn-gold">Request my concierge</button>
+      </form>
+      <div class="form-msg" id="form-msg">Thank you — your concierge will be in touch shortly.</div>
+    </div>
+  </section>
+
+  <!-- ── VALUE BANNER ── -->
+  <div class="value-banner">
+    <div class="eyebrow">A complimentary benefit for Kayne Anderson</div>
+    <div class="amt">A <b><span class="placeholder-tag">[$ VALUE — ED TO CONFIRM]</span></b> relocation benefit, <b>provided complimentary</b></div>
+    <p>Comparable corporate relocation portals are licensed by employers at significant annual cost. The Edmund Bogen Team provides the Kayne Anderson Relocation Portal at no charge as your dedicated relocation partner and Realtor of Choice.</p>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="eb">The Edmund Bogen Team</div>
+    <div class="de">at Douglas Elliman Real Estate</div>
+    <div class="legal">
+      This portal links to objective, third-party and official data sources to support informed decisions; The Edmund Bogen Team does not rate or rank schools or neighborhoods. We are committed to the principles of the Fair Housing Act and the Equal Housing Opportunity. All estimates are illustrative and may vary. Information is provided for the convenience of Kayne Anderson team members and does not constitute legal, tax, or financial advice.
+    </div>
+    <div class="eho">&#8862; Equal Housing Opportunity</div>
+    <div class="demo">Confidential demonstration &middot; Prepared for Kayne Anderson &middot; Not for distribution</div>
+  </footer>
+
+</div>
+
+<script>
+  /* ── PASSWORD GATE (pattern reused from cvl-strategy.html) ── */
+  const hash = s => { let h=0; for(let i=0;i<s.length;i++){h=((h<<5)-h)+s.charCodeAt(i);h|=0;} return h; };
+  const KEY = 387593948; // password: kayne2026
+  function unlock(){
+    const v=document.getElementById('pw').value.trim().toLowerCase();
+    if(hash(v)===KEY){
+      document.getElementById('gate').classList.add('hidden');
+      document.getElementById('content').classList.add('visible');
+      window.scrollTo(0,0);
+    } else {
+      document.getElementById('err').style.display='block';
+      document.getElementById('pw').value='';
+      document.getElementById('pw').focus();
+    }
+  }
+
+  /* ── CHECKLISTS (toggle, persist in session) ── */
+  document.querySelectorAll('.checklist li').forEach(li=>{
+    li.addEventListener('click',()=>li.classList.toggle('done'));
+  });
+
+  /* ── MOVING COST ESTIMATOR ── */
+  function fmt(n){return '$'+Math.round(n).toLocaleString();}
+  function calcMove(){
+    const base=+document.getElementById('mv-size').value;
+    const dist=+document.getElementById('mv-dist').value||0;
+    const pack=+document.getElementById('mv-pack').value;
+    // base load + distance component, scaled by packing service
+    const est=(base + dist*2.4) * pack;
+    document.getElementById('mv-out').textContent=fmt(est);
+  }
+  ['mv-size','mv-dist','mv-pack'].forEach(id=>document.getElementById(id).addEventListener('input',calcMove));
+
+  /* ── RENT VS BUY ── */
+  function calcRB(){
+    const price=+document.getElementById('rb-price').value||0;
+    const downPct=(+document.getElementById('rb-down').value||0)/100;
+    const loan=price*(1-downPct);
+    const r=0.065/12, n=360;
+    const mortgage=loan>0 ? loan*(r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1) : 0;
+    const taxes=price*0.01/12;        // ~1% effective annually
+    const insurance=price*0.006/12;   // FL insurance estimate
+    const total=mortgage+taxes+insurance;
+    document.getElementById('rb-out').textContent=fmt(total);
+  }
+  ['rb-price','rb-down','rb-rent'].forEach(id=>document.getElementById(id).addEventListener('input',calcRB));
+
+  calcMove(); calcRB();
+
+  /* ── CONCIERGE FORM (Formspree) ── */
+  document.getElementById('concierge-form').addEventListener('submit',async function(e){
+    e.preventDefault();
+    const data=new FormData(this);
+    try{
+      const res=await fetch('https://formspree.io/f/mlgavjvz',{method:'POST',body:data,headers:{'Accept':'application/json'}});
+      if(res.ok){ this.reset(); document.getElementById('form-msg').style.display='block'; }
+      else { alert('Something went wrong. Please email edmund@bogenhomes.com directly.'); }
+    }catch(err){ alert('Network error. Please email edmund@bogenhomes.com directly.'); }
+  });
+</script>
+</body>
+</html>
