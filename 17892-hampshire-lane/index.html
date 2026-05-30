@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>17892 Hampshire Lane | Stonebridge Country Club, Boca Raton | The Edmund Bogen Team</title>
+<meta name="description" content="A fully gut-renovated 4 bed, 4 bath waterfront estate in Stonebridge Country Club, Boca Raton — reimagined by Bespoke Homes (David & Gabriel Markovich). Offered at $2,295,000 by The Edmund Bogen Team at Douglas Elliman. Interiors virtually staged." />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1a3e5c;
+    --navy-deep:#0f2a40;
+    --cyan:#00a8e1;
+    --white:#ffffff;
+    --ink:#1a1a1a;
+    --gray:#f4f4f4;
+    --gray-2:#e8e8e8;
+    --text:#333333;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Montserrat',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;
+    color:var(--text);
+    background:var(--white);
+    line-height:1.7;
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block}
+  a{color:var(--cyan);text-decoration:none}
+  a:hover{opacity:.85}
+
+  /* NAV */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    background:rgba(26,62,92,.92);
+    backdrop-filter:blur(8px);
+    padding:18px 40px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .nav .brand{
+    display:flex;align-items:center;gap:14px;color:var(--white);
+    letter-spacing:.12em;font-size:13px;text-transform:uppercase;font-weight:500;
+  }
+  .nav .brand .mono{
+    width:42px;height:42px;border-radius:50%;
+    border:1.5px solid var(--white);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:600;letter-spacing:.05em;font-size:14px;
+  }
+  .nav .brand small{display:block;font-size:10px;opacity:.75;letter-spacing:.18em;margin-top:2px}
+  .nav .phone{
+    color:var(--white);font-weight:600;letter-spacing:.08em;font-size:14px;
+    border:1.5px solid var(--cyan);padding:10px 22px;border-radius:2px;
+    text-transform:uppercase;white-space:nowrap;
+  }
+  .nav .phone:hover{background:var(--cyan);color:var(--white);opacity:1}
+
+  /* HERO */
+  .hero{
+    position:relative;
+    width:100%;
+    height:100vh;
+    height:100svh;
+    min-height:560px;
+    max-height:920px;
+    background:url('hero.jpg') center 42%/cover no-repeat;
+    display:flex;align-items:flex-end;
+    color:var(--white);
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(15,42,64,.45) 0%,rgba(15,42,64,.12) 35%,rgba(15,42,64,.88) 100%);
+  }
+  .hero-content{
+    position:relative;z-index:2;
+    padding:0 60px 80px;max-width:1200px;
+  }
+  .eyebrow{
+    display:inline-block;
+    text-transform:uppercase;letter-spacing:.28em;font-size:13px;
+    font-weight:600;color:#fff;margin-bottom:22px;
+    background:var(--navy-deep);
+    padding:10px 18px;
+    border-left:3px solid var(--cyan);
+    text-shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+  .hero h1{
+    font-weight:300;font-size:60px;line-height:1.05;
+    letter-spacing:.02em;text-transform:uppercase;
+    margin-bottom:18px;
+  }
+  .hero h1 strong{font-weight:600}
+  .hero .sub{
+    font-size:18px;letter-spacing:.05em;font-weight:400;opacity:.95;max-width:680px;
+  }
+  .hero .price-row{
+    display:flex;align-items:center;gap:26px;flex-wrap:wrap;margin-top:26px;
+  }
+  .hero .price{
+    font-size:34px;font-weight:300;letter-spacing:.04em;color:#fff;
+  }
+  .hero .price small{display:block;font-size:11px;letter-spacing:.22em;text-transform:uppercase;opacity:.7;margin-bottom:2px;font-weight:500}
+  .hero .specs{
+    font-size:14px;letter-spacing:.06em;color:rgba(255,255,255,.92);
+    border-left:1px solid rgba(255,255,255,.3);padding-left:26px;
+  }
+  .staged-tag{
+    display:inline-block;margin-top:24px;
+    font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+    color:rgba(255,255,255,.85);border:1px solid rgba(255,255,255,.35);
+    padding:6px 12px;font-weight:500;
+  }
+
+  /* SECTIONS */
+  section{padding:110px 60px}
+  .container{max-width:1200px;margin:0 auto}
+  .section-eyebrow{
+    text-transform:uppercase;letter-spacing:.28em;font-size:12px;
+    font-weight:500;color:var(--cyan);margin-bottom:14px;
+  }
+  h2{
+    font-weight:300;font-size:42px;letter-spacing:.04em;
+    text-transform:uppercase;color:var(--navy);margin-bottom:24px;line-height:1.15;
+  }
+  h2 strong{font-weight:600}
+  h3{
+    font-weight:600;font-size:22px;letter-spacing:.02em;
+    color:var(--navy);margin-bottom:14px;
+  }
+  p{margin-bottom:16px;font-size:17px}
+
+  /* DISCLAIMER BANNER */
+  .staging-banner{
+    background:var(--navy-deep);color:rgba(255,255,255,.92);
+    padding:22px 60px;text-align:center;
+    border-top:3px solid var(--cyan);border-bottom:3px solid var(--cyan);
+  }
+  .staging-banner .inner{max-width:1100px;margin:0 auto}
+  .staging-banner .lbl{
+    display:inline-block;font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--cyan);font-weight:600;margin-bottom:8px;
+  }
+  .staging-banner p{
+    font-size:14px;line-height:1.65;letter-spacing:.02em;margin:0;color:rgba(255,255,255,.85);
+  }
+
+  /* PROPERTY OVERVIEW */
+  .overview{background:var(--white)}
+  .overview .grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+  .overview .stats{
+    display:grid;grid-template-columns:repeat(2,1fr);
+    gap:30px;margin-top:30px;
+    border-top:1px solid var(--gray-2);padding-top:30px;
+  }
+  .overview .stats div{border-left:3px solid var(--cyan);padding-left:18px}
+  .overview .stats .num{
+    font-size:30px;font-weight:300;color:var(--navy);letter-spacing:.02em;
+  }
+  .overview .stats .lbl{
+    font-size:11px;text-transform:uppercase;letter-spacing:.2em;color:#777;margin-top:4px;
+  }
+  .overview .stage-note{
+    font-size:11px;letter-spacing:.04em;color:#999;margin-top:14px;font-style:italic;
+  }
+
+  /* GALLERY */
+  .gallery{background:var(--gray);padding-top:0}
+  .gallery .head{padding:110px 60px 50px;text-align:center;max-width:900px;margin:0 auto}
+  .gallery .grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:0;
+  }
+  .gallery .grid .imgwrap{position:relative}
+  .gallery .grid img{width:100%;aspect-ratio:4/3;height:auto;object-fit:cover}
+  .gallery .grid .imgwrap .vs-badge{
+    position:absolute;left:0;bottom:0;
+    background:rgba(15,42,64,.86);color:#fff;
+    font-size:9px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;
+    padding:6px 12px;border-top:2px solid var(--cyan);
+  }
+  .gallery .grid .caption{
+    background:var(--navy);color:var(--white);
+    padding:50px;display:flex;flex-direction:column;justify-content:center;
+  }
+  .gallery .grid .caption .section-eyebrow{color:var(--cyan)}
+  .gallery .grid .caption h3{color:var(--white);font-size:28px;font-weight:300;letter-spacing:.06em;text-transform:uppercase}
+  .gallery .grid .caption p{color:rgba(255,255,255,.85);font-size:16px}
+
+  /* BUILDER */
+  .builder{background:var(--white)}
+  .builder .grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+  .builder .pillars{
+    display:grid;grid-template-columns:1fr 1fr;gap:26px 30px;margin-top:26px;
+    border-top:1px solid var(--gray-2);padding-top:30px;
+  }
+  .builder .pillar .ph{font-size:13px;font-weight:600;color:var(--navy);letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px}
+  .builder .pillar p{font-size:14px;line-height:1.6;color:#666;margin:0}
+  .builder .credit{
+    margin-top:30px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--navy);font-weight:600;border-left:3px solid var(--cyan);padding-left:16px;
+  }
+  .builder .credit small{display:block;font-weight:400;letter-spacing:.04em;text-transform:none;color:#888;margin-top:6px;font-size:12px}
+
+  /* COMMUNITY */
+  .community{background:var(--navy);color:var(--white)}
+  .community h2{color:var(--white)}
+  .community p{color:rgba(255,255,255,.85)}
+  .community .grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+  .amenity-list{
+    list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:14px 30px;margin-top:14px;
+  }
+  .amenity-list li{
+    color:rgba(255,255,255,.92);font-size:15px;letter-spacing:.02em;
+    padding-left:18px;position:relative;
+  }
+  .amenity-list li::before{
+    content:"";position:absolute;left:0;top:11px;width:8px;height:1px;background:var(--cyan);
+  }
+  .community .membership-note{
+    font-size:12px;color:rgba(255,255,255,.6);margin-top:26px;letter-spacing:.02em;line-height:1.6;
+  }
+
+  /* AGENTS */
+  .agents{background:var(--white);text-align:center}
+  .agents .container{max-width:1000px}
+  .agents .team-photo{
+    margin:44px auto 0;max-width:820px;width:100%;
+    aspect-ratio:16/10;object-fit:cover;
+  }
+  .agent-cards{
+    display:flex;justify-content:center;gap:50px;margin-top:50px;flex-wrap:wrap;text-align:left;
+  }
+  .agent-card{flex:1;min-width:260px;max-width:360px;border-top:3px solid var(--cyan);padding-top:22px}
+  .agent-card .name{font-size:20px;font-weight:600;color:var(--navy);letter-spacing:.04em}
+  .agent-card .role{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#888;margin:6px 0 14px}
+  .agent-card a{display:block;color:var(--text);font-size:15px;margin-bottom:6px}
+  .agent-card a:hover{color:var(--cyan);opacity:1}
+  .logo-block{
+    margin-top:60px;padding-top:50px;border-top:1px solid var(--gray-2);
+    display:flex;justify-content:center;align-items:center;gap:50px;flex-wrap:wrap;
+  }
+  .eb-mark{
+    display:inline-flex;align-items:center;gap:18px;color:var(--navy);
+    text-transform:uppercase;letter-spacing:.16em;font-size:13px;font-weight:500;
+  }
+  .eb-mark .mono{
+    width:54px;height:54px;border-radius:50%;
+    border:2px solid var(--navy);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:600;font-size:18px;letter-spacing:.05em;
+  }
+  .eb-mark small{display:block;font-size:10px;opacity:.7;letter-spacing:.2em;margin-top:3px}
+  .delliman{
+    color:var(--navy);font-weight:600;letter-spacing:.18em;
+    text-transform:uppercase;font-size:13px;border-left:1px solid var(--gray-2);padding-left:50px;
+  }
+  .delliman small{display:block;font-size:10px;opacity:.6;letter-spacing:.22em;margin-top:3px;font-weight:400}
+
+  /* CTA / FORM */
+  .cta{
+    background:linear-gradient(135deg,var(--navy) 0%,var(--navy-deep) 100%);
+    color:var(--white);
+  }
+  .cta h2{color:var(--white)}
+  .cta .grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+  .cta p{color:rgba(255,255,255,.9)}
+  .phone-block{
+    margin-top:34px;padding:32px;border:1px solid rgba(255,255,255,.18);
+    background:rgba(255,255,255,.04);
+  }
+  .phone-block .lbl{
+    font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--cyan);margin-bottom:12px;
+  }
+  .phone-block a{
+    color:var(--white);font-size:30px;font-weight:300;letter-spacing:.04em;display:block;margin-bottom:14px;
+  }
+  .phone-block a:last-child{margin-bottom:0}
+  .phone-block a span{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:2px}
+
+  form{
+    background:var(--white);color:var(--text);padding:44px;
+  }
+  form h3{font-size:20px;letter-spacing:.04em;text-transform:uppercase;font-weight:600;margin-bottom:8px}
+  form .form-sub{font-size:14px;color:#666;margin-bottom:24px}
+  .field{margin-bottom:18px}
+  .field label{
+    display:block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+    color:#777;margin-bottom:6px;font-weight:500;
+  }
+  .field input,.field textarea,.field select{
+    width:100%;padding:14px 16px;border:1px solid var(--gray-2);
+    font-family:inherit;font-size:15px;color:var(--ink);
+    background:var(--white);border-radius:0;transition:border-color .2s;
+  }
+  .field input:focus,.field textarea:focus,.field select:focus{
+    outline:none;border-color:var(--cyan);
+  }
+  .field textarea{resize:vertical;min-height:90px}
+  button[type=submit]{
+    background:var(--cyan);color:var(--white);border:0;
+    padding:18px 40px;font-family:inherit;font-size:13px;font-weight:600;
+    letter-spacing:.18em;text-transform:uppercase;cursor:pointer;
+    width:100%;transition:background .2s;
+  }
+  button[type=submit]:hover{background:#0090c4}
+  .form-disclaimer{font-size:12px;color:#888;margin-top:14px;line-height:1.55}
+
+  /* FOOTER */
+  footer{
+    background:#0a1d2e;color:rgba(255,255,255,.7);
+    padding:60px 60px 40px;text-align:center;font-size:12px;letter-spacing:.1em;
+  }
+  footer .top{margin-bottom:14px;color:var(--white);letter-spacing:.18em;text-transform:uppercase;font-size:13px;font-weight:500}
+  footer a{color:var(--cyan)}
+
+  .legal-block{
+    max-width:900px;margin:40px auto 0;
+    text-align:left;
+    border-top:1px solid rgba(255,255,255,.12);
+    padding-top:30px;
+  }
+  .legal-heading{
+    color:var(--cyan);
+    text-transform:uppercase;letter-spacing:.22em;
+    font-size:11px;font-weight:600;
+    margin:18px 0 8px;
+  }
+  .legal-copy{
+    font-size:11px;line-height:1.7;letter-spacing:.02em;
+    color:rgba(255,255,255,.6);
+    margin-bottom:14px;
+  }
+  .disclaimer-caps{
+    font-size:10px;letter-spacing:.04em;color:rgba(255,255,255,.5);
+  }
+  .footer-bottom{
+    margin-top:30px;padding-top:20px;
+    border-top:1px solid rgba(255,255,255,.08);
+    font-size:11px;color:rgba(255,255,255,.5);letter-spacing:.1em;
+  }
+
+  @media (min-width:1400px){
+    .hero{aspect-ratio:21/9;height:auto;max-height:820px;min-height:0}
+  }
+  @media (max-width:900px){
+    .nav{padding:14px 20px}
+    .nav .brand small{display:none}
+    section{padding:70px 24px}
+    .hero-content{padding:0 24px 56px}
+    .hero h1{font-size:30px;letter-spacing:.01em}
+    .hero .sub{font-size:15px}
+    .hero{min-height:540px}
+    .hero .price-row{gap:18px}
+    .hero .specs{border-left:0;padding-left:0;border-top:1px solid rgba(255,255,255,.3);padding-top:14px}
+    .staging-banner{padding:20px 24px}
+    h2{font-size:30px}
+    .overview .grid,.builder .grid,.community .grid,.cta .grid{grid-template-columns:1fr;gap:50px}
+    .builder .pillars{grid-template-columns:1fr}
+    .gallery .head{padding:70px 24px 30px}
+    .gallery .grid{grid-template-columns:1fr}
+    .gallery .grid img{height:300px;aspect-ratio:auto}
+    .gallery .grid .caption{padding:36px 24px}
+    .amenity-list{grid-template-columns:1fr}
+    form{padding:30px 24px}
+    .delliman{border-left:0;padding-left:0;border-top:1px solid var(--gray-2);padding-top:20px}
+    footer{padding:40px 24px 30px}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#top" class="brand">
+    <span class="mono">EB</span>
+    <span>
+      The Edmund Bogen Team
+      <small>at Douglas Elliman</small>
+    </span>
+  </a>
+  <a href="#contact" class="phone">Schedule a Showing</a>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-content">
+    <div class="eyebrow">Just Listed &middot; Stonebridge Country Club &middot; Boca Raton</div>
+    <h1>17892 Hampshire Lane<br><strong>A Gut-Renovated Waterfront Estate</strong></h1>
+    <p class="sub">Taken to the studs and rebuilt by Bespoke Homes — a 4-bedroom, 4-bath single-story residence on a lakefront lot inside one of Boca Raton's most established country-club communities.</p>
+    <div class="price-row">
+      <div class="price"><small>Offered At</small>$2,295,000</div>
+      <div class="specs">4 Beds &middot; 4 Baths &middot; 4,316 Sq Ft &middot; Lakefront &middot; Private Pool</div>
+    </div>
+    <span class="staged-tag">Interiors Virtually Staged &middot; Representative Only</span>
+  </div>
+</header>
+
+<!-- STAGING DISCLAIMER BANNER -->
+<div class="staging-banner">
+  <div class="inner">
+    <span class="lbl">Please Note &mdash; Virtual Staging</span>
+    <p>All interior images on this page are <strong>virtually staged</strong> and provided for illustrative purposes only. Furnishings, finishes, fixtures, and features shown are representative, are <strong>subject to change</strong>, and are <strong>not architectural renderings</strong>. Nothing on this page constitutes part of an offering. Buyers should personally inspect the property and verify all details.</p>
+  </div>
+</div>
+
+<!-- OVERVIEW -->
+<section class="overview">
+  <div class="container">
+    <div class="grid">
+      <div>
+        <div class="section-eyebrow">The Property</div>
+        <h2>Brand-New Inside <strong>An Established Address</strong></h2>
+        <p>Originally built in 1988 and now fully reimagined, 17892 Hampshire Lane is a complete gut renovation — a rare opportunity to own a turnkey, contemporary residence on a coveted lakefront lot in Stonebridge Country Club.</p>
+        <p>Spanning 4,316 square feet of single-level living, the home offers four bedrooms, four baths, an open chef's kitchen, and seamless indoor-outdoor flow to a private pool and tranquil water views — all behind the gates of a full-service golf community.</p>
+      </div>
+      <div>
+        <img src="living-room.jpg" alt="Renovated living room at 17892 Hampshire Lane (virtually staged)" style="aspect-ratio:4/3;object-fit:cover;width:100%" />
+        <div class="stats">
+          <div><div class="num">4 / 4</div><div class="lbl">Beds / Baths</div></div>
+          <div><div class="num">4,316</div><div class="lbl">Sq Ft Under Air</div></div>
+          <div><div class="num">0.38 ac</div><div class="lbl">Lakefront Lot</div></div>
+          <div><div class="num">2026</div><div class="lbl">Gut Renovated</div></div>
+        </div>
+        <p class="stage-note">Image virtually staged. Furnishings and finishes representative and subject to change.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery">
+  <div class="head">
+    <div class="section-eyebrow">Inside the Renovation</div>
+    <h2>Designed, Built, and <strong>Finished With Intention</strong></h2>
+    <p>Warm wood cabinetry, natural light, spa-inspired baths, and clean contemporary lines throughout. Every image below is virtually staged to illustrate the home's potential.</p>
+  </div>
+
+  <div class="grid">
+    <div class="imgwrap">
+      <img src="kitchen-1.jpg" alt="Renovated kitchen at 17892 Hampshire Lane (virtually staged)" />
+      <span class="vs-badge">Virtually Staged</span>
+    </div>
+    <div class="caption">
+      <div class="section-eyebrow">The Kitchen</div>
+      <h3>A True Chef's Kitchen</h3>
+      <p>Custom warm-wood cabinetry, quartz countertops, an oversized island, and integrated appliances anchor an open kitchen built for both everyday living and effortless entertaining.</p>
+    </div>
+
+    <div class="caption">
+      <div class="section-eyebrow">Living Space</div>
+      <h3>Open, Light-Filled Living</h3>
+      <p>A sunken living room with a coffered, recessed-lit ceiling and walls of black-framed glass opens the interior to abundant natural light and a relaxed, sophisticated flow.</p>
+    </div>
+    <div class="imgwrap">
+      <img src="living-room.jpg" alt="Sunken living room at 17892 Hampshire Lane (virtually staged)" />
+      <span class="vs-badge">Virtually Staged</span>
+    </div>
+
+    <div class="imgwrap">
+      <img src="primary-bedroom.jpg" alt="Primary bedroom at 17892 Hampshire Lane (virtually staged)" />
+      <span class="vs-badge">Virtually Staged</span>
+    </div>
+    <div class="caption">
+      <div class="section-eyebrow">Primary Suite</div>
+      <h3>A Private Retreat</h3>
+      <p>The expansive primary suite features a tray ceiling, hardwood-look flooring, and walls of windows — a serene, light-filled escape at the heart of the home.</p>
+    </div>
+
+    <div class="caption">
+      <div class="section-eyebrow">Spa Baths</div>
+      <h3>Spa-Inspired Bathrooms</h3>
+      <p>A freestanding soaking tub beneath an arched window, a floating wood vanity with brass accents, and a walk-through closet gallery bring resort-level calm to the primary bath.</p>
+    </div>
+    <div class="imgwrap">
+      <img src="primary-bath-1.jpg" alt="Primary bathroom soaking tub at 17892 Hampshire Lane (virtually staged)" />
+      <span class="vs-badge">Virtually Staged</span>
+    </div>
+
+    <div class="imgwrap">
+      <img src="primary-bath-2.jpg" alt="Primary bath floating vanity at 17892 Hampshire Lane (virtually staged)" />
+      <span class="vs-badge">Virtually Staged</span>
+    </div>
+    <div class="caption">
+      <div class="section-eyebrow">The Details</div>
+      <h3>Considered, Tailored Finishes</h3>
+      <p>Floating vanities, round brass-trimmed mirrors, sconce lighting, and a custom walk-through closet and dressing gallery reflect the level of detail throughout the renovation.</p>
+    </div>
+
+    <div class="imgwrap">
+      <img src="bedroom-2.jpg" alt="Secondary bedroom at 17892 Hampshire Lane (virtually staged)" />
+      <span class="vs-badge">Virtually Staged</span>
+    </div>
+    <div class="caption">
+      <div class="section-eyebrow">Additional Bedrooms</div>
+      <h3>Room for Everyone</h3>
+      <p>Generous secondary bedrooms with architectural arched windows and bright, neutral interiors offer comfortable, flexible space for family, guests, or a home office.</p>
+    </div>
+
+    <div class="caption">
+      <div class="section-eyebrow">Guest &amp; Secondary Baths</div>
+      <h3>Clean, Modern Finishes</h3>
+      <p>Crisp subway tile, frameless glass enclosures, and warm flooring carry the home's contemporary design language through every bathroom — light, fresh, and spa-inspired.</p>
+    </div>
+    <div class="imgwrap">
+      <img src="secondary-bath.jpg" alt="Secondary bathroom at 17892 Hampshire Lane (virtually staged)" />
+      <span class="vs-badge">Virtually Staged</span>
+    </div>
+
+    <div class="imgwrap">
+      <img src="closet.jpg" alt="Walk-through closet and dressing gallery at 17892 Hampshire Lane (virtually staged)" />
+      <span class="vs-badge">Virtually Staged</span>
+    </div>
+    <div class="caption">
+      <div class="section-eyebrow">Storage &amp; Dressing</div>
+      <h3>A Walk-Through Dressing Gallery</h3>
+      <p>Custom built-in shelving lines a bright walk-through closet that flows toward the primary bath — organized, airy, and finished to the same standard as the rest of the home.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BUILDER -->
+<section class="builder">
+  <div class="container">
+    <div class="grid">
+      <div>
+        <div class="section-eyebrow">Meet the Builder</div>
+        <h2>Reimagined by <strong>Bespoke Homes</strong></h2>
+        <p>This residence was taken to the studs and rebuilt by <strong>Bespoke Homes</strong>, the renovation and construction team led by <strong>David &amp; Gabriel Markovich</strong> — known across South Florida for transforming dated homes into refined, modern living spaces.</p>
+        <p>Their approach pairs a developer's discipline with a craftsman's eye: thoughtful floor plans, quality materials, and a finish level you can feel the moment you walk through the door. The result here is a home that lives brand-new while sitting on one of Stonebridge's most desirable lakefront lots.</p>
+        <div class="pillars">
+          <div class="pillar"><div class="ph">Down to the Studs</div><p>A complete gut renovation — not a cosmetic refresh — reengineered for how buyers live today.</p></div>
+          <div class="pillar"><div class="ph">Craftsmanship</div><p>Custom cabinetry, considered millwork, and high-quality fixtures and finishes throughout.</p></div>
+          <div class="pillar"><div class="ph">Modern Function</div><p>Open, light-filled layouts with seamless indoor-outdoor flow and spa-inspired baths.</p></div>
+          <div class="pillar"><div class="ph">Turnkey</div><p>Move-in ready — the rare opportunity to own new construction quality in an established community.</p></div>
+        </div>
+        <div class="credit">Renovation by Bespoke Homes &middot; David &amp; Gabriel Markovich
+          <small>Interiors shown are virtually staged and representative of the home's design intent.</small>
+        </div>
+      </div>
+      <div>
+        <img src="kitchen-2.jpg" alt="Bespoke Homes kitchen craftsmanship detail (virtually staged)" style="aspect-ratio:4/5;object-fit:cover;width:100%" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section class="community">
+  <div class="container">
+    <div class="grid">
+      <div>
+        <div class="section-eyebrow">The Community</div>
+        <h2>Life at <strong>Stonebridge Country Club</strong></h2>
+        <p>Set on roughly 400 acres off Clint Moore Road in West Boca Raton, Stonebridge Country Club is an established, guard-gated community of just under 400 homes built around an 18-hole championship golf course — originally designed by Karl Litten and fully reimagined in a Kipp Schulties redesign.</p>
+        <p>At its center is a recently modernized clubhouse with multiple dining venues, a full-service fitness center and spa, Har-Tru tennis, pickleball, and a resort pool — all wrapped in the gracious, relaxed Palm Beach lifestyle the community is known for.</p>
+        <p class="membership-note">Membership in Stonebridge Country Club is mandatory for homeowners; a one-time membership contribution of $150,000 applies per the listing. Club dues, fees, and membership terms are set by the association and should be verified directly with Stonebridge Country Club.</p>
+      </div>
+      <div>
+        <h3 style="color:#fff;font-weight:300;letter-spacing:.06em;text-transform:uppercase;font-size:18px">Lifestyle &amp; Amenities</h3>
+        <ul class="amenity-list">
+          <li>18-Hole Championship Golf</li>
+          <li>Modernized Clubhouse</li>
+          <li>Multiple Dining Venues</li>
+          <li>Full-Service Fitness Center</li>
+          <li>Har-Tru Tennis Courts</li>
+          <li>Pickleball Courts</li>
+          <li>Resort-Style Pool</li>
+          <li>Spa &amp; Wellness</li>
+          <li>Driving Range &amp; Practice</li>
+          <li>Active Social Calendar</li>
+          <li>Guard-Gated Security</li>
+          <li>Lake &amp; Golf Course Views</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENTS -->
+<section class="agents">
+  <div class="container">
+    <div class="section-eyebrow">Presented Exclusively By</div>
+    <h2>The Edmund Bogen Team <strong>at Douglas Elliman</strong></h2>
+    <p style="max-width:740px;margin:0 auto">From Boca Raton to Palm Beach, we represent South Florida's finest homes with the marketing power of the nation's premier luxury brokerage. Reach out directly for full details, disclosures, and a private showing of 17892 Hampshire Lane.</p>
+
+    <img class="team-photo" src="team.jpg" alt="The Edmund Bogen Team at Douglas Elliman" />
+
+    <div class="agent-cards">
+      <div class="agent-card">
+        <div class="name">Edmund Bogen</div>
+        <div class="role">Listing Agent &middot; Douglas Elliman</div>
+        <a href="tel:5614754386">561.475.4386</a>
+        <a href="mailto:edmund.bogen@elliman.com">edmund.bogen@elliman.com</a>
+      </div>
+      <div class="agent-card">
+        <div class="name">Samantha Gornstein</div>
+        <div class="role">Listing Agent &middot; Douglas Elliman</div>
+        <a href="tel:5617076607">561.707.6607</a>
+        <a href="mailto:samantha@bogenhomes.com">samantha@bogenhomes.com</a>
+      </div>
+    </div>
+
+    <div class="logo-block">
+      <span class="eb-mark">
+        <span class="mono">EB</span>
+        <span>The Edmund Bogen Team<small>Luxury Real Estate</small></span>
+      </span>
+      <span class="delliman">
+        Douglas Elliman
+        <small>Real Estate</small>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / FORM -->
+<section class="cta" id="contact">
+  <div class="container">
+    <div class="grid">
+      <div>
+        <div class="section-eyebrow">Schedule a Private Showing</div>
+        <h2>Request Details on <strong>17892 Hampshire Lane</strong></h2>
+        <p>Showings are by appointment and accompanied by the listing team. Call or text directly, or send your information and we'll be in touch the same business day with full property details, disclosures, and availability.</p>
+
+        <div class="phone-block">
+          <div class="lbl">Call or Text the Listing Team</div>
+          <a href="tel:5614754386"><span>Edmund Bogen</span>561.475.4386</a>
+          <a href="tel:5617076607"><span>Samantha Gornstein</span>561.707.6607</a>
+        </div>
+      </div>
+
+      <form id="lead-form" action="https://formspree.io/f/mlgavjvz" method="POST">
+        <h3>Request Property Details</h3>
+        <p class="form-sub">Get full disclosures, floor plan, and showing availability delivered to your inbox.</p>
+        <div id="form-success" style="display:none;background:#0e7c4a;color:#fff;padding:18px 20px;margin-bottom:18px;font-size:14px;letter-spacing:.04em">
+          Thank you. Your request has been received — the listing team will be in touch within the same business day.
+        </div>
+        <div id="form-error" style="display:none;background:#a3231f;color:#fff;padding:14px 18px;margin-bottom:18px;font-size:13px">
+          Something went wrong. Please call us directly at 561.475.4386.
+        </div>
+
+        <div class="field">
+          <label for="name">Full Name</label>
+          <input id="name" name="name" type="text" required placeholder="Your full name" />
+        </div>
+        <div class="field">
+          <label for="email">Email Address</label>
+          <input id="email" name="email" type="email" required placeholder="you@email.com" />
+        </div>
+        <div class="field">
+          <label for="phone">Phone Number</label>
+          <input id="phone" name="phone" type="tel" required placeholder="(555) 555-5555" />
+        </div>
+        <div class="field">
+          <label for="interest">I am</label>
+          <select id="interest" name="interest">
+            <option>Interested in buying this home</option>
+            <option>Looking elsewhere in Stonebridge</option>
+            <option>Considering selling a similar home</option>
+            <option>Just gathering information</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="message">Message (optional)</label>
+          <textarea id="message" name="message" placeholder="Anything we should know? Preferred showing times?"></textarea>
+        </div>
+        <input type="hidden" name="_subject" value="17892 Hampshire Lane — Inquiry" />
+        <input type="hidden" name="property" value="17892 Hampshire Lane, Boca Raton, FL 33498" />
+        <button type="submit">Request Information</button>
+        <p class="form-disclaimer">By submitting, you consent to be contacted by The Edmund Bogen Team at Douglas Elliman regarding this property. We never share your information.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="top">The Edmund Bogen Team &middot; Douglas Elliman Real Estate</div>
+  <div>17892 Hampshire Lane, Boca Raton, FL 33498 &middot; <a href="tel:5614754386">561.475.4386</a></div>
+
+  <div class="legal-block">
+
+    <p class="legal-heading">Virtual Staging &amp; Image Disclosure</p>
+    <p class="legal-copy">
+      All interior photographs and images displayed on this website have been <strong>virtually staged</strong> and are provided for illustrative and marketing purposes only. Furnishings, decor, finishes, fixtures, millwork, and other features depicted are representative of design intent, are <strong>subject to change</strong>, and may differ from the property's actual condition. These images are <strong>not architectural drawings or renderings</strong> and do not constitute representations of completed work. <strong>Nothing presented herein is part of an offering.</strong> Prospective buyers are strongly encouraged to personally inspect the property and independently verify all features, dimensions, and finishes before making any purchase decision.
+    </p>
+
+    <p class="legal-heading">AI Disclosure</p>
+    <p class="legal-copy">
+      Certain images on this website have been created, enhanced, or virtually staged with the assistance of artificial intelligence and digital staging tools. Visual representations may not depict the property in its exact current condition. Buyers are encouraged to inspect the property in person and to verify all material details prior to making any purchase decision.
+    </p>
+
+    <p class="legal-heading">Privacy Statement</p>
+    <p class="legal-copy">
+      The Edmund Bogen Team respects your privacy. Information you submit through this site (including name, email, phone number, and message content) is collected solely for the purpose of responding to your inquiry about this property or related real estate services. We do not sell, rent, or share your personal information with third parties for marketing purposes. Form submissions are processed and stored securely through our third-party form provider, Formspree. You may request removal of your information at any time by contacting us at 561.475.4386. By submitting any form on this site, you consent to be contacted by The Edmund Bogen Team via phone, text, or email.
+    </p>
+
+    <p class="legal-heading">Real Estate Disclaimer</p>
+    <p class="legal-copy disclaimer-caps">
+      &copy; 2026 DOUGLAS ELLIMAN REAL ESTATE. ALL MATERIAL PRESENTED HEREIN IS INTENDED FOR INFORMATION PURPOSES ONLY. WHILE THIS INFORMATION IS BELIEVED TO BE CORRECT, IT IS REPRESENTED SUBJECT TO ERRORS, OMISSIONS, CHANGES OR WITHDRAWAL WITHOUT NOTICE. ALL PROPERTY INFORMATION, INCLUDING, BUT NOT LIMITED TO SQUARE FOOTAGE, ROOM COUNT, NUMBER OF BEDROOMS, RENOVATIONS, AND THE SCHOOL DISTRICT IN PROPERTY LISTINGS SHOULD BE VERIFIED BY YOUR OWN ATTORNEY, ARCHITECT OR ZONING EXPERT. MEMBERSHIP, DUES, AND FEES ARE SET BY THE ASSOCIATION AND SHOULD BE INDEPENDENTLY VERIFIED. IF YOUR PROPERTY IS CURRENTLY LISTED WITH ANOTHER REAL ESTATE BROKER, PLEASE DISREGARD THIS OFFER. IT IS NOT OUR INTENTION TO SOLICIT THE OFFERINGS OF OTHER REAL ESTATE BROKERS. WE COOPERATE WITH THEM FULLY. EQUAL HOUSING OPPORTUNITY.
+    </p>
+
+  </div>
+
+  <div class="footer-bottom">&copy; 2026 The Edmund Bogen Team at Douglas Elliman Real Estate. All rights reserved.</div>
+</footer>
+
+<script>
+  (function(){
+    var form = document.getElementById('lead-form');
+    if(!form) return;
+    var success = document.getElementById('form-success');
+    var error   = document.getElementById('form-error');
+    var btn     = form.querySelector('button[type=submit]');
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      success.style.display = 'none';
+      error.style.display   = 'none';
+      btn.disabled = true;
+      var originalLabel = btn.textContent;
+      btn.textContent = 'Sending…';
+
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(function(res){
+        if(res.ok){
+          form.reset();
+          success.style.display = 'block';
+          success.scrollIntoView({behavior:'smooth', block:'center'});
+        } else {
+          res.json().then(function(data){
+            if(data && data.errors){
+              error.textContent = data.errors.map(function(er){return er.message}).join(', ');
+            }
+            error.style.display = 'block';
+          }).catch(function(){ error.style.display = 'block'; });
+        }
+      })
+      .catch(function(){ error.style.display = 'block'; })
+      .finally(function(){
+        btn.disabled = false;
+        btn.textContent = originalLabel;
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
