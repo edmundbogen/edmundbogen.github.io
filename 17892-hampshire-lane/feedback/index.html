@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Preview &amp; Feedback — 17892 Hampshire Lane Listing Site | The Edmund Bogen Team</title>
+<meta name="description" content="Take a look at our new listing site for 17892 Hampshire Lane in Stonebridge Country Club and tell us what you think. Internal preview by The Edmund Bogen Team at Douglas Elliman." />
+<meta name="robots" content="noindex,nofollow" />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1a3e5c; --navy-deep:#0f2a40; --cyan:#00a8e1;
+    --white:#ffffff; --ink:#1a1a1a; --gray:#f4f4f4; --gray-2:#e8e8e8; --text:#333333;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Montserrat',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;color:var(--text);background:var(--gray);line-height:1.7;font-weight:400;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:var(--cyan);text-decoration:none}
+  a:hover{opacity:.85}
+
+  /* NAV */
+  .nav{position:sticky;top:0;z-index:50;background:rgba(26,62,92,.96);backdrop-filter:blur(8px);padding:16px 32px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .nav .brand{display:flex;align-items:center;gap:14px;color:var(--white);letter-spacing:.12em;font-size:13px;text-transform:uppercase;font-weight:500}
+  .nav .brand .mono{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--white);display:flex;align-items:center;justify-content:center;font-weight:600;letter-spacing:.05em;font-size:14px}
+  .nav .brand small{display:block;font-size:10px;opacity:.75;letter-spacing:.18em;margin-top:2px}
+  .nav .tag{color:rgba(255,255,255,.8);font-size:10px;letter-spacing:.22em;text-transform:uppercase;border:1px solid rgba(255,255,255,.35);padding:6px 12px}
+
+  /* HEADER */
+  .head{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-deep) 100%);color:var(--white);padding:60px 32px 70px;text-align:center}
+  .head .eyebrow{display:inline-block;text-transform:uppercase;letter-spacing:.28em;font-size:12px;font-weight:600;color:var(--cyan);margin-bottom:18px}
+  .head h1{font-weight:300;font-size:38px;letter-spacing:.03em;text-transform:uppercase;line-height:1.15;margin-bottom:18px}
+  .head h1 strong{font-weight:600}
+  .head p{font-size:17px;color:rgba(255,255,255,.9);max-width:640px;margin:0 auto 28px}
+  .head .meta{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:8px}
+  .head .meta span{font-size:12px;letter-spacing:.08em;color:rgba(255,255,255,.85);border-left:2px solid var(--cyan);padding-left:12px}
+  .btn{display:inline-block;background:var(--cyan);color:#fff;font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:16px 34px;border:0;cursor:pointer;transition:background .2s}
+  .btn:hover{background:#0090c4;opacity:1}
+  .btn-ghost{background:transparent;border:1.5px solid rgba(255,255,255,.6);color:#fff}
+  .btn-ghost:hover{background:rgba(255,255,255,.1)}
+  .head .btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+
+  /* PREVIEW */
+  .wrap{max-width:1100px;margin:0 auto;padding:56px 24px}
+  .panel{background:#fff;box-shadow:0 10px 40px rgba(15,42,64,.10)}
+  .panel .bar{background:var(--navy);color:#fff;padding:12px 18px;display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.16em;text-transform:uppercase}
+  .panel .bar .dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.35)}
+  .panel .bar .url{margin-left:auto;font-size:11px;letter-spacing:.04em;color:rgba(255,255,255,.7);text-transform:none}
+  .frame{width:100%;height:680px;border:0;display:block;background:#fff}
+  .frame-note{text-align:center;font-size:12px;color:#888;margin-top:14px;letter-spacing:.04em}
+  .frame-note a{font-weight:600}
+
+  .section-eyebrow{text-transform:uppercase;letter-spacing:.28em;font-size:12px;font-weight:500;color:var(--cyan);margin-bottom:12px;text-align:center}
+  h2{font-weight:300;font-size:32px;letter-spacing:.04em;text-transform:uppercase;color:var(--navy);margin-bottom:14px;line-height:1.15;text-align:center}
+  h2 strong{font-weight:600}
+  .lead{text-align:center;max-width:620px;margin:0 auto 36px;font-size:16px;color:#555}
+
+  /* FORM */
+  form{background:#fff;max-width:680px;margin:0 auto;padding:44px;box-shadow:0 10px 40px rgba(15,42,64,.10)}
+  .field{margin-bottom:20px}
+  .field label{display:block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#777;margin-bottom:8px;font-weight:600}
+  .field input,.field textarea,.field select{width:100%;padding:14px 16px;border:1px solid var(--gray-2);font-family:inherit;font-size:15px;color:var(--ink);background:#fff;border-radius:0;transition:border-color .2s}
+  .field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--cyan)}
+  .field textarea{resize:vertical;min-height:90px}
+  .rating{display:flex;gap:10px;flex-wrap:wrap}
+  .rating input{display:none}
+  .rating label{flex:1;min-width:54px;text-align:center;border:1px solid var(--gray-2);padding:12px 0;cursor:pointer;font-size:15px;font-weight:500;letter-spacing:.04em;text-transform:none;color:var(--navy);transition:all .15s;margin:0}
+  .rating input:checked + label{background:var(--cyan);color:#fff;border-color:var(--cyan)}
+  .rating .scale-end{font-size:10px;color:#999;letter-spacing:.1em;text-transform:uppercase;align-self:center;flex:0 0 auto}
+  .checks{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px}
+  .checks label{display:flex;align-items:center;gap:9px;font-size:14px;letter-spacing:.02em;text-transform:none;color:var(--text);font-weight:400;cursor:pointer}
+  .checks input{width:auto}
+  button[type=submit]{background:var(--cyan);color:#fff;border:0;padding:18px 40px;font-family:inherit;font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;width:100%;transition:background .2s}
+  button[type=submit]:hover{background:#0090c4}
+  .form-disclaimer{font-size:12px;color:#888;margin-top:14px;line-height:1.55;text-align:center}
+
+  footer{background:#0a1d2e;color:rgba(255,255,255,.6);padding:40px 24px;text-align:center;font-size:11px;letter-spacing:.1em}
+  footer .top{margin-bottom:10px;color:#fff;letter-spacing:.18em;text-transform:uppercase;font-size:12px;font-weight:500}
+
+  @media (max-width:700px){
+    .head h1{font-size:28px}
+    .frame{height:560px}
+    form{padding:30px 22px}
+    .checks{grid-template-columns:1fr}
+    h2{font-size:26px}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <span class="brand">
+    <span class="mono">EB</span>
+    <span>The Edmund Bogen Team<small>at Douglas Elliman</small></span>
+  </span>
+  <span class="tag">Internal Preview &middot; Not for Public Distribution</span>
+</nav>
+
+<!-- HEADER -->
+<header class="head">
+  <div class="eyebrow">New Listing Website &middot; Take a Look</div>
+  <h1>17892 Hampshire Lane<br><strong>What Do You Think?</strong></h1>
+  <p>We just built a brand-new listing site for our gut-renovated Stonebridge Country Club home. Before we push it everywhere, we want your honest reaction — scroll through it below, then tell us what lands and what you'd change.</p>
+  <div class="btns">
+    <a class="btn" href="https://edmundbogen.github.io/17892-hampshire-lane/" target="_blank" rel="noopener">View the Full Site &#8599;</a>
+    <a class="btn btn-ghost" href="#feedback">Give Feedback &#8595;</a>
+  </div>
+  <div class="meta">
+    <span>4 Bed &middot; 4 Bath</span>
+    <span>4,316 Sq Ft &middot; Lakefront</span>
+    <span>Offered at $2,295,000</span>
+    <span>Renovated by Bespoke Homes</span>
+  </div>
+</header>
+
+<!-- PREVIEW -->
+<div class="wrap">
+  <div class="panel">
+    <div class="bar">
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      <span class="url">edmundbogen.github.io/17892-hampshire-lane</span>
+    </div>
+    <iframe class="frame" src="https://edmundbogen.github.io/17892-hampshire-lane/" title="17892 Hampshire Lane listing site preview" loading="lazy"></iframe>
+  </div>
+  <p class="frame-note">Scrolling inside the frame above previews the live site &middot; For the full experience, <a href="https://edmundbogen.github.io/17892-hampshire-lane/" target="_blank" rel="noopener">open it in a new tab &#8599;</a></p>
+</div>
+
+<!-- FEEDBACK FORM -->
+<div class="wrap" id="feedback" style="padding-top:10px">
+  <div class="section-eyebrow">Your Honest Take</div>
+  <h2>Tell Us <strong>What You Think</strong></h2>
+  <p class="lead">Two minutes, no wrong answers. Your feedback shapes the final version before it goes live to buyers.</p>
+
+  <form id="feedback-form" action="https://formspree.io/f/mlgavjvz" method="POST">
+    <div id="form-success" style="display:none;background:#0e7c4a;color:#fff;padding:18px 20px;margin-bottom:18px;font-size:14px;letter-spacing:.04em">
+      Thank you — your feedback has been received. We appreciate you taking the time.
+    </div>
+    <div id="form-error" style="display:none;background:#a3231f;color:#fff;padding:14px 18px;margin-bottom:18px;font-size:13px">
+      Something went wrong. Please try again, or text Edmund at 561.475.4386.
+    </div>
+
+    <div class="field">
+      <label for="name">Your Name</label>
+      <input id="name" name="name" type="text" required placeholder="First and last name" />
+    </div>
+
+    <div class="field">
+      <label>Overall, how strong is this listing site?</label>
+      <div class="rating">
+        <span class="scale-end">Weak</span>
+        <input type="radio" id="r1" name="overall_rating" value="1" /><label for="r1">1</label>
+        <input type="radio" id="r2" name="overall_rating" value="2" /><label for="r2">2</label>
+        <input type="radio" id="r3" name="overall_rating" value="3" /><label for="r3">3</label>
+        <input type="radio" id="r4" name="overall_rating" value="4" /><label for="r4">4</label>
+        <input type="radio" id="r5" name="overall_rating" value="5" checked /><label for="r5">5</label>
+        <span class="scale-end">Excellent</span>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>What stands out most? (check any)</label>
+      <div class="checks">
+        <label><input type="checkbox" name="standouts" value="The photos / staging" /> The photos / staging</label>
+        <label><input type="checkbox" name="standouts" value="The builder section" /> The builder section</label>
+        <label><input type="checkbox" name="standouts" value="The design / look" /> The design / look</label>
+        <label><input type="checkbox" name="standouts" value="The community section" /> The community section</label>
+        <label><input type="checkbox" name="standouts" value="The price positioning" /> The price positioning</label>
+        <label><input type="checkbox" name="standouts" value="Easy to navigate" /> Easy to navigate</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="change">If you could change ONE thing, what would it be?</label>
+      <textarea id="change" name="one_change" placeholder="Be honest — this is the most useful answer you can give us."></textarea>
+    </div>
+
+    <div class="field">
+      <label for="comments">Anything else? (optional)</label>
+      <textarea id="comments" name="comments" placeholder="Other thoughts, ideas, or buyers this might be right for."></textarea>
+    </div>
+
+    <input type="hidden" name="_subject" value="17892 Hampshire Lane — Site Feedback" />
+    <input type="hidden" name="source" value="Listing site feedback page" />
+    <button type="submit">Send My Feedback</button>
+    <p class="form-disclaimer">This is an internal preview shared for feedback only. Interiors on the listing site are virtually staged and representative.</p>
+  </form>
+</div>
+
+<footer>
+  <div class="top">The Edmund Bogen Team &middot; Douglas Elliman Real Estate</div>
+  <div>Internal preview &middot; 17892 Hampshire Lane, Boca Raton, FL 33498 &middot; <a href="tel:5614754386">561.475.4386</a></div>
+</footer>
+
+<script>
+  (function(){
+    var form = document.getElementById('feedback-form');
+    if(!form) return;
+    var success = document.getElementById('form-success');
+    var error   = document.getElementById('form-error');
+    var btn     = form.querySelector('button[type=submit]');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      success.style.display='none'; error.style.display='none';
+      btn.disabled=true; var lbl=btn.textContent; btn.textContent='Sending…';
+      fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}})
+      .then(function(res){
+        if(res.ok){form.reset();success.style.display='block';success.scrollIntoView({behavior:'smooth',block:'center'});}
+        else{res.json().then(function(d){if(d&&d.errors){error.textContent=d.errors.map(function(x){return x.message}).join(', ');}error.style.display='block';}).catch(function(){error.style.display='block';});}
+      })
+      .catch(function(){error.style.display='block';})
+      .finally(function(){btn.disabled=false;btn.textContent=lbl;});
+    });
+  })();
+</script>
+
+</body>
+</html>
