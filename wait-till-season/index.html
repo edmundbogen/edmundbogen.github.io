@@ -76,6 +76,26 @@
         .infobox .item:last-child { margin-bottom: 0; }
         .infobox .item strong { color: #1a3e5c; }
 
+        /* COMMUNITY TABLE */
+        .commwrap { max-width: 880px; margin: 10px auto 0; padding: 0 24px; }
+        .range-callout { background: #1a3e5c; color: #fff; border-radius: 6px; padding: 22px 28px; margin: 0 0 28px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; }
+        .range-callout .lbl { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #8fc4dd; }
+        .range-callout .val { font-size: 26px; font-weight: 700; }
+        .range-callout .note { width: 100%; font-size: 13px; color: rgba(255,255,255,0.75); font-weight: 300; margin-top: 4px; }
+        table.comm { width: 100%; border-collapse: collapse; font-size: 15px; }
+        table.comm th { background: #1a3e5c; color: #fff; text-align: left; padding: 12px 14px; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; }
+        table.comm th.c, table.comm td.c { text-align: center; }
+        table.comm td { padding: 11px 14px; border-bottom: 1px solid #eceff3; color: #2a2a2a; }
+        table.comm tr:nth-child(even) td { background: #f8fafb; }
+        table.comm td.name { font-weight: 600; color: #1a3e5c; }
+        .tag { display: inline-block; padding: 3px 11px; border-radius: 20px; font-size: 11px; font-weight: 600; letter-spacing: 0.5px; }
+        .tag.sell { background: #e3f4fa; color: #0a7ea8; }
+        .tag.bal { background: #eef1f4; color: #5a6470; }
+        .tag.buy { background: #fdf2e3; color: #b07d28; }
+        .tag.na { background: #f4f4f4; color: #aab2bc; }
+        .comm-foot { font-size: 13px; color: #8a94a0; margin: 16px 0 0; line-height: 1.6; }
+        @media (max-width: 640px) { table.comm { font-size: 13px; } table.comm th, table.comm td { padding: 9px 8px; } }
+
         /* CTA */
         .cta { background: #1a3e5c; color: #fff; text-align: center; padding: 64px 24px; }
         .cta h2 { color: #fff; font-weight: 300; font-size: 30px; margin-bottom: 18px; }
@@ -162,6 +182,50 @@
         <p>In 2025, central Boca Raton — the resident-driven, year-round neighborhoods around 33486 — was genuinely tight: roughly <strong>2.7 months of supply</strong>, homes going under contract in about <strong>42 days</strong>, and sellers keeping around 93% of their list price. Now cross over to the coastal and seasonal stretches. Palm Beach proper carried <strong>nearly 16 months of supply</strong> and a median <strong>153 days to contract</strong>, with sellers netting closer to 86% of list. East Delray near the water ran around <strong>11 months</strong> of supply. That is a slow, deeply negotiable luxury market sharing a region with a fast, competitive one.</p>
 
         <p>Same headline city, completely different leverage. In this corridor, <em>where</em> you are buying or selling matters more than <em>when.</em></p>
+
+        <h2>The proof, community by community.</h2>
+
+        <p>You don't have to take my word for it. Here's the current snapshot across the country-club and luxury communities I track in and around Boca Raton and Delray Beach. The "tilt" column compares active inventory to recent sales — a low ratio means homes are being absorbed quickly (a seller's edge), while a high ratio means inventory is sitting (a buyer's edge). Notice how dramatically it swings from one gate to the next.</p>
+
+        <div class="commwrap">
+            <div class="range-callout">
+                <div><div class="lbl">St. Andrews — Lowest Active</div><div class="val">$1,895,000</div></div>
+                <div style="text-align:right;"><div class="lbl">St. Andrews — Highest Active</div><div class="val">$19,975,000</div></div>
+                <div class="note">A single community spanning more than $18M from floor to ceiling — the clearest illustration that there's no one "Boca price."</div>
+            </div>
+
+            <table class="comm">
+                <thead>
+                    <tr><th>Community</th><th class="c">Active</th><th class="c">Sold</th><th class="c">Market Tilt</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td class="name">Polo Club</td><td class="c">9</td><td class="c">53</td><td class="c"><span class="tag sell">Seller's edge</span></td></tr>
+                    <tr><td class="name">Addison Reserve</td><td class="c">6</td><td class="c">25</td><td class="c"><span class="tag sell">Seller's edge</span></td></tr>
+                    <tr><td class="name">The Bridges</td><td class="c">5</td><td class="c">16</td><td class="c"><span class="tag sell">Seller's edge</span></td></tr>
+                    <tr><td class="name">Broken Sound</td><td class="c">20</td><td class="c">60</td><td class="c"><span class="tag sell">Seller's edge</span></td></tr>
+                    <tr><td class="name">Boca West</td><td class="c">30</td><td class="c">82</td><td class="c"><span class="tag sell">Seller's edge</span></td></tr>
+                    <tr><td class="name">Seasons</td><td class="c">2</td><td class="c">6</td><td class="c"><span class="tag sell">Seller's edge</span></td></tr>
+                    <tr><td class="name">Woodfield</td><td class="c">9</td><td class="c">23</td><td class="c"><span class="tag sell">Seller's edge</span></td></tr>
+                    <tr><td class="name">Bocaire Country Club</td><td class="c">9</td><td class="c">16</td><td class="c"><span class="tag bal">Balanced</span></td></tr>
+                    <tr><td class="name">Stonebridge</td><td class="c">5</td><td class="c">9</td><td class="c"><span class="tag bal">Balanced</span></td></tr>
+                    <tr><td class="name">The Oaks</td><td class="c">12</td><td class="c">21</td><td class="c"><span class="tag bal">Balanced</span></td></tr>
+                    <tr><td class="name">Seven Bridges</td><td class="c">8</td><td class="c">12</td><td class="c"><span class="tag bal">Balanced</span></td></tr>
+                    <tr><td class="name">Delaire</td><td class="c">4</td><td class="c">5</td><td class="c"><span class="tag bal">Balanced</span></td></tr>
+                    <tr><td class="name">Lotus</td><td class="c">17</td><td class="c">21</td><td class="c"><span class="tag bal">Balanced</span></td></tr>
+                    <tr><td class="name">Mizner Country Club</td><td class="c">5</td><td class="c">6</td><td class="c"><span class="tag bal">Balanced</span></td></tr>
+                    <tr><td class="name">St. Andrews</td><td class="c">12</td><td class="c">14</td><td class="c"><span class="tag bal">Balanced</span></td></tr>
+                    <tr><td class="name">Royal Palm Yacht Club</td><td class="c">25</td><td class="c">24</td><td class="c"><span class="tag buy">Buyer's edge</span></td></tr>
+                    <tr><td class="name">Boca Bridges</td><td class="c">14</td><td class="c">13</td><td class="c"><span class="tag buy">Buyer's edge</span></td></tr>
+                    <tr><td class="name">Long Lake Estates</td><td class="c">5</td><td class="c">3</td><td class="c"><span class="tag buy">Buyer's edge</span></td></tr>
+                    <tr><td class="name">Boca Grove</td><td class="c">14</td><td class="c">6</td><td class="c"><span class="tag buy">Buyer's edge</span></td></tr>
+                    <tr><td class="name">The Sanctuary</td><td class="c">8</td><td class="c">1</td><td class="c"><span class="tag buy">Buyer's edge</span></td></tr>
+                    <tr><td class="name">Le Lac</td><td class="c">0</td><td class="c">0</td><td class="c"><span class="tag na">No activity</span></td></tr>
+                </tbody>
+            </table>
+            <p class="comm-foot">Active = homes currently on the market; Sold = closed sales over the trailing reporting period. "Market tilt" is a directional read of inventory absorption, not a formal months-of-supply figure. Source: local MLS, compiled by The Edmund Bogen Team. Figures change weekly — contact me for the live count on any community.</p>
+        </div>
+
+        <div class="pull-quote">From a tight seller's market in Polo Club to a deep buyer's market in The Sanctuary — these communities sit minutes apart. The "season" doesn't decide your leverage. Your gate does.</div>
 
         <h2>The rate will quietly eat any discount — especially here.</h2>
 
