@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wait Till Season to Sell? Not So Fast. | The Edmund Bogen Team</title>
+    <meta name="description" content="A data-backed look at seasonality in the Boca Raton and Delray Beach market — why summer changes the pace, not the price, why 'Boca' isn't one market, and how the rate and carrying costs dwarf any seasonal discount.">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Wait Till Season to Sell? Not So Fast.">
+    <meta property="og:description" content="A data-backed look at the Boca & Delray market: summer changes the pace, not the price.">
+    <meta property="og:image" content="https://edmundbogen.github.io/wait-till-season/hero.png">
+    <meta property="og:type" content="article">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            color: #1a1a1a;
+            background: #fff;
+            line-height: 1.75;
+            font-size: 17px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: rgba(255,255,255,0.97);
+            border-bottom: 1px solid #e8e8e8;
+            z-index: 100; padding: 18px 40px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        nav .logo { font-weight: 600; font-size: 14px; letter-spacing: 3px; color: #1a3e5c; text-transform: uppercase; }
+        nav .nav-links a { color: #1a3e5c; text-decoration: none; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; margin-left: 32px; font-weight: 500; }
+        nav .nav-links a:hover { color: #00a8e1; }
+        @media (max-width: 640px) { nav { padding: 14px 18px; } nav .nav-links a { margin-left: 16px; font-size: 11px; } }
+
+        /* HERO — finished banner image (title + name already baked in) */
+        .hero-banner { margin-top: 61px; width: 100%; background: #1a3e5c; }
+        .hero-banner img { display: block; width: 100%; max-width: 1100px; height: auto; margin: 0 auto; }
+
+        /* META BAR */
+        .meta-bar {
+            max-width: 780px; margin: 0 auto; padding: 30px 24px 0;
+            font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #6b7785; font-weight: 500;
+            display: flex; flex-wrap: wrap; gap: 14px; align-items: center;
+        }
+        .meta-bar .cat { color: #00a8e1; }
+        .meta-bar .dot { color: #cdd4dc; }
+
+        /* KEY STATS */
+        .stats { max-width: 780px; margin: 36px auto 0; padding: 0 24px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+        .stat-card { border-left: 4px solid #00a8e1; padding: 18px 20px; background: #f4f6f8; }
+        .stat-card .num { font-size: 30px; font-weight: 700; color: #1a3e5c; line-height: 1.1; }
+        .stat-card .lbl { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: #5a6470; margin-top: 8px; font-weight: 500; }
+        @media (max-width: 640px) { .stats { grid-template-columns: 1fr; } }
+
+        /* ARTICLE */
+        article { max-width: 780px; margin: 0 auto; padding: 50px 24px 70px; }
+        article p { margin-bottom: 24px; font-size: 17px; color: #2a2a2a; }
+        article p .lead-in { font-weight: 600; color: #1a3e5c; }
+        article h2 { font-weight: 300; font-size: 30px; letter-spacing: -0.3px; color: #1a3e5c; margin: 56px 0 24px; line-height: 1.3; }
+        article h2::after { content: ''; display: block; width: 60px; height: 2px; background: #00a8e1; margin-top: 16px; }
+        article em { font-style: italic; }
+        article strong { font-weight: 600; }
+
+        .pull-quote { border-left: 5px solid #00a8e1; padding: 18px 30px; margin: 40px 0; font-size: 22px; font-weight: 300; font-style: italic; color: #1a3e5c; line-height: 1.5; }
+
+        .callout { background: #f4f6f8; border-radius: 6px; padding: 26px 30px; margin: 32px 0; }
+        .callout .row { font-size: 16px; margin-bottom: 10px; color: #2a2a2a; }
+        .callout .row:last-child { margin-bottom: 0; }
+
+        .infobox { background: #fff; border: 1px solid #e3e8ee; border-top: 4px solid #1a3e5c; border-radius: 6px; padding: 28px 30px; margin: 36px 0; }
+        .infobox h3 { font-size: 15px; letter-spacing: 1px; text-transform: uppercase; color: #1a3e5c; margin-bottom: 18px; font-weight: 600; }
+        .infobox .item { margin-bottom: 16px; font-size: 16px; line-height: 1.6; }
+        .infobox .item:last-child { margin-bottom: 0; }
+        .infobox .item strong { color: #1a3e5c; }
+
+        /* CTA */
+        .cta { background: #1a3e5c; color: #fff; text-align: center; padding: 64px 24px; }
+        .cta h2 { color: #fff; font-weight: 300; font-size: 30px; margin-bottom: 18px; }
+        .cta p { max-width: 560px; margin: 0 auto 30px; color: rgba(255,255,255,0.85); font-size: 17px; font-weight: 300; }
+        .cta a { display: inline-block; background: #00a8e1; color: #fff; text-transform: uppercase; letter-spacing: 0.1em; padding: 16px 44px; border-radius: 2px; font-weight: 500; text-decoration: none; font-size: 14px; }
+        .cta a:hover { background: #0093c4; }
+
+        /* BIO */
+        .bio { max-width: 780px; margin: 0 auto; padding: 56px 24px; display: flex; gap: 28px; align-items: flex-start; border-bottom: 1px solid #eee; }
+        .bio .photo { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; flex-shrink: 0; background: #e3e8ee; }
+        .bio h4 { color: #1a3e5c; font-size: 18px; font-weight: 600; margin-bottom: 10px; }
+        .bio p { font-size: 14px; color: #555; line-height: 1.7; }
+        @media (max-width: 640px) { .bio { flex-direction: column; } }
+
+        /* FOOTER */
+        footer { background: #f4f6f8; padding: 40px 24px; text-align: center; }
+        footer p { font-size: 11px; letter-spacing: 1px; color: #8a94a0; line-height: 1.8; max-width: 760px; margin: 0 auto 8px; text-transform: uppercase; }
+        footer .top { color: #1a3e5c; font-weight: 600; font-size: 13px; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">The Edmund Bogen Team</div>
+        <div class="nav-links">
+            <a href="https://bogenhomes.com">Properties</a>
+            <a href="mailto:edmund@bogenhomes.com">Contact</a>
+        </div>
+    </nav>
+
+    <!-- HERO BANNER (finished image with title + name baked in) -->
+    <div class="hero-banner">
+        <img src="hero.png" alt="Wait Till Season to Sell? Not So Fast. A data-backed look at the Boca & Delray market — Edmund Bogen, Luxury Real Estate Advisor, Douglas Elliman Real Estate">
+    </div>
+
+    <!-- META -->
+    <div class="meta-bar">
+        <span class="cat">South Florida Market Intelligence</span>
+        <span class="dot">&bull;</span>
+        <span>June 2, 2026</span>
+        <span class="dot">&bull;</span>
+        <span>6 min read</span>
+    </div>
+
+    <!-- KEY STATS -->
+    <div class="stats">
+        <div class="stat-card">
+            <div class="num">+2%</div>
+            <div class="lbl">PBC median, Aug 2025 vs. prior year — prices held through summer</div>
+        </div>
+        <div class="stat-card">
+            <div class="num">2.7 vs 16</div>
+            <div class="lbl">Months of supply: central Boca vs. coastal Palm Beach</div>
+        </div>
+        <div class="stat-card">
+            <div class="num">6.53%</div>
+            <div class="lbl">30-yr fixed, late May 2026 — a nine-month high</div>
+        </div>
+    </div>
+
+    <!-- ARTICLE -->
+    <article>
+
+        <p>Every June, two beliefs harden in South Florida. Buyers tell themselves they'll wait for summer, because summer is when the bargains show up. Sellers tell themselves they'll wait for season, because season is when the buyers show up. Both ideas feel like common sense. Only one of them survives contact with the data — and the other one is more nuanced than almost anyone admits.</p>
+
+        <p>I pulled the actual MLS numbers on both. Here is what they say about timing a purchase or a sale in Boca Raton, Delray Beach, and the surrounding Palm Beach County corridor.</p>
+
+        <h2>Summer doesn't lower the price here. It lowers the pace.</h2>
+
+        <p>We run on a backwards calendar. In most of the country, the market heats up in spring and summer. Here, the snowbirds arrive in winter, so Boca and Delray peak from roughly November through April, and the summer is quieter. Most people assume "quieter" must mean "cheaper." The numbers say otherwise.</p>
+
+        <p>Across Palm Beach County, single-family <em>sales volume</em> strengthens from winter into spring and then cools through the summer — but the <em>median price holds firm.</em> In 2024 the county median actually climbed from $615,000 in January to nearly $660,000 in June. In 2025 it sat in the low-$600,000s straight through the warm months, with the August median running about 2% higher than the year before. Fewer transactions and a slower pace, yes. A price discount, no.</p>
+
+        <p>Here is the mechanic most people miss: the deals signed during the winter rush don't <em>close</em> until late spring and early summer. So the prices printing in June and July are really winter's demand showing up on the calendar a few months late. The season moves the traffic, not the value.</p>
+
+        <p>National data tells the same story. ATTOM's analysis of more than 48 million home sales found that the so-called off-season "discount" is really just a smaller premium — buyers still pay above estimated value even in the cheapest months of the year. Florida isn't even among the handful of states where a winter buyer can reliably purchase below market value.</p>
+
+        <div class="pull-quote">The summer advantage is real — but it's time and negotiating leverage, not a lower sticker price.</div>
+
+        <h2>And here's the catch: it's not all one market.</h2>
+
+        <p>This is the part that surprises even longtime locals. "Boca and Delray" isn't a single market. It's at least two, and they sometimes sit on opposite sides of the same zip-code line.</p>
+
+        <p>In 2025, central Boca Raton — the resident-driven, year-round neighborhoods around 33486 — was genuinely tight: roughly <strong>2.7 months of supply</strong>, homes going under contract in about <strong>42 days</strong>, and sellers keeping around 93% of their list price. Now cross over to the coastal and seasonal stretches. Palm Beach proper carried <strong>nearly 16 months of supply</strong> and a median <strong>153 days to contract</strong>, with sellers netting closer to 86% of list. East Delray near the water ran around <strong>11 months</strong> of supply. That is a slow, deeply negotiable luxury market sharing a region with a fast, competitive one.</p>
+
+        <p>Same headline city, completely different leverage. In this corridor, <em>where</em> you are buying or selling matters more than <em>when.</em></p>
+
+        <h2>The rate will quietly eat any discount — especially here.</h2>
+
+        <p>The 30-year fixed mortgage dipped below 6% in late February 2026, then climbed back to <strong>6.53% by late May</strong> — its highest in nine months. Rates have been drifting up through mid-2026, not down. That single variable can erase a seasonal price concession before the ink dries. Consider a $600,000 Boca home with 20% down:</p>
+
+        <div class="callout">
+            <div class="row">Buy now at <strong>6.5%</strong> &rarr; roughly <strong>$3,034 / month</strong> in principal and interest.</div>
+            <div class="row">Wait, negotiate the price down 3% to $582,000, but rates drift to <strong>7.25%</strong> &rarr; roughly <strong>$3,176 / month.</strong></div>
+        </div>
+
+        <p>You paid $18,000 less for the house, and your payment went <em>up</em> about $142 a month — for the life of the loan. That is the trap, and it bites hardest in exactly those tight, resident-heavy Boca neighborhoods, because that's where buyers actually finance. Out in the cash-dominated coastal luxury and condo tiers, where more than 60% of buyers pay cash, the rate matters far less. The seasoned advice still holds: <strong>marry the house, date the rate.</strong> You can refinance a rate later. You cannot un-sell the home that closed without you.</p>
+
+        <h2>The costs nobody puts on the listing — and they dwarf the discount.</h2>
+
+        <p>Before anyone obsesses over shaving a few percent off the purchase price, it's worth understanding what actually moves the needle on owning in Boca and Delray. The <em>carrying</em> costs do far more damage to a budget than a seasonal price swing ever could.</p>
+
+        <div class="infobox">
+            <h3>The carrying-cost stack</h3>
+            <div class="item"><strong>Insurance.</strong> Florida is the most expensive state in the country to insure a home — a statewide average near $8,292, with coastal Boca homes averaging roughly $14,520 a year.</div>
+            <div class="item"><strong>Property taxes reset on sale.</strong> The seller's "Save Our Homes" assessment cap disappears the day you buy, and the home is reassessed at full market value — frequently doubling the new owner's bill. Run the County Property Appraiser's estimator on your purchase price, not the seller's current tax line.</div>
+            <div class="item"><strong>Club &amp; HOA fees.</strong> Our gated golf communities carry six-figure initiation and equity buy-ins plus substantial annual dues. A single one of those dwarfs any seasonal price negotiation.</div>
+            <div class="item"><strong>Condos.</strong> Post-Surfside reform is triggering special assessments ranging from $30,000 to $200,000-plus in older buildings, with dues up 20–40%. Review the reserves, milestone inspection, and assessment history before any offer.</div>
+            <div class="item"><strong>Hurricane season (June 1 – Nov. 30).</strong> The moment a storm is named, insurers stop binding new policies statewide — and without bound insurance, lenders won't fund, so summer closings can stall. Flood policies carry a 30-day wait. Bind coverage the day after inspection.</div>
+        </div>
+
+        <h2>Sellers: should you really wait for season?</h2>
+
+        <p>For luxury, waterfront, and second-home product chasing the snowbird wave, listing in season — late January through April — still captures the widest and most motivated buyer pool. Prepare in early fall and launch by late November.</p>
+
+        <p>But it's worth challenging the reflex this year. In the resident-heavy Boca submarkets, inventory is tight, which means a summer seller faces far less competing inventory and can stand out to serious, deadline-driven local and relocation buyers. The trade-off is pace, not price: it may take a little longer, but a sharply priced, move-in-ready home holds its value off-season. The data is blunt on one point — the market now punishes <em>average, overpriced</em> listings far more than it used to, while <em>best-in-class, well-priced</em> product still sells year-round. Pricing discipline beats calendar timing.</p>
+
+        <p>One practical wrinkle that cuts both ways: roughly 70% of all U.S. moves happen between Memorial Day and Labor Day. Summer may be the quieter shopping season, but it's the busiest and priciest <em>moving</em> season — so whichever side of the table you're on, book your movers early.</p>
+
+        <h2>The takeaway</h2>
+
+        <p>Florida is seasonal, and that isn't changing. But in Boca and Delray, the season changes how <em>fast</em> homes trade, not what they <em>cost.</em> The real decision drivers are your submarket, the rate, and the carrying costs — not the month on the calendar. The buyers and sellers who win this year aren't the ones who memorized "buy in summer, sell in season." They're the ones who ran their own numbers against today's rate, today's inventory, and their own timeline.</p>
+
+        <p>That's the conversation worth having — not a generic "now's the time," but an honest look at the full math for your situation and your neighborhood.</p>
+
+    </article>
+
+    <!-- CTA -->
+    <div class="cta">
+        <h2>Let's run your real numbers.</h2>
+        <p>Whether you're weighing a summer purchase or deciding when to list, I'll walk you through the full math for your specific neighborhood — rate, carrying costs, and timing. No pressure, no calendar gimmicks.</p>
+        <a href="mailto:edmund@bogenhomes.com?subject=Let's%20run%20my%20numbers">Start the Conversation &rarr;</a>
+    </div>
+
+    <!-- BIO -->
+    <div class="bio">
+        <img class="photo" src="hero.png" alt="Edmund Bogen" style="object-position: 78% 30%;">
+        <div>
+            <h4>About Edmund Bogen</h4>
+            <p>Edmund Bogen is the founder of The Edmund Bogen Team at Douglas Elliman Real Estate, specializing in luxury residential properties from Miami Beach to Palm Beach. A resident of St. Andrews Country Club in Boca Raton, Edmund brings an insider's perspective to South Florida's most prestigious communities, pairing market expertise with a deep understanding of the financial nuances of luxury home ownership. Contact Edmund at (561) 235-7575 or visit bogenhomes.com.</p>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p class="top">The Edmund Bogen Team | Douglas Elliman Real Estate | (561) 235-7575</p>
+        <p>1111 Lincoln Rd, Miami Beach, FL 33139 &bull; 305.695.6300</p>
+        <p>Market figures drawn from MIAMI Association of REALTORS / Florida Realtors MLS releases, Freddie Mac, ATTOM Data, and public county records; deemed reliable but not guaranteed. All examples are illustrative and not a prediction of future rates or values. This is not financial, tax, insurance, or legal advice. Equal Housing Opportunity.</p>
+        <p>&copy; 2026 Douglas Elliman Real Estate. All material presented herein is intended for information purposes only. While this information is believed to be correct, it is represented subject to errors, omissions, changes or withdrawal without notice.</p>
+    </footer>
+
+</body>
+</html>
