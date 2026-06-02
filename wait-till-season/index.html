@@ -96,6 +96,35 @@
         .comm-foot { font-size: 13px; color: #8a94a0; margin: 16px 0 0; line-height: 1.6; }
         @media (max-width: 640px) { table.comm { font-size: 13px; } table.comm th, table.comm td { padding: 9px 8px; } }
 
+        /* ST ANDREWS LINEUP */
+        .lineup { background: #f4f6f8; padding: 64px 24px; }
+        .lineup-inner { max-width: 1100px; margin: 0 auto; }
+        .lineup .eyebrow { text-align: center; font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: #00a8e1; font-weight: 600; margin-bottom: 14px; }
+        .lineup h2 { text-align: center; color: #1a3e5c; font-weight: 300; font-size: 32px; margin-bottom: 14px; }
+        .lineup .sub { text-align: center; color: #5a6470; font-size: 15px; max-width: 620px; margin: 0 auto 14px; font-weight: 300; line-height: 1.6; }
+        .lineup .strip { text-align: center; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; color: #1a3e5c; font-weight: 600; margin-bottom: 40px; }
+        .lineup .strip span { color: #cdd4dc; margin: 0 8px; }
+        .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+        @media (max-width: 900px) { .cards { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .cards { grid-template-columns: 1fr; } }
+        .card { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 12px rgba(26,62,92,0.08); display: flex; flex-direction: column; }
+        .card .top { background: #1a3e5c; color: #fff; padding: 18px 20px; position: relative; }
+        .card .price { font-size: 24px; font-weight: 700; letter-spacing: -0.5px; }
+        .card .badge { position: absolute; top: 14px; right: 16px; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; font-weight: 700; padding: 4px 9px; border-radius: 12px; }
+        .card .badge.new { background: #00a8e1; color: #fff; }
+        .card .badge.reduced { background: #f0a830; color: #fff; }
+        .card .body { padding: 18px 20px; flex: 1; display: flex; flex-direction: column; }
+        .card .addr { font-size: 15px; font-weight: 600; color: #1a3e5c; line-height: 1.4; margin-bottom: 12px; }
+        .card .specs { font-size: 14px; color: #3a4550; line-height: 1.7; margin-bottom: 12px; }
+        .card .feats { margin-bottom: 14px; }
+        .card .feat { display: inline-block; font-size: 10px; letter-spacing: 0.5px; text-transform: uppercase; font-weight: 600; padding: 3px 9px; border-radius: 12px; margin: 0 5px 5px 0; background: #eef4f7; color: #0a7ea8; }
+        .card .feat.nc { background: #eaf7ee; color: #2e8b57; }
+        .card .mls { font-size: 11px; color: #9aa3ad; letter-spacing: 0.5px; margin-bottom: 4px; }
+        .card .courtesy { font-size: 11px; color: #9aa3ad; font-style: italic; margin-bottom: 16px; line-height: 1.4; }
+        .card .link { margin-top: auto; display: block; text-align: center; background: #00a8e1; color: #fff; text-decoration: none; padding: 11px; border-radius: 3px; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
+        .card .link:hover { background: #0093c4; }
+        .lineup .idx-disc { font-size: 12px; color: #8a94a0; text-align: center; max-width: 820px; margin: 36px auto 0; line-height: 1.6; }
+
         /* CTA */
         .cta { background: #1a3e5c; color: #fff; text-align: center; padding: 64px 24px; }
         .cta h2 { color: #fff; font-weight: 300; font-size: 30px; margin-bottom: 18px; }
@@ -266,6 +295,166 @@
         <p>That's the conversation worth having — not a generic "now's the time," but an honest look at the full math for your situation and your neighborhood.</p>
 
     </article>
+
+    <!-- ST ANDREWS LINEUP -->
+    <div class="lineup">
+        <div class="lineup-inner">
+            <div class="eyebrow">Featured Community</div>
+            <h2>St. Andrews Country Club — Currently On Market</h2>
+            <p class="sub">A live look at one of Boca's premier guard-gated communities. Twelve homes are active right now — every one with a pool — spanning nearly $18 million from entry to top of market.</p>
+            <div class="strip">12 Active <span>&bull;</span> $1.895M&ndash;$19.975M <span>&bull;</span> 5 Waterfront <span>&bull;</span> 5 New Construction</div>
+
+            <div class="cards">
+
+                <div class="card">
+                    <div class="top"><div class="price">$1,895,000</div></div>
+                    <div class="body">
+                        <div class="addr">7946 Shelby Circle</div>
+                        <div class="specs">3 BR / 2F + 1H &middot; 2,656 SF &middot; Built 1991</div>
+                        <div class="feats"><span class="feat">Pool</span></div>
+                        <div class="mls">MLS R11148303</div>
+                        <div class="courtesy">Listing courtesy of Ari Albinder, The Keyes Company</div>
+                        <a class="link" href="https://www.bogenhomes.com/property-search/" target="_blank" rel="noopener">View on bogenhomes.com &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="top"><div class="price">$2,450,000</div></div>
+                    <div class="body">
+                        <div class="addr">17320 Loch Lomond Way</div>
+                        <div class="specs">3 BR / 4F &middot; 2,879 SF &middot; Built 1987</div>
+                        <div class="feats"><span class="feat">Waterfront</span><span class="feat">Pool</span></div>
+                        <div class="mls">MLS B26023491</div>
+                        <div class="courtesy">Listing courtesy of Michael B. Bloom &amp; Melanie Bloom Haym, Compass Florida</div>
+                        <a class="link" href="https://www.bogenhomes.com/property-search/" target="_blank" rel="noopener">View on bogenhomes.com &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="top"><div class="price">$3,200,000</div></div>
+                    <div class="body">
+                        <div class="addr">17844 Scarsdale Way</div>
+                        <div class="specs">4 BR / 4F &middot; 3,797 SF &middot; Built 1984</div>
+                        <div class="feats"><span class="feat">Pool</span></div>
+                        <div class="mls">MLS F10528126</div>
+                        <div class="courtesy">Listing courtesy of Allison G. Stewart, Compass Florida</div>
+                        <a class="link" href="https://www.bogenhomes.com/property-search/" target="_blank" rel="noopener">View on bogenhomes.com &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="top"><div class="price">$3,500,000</div></div>
+                    <div class="body">
+                        <div class="addr">17974 Foxborough Lane</div>
+                        <div class="specs">3 BR / 2F + 1H &middot; 3,029 SF &middot; Built 1984</div>
+                        <div class="feats"><span class="feat">Waterfront</span><span class="feat">Pool</span></div>
+                        <div class="mls">MLS B26020879</div>
+                        <div class="courtesy">Listing courtesy of Paul Stuart Fishman &amp; Todd David Lipsich, Luxury Partners Realty</div>
+                        <a class="link" href="https://www.bogenhomes.com/property-search/" target="_blank" rel="noopener">View on bogenhomes.com &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="top"><div class="price">$4,395,000</div></div>
+                    <div class="body">
+                        <div class="addr">7215 Ballantrae Court</div>
+                        <div class="specs">3 BR / 3F + 1H &middot; 4,154 SF &middot; Built 1987</div>
+                        <div class="feats"><span class="feat">Pool</span></div>
+                        <div class="mls">MLS B26007905</div>
+                        <div class="courtesy">Listing courtesy of Michael B. Bloom &amp; Melanie Bloom Haym, Compass Florida</div>
+                        <a class="link" href="https://www.bogenhomes.com/property-search/" target="_blank" rel="noopener">View on bogenhomes.com &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="top"><div class="price">$5,850,000</div><span class="badge reduced">Price Reduced</span></div>
+                    <div class="body">
+                        <div class="addr">17730 Scarsdale Way</div>
+                        <div class="specs">7 BR / 8F + 1H &middot; 7,709 SF &middot; Built 2005</div>
+                        <div class="feats"><span class="feat">Waterfront</span><span class="feat">Pool</span></div>
+                        <div class="mls">MLS B26010857</div>
+                        <div class="courtesy">Listing courtesy of Shereen C. Randazza PA, Lang Realty/BR</div>
+                        <a class="link" href="https://www.bogenhomes.com/property-search/" target="_blank" rel="noopener">View on bogenhomes.com &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="top"><div class="price">$7,999,999</div></div>
+                    <div class="body">
+                        <div class="addr">17787 Scarsdale Way</div>
+                        <div class="specs">5 BR / 6F + 2H &middot; 5,861 SF &middot; Built 2022</div>
+                        <div class="feats"><span class="feat">Pool</span></div>
+                        <div class="mls">MLS B26010941</div>
+                        <div class="courtesy">Listing courtesy of Warren Drucker, Keller Williams Realty Boca Raton</div>
+                        <a class="link" href="https://www.bogenhomes.com/property-search/" target="_blank" rel="noopener">View on bogenhomes.com &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="top"><div class="price">$8,400,000</div></div>
+                    <div class="body">
+                        <div class="addr">17661 Scarsdale Way</div>
+                        <div class="specs">5 BR / 6F + 2H &middot; 6,380 SF &middot; Built 2019</div>
+                        <div class="feats"><span class="feat">Pool</span></div>
+                        <div class="mls">MLS B26031007</div>
+                        <div class="courtesy">Listing courtesy of Paul Stuart Fishman &amp; Todd David Lipsich, Luxury Partners Realty</div>
+                        <a class="link" href="https://www.bogenhomes.com/property-search/" target="_blank" rel="noopener">View on bogenhomes.com &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="top"><div class="price">$9,975,000</div></div>
+                    <div class="body">
+                        <div class="addr">17903 Foxborough Lane</div>
+                        <div class="specs">6 BR / 6F + 2H &middot; 7,616 SF &middot; Built 2026</div>
+                        <div class="feats"><span class="feat nc">New Construction</span><span class="feat">Pool</span></div>
+                        <div class="mls">MLS R11087609</div>
+                        <div class="courtesy">Listing courtesy of Michael B. Bloom &amp; Melanie Bloom Haym, Compass Florida</div>
+                        <a class="link" href="https://www.bogenhomes.com/property-search/" target="_blank" rel="noopener">View on bogenhomes.com &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="top"><div class="price">$9,999,000</div></div>
+                    <div class="body">
+                        <div class="addr">17591 Scarsdale Way</div>
+                        <div class="specs">6 BR / 7F + 1H &middot; Size TBA &middot; Built 2027</div>
+                        <div class="feats"><span class="feat nc">New Construction</span><span class="feat">Pool</span></div>
+                        <div class="mls">MLS A11989389</div>
+                        <div class="courtesy">Listing courtesy of Solomon Yakoby, All Nations Realty of Florida</div>
+                        <a class="link" href="https://www.bogenhomes.com/property-search/" target="_blank" rel="noopener">View on bogenhomes.com &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="top"><div class="price">$16,995,000</div></div>
+                    <div class="body">
+                        <div class="addr">17791 Saxony Court</div>
+                        <div class="specs">6 BR / 7F + 3H &middot; 12,162 SF &middot; Built 2004</div>
+                        <div class="feats"><span class="feat">Waterfront</span><span class="feat">Pool</span></div>
+                        <div class="mls">MLS B26032589</div>
+                        <div class="courtesy">Listing courtesy of Michael B. Bloom &amp; Melanie Bloom Haym, Compass Florida</div>
+                        <a class="link" href="https://www.bogenhomes.com/property-search/" target="_blank" rel="noopener">View on bogenhomes.com &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="top"><div class="price">$19,975,000</div><span class="badge new">New Listing</span></div>
+                    <div class="body">
+                        <div class="addr">6960 Lake Estates Court</div>
+                        <div class="specs">5 BR / 6F + 2H &middot; 7,784 SF &middot; Built 2022</div>
+                        <div class="feats"><span class="feat">Waterfront</span><span class="feat">Pool</span></div>
+                        <div class="mls">MLS B26035087</div>
+                        <div class="courtesy">Listing courtesy of Michael B. Bloom &amp; Melanie Bloom Haym, Compass Florida</div>
+                        <a class="link" href="https://www.bogenhomes.com/property-search/" target="_blank" rel="noopener">View on bogenhomes.com &rarr;</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <p class="idx-disc">Listings displayed are sourced via IDX and remain the property of their respective listing brokerages, as noted on each card. Information is deemed reliable but not guaranteed and is subject to errors, omissions, prior sale, or withdrawal without notice. The Edmund Bogen Team is not the listing broker for these properties unless otherwise stated. For live photos and full details, search by MLS number at bogenhomes.com.</p>
+        </div>
+    </div>
 
     <!-- CTA -->
     <div class="cta">
