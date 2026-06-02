@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Investment ROI Calculator | The Edmund Bogen Team</title>
+<meta name="description" content="South Florida investment property cash-on-cash return analysis. Enter a purchase price and representative area rent to see how close a deal gets to a 6% target.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1a3e5c;
+    --navy2:#2a5a7c;
+    --cyan:#00a8e1;
+    --ink:#333333;
+    --muted:#6b7785;
+    --line:#e3e7ec;
+    --bg:#eef1f4;
+    --card:#ffffff;
+    --good:#1e9e6a;
+    --good-bg:#e6f6ee;
+    --warn:#c8861a;
+    --warn-bg:#fdf3e2;
+    --bad:#c0392b;
+    --bad-bg:#fbeae8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Montserrat',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+
+  /* ---------- Header ---------- */
+  .app-header{
+    background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);
+    color:#fff;
+  }
+  .app-header .wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:20px;padding-top:22px;padding-bottom:22px;flex-wrap:wrap;
+  }
+  .brand{display:flex;align-items:center;gap:16px}
+  .brand img{height:54px;width:auto;display:block}
+  .brand .titles h1{
+    font-size:19px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;line-height:1.25;
+  }
+  .brand .titles p{font-size:12px;font-weight:300;letter-spacing:.18em;text-transform:uppercase;color:#cfe6f3}
+  .mode-toggle{display:flex;background:rgba(255,255,255,.12);border-radius:6px;padding:4px;gap:4px}
+  .mode-toggle button{
+    font-family:inherit;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+    color:#cfe6f3;background:transparent;border:0;padding:10px 18px;border-radius:4px;cursor:pointer;transition:.15s;
+  }
+  .mode-toggle button.active{background:var(--cyan);color:#fff}
+
+  .subhead{background:var(--navy);color:#fff;border-top:1px solid rgba(255,255,255,.08)}
+  .subhead .wrap{padding:14px 20px;font-size:13.5px;font-weight:300;color:#dbe8f2}
+  .subhead strong{font-weight:600;color:#fff}
+
+  /* ---------- Layout ---------- */
+  .layout{display:grid;grid-template-columns:1fr 380px;gap:26px;padding:30px 0 60px}
+  @media(max-width:920px){.layout{grid-template-columns:1fr}}
+
+  .card{
+    background:var(--card);border-radius:10px;padding:24px 24px 8px;margin-bottom:22px;
+    box-shadow:0 2px 10px rgba(26,62,92,.07);border-top:3px solid var(--cyan);
+  }
+  .card h2{
+    color:var(--navy);font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    margin-bottom:4px;display:flex;align-items:center;gap:10px;
+  }
+  .card .hint{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+  @media(max-width:560px){.grid2,.grid3{grid-template-columns:1fr}}
+
+  .field{margin-bottom:18px}
+  .field label{display:block;font-size:12px;font-weight:600;color:var(--navy);letter-spacing:.03em;margin-bottom:6px}
+  .field .sub{font-weight:400;color:var(--muted);text-transform:none;letter-spacing:0;font-size:11px}
+  .inp{position:relative;display:flex;align-items:center}
+  .inp .affix{position:absolute;font-size:14px;color:var(--muted);pointer-events:none}
+  .inp .affix.pre{left:13px}
+  .inp .affix.suf{right:13px}
+  input[type=text],input[type=number]{
+    width:100%;font-family:inherit;font-size:15px;color:var(--ink);
+    border:1.5px solid var(--line);border-radius:7px;padding:11px 13px;background:#fff;transition:.15s;
+  }
+  input.pad-pre{padding-left:26px}
+  input.pad-suf{padding-right:30px}
+  input:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,168,225,.12)}
+
+  .seg{display:inline-flex;border:1.5px solid var(--line);border-radius:7px;overflow:hidden}
+  .seg button{
+    font-family:inherit;font-size:13px;font-weight:600;letter-spacing:.04em;
+    background:#fff;color:var(--muted);border:0;padding:10px 22px;cursor:pointer;transition:.15s;
+  }
+  .seg button.active{background:var(--navy);color:#fff}
+
+  .btn-ghost{
+    font-family:inherit;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+    background:transparent;color:var(--cyan);border:1.5px solid var(--cyan);border-radius:6px;
+    padding:9px 16px;cursor:pointer;transition:.15s;
+  }
+  .btn-ghost:hover{background:var(--cyan);color:#fff}
+  .btn-solid{
+    font-family:inherit;font-size:13px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;
+    background:var(--cyan);color:#fff;border:0;border-radius:6px;padding:13px 22px;cursor:pointer;transition:.15s;width:100%;
+  }
+  .btn-solid:hover{filter:brightness(.93)}
+
+  #financingFields.hidden{display:none}
+
+  /* ---------- Results rail ---------- */
+  .rail{position:sticky;top:20px;align-self:start}
+  .result-card{background:var(--card);border-radius:10px;box-shadow:0 4px 16px rgba(26,62,92,.12);overflow:hidden}
+  .result-head{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);color:#fff;padding:22px 24px;text-align:center}
+  .result-head .lbl{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#bcd9ea;margin-bottom:6px}
+  .result-head .big{font-size:52px;font-weight:700;line-height:1}
+  .result-head .big small{font-size:24px;font-weight:600}
+  .badge{display:inline-block;margin-top:12px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:6px 16px;border-radius:30px}
+  .badge.good{background:var(--good-bg);color:var(--good)}
+  .badge.warn{background:var(--warn-bg);color:var(--warn)}
+  .badge.bad{background:var(--bad-bg);color:var(--bad)}
+
+  .tiles{padding:8px 18px 4px}
+  .tile{display:flex;justify-content:space-between;align-items:baseline;padding:12px 6px;border-bottom:1px solid var(--line)}
+  .tile:last-child{border-bottom:0}
+  .tile .k{font-size:12.5px;color:var(--muted)}
+  .tile .v{font-size:16px;font-weight:600;color:var(--navy)}
+  .tile .v.neg{color:var(--bad)}
+
+  .solver{margin:6px 18px 18px;background:#f5f9fc;border:1px solid #dceaf4;border-left:4px solid var(--cyan);border-radius:7px;padding:14px 16px}
+  .solver .st{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);margin-bottom:8px}
+  .solver p{font-size:13px;color:var(--ink);margin-bottom:6px}
+  .solver p:last-child{margin-bottom:0}
+  .solver b{color:var(--navy)}
+  .solver .em{color:var(--cyan);font-weight:700}
+
+  .rail-actions{padding:0 18px 20px;display:flex;flex-direction:column;gap:10px}
+  .rail-actions .row{display:flex;gap:10px}
+  .rail-actions .row .btn-ghost{flex:1;text-align:center}
+
+  /* ---------- Buyer view ---------- */
+  .buyer-view{display:none;padding:30px 0 60px}
+  body.mode-buyer .layout{display:none}
+  body.mode-buyer .buyer-view{display:block}
+  .sheet{background:#fff;border-radius:12px;box-shadow:0 4px 24px rgba(26,62,92,.12);overflow:hidden;max-width:900px;margin:0 auto}
+  .sheet-head{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);color:#fff;padding:30px 40px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .sheet-head img{height:52px}
+  .sheet-head .lbl{text-align:right}
+  .sheet-head .lbl .e{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#bcd9ea}
+  .sheet-head .lbl .t{font-size:18px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+  .sheet-body{padding:34px 40px}
+  .sheet-prop{font-size:22px;font-weight:600;color:var(--navy);margin-bottom:4px}
+  .sheet-prop-sub{font-size:13px;color:var(--muted);margin-bottom:26px}
+  .verdict-band{display:flex;align-items:center;gap:24px;padding:24px;border-radius:10px;margin-bottom:28px}
+  .verdict-band.good{background:var(--good-bg)}
+  .verdict-band.warn{background:var(--warn-bg)}
+  .verdict-band.bad{background:var(--bad-bg)}
+  .verdict-band .num{font-size:60px;font-weight:700;line-height:1}
+  .verdict-band.good .num{color:var(--good)}
+  .verdict-band.warn .num{color:var(--warn)}
+  .verdict-band.bad .num{color:var(--bad)}
+  .verdict-band .num small{font-size:28px}
+  .verdict-band .txt .h{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;color:var(--navy)}
+  .verdict-band .txt .p{font-size:14px;color:var(--ink)}
+  .b-tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:30px}
+  @media(max-width:680px){.b-tiles{grid-template-columns:1fr 1fr}}
+  .b-tile{background:#f7fafc;border-left:4px solid var(--cyan);border-radius:8px;padding:16px}
+  .b-tile .k{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+  .b-tile .v{font-size:22px;font-weight:700;color:var(--navy)}
+  .b-tile .v.neg{color:var(--bad)}
+  .b-h{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);border-bottom:3px solid var(--cyan);display:inline-block;padding-bottom:6px;margin-bottom:16px}
+  table.brk{width:100%;border-collapse:collapse;margin-bottom:30px;font-size:13.5px}
+  table.brk th{background:var(--navy);color:#fff;text-align:left;padding:11px 14px;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+  table.brk th:last-child,table.brk td:last-child{text-align:right}
+  table.brk td{padding:11px 14px;border-bottom:1px solid var(--line)}
+  table.brk tr:nth-child(even) td{background:#f7fafc}
+  table.brk tr.total td{font-weight:700;color:var(--navy);border-top:2px solid var(--navy);background:#eef4f9}
+  .assump{font-size:12px;color:var(--muted);background:#f7fafc;border-radius:8px;padding:16px 18px;margin-bottom:8px}
+  .assump b{color:var(--navy)}
+
+  /* ---------- Footer ---------- */
+  .legal{background:var(--navy);color:#aec6d8;font-size:11px;line-height:1.7;padding:26px 0}
+  .legal .wrap{max-width:900px}
+  .legal strong{color:#fff}
+  .legal .eho{color:#fff;font-weight:600;margin-bottom:8px;display:block}
+
+  /* ---------- Print ---------- */
+  @media print{
+    body{background:#fff}
+    .app-header,.subhead,.layout,.no-print{display:none!important}
+    .buyer-view{display:block!important;padding:0}
+    .sheet{box-shadow:none;border-radius:0;max-width:none}
+    .legal{background:#fff;color:#333;border-top:1px solid #ccc}
+    .legal strong,.legal .eho{color:#000}
+    @page{margin:14mm}
+  }
+</style>
+</head>
+<body class="mode-worksheet">
+
+<!-- ===== Header ===== -->
+<header class="app-header no-print">
+  <div class="wrap">
+    <div class="brand">
+      <img src="EBT-Logo-WHITE-V.png" alt="The Edmund Bogen Team">
+      <div class="titles">
+        <h1>Investment ROI Calculator</h1>
+        <p>The Edmund Bogen Team &middot; Douglas Elliman</p>
+      </div>
+    </div>
+    <div class="mode-toggle">
+      <button id="tabWork" class="active" onclick="setMode('worksheet')">Worksheet</button>
+      <button id="tabBuyer" onclick="setMode('buyer')">Buyer Summary</button>
+    </div>
+  </div>
+</header>
+<div class="subhead no-print">
+  <div class="wrap">Enter a <strong>purchase price</strong> and a <strong>representative monthly rent for that exact area</strong>. The tool shows the cash-on-cash return and exactly what it takes to hit your <strong id="subTarget">6%</strong> target.</div>
+</div>
+
+<!-- ===== Worksheet ===== -->
+<div class="wrap">
+<div class="layout">
+
+  <!-- INPUTS -->
+  <div class="inputs">
+
+    <div class="card">
+      <h2>Property</h2>
+      <p class="hint">Identify the candidate property and the area you are pulling rent comps from.</p>
+      <div class="field">
+        <label>Property / community label</label>
+        <div class="inp"><input type="text" id="propLabel" placeholder="e.g. 7107 Ayrshire Ln, St Andrews"></div>
+      </div>
+      <div class="grid2">
+        <div class="field">
+          <label>Purchase price</label>
+          <div class="inp"><span class="affix pre">$</span><input type="number" id="price" class="pad-pre" value="2000000" min="0" step="10000"></div>
+        </div>
+        <div class="field">
+          <label>Target cash-on-cash <span class="sub">your goal</span></label>
+          <div class="inp"><input type="number" id="targetCoC" class="pad-suf" value="6" min="0" step="0.25"><span class="affix suf">%</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Rental Income</h2>
+      <p class="hint">Use a representative rent from comparable rentals in the same neighborhood.</p>
+      <div class="grid3">
+        <div class="field">
+          <label>Representative rent <span class="sub">monthly</span></label>
+          <div class="inp"><span class="affix pre">$</span><input type="number" id="rent" class="pad-pre" value="9000" min="0" step="100"></div>
+        </div>
+        <div class="field">
+          <label>Vacancy <span class="sub">% of rent</span></label>
+          <div class="inp"><input type="number" id="vacancy" class="pad-suf" value="6" min="0" step="0.5"><span class="affix suf">%</span></div>
+        </div>
+        <div class="field">
+          <label>Other income <span class="sub">monthly</span></label>
+          <div class="inp"><span class="affix pre">$</span><input type="number" id="otherIncome" class="pad-pre" value="0" min="0" step="50"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Operating Expenses &middot; Florida</h2>
+      <p class="hint">Pre-filled with South Florida luxury defaults &mdash; edit any line to match the specific property.</p>
+      <div class="grid3">
+        <div class="field">
+          <label>Property taxes <span class="sub">% of price / yr</span></label>
+          <div class="inp"><input type="number" id="taxRate" class="pad-suf" value="1.9" min="0" step="0.05"><span class="affix suf">%</span></div>
+        </div>
+        <div class="field">
+          <label>Insurance <span class="sub">% of value / yr</span></label>
+          <div class="inp"><input type="number" id="insRate" class="pad-suf" value="0.8" min="0" step="0.05"><span class="affix suf">%</span></div>
+        </div>
+        <div class="field">
+          <label>CapEx reserve <span class="sub">% of value / yr</span></label>
+          <div class="inp"><input type="number" id="capexRate" class="pad-suf" value="1" min="0" step="0.1"><span class="affix suf">%</span></div>
+        </div>
+        <div class="field">
+          <label>HOA / club dues <span class="sub">annual</span></label>
+          <div class="inp"><span class="affix pre">$</span><input type="number" id="hoa" class="pad-pre" value="0" min="0" step="500"></div>
+        </div>
+        <div class="field">
+          <label>CDD fee <span class="sub">annual, if any</span></label>
+          <div class="inp"><span class="affix pre">$</span><input type="number" id="cdd" class="pad-pre" value="0" min="0" step="250"></div>
+        </div>
+        <div class="field">
+          <label>Property mgmt <span class="sub">% of collected rent</span></label>
+          <div class="inp"><input type="number" id="mgmt" class="pad-suf" value="8" min="0" step="0.5"><span class="affix suf">%</span></div>
+        </div>
+        <div class="field">
+          <label>Maintenance <span class="sub">% of collected rent</span></label>
+          <div class="inp"><input type="number" id="maint" class="pad-suf" value="5" min="0" step="0.5"><span class="affix suf">%</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Purchase &amp; Financing</h2>
+      <p class="hint">Choose how the investor is buying. Cash-on-cash is measured against the actual cash invested.</p>
+      <div class="grid2">
+        <div class="field">
+          <label>Closing costs <span class="sub">% of price</span></label>
+          <div class="inp"><input type="number" id="closingPct" class="pad-suf" value="2.5" min="0" step="0.25"><span class="affix suf">%</span></div>
+        </div>
+        <div class="field">
+          <label>Upfront capex / rehab <span class="sub">one-time</span></label>
+          <div class="inp"><span class="affix pre">$</span><input type="number" id="upfrontCapex" class="pad-pre" value="0" min="0" step="5000"></div>
+        </div>
+      </div>
+      <div class="field">
+        <label>Purchase method</label>
+        <div class="seg" id="finToggle">
+          <button type="button" data-mode="cash" class="active" onclick="setFin('cash')">All Cash</button>
+          <button type="button" data-mode="financed" onclick="setFin('financed')">Financed</button>
+        </div>
+      </div>
+      <div id="financingFields" class="grid3 hidden">
+        <div class="field">
+          <label>Down payment <span class="sub">% of price</span></label>
+          <div class="inp"><input type="number" id="downPct" class="pad-suf" value="25" min="0" max="100" step="1"><span class="affix suf">%</span></div>
+        </div>
+        <div class="field">
+          <label>Interest rate <span class="sub">annual</span></label>
+          <div class="inp"><input type="number" id="rate" class="pad-suf" value="7" min="0" step="0.125"><span class="affix suf">%</span></div>
+        </div>
+        <div class="field">
+          <label>Loan term <span class="sub">years</span></label>
+          <div class="inp"><input type="number" id="term" class="pad-suf" value="30" min="1" step="1"><span class="affix suf">yr</span></div>
+        </div>
+      </div>
+      <div style="padding:0 0 18px"><button class="btn-ghost" onclick="loadDefaults()">Load FL Luxury Defaults</button></div>
+    </div>
+
+  </div><!-- /inputs -->
+
+  <!-- RESULTS RAIL -->
+  <div class="rail">
+    <div class="result-card">
+      <div class="result-head">
+        <div class="lbl">Cash-on-Cash Return</div>
+        <div class="big" id="rCoc">0.0<small>%</small></div>
+        <span class="badge bad" id="rBadge">Below Target</span>
+      </div>
+      <div class="tiles">
+        <div class="tile"><span class="k">Monthly cash flow</span><span class="v" id="rMcf">$0</span></div>
+        <div class="tile"><span class="k">Annual cash flow</span><span class="v" id="rAcf">$0</span></div>
+        <div class="tile"><span class="k">Net operating income</span><span class="v" id="rNoi">$0</span></div>
+        <div class="tile"><span class="k">Cap rate</span><span class="v" id="rCap">0%</span></div>
+        <div class="tile"><span class="k">Total cash invested</span><span class="v" id="rCash">$0</span></div>
+      </div>
+      <div class="solver">
+        <div class="st">To hit your <span id="solverTarget">6%</span> target</div>
+        <p id="solverRent">&mdash;</p>
+        <p id="solverPrice">&mdash;</p>
+      </div>
+      <div class="rail-actions no-print">
+        <button class="btn-solid" onclick="setMode('buyer')">View Buyer Summary</button>
+        <div class="row">
+          <button class="btn-ghost" onclick="copyLink()" id="copyBtn">Copy Shareable Link</button>
+          <button class="btn-ghost" onclick="window.print()">Print / PDF</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /layout -->
+</div><!-- /wrap -->
+
+<!-- ===== Buyer Summary ===== -->
+<div class="buyer-view">
+  <div class="wrap">
+    <div class="sheet">
+      <div class="sheet-head">
+        <img src="EBT-Logo-WHITE-V.png" alt="The Edmund Bogen Team">
+        <div class="lbl">
+          <div class="e">Investment Analysis</div>
+          <div class="t">The Edmund Bogen Team</div>
+        </div>
+      </div>
+      <div class="sheet-body">
+        <div class="sheet-prop" id="bProp">Investment Property</div>
+        <div class="sheet-prop-sub" id="bPropSub">Cash-on-cash return analysis</div>
+
+        <div class="verdict-band bad" id="bBand">
+          <div class="num" id="bCoc">0.0<small>%</small></div>
+          <div class="txt">
+            <div class="h" id="bVerdict">Below Target</div>
+            <div class="p" id="bGap">&mdash;</div>
+          </div>
+        </div>
+
+        <div class="b-tiles">
+          <div class="b-tile"><div class="k">Monthly Cash Flow</div><div class="v" id="bMcf">$0</div></div>
+          <div class="b-tile"><div class="k">Annual Cash Flow</div><div class="v" id="bAcf">$0</div></div>
+          <div class="b-tile"><div class="k">Total Cash Invested</div><div class="v" id="bCash">$0</div></div>
+          <div class="b-tile"><div class="k">Cap Rate</div><div class="v" id="bCap">0%</div></div>
+        </div>
+
+        <div class="b-h">Annual Income &amp; Expense Detail</div>
+        <table class="brk">
+          <thead><tr><th>Line Item</th><th>Annual</th></tr></thead>
+          <tbody id="bBreakdown"></tbody>
+        </table>
+
+        <div class="b-h">Assumptions</div>
+        <div class="assump" id="bAssump"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Legal ===== -->
+<footer class="legal">
+  <div class="wrap">
+    <span class="eho">Equal Housing Opportunity &#127968;</span>
+    The Edmund Bogen Team at <strong>Douglas Elliman Real Estate</strong>. Edmund Bogen is a licensed Florida real estate professional. The default brokerage relationship in Florida residential transactions is <strong>Transaction Broker</strong> unless another relationship is established in writing pursuant to &sect;475.278, Florida Statutes.
+    All figures are illustrative estimates based solely on the inputs provided; they are deemed reliable but not guaranteed and are <strong>not financial, tax, insurance, or legal advice</strong>. Property taxes, insurance, and rents vary by property and change over time. Investors should verify all numbers and consult their own advisors before purchasing.
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  // ---- Field registry: id -> default ----
+  var FIELDS = {
+    propLabel:"", price:2000000, targetCoC:6,
+    rent:9000, vacancy:6, otherIncome:0,
+    taxRate:1.9, insRate:0.8, capexRate:1, hoa:0, cdd:0, mgmt:8, maint:5,
+    closingPct:2.5, upfrontCapex:0,
+    downPct:25, rate:7, term:30
+  };
+  var DEFAULTS = JSON.parse(JSON.stringify(FIELDS));
+  var finMode = "cash";
+
+  // ---- Helpers ----
+  function $(id){ return document.getElementById(id); }
+  function num(id){ var el=$(id); return el ? (parseFloat(el.value)||0) : 0; }
+  var fmt0 = new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});
+  function money(n){ return fmt0.format(Math.round(n)); }
+  function pct(n){ return (n*100).toFixed(1)+'%'; }
+  function pct2(n){ return (n*100).toFixed(2)+'%'; }
+
+  // ---- Core engine ----
+  // Returns full metrics for a given price & rent (used for forward calc + price solver)
+  function model(price, rent){
+    var vac = num('vacancy')/100;
+    var otherAnnual = num('otherIncome')*12;
+    var grossEff = rent*12*(1-vac);
+    var egi = grossEff + otherAnnual;
+
+    var varRate = (num('mgmt')+num('maint'))/100;        // fraction of EGI
+    var opexVar = varRate * egi;
+    var opexFixed = price*num('taxRate')/100
+                  + price*num('insRate')/100
+                  + price*num('capexRate')/100
+                  + num('hoa') + num('cdd');
+    var totalOpex = opexFixed + opexVar;
+    var noi = egi - totalOpex;
+
+    var closing = price*num('closingPct')/100;
+    var upfront = num('upfrontCapex');
+    var debtService = 0, cashInvested, downPayment = 0, loan = 0, mPmt = 0;
+
+    if(finMode === 'financed'){
+      downPayment = price*num('downPct')/100;
+      loan = price - downPayment;
+      var r = num('rate')/100/12;
+      var n = num('term')*12;
+      if(loan>0 && r>0 && n>0){ mPmt = loan*(r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1); }
+      else if(loan>0){ mPmt = n>0 ? loan/n : 0; }
+      debtService = mPmt*12;
+      cashInvested = downPayment + closing + upfront;
+    } else {
+      cashInvested = price + closing + upfront;
+    }
+
+    var annualCF = noi - debtService;
+    var coc = cashInvested>0 ? annualCF/cashInvested : 0;
+    var capRate = price>0 ? noi/price : 0;
+
+    return {
+      price:price, rent:rent, vac:vac, egi:egi, grossEff:grossEff, otherAnnual:otherAnnual,
+      varRate:varRate, opexVar:opexVar, opexFixed:opexFixed, totalOpex:totalOpex, noi:noi,
+      closing:closing, upfront:upfront, downPayment:downPayment, loan:loan,
+      mPmt:mPmt, debtService:debtService, cashInvested:cashInvested,
+      annualCF:annualCF, monthlyCF:annualCF/12, coc:coc, capRate:capRate,
+      tax:price*num('taxRate')/100, ins:price*num('insRate')/100, capex:price*num('capexRate')/100,
+      hoa:num('hoa'), cdd:num('cdd'), vacLoss:rent*12*vac
+    };
+  }
+
+  // Required monthly rent at fixed price to hit target (closed form)
+  function requiredRent(price, target){
+    var m = model(price, 0);                 // debtService & fixed opex don't depend on rent
+    var requiredNOI = target*m.cashInvested + m.debtService;
+    var requiredEGI = (requiredNOI + m.opexFixed) / (1 - m.varRate);
+    var requiredGrossEff = requiredEGI - m.otherAnnual;
+    var vac = num('vacancy')/100;
+    var denom = 12*(1-vac);
+    return denom>0 ? requiredGrossEff/denom : 0;
+  }
+
+  // Max supportable price at fixed rent to hit target (binary search; coc decreases as price rises)
+  function maxPrice(rent, target){
+    var lo=50000, hi=50000000;
+    if(model(lo,rent).coc < target) return 0;        // even cheapest fails
+    if(model(hi,rent).coc > target) return hi;        // ceiling
+    for(var i=0;i<60;i++){
+      var mid=(lo+hi)/2;
+      if(model(mid,rent).coc > target) lo=mid; else hi=mid;
+    }
+    return (lo+hi)/2;
+  }
+
+  // ---- Render ----
+  function classify(coc, target){
+    if(coc >= target) return 'good';
+    if(coc >= target-0.005) return 'warn';
+    return 'bad';
+  }
+  function verdictText(cls){
+    return cls==='good' ? 'Meets Target' : (cls==='warn' ? 'Just Below Target' : 'Below Target');
+  }
+
+  function render(){
+    var price=num('price'), rent=num('rent'), target=num('targetCoC')/100;
+    var m = model(price, rent);
+    var cls = classify(m.coc, target);
+
+    // Rail
+    $('rCoc').innerHTML = (m.coc*100).toFixed(1)+'<small>%</small>';
+    var badge=$('rBadge'); badge.className='badge '+cls; badge.textContent=verdictText(cls);
+    $('rMcf').textContent=money(m.monthlyCF); $('rMcf').className='v'+(m.monthlyCF<0?' neg':'');
+    $('rAcf').textContent=money(m.annualCF); $('rAcf').className='v'+(m.annualCF<0?' neg':'');
+    $('rNoi').textContent=money(m.noi);
+    $('rCap').textContent=pct2(m.capRate);
+    $('rCash').textContent=money(m.cashInvested);
+
+    var tpct=(target*100).toFixed(2).replace(/\.?0+$/,'')+'%';
+    $('subTarget').textContent=tpct; $('solverTarget').textContent=tpct;
+
+    // Solver lines
+    var reqRent = requiredRent(price, target);
+    var rentLine, priceLine;
+    if(m.coc >= target){
+      rentLine = 'At <b>'+money(price)+'</b>, this rent already clears the target. Rent could fall to <span class="em">'+money(reqRent)+'/mo</span> and still hit '+tpct+'.';
+    } else {
+      var gap = reqRent - rent;
+      rentLine = 'At <b>'+money(price)+'</b>, you need <span class="em">'+money(reqRent)+'/mo</span> in rent &mdash; about <b>'+money(gap)+'/mo more</b> than the '+money(rent)+' entered.';
+    }
+    var mp = maxPrice(rent, target);
+    if(mp<=0){
+      priceLine = 'At <b>'+money(rent)+'/mo</b> rent, no purchase price reaches '+tpct+' under these assumptions.';
+    } else if(mp>=49000000){
+      priceLine = 'At <b>'+money(rent)+'/mo</b> rent, the target is met across the full price range tested.';
+    } else {
+      var pdelta = mp - price;
+      priceLine = 'At <b>'+money(rent)+'/mo</b> rent, the max price for '+tpct+' is <span class="em">'+money(mp)+'</span> ('+(pdelta>=0?'+':'')+money(pdelta)+' vs. asking).';
+    }
+    $('solverRent').innerHTML=rentLine;
+    $('solverPrice').innerHTML=priceLine;
+
+    // Buyer view
+    $('bProp').textContent = ($('propLabel').value || 'Investment Property');
+    $('bPropSub').textContent = money(price)+' purchase &middot; '+(finMode==='financed'? num('downPct')+'% down, '+num('rate')+'% / '+num('term')+'yr':'all-cash')+' &middot; '+money(rent)+'/mo rent';
+    $('bBand').className='verdict-band '+cls;
+    $('bCoc').innerHTML=(m.coc*100).toFixed(1)+'<small>%</small>';
+    $('bVerdict').textContent=verdictText(cls)+' — '+tpct+' goal';
+    $('bGap').innerHTML = (m.coc>=target)
+      ? 'This property delivers a '+(m.coc*100).toFixed(1)+'% cash-on-cash return, at or above the '+tpct+' objective.'
+      : 'To reach '+tpct+', rent needs to be about <b>'+money(reqRent)+'/mo</b>'+(mp>0&&mp<49000000?', or the purchase price under <b>'+money(mp)+'</b>':'')+'.';
+    $('bMcf').textContent=money(m.monthlyCF); $('bMcf').className='v'+(m.monthlyCF<0?' neg':'');
+    $('bAcf').textContent=money(m.annualCF); $('bAcf').className='v'+(m.annualCF<0?' neg':'');
+    $('bCash').textContent=money(m.cashInvested);
+    $('bCap').textContent=pct2(m.capRate);
+
+    // Breakdown table
+    var rows = [
+      ['Gross scheduled rent', money(rent*12)],
+      ['Less vacancy ('+num('vacancy')+'%)', '('+money(m.vacLoss)+')'],
+      ['Plus other income', money(m.otherAnnual)],
+      ['Effective gross income', money(m.egi), 'sub'],
+      ['Property taxes ('+num('taxRate')+'%)', '('+money(m.tax)+')'],
+      ['Insurance ('+num('insRate')+'%)', '('+money(m.ins)+')'],
+      ['CapEx reserve ('+num('capexRate')+'%)', '('+money(m.capex)+')'],
+      ['HOA / club dues', '('+money(m.hoa)+')'],
+      ['CDD fee', '('+money(m.cdd)+')'],
+      ['Management + maintenance ('+(num('mgmt')+num('maint'))+'% of EGI)', '('+money(m.opexVar)+')'],
+      ['Net operating income', money(m.noi), 'total']
+    ];
+    if(finMode==='financed'){
+      rows.push(['Debt service ('+num('rate')+'% / '+num('term')+'yr)', '('+money(m.debtService)+')']);
+      rows.push(['Annual cash flow', money(m.annualCF), 'total']);
+    }
+    var tb=$('bBreakdown'); tb.innerHTML='';
+    rows.forEach(function(r){
+      var tr=document.createElement('tr');
+      if(r[2]==='total') tr.className='total';
+      tr.innerHTML='<td>'+r[0]+'</td><td>'+r[1]+'</td>';
+      tb.appendChild(tr);
+    });
+
+    // Assumptions line
+    var fin = finMode==='financed'
+      ? num('downPct')+'% down at '+num('rate')+'% over '+num('term')+' years'
+      : 'all-cash purchase';
+    $('bAssump').innerHTML = '<b>Method:</b> '+fin+'. <b>Closing costs:</b> '+num('closingPct')+'% ('+money(m.closing)+')'
+      + (m.upfront>0? ' + '+money(m.upfront)+' upfront capex':'')
+      + '. <b>Vacancy:</b> '+num('vacancy')+'%. <b>Cash invested:</b> '+money(m.cashInvested)+'. '
+      + 'Figures are pre-tax and exclude appreciation, principal paydown, and depreciation benefits.';
+
+    save();
+  }
+
+  // ---- State persistence ----
+  function gather(){
+    var s={fin:finMode};
+    Object.keys(FIELDS).forEach(function(k){ var el=$(k); if(el) s[k]= (el.type==='text'? el.value : el.value); });
+    return s;
+  }
+  function apply(s){
+    if(!s) return;
+    Object.keys(FIELDS).forEach(function(k){ if(s[k]!==undefined && $(k)) $(k).value=s[k]; });
+    if(s.fin) setFin(s.fin, true);
+  }
+  function save(){
+    try{
+      var s=gather();
+      localStorage.setItem('ebInvCalc', JSON.stringify(s));
+      var enc=btoa(encodeURIComponent(JSON.stringify(s)));
+      history.replaceState(null,'','#'+enc);
+    }catch(e){}
+  }
+  function load(){
+    var s=null;
+    try{
+      if(location.hash.length>1){ s=JSON.parse(decodeURIComponent(atob(location.hash.slice(1)))); }
+      if(!s){ var ls=localStorage.getItem('ebInvCalc'); if(ls) s=JSON.parse(ls); }
+    }catch(e){ s=null; }
+    if(s) apply(s);
+  }
+
+  // ---- UI actions (exposed) ----
+  window.setMode=function(mode){
+    document.body.className = 'mode-'+mode;
+    $('tabWork').classList.toggle('active', mode==='worksheet');
+    $('tabBuyer').classList.toggle('active', mode==='buyer');
+    if(mode==='buyer') window.scrollTo({top:0,behavior:'smooth'});
+  };
+  window.setFin=function(mode, silent){
+    finMode=mode;
+    var t=$('finToggle');
+    t.querySelectorAll('button').forEach(function(b){ b.classList.toggle('active', b.dataset.mode===mode); });
+    $('financingFields').classList.toggle('hidden', mode!=='financed');
+    if(!silent) render();
+  };
+  window.loadDefaults=function(){
+    Object.keys(DEFAULTS).forEach(function(k){ if($(k) && k!=='propLabel' && k!=='price') $(k).value=DEFAULTS[k]; });
+    render();
+  };
+  window.copyLink=function(){
+    save();
+    var url=location.href;
+    var done=function(){ var b=$('copyBtn'); var o=b.textContent; b.textContent='Link Copied!'; setTimeout(function(){b.textContent=o;},1800); };
+    if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(url).then(done,function(){ prompt('Copy this link:', url); }); }
+    else { prompt('Copy this link:', url); }
+  };
+
+  // ---- Init ----
+  load();
+  document.querySelectorAll('input').forEach(function(el){
+    el.addEventListener('input', render);
+    el.addEventListener('change', render);
+  });
+  render();
+})();
+</script>
+</body>
+</html>
