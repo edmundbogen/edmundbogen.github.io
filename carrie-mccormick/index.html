@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Big John: How One Chicago Tower Reinvented Life in the Sky | Carrie McCormick</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c1c1c;
+    --soft-ink:#3a3a3a;
+    --gold:#b0894f;
+    --gold-light:#c9a86a;
+    --cream:#faf7f1;
+    --line:#e6ddcf;
+    --muted:#8a8378;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Montserrat',-apple-system,BlinkMacSystemFont,sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.75;
+    font-weight:300;
+    font-size:18px;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- NAV ---------- */
+  .nav{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:26px 8%;
+    border-bottom:1px solid var(--line);
+    background:var(--cream);
+  }
+  .brand{
+    font-family:'Cormorant Garamond',serif;
+    font-size:26px;letter-spacing:3px;font-weight:600;
+    text-transform:uppercase;color:var(--ink);text-decoration:none;
+  }
+  .brand span{display:block;font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:5px;font-weight:400;color:var(--gold);margin-top:3px;text-align:center;}
+  .nav-links{display:flex;gap:34px;}
+  .nav-links a{
+    color:var(--soft-ink);text-decoration:none;font-size:11px;
+    letter-spacing:2.5px;text-transform:uppercase;font-weight:400;
+    transition:color .2s;
+  }
+  .nav-links a:hover{color:var(--gold);}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:#0e1419;}
+  .hero img{width:100%;height:100%;object-fit:cover;display:block;}
+  .hero-overlay{
+    position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(10,14,18,.05) 0%,rgba(10,14,18,.0) 35%,rgba(10,14,18,.55) 100%);
+  }
+  .hero-tag{
+    position:absolute;left:8%;bottom:7%;color:#fff;max-width:680px;
+  }
+  .hero-tag .kicker{
+    font-size:11px;letter-spacing:4px;text-transform:uppercase;
+    color:var(--gold-light);font-weight:500;margin-bottom:14px;
+  }
+  .hero-tag h1{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;font-size:clamp(30px,4.6vw,58px);
+    line-height:1.08;letter-spacing:.5px;
+    text-shadow:0 2px 24px rgba(0,0,0,.4);
+  }
+
+  /* ---------- ARTICLE META ---------- */
+  .meta{
+    text-align:center;padding:46px 8% 10px;
+  }
+  .meta .cat{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);font-weight:500;}
+  .meta .byline{
+    margin-top:20px;font-size:13px;letter-spacing:1.5px;color:var(--muted);
+    text-transform:uppercase;font-weight:400;
+  }
+  .meta .byline strong{color:var(--ink);font-weight:500;}
+  .rule{width:54px;height:1px;background:var(--gold);margin:26px auto 0;}
+
+  /* ---------- BODY ---------- */
+  article{max-width:720px;margin:0 auto;padding:30px 26px 70px;}
+  article .lede{
+    font-family:'Cormorant Garamond',serif;
+    font-size:25px;line-height:1.55;font-style:italic;
+    color:var(--soft-ink);margin:24px 0 38px;font-weight:400;
+  }
+  article p{margin:0 0 26px;color:var(--soft-ink);}
+  article h2{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:600;font-size:33px;line-height:1.2;
+    color:var(--ink);margin:50px 0 22px;letter-spacing:.3px;
+  }
+  article p strong{font-weight:500;color:var(--ink);}
+
+  .pullquote{
+    border-left:3px solid var(--gold);
+    padding:6px 0 6px 30px;margin:42px 0;
+    font-family:'Cormorant Garamond',serif;
+    font-size:27px;line-height:1.4;font-style:italic;color:var(--ink);
+  }
+
+  .factbox{
+    background:#fff;border:1px solid var(--line);
+    padding:34px 38px;margin:44px 0;
+  }
+  .factbox h3{
+    font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:3px;
+    text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:20px;
+  }
+  .factgrid{display:grid;grid-template-columns:1fr 1fr;gap:22px 30px;}
+  .factgrid .f .n{font-family:'Cormorant Garamond',serif;font-size:30px;color:var(--ink);font-weight:600;line-height:1;}
+  .factgrid .f .l{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:7px;}
+
+  /* ---------- SIGNATURE CTA ---------- */
+  .signature{
+    background:var(--ink);color:#efe9dd;text-align:center;
+    padding:70px 8%;margin-top:20px;
+  }
+  .signature .kicker{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--gold-light);margin-bottom:18px;}
+  .signature h2{
+    font-family:'Cormorant Garamond',serif;font-weight:500;
+    font-size:clamp(26px,3.4vw,40px);line-height:1.25;max-width:760px;margin:0 auto 16px;color:#fff;
+  }
+  .signature p{max-width:560px;margin:0 auto 30px;color:#c9c2b4;font-size:16px;}
+  .btn{
+    display:inline-block;border:1px solid var(--gold-light);color:#fff;
+    text-decoration:none;padding:15px 40px;font-size:11px;letter-spacing:3px;
+    text-transform:uppercase;font-weight:500;transition:all .25s;
+  }
+  .btn:hover{background:var(--gold);border-color:var(--gold);}
+
+  /* ---------- AUTHOR ---------- */
+  .author{
+    max-width:720px;margin:0 auto;padding:54px 26px;
+    display:flex;gap:30px;align-items:flex-start;border-top:1px solid var(--line);
+  }
+  .author .photo{width:120px;height:120px;border-radius:50%;object-fit:cover;flex-shrink:0;object-position:center top;}
+  .author h4{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;margin-bottom:4px;}
+  .author .role{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+  .author p{font-size:15px;color:var(--soft-ink);margin:0;line-height:1.7;}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:#141414;color:#9a9385;text-align:center;
+    padding:44px 8%;font-size:12px;letter-spacing:1px;line-height:1.9;
+  }
+  footer .fbrand{font-family:'Cormorant Garamond',serif;font-size:20px;letter-spacing:3px;color:#efe9dd;text-transform:uppercase;margin-bottom:10px;}
+  footer a{color:var(--gold-light);text-decoration:none;}
+
+  @media(max-width:680px){
+    body{font-size:16px;}
+    .nav-links{display:none;}
+    .nav{padding:20px 6%;}
+    .factgrid{grid-template-columns:1fr;}
+    .author{flex-direction:column;align-items:center;text-align:center;}
+    .hero-tag h1{font-size:26px;}
+  }
+</style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="#" class="brand">Carrie McCormick<span>Chicago Luxury Real Estate</span></a>
+    <div class="nav-links">
+      <a href="#">Listings</a>
+      <a href="#">The Journal</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <img src="hero.png" alt="Carrie McCormick along the Chicago River with the John Hancock Center in the skyline behind her">
+    <div class="hero-overlay"></div>
+    <div class="hero-tag">
+      <div class="kicker">The Journal · Chicago Icons</div>
+      <h1>Big John: How One Tower Reinvented<br>Life in the Sky</h1>
+    </div>
+  </div>
+
+  <!-- META -->
+  <div class="meta">
+    <div class="cat">Architecture &amp; Living</div>
+    <div class="byline">By <strong>Carrie McCormick</strong> &nbsp;·&nbsp; June 3, 2026</div>
+    <div class="rule"></div>
+  </div>
+
+  <!-- ARTICLE -->
+  <article>
+    <p class="lede">Every home has a story. Some have a skyline. And exactly one of them taught an entire city that you could raise a family, run a business, and watch the lake turn silver at dusk — all from a thousand feet above Michigan Avenue.</p>
+
+    <p>I have spent twenty-five years selling Chicago — its Gold Coast brownstones, its glass towers over the river, its quiet Lincoln Park streets. And in all that time, no building has held more of the city's imagination than the dark, tapered tower my clients still call <strong>Big John</strong>.</p>
+
+    <p>Officially, it is <strong>875 North Michigan Avenue</strong>. To the rest of the world, it will always be the <strong>John Hancock Center</strong> — and to me, it is the clearest answer I can give when a buyer asks what makes Chicago different from anywhere else. Let me bring its story to life the way I would walk you through a home.</p>
+
+    <h2>The tower that wore its strength on the outside</h2>
+
+    <p>When the Hancock topped out on <strong>May 6, 1968</strong>, it was the second-tallest building in the world, behind only the Empire State Building. But height was never the point. The point was the idea inside it.</p>
+
+    <p>That idea belonged to two men at Skidmore, Owings &amp; Merrill: architect <strong>Bruce Graham</strong> and a structural engineer named <strong>Fazlur Rahman Khan</strong> — arguably the most important skyscraper mind of the twentieth century. Khan understood that a tall building did not need a heavy interior skeleton fighting the wind floor by floor. Instead, he turned the <em>skin</em> of the tower into its strength: the now-famous <strong>X-braces</strong> you see from blocks away are not decoration. They are the structure.</p>
+
+    <p>It was called the trussed-tube system, and the Hancock was the first building on earth to use it. The payoff was extraordinary. By moving the muscle to the exterior, Khan and Graham freed the floors inside — wider spans, fewer columns, taller windows, more light. They had not just built something tall. They had invented a way of building that the entire world would copy for the next fifty years.</p>
+
+    <div class="pullquote">"Most towers hide their strength. Big John wears it on the outside — and that honesty is exactly why Chicago fell in love with it."</div>
+
+    <h2>The world's first true vertical neighborhood</h2>
+
+    <p>Here is the detail I love most, the one I always save for the top of the elevator ride. The Hancock was the world's <strong>first mixed-use supertall</strong> — a single tower designed to be an entire neighborhood stacked on itself.</p>
+
+    <p>Retail at the base. Offices in the middle. And then, in the sky, roughly <strong>700 residences</strong> — including, at the time it opened, the <strong>highest homes in the world</strong>. People did not just work in Big John. They lived there. They woke up above the clouds, sent their children to school at street level, and came home to a view that no amount of money can manufacture anywhere else in this city.</p>
+
+    <p>That was a radical thought in 1969, and it is the very thought that defines luxury living in Chicago today. Every glass condo tower along the river, every full-amenity address my clients covet — they are all descendants of the experiment Khan and Graham ran in this one black tower on Michigan Avenue.</p>
+
+    <div class="factbox">
+      <h3>Big John, by the numbers</h3>
+      <div class="factgrid">
+        <div class="f"><div class="n">100</div><div class="l">Stories</div></div>
+        <div class="f"><div class="n">1,128 ft</div><div class="l">Architectural height</div></div>
+        <div class="f"><div class="n">1969</div><div class="l">Completed</div></div>
+        <div class="f"><div class="n">~700</div><div class="l">Residences in the sky</div></div>
+        <div class="f"><div class="n">94th</div><div class="l">Floor · 360 Chicago observatory</div></div>
+        <div class="f"><div class="n">1<sup>st</sup></div><div class="l">Mixed-use supertall on earth</div></div>
+      </div>
+    </div>
+
+    <h2>The name on the door, and the name in our hearts</h2>
+
+    <p>In <strong>February 2018</strong>, the building quietly lost its famous name. John Hancock Insurance had not held a naming-rights deal since 2013, and when the company asked for its name to come down, the tower became, simply, its own address: 875 North Michigan Avenue.</p>
+
+    <p>And do you know what happened? Nothing. Not a single Chicagoan changed a word. We still say "the Hancock." We still say "Big John." Because a name on a lease is a transaction — but a name in a city's heart is something else entirely. It is earned. As I tell my clients, <strong>your network is your net worth</strong>, and the same is true of buildings: the ones that matter are the ones people refuse to stop talking about.</p>
+
+    <h2>A new chapter, a thousand feet up</h2>
+
+    <p>The tower is being rewritten right now, and it is thrilling to watch. In <strong>September 2023</strong>, the legendary Signature Room on the 95th floor — where generations of Chicagoans got engaged, celebrated, and said goodbye to the year over the lights of the lake — closed its doors after thirty years.</p>
+
+    <p>But the sky does not stay empty for long. In <strong>June 2024</strong>, the team behind the <strong>360 Chicago</strong> observatory purchased the 95th and 96th floors and launched the most significant interior transformation in the building's history: a new multi-story observation experience, a grand staircase between floors, all-new floor-to-ceiling glass, and a reimagining led by some of the same creative minds behind the 2024 Paris Olympics opening ceremony. The new spaces are expected to open to the public around 2027.</p>
+
+    <p>Big John is doing what every great Chicago property eventually does. It is reinventing itself without losing the soul that made it iconic in the first place.</p>
+
+    <div class="pullquote">"The buildings that endure aren't the ones that never change. They're the ones that change while keeping their story intact."</div>
+
+    <h2>Why this matters to anyone buying in Chicago</h2>
+
+    <p>I did not write this as an architecture lesson. I wrote it because the John Hancock Center is the single best argument I have for why I do what I do.</p>
+
+    <p>It proves that a home can be more than square footage and a view — it can be a place that means something, that holds a story worth telling, that becomes part of who you are. That is the standard I hold every property to when I represent it, whether it is a residence in the sky or a brownstone on a tree-lined street.</p>
+
+    <p>If you have ever stood at the base of Big John and looked up, you already understand. And if you are ready to find a home in this remarkable city that tells <em>your</em> story — that is exactly the conversation I live for.</p>
+  </article>
+
+  <!-- SIGNATURE CTA -->
+  <div class="signature">
+    <div class="kicker">100% Carrie · Start to Finish</div>
+    <h2>Every home has a story. Let's bring yours to life.</h2>
+    <p>Direct access. White-glove representation. Off-market opportunities across the Gold Coast, Streeterville, Lincoln Park, River North &amp; the North Shore.</p>
+    <a href="#" class="btn">Begin the Conversation</a>
+  </div>
+
+  <!-- AUTHOR -->
+  <div class="author">
+    <img class="photo" src="hero.png" alt="Carrie McCormick">
+    <div>
+      <h4>Carrie McCormick</h4>
+      <div class="role">Luxury Broker · Chicago</div>
+      <p>One of Chicago's top-producing luxury brokers with more than 25 years and billions in career sales, Carrie is known for a concierge, start-to-finish approach and a belief that every home has a story worth telling. She represents distinctive properties across the Gold Coast, Streeterville, Lincoln Park, River North, Old Town and the North Shore.</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="fbrand">Carrie McCormick</div>
+    Chicago Luxury Real Estate · Your network is your net worth.<br>
+    © 2026 Carrie McCormick. All rights reserved. This article is editorial and informational; it is not a solicitation of any property currently listed with another broker.
+  </footer>
+
+</body>
+</html>
