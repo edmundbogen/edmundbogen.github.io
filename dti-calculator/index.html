@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Debt-to-Income Ratio Calculator | The Edmund Bogen Team</title>
+<style>
+  :root {
+    --navy: #1f3a5f;
+    --taupe: #b8a999;
+    --green: #2e7d32;
+    --orange: #e65100;
+    --red: #c62828;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #f6f4f1;
+    color: #2b2b2b;
+    line-height: 1.5;
+  }
+  header {
+    background: var(--navy);
+    color: #fff;
+    text-align: center;
+    padding: 36px 20px 28px;
+    border-bottom: 5px solid var(--taupe);
+  }
+  header h1 {
+    font-size: 1.9rem;
+    font-weight: normal;
+    letter-spacing: 1px;
+  }
+  header p {
+    color: var(--taupe);
+    margin-top: 8px;
+    font-size: 0.95rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 28px 20px 60px;
+  }
+  .card {
+    background: #fff;
+    border: 1px solid #e3ddd4;
+    border-top: 4px solid var(--taupe);
+    border-radius: 6px;
+    padding: 24px 26px;
+    margin-bottom: 22px;
+    box-shadow: 0 2px 8px rgba(31, 58, 95, 0.06);
+  }
+  .card h2 {
+    color: var(--navy);
+    font-size: 1.15rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .card .sub {
+    color: #8a8276;
+    font-size: 0.88rem;
+    margin-bottom: 16px;
+  }
+  .field {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 9px 0;
+    border-bottom: 1px solid #f0ece6;
+  }
+  .field:last-of-type { border-bottom: none; }
+  .field label {
+    font-size: 0.98rem;
+    color: #3a3a3a;
+  }
+  .input-wrap {
+    position: relative;
+    flex: 0 0 180px;
+  }
+  .input-wrap span {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--taupe);
+    font-size: 0.95rem;
+  }
+  .input-wrap input {
+    width: 100%;
+    padding: 10px 12px 10px 26px;
+    font-size: 1rem;
+    font-family: inherit;
+    border: 1px solid #d5cec3;
+    border-radius: 4px;
+    text-align: right;
+    color: var(--navy);
+  }
+  .input-wrap input:focus {
+    outline: none;
+    border-color: var(--navy);
+    box-shadow: 0 0 0 3px rgba(31, 58, 95, 0.12);
+  }
+  .subtotal {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 2px solid var(--taupe);
+    font-size: 1rem;
+    color: var(--navy);
+  }
+  .subtotal strong { font-size: 1.05rem; }
+  .result-card {
+    background: var(--navy);
+    border: none;
+    border-top: 4px solid var(--taupe);
+    color: #fff;
+    text-align: center;
+    padding: 30px 26px;
+  }
+  .result-card h2 { color: var(--taupe); }
+  .ratio {
+    font-size: 3.4rem;
+    font-weight: bold;
+    margin: 14px 0 4px;
+    padding: 10px 34px;
+    display: inline-block;
+    border-radius: 8px;
+    background: #fff;
+    color: #999;
+    transition: color 0.25s;
+  }
+  .ratio.green { color: var(--green); }
+  .ratio.orange { color: var(--orange); }
+  .ratio.red { color: var(--red); }
+  .verdict {
+    font-size: 1.05rem;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    min-height: 1.4em;
+  }
+  .verdict.green { color: #9fd8a3; }
+  .verdict.orange { color: #ffcc99; }
+  .verdict.red { color: #ff9e9e; }
+  .breakdown {
+    margin-top: 18px;
+    font-size: 0.92rem;
+    color: #cfc8bc;
+  }
+  .legend {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    font-size: 0.85rem;
+  }
+  .legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .dot.g { background: #66bb6a; }
+  .dot.o { background: #ffa726; }
+  .dot.r { background: #ef5350; }
+  footer {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #9b9387;
+    padding: 0 24px 40px;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  @media (max-width: 540px) {
+    .field { flex-direction: column; align-items: stretch; gap: 4px; }
+    .input-wrap { flex: 1 1 auto; }
+    .ratio { font-size: 2.6rem; padding: 8px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Debt-to-Income Ratio Calculator</h1>
+  <p>The Edmund Bogen Team &middot; Douglas Elliman</p>
+</header>
+
+<div class="container">
+
+  <div class="card">
+    <h2>Monthly Debt &amp; Living Expenses</h2>
+    <p class="sub">Enter your current monthly payments.</p>
+    <div class="field">
+      <label for="rent">Rent / Housing Payment</label>
+      <div class="input-wrap"><span>$</span><input type="number" id="rent" min="0" step="0.01" placeholder="0.00"></div>
+    </div>
+    <div class="field">
+      <label for="auto">Auto Payments</label>
+      <div class="input-wrap"><span>$</span><input type="number" id="auto" min="0" step="0.01" placeholder="0.00"></div>
+    </div>
+    <div class="field">
+      <label for="insurance">Insurance</label>
+      <div class="input-wrap"><span>$</span><input type="number" id="insurance" min="0" step="0.01" placeholder="0.00"></div>
+    </div>
+    <div class="field">
+      <label for="creditcards">Credit Card Payments</label>
+      <div class="input-wrap"><span>$</span><input type="number" id="creditcards" min="0" step="0.01" placeholder="0.00"></div>
+    </div>
+    <div class="field">
+      <label for="otherbills">Other Expenses / Bills</label>
+      <div class="input-wrap"><span>$</span><input type="number" id="otherbills" min="0" step="0.01" placeholder="0.00"></div>
+    </div>
+    <div class="subtotal"><span>Living Expenses Subtotal</span><strong id="livingSubtotal">$0.00</strong></div>
+  </div>
+
+  <div class="card">
+    <h2>Additional Debt Obligations</h2>
+    <p class="sub">Monthly amounts for long-term and court-ordered obligations.</p>
+    <div class="field">
+      <label for="studentloans">Student Loans</label>
+      <div class="input-wrap"><span>$</span><input type="number" id="studentloans" min="0" step="0.01" placeholder="0.00"></div>
+    </div>
+    <div class="field">
+      <label for="childsupport">Child Support</label>
+      <div class="input-wrap"><span>$</span><input type="number" id="childsupport" min="0" step="0.01" placeholder="0.00"></div>
+    </div>
+    <div class="field">
+      <label for="alimony">Alimony</label>
+      <div class="input-wrap"><span>$</span><input type="number" id="alimony" min="0" step="0.01" placeholder="0.00"></div>
+    </div>
+    <div class="field">
+      <label for="courtordered">Other Court-Ordered Payments</label>
+      <div class="input-wrap"><span>$</span><input type="number" id="courtordered" min="0" step="0.01" placeholder="0.00"></div>
+    </div>
+    <div class="subtotal"><span>Additional Debt Subtotal</span><strong id="debtSubtotal">$0.00</strong></div>
+  </div>
+
+  <div class="card">
+    <h2>Monthly Income</h2>
+    <p class="sub">Gross monthly income before taxes.</p>
+    <div class="field">
+      <label for="primaryincome">Primary Income</label>
+      <div class="input-wrap"><span>$</span><input type="number" id="primaryincome" min="0" step="0.01" placeholder="0.00"></div>
+    </div>
+    <div class="field">
+      <label for="secondaryincome">Secondary Income</label>
+      <div class="input-wrap"><span>$</span><input type="number" id="secondaryincome" min="0" step="0.01" placeholder="0.00"></div>
+    </div>
+    <div class="subtotal"><span>Total Monthly Income</span><strong id="incomeSubtotal">$0.00</strong></div>
+  </div>
+
+  <div class="card result-card">
+    <h2>Your Debt-to-Income Ratio</h2>
+    <div class="ratio" id="ratioDisplay">&mdash;</div>
+    <div class="verdict" id="verdict"></div>
+    <div class="breakdown" id="breakdown">Total Monthly Debt $0.00 &divide; Total Monthly Income $0.00</div>
+    <div class="legend">
+      <span><span class="dot g"></span>46.99% or less</span>
+      <span><span class="dot o"></span>47% &ndash; 48.99%</span>
+      <span><span class="dot r"></span>49% or more</span>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  This calculator is for informational purposes only and does not constitute financial or lending advice.
+  Consult a licensed mortgage professional for a full qualification review.
+  The Edmund Bogen Team at Douglas Elliman Real Estate. Equal Housing Opportunity.
+</footer>
+
+<script>
+(function () {
+  var livingIds = ['rent', 'auto', 'insurance', 'creditcards', 'otherbills'];
+  var debtIds = ['studentloans', 'childsupport', 'alimony', 'courtordered'];
+  var incomeIds = ['primaryincome', 'secondaryincome'];
+
+  function val(id) {
+    var n = parseFloat(document.getElementById(id).value);
+    return isNaN(n) || n < 0 ? 0 : n;
+  }
+
+  function sum(ids) {
+    return ids.reduce(function (t, id) { return t + val(id); }, 0);
+  }
+
+  function money(n) {
+    return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  function calculate() {
+    var living = sum(livingIds);
+    var debt = sum(debtIds);
+    var income = sum(incomeIds);
+    var totalDebt = living + debt;
+
+    document.getElementById('livingSubtotal').textContent = money(living);
+    document.getElementById('debtSubtotal').textContent = money(debt);
+    document.getElementById('incomeSubtotal').textContent = money(income);
+    document.getElementById('breakdown').innerHTML =
+      'Total Monthly Debt ' + money(totalDebt) + ' &divide; Total Monthly Income ' + money(income);
+
+    var ratioEl = document.getElementById('ratioDisplay');
+    var verdictEl = document.getElementById('verdict');
+    ratioEl.classList.remove('green', 'orange', 'red');
+    verdictEl.classList.remove('green', 'orange', 'red');
+
+    if (income <= 0) {
+      ratioEl.innerHTML = '&mdash;';
+      verdictEl.textContent = totalDebt > 0 ? 'Enter your income to see your ratio.' : '';
+      return;
+    }
+
+    var ratio = (totalDebt / income) * 100;
+    ratioEl.textContent = ratio.toFixed(2) + '%';
+
+    var tier, message;
+    if (ratio >= 49) {
+      tier = 'red';
+      message = 'High — above typical lending thresholds';
+    } else if (ratio >= 47) {
+      tier = 'orange';
+      message = 'Caution — approaching the lending limit';
+    } else {
+      tier = 'green';
+      message = 'Healthy — within typical lending guidelines';
+    }
+    ratioEl.classList.add(tier);
+    verdictEl.classList.add(tier);
+    verdictEl.textContent = message;
+  }
+
+  livingIds.concat(debtIds, incomeIds).forEach(function (id) {
+    document.getElementById(id).addEventListener('input', calculate);
+  });
+})();
+</script>
+
+</body>
+</html>
