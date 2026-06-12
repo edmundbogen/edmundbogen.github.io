@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>St. Andrews Country Club · Available Listings · June 11, 2026 | The Edmund Bogen Team</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Montserrat', -apple-system, sans-serif; color: #1a1a1a; background: #f4f4f4; line-height: 1.6; }
+  nav { background: #1a3e5c; padding: 18px 40px; display: flex; justify-content: space-between; align-items: center; }
+  nav .logo { color: #fff; font-weight: 300; letter-spacing: 3px; font-size: 14px; text-transform: uppercase; }
+  nav .logo strong { font-weight: 600; letter-spacing: 4px; }
+  nav .links a { color: #fff; text-decoration: none; margin-left: 28px; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; }
+  nav .links a:hover { color: #00a8e1; }
+  .back-bar { background: #fff; padding: 14px 40px; border-bottom: 1px solid #e0e0e0; }
+  .back-bar a { color: #1a3e5c; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; text-decoration: none; }
+  .back-bar a:hover { color: #00a8e1; }
+  .page-header { background: linear-gradient(135deg, #1a3e5c 0%, #0d2540 100%); color: #fff; padding: 56px 40px 44px; text-align: center; }
+  .page-header .eyebrow { color: #00a8e1; font-size: 11px; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 14px; font-weight: 600; }
+  .page-header h1 { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 400; letter-spacing: 1px; margin-bottom: 10px; }
+  .page-header .meta { color: rgba(255,255,255,0.8); font-size: 12px; letter-spacing: 3px; text-transform: uppercase; }
+  .summary-stats { background: #fff; border-bottom: 1px solid #e0e0e0; padding: 30px 40px; }
+  .summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; max-width: 1280px; margin: 0 auto; }
+  .summary-card { background: #fafafa; border-left: 3px solid #00a8e1; padding: 20px 24px; }
+  .summary-card .label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #666; font-weight: 600; margin-bottom: 8px; }
+  .summary-card .value { font-size: 22px; color: #1a3e5c; font-weight: 600; }
+  .summary-card .sub { font-size: 11px; color: #888; margin-top: 4px; }
+  .container { max-width: 1280px; margin: 0 auto; padding: 50px 40px; }
+  .listings-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .property { background: #fff; border: 1px solid #e0e0e0; padding: 28px 30px; transition: all 0.2s; display: flex; flex-direction: column; }
+  .property:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.08); border-color: #00a8e1; }
+  .prop-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; margin-bottom: 18px; flex-wrap: wrap; }
+  .prop-address { font-family: 'Playfair Display', serif; font-size: 20px; color: #1a3e5c; font-weight: 400; line-height: 1.3; flex: 1; min-width: 260px; }
+  .prop-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+  .badge { font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; padding: 4px 10px; border-radius: 2px; white-space: nowrap; }
+  .badge.new-construction { background: #00a8e1; color: #fff; }
+  .badge.waterfront { background: #1a3e5c; color: #fff; }
+  .badge.new-listing { background: #d4a64a; color: #fff; }
+  .badge.signature { background: #c8102e; color: #fff; }
+  .badge.reduced { background: #b07d28; color: #fff; }
+  .prop-price { font-size: 26px; color: #1a3e5c; font-weight: 700; margin-bottom: 4px; }
+  .prop-psqft { font-size: 12px; color: #666; margin-bottom: 22px; letter-spacing: 0.5px; }
+  .prop-attrs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px 18px; padding: 18px 0; border-top: 1px solid #f0f0f0; border-bottom: 1px solid #f0f0f0; margin-bottom: 18px; }
+  .prop-attr .a-label { font-size: 9px; color: #888; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; margin-bottom: 4px; }
+  .prop-attr .a-value { font-size: 13px; color: #1a3e5c; font-weight: 600; }
+  .prop-footer { display: flex; justify-content: space-between; align-items: center; margin-top: auto; gap: 12px; flex-wrap: wrap; }
+  .prop-mls { font-size: 10px; color: #888; letter-spacing: 1.5px; text-transform: uppercase; }
+  .prop-mls strong { color: #555; }
+  .prop-courtesy { font-size: 10px; color: #9aa3ad; font-style: italic; margin-top: 4px; }
+  .prop-dom { font-size: 10px; color: #1a3e5c; font-weight: 600; background: #eaf6fb; padding: 4px 10px; border-radius: 2px; letter-spacing: 1px; text-transform: uppercase; }
+  .prop-cta { background: #1a3e5c; color: #fff; padding: 10px 20px; text-decoration: none; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; border-radius: 2px; }
+  .prop-cta:hover { background: #00a8e1; }
+  .contact-cta { background: linear-gradient(135deg, #1a3e5c 0%, #0d2540 100%); color: #fff; padding: 50px 40px; text-align: center; margin: 50px auto 0; max-width: 1280px; }
+  .contact-cta .eyebrow { color: #00a8e1; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; font-weight: 600; margin-bottom: 12px; }
+  .contact-cta h3 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 400; margin-bottom: 14px; }
+  .contact-cta p { color: rgba(255,255,255,0.85); max-width: 660px; margin: 0 auto 24px; font-size: 15px; line-height: 1.7; }
+  .contact-cta .btns a { display: inline-block; padding: 13px 28px; text-decoration: none; font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 600; margin: 0 6px 8px; border-radius: 2px; }
+  .contact-cta .btns a.primary { background: #00a8e1; color: #fff; }
+  .contact-cta .btns a.secondary { background: transparent; color: #fff; border: 1px solid #fff; }
+  footer { background: #0d2137; color: #fff; padding: 36px 40px; text-align: center; }
+  footer .ft-brand { font-size: 13px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; margin-bottom: 6px; }
+  footer .ft-meta { font-size: 12px; color: #8cb4d5; margin-bottom: 4px; }
+  footer .ft-mls { font-size: 11px; color: #8cb4d5; margin-top: 14px; line-height: 1.6; max-width: 800px; margin-left: auto; margin-right: auto; }
+  footer .ft-disclaimer { font-size: 9px; color: #6a8fad; margin-top: 18px; line-height: 1.6; max-width: 900px; margin-left: auto; margin-right: auto; }
+  @media (max-width: 768px) {
+    nav { padding: 14px 20px; } nav .links a { margin-left: 14px; font-size: 10px; letter-spacing: 1.5px; }
+    .back-bar { padding: 12px 20px; } .page-header { padding: 40px 20px 30px; } .page-header h1 { font-size: 26px; }
+    .summary-stats { padding: 22px 20px; } .summary-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .container { padding: 30px 20px; } .listings-grid { grid-template-columns: 1fr; gap: 18px; }
+    .property { padding: 22px 22px; } .prop-address { font-size: 18px; } .prop-price { font-size: 22px; } .prop-attrs { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">THE <strong>EDMUND BOGEN</strong> TEAM</div>
+  <div class="links">
+    <a href="https://edmundbogen.github.io/miami-luxury-capital/">Article</a>
+    <a href="index.html">Dashboard</a>
+    <a href="https://bogenhomes.com">Properties</a>
+    <a href="https://www.bogen.ai/contact?tab=client">Contact</a>
+  </div>
+</nav>
+
+<div class="back-bar">
+  <a href="index.html">← Back to Market Dashboard</a>
+</div>
+
+<header class="page-header">
+  <div class="eyebrow">Available Listings</div>
+  <h1>St. Andrews Country Club</h1>
+  <div class="meta">Updated June 11, 2026 · 12 active homes inside the gates</div>
+</header>
+
+<section class="summary-stats">
+  <div class="summary-grid">
+    <div class="summary-card">
+      <div class="label">Price Range</div>
+      <div class="value">$1.895M – $19.975M</div>
+      <div class="sub">12 active listings</div>
+    </div>
+    <div class="summary-card">
+      <div class="label">2026 Sold YTD</div>
+      <div class="value">14</div>
+      <div class="sub">closings year-to-date</div>
+    </div>
+    <div class="summary-card">
+      <div class="label">Waterfront</div>
+      <div class="value">5</div>
+      <div class="sub">of 12 active listings</div>
+    </div>
+    <div class="summary-card">
+      <div class="label">Recent Builds</div>
+      <div class="value">5</div>
+      <div class="sub">2019 – 2027 construction</div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <div class="listings-grid">
+
+    <!-- 1. 6960 Lake Estates Court — highest, new listing -->
+    <div class="property">
+      <div class="prop-header">
+        <div class="prop-address">6960 Lake Estates Court</div>
+        <div class="prop-badges">
+          <span class="badge signature">Signature</span>
+          <span class="badge waterfront">Waterfront</span>
+        </div>
+      </div>
+      <div class="prop-price">$19,975,000</div>
+      <div class="prop-psqft">~$2,566 / sq ft · Boca Raton, FL 33496</div>
+      <div class="prop-attrs">
+        <div class="prop-attr"><div class="a-label">Beds</div><div class="a-value">5</div></div>
+        <div class="prop-attr"><div class="a-label">Baths</div><div class="a-value">6F / 2H</div></div>
+        <div class="prop-attr"><div class="a-label">Living SqFt</div><div class="a-value">7,784</div></div>
+        <div class="prop-attr"><div class="a-label">Year Built</div><div class="a-value">2022</div></div>
+        <div class="prop-attr"><div class="a-label">Pool</div><div class="a-value">Yes</div></div>
+        <div class="prop-attr"><div class="a-label">Lot</div><div class="a-value">Waterfront</div></div>
+      </div>
+      <div class="prop-footer">
+        <div>
+          <div class="prop-mls">MLS <strong>B26035087</strong></div>
+          <div class="prop-dom">10 Days on Market</div>
+          <div class="prop-courtesy">Courtesy of Michael B. Bloom &amp; Melanie Bloom Haym, Compass Florida</div>
+        </div>
+        <a href="https://bogenhomes.com/homes-for-sale-details/6960-LAKE-ESTATES-COURT-BOCA-RATON-FL-33496/B26035087/43/" target="_blank" rel="noopener" class="prop-cta">View Details →</a>
+      </div>
+    </div>
+
+    <!-- 2. 17791 Saxony Court — waterfront signature -->
+    <div class="property">
+      <div class="prop-header">
+        <div class="prop-address">17791 Saxony Court</div>
+        <div class="prop-badges">
+          <span class="badge signature">Signature</span>
+          <span class="badge waterfront">Waterfront</span>
+        </div>
+      </div>
+      <div class="prop-price">$16,995,000</div>
+      <div class="prop-psqft">~$1,397 / sq ft · Boca Raton, FL 33496</div>
+      <div class="prop-attrs">
+        <div class="prop-attr"><div class="a-label">Beds</div><div class="a-value">6</div></div>
+        <div class="prop-attr"><div class="a-label">Baths</div><div class="a-value">7F / 3H</div></div>
+        <div class="prop-attr"><div class="a-label">Living SqFt</div><div class="a-value">12,162</div></div>
+        <div class="prop-attr"><div class="a-label">Year Built</div><div class="a-value">2004</div></div>
+        <div class="prop-attr"><div class="a-label">Pool</div><div class="a-value">Yes</div></div>
+        <div class="prop-attr"><div class="a-label">Lot</div><div class="a-value">Waterfront</div></div>
+      </div>
+      <div class="prop-footer">
+        <div>
+          <div class="prop-mls">MLS <strong>B26032589</strong></div>
+          <div class="prop-dom">17 Days on Market</div>
+          <div class="prop-courtesy">Courtesy of Michael B. Bloom &amp; Melanie Bloom Haym, Compass Florida</div>
+        </div>
+        <a href="https://bogenhomes.com/homes-for-sale-details/17791-SAXONY-COURT-BOCA-RATON-FL-33496/B26032589/43/" target="_blank" rel="noopener" class="prop-cta">View Details →</a>
+      </div>
+    </div>
+
+    <!-- 3. 17591 Scarsdale Way — new construction 2027 -->
+    <div class="property">
+      <div class="prop-header">
+        <div class="prop-address">17591 Scarsdale Way</div>
+        <div class="prop-badges">
+          <span class="badge new-construction">New Construction · 2027</span>
+        </div>
+      </div>
+      <div class="prop-price">$9,999,000</div>
+      <div class="prop-psqft">Boca Raton, FL 33496</div>
+      <div class="prop-attrs">
+        <div class="prop-attr"><div class="a-label">Beds</div><div class="a-value">6</div></div>
+        <div class="prop-attr"><div class="a-label">Baths</div><div class="a-value">7F / 1H</div></div>
+        <div class="prop-attr"><div class="a-label">Living SqFt</div><div class="a-value">TBA</div></div>
+        <div class="prop-attr"><div class="a-label">Year Built</div><div class="a-value">2027</div></div>
+        <div class="prop-attr"><div class="a-label">Pool</div><div class="a-value">No</div></div>
+        <div class="prop-attr"><div class="a-label">Community</div><div class="a-value">St Andrews CC 2</div></div>
+      </div>
+      <div class="prop-footer">
+        <div>
+          <div class="prop-mls">MLS <strong>A11989389</strong></div>
+          <div class="prop-dom">717 Days on Market</div>
+          <div class="prop-courtesy">Courtesy of Solomon Yakoby, All Nations Realty of Florida</div>
+        </div>
+        <a href="https://www.bogenhomes.com" target="_blank" rel="noopener" class="prop-cta">View on bogenhomes.com →</a>
+      </div>
+    </div>
+
+    <!-- 4. 17903 Foxborough Lane — new construction 2026 -->
+    <div class="property">
+      <div class="prop-header">
+        <div class="prop-address">17903 Foxborough Lane</div>
+        <div class="prop-badges">
+          <span class="badge new-construction">New Construction · 2026</span>
+        </div>
+      </div>
+      <div class="prop-price">$9,975,000</div>
+      <div class="prop-psqft">~$1,310 / sq ft · Boca Raton, FL 33496</div>
+      <div class="prop-attrs">
+        <div class="prop-attr"><div class="a-label">Beds</div><div class="a-value">6</div></div>
+        <div class="prop-attr"><div class="a-label">Baths</div><div class="a-value">6F / 2H</div></div>
+        <div class="prop-attr"><div class="a-label">Living SqFt</div><div class="a-value">7,615</div></div>
+        <div class="prop-attr"><div class="a-label">Year Built</div><div class="a-value">2026</div></div>
+        <div class="prop-attr"><div class="a-label">Pool</div><div class="a-value">Yes</div></div>
+        <div class="prop-attr"><div class="a-label">MLS</div><div class="a-value">R11087609</div></div>
+      </div>
+      <div class="prop-footer">
+        <div>
+          <div class="prop-mls">MLS <strong>R11087609</strong></div>
+          <div class="prop-dom">402 Days on Market</div>
+          <div class="prop-courtesy">Courtesy of Michael B. Bloom &amp; Melanie Bloom Haym, Compass Florida</div>
+        </div>
+        <a href="https://bogenhomes.com/homes-for-sale-details/17903-FOXBOROUGH-LANE-BOCA-RATON-FL-33496/R11087609/43/" target="_blank" rel="noopener" class="prop-cta">View Details →</a>
+      </div>
+    </div>
+
+    <!-- 5. 17661 Scarsdale Way — new listing -->
+    <div class="property">
+      <div class="prop-header">
+        <div class="prop-address">17661 Scarsdale Way</div>
+        <div class="prop-badges">
+        </div>
+      </div>
+      <div class="prop-price">$8,400,000</div>
+      <div class="prop-psqft">~$1,316 / sq ft · Boca Raton, FL 33496</div>
+      <div class="prop-attrs">
+        <div class="prop-attr"><div class="a-label">Beds</div><div class="a-value">5</div></div>
+        <div class="prop-attr"><div class="a-label">Baths</div><div class="a-value">6F / 2H</div></div>
+        <div class="prop-attr"><div class="a-label">Living SqFt</div><div class="a-value">6,380</div></div>
+        <div class="prop-attr"><div class="a-label">Year Built</div><div class="a-value">2019</div></div>
+        <div class="prop-attr"><div class="a-label">Pool</div><div class="a-value">Yes</div></div>
+        <div class="prop-attr"><div class="a-label">MLS</div><div class="a-value">B26031007</div></div>
+      </div>
+      <div class="prop-footer">
+        <div>
+          <div class="prop-mls">MLS <strong>B26031007</strong></div>
+          <div class="prop-dom">20 Days on Market</div>
+          <div class="prop-courtesy">Courtesy of Paul Stuart Fishman &amp; Todd David Lipsich, Luxury Partners Realty</div>
+        </div>
+        <a href="https://bogenhomes.com/homes-for-sale-details/17661-SCARSDALE-WAY-BOCA-RATON-FL-33496/B26031007/43/" target="_blank" rel="noopener" class="prop-cta">View Details →</a>
+      </div>
+    </div>
+
+    <!-- 7027 Queenferry Circle — new this week, waterfront -->
+    <div class="property">
+      <div class="prop-header">
+        <div class="prop-address">7027 Queenferry Circle</div>
+        <div class="prop-badges">
+          <span class="badge waterfront">Waterfront</span>
+          <span class="badge new-listing">New This Week</span>
+        </div>
+      </div>
+      <div class="prop-price">$8,250,000</div>
+      <div class="prop-psqft">~$1,092 / sq ft · Boca Raton, FL 33496</div>
+      <div class="prop-attrs">
+        <div class="prop-attr"><div class="a-label">Beds</div><div class="a-value">7</div></div>
+        <div class="prop-attr"><div class="a-label">Baths</div><div class="a-value">5F / 2H</div></div>
+        <div class="prop-attr"><div class="a-label">Living SqFt</div><div class="a-value">7,553</div></div>
+        <div class="prop-attr"><div class="a-label">Year Built</div><div class="a-value">1990</div></div>
+        <div class="prop-attr"><div class="a-label">Pool</div><div class="a-value">Yes</div></div>
+        <div class="prop-attr"><div class="a-label">Lot</div><div class="a-value">Waterfront</div></div>
+      </div>
+      <div class="prop-footer">
+        <div>
+          <div class="prop-mls">MLS <strong>via BeachesMLS</strong></div>
+          <div class="prop-dom">New This Week</div>
+          <div class="prop-courtesy">Courtesy of the listing brokerage of record, per BeachesMLS</div>
+        </div>
+        <a href="https://www.bogenhomes.com" target="_blank" rel="noopener" class="prop-cta">View Details →</a>
+      </div>
+    </div>
+
+    <!-- 6. 17787 Scarsdale Way — 2022 build -->
+    <div class="property">
+      <div class="prop-header">
+        <div class="prop-address">17787 Scarsdale Way</div>
+        <div class="prop-badges">
+          <span class="badge new-construction">2022 Build</span>
+        </div>
+      </div>
+      <div class="prop-price">$7,999,999</div>
+      <div class="prop-psqft">~$1,365 / sq ft · Boca Raton, FL 33496</div>
+      <div class="prop-attrs">
+        <div class="prop-attr"><div class="a-label">Beds</div><div class="a-value">5</div></div>
+        <div class="prop-attr"><div class="a-label">Baths</div><div class="a-value">6F / 2H</div></div>
+        <div class="prop-attr"><div class="a-label">Living SqFt</div><div class="a-value">5,861</div></div>
+        <div class="prop-attr"><div class="a-label">Year Built</div><div class="a-value">2022</div></div>
+        <div class="prop-attr"><div class="a-label">Pool</div><div class="a-value">Yes</div></div>
+        <div class="prop-attr"><div class="a-label">Community</div><div class="a-value">St Andrews CC 2</div></div>
+      </div>
+      <div class="prop-footer">
+        <div>
+          <div class="prop-mls">MLS <strong>B26010941</strong></div>
+          <div class="prop-dom">69 Days on Market</div>
+          <div class="prop-courtesy">Courtesy of Warren Drucker, Keller Williams Realty Boca Raton</div>
+        </div>
+        <a href="https://bogenhomes.com/homes-for-sale-details/17787-SCARSDALE-WAY-BOCA-RATON-FL-33496/B26010941/43/" target="_blank" rel="noopener" class="prop-cta">View Details →</a>
+      </div>
+    </div>
+
+    <!-- 7. 17730 Scarsdale Way — waterfront, price reduced -->
+    <div class="property">
+      <div class="prop-header">
+        <div class="prop-address">17730 Scarsdale Way</div>
+        <div class="prop-badges">
+          <span class="badge waterfront">Waterfront</span>
+        </div>
+      </div>
+      <div class="prop-price">$5,850,000</div>
+      <div class="prop-psqft">~$759 / sq ft · Boca Raton, FL 33496</div>
+      <div class="prop-attrs">
+        <div class="prop-attr"><div class="a-label">Beds</div><div class="a-value">7</div></div>
+        <div class="prop-attr"><div class="a-label">Baths</div><div class="a-value">8F / 1H</div></div>
+        <div class="prop-attr"><div class="a-label">Living SqFt</div><div class="a-value">7,709</div></div>
+        <div class="prop-attr"><div class="a-label">Year Built</div><div class="a-value">2005</div></div>
+        <div class="prop-attr"><div class="a-label">Pool</div><div class="a-value">Yes</div></div>
+        <div class="prop-attr"><div class="a-label">Lot</div><div class="a-value">Waterfront</div></div>
+      </div>
+      <div class="prop-footer">
+        <div>
+          <div class="prop-mls">MLS <strong>B26010857</strong></div>
+          <div class="prop-dom">70 Days on Market</div>
+          <div class="prop-courtesy">Courtesy of Shereen C. Randazza PA, Lang Realty/BR</div>
+        </div>
+        <a href="https://bogenhomes.com/homes-for-sale-details/17730-SCARSDALE-WAY-BOCA-RATON-FL-33496/B26010857/43/" target="_blank" rel="noopener" class="prop-cta">View Details →</a>
+      </div>
+    </div>
+
+    <!-- 8. 7215 Ballantrae Court -->
+    <div class="property">
+      <div class="prop-header">
+        <div class="prop-address">7215 Ballantrae Court</div>
+        <div class="prop-badges"></div>
+      </div>
+      <div class="prop-price">$4,395,000</div>
+      <div class="prop-psqft">~$1,058 / sq ft · Boca Raton, FL 33496</div>
+      <div class="prop-attrs">
+        <div class="prop-attr"><div class="a-label">Beds</div><div class="a-value">3</div></div>
+        <div class="prop-attr"><div class="a-label">Baths</div><div class="a-value">3F / 1H</div></div>
+        <div class="prop-attr"><div class="a-label">Living SqFt</div><div class="a-value">4,154</div></div>
+        <div class="prop-attr"><div class="a-label">Year Built</div><div class="a-value">1987</div></div>
+        <div class="prop-attr"><div class="a-label">Pool</div><div class="a-value">Yes</div></div>
+        <div class="prop-attr"><div class="a-label">MLS</div><div class="a-value">B26007905</div></div>
+      </div>
+      <div class="prop-footer">
+        <div>
+          <div class="prop-mls">MLS <strong>B26007905</strong></div>
+          <div class="prop-dom">76 Days on Market</div>
+          <div class="prop-courtesy">Courtesy of Michael B. Bloom &amp; Melanie Bloom Haym, Compass Florida</div>
+        </div>
+        <a href="https://bogenhomes.com/homes-for-sale-details/7215-BALLANTRAE-COURT-BOCA-RATON-FL-33496/B26007905/43/" target="_blank" rel="noopener" class="prop-cta">View Details →</a>
+      </div>
+    </div>
+
+
+    <!-- 10. 17844 Scarsdale Way -->
+    <div class="property">
+      <div class="prop-header">
+        <div class="prop-address">17844 Scarsdale Way</div>
+        <div class="prop-badges"></div>
+      </div>
+      <div class="prop-price">$3,200,000</div>
+      <div class="prop-psqft">~$843 / sq ft · Boca Raton, FL 33496</div>
+      <div class="prop-attrs">
+        <div class="prop-attr"><div class="a-label">Beds</div><div class="a-value">4</div></div>
+        <div class="prop-attr"><div class="a-label">Baths</div><div class="a-value">4F / 0H</div></div>
+        <div class="prop-attr"><div class="a-label">Living SqFt</div><div class="a-value">3,797</div></div>
+        <div class="prop-attr"><div class="a-label">Year Built</div><div class="a-value">1984</div></div>
+        <div class="prop-attr"><div class="a-label">Pool</div><div class="a-value">Yes</div></div>
+        <div class="prop-attr"><div class="a-label">MLS</div><div class="a-value">F10528126</div></div>
+      </div>
+      <div class="prop-footer">
+        <div>
+          <div class="prop-mls">MLS <strong>F10528126</strong></div>
+          <div class="prop-dom">247 Days on Market</div>
+          <div class="prop-courtesy">Courtesy of Allison G. Stewart, Compass Florida</div>
+        </div>
+        <a href="https://bogenhomes.com/homes-for-sale-details/17844-SCARSDALE-WAY-BOCA-RATON-FL-33496/F10528126/43/" target="_blank" rel="noopener" class="prop-cta">View Details →</a>
+      </div>
+    </div>
+
+    <!-- 11. 17320 Loch Lomond Way — waterfront -->
+    <div class="property">
+      <div class="prop-header">
+        <div class="prop-address">17320 Loch Lomond Way</div>
+        <div class="prop-badges">
+          <span class="badge waterfront">Waterfront</span>
+        </div>
+      </div>
+      <div class="prop-price">$2,450,000</div>
+      <div class="prop-psqft">~$851 / sq ft · Boca Raton, FL 33496</div>
+      <div class="prop-attrs">
+        <div class="prop-attr"><div class="a-label">Beds</div><div class="a-value">3</div></div>
+        <div class="prop-attr"><div class="a-label">Baths</div><div class="a-value">4F / 0H</div></div>
+        <div class="prop-attr"><div class="a-label">Living SqFt</div><div class="a-value">2,879</div></div>
+        <div class="prop-attr"><div class="a-label">Year Built</div><div class="a-value">1987</div></div>
+        <div class="prop-attr"><div class="a-label">Pool</div><div class="a-value">Yes</div></div>
+        <div class="prop-attr"><div class="a-label">Lot</div><div class="a-value">Waterfront</div></div>
+      </div>
+      <div class="prop-footer">
+        <div>
+          <div class="prop-mls">MLS <strong>B26023491</strong></div>
+          <div class="prop-dom">39 Days on Market</div>
+          <div class="prop-courtesy">Courtesy of Michael B. Bloom &amp; Melanie Bloom Haym, Compass Florida</div>
+        </div>
+        <a href="https://bogenhomes.com/homes-for-sale-details/17320-LOCH-LOMOND-WAY-BOCA-RATON-FL-33496/B26023491/43/" target="_blank" rel="noopener" class="prop-cta">View Details →</a>
+      </div>
+    </div>
+
+    <!-- 12. 7946 Shelby Circle — lowest entry -->
+    <div class="property">
+      <div class="prop-header">
+        <div class="prop-address">7946 Shelby Circle</div>
+        <div class="prop-badges">
+          <span class="badge new-listing">Lowest Entry</span>
+        </div>
+      </div>
+      <div class="prop-price">$1,895,000</div>
+      <div class="prop-psqft">~$713 / sq ft · Boca Raton, FL 33496</div>
+      <div class="prop-attrs">
+        <div class="prop-attr"><div class="a-label">Beds</div><div class="a-value">3</div></div>
+        <div class="prop-attr"><div class="a-label">Baths</div><div class="a-value">2F / 1H</div></div>
+        <div class="prop-attr"><div class="a-label">Living SqFt</div><div class="a-value">2,656</div></div>
+        <div class="prop-attr"><div class="a-label">Year Built</div><div class="a-value">1991</div></div>
+        <div class="prop-attr"><div class="a-label">Pool</div><div class="a-value">Yes</div></div>
+        <div class="prop-attr"><div class="a-label">Community</div><div class="a-value">St Andrews CC 2</div></div>
+      </div>
+      <div class="prop-footer">
+        <div>
+          <div class="prop-mls">MLS <strong>R11148303</strong></div>
+          <div class="prop-dom">176 Days on Market</div>
+          <div class="prop-courtesy">Courtesy of Ari Albinder, The Keyes Company</div>
+        </div>
+        <a href="https://bogenhomes.com/homes-for-sale-details/7946-SHELBY-CIRCLE-BOCA-RATON-FL-33496/R11148303/43/" target="_blank" rel="noopener" class="prop-cta">View Details →</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="contact-cta">
+    <div class="eyebrow">Inside the Gates</div>
+    <h3>Questions About St. Andrews?</h3>
+    <p>I'm a member of St. Andrews Country Club and an active luxury agent inside the community. Confidential, no-pressure conversation about any of these listings, recent comps, or strategy for buying or selling within the club.</p>
+    <div class="btns">
+      <a href="tel:5612357575" class="primary">Call 561-235-7575</a>
+      <a href="mailto:edmund@bogenhomes.com" class="secondary">Email Edmund</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="ft-brand">The Edmund Bogen Team</div>
+  <div class="ft-meta">at Douglas Elliman Real Estate</div>
+  <div class="ft-meta">444 E Palmetto Park Rd, Boca Raton, FL 33432 · 561-235-7575</div>
+  <div class="ft-mls">Market data courtesy of BeachesMLS. Information is deemed reliable but not guaranteed. All property information, including square footage, room counts, and lot dimensions, should be verified independently. Listings are the property of their respective listing brokerages, as noted on each card. Updated June 11, 2026.</div>
+  <div class="ft-disclaimer">&copy; 2026 DOUGLAS ELLIMAN REAL ESTATE. IF YOUR PROPERTY IS CURRENTLY LISTED WITH ANOTHER REAL ESTATE BROKER, PLEASE DISREGARD THIS OFFER. IT IS NOT OUR INTENTION TO SOLICIT THE OFFERINGS OF OTHER REAL ESTATE BROKERS. WE COOPERATE WITH THEM FULLY. EQUAL HOUSING OPPORTUNITY.</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Luxury Capital Moved South: Miami Overtakes New York in Million-Dollar Listings | The Edmund Bogen Team</title>
+    <meta name="description" content="Realtor.com's 2026 luxury outlook shows the Miami metro closed 2025 with 10,513 active million-dollar listings — ahead of New York's 9,216. What the shift means for Boca Raton's country club corridor.">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Open Graph -->
+    <meta property="og:title" content="The Luxury Capital Moved South: Miami Overtakes New York in Million-Dollar Listings">
+    <meta property="og:description" content="Miami closed 2025 with 10,513 active million-dollar listings — ahead of New York's 9,216. And the winning metro runs straight through Boca Raton.">
+    <meta property="og:image" content="https://edmundbogen.github.io/miami-luxury-capital/hero.png">
+    <meta property="og:type" content="article">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            color: #1a1a1a;
+            background: #fff;
+            line-height: 1.75;
+            font-size: 17px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: rgba(255,255,255,0.97);
+            border-bottom: 1px solid #e8e8e8;
+            z-index: 100; padding: 18px 40px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        nav .logo { font-weight: 600; font-size: 14px; letter-spacing: 3px; color: #1a3e5c; text-transform: uppercase; }
+        nav .nav-links a { color: #1a3e5c; text-decoration: none; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; margin-left: 32px; font-weight: 500; }
+        nav .nav-links a:hover { color: #00a8e1; }
+        @media (max-width: 640px) { nav { padding: 14px 18px; } nav .nav-links a { margin-left: 16px; font-size: 11px; } }
+
+        /* HERO — finished banner image (title + name already baked in) */
+        .hero-banner { margin-top: 61px; width: 100%; background: #1a3e5c; }
+        .hero-banner img { display: block; width: 100%; max-width: 1100px; height: auto; margin: 0 auto; }
+
+        /* META BAR */
+        .meta-bar {
+            max-width: 780px; margin: 0 auto; padding: 30px 24px 0;
+            font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #6b7785; font-weight: 500;
+            display: flex; flex-wrap: wrap; gap: 14px; align-items: center;
+        }
+        .meta-bar .cat { color: #00a8e1; }
+        .meta-bar .dot { color: #cdd4dc; }
+
+        /* KEY STATS */
+        .stats { max-width: 780px; margin: 36px auto 0; padding: 0 24px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+        .stat-card { border-left: 4px solid #00a8e1; padding: 18px 20px; background: #f4f6f8; }
+        .stat-card .num { font-size: 30px; font-weight: 700; color: #1a3e5c; line-height: 1.1; }
+        .stat-card .lbl { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: #5a6470; margin-top: 8px; font-weight: 500; }
+        @media (max-width: 640px) { .stats { grid-template-columns: 1fr; } }
+
+        /* ARTICLE */
+        article { max-width: 780px; margin: 0 auto; padding: 50px 24px 70px; }
+        article p { margin-bottom: 24px; font-size: 17px; color: #2a2a2a; }
+        article p .lead-in { font-weight: 600; color: #1a3e5c; }
+        article h2 { font-weight: 300; font-size: 30px; letter-spacing: -0.3px; color: #1a3e5c; margin: 56px 0 24px; line-height: 1.3; }
+        article h2::after { content: ''; display: block; width: 60px; height: 2px; background: #00a8e1; margin-top: 16px; }
+        article em { font-style: italic; }
+        article strong { font-weight: 600; }
+
+        .pull-quote { border-left: 5px solid #00a8e1; padding: 18px 30px; margin: 40px 0; font-size: 22px; font-weight: 300; font-style: italic; color: #1a3e5c; line-height: 1.5; }
+
+        .callout { background: #f4f6f8; border-radius: 6px; padding: 26px 30px; margin: 32px 0; }
+        .callout .row { font-size: 16px; margin-bottom: 10px; color: #2a2a2a; }
+        .callout .row:last-child { margin-bottom: 0; }
+
+        .infobox { background: #fff; border: 1px solid #e3e8ee; border-top: 4px solid #1a3e5c; border-radius: 6px; padding: 28px 30px; margin: 36px 0; }
+        .infobox h3 { font-size: 15px; letter-spacing: 1px; text-transform: uppercase; color: #1a3e5c; margin-bottom: 18px; font-weight: 600; }
+        .infobox .item { margin-bottom: 16px; font-size: 16px; line-height: 1.6; }
+        .infobox .item:last-child { margin-bottom: 0; }
+        .infobox .item strong { color: #1a3e5c; }
+
+        /* COMMUNITY TABLE */
+        .commwrap { max-width: 880px; margin: 10px auto 0; padding: 0 24px; }
+        .range-callout { background: #1a3e5c; color: #fff; border-radius: 6px; padding: 22px 28px; margin: 0 0 28px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; }
+        .range-callout .lbl { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #8fc4dd; }
+        .range-callout .val { font-size: 26px; font-weight: 700; }
+        .range-callout .note { width: 100%; font-size: 13px; color: rgba(255,255,255,0.75); font-weight: 300; margin-top: 4px; }
+        table.comm { width: 100%; border-collapse: collapse; font-size: 15px; }
+        table.comm th { background: #1a3e5c; color: #fff; text-align: left; padding: 12px 14px; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; }
+        table.comm th.c, table.comm td.c { text-align: center; }
+        table.comm td { padding: 11px 14px; border-bottom: 1px solid #eceff3; color: #2a2a2a; }
+        table.comm tr:nth-child(even) td { background: #f8fafb; }
+        table.comm td.name { font-weight: 600; color: #1a3e5c; }
+        .tag { display: inline-block; padding: 3px 11px; border-radius: 20px; font-size: 11px; font-weight: 600; letter-spacing: 0.5px; }
+        .tag.sell { background: #e3f4fa; color: #0a7ea8; }
+        .tag.bal { background: #eef1f4; color: #5a6470; }
+        .tag.buy { background: #fdf2e3; color: #b07d28; }
+        .tag.na { background: #f4f4f4; color: #aab2bc; }
+        .comm-foot { font-size: 13px; color: #8a94a0; margin: 16px 0 0; line-height: 1.6; }
+        @media (max-width: 640px) { table.comm { font-size: 13px; } table.comm th, table.comm td { padding: 9px 8px; } }
+
+        /* ST ANDREWS LINEUP */
+        .lineup { background: #f4f6f8; padding: 64px 24px; }
+        .lineup-inner { max-width: 1100px; margin: 0 auto; }
+        .lineup .eyebrow { text-align: center; font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: #00a8e1; font-weight: 600; margin-bottom: 14px; }
+        .lineup h2 { text-align: center; color: #1a3e5c; font-weight: 300; font-size: 32px; margin-bottom: 14px; }
+        .lineup .sub { text-align: center; color: #5a6470; font-size: 15px; max-width: 620px; margin: 0 auto 14px; font-weight: 300; line-height: 1.6; }
+        .lineup .strip { text-align: center; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; color: #1a3e5c; font-weight: 600; margin-bottom: 40px; }
+        .lineup .strip span { color: #cdd4dc; margin: 0 8px; }
+        .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+        @media (max-width: 900px) { .cards { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .cards { grid-template-columns: 1fr; } }
+        .card { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 12px rgba(26,62,92,0.08); display: flex; flex-direction: column; }
+        .card .top { background: #1a3e5c; color: #fff; padding: 18px 20px; position: relative; }
+        .card .price { font-size: 24px; font-weight: 700; letter-spacing: -0.5px; }
+        .card .badge { position: absolute; top: 14px; right: 16px; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; font-weight: 700; padding: 4px 9px; border-radius: 12px; }
+        .card .badge.new { background: #00a8e1; color: #fff; }
+        .card .badge.reduced { background: #f0a830; color: #fff; }
+        .card .body { padding: 18px 20px; flex: 1; display: flex; flex-direction: column; }
+        .card .addr { font-size: 15px; font-weight: 600; color: #1a3e5c; line-height: 1.4; margin-bottom: 12px; }
+        .card .specs { font-size: 14px; color: #3a4550; line-height: 1.7; margin-bottom: 12px; }
+        .card .feats { margin-bottom: 14px; }
+        .card .feat { display: inline-block; font-size: 10px; letter-spacing: 0.5px; text-transform: uppercase; font-weight: 600; padding: 3px 9px; border-radius: 12px; margin: 0 5px 5px 0; background: #eef4f7; color: #0a7ea8; }
+        .card .feat.nc { background: #eaf7ee; color: #2e8b57; }
+        .card .mls { font-size: 11px; color: #9aa3ad; letter-spacing: 0.5px; margin-bottom: 4px; }
+        .card .courtesy { font-size: 11px; color: #9aa3ad; font-style: italic; margin-bottom: 16px; line-height: 1.4; }
+        .card .link { margin-top: auto; display: block; text-align: center; background: #00a8e1; color: #fff; text-decoration: none; padding: 11px; border-radius: 3px; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
+        .card .link:hover { background: #0093c4; }
+        .lineup .idx-disc { font-size: 12px; color: #8a94a0; text-align: center; max-width: 820px; margin: 36px auto 0; line-height: 1.6; }
+
+        /* CTA */
+        .cta { background: #1a3e5c; color: #fff; text-align: center; padding: 64px 24px; }
+        .cta h2 { color: #fff; font-weight: 300; font-size: 30px; margin-bottom: 18px; }
+        .cta p { max-width: 560px; margin: 0 auto 30px; color: rgba(255,255,255,0.85); font-size: 17px; font-weight: 300; }
+        .cta a { display: inline-block; background: #00a8e1; color: #fff; text-transform: uppercase; letter-spacing: 0.1em; padding: 16px 44px; border-radius: 2px; font-weight: 500; text-decoration: none; font-size: 14px; }
+        .cta a:hover { background: #0093c4; }
+
+        /* BIO */
+        .bio { max-width: 780px; margin: 0 auto; padding: 56px 24px; display: flex; gap: 28px; align-items: flex-start; border-bottom: 1px solid #eee; }
+        .bio .photo { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; flex-shrink: 0; background: #e3e8ee; }
+        .bio h4 { color: #1a3e5c; font-size: 18px; font-weight: 600; margin-bottom: 10px; }
+        .bio p { font-size: 14px; color: #555; line-height: 1.7; }
+        @media (max-width: 640px) { .bio { flex-direction: column; } }
+
+        /* FOOTER */
+        footer { background: #f4f6f8; padding: 40px 24px; text-align: center; }
+        footer p { font-size: 11px; letter-spacing: 1px; color: #8a94a0; line-height: 1.8; max-width: 760px; margin: 0 auto 8px; text-transform: uppercase; }
+        footer .top { color: #1a3e5c; font-weight: 600; font-size: 13px; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">The Edmund Bogen Team</div>
+        <div class="nav-links">
+            <a href="https://edmundbogen.github.io/market-dashboard/">Dashboard</a>
+            <a href="https://bogenhomes.com">Properties</a>
+            <a href="mailto:edmund@bogenhomes.com">Contact</a>
+        </div>
+    </nav>
+
+    <!-- HERO BANNER (finished image with title + name baked in) -->
+    <div class="hero-banner">
+        <img src="hero.png" alt="The Luxury Capital Moved South — Miami overtakes New York as America's million-dollar listing capital. Edmund Bogen, Luxury Real Estate Advisor, Douglas Elliman Real Estate">
+    </div>
+
+    <!-- AI disclosure -->
+    <div style="max-width:780px;margin:0 auto;padding:14px 24px 0;text-align:center;font-size:12px;font-style:italic;color:#8a94a0;line-height:1.5;">
+        Hero image enhanced and selected content developed with the assistance of artificial intelligence.
+    </div>
+
+    <!-- META -->
+    <div class="meta-bar">
+        <span class="cat">South Florida Market Intelligence</span>
+        <span class="dot">&bull;</span>
+        <span>June 11, 2026</span>
+        <span class="dot">&bull;</span>
+        <span>5 min read</span>
+    </div>
+
+    <!-- KEY STATS -->
+    <div class="stats">
+        <div class="stat-card">
+            <div class="num">10,513 vs 9,216</div>
+            <div class="lbl">Active $1M+ listings, Miami vs. New York metro — year-end 2025 (Realtor.com)</div>
+        </div>
+        <div class="stat-card">
+            <div class="num">26.3%</div>
+            <div class="lbl">Share of Miami's luxury demand originating in the New York metro</div>
+        </div>
+        <div class="stat-card">
+            <div class="num">21%</div>
+            <div class="lbl">Florida's share of all foreign U.S. homebuyers — the #1 state (NAR)</div>
+        </div>
+    </div>
+
+    <!-- ARTICLE -->
+    <article>
+
+        <h2>The crossover nobody can ignore.</h2>
+
+        <p>For nearly a decade, New York held a title that seemed untouchable: the largest inventory of million-dollar homes in America. That era is over. According to Realtor.com's Luxury Housing Market Trends and Outlook 2026, the Miami&ndash;Fort Lauderdale&ndash;West Palm Beach metro closed 2025 with <strong>10,513 active million-dollar listings</strong> — decisively ahead of New York's <strong>9,216</strong>. The December 2025 monthly snapshot told the same story: 10,591 seven-figure listings in Miami versus 10,176 in New York.</p>
+
+        <p>Read that metro name again. <em>Miami&ndash;Fort Lauderdale&ndash;West Palm Beach.</em> The market that just took New York's crown is not a single city — it is the corridor that runs straight through Palm Beach County. Boca Raton's country club communities are not watching this story from the sidelines. They are inside it.</p>
+
+        <h2>What actually happened.</h2>
+
+        <p>Let's be precise, because precision is what separates analysis from hype. Miami did not become "more expensive" than New York. New York still carries the higher luxury entry bar — by Realtor.com's measure, the price of admission to its top tier remains meaningfully above Miami's. And New York briefly reclaimed the listing-count lead this spring, as it always surges with the April selling season.</p>
+
+        <p>What changed is deeper and more durable. Realtor.com's senior economist described it as a "structural shift in where luxury inventory is accumulating" — and <em>structural</em> is the word that matters. Miami's luxury supply has become broader, deeper, and far less seasonal than New York's — a market that builds, lists, and sells seven-figure homes twelve months a year, while Manhattan's inventory swells in spring and drains every winter.</p>
+
+        <div class="pull-quote">"Miami is not replacing New York. It is joining New York as a co-capital of American luxury real estate." — Dottie Herman, Vice Chair, Douglas Elliman</div>
+
+        <h2>Why the capital moved south.</h2>
+
+        <p>Three forces drove the crossover, and all three are still running.</p>
+
+        <div class="infobox">
+            <h3>The three forces behind the shift</h3>
+            <div class="item"><strong>The wealth migration is real and measurable.</strong> Realtor.com found that 26.3% of Miami's luxury demand originates in the New York metro area — a larger share than the next eight feeder markets combined. This is not anecdote. More than one in four luxury buyers looking at South Florida is looking from New York.</div>
+            <div class="item"><strong>Global capital chose Florida.</strong> The National Association of Realtors reports that foreign buyers purchased $56 billion of U.S. homes in the year ending March 2025 — up 33.2% — and Florida captured 21% of those buyers, the highest share of any state, ahead of California, Texas, and New York. Nearly half of those international purchases were all-cash.</div>
+            <div class="item"><strong>The buyer base is built differently.</strong> South Florida's luxury market runs heavily on cash buyers, international purchasers, retirees, and second-home owners — demographics far less sensitive to mortgage rates and school calendars. That is why Miami's inventory holds steady through the winter months while New York's thins out every winter.</div>
+        </div>
+
+        <h2>What this means in Boca Raton.</h2>
+
+        <p>Here is where the headline becomes a strategy.</p>
+
+        <p><span class="lead-in">For sellers:</span> more million-dollar inventory metro-wide means more competition for buyer attention. The sellers who win in this environment are the ones who price with discipline and present with precision. Aspirational pricing was forgivable in 2021. In a market with over 10,000 active seven-figure listings, it is how a home goes stale. The data below — <strong>227 active listings and 440 closed sales</strong> across the 21 communities we track — shows exactly which neighborhoods have leverage and which do not.</p>
+
+        <p><span class="lead-in">For buyers:</span> depth means choice, but not uniform leverage. The gap is widening between luxury by price tag and luxury by durability — the homes with the right community, the right condition, and the right story still command scarcity pricing, while everything else negotiates. Knowing the difference is the entire game.</p>
+
+        <p><span class="lead-in">For homeowners watching from the fairway:</span> the structural forces that pushed Miami past New York — tax advantages, wealth migration, global capital — flow directly through Boca Raton's country club corridor. The buyers arriving from New York are not all landing on Brickell. A meaningful share of them want a single-family home, a golf course, and a community — and our own data shows they are finding it. Across the 21 communities we track, Boca West has recorded 87 sales this year, Broken Sound 62, and the Polo Club 55.</p>
+
+        <div class="pull-quote">The migration is not a forecast. It is already on the closing sheets.</div>
+
+        <h2>The proof, community by community.</h2>
+
+        <p>Here's the current snapshot across the country-club and luxury communities we track in and around Boca Raton and Delray Beach. The "tilt" column compares active inventory to recent sales — a low ratio means homes are being absorbed quickly (a seller's edge), while a high ratio means inventory is sitting (a buyer's edge). Even inside the nation's new luxury-listing capital, leverage swings dramatically from one gate to the next.</p>
+
+        <div class="commwrap">
+            <div class="range-callout">
+                <div><div class="lbl">St. Andrews — Lowest Active</div><div class="val">$1,895,000</div></div>
+                <div style="text-align:right;"><div class="lbl">St. Andrews — Highest Active</div><div class="val">$19,975,000</div></div>
+                <div class="note">A single community spanning more than $18M from floor to ceiling — the new luxury capital isn't one price point, even inside one gate.</div>
+            </div>
+
+            <table class="comm">
+                <thead>
+                    <tr><th>Community</th><th class="c">Active</th><th class="c">Sold</th><th class="c">Market Tilt</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td class="name">Polo Club</td><td class="c">10</td><td class="c">55</td><td class="c"><span class="tag sell">Seller's edge</span></td></tr>
+                    <tr><td class="name">The Bridges</td><td class="c">5</td><td class="c">18</td><td class="c"><span class="tag sell">Seller's edge</span></td></tr>
+                    <tr><td class="name">Addison Reserve</td><td class="c">7</td><td class="c">25</td><td class="c"><span class="tag sell">Seller's edge</span></td></tr>
+                    <tr><td class="name">Broken Sound</td><td class="c">20</td><td class="c">62</td><td class="c"><span class="tag sell">Seller's edge</span></td></tr>
+                    <tr><td class="name">Seasons</td><td class="c">2</td><td class="c">6</td><td class="c"><span class="tag sell">Seller's edge</span></td></tr>
+                    <tr><td class="name">Boca West</td><td class="c">30</td><td class="c">87</td><td class="c"><span class="tag sell">Seller's edge</span></td></tr>
+                    <tr><td class="name">Woodfield</td><td class="c">12</td><td class="c">28</td><td class="c"><span class="tag sell">Seller's edge</span></td></tr>
+                    <tr><td class="name">The Oaks</td><td class="c">13</td><td class="c">24</td><td class="c"><span class="tag bal">Balanced</span></td></tr>
+                    <tr><td class="name">Stonebridge</td><td class="c">5</td><td class="c">9</td><td class="c"><span class="tag bal">Balanced</span></td></tr>
+                    <tr><td class="name">Bocaire Country Club</td><td class="c">9</td><td class="c">16</td><td class="c"><span class="tag bal">Balanced</span></td></tr>
+                    <tr><td class="name">Seven Bridges</td><td class="c">9</td><td class="c">14</td><td class="c"><span class="tag bal">Balanced</span></td></tr>
+                    <tr><td class="name">Delaire</td><td class="c">4</td><td class="c">6</td><td class="c"><span class="tag bal">Balanced</span></td></tr>
+                    <tr><td class="name">Lotus</td><td class="c">18</td><td class="c">21</td><td class="c"><span class="tag bal">Balanced</span></td></tr>
+                    <tr><td class="name">Mizner Country Club</td><td class="c">6</td><td class="c">7</td><td class="c"><span class="tag bal">Balanced</span></td></tr>
+                    <tr><td class="name">St. Andrews</td><td class="c">12</td><td class="c">14</td><td class="c"><span class="tag bal">Balanced</span></td></tr>
+                    <tr><td class="name">Boca Bridges</td><td class="c">12</td><td class="c">14</td><td class="c"><span class="tag bal">Balanced</span></td></tr>
+                    <tr><td class="name">Royal Palm Yacht Club</td><td class="c">26</td><td class="c">24</td><td class="c"><span class="tag buy">Buyer's edge</span></td></tr>
+                    <tr><td class="name">Long Lake Estates</td><td class="c">4</td><td class="c">3</td><td class="c"><span class="tag buy">Buyer's edge</span></td></tr>
+                    <tr><td class="name">Boca Grove</td><td class="c">15</td><td class="c">6</td><td class="c"><span class="tag buy">Buyer's edge</span></td></tr>
+                    <tr><td class="name">The Sanctuary</td><td class="c">8</td><td class="c">1</td><td class="c"><span class="tag buy">Buyer's edge</span></td></tr>
+                    <tr><td class="name">Le Lac</td><td class="c">0</td><td class="c">0</td><td class="c"><span class="tag na">No activity</span></td></tr>
+                </tbody>
+            </table>
+            <p class="comm-foot">Active = homes currently on the market; Sold = closed sales over the trailing reporting period. "Market tilt" is a directional read of inventory absorption, not a formal months-of-supply figure. Source: local MLS, compiled by The Edmund Bogen Team. Figures change weekly — contact me for the live count on any community.</p>
+        </div>
+
+        <h2>The bottom line.</h2>
+
+        <p>The center of gravity in American luxury real estate has shifted south — not as a fad, but as a structural realignment of where wealth lives, invests, and lists. New York remains a great luxury market. But for the first time in a decade, it is no longer the deepest one. That market is ours.</p>
+
+        <p>If you are weighing a sale, a purchase, or simply want to know where your home stands inside the new luxury capital, call us at <strong>(561) 235-7575</strong> or reply to this email — we will show you exactly where your community sits in the data.</p>
+
+    </article>
+
+    <!-- ST ANDREWS LINEUP -->
+    <div class="lineup">
+        <div class="lineup-inner">
+            <div class="eyebrow">Featured Community</div>
+            <h2>St. Andrews Country Club — Currently On Market</h2>
+            <p class="sub">A live look at one of Boca's premier guard-gated communities. Twelve homes are active right now — including a new $8.25M waterfront listing this week — spanning more than $18 million from entry to top of market.</p>
+            <div class="strip">12 Active <span>&bull;</span> $1.895M&ndash;$19.975M <span>&bull;</span> 5 Waterfront <span>&bull;</span> 5 New Construction</div>
+
+            <div class="cards">
+
+                <div class="card">
+                    <div class="top"><div class="price">$1,895,000</div></div>
+                    <div class="body">
+                        <div class="addr">7946 Shelby Circle</div>
+                        <div class="specs">3 BR / 2F + 1H &middot; 2,656 SF &middot; Built 1991</div>
+                        <div class="feats"><span class="feat">Pool</span></div>
+                        <div class="mls">MLS R11148303</div>
+                        <div class="courtesy">Listing courtesy of Ari Albinder, The Keyes Company</div>
+                        <a class="link" href="https://bogenhomes.com/homes-for-sale-details/7946-SHELBY-CIRCLE-BOCA-RATON-FL-33496/R11148303/43/" target="_blank" rel="noopener">View on bogenhomes.com &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="top"><div class="price">$2,450,000</div></div>
+                    <div class="body">
+                        <div class="addr">17320 Loch Lomond Way</div>
+                        <div class="specs">3 BR / 4F &middot; 2,879 SF &middot; Built 1987</div>
+                        <div class="feats"><span class="feat">Waterfront</span><span class="feat">Pool</span></div>
+                        <div class="mls">MLS B26023491</div>
+                        <div class="courtesy">Listing courtesy of Michael B. Bloom &amp; Melanie Bloom Haym, Compass Florida</div>
+                        <a class="link" href="https://bogenhomes.com/homes-for-sale-details/17320-LOCH-LOMOND-WAY-BOCA-RATON-FL-33496/B26023491/43/" target="_blank" rel="noopener">View on bogenhomes.com &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="top"><div class="price">$3,200,000</div></div>
+                    <div class="body">
+                        <div class="addr">17844 Scarsdale Way</div>
+                        <div class="specs">4 BR / 4F &middot; 3,797 SF &middot; Built 1984</div>
+                        <div class="feats"><span class="feat">Pool</span></div>
+                        <div class="mls">MLS F10528126</div>
+                        <div class="courtesy">Listing courtesy of Allison G. Stewart, Compass Florida</div>
+                        <a class="link" href="https://bogenhomes.com/homes-for-sale-details/17844-SCARSDALE-WAY-BOCA-RATON-FL-33496/F10528126/43/" target="_blank" rel="noopener">View on bogenhomes.com &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="top"><div class="price">$4,395,000</div></div>
+                    <div class="body">
+                        <div class="addr">7215 Ballantrae Court</div>
+                        <div class="specs">3 BR / 3F + 1H &middot; 4,154 SF &middot; Built 1987</div>
+                        <div class="feats"><span class="feat">Pool</span></div>
+                        <div class="mls">MLS B26007905</div>
+                        <div class="courtesy">Listing courtesy of Michael B. Bloom &amp; Melanie Bloom Haym, Compass Florida</div>
+                        <a class="link" href="https://bogenhomes.com/homes-for-sale-details/7215-BALLANTRAE-COURT-BOCA-RATON-FL-33496/B26007905/43/" target="_blank" rel="noopener">View on bogenhomes.com &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="top"><div class="price">$5,850,000</div></div>
+                    <div class="body">
+                        <div class="addr">17730 Scarsdale Way</div>
+                        <div class="specs">7 BR / 8F + 1H &middot; 7,709 SF &middot; Built 2005</div>
+                        <div class="feats"><span class="feat">Waterfront</span><span class="feat">Pool</span></div>
+                        <div class="mls">MLS B26010857</div>
+                        <div class="courtesy">Listing courtesy of Shereen C. Randazza PA, Lang Realty/BR</div>
+                        <a class="link" href="https://bogenhomes.com/homes-for-sale-details/17730-SCARSDALE-WAY-BOCA-RATON-FL-33496/B26010857/43/" target="_blank" rel="noopener">View on bogenhomes.com &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="top"><div class="price">$7,999,999</div></div>
+                    <div class="body">
+                        <div class="addr">17787 Scarsdale Way</div>
+                        <div class="specs">5 BR / 6F + 2H &middot; 5,861 SF &middot; Built 2022</div>
+                        <div class="feats"><span class="feat">Pool</span></div>
+                        <div class="mls">MLS B26010941</div>
+                        <div class="courtesy">Listing courtesy of Warren Drucker, Keller Williams Realty Boca Raton</div>
+                        <a class="link" href="https://bogenhomes.com/homes-for-sale-details/17787-SCARSDALE-WAY-BOCA-RATON-FL-33496/B26010941/43/" target="_blank" rel="noopener">View on bogenhomes.com &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="top"><div class="price">$8,250,000</div><span class="badge new">New Listing</span></div>
+                    <div class="body">
+                        <div class="addr">7027 Queenferry Circle</div>
+                        <div class="specs">7 BR / 5F + 2H &middot; 7,553 SF &middot; Built 1990</div>
+                        <div class="feats"><span class="feat">Waterfront</span><span class="feat">Pool</span></div>
+                        <div class="mls">MLS # via BeachesMLS</div>
+                        <div class="courtesy">Listing courtesy of the listing brokerage of record, per BeachesMLS</div>
+                        <a class="link" href="https://www.bogenhomes.com" target="_blank" rel="noopener">View on bogenhomes.com &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="top"><div class="price">$8,400,000</div></div>
+                    <div class="body">
+                        <div class="addr">17661 Scarsdale Way</div>
+                        <div class="specs">5 BR / 6F + 2H &middot; 6,380 SF &middot; Built 2019</div>
+                        <div class="feats"><span class="feat">Pool</span></div>
+                        <div class="mls">MLS B26031007</div>
+                        <div class="courtesy">Listing courtesy of Paul Stuart Fishman &amp; Todd David Lipsich, Luxury Partners Realty</div>
+                        <a class="link" href="https://bogenhomes.com/homes-for-sale-details/17661-SCARSDALE-WAY-BOCA-RATON-FL-33496/B26031007/43/" target="_blank" rel="noopener">View on bogenhomes.com &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="top"><div class="price">$9,975,000</div></div>
+                    <div class="body">
+                        <div class="addr">17903 Foxborough Lane</div>
+                        <div class="specs">6 BR / 6F + 2H &middot; 7,615 SF &middot; Built 2026</div>
+                        <div class="feats"><span class="feat nc">New Construction</span><span class="feat">Pool</span></div>
+                        <div class="mls">MLS R11087609</div>
+                        <div class="courtesy">Listing courtesy of Michael B. Bloom &amp; Melanie Bloom Haym, Compass Florida</div>
+                        <a class="link" href="https://bogenhomes.com/homes-for-sale-details/17903-FOXBOROUGH-LANE-BOCA-RATON-FL-33496/R11087609/43/" target="_blank" rel="noopener">View on bogenhomes.com &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="top"><div class="price">$9,999,000</div></div>
+                    <div class="body">
+                        <div class="addr">17591 Scarsdale Way</div>
+                        <div class="specs">6 BR / 7F + 1H &middot; Size TBA &middot; Built 2027</div>
+                        <div class="feats"><span class="feat nc">New Construction</span></div>
+                        <div class="mls">MLS A11989389</div>
+                        <div class="courtesy">Listing courtesy of Solomon Yakoby, All Nations Realty of Florida</div>
+                        <a class="link" href="https://www.bogenhomes.com" target="_blank" rel="noopener">View on bogenhomes.com &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="top"><div class="price">$16,995,000</div></div>
+                    <div class="body">
+                        <div class="addr">17791 Saxony Court</div>
+                        <div class="specs">6 BR / 7F + 3H &middot; 12,162 SF &middot; Built 2004</div>
+                        <div class="feats"><span class="feat">Waterfront</span><span class="feat">Pool</span></div>
+                        <div class="mls">MLS B26032589</div>
+                        <div class="courtesy">Listing courtesy of Michael B. Bloom &amp; Melanie Bloom Haym, Compass Florida</div>
+                        <a class="link" href="https://bogenhomes.com/homes-for-sale-details/17791-SAXONY-COURT-BOCA-RATON-FL-33496/B26032589/43/" target="_blank" rel="noopener">View on bogenhomes.com &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="top"><div class="price">$19,975,000</div></div>
+                    <div class="body">
+                        <div class="addr">6960 Lake Estates Court</div>
+                        <div class="specs">5 BR / 6F + 2H &middot; 7,784 SF &middot; Built 2022</div>
+                        <div class="feats"><span class="feat">Waterfront</span><span class="feat">Pool</span></div>
+                        <div class="mls">MLS B26035087</div>
+                        <div class="courtesy">Listing courtesy of Michael B. Bloom &amp; Melanie Bloom Haym, Compass Florida</div>
+                        <a class="link" href="https://bogenhomes.com/homes-for-sale-details/6960-LAKE-ESTATES-COURT-BOCA-RATON-FL-33496/B26035087/43/" target="_blank" rel="noopener">View on bogenhomes.com &rarr;</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <p class="idx-disc">Listings displayed are sourced via IDX and remain the property of their respective listing brokerages, as noted on each card. Information is deemed reliable but not guaranteed and is subject to errors, omissions, prior sale, or withdrawal without notice. The Edmund Bogen Team is not the listing broker for these properties unless otherwise stated. For live photos and full details, search by MLS number at bogenhomes.com.</p>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta">
+        <h2>Where does your home sit in the new luxury capital?</h2>
+        <p>Whether you're weighing a sale, a purchase, or simply curious what the wealth migration means for your community, I'll show you exactly where your neighborhood sits in the data. No pressure, no hype — just the numbers.</p>
+        <a href="mailto:edmund@bogenhomes.com?subject=Where%20does%20my%20home%20sit%20in%20the%20data%3F">Start the Conversation &rarr;</a>
+    </div>
+
+    <!-- BIO -->
+    <div class="bio">
+        <img class="photo" src="bio.png" alt="Edmund Bogen">
+        <div>
+            <h4>About Edmund Bogen</h4>
+            <p>Edmund Bogen is the founder of The Edmund Bogen Team at Douglas Elliman Real Estate, specializing in luxury residential properties from Miami Beach to Palm Beach. A resident of St. Andrews Country Club in Boca Raton, Edmund brings an insider's perspective to South Florida's most prestigious communities, pairing market expertise with a deep understanding of the financial nuances of luxury home ownership. Contact Edmund at (561) 235-7575 or visit bogenhomes.com.</p>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p class="top">The Edmund Bogen Team | Douglas Elliman Real Estate | (561) 235-7575</p>
+        <p>1111 Lincoln Rd, Miami Beach, FL 33139 &bull; 305.695.6300</p>
+        <p>Community market data courtesy of BeachesMLS; information is deemed reliable but not guaranteed. National luxury figures drawn from Realtor.com Luxury Housing Market Trends &amp; Outlook 2026, Realtor.com monthly luxury reports, and the NAR 2025 International Transactions in U.S. Residential Real Estate report. This is not financial, tax, insurance, or legal advice. Equal Housing Opportunity.</p>
+        <p>&copy; 2026 Douglas Elliman Real Estate. All material presented herein is intended for information purposes only. While this information is believed to be correct, it is represented subject to errors, omissions, changes or withdrawal without notice.</p>
+    </footer>
+
+</body>
+</html>
