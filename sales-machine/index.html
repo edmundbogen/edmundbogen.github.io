@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Evergreen Sales Machine — Edmund's Mastermind</title>
+<meta name="description" content="Your best sales hour, cloned. Build an AI-run webinar funnel that registers, reminds, presents, handles objections, and books appointments 24/7. Live on Zoom with Edmund Bogen.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+    --navy:#1a3e5c;
+    --cyan:#00a8e1;
+    --white:#ffffff;
+    --light:#f4f4f4;
+    --gray:#333333;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+    font-family:'Montserrat',Helvetica,Arial,sans-serif;
+    color:var(--gray);
+    line-height:1.7;
+    font-size:17px;
+    background:var(--white);
+}
+img{max-width:100%;display:block;}
+
+/* ---------- NAV ---------- */
+.nav{
+    position:sticky;top:0;z-index:100;
+    background:var(--navy);
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 6vw;
+    box-shadow:0 2px 12px rgba(0,0,0,.18);
+}
+.nav .brand{
+    color:var(--white);font-weight:600;letter-spacing:.14em;font-size:13px;text-transform:uppercase;
+}
+.nav .brand span{color:var(--cyan);}
+.nav-actions{display:flex;gap:12px;align-items:center;}
+
+/* ---------- BUTTONS ---------- */
+.btn{
+    display:inline-block;text-decoration:none;text-transform:uppercase;
+    letter-spacing:.1em;font-weight:600;font-size:13px;
+    padding:15px 34px;border-radius:2px;transition:all .15s ease;cursor:pointer;
+    border:2px solid transparent;white-space:nowrap;
+}
+.btn-primary{background:var(--cyan);color:var(--white);}
+.btn-primary:hover{background:#0090c4;}
+.btn-outline{background:transparent;color:var(--white);border:2px solid var(--cyan);}
+.btn-outline:hover{background:var(--cyan);color:var(--white);}
+.btn-outline-navy{background:transparent;color:var(--navy);border:2px solid var(--cyan);}
+.btn-outline-navy:hover{background:var(--cyan);color:var(--white);}
+.btn-sm{padding:10px 20px;font-size:11px;}
+
+/* ---------- SECTIONS ---------- */
+section{padding:90px 6vw;}
+.section-dark{background:var(--navy);color:var(--white);}
+.section-light{background:var(--white);color:var(--gray);}
+.section-gray{background:var(--light);color:var(--gray);}
+.wrap{max-width:1080px;margin:0 auto;}
+
+.eyebrow{
+    color:var(--cyan);text-transform:uppercase;letter-spacing:.18em;font-weight:600;font-size:13px;
+    margin-bottom:18px;display:block;
+}
+h1{font-weight:300;font-size:clamp(34px,6vw,62px);line-height:1.08;letter-spacing:.01em;text-transform:uppercase;}
+h1 b{font-weight:700;color:var(--cyan);}
+h2{font-weight:300;font-size:clamp(26px,4vw,40px);line-height:1.15;text-transform:uppercase;letter-spacing:.03em;margin-bottom:22px;}
+.section-dark h2{color:var(--white);}
+.section-light h2,.section-gray h2{color:var(--navy);}
+h3{font-weight:600;font-size:20px;letter-spacing:.02em;margin-bottom:10px;}
+.section-dark h3{color:var(--cyan);}
+.section-light h3,.section-gray h3{color:var(--navy);}
+.lead{font-size:20px;font-weight:300;margin-bottom:14px;}
+p{margin-bottom:16px;}
+.accent-bar{width:54px;height:4px;background:var(--cyan);margin-bottom:26px;}
+
+/* ---------- HERO ---------- */
+.hero{
+    background:linear-gradient(180deg,#16344e 0%,var(--navy) 100%);
+    color:var(--white);padding:64px 6vw 80px;
+}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center;}
+.hero-img{border-radius:8px;overflow:hidden;box-shadow:0 16px 50px rgba(0,0,0,.4);border:1px solid rgba(0,168,225,.3);}
+.hero h1{margin-bottom:22px;}
+.hero .sub{font-size:19px;font-weight:300;color:#cfe4f0;margin-bottom:30px;max-width:34ch;}
+.date-cards{display:flex;gap:14px;margin-bottom:30px;flex-wrap:wrap;}
+.date-card{
+    background:rgba(255,255,255,.06);border-left:4px solid var(--cyan);
+    padding:14px 18px;border-radius:0 4px 4px 0;min-width:200px;
+}
+.date-card .label{color:var(--cyan);text-transform:uppercase;letter-spacing:.1em;font-size:11px;font-weight:600;}
+.date-card .day{font-size:18px;font-weight:600;color:#fff;margin-top:4px;}
+.date-card .time{font-size:14px;color:#cfe4f0;}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;}
+.note{font-size:13px;color:#9fc3d8;margin-top:16px;letter-spacing:.02em;}
+
+/* ---------- GRID CARDS ---------- */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:40px;}
+.card{
+    background:rgba(255,255,255,.05);border-top:4px solid var(--cyan);
+    padding:30px 26px;border-radius:0 0 6px 6px;
+}
+.section-light .card,.section-gray .card{background:var(--white);box-shadow:0 6px 22px rgba(26,62,92,.08);}
+.card .num{font-size:13px;font-weight:700;color:var(--cyan);letter-spacing:.12em;margin-bottom:12px;}
+.card p{font-size:15px;margin-bottom:0;}
+.section-dark .card p{color:#cfe4f0;}
+
+/* ---------- CHECKLIST ---------- */
+.checklist{display:grid;grid-template-columns:1fr 1fr;gap:14px 34px;margin-top:30px;list-style:none;}
+.checklist li{padding-left:34px;position:relative;font-size:16px;}
+.checklist li::before{
+    content:"";position:absolute;left:0;top:4px;width:18px;height:18px;border-radius:3px;
+    background:var(--cyan);
+}
+.checklist li::after{
+    content:"";position:absolute;left:6px;top:8px;width:5px;height:9px;border:solid #fff;
+    border-width:0 2px 2px 0;transform:rotate(45deg);
+}
+
+/* ---------- COMBOS TABLE ---------- */
+.combos{margin-top:34px;border-collapse:collapse;width:100%;}
+.combos th,.combos td{text-align:left;padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.14);font-size:15px;vertical-align:top;}
+.combos th{background:rgba(0,168,225,.18);color:var(--cyan);text-transform:uppercase;letter-spacing:.08em;font-size:12px;}
+.combos td:first-child{color:var(--cyan);font-weight:600;white-space:nowrap;}
+.combos .hero-row td{background:rgba(0,168,225,.08);}
+
+/* ---------- WORKBOOK BLOCK ---------- */
+.workbook-block{
+    background:var(--navy);color:#fff;border-radius:10px;
+    padding:50px 44px;display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:center;
+}
+.workbook-block h2{color:#fff;}
+.workbook-block .accent-bar{margin-bottom:18px;}
+.workbook-block p{color:#cfe4f0;font-size:16px;}
+.workbook-visual{
+    background:rgba(0,168,225,.12);border:2px dashed var(--cyan);border-radius:8px;
+    padding:40px 20px;text-align:center;color:var(--cyan);text-transform:uppercase;
+    letter-spacing:.1em;font-size:13px;font-weight:600;
+}
+
+/* ---------- CREDIBILITY ---------- */
+.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:34px;}
+.rule{border-left:4px solid var(--cyan);padding:8px 0 8px 20px;}
+.rule h3{margin-bottom:6px;}
+.rule p{font-size:15px;margin-bottom:0;color:#cfe4f0;}
+
+/* ---------- FINAL CTA ---------- */
+.final{text-align:center;}
+.final .date-cards{justify-content:center;}
+.final-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:30px;}
+
+/* ---------- FOOTER ---------- */
+footer{background:#12283b;color:#9fc3d8;text-align:center;padding:40px 6vw;font-size:13px;letter-spacing:.04em;}
+footer .tagline{color:var(--cyan);text-transform:uppercase;letter-spacing:.1em;font-weight:600;margin-bottom:10px;}
+footer .brand{color:#fff;letter-spacing:.12em;text-transform:uppercase;font-size:12px;margin-bottom:14px;}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:860px){
+    .hero .wrap{grid-template-columns:1fr;gap:34px;}
+    .hero-img{order:-1;}
+    .grid-3,.rules{grid-template-columns:1fr;}
+    .checklist{grid-template-columns:1fr;}
+    .workbook-block{grid-template-columns:1fr;padding:38px 28px;}
+    .nav .brand{font-size:11px;}
+    .nav-actions .btn:not(.btn-primary){display:none;}
+    section{padding:64px 6vw;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+    <div class="brand">EDMUND'S <span>MASTERMIND</span></div>
+    <div class="nav-actions">
+        <a class="btn btn-outline btn-sm" href="workbook.pdf" download>Download Workbook</a>
+        <a class="btn btn-primary btn-sm" href="https://edmundbogen.github.io/sales-machine/">Register</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+    <div class="wrap">
+        <div>
+            <span class="eyebrow">AI-Run Webinar &amp; Seminar Funnels · Live on Zoom</span>
+            <h1>The Evergreen<br>Sales Machine:<br><b>Your Best Hour, Cloned</b></h1>
+            <p class="sub">Record your best presentation once. Let it register, remind, present, handle objections, and book appointments — every night at 8 PM.</p>
+            <div class="date-cards">
+                <div class="date-card">
+                    <div class="label">Session 1</div>
+                    <div class="day">Wed, June 24, 2026</div>
+                    <div class="time">9:00 AM ET · 60 min</div>
+                </div>
+                <div class="date-card">
+                    <div class="label">Session 2</div>
+                    <div class="day">Fri, June 26, 2026</div>
+                    <div class="time">12:00 PM ET · 60 min</div>
+                </div>
+            </div>
+            <div class="hero-cta">
+                <a class="btn btn-primary" href="https://edmundbogen.github.io/sales-machine/">Register Now</a>
+                <a class="btn btn-outline" href="workbook.pdf" download>Download Workbook</a>
+            </div>
+            <p class="note">Two sessions, same content — pick the one that fits your week. Recording sent to all registrants.</p>
+        </div>
+        <div class="hero-img">
+            <img src="hero.png" alt="Turn Live Webinars Into Real Business — Edmund Bogen">
+        </div>
+    </div>
+</header>
+
+<!-- PROBLEM (light) -->
+<section class="section-light">
+    <div class="wrap">
+        <div class="accent-bar"></div>
+        <h2>Stop Renting Your Income<br>One Hour at a Time</h2>
+        <p class="lead">While you're still blocking your calendar to give the same listing presentation for the tenth time this month, a handful of agents recorded it <strong>once</strong> — and it now books appointments while they sleep.</p>
+        <p>The same buyer consultation. The same "what's my home worth" conversation. The same relocation overview. Word for word. Live. Over and over. Your time is the only thing you can't make more of — and you're spending it repeating yourself.</p>
+        <p>In 2026, AI funnel builders assemble the entire machine — registration page, reminder emails, replay, and an objection-handling chat agent — in a single sitting. The top operators aren't working harder. They built the asset once and let it work the night shift.</p>
+    </div>
+</section>
+
+<!-- 3 SYSTEMS (dark) -->
+<section class="section-dark">
+    <div class="wrap">
+        <div class="accent-bar"></div>
+        <h2>Three Systems. One 24/7 Machine.</h2>
+        <p class="lead" style="color:#cfe4f0;max-width:60ch;">You'll watch me build it live on screen — then leave with the exact prompts to do it yourself this week.</p>
+        <div class="grid-3">
+            <div class="card">
+                <div class="num">SYSTEM 01</div>
+                <h3>The Always-On Webinar Engine</h3>
+                <p>Record your best presentation once. The right platform hosts it on-demand and plays it like it's happening now — ethically labeled. Every prospect gets your A-game, not your tired Thursday version.</p>
+            </div>
+            <div class="card">
+                <div class="num">SYSTEM 02</div>
+                <h3>The AI Funnel Copywriter</h3>
+                <p>The registration page that converts strangers into registrants, plus a 5-email reminder sequence that actually gets them to show up — written for you by AI in minutes.</p>
+            </div>
+            <div class="card">
+                <div class="num">SYSTEM 03</div>
+                <h3>The 24/7 Objection Handler</h3>
+                <p>An AI chat agent trained on your offer that answers questions and handles objections during playback — then books the appointment at the exact peak of interest.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WHAT YOU'LL LEAVE WITH (gray) -->
+<section class="section-gray">
+    <div class="wrap">
+        <div class="accent-bar"></div>
+        <h2>What You'll Leave With</h2>
+        <ul class="checklist">
+            <li>One validated webinar topic for your business</li>
+            <li>A complete funnel outline generated on your topic</li>
+            <li>The exact non-technical build stack and CRM handoff</li>
+            <li>The reusable "Webinar-in-a-Day" master prompt</li>
+            <li>Three real estate combos + one for entrepreneurs</li>
+            <li>A measurable 7-day plan to get your link live</li>
+        </ul>
+    </div>
+</section>
+
+<!-- COMBOS (dark) -->
+<section class="section-dark">
+    <div class="wrap">
+        <div class="accent-bar"></div>
+        <h2>Plug-and-Play Topic &amp; Offer Combos</h2>
+        <p class="lead" style="color:#cfe4f0;max-width:60ch;">Pick one. Don't build four. Choose the one closest to the income you want next quarter.</p>
+        <table class="combos">
+            <tr><th>Combo</th><th>Webinar Topic</th><th>The Offer</th></tr>
+            <tr><td>A · Buyer</td><td>First-Time &amp; Move-Up Buyer Masterclass: How to Win in This Market</td><td>Book a buyer strategy consult</td></tr>
+            <tr class="hero-row"><td>B · Seller ★</td><td>What's My Home <em>Really</em> Worth in This Market?</td><td>Book a listing appointment / valuation</td></tr>
+            <tr><td>C · Relocation</td><td>Relocating to Florida: The Out-of-State Buyer's Playbook</td><td>Book a relocation consult</td></tr>
+            <tr><td>D · Entrepreneur</td><td>Your Signature Masterclass</td><td>Sell a service or course</td></tr>
+        </table>
+        <p style="margin-top:24px;color:#9fc3d8;font-size:15px;">★ The seller workshop is the highest-leverage play for most agents — sellers searching "what's my home worth" are your most valuable, most underserved audience.</p>
+    </div>
+</section>
+
+<!-- CREDIBILITY (gray) -->
+<section class="section-gray">
+    <div class="wrap">
+        <div class="accent-bar"></div>
+        <h2>The Credibility Rules</h2>
+        <p class="lead">The discipline that separates the pros from the spammers isn't technical — it's ethical. Fake "live" countdowns and a 40-minute pitch disguised as a teach will torch your brand.</p>
+        <div class="rules">
+            <div class="rule" style="border-color:var(--cyan);"><h3>Label It On-Demand</h3><p style="color:var(--gray);">Honest framing converts better long-term and protects your name.</p></div>
+            <div class="rule" style="border-color:var(--cyan);"><h3>Teach Real Value</h3><p style="color:var(--gray);">Give them a genuine win even if they never buy.</p></div>
+            <div class="rule" style="border-color:var(--cyan);"><h3>Let The Offer Earn It</h3><p style="color:var(--gray);">Value first. The pitch is the natural next step, not the whole show.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- WORKBOOK DOWNLOAD (light) -->
+<section class="section-light">
+    <div class="wrap">
+        <div class="workbook-block">
+            <div>
+                <div class="accent-bar"></div>
+                <h2>Get The Implementation Workbook</h2>
+                <p>15 pages of teaching, copy-paste prompts, worksheets, the full 7-day build plan, and the "Webinar-in-a-Day" master prompt. Download it before the session and bring it live.</p>
+                <a class="btn btn-primary" href="workbook.pdf" download style="margin-top:8px;">Download Workbook</a>
+            </div>
+            <div class="workbook-visual">
+                📘<br><br>The Evergreen<br>Sales Machine<br>Implementation<br>Workbook<br><br>PDF · 15 Pages
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FINAL CTA (dark) -->
+<section class="section-dark final">
+    <div class="wrap">
+        <div class="accent-bar" style="margin:0 auto 26px;"></div>
+        <h2>Own A Sales Machine<br>Instead Of Being One</h2>
+        <p class="lead" style="color:#cfe4f0;max-width:54ch;margin:0 auto 26px;">Build the asset once. Let AI register, remind, present, and close around the clock. Reserve your seat at one of the two live sessions.</p>
+        <div class="date-cards">
+            <div class="date-card">
+                <div class="label">Session 1</div>
+                <div class="day">Wed, June 24, 2026</div>
+                <div class="time">9:00 AM ET · on Zoom</div>
+            </div>
+            <div class="date-card">
+                <div class="label">Session 2</div>
+                <div class="day">Fri, June 26, 2026</div>
+                <div class="time">12:00 PM ET · on Zoom</div>
+            </div>
+        </div>
+        <div class="final-cta">
+            <a class="btn btn-primary" href="https://edmundbogen.github.io/sales-machine/">Register Now</a>
+            <a class="btn btn-outline" href="workbook.pdf" download>Download Workbook</a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="tagline">Because Trading Time for Dollars is NOT an Option</div>
+    <div class="brand">Edmund Bogen &amp; Team · Edmund's Mastermind &amp; Group Coaching</div>
+    <div>Edmund's Mastermind &nbsp;|&nbsp; Bogen.ai &nbsp;|&nbsp; Prompt to Close</div>
+</footer>
+
+<script>
+    // Skill rule: landing pages must open at the top.
+    history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+</script>
+</body>
+</html>

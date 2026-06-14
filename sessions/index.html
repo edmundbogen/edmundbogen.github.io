@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session Library — Edmund's Mastermind</title>
+<meta name="description" content="Every Edmund's Mastermind session in one place — upcoming live sessions and the on-demand library. AI-forward training for realtors, entrepreneurs, and small-business owners.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+    --navy:#1a3e5c;
+    --cyan:#00a8e1;
+    --white:#ffffff;
+    --light:#f4f4f4;
+    --gray:#333333;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Montserrat',Helvetica,Arial,sans-serif;color:var(--gray);line-height:1.7;font-size:17px;background:var(--white);}
+img{max-width:100%;display:block;}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:var(--navy);display:flex;align-items:center;justify-content:space-between;padding:14px 6vw;box-shadow:0 2px 12px rgba(0,0,0,.18);}
+.nav .brand{color:var(--white);font-weight:600;letter-spacing:.14em;font-size:13px;text-transform:uppercase;}
+.nav .brand span{color:var(--cyan);}
+
+/* BUTTONS */
+.btn{display:inline-block;text-decoration:none;text-transform:uppercase;letter-spacing:.1em;font-weight:600;font-size:12px;padding:12px 24px;border-radius:2px;transition:all .15s ease;cursor:pointer;border:2px solid transparent;white-space:nowrap;text-align:center;}
+.btn-primary{background:var(--cyan);color:var(--white);}
+.btn-primary:hover{background:#0090c4;}
+.btn-outline-navy{background:transparent;color:var(--navy);border:2px solid var(--cyan);}
+.btn-outline-navy:hover{background:var(--cyan);color:var(--white);}
+
+/* HERO */
+.hero{background:linear-gradient(180deg,#16344e 0%,var(--navy) 100%);color:var(--white);padding:72px 6vw 64px;text-align:center;}
+.hero .eyebrow{color:var(--cyan);text-transform:uppercase;letter-spacing:.18em;font-weight:600;font-size:13px;margin-bottom:18px;display:block;}
+.hero h1{font-weight:300;font-size:clamp(34px,6vw,58px);line-height:1.08;text-transform:uppercase;letter-spacing:.02em;}
+.hero h1 b{font-weight:700;color:var(--cyan);}
+.hero p{font-size:19px;font-weight:300;color:#cfe4f0;max-width:60ch;margin:22px auto 0;}
+.accent-bar{width:54px;height:4px;background:var(--cyan);margin:0 auto 26px;}
+
+/* TABS */
+.tabs{display:flex;gap:0;justify-content:center;background:var(--light);position:sticky;top:54px;z-index:90;padding:0 6vw;border-bottom:1px solid #e0e0e0;}
+.tab{appearance:none;background:none;border:none;font-family:inherit;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#7a8a96;padding:20px 26px;cursor:pointer;border-bottom:3px solid transparent;transition:all .15s ease;}
+.tab.active{color:var(--navy);border-bottom-color:var(--cyan);}
+.tab:hover{color:var(--navy);}
+
+/* GRID */
+.grid-section{background:var(--light);padding:54px 6vw 90px;min-height:50vh;}
+.grid{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:30px;}
+.empty{max-width:1140px;margin:0 auto;text-align:center;color:#7a8a96;padding:60px 0;font-weight:300;font-size:18px;}
+
+/* CARD */
+.card{background:var(--white);border-radius:8px;overflow:hidden;box-shadow:0 6px 24px rgba(26,62,92,.10);display:flex;flex-direction:column;transition:transform .15s ease,box-shadow .15s ease;}
+.card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(26,62,92,.16);}
+.card-thumb{aspect-ratio:1200/628;width:100%;object-fit:cover;background:var(--navy);}
+.card-thumb-fallback{aspect-ratio:1200/628;width:100%;background:linear-gradient(135deg,#16344e,#1a3e5c);display:flex;align-items:center;justify-content:center;text-align:center;color:var(--cyan);text-transform:uppercase;letter-spacing:.08em;font-weight:600;font-size:14px;padding:20px;}
+.card-body{padding:24px 24px 26px;display:flex;flex-direction:column;flex:1;}
+.pill{align-self:flex-start;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:20px;margin-bottom:12px;}
+.pill-upcoming{background:var(--cyan);color:#fff;}
+.pill-ondemand{background:#e3f2fb;color:var(--navy);}
+.pill-archived{background:#e8e8e8;color:#7a8a96;}
+.card h3{font-weight:600;font-size:20px;color:var(--navy);margin-bottom:8px;line-height:1.25;}
+.card .dates{font-size:13px;color:var(--cyan);font-weight:600;letter-spacing:.02em;margin-bottom:12px;}
+.card .blurb{font-size:14.5px;color:var(--gray);margin-bottom:20px;flex:1;}
+.card-actions{display:flex;gap:10px;}
+.card-actions .btn{flex:1;}
+
+/* FOOTER */
+footer{background:#12283b;color:#9fc3d8;text-align:center;padding:40px 6vw;font-size:13px;letter-spacing:.04em;}
+footer .tagline{color:var(--cyan);text-transform:uppercase;letter-spacing:.1em;font-weight:600;margin-bottom:10px;}
+footer .brand{color:#fff;letter-spacing:.12em;text-transform:uppercase;font-size:12px;margin-bottom:14px;}
+
+@media(max-width:900px){.grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:620px){.grid{grid-template-columns:1fr;}.tab{padding:18px 16px;font-size:12px;}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+    <div class="brand">EDMUND'S <span>MASTERMIND</span></div>
+    <a class="btn btn-primary" href="https://bogen.ai" style="font-size:11px;padding:9px 18px;">Bogen.ai</a>
+</nav>
+
+<header class="hero">
+    <div class="accent-bar"></div>
+    <span class="eyebrow">Edmund's Mastermind &amp; Group Coaching</span>
+    <h1>The Session <b>Library</b></h1>
+    <p>Every mastermind session in one place — upcoming live sessions and the growing on-demand library. AI-forward training for realtors, entrepreneurs, and small-business owners.</p>
+</header>
+
+<div class="tabs">
+    <button class="tab active" data-filter="upcoming" id="tab-upcoming">Upcoming</button>
+    <button class="tab" data-filter="ondemand" id="tab-ondemand">On-Demand Library</button>
+</div>
+
+<section class="grid-section">
+    <div class="grid" id="grid"></div>
+    <div class="empty" id="empty" style="display:none;"></div>
+</section>
+
+<footer>
+    <div class="tagline">Because Trading Time for Dollars is NOT an Option</div>
+    <div class="brand">Edmund Bogen &amp; Team · Edmund's Mastermind &amp; Group Coaching</div>
+    <div>Edmund's Mastermind &nbsp;|&nbsp; Bogen.ai &nbsp;|&nbsp; Prompt to Close</div>
+</footer>
+
+<script>
+// Skill rule: open at the top.
+history.scrollRestoration = 'manual';
+window.scrollTo(0, 0);
+
+const grid = document.getElementById('grid');
+const empty = document.getElementById('empty');
+let SESSIONS = [];
+let currentFilter = 'upcoming';
+
+// Derive live status from dates (manifest 'archived' always wins).
+function effectiveStatus(s){
+    if(s.status === 'archived') return 'archived';
+    const last = (s.dates && s.dates.length) ? new Date(s.dates[s.dates.length-1]) : null;
+    if(!last) return s.status || 'ondemand';
+    // Treat as upcoming until the last session's day has passed.
+    return (last.getTime() + 3*3600*1000) > Date.now() ? 'upcoming' : 'ondemand';
+}
+
+function fmtDates(s){
+    if(!s.dates || !s.dates.length) return 'On-Demand';
+    const opts = {weekday:'short', month:'short', day:'numeric', hour:'numeric', minute:'2-digit', timeZone:'America/New_York'};
+    return s.dates.map(d => new Date(d).toLocaleString('en-US', opts).replace(',', '') + ' ET').join('  ·  ');
+}
+
+function pill(status){
+    if(status==='upcoming') return '<span class="pill pill-upcoming">Upcoming</span>';
+    if(status==='archived') return '<span class="pill pill-archived">Archived</span>';
+    return '<span class="pill pill-ondemand">On-Demand</span>';
+}
+
+function cardHTML(s){
+    const status = effectiveStatus(s);
+    const dateLine = status==='upcoming' ? fmtDates(s) : 'Available on-demand';
+    const regLabel = status==='upcoming' ? 'Register' : 'Watch';
+    const thumb = s.hero
+        ? `<img class="card-thumb" src="${s.hero}" alt="${s.title}" onerror="this.outerHTML='<div class=\\'card-thumb-fallback\\'>${s.title.replace(/'/g,'')}</div>'">`
+        : `<div class="card-thumb-fallback">${s.title}</div>`;
+    const workbookBtn = s.workbook ? `<a class="btn btn-outline-navy" href="${s.workbook}" download>Workbook</a>` : '';
+    return `<article class="card">
+        ${thumb}
+        <div class="card-body">
+            ${pill(status)}
+            <h3>${s.title}</h3>
+            <div class="dates">${dateLine}</div>
+            <p class="blurb">${s.blurb||''}</p>
+            <div class="card-actions">
+                <a class="btn btn-primary" href="${s.register}">${regLabel}</a>
+                ${workbookBtn}
+            </div>
+        </div>
+    </article>`;
+}
+
+function render(){
+    const want = currentFilter; // 'upcoming' | 'ondemand'
+    const list = SESSIONS.filter(s => {
+        const st = effectiveStatus(s);
+        return want==='upcoming' ? st==='upcoming' : (st==='ondemand' || st==='archived');
+    });
+    if(list.length === 0){
+        grid.innerHTML = '';
+        empty.style.display = 'block';
+        empty.textContent = want==='upcoming'
+            ? 'No live sessions scheduled right now — check the On-Demand Library.'
+            : 'The on-demand library is filling up. Check back soon.';
+    } else {
+        empty.style.display = 'none';
+        grid.innerHTML = list.map(cardHTML).join('');
+    }
+}
+
+document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+    currentFilter = t.dataset.filter;
+    render();
+}));
+
+// Single source of truth: the append-only manifest.
+fetch('sessions.json')
+    .then(r => r.json())
+    .then(data => { SESSIONS = data; render(); })
+    .catch(() => {
+        empty.style.display = 'block';
+        empty.textContent = 'Could not load sessions.json.';
+    });
+</script>
+</body>
+</html>

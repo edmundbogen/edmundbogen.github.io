@@ -1,0 +1,15 @@
+[
+  {
+    "slug": "sales-machine",
+    "title": "The Evergreen Sales Machine",
+    "blurb": "Your best sales hour, cloned \u2014 build an AI-run webinar funnel that registers, reminds, presents, handles objections, and books appointments 24/7.",
+    "hero": "https://edmundbogen.github.io/sales-machine/hero.png",
+    "dates": [
+      "2026-06-24T09:00:00-04:00",
+      "2026-06-26T12:00:00-04:00"
+    ],
+    "status": "upcoming",
+    "register": "https://edmundbogen.github.io/sales-machine/",
+    "workbook": "https://edmundbogen.github.io/sales-machine/workbook.pdf"
+  }
+]
