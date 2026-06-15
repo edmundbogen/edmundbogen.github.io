@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Destination Florida Live — Founding Agent Brief</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  :root { --maxw: 1100px; --radius: 16px; --shadow: 0 10px 40px rgba(0,0,0,.16); }
+  html[data-theme="dark"] {
+    --bg:#0a1420; --bg2:#0f1d2c; --panel:#122537; --panel2:#16314a; --line:#213a52;
+    --text:#eaf1f8; --muted:#93a8bd; --accent:#2dd4bf; --accent2:#38bdf8; --gold:#f4b860;
+    --coral:#ff7a6b; --green:#4ade80; --red:#fb7185; --grid:rgba(255,255,255,.07);
+  }
+  html[data-theme="light"] {
+    --bg:#eef4fa; --bg2:#e3edf6; --panel:#ffffff; --panel2:#f4f8fc; --line:#d7e2ee;
+    --text:#0e2233; --muted:#5a6b7a; --accent:#0d9488; --accent2:#0284c7; --gold:#c98a2b;
+    --coral:#e0573f; --green:#16a34a; --red:#dc2626; --grid:rgba(10,30,50,.08);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg); color:var(--text); line-height:1.6; -webkit-font-smoothing:antialiased;
+    transition:background .3s ease,color .3s ease; }
+  a { color: var(--accent2); }
+
+  /* GATE */
+  #gate { position:fixed; inset:0; z-index:9999; background:linear-gradient(160deg,var(--bg),var(--bg2));
+    display:flex; align-items:center; justify-content:center; flex-direction:column; padding:24px; text-align:center; }
+  #gate .card { background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:40px 34px; max-width:420px; width:100%; box-shadow:var(--shadow); }
+  #gate .badge { color:var(--gold); letter-spacing:3px; font-size:12px; font-weight:700; text-transform:uppercase; }
+  #gate h1 { font-size:26px; margin:12px 0 6px; }
+  #gate p { color:var(--muted); font-size:14px; margin:0 0 22px; }
+  #gate input { width:100%; padding:14px 16px; font-size:16px; border-radius:10px; border:1px solid var(--line);
+    background:var(--panel2); color:var(--text); margin-bottom:12px; outline:none; }
+  #gate input:focus { border-color:var(--accent); }
+  #gate button { width:100%; padding:14px; font-size:15px; font-weight:700; cursor:pointer; border:none;
+    border-radius:10px; color:#06121d; background:linear-gradient(90deg,var(--accent),var(--accent2)); }
+  #gate .err { color:var(--coral); font-size:13px; height:18px; margin-top:10px; }
+  body.locked { overflow:hidden; }
+  #app { display:none; }
+  body.unlocked #app { display:block; }
+  body.unlocked #gate { display:none; }
+
+  /* HEADER */
+  header.bar { position:sticky; top:0; z-index:50; backdrop-filter:blur(10px);
+    background:color-mix(in srgb,var(--bg) 82%,transparent); border-bottom:1px solid var(--line); }
+  .bar-in { max-width:var(--maxw); margin:0 auto; padding:12px 20px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+  .brand { font-weight:800; letter-spacing:.3px; font-size:15px; }
+  .brand span { color:var(--accent); }
+  .nav { display:flex; gap:18px; font-size:13px; }
+  .nav a { color:var(--muted); text-decoration:none; }
+  .nav a:hover { color:var(--text); }
+  .toggle { cursor:pointer; border:1px solid var(--line); background:var(--panel); color:var(--text);
+    border-radius:999px; padding:7px 14px; font-size:13px; font-weight:600; display:inline-flex; align-items:center; gap:7px; }
+  @media (max-width:760px){ .nav { display:none; } }
+
+  .wrap { max-width:var(--maxw); margin:0 auto; padding:0 20px; }
+  section { padding:64px 0; border-bottom:1px solid var(--line); }
+  .eyebrow { color:var(--gold); font-weight:700; letter-spacing:2px; text-transform:uppercase; font-size:12px; margin-bottom:12px; }
+  h2 { font-size:clamp(24px,4vw,36px); line-height:1.15; margin:0 0 14px; }
+  h3 { font-size:19px; margin:26px 0 10px; }
+  p.lead { font-size:18px; color:var(--muted); max-width:780px; }
+  .muted { color:var(--muted); }
+
+  .hero { padding:70px 0 60px; background:radial-gradient(1200px 500px at 80% -10%, color-mix(in srgb,var(--accent) 18%,transparent), transparent 60%); }
+  .hero h1 { font-size:clamp(32px,5.5vw,56px); line-height:1.05; margin:14px 0 18px; letter-spacing:-1px; }
+  .hero h1 em { font-style:normal; background:linear-gradient(90deg,var(--accent),var(--gold)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .hero p { font-size:19px; color:var(--muted); max-width:720px; }
+  .cta-row { display:flex; gap:12px; flex-wrap:wrap; margin-top:28px; }
+  .btn { display:inline-block; padding:14px 24px; border-radius:12px; font-weight:700; font-size:15px; text-decoration:none; cursor:pointer; border:1px solid transparent; }
+  .btn.primary { background:linear-gradient(90deg,var(--accent),var(--accent2)); color:#06121d; }
+  .btn.ghost { background:transparent; border-color:var(--line); color:var(--text); }
+
+  .stats { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:40px; }
+  .stat { background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:20px; }
+  .stat .n { font-size:30px; font-weight:800; color:var(--accent); line-height:1; }
+  .stat .l { font-size:13px; color:var(--muted); margin-top:8px; }
+  @media (max-width:820px){ .stats { grid-template-columns:repeat(2,1fr); } }
+
+  .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  .grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+  .grid4 { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+  @media (max-width:860px){ .grid2,.grid3,.grid4 { grid-template-columns:1fr; } }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:24px; }
+  .card h3 { margin-top:0; }
+  .card .tag { font-size:12px; font-weight:700; color:var(--gold); text-transform:uppercase; letter-spacing:1px; }
+
+  .chartbox { background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:22px; }
+  .chartbox h4 { margin:0 0 4px; font-size:16px; }
+  .chartbox .sub { font-size:12.5px; color:var(--muted); margin-bottom:14px; }
+  .canvas-wrap { position:relative; height:300px; }
+  .canvas-wrap.tall { height:380px; }
+  .src { font-size:11px; color:var(--muted); margin-top:12px; font-style:italic; }
+
+  table { width:100%; border-collapse:collapse; font-size:13.5px; }
+  th, td { text-align:left; padding:11px 12px; border-bottom:1px solid var(--line); }
+  th { color:var(--muted); font-size:12px; text-transform:uppercase; letter-spacing:.5px; }
+  td strong { color:var(--text); }
+  .scroll { overflow-x:auto; }
+  tr.region td { background:var(--panel2); color:var(--accent); font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:11.5px; }
+
+  ul.clean { list-style:none; padding:0; margin:14px 0 0; }
+  ul.clean li { padding:9px 0 9px 28px; position:relative; border-bottom:1px solid var(--line); }
+  ul.clean li:before { content:"→"; position:absolute; left:0; color:var(--accent); font-weight:700; }
+  .pill { display:inline-block; background:var(--panel2); border:1px solid var(--line); border-radius:999px; padding:6px 14px; font-size:13px; margin:4px 6px 4px 0; }
+  .pill.me { border-color:var(--gold); color:var(--gold); }
+
+  .tl { position:relative; margin-top:20px; padding-left:26px; }
+  .tl:before { content:""; position:absolute; left:7px; top:6px; bottom:6px; width:2px; background:var(--line); }
+  .tl .step { position:relative; padding:0 0 26px 0; }
+  .tl .step:before { content:""; position:absolute; left:-26px; top:4px; width:14px; height:14px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 25%,transparent); }
+  .tl .step h4 { margin:0 0 4px; font-size:16px; }
+  .tl .step .when { color:var(--gold); font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1px; }
+
+  .callout { background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 14%,var(--panel)),var(--panel)); border:1px solid var(--accent); border-radius:var(--radius); padding:26px; }
+  .warn { background:color-mix(in srgb,var(--gold) 12%,var(--panel)); border:1px solid var(--gold); border-radius:12px; padding:18px 20px; font-size:14px; }
+  .big-price { font-size:54px; font-weight:800; color:var(--gold); line-height:1; }
+
+  footer { padding:50px 0 70px; color:var(--muted); font-size:13px; }
+  footer .disc { font-size:12px; line-height:1.7; border-top:1px solid var(--line); padding-top:22px; margin-top:22px; }
+  .two-col { columns:2; column-gap:30px; }
+  @media (max-width:760px){ .two-col { columns:1; } }
+  .num-badge { display:inline-flex; width:28px; height:28px; border-radius:8px; background:var(--panel2); border:1px solid var(--line); color:var(--accent); font-weight:800; align-items:center; justify-content:center; font-size:14px; margin-right:10px; }
+  .edition { display:flex; gap:14px; align-items:flex-start; padding:14px 0; border-bottom:1px solid var(--line); }
+  .edition .m { font-weight:800; color:var(--accent2); min-width:64px; }
+</style>
+</head>
+<body class="locked">
+
+<!-- ===================== GATE ===================== -->
+<div id="gate">
+  <div class="card">
+    <div class="badge">Confidential — Founding Agent Brief</div>
+    <h1>Destination Florida <span style="color:var(--accent)">Live</span></h1>
+    <p>This is a private partnership proposal. Enter the access code Edmund shared with you.</p>
+    <input id="pw" type="password" placeholder="Access code" autocomplete="off" />
+    <button onclick="tryUnlock()">Unlock the Brief</button>
+    <div class="err" id="err"></div>
+  </div>
+</div>
+
+<!-- ===================== APP ===================== -->
+<div id="app">
+
+  <header class="bar">
+    <div class="bar-in">
+      <div class="brand">Destination Florida <span>Live</span></div>
+      <nav class="nav">
+        <a href="#why">Why Now</a>
+        <a href="#model">The Model</a>
+        <a href="#markets">13 Markets</a>
+        <a href="#website">Your Website</a>
+        <a href="#economics">Economics</a>
+        <a href="#timeline">Launch</a>
+      </nav>
+      <button class="toggle" onclick="toggleTheme()"><span id="themeIcon">☀️</span><span id="themeLabel">Light</span></button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap">
+      <div class="eyebrow">A founding-cohort proposal from Edmund Bogen</div>
+      <h1>Let's put <em>all of Florida</em> on one stage — and split the cost 13 ways.</h1>
+      <p>A recurring statewide webinar that helps out-of-state buyers and sellers choose where in Florida to land. One specialist per market, from Jacksonville to Miami. You bring your city and your sphere, contribute $1,000 to the founding pool, and keep every buyer who picks your market. I build the engine — and a website with each of you.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="#markets">See the 13 markets →</a>
+        <a class="btn ghost" href="#economics">How the money works</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="n">13</div><div class="l">Markets, one shared lead engine — claim yours before it's taken</div></div>
+        <div class="stat"><div class="n">$1,000</div><div class="l">Founding buy-in per market (includes your own market website)</div></div>
+        <div class="stat"><div class="n">~$13K</div><div class="l">Pooled launch war chest — funds sites, ads & the platform</div></div>
+        <div class="stat"><div class="n">14–30%</div><div class="l">Close rate on relocation / referral leads vs. 0.4–1.5% for portal leads</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHY NOW -->
+  <section id="why">
+    <div class="wrap">
+      <div class="eyebrow">Why this works right now</div>
+      <h2>Florida's relocation story is real — and there's a deadline attached to it.</h2>
+      <p class="lead">No state income tax. A 3% Save Our Homes assessment cap with portability. And a property-tax measure on the November ballot that creates genuine, honest urgency for movers — without us ever promising a tax outcome.</p>
+
+      <div class="grid2" style="margin-top:30px;">
+        <div class="chartbox">
+          <h4>Florida cities dominate the U-Haul growth map</h4>
+          <div class="sub">Share of the 2025 U-Haul Top-25 Growth Index that is a Florida city (released Jan 5, 2026).</div>
+          <div class="canvas-wrap"><canvas id="cMigShare"></canvas></div>
+          <div class="src">Source: U-Haul 2025 Growth Index — FL #2 nationally; Ocala #1, North Port #2, Kissimmee #4, Clermont #5.</div>
+        </div>
+        <div class="chartbox">
+          <h4>But the window is cooling — that's the point</h4>
+          <div class="sub">Florida net domestic migration, thousands per year. Slowing from the pandemic peak.</div>
+          <div class="canvas-wrap"><canvas id="cMigTrend"></canvas></div>
+          <div class="src">Source: U.S. Census Bureau population estimates (Vintage 2024/2025). Growth now leans on international migration — message honestly.</div>
+        </div>
+      </div>
+
+      <div class="callout" style="margin-top:24px;">
+        <h3 style="margin-top:0;">The honest urgency hook: the homestead clock</h3>
+        <p class="muted" style="margin-bottom:0;">On <strong>June 2, 2026</strong> the Florida Legislature passed <strong>HJR&nbsp;1-F</strong>. If at least 60% of voters approve it on the <strong>November 3 ballot</strong>, the homestead exemption (non-school taxes) rises from $50,000 to <strong>$150,000 in 2027</strong> and <strong>$250,000 in 2028</strong>. The catch our buyers need to hear: people who establish Florida residency <strong>after December 31, 2026</strong> face a multi-year wait (reported four years) before they qualify for the full exemption. A clean, factual reason to plan a move now — presented as a <em>pending</em> ballot measure, never a guarantee, always "consult your CPA."</p>
+      </div>
+      <p class="src" style="margin-top:14px;">Sources: <a href="https://www.floridarealtors.org/news-media/news-articles/2026/06/property-tax-amendment-heads-voters">Florida Realtors</a>, <a href="https://www.foxbusiness.com/real-estate/florida-homeowners-may-get-huge-tax-newcomers-face-major-catch">Fox Business</a>, <a href="https://www.flsenate.gov">Florida Senate</a>. Not legal or tax advice.</p>
+    </div>
+  </section>
+
+  <!-- THE MODEL -->
+  <section id="model">
+    <div class="wrap">
+      <div class="eyebrow">The model</div>
+      <h2>One engine, thirteen markets, rotating live panels.</h2>
+      <p class="lead">Relocating buyers choose a <em>region</em> before a <em>house</em> — often before an agent. A statewide "choose your destination" event matches how they actually shop. You can't put 13 people live in one hour, so here's how it really runs:</p>
+
+      <div class="grid3" style="margin-top:28px;">
+        <div class="card"><div class="tag">Always-on</div><h3>The lead engine never sleeps</h3><p class="muted">One registration funnel + 13 market websites + the shared CRM run every day. A registrant picks their city on the form and routes straight to that market's agent — every month, regardless of who's on stage.</p></div>
+        <div class="card"><div class="tag">Rotating</div><h3>Tight 4-market live editions</h3><p class="muted">Each monthly webinar features up to 4 specialists on a published calendar, so no event is crowded and every market gets the live spotlight on rotation (roughly quarterly).</p></div>
+        <div class="card"><div class="tag">13× reach</div><h3>Thirteen spheres, one budget</h3><p class="muted">Every co-host promotes to their own database. Thirteen spheres beat any ad budget — and your lowest-cost registrations come from people who already trust one of us.</p></div>
+      </div>
+
+      <h3 style="margin-top:38px;">A sample rotation (every market live within a quarter)</h3>
+      <div class="card">
+        <div class="edition"><div class="m">Month 1</div><div><strong>Gold Coast Edition</strong> — Miami · Fort Lauderdale · Boca Raton · Delray Beach</div></div>
+        <div class="edition"><div class="m">Month 2</div><div><strong>Palm Beaches & Treasure Coast Edition</strong> — Palm Beach · Boynton Beach · Port St. Lucie · Stuart</div></div>
+        <div class="edition"><div class="m">Month 3</div><div><strong>Gulf, Central & North Edition</strong> — Tampa · St. Petersburg · Orlando · Jacksonville</div></div>
+        <div class="edition" style="border-bottom:none;"><div class="m">Always</div><div class="muted">Deerfield Beach and every other market keep capturing & routing leads through the funnel and their own websites — live spotlight rotates back next cycle.</div></div>
+      </div>
+
+      <div class="grid2" style="margin-top:30px;">
+        <div class="chartbox">
+          <h4>The numbers behind modern webinars are stronger than people think</h4>
+          <div class="sub">2025 benchmarks. Engagement is durable; half of all attendance is now on-demand replay.</div>
+          <div class="canvas-wrap"><canvas id="cWebinar"></canvas></div>
+          <div class="src">Sources: Livestorm 2026 Benchmark Report (51.3% avg show-up, 2025); ON24 2025 (50% on-demand share, 51-min avg watch time).</div>
+        </div>
+        <div class="chartbox">
+          <h4>Half of your registrations arrive in the final week</h4>
+          <div class="sub">When registrants actually sign up — which is why we promote hard right up to start time.</div>
+          <div class="canvas-wrap"><canvas id="cTiming"></canvas></div>
+          <div class="src">Source: Livestorm 2026 — ~50% register in the final week, 15.3% on event day.</div>
+        </div>
+      </div>
+
+      <div class="warn" style="margin-top:24px;">
+        <strong>Set expectations honestly:</strong> the 51% show-up figure is a B2B benchmark. Cold consumer traffic typically lands <strong>35–45%</strong>; a disciplined email + SMS reminder sequence pulls us toward the top of that range. We plan for 40–45% and treat anything above it as upside.
+      </div>
+    </div>
+  </section>
+
+  <!-- THE 13 MARKETS -->
+  <section id="markets">
+    <div class="wrap">
+      <div class="eyebrow">The thirteen markets</div>
+      <h2>Thirteen Floridas, thirteen buyers — that's why comparison sells.</h2>
+      <p class="lead">These markets diverge sharply on age, income, price, and growth. Side-by-side, that contrast is exactly what makes the event useful to a buyer who hasn't decided yet. Every figure below is from U.S. Census QuickFacts (county level, ACS 2019–2023 / Vintage 2024).</p>
+
+      <div style="margin-top:24px;">
+        <span class="pill me">Boca Raton — Edmund (host)</span>
+        <span class="pill">Miami</span><span class="pill">Fort Lauderdale</span><span class="pill">Delray Beach</span>
+        <span class="pill">Boynton Beach</span><span class="pill">Deerfield Beach</span><span class="pill">Palm Beach</span>
+        <span class="pill">Port St. Lucie</span><span class="pill">Stuart</span><span class="pill">Orlando</span>
+        <span class="pill">St. Petersburg</span><span class="pill">Tampa</span><span class="pill">Jacksonville</span>
+      </div>
+
+      <div class="grid2" style="margin-top:30px;">
+        <div class="chartbox">
+          <h4>Population growth since the 2020 Census</h4>
+          <div class="sub">By county. The markets are <em>not</em> all booming — and that's a feature; we match buyers to the right one.</div>
+          <div class="canvas-wrap tall"><canvas id="cGrowth"></canvas></div>
+          <div class="src">Source: U.S. Census Bureau, Vintage 2024 county estimates vs. 2020 base. Port St. Lucie leads (+18.7%); Pinellas declined.</div>
+        </div>
+        <div class="chartbox">
+          <h4>The retiree skew tells you the buyer profile</h4>
+          <div class="sub">Share of residents age 65+, by county. Martin/Stuart skews oldest; Orlando youngest.</div>
+          <div class="canvas-wrap tall"><canvas id="cAge"></canvas></div>
+          <div class="src">Source: U.S. Census QuickFacts, ACS 2019–2023.</div>
+        </div>
+      </div>
+
+      <div class="grid2" style="margin-top:22px;">
+        <div class="chartbox">
+          <h4>Median household income by market</h4>
+          <div class="sub">A spread wide enough to serve very different budgets in one program.</div>
+          <div class="canvas-wrap tall"><canvas id="cIncome"></canvas></div>
+          <div class="src">Source: U.S. Census QuickFacts, ACS 2019–2023.</div>
+        </div>
+        <div class="chartbox">
+          <h4>Median home value by market</h4>
+          <div class="sub">From entry-level Jacksonville to luxury Miami — every price point on one stage.</div>
+          <div class="canvas-wrap tall"><canvas id="cHomeValue"></canvas></div>
+          <div class="src">Source: U.S. Census QuickFacts ACS 2019–2023; Orange & Pinellas via Data USA ACS 2024 (slightly newer vintage).</div>
+        </div>
+      </div>
+
+      <h3 style="margin-top:40px;">The full comparison — by region</h3>
+      <div class="scroll">
+      <table>
+        <thead><tr><th>Market (county)</th><th>Growth ’20→’24</th><th>% 65+</th><th>Median income</th><th>Median home value</th><th>Owner-occ</th></tr></thead>
+        <tbody>
+          <tr class="region"><td colspan="6">Gold Coast — Southeast</td></tr>
+          <tr><td><strong>Miami</strong> (Miami-Dade)</td><td>+1.5%</td><td>17.4%</td><td>$71,753</td><td>$463,000</td><td>~54%</td></tr>
+          <tr><td><strong>Fort Lauderdale</strong> (Broward)</td><td>+4.8%</td><td>17.6%</td><td>$74,534</td><td>$380,400</td><td>63.3%</td></tr>
+          <tr><td><strong>Deerfield Beach</strong> (Broward)</td><td>+4.8%</td><td>17.6%</td><td>$74,534</td><td>$380,400</td><td>63.3%</td></tr>
+          <tr><td><strong>Boca Raton</strong> (Palm Beach) — host</td><td>+6.0%</td><td>24.6%</td><td>$81,115</td><td>$407,300</td><td>69.9%</td></tr>
+          <tr><td><strong>Delray Beach</strong> (Palm Beach)</td><td>+6.0%</td><td>24.6%</td><td>$81,115</td><td>$407,300</td><td>69.9%</td></tr>
+          <tr><td><strong>Boynton Beach</strong> (Palm Beach)</td><td>+6.0%</td><td>24.6%</td><td>$81,115</td><td>$407,300</td><td>69.9%</td></tr>
+          <tr><td><strong>Palm Beach</strong> (Palm Beach)</td><td>+6.0%</td><td>24.6%</td><td>$81,115</td><td>$407,300</td><td>69.9%</td></tr>
+          <tr class="region"><td colspan="6">Treasure Coast</td></tr>
+          <tr><td><strong>Port St. Lucie</strong> (St. Lucie)</td><td>+18.7%</td><td>24.5%</td><td>$69,027</td><td>$305,800</td><td>77.7%</td></tr>
+          <tr><td><strong>Stuart</strong> (Martin)</td><td>+4.6%</td><td>31.8%</td><td>$80,701</td><td>$386,500</td><td>80.1%</td></tr>
+          <tr class="region"><td colspan="6">Tampa Bay — Gulf</td></tr>
+          <tr><td><strong>Tampa</strong> (Hillsborough)</td><td>+8.3%</td><td>14.8%</td><td>$75,011</td><td>$333,300</td><td>61.1%</td></tr>
+          <tr><td><strong>St. Petersburg</strong> (Pinellas)</td><td>−1.2%</td><td>26.4%</td><td>$72,646</td><td>$355,100</td><td>69.5%</td></tr>
+          <tr class="region"><td colspan="6">Central & North</td></tr>
+          <tr><td><strong>Orlando</strong> (Orange)</td><td>+6.0%</td><td>13.6%</td><td>$82,152</td><td>$390,100</td><td>56.8%</td></tr>
+          <tr><td><strong>Jacksonville</strong> (Duval)</td><td>+6.0%</td><td>15.0%</td><td>$68,447</td><td>$274,900</td><td>58.1%</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p class="src" style="margin-top:10px;">County-level figures; markets within the same county share county statistics. Miami-Dade owner-occupancy is approximate — verify on the live QuickFacts page.</p>
+    </div>
+  </section>
+
+  <!-- YOUR WEBSITE -->
+  <section id="website">
+    <div class="wrap">
+      <div class="eyebrow">What your $1,000 builds</div>
+      <h2>Your own "Moving to [Your Market]" website — built with you, owned by you.</h2>
+      <p class="lead">The founding buy-in isn't a fee that disappears into ad spend. The centerpiece is a co-branded relocation website I build with each of you — a lead-capturing asset that outlives any single webinar and works for you 24/7.</p>
+
+      <div class="grid2" style="margin-top:28px;">
+        <div class="card">
+          <h3 style="margin-top:0;">What each site includes</h3>
+          <ul class="clean">
+            <li>Your branding, photo, bio, and direct contact</li>
+            <li>Live local market data (the Census stats above) + lifestyle content</li>
+            <li>A "Moving to [your city]" SEO-built page that ranks for relocation search</li>
+            <li>A lead-capture form wired straight to the shared CRM — routed to you</li>
+            <li>Connected to the webinar registration funnel and replay library</li>
+            <li>Your own asset to promote, keep, and grow</li>
+          </ul>
+        </div>
+        <div class="chartbox">
+          <h4>Where the ~$13,000 founding pool goes</h4>
+          <div class="sub">Illustrative allocation across 13 founding markets.</div>
+          <div class="canvas-wrap"><canvas id="cBudget"></canvas></div>
+          <div class="src">Illustrative. Final allocation confirmed with the founding cohort before launch.</div>
+        </div>
+      </div>
+      <div class="warn" style="margin-top:22px;">
+        <strong>How we build it together:</strong> after your seat is confirmed, we do a short intake (your brand, market focus, and the buyer you want), I build your site, you review, and it goes live as part of the launch — your asset from day one.
+      </div>
+    </div>
+  </section>
+
+  <!-- ECONOMICS -->
+  <section id="economics">
+    <div class="wrap">
+      <div class="eyebrow">What's in it for you</div>
+      <h2>The funnel math — and why a webinar lead beats a portal lead 10–25×.</h2>
+      <p class="lead">Here's the model we'll run and refine together. The show-up rate is benchmark-anchored; the consult, client, and close rates are operating targets from seminar-funnel data and relocation lead conversion. Measure your own — but this is the shape, per live edition.</p>
+
+      <div class="grid2" style="margin-top:30px;">
+        <div class="chartbox">
+          <h4>What 200 registrants becomes</h4>
+          <div class="sub">Per live edition, routed across that edition's markets — plus a nurture list for all 13.</div>
+          <div class="canvas-wrap"><canvas id="cFunnel"></canvas></div>
+          <div class="src">Modeled from seminar-funnel benchmarks + Census-anchored show-up. Operating targets, not published norms.</div>
+        </div>
+        <div class="chartbox">
+          <h4>Why the lead quality is the whole game</h4>
+          <div class="sub">Close rate over 0–12 months by lead source. This is the real argument.</div>
+          <div class="canvas-wrap"><canvas id="cLeadQual"></canvas></div>
+          <div class="src">Sources: RealScout (relocation/referral 14–30%); NAR / Ylopo (internet leads 0.4–1.5%).</div>
+        </div>
+      </div>
+
+      <div class="grid3" style="margin-top:24px;">
+        <div class="card"><div class="tag">Per cycle, per market</div><h3>Pre-qualified movers, not tire-kickers</h3><p class="muted">Registrants self-select your city and a 0–12 month timeline before you ever speak to them. Run monthly and that's a compounding pipeline of real, owner-occupant relocators.</p></div>
+        <div class="card"><div class="tag">The asset</div><h3>A nurture list that compounds</h3><p class="muted">Only ~3–5% of any audience is ready now. The other 95% become a monthly-nurtured list — shared engine + your own website — that feeds every future event.</p></div>
+        <div class="card"><div class="tag">The content engine</div><h3>1 webinar → 13+ assets</h3><p class="muted">Every recording becomes city clips, reels, a blog post, and retargeting ads that fill the <em>next</em> event. 85% of teams never do this — we will.</p></div>
+      </div>
+
+      <h3 style="margin-top:40px;">What paid leads actually cost in real estate (2025–2026)</h3>
+      <div class="chartbox">
+        <div class="sub">Why we lead with Meta and organic — and use Google surgically for high-intent search.</div>
+        <div class="canvas-wrap" style="height:260px;"><canvas id="cAdCost"></canvas></div>
+        <div class="src">Sources: LocaliQ / WordStream 2025–2026 real estate benchmarks. A webinar registrant costs less than a raw lead; modeled at ~$5–15 blended with strong organic — validate on our first two events.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STRUCTURE -->
+  <section id="structure">
+    <div class="wrap">
+      <div class="eyebrow">The structure & the ask</div>
+      <h2>What we share, what you keep, and how we stay clean.</h2>
+
+      <div class="grid2" style="margin-top:26px;">
+        <div class="card">
+          <h3 style="margin-top:0;">What I (the host) bring</h3>
+          <ul class="clean">
+            <li>The brand, master landing page & registration funnel</li>
+            <li>A co-branded relocation website built with each of you</li>
+            <li>The shared CRM with automatic city-routing</li>
+            <li>Email + SMS reminder sequences and the replay engine</li>
+            <li>Moderating the live editions and the run-of-show</li>
+            <li>Repurposing every recording into content for the next one</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0;">What I'm asking of you</h3>
+          <ul class="clean">
+            <li>The $1,000 founding buy-in for your market</li>
+            <li>Promote every edition to your database & sphere (set deliverables)</li>
+            <li>Present your segment when your market is featured</li>
+            <li>Work routed leads fast — A-leads inside the SLA</li>
+            <li>Report dispositions so we can track what works</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout" style="margin-top:26px; text-align:center;">
+        <div class="eyebrow" style="color:var(--gold);">The buy-in</div>
+        <div class="big-price">$1,000</div>
+        <p class="muted" style="max-width:640px; margin:14px auto 0;">One founding contribution per market. It funds your own market website, your share of the launch ad campaign, and the shared platform &amp; CRM for the launch period. One specialist per market — when your city is claimed, it's closed.</p>
+      </div>
+
+      <h3 style="margin-top:36px;">How commissions work</h3>
+      <div class="grid2">
+        <div class="card"><div class="tag">You keep your market</div><h3>100% of your own closings</h3><p class="muted">Leads that pick your market route to you. The deals you close from them are yours — no split to the host on your own market's direct business.</p></div>
+        <div class="card"><div class="tag">Cross-market referrals</div><h3>25% broker-to-broker</h3><p class="muted">When a lead is routed or referred across markets (or sourced by the host engine and handed off), it's the customary <strong>25%</strong> referral — broker-to-broker, both licensed, in writing, paid within ~10 days of closing.</p></div>
+      </div>
+
+      <h3 style="margin-top:36px;">Where the registrations come from</h3>
+      <div class="grid3">
+        <div class="card"><div class="tag">Channel 1 — Organic / owned</div><p class="muted" style="margin-top:8px;">All 13 spheres + databases (lowest cost, highest close), your "Moving to [city]" website & YouTube/SEO, relocation Facebook groups, short-form video, past-client referrals.</p></div>
+        <div class="card"><div class="tag">Channel 2 — Paid</div><p class="muted" style="margin-top:8px;">Meta (Housing Special Ad Category) + Google Search + YouTube retargeting, message-matched to feeder states, funded from the shared pool.</p></div>
+        <div class="card"><div class="tag">Channel 3 — Partnerships</div><p class="muted" style="margin-top:8px;">Out-of-state "feeder" agents at 25% referral, 55+ communities, employers/HR, financial advisors & CPAs — educational, RESPA-clean.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section id="timeline">
+    <div class="wrap">
+      <div class="eyebrow">From yes to live</div>
+      <h2>A 90-day launch to our first Destination Florida edition.</h2>
+      <div class="grid2" style="margin-top:24px; align-items:start;">
+        <div class="tl">
+          <div class="step"><div class="when">Days 1–15 · Foundation</div><h4>Lock the cohort & the agreements</h4><p class="muted">Confirm founding members (one per market), collect the $1,000 buy-ins, sign the co-host + referral agreements (25% cross-market, broker-to-broker), and clear brokerage-name / designated-licensee compliance.</p></div>
+          <div class="step"><div class="when">Days 16–45 · Build</div><h4>Build the engine — and your websites</h4><p class="muted">Stand up the shared CRM with auto-routing, the registration funnel, email/SMS sequences, the webinar platform — and build each member's co-branded "Moving to [market]" website from a short intake.</p></div>
+          <div class="step"><div class="when">Days 36–60 · Fill</div><h4>All three channels live</h4><p class="muted">Members email/text spheres; seed "Moving to Florida" + city groups; launch Meta (Housing category) + Google; activate feeder agents & 55+ communities. Open registration ~3–4 weeks out.</p></div>
+          <div class="step"><div class="when">Days 61–75 · Launch</div><h4>Rehearse, then go live</h4><p class="muted">Full tech rehearsal with the featured panel, push the reminder sequence hard through event day, host the first edition, capture intent-poll data, drive the booking CTA.</p></div>
+          <div class="step"><div class="when">Days 76–90 · Convert</div><h4>Follow up & systematize</h4><p class="muted">Same-hour replay + segmented follow-up, work hot leads inside SLA, repurpose the recording, review the 10 numbers, and schedule the next regional edition.</p></div>
+        </div>
+        <div>
+          <div class="callout">
+            <h3 style="margin-top:0;">The 10 numbers we'll run on</h3>
+            <div class="two-col muted" style="font-size:14px;">
+              <p><span class="num-badge">1</span>Registrants / edition</p>
+              <p><span class="num-badge">2</span>Cost per registrant</p>
+              <p><span class="num-badge">3</span>Landing-page conversion %</p>
+              <p><span class="num-badge">4</span>Show-up rate</p>
+              <p><span class="num-badge">5</span>% in 0–6 month timeline</p>
+              <p><span class="num-badge">6</span>Attendee → consult rate</p>
+              <p><span class="num-badge">7</span>Cost per show-up</p>
+              <p><span class="num-badge">8</span>Consult → active buyer</p>
+              <p><span class="num-badge">9</span>Lead → closing rate</p>
+              <p><span class="num-badge">10</span>Cost per closing + referral revenue</p>
+            </div>
+          </div>
+          <div class="card" style="margin-top:20px;">
+            <h3 style="margin-top:0;">The Stage-1 bar before we scale</h3>
+            <ul class="clean">
+              <li>≥ 150 registrants per edition</li>
+              <li>≥ 40% show-up</li>
+              <li>≥ 20% of attendees book a consult</li>
+              <li>Cost per registrant ≤ $8–15</li>
+            </ul>
+            <p class="muted" style="margin-top:14px; margin-bottom:0;">Hit these for three straight editions with at least one closing each, and we scale the ad spend and add more frequent events.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPLIANCE -->
+  <section id="compliance">
+    <div class="wrap">
+      <div class="eyebrow">Aggressive marketing, conservative legal</div>
+      <h2>The guardrails that keep all 13 of us safe.</h2>
+      <div class="grid2" style="margin-top:24px;">
+        <div class="card">
+          <h3 style="margin-top:0;">Fair Housing & no steering</h3>
+          <p class="muted">Seven protected classes (race, color, religion, sex, disability, familial status, national origin) — plus Florida local ordinances that may add more. We sell on objective criteria (commute, price, HOA, walkability, airport, owner-occupancy), never "this area is best for [type of person]." 55+ communities are a lawful HOPA exception — verify each one.</p>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0;">Referral fees & RESPA</h3>
+          <p class="muted">Cross-market referral fees are broker-to-broker between licensed agents only. No paying unlicensed people for referrals. No fees to lenders/title/movers for settlement-service referrals — sponsorships must be flat-fee for real exposure, never tied to volume. 25% is customary and negotiable, not a rule.</p>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0;">Ad-platform rules</h3>
+          <p class="muted">Meta forces housing ads into the <strong>Special Ad Category</strong> (no age/gender/ZIP, 15-mile min radius, lookalikes restricted to Special Ad Audiences). Google housing ads bar age/gender/parental/marital/ZIP targeting; city/state/radius are fine. We target by geography + intent, never by protected-class proxies.</p>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0;">Email, SMS & Florida ad law</h3>
+          <p class="muted">Explicit SMS opt-in on the form (TCPA), STOP honored, CAN-SPAM on email. Every ad, page, and member website carries the licensed brokerage name (FREC 61J2-10.025/.026). Note: the FCC "one-to-one consent" rule was vacated Jan 2025 — but written consent for marketing texts is still required.</p>
+        </div>
+      </div>
+      <div class="warn" style="margin-top:22px;"><strong>Before we publish:</strong> a Florida real estate attorney reviews the referral structure and disclosure language. With 13 brokerages involved, each member confirms their own broker approves participation, the ad usage, and the referral terms.</div>
+    </div>
+  </section>
+
+  <!-- THE ASK -->
+  <section id="ask" style="border-bottom:none;">
+    <div class="wrap">
+      <div class="callout" style="text-align:center; padding:46px 30px;">
+        <div class="eyebrow" style="color:var(--gold);">The ask</div>
+        <h2 style="margin-bottom:10px;">Claim your market before someone else does.</h2>
+        <p class="muted" style="max-width:640px; margin:0 auto 22px;">One specialist per city. I'm building the 13-seat founding cohort now. Boca Raton is mine — the other twelve are open. If you want your market, let's get on a 20-minute call, walk the agreement, lock your seat with the $1,000 buy-in, and start building your website.</p>
+        <div style="margin-bottom:24px;">
+          <span class="pill">Miami</span><span class="pill">Fort Lauderdale</span><span class="pill">Delray Beach</span>
+          <span class="pill">Boynton Beach</span><span class="pill">Deerfield Beach</span><span class="pill">Palm Beach</span>
+          <span class="pill">Port St. Lucie</span><span class="pill">Stuart</span><span class="pill">Orlando</span>
+          <span class="pill">St. Petersburg</span><span class="pill">Tampa</span><span class="pill">Jacksonville</span>
+        </div>
+        <div class="cta-row" style="justify-content:center;">
+          <a class="btn primary" href="mailto:edmund@bogenhomes.com?subject=Destination%20Florida%20Live%20—%20I'm%20in&body=Hi%20Edmund,%20I'd%20like%20to%20claim%20a%20market%20for%20Destination%20Florida%20Live.%20My%20market%20is:%20">Claim my market →</a>
+          <a class="btn ghost" href="tel:+1">Book the 20-minute call</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <strong>Destination Florida Live</strong> — a recurring statewide multi-agent relocation webinar. Founding brief prepared by Edmund Bogen.
+      <div class="disc">
+        This document is for general educational and business-planning purposes only and does not constitute legal, tax, insurance, or lending advice. Real estate services are offered through properly licensed brokerages in the applicable jurisdictions. Equal Housing Opportunity. Any referral arrangement, where permitted, is handled broker-to-broker and does not affect a consumer's cost or obligation to use any provider. Market and benchmark figures are drawn from cited public sources (U.S. Census Bureau, Data USA, U-Haul, ON24, Livestorm, Goldcast, LocaliQ/WordStream) and were current at the time of research; conversion, consult, and closing rates beyond the show-up benchmark are modeled operating targets, not published industry standards. County-level statistics are applied to markets within that county. The Florida homestead exemption increase (HJR 1-F) is a pending November 2026 ballot measure requiring 60% voter approval and is not law. The ~$13,000 pool allocation is illustrative. Confirm all tool pricing and legal structures with counsel before relying on them.
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  /* ===================== ACCESS CODE ===================== */
+  const ACCESS_CODE = "florida2026"; // matches "Florida2026" — comparison is case-insensitive
+
+  function unlock(){
+    document.body.classList.remove("locked");
+    document.body.classList.add("unlocked");
+    sessionStorage.setItem("df_unlocked","1");
+    if(!window.__charts_built){ buildCharts(); window.__charts_built = true; }
+  }
+  function tryUnlock(){
+    const v = (document.getElementById("pw").value || "").trim().toLowerCase();
+    if(v === ACCESS_CODE){ unlock(); }
+    else { document.getElementById("err").textContent = "Incorrect code — try again or text Edmund."; }
+  }
+  document.getElementById("pw").addEventListener("keydown", e => { if(e.key === "Enter") tryUnlock(); });
+  if(sessionStorage.getItem("df_unlocked") === "1"){ unlock(); }
+
+  /* ===================== THEME ===================== */
+  function applyTheme(t){
+    document.documentElement.setAttribute("data-theme", t);
+    localStorage.setItem("df_theme", t);
+    document.getElementById("themeIcon").textContent = (t === "dark") ? "☀️" : "🌙";
+    document.getElementById("themeLabel").textContent = (t === "dark") ? "Light" : "Dark";
+    if(window.__charts_built){ window.__charts_built = false; rebuildCharts(); }
+  }
+  function toggleTheme(){
+    const cur = document.documentElement.getAttribute("data-theme");
+    applyTheme(cur === "dark" ? "light" : "dark");
+  }
+  (function(){ applyTheme(localStorage.getItem("df_theme") || "dark"); })();
+
+  /* ===================== CHARTS ===================== */
+  let CH = [];
+  function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+  function rebuildCharts(){ CH.forEach(c=>c.destroy()); CH=[]; buildCharts(); window.__charts_built = true; }
+
+  function buildCharts(){
+    const text=css('--text'), muted=css('--muted'), grid=css('--grid');
+    const accent=css('--accent'), accent2=css('--accent2'), gold=css('--gold'),
+          coral=css('--coral'), green=css('--green'), red=css('--red'), line=css('--line');
+    Chart.defaults.color = muted;
+    Chart.defaults.font.family = "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif";
+    const gx = { grid:{ color:grid }, ticks:{ color:muted } };
+
+    // Market labels (county-level) for the 4 big comparison charts
+    const mLabels = ['Port St. Lucie','Tampa','Boca/Palm Beach','Orlando','Jacksonville','Ft. Lauderdale','Stuart','Miami','St. Petersburg'];
+
+    // 1. Migration share doughnut
+    CH.push(new Chart(document.getElementById('cMigShare'), {
+      type:'doughnut',
+      data:{ labels:['Florida cities (12)','Rest of U.S. (13)'],
+        datasets:[{ data:[12,13], backgroundColor:[gold, line], borderWidth:0 }] },
+      options:{ responsive:true, maintainAspectRatio:false, cutout:'68%',
+        plugins:{ legend:{ position:'bottom', labels:{ color:muted } },
+          tooltip:{ callbacks:{ label:c=>` ${c.label}: ${c.raw} of 25` } } } }
+    }));
+
+    // 2. Migration trend
+    CH.push(new Chart(document.getElementById('cMigTrend'), {
+      type:'bar',
+      data:{ labels:['2022','2024','2025'],
+        datasets:[{ label:'Net domestic migration (000s)', data:[318,63,22.5],
+          backgroundColor:[green, gold, coral], borderRadius:8 }] },
+      options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false} }, scales:{ x:gx, y:gx } }
+    }));
+
+    // 3. Webinar benchmarks
+    CH.push(new Chart(document.getElementById('cWebinar'), {
+      type:'bar',
+      data:{ labels:['Avg show-up rate','On-demand share of attendees','Our planning target (cold)'],
+        datasets:[{ data:[51.3, 50, 42], backgroundColor:[accent, accent2, gold], borderRadius:8 }] },
+      options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{display:false}, tooltip:{ callbacks:{ label:c=>` ${c.raw}%` } } },
+        scales:{ x:{ ...gx, min:0, max:60, ticks:{ color:muted, callback:v=>v+'%' } }, y:gx } }
+    }));
+
+    // 4. Registration timing
+    CH.push(new Chart(document.getElementById('cTiming'), {
+      type:'doughnut',
+      data:{ labels:['Final week (~50%)','Event day (15.3%)','Earlier (~35%)'],
+        datasets:[{ data:[50,15.3,34.7], backgroundColor:[accent, coral, line], borderWidth:0 }] },
+      options:{ responsive:true, maintainAspectRatio:false, cutout:'62%',
+        plugins:{ legend:{ position:'bottom', labels:{ color:muted } } } }
+    }));
+
+    // 5. Growth since 2020 (by county)
+    CH.push(new Chart(document.getElementById('cGrowth'), {
+      type:'bar',
+      data:{ labels:mLabels,
+        datasets:[{ label:'% change since 2020', data:[18.7, 8.3, 6.0, 6.0, 6.0, 4.8, 4.6, 1.5, -1.2],
+          backgroundColor:mLabels.map((_,i)=> i===8 ? red : (i<2?green:accent)), borderRadius:7 }] },
+      options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{display:false}, tooltip:{ callbacks:{ label:c=>` ${c.raw>0?'+':''}${c.raw}%` } } },
+        scales:{ x:{ ...gx, ticks:{ color:muted, callback:v=>v+'%' } }, y:gx } }
+    }));
+
+    // 6. Age 65+ (by county)
+    const ageLabels = ['Stuart','St. Petersburg','Boca/Palm Beach','Port St. Lucie','Ft. Lauderdale','Miami','Jacksonville','Tampa','Orlando'];
+    CH.push(new Chart(document.getElementById('cAge'), {
+      type:'bar',
+      data:{ labels:ageLabels,
+        datasets:[{ label:'% age 65+', data:[31.8, 26.4, 24.6, 24.5, 17.6, 17.4, 15.0, 14.8, 13.6],
+          backgroundColor:gold, borderRadius:7 }] },
+      options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{display:false}, tooltip:{ callbacks:{ label:c=>` ${c.raw}% age 65+` } } },
+        scales:{ x:{ ...gx, ticks:{ color:muted, callback:v=>v+'%' } }, y:gx } }
+    }));
+
+    // 7. Median household income (by county)
+    const incLabels = ['Orlando','Boca/Palm Beach','Stuart','Tampa','Ft. Lauderdale','St. Petersburg','Miami','Port St. Lucie','Jacksonville'];
+    CH.push(new Chart(document.getElementById('cIncome'), {
+      type:'bar',
+      data:{ labels:incLabels,
+        datasets:[{ label:'Median household income', data:[82152, 81115, 80701, 75011, 74534, 72646, 71753, 69027, 68447],
+          backgroundColor:accent2, borderRadius:7 }] },
+      options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{display:false}, tooltip:{ callbacks:{ label:c=>' $'+c.raw.toLocaleString() } } },
+        scales:{ x:{ ...gx, ticks:{ color:muted, callback:v=>'$'+(v/1000)+'k' } }, y:gx } }
+    }));
+
+    // 8. Median home value (by county)
+    const hvLabels = ['Miami','Boca/Palm Beach','Orlando','Stuart','Ft. Lauderdale','St. Petersburg','Tampa','Port St. Lucie','Jacksonville'];
+    CH.push(new Chart(document.getElementById('cHomeValue'), {
+      type:'bar',
+      data:{ labels:hvLabels,
+        datasets:[{ label:'Median home value', data:[463000, 407300, 390100, 386500, 380400, 355100, 333300, 305800, 274900],
+          backgroundColor:accent, borderRadius:7 }] },
+      options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{display:false}, tooltip:{ callbacks:{ label:c=>' $'+c.raw.toLocaleString() } } },
+        scales:{ x:{ ...gx, ticks:{ color:muted, callback:v=>'$'+(v/1000)+'k' } }, y:gx } }
+    }));
+
+    // 9. Funnel
+    CH.push(new Chart(document.getElementById('cFunnel'), {
+      type:'bar',
+      data:{ labels:['Registrants','Live attendees','Consults booked','Active buyers','Closings (0–12 mo)'],
+        datasets:[{ label:'People', data:[200, 80, 30, 10, 2],
+          backgroundColor:[accent2, accent, gold, coral, green], borderRadius:8 }] },
+      options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{display:false} }, scales:{ x:gx, y:gx } }
+    }));
+
+    // 10. Lead quality
+    CH.push(new Chart(document.getElementById('cLeadQual'), {
+      type:'bar',
+      data:{ labels:['Portal / internet lead','Relocation / referral lead'],
+        datasets:[{ label:'Close rate %', data:[1.0, 22], backgroundColor:[coral, green], borderRadius:8 }] },
+      options:{ responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{display:false}, tooltip:{ callbacks:{ label:c=>c.dataIndex===0?' 0.4–1.5%':' 14–30%' } } },
+        scales:{ x:gx, y:{ ...gx, ticks:{ color:muted, callback:v=>v+'%' } } } }
+    }));
+
+    // 11. Budget allocation doughnut
+    CH.push(new Chart(document.getElementById('cBudget'), {
+      type:'doughnut',
+      data:{ labels:['Member website builds','Launch ad campaign','Platform, CRM & automation','Design, production & content'],
+        datasets:[{ data:[5000, 5000, 1500, 1500], backgroundColor:[accent, gold, accent2, coral], borderWidth:0 }] },
+      options:{ responsive:true, maintainAspectRatio:false, cutout:'60%',
+        plugins:{ legend:{ position:'bottom', labels:{ color:muted, boxWidth:12 } },
+          tooltip:{ callbacks:{ label:c=>` ${c.label}: $${c.raw.toLocaleString()}` } } } }
+    }));
+
+    // 12. Ad cost benchmarks
+    CH.push(new Chart(document.getElementById('cAdCost'), {
+      type:'bar',
+      data:{ labels:['Meta RE lead (CPL)','Webinar registrant (modeled)','Google RE search lead (CPL)'],
+        datasets:[{ label:'Cost', data:[16.61, 10, 100.48], backgroundColor:[accent, gold, coral], borderRadius:8 }] },
+      options:{ responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{display:false}, tooltip:{ callbacks:{ label:c=>c.dataIndex===1?' ~$5–15 (range)':' $'+c.raw } } },
+        scales:{ x:gx, y:{ ...gx, ticks:{ color:muted, callback:v=>'$'+v } } } }
+    }));
+  }
+</script>
+</body>
+</html>
