@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Luxury Capital Moved South: Florida Overtakes New York in Million-Dollar Listings | Samantha Currie</title>
+    <meta name="description" content="Realtor.com's 2026 luxury outlook shows the Miami–West Palm Beach metro closed 2025 with 10,513 active million-dollar listings — ahead of New York's 9,216. What the shift means for Palm Beach.">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Open Graph -->
+    <meta property="og:title" content="The Luxury Capital Moved South: Florida Overtakes New York in Million-Dollar Listings">
+    <meta property="og:description" content="Florida closed 2025 with 10,513 active million-dollar listings — ahead of New York's 9,216. And the winning metro runs straight through Palm Beach.">
+    <meta property="og:image" content="https://edmundbogen.github.io/samantha-currie-luxury-capital/hero.png">
+    <meta property="og:type" content="article">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            color: #1a1a1a;
+            background: #fff;
+            line-height: 1.75;
+            font-size: 17px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: rgba(255,255,255,0.97);
+            border-bottom: 1px solid #e8e8e8;
+            z-index: 100; padding: 18px 40px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        nav .logo { font-weight: 600; font-size: 14px; letter-spacing: 3px; color: #1c2a3a; text-transform: uppercase; }
+        nav .nav-links a { color: #1c2a3a; text-decoration: none; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; margin-left: 32px; font-weight: 500; }
+        nav .nav-links a:hover { color: #9a7b3f; }
+        @media (max-width: 640px) { nav { padding: 14px 18px; } nav .nav-links a { margin-left: 16px; font-size: 11px; } }
+
+        /* HERO */
+        .hero-banner { margin-top: 61px; width: 100%; background: #1c2a3a; }
+        .hero-banner img { display: block; width: 100%; max-width: 1100px; height: auto; margin: 0 auto; }
+        .hero-title { max-width: 880px; margin: 0 auto; padding: 40px 24px 0; text-align: center; }
+        .hero-title .eyebrow { font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: #9a7b3f; font-weight: 600; }
+        .hero-title h1 { font-weight: 300; font-size: 38px; line-height: 1.25; color: #1c2a3a; margin-top: 16px; letter-spacing: -0.3px; }
+        @media (max-width: 640px) { .hero-title h1 { font-size: 27px; } }
+
+        /* META BAR */
+        .meta-bar {
+            max-width: 780px; margin: 24px auto 0; padding: 0 24px;
+            font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #6b7785; font-weight: 500;
+            display: flex; flex-wrap: wrap; gap: 14px; align-items: center;
+        }
+        .meta-bar .cat { color: #9a7b3f; }
+        .meta-bar .dot { color: #cdd4dc; }
+
+        /* KEY STATS */
+        .stats { max-width: 780px; margin: 36px auto 0; padding: 0 24px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+        .stat-card { border-left: 4px solid #9a7b3f; padding: 18px 20px; background: #f7f5f0; }
+        .stat-card .num { font-size: 30px; font-weight: 700; color: #1c2a3a; line-height: 1.1; }
+        .stat-card .lbl { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: #5a6470; margin-top: 8px; font-weight: 500; }
+        @media (max-width: 640px) { .stats { grid-template-columns: 1fr; } }
+
+        /* ARTICLE */
+        article { max-width: 780px; margin: 0 auto; padding: 50px 24px 70px; }
+        article p { margin-bottom: 24px; font-size: 17px; color: #2a2a2a; }
+        article p .lead-in { font-weight: 600; color: #1c2a3a; }
+        article h2 { font-weight: 300; font-size: 30px; letter-spacing: -0.3px; color: #1c2a3a; margin: 56px 0 24px; line-height: 1.3; }
+        article h2::after { content: ''; display: block; width: 60px; height: 2px; background: #9a7b3f; margin-top: 16px; }
+        article em { font-style: italic; }
+        article strong { font-weight: 600; }
+
+        .pull-quote { border-left: 5px solid #9a7b3f; padding: 18px 30px; margin: 40px 0; font-size: 22px; font-weight: 300; font-style: italic; color: #1c2a3a; line-height: 1.5; }
+
+        .infobox { background: #fff; border: 1px solid #e3e8ee; border-top: 4px solid #1c2a3a; border-radius: 6px; padding: 28px 30px; margin: 36px 0; }
+        .infobox h3 { font-size: 15px; letter-spacing: 1px; text-transform: uppercase; color: #1c2a3a; margin-bottom: 18px; font-weight: 600; }
+        .infobox .item { margin-bottom: 16px; font-size: 16px; line-height: 1.6; }
+        .infobox .item:last-child { margin-bottom: 0; }
+        .infobox .item strong { color: #1c2a3a; }
+
+        /* CTA */
+        .cta { background: #1c2a3a; color: #fff; text-align: center; padding: 64px 24px; }
+        .cta h2 { color: #fff; font-weight: 300; font-size: 30px; margin-bottom: 18px; }
+        .cta p { max-width: 560px; margin: 0 auto 30px; color: rgba(255,255,255,0.85); font-size: 17px; font-weight: 300; }
+        .cta a { display: inline-block; background: #9a7b3f; color: #fff; text-transform: uppercase; letter-spacing: 0.1em; padding: 16px 44px; border-radius: 2px; font-weight: 500; text-decoration: none; font-size: 14px; }
+        .cta a:hover { background: #836830; }
+
+        /* BIO */
+        .bio { max-width: 780px; margin: 0 auto; padding: 56px 24px; display: flex; gap: 28px; align-items: flex-start; border-bottom: 1px solid #eee; }
+        .bio .photo { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; flex-shrink: 0; background: #e3e8ee; }
+        .bio h4 { color: #1c2a3a; font-size: 18px; font-weight: 600; margin-bottom: 10px; }
+        .bio p { font-size: 14px; color: #555; line-height: 1.7; }
+        @media (max-width: 640px) { .bio { flex-direction: column; } }
+
+        /* FOOTER */
+        footer { background: #f7f5f0; padding: 40px 24px; text-align: center; }
+        footer p { font-size: 11px; letter-spacing: 1px; color: #8a94a0; line-height: 1.8; max-width: 760px; margin: 0 auto 8px; text-transform: uppercase; }
+        footer .top { color: #1c2a3a; font-weight: 600; font-size: 13px; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Samantha Currie</div>
+        <div class="nav-links">
+            <a href="#CONTACT_LINK#">Contact</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="hero-banner">
+        <img src="hero.png" alt="Samantha Currie — Palm Beach luxury real estate, Douglas Elliman.">
+    </div>
+
+    <div class="hero-title">
+        <div class="eyebrow">Palm Beach Market Intelligence</div>
+        <h1>The Luxury Capital Moved South: Florida Overtakes New York in Million-Dollar Listings</h1>
+    </div>
+
+    <!-- AI disclosure -->
+    <div style="max-width:780px;margin:18px auto 0;padding:0 24px;text-align:center;font-size:12px;font-style:italic;color:#8a94a0;line-height:1.5;">
+        Hero image and selected content developed with the assistance of artificial intelligence.
+    </div>
+
+    <!-- META -->
+    <div class="meta-bar">
+        <span class="cat">Palm Beach Market Intelligence</span>
+        <span class="dot">&bull;</span>
+        <span>June 2026</span>
+        <span class="dot">&bull;</span>
+        <span>4 min read</span>
+    </div>
+
+    <!-- KEY STATS -->
+    <div class="stats">
+        <div class="stat-card">
+            <div class="num">10,513 vs 9,216</div>
+            <div class="lbl">Active $1M+ listings, Florida vs. New York metro — year-end 2025 (Realtor.com)</div>
+        </div>
+        <div class="stat-card">
+            <div class="num">26.3%</div>
+            <div class="lbl">Share of South Florida's luxury demand originating in the New York metro</div>
+        </div>
+        <div class="stat-card">
+            <div class="num">21%</div>
+            <div class="lbl">Florida's share of all foreign U.S. homebuyers — the #1 state (NAR)</div>
+        </div>
+    </div>
+
+    <!-- ARTICLE -->
+    <article>
+
+        <h2>The crossover nobody can ignore.</h2>
+
+        <p>For nearly a decade, New York held a title that seemed untouchable: the largest inventory of million-dollar homes in America. That era is over. According to Realtor.com's Luxury Housing Market Trends and Outlook 2026, the Miami&ndash;Fort Lauderdale&ndash;West Palm Beach metro closed 2025 with <strong>10,513 active million-dollar listings</strong> — decisively ahead of New York's <strong>9,216</strong>. The December 2025 monthly snapshot told the same story: 10,591 seven-figure listings in Florida versus 10,176 in New York.</p>
+
+        <p>Read that metro name again. <em>Miami&ndash;Fort Lauderdale&ndash;West Palm Beach.</em> The market that just took New York's crown is not a single city — it is the corridor that runs straight through Palm Beach. The island and its surrounding communities are not watching this story from the sidelines. They are inside it.</p>
+
+        <h2>What actually happened.</h2>
+
+        <p>Let's be precise, because precision is what separates analysis from hype. Florida did not become "more expensive" than New York. New York still carries the higher luxury entry bar — by Realtor.com's measure, the price of admission to its top tier remains meaningfully above South Florida's. And New York briefly reclaimed the listing-count lead this spring, as it always surges with the April selling season.</p>
+
+        <p>What changed is deeper and more durable. Realtor.com's senior economist described it as a "structural shift in where luxury inventory is accumulating" — and <em>structural</em> is the word that matters. South Florida's luxury supply has become broader, deeper, and far less seasonal than New York's — a market that builds, lists, and sells seven-figure homes twelve months a year, while Manhattan's inventory swells in spring and drains every winter.</p>
+
+        <div class="pull-quote">"Miami is not replacing New York. It is joining New York as a co-capital of American luxury real estate." — Dottie Herman, Vice Chair, Douglas Elliman</div>
+
+        <h2>Why the capital moved south.</h2>
+
+        <p>Three forces drove the crossover, and all three are still running.</p>
+
+        <div class="infobox">
+            <h3>The three forces behind the shift</h3>
+            <div class="item"><strong>The wealth migration is real and measurable.</strong> Realtor.com found that 26.3% of South Florida's luxury demand originates in the New York metro area — a larger share than the next eight feeder markets combined. This is not anecdote. More than one in four luxury buyers looking at South Florida is looking from New York.</div>
+            <div class="item"><strong>Global capital chose Florida.</strong> The National Association of Realtors reports that foreign buyers purchased $56 billion of U.S. homes in the year ending March 2025 — up 33.2% — and Florida captured 21% of those buyers, the highest share of any state, ahead of California, Texas, and New York. Nearly half of those international purchases were all-cash.</div>
+            <div class="item"><strong>The buyer base is built differently.</strong> South Florida's luxury market runs heavily on cash buyers, international purchasers, retirees, and second-home owners — demographics far less sensitive to mortgage rates and school calendars. That is why Florida's inventory holds steady through the winter months while New York's thins out every winter.</div>
+        </div>
+
+        <h2>What this means in Palm Beach.</h2>
+
+        <p>Here is where the headline becomes a strategy.</p>
+
+        <p><span class="lead-in">For sellers:</span> more million-dollar inventory metro-wide means more competition for buyer attention. The sellers who win in this environment are the ones who price with discipline and present with precision. Aspirational pricing was forgivable in 2021. In a market with over 10,000 active seven-figure listings, it is how a home goes stale.</p>
+
+        <p><span class="lead-in">For buyers:</span> depth means choice, but not uniform leverage. The gap is widening between luxury by price tag and luxury by durability — the homes with the right location, the right condition, and the right story still command scarcity pricing, while everything else negotiates. Knowing the difference is the entire game.</p>
+
+        <p><span class="lead-in">For homeowners watching the market:</span> the structural forces that pushed Florida past New York — tax advantages, wealth migration, global capital — flow directly through the Palm Beach corridor. The buyers arriving from the Northeast are not all landing on Brickell. A meaningful share of them want the island, the water, and the lifestyle Palm Beach is known for — and they are arriving every season.</p>
+
+        <div class="pull-quote">The migration is not a forecast. It is already on the closing sheets.</div>
+
+        <h2>The bottom line.</h2>
+
+        <p>The center of gravity in American luxury real estate has shifted south — not as a fad, but as a structural realignment of where wealth lives, invests, and lists. New York remains a great luxury market. But for the first time in a decade, it is no longer the deepest one. That market is ours.</p>
+
+        <p>If you are weighing a sale, a purchase, or simply want to know where your home stands inside the new luxury capital, reach out — I'll show you exactly where your property sits in the data.</p>
+
+    </article>
+
+    <!-- CTA -->
+    <div class="cta">
+        <h2>Where does your home sit in the new luxury capital?</h2>
+        <p>Whether you're weighing a sale, a purchase, or simply curious what the wealth migration means for your timing, I'll show you exactly where your property sits in the data. No pressure, no hype — just the numbers.</p>
+        <a href="#CONTACT_LINK#">Start the Conversation &rarr;</a>
+    </div>
+
+    <!-- BIO -->
+    <div class="bio">
+        <div>
+            <h4>About Samantha Currie</h4>
+            <p>Samantha Currie is a luxury real estate advisor with Douglas Elliman, specializing in Palm Beach's premier residential market. She pairs deep local market expertise with a precise, data-driven approach to pricing, positioning, and negotiation for buyers and sellers across the Palm Beach corridor. Contact Samantha to learn where your property stands inside the new luxury capital.</p>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p class="top">Samantha Currie | Douglas Elliman Real Estate | Palm Beach</p>
+        <p>National luxury figures drawn from Realtor.com Luxury Housing Market Trends &amp; Outlook 2026, Realtor.com monthly luxury reports, and the NAR 2025 International Transactions in U.S. Residential Real Estate report. This is not financial, tax, insurance, or legal advice. Equal Housing Opportunity.</p>
+        <p>&copy; 2026 Douglas Elliman Real Estate. All material presented herein is intended for information purposes only. While this information is believed to be correct, it is represented subject to errors, omissions, changes or withdrawal without notice.</p>
+    </footer>
+
+</body>
+</html>
