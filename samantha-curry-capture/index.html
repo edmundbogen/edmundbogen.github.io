@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>Capture · Samantha Curry</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Capture">
+<meta name="theme-color" content="#1a3e5c">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Crect width='180' height='180' rx='40' fill='%231a3e5c'/%3E%3Ctext x='90' y='118' font-family='Helvetica' font-size='90' font-weight='bold' fill='%2300a8e1' text-anchor='middle'%3EC%3C/text%3E%3C/svg%3E">
+<style>
+  :root { --navy:#1a3e5c; --cyan:#00a8e1; }
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body {
+    font-family:-apple-system,'Montserrat',Helvetica,Arial,sans-serif;
+    background:var(--navy); color:#fff; min-height:100vh;
+    padding:env(safe-area-inset-top) 18px env(safe-area-inset-bottom);
+    display:flex; flex-direction:column;
+  }
+  header { padding:22px 0 14px; text-align:center; }
+  .brand { font-size:13px; letter-spacing:0.18em; text-transform:uppercase; color:var(--cyan); font-weight:600; }
+  h1 { font-size:22px; font-weight:300; letter-spacing:0.04em; margin-top:6px; }
+  h1 b { font-weight:600; }
+  .hint { font-size:13px; color:rgba(255,255,255,0.55); margin-top:8px; line-height:1.5; }
+  textarea {
+    width:100%; flex:0 0 auto; min-height:180px; margin-top:18px; padding:18px;
+    font-family:inherit; font-size:18px; line-height:1.5; color:#fff;
+    background:rgba(255,255,255,0.07); border:2px solid rgba(255,255,255,0.15);
+    border-radius:16px; resize:none; outline:none;
+  }
+  textarea:focus { border-color:var(--cyan); }
+  textarea::placeholder { color:rgba(255,255,255,0.35); }
+  .save {
+    width:100%; margin-top:14px; padding:18px; border:none; border-radius:16px;
+    background:var(--cyan); color:#fff; font-family:inherit; font-size:17px; font-weight:600;
+    letter-spacing:0.04em; cursor:pointer;
+  }
+  .save:active { background:#0090c4; }
+  .save:disabled { opacity:0.5; }
+  .toast { text-align:center; font-size:14px; color:var(--cyan); height:20px; margin-top:12px; opacity:0; transition:opacity .2s; }
+  .toast.show { opacity:1; }
+  .today { margin-top:26px; flex:1 1 auto; overflow-y:auto; padding-bottom:20px; }
+  .today h2 { font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:12px; }
+  .entry {
+    background:rgba(255,255,255,0.06); border-left:3px solid var(--cyan);
+    border-radius:8px; padding:12px 14px; margin-bottom:10px; font-size:15px; line-height:1.5;
+  }
+  .entry .t { display:block; font-size:11px; color:rgba(255,255,255,0.4); margin-bottom:4px; }
+  .empty { font-size:14px; color:rgba(255,255,255,0.4); font-style:italic; }
+  footer { text-align:center; font-size:11px; color:rgba(255,255,255,0.3); padding:10px 0; letter-spacing:0.06em; }
+</style>
+</head>
+<body>
+  <header>
+    <div class="brand">Bogen.ai</div>
+    <h1>Samantha's <b>Brain Dump</b></h1>
+    <div class="hint">Say it out loud — be all over the place. Dictate any thought with Wispr Flow, tap Save. At 5pm it all gets synthesized for you.</div>
+  </header>
+
+  <textarea id="thought" placeholder="Dictate or type a thought…" autocomplete="off"></textarea>
+  <button class="save" id="saveBtn">Save Thought</button>
+  <div class="toast" id="toast"></div>
+
+  <div class="today">
+    <h2>Today's Captures (<span id="count">0</span>)</h2>
+    <div id="list"><div class="empty">Loading…</div></div>
+  </div>
+
+  <footer>Bogen.ai &nbsp;·&nbsp; built for Samantha Curry</footer>
+
+<script>
+  var URL = "https://fvtltzxnjnpudkslyqzd.supabase.co/rest/v1/thought_captures";
+  var KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ2dGx0enhuam5wdWRrc2x5cXpkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgxOTczMzMsImV4cCI6MjA5Mzc3MzMzM30.EXmU94QsTkB5jBqPV5oZ3gsBxLxVV-D17PqNXaqhONY";
+  var OWNER = "samantha-curry";
+  var H = { "apikey":KEY, "Authorization":"Bearer "+KEY, "Content-Type":"application/json" };
+
+  var ta = document.getElementById("thought");
+  var btn = document.getElementById("saveBtn");
+  var toast = document.getElementById("toast");
+
+  function flash(msg){ toast.textContent=msg; toast.classList.add("show"); setTimeout(function(){toast.classList.remove("show");},2200); }
+
+  function today(){
+    var d = new Date(); // device-local; ET assumed for Palm Beach
+    return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+  }
+
+  function save(){
+    var body = ta.value.trim();
+    if(!body) return;
+    btn.disabled = true; btn.textContent = "Saving…";
+    fetch(URL, { method:"POST", headers:Object.assign({"Prefer":"return=minimal"},H),
+      body: JSON.stringify({ owner:OWNER, body:body }) })
+    .then(function(r){
+      if(!r.ok) throw new Error(r.status);
+      ta.value=""; flash("Saved ✓"); load();
+    })
+    .catch(function(e){ flash("Couldn't save — try again"); })
+    .finally(function(){ btn.disabled=false; btn.textContent="Save Thought"; });
+  }
+
+  function load(){
+    var q = URL+"?owner=eq."+OWNER+"&captured_date=eq."+today()+"&order=created_at.desc";
+    fetch(q, { headers:H }).then(function(r){return r.json();}).then(function(rows){
+      var list = document.getElementById("list");
+      document.getElementById("count").textContent = rows.length;
+      if(!rows.length){ list.innerHTML = '<div class="empty">Nothing yet today. Dictate your first thought above.</div>'; return; }
+      list.innerHTML = rows.map(function(row){
+        var t = new Date(row.created_at).toLocaleTimeString([], {hour:"numeric",minute:"2-digit"});
+        var safe = row.body.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+        return '<div class="entry"><span class="t">'+t+'</span>'+safe+'</div>';
+      }).join("");
+    }).catch(function(){ document.getElementById("list").innerHTML='<div class="empty">Couldn\'t load today\'s list.</div>'; });
+  }
+
+  btn.addEventListener("click", save);
+  load();
+</script>
+</body>
+</html>
