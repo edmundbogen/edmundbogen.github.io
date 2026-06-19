@@ -42,12 +42,18 @@
   .toast.show { opacity:1; }
   .today { margin-top:26px; flex:1 1 auto; overflow-y:auto; padding-bottom:20px; }
   .today h2 { font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:12px; }
+  .dayrow { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:12px; }
+  .dayrow h2 { margin-bottom:0; }
+  select.day { font-family:inherit; font-size:13px; font-weight:500; color:#fff; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.25); border-radius:8px; padding:7px 12px; outline:none; -webkit-appearance:none; }
   .entry {
     background:rgba(255,255,255,0.06); border-left:3px solid var(--cyan);
     border-radius:8px; padding:12px 14px; margin-bottom:10px; font-size:15px; line-height:1.5;
   }
   .entry .t { display:block; font-size:11px; color:rgba(255,255,255,0.4); margin-bottom:4px; }
   .empty { font-size:14px; color:rgba(255,255,255,0.4); font-style:italic; }
+  .syncnow { width:100%; margin-top:24px; padding:13px; border:1px solid rgba(0,168,225,0.5); border-radius:12px; background:rgba(0,168,225,0.12); color:var(--cyan); font-family:inherit; font-size:14px; font-weight:600; cursor:pointer; }
+  .syncnow:active { background:rgba(0,168,225,0.22); }
+  .syncnow:disabled { opacity:0.5; }
   .digest { margin-top:30px; }
   .digest h2 { font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--cyan); margin-bottom:12px; }
   .digest-card { background:rgba(0,168,225,0.08); border:1px solid rgba(0,168,225,0.25); border-radius:12px; padding:16px 18px; font-size:15px; line-height:1.6; }
@@ -72,12 +78,18 @@
   <div class="toast" id="toast"></div>
 
   <div class="today">
-    <h2>Today's Captures (<span id="count">0</span>)</h2>
+    <div class="dayrow">
+      <h2>Captures (<span id="count">0</span>)</h2>
+      <select class="day" id="daySel"></select>
+    </div>
     <div id="list"><div class="empty">Loading…</div></div>
   </div>
 
+  <button class="syncnow" id="syncBtn">⚡ Synthesize this day now</button>
+  <div class="toast" id="syncToast"></div>
+
   <div class="digest" id="digestWrap" style="display:none">
-    <h2>Today's 5pm Synthesis</h2>
+    <h2 id="digestTitle">5pm Synthesis</h2>
     <div class="digest-card" id="digestCard"></div>
   </div>
 
@@ -108,24 +120,47 @@
       body: JSON.stringify({ owner:OWNER, body:body }) })
     .then(function(r){
       if(!r.ok) throw new Error(r.status);
-      ta.value=""; flash("Saved ✓"); load();
+      ta.value=""; flash("Saved ✓"); selectedDate=today(); buildDays(); refresh();
     })
     .catch(function(e){ flash("Couldn't save — try again"); })
     .finally(function(){ btn.disabled=false; btn.textContent="Save Thought"; });
   }
 
+  var selectedDate = today();
+
+  function fmtLabel(d){
+    if(d===today()) return "Today";
+    var dt = new Date(d+"T12:00:00");
+    return dt.toLocaleDateString([], {weekday:"short", month:"short", day:"numeric"});
+  }
+
+  function buildDays(){
+    var q = URL+"?owner=eq."+OWNER+"&select=captured_date&order=captured_date.desc";
+    fetch(q,{headers:H}).then(function(r){return r.json();}).then(function(rows){
+      var seen={}, dates=[];
+      (rows||[]).forEach(function(r){ if(!seen[r.captured_date]){seen[r.captured_date]=1; dates.push(r.captured_date);} });
+      if(dates.indexOf(today())<0) dates.unshift(today());
+      if(dates.indexOf(selectedDate)<0) selectedDate=today();
+      var sel=document.getElementById("daySel");
+      sel.innerHTML = dates.map(function(d){ return '<option value="'+d+'"'+(d===selectedDate?' selected':'')+'>'+fmtLabel(d)+'</option>'; }).join("");
+      sel.onchange=function(){ selectedDate=sel.value; refresh(); };
+    }).catch(function(){});
+  }
+
+  function refresh(){ load(); loadDigest(); }
+
   function load(){
-    var q = URL+"?owner=eq."+OWNER+"&captured_date=eq."+today()+"&order=created_at.desc";
+    var q = URL+"?owner=eq."+OWNER+"&captured_date=eq."+selectedDate+"&order=created_at.desc";
     fetch(q, { headers:H }).then(function(r){return r.json();}).then(function(rows){
       var list = document.getElementById("list");
       document.getElementById("count").textContent = rows.length;
-      if(!rows.length){ list.innerHTML = '<div class="empty">Nothing yet today. Dictate your first thought above.</div>'; return; }
+      if(!rows.length){ list.innerHTML = '<div class="empty">'+(selectedDate===today()?"Nothing yet today. Dictate your first thought above.":"No thoughts captured on this day.")+'</div>'; return; }
       list.innerHTML = rows.map(function(row){
         var t = new Date(row.created_at).toLocaleTimeString([], {hour:"numeric",minute:"2-digit"});
         var safe = row.body.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
         return '<div class="entry"><span class="t">'+t+'</span>'+safe+'</div>';
       }).join("");
-    }).catch(function(){ document.getElementById("list").innerHTML='<div class="empty">Couldn\'t load today\'s list.</div>'; });
+    }).catch(function(){ document.getElementById("list").innerHTML='<div class="empty">Couldn\'t load the list.</div>'; });
   }
 
   function mdLite(md){
@@ -145,19 +180,38 @@
   }
 
   function loadDigest(){
-    var q = "https://fvtltzxnjnpudkslyqzd.supabase.co/rest/v1/thought_digests?owner=eq."+OWNER+"&digest_date=eq."+today()+"&select=body_md,source_count&limit=1";
+    var wrap = document.getElementById("digestWrap");
+    var q = "https://fvtltzxnjnpudkslyqzd.supabase.co/rest/v1/thought_digests?owner=eq."+OWNER+"&digest_date=eq."+selectedDate+"&select=body_md,source_count&limit=1";
     fetch(q, { headers:H }).then(function(r){return r.json();}).then(function(rows){
       if(rows && rows.length){
+        document.getElementById("digestTitle").textContent = (selectedDate===today()?"Today's ":fmtLabel(selectedDate)+" — ")+"Synthesis";
         document.getElementById("digestCard").innerHTML = mdLite(rows[0].body_md) +
-          '<div class="meta">'+rows[0].source_count+' thoughts synthesized today</div>';
-        document.getElementById("digestWrap").style.display = "block";
-      }
-    }).catch(function(){});
+          '<div class="meta">'+rows[0].source_count+' thoughts synthesized</div>';
+        wrap.style.display = "block";
+      } else { wrap.style.display = "none"; }
+    }).catch(function(){ wrap.style.display = "none"; });
+  }
+
+  var syncBtn = document.getElementById("syncBtn");
+  var syncToast = document.getElementById("syncToast");
+  function syncNow(){
+    syncBtn.disabled = true; syncBtn.textContent = "Synthesizing…";
+    fetch("https://fvtltzxnjnpudkslyqzd.supabase.co/functions/v1/synthesize-thoughts", {
+      method:"POST", headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({ date: selectedDate })
+    }).then(function(r){return r.json();}).then(function(res){
+      if(res && res.ok){ syncToast.textContent="Done ✓ "+res.captures+" thoughts synthesized"; loadDigest(); buildDays(); }
+      else if(res && res.skipped){ syncToast.textContent="Nothing new to synthesize for this day"; }
+      else { syncToast.textContent="Couldn't synthesize — try again"; }
+      syncToast.classList.add("show"); setTimeout(function(){syncToast.classList.remove("show");},3500);
+    }).catch(function(){ syncToast.textContent="Couldn't synthesize — try again"; syncToast.classList.add("show"); setTimeout(function(){syncToast.classList.remove("show");},3500); })
+    .finally(function(){ syncBtn.disabled=false; syncBtn.textContent="⚡ Synthesize this day now"; });
   }
 
   btn.addEventListener("click", save);
-  load();
-  loadDigest();
+  syncBtn.addEventListener("click", syncNow);
+  buildDays();
+  refresh();
 </script>
 </body>
 </html>
