@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Club Life May Add Years to Your Life | The Edmund Bogen Team</title>
+    <meta name="description" content="A growing body of research says the most underrated predictor of a long, healthy life isn't your cardiologist or your gym — it's your social fabric, and South Florida's club communities are quietly engineered for it.">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Why Club Life May Add Years to Your Life">
+    <meta property="og:description" content="The surprising longevity benefits of golf, tennis, friendship, and showing up — and why where you live is, in part, a health decision.">
+    <meta property="og:image" content="https://edmundbogen.github.io/longevity-club/hero.png">
+    <meta property="og:type" content="article">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            color: #1a1a1a;
+            background: #fff;
+            line-height: 1.75;
+            font-size: 17px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: rgba(255,255,255,0.97);
+            border-bottom: 1px solid #e8e8e8;
+            z-index: 100; padding: 18px 40px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        nav .logo { font-weight: 600; font-size: 14px; letter-spacing: 3px; color: #1a3e5c; text-transform: uppercase; }
+        nav .nav-links a { color: #1a3e5c; text-decoration: none; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; margin-left: 32px; font-weight: 500; }
+        nav .nav-links a:hover { color: #00a8e1; }
+        @media (max-width: 640px) { nav { padding: 14px 18px; } nav .nav-links a { margin-left: 16px; font-size: 11px; } }
+
+        /* HERO — finished banner image (title + name already baked in) */
+        .hero-banner { margin-top: 61px; width: 100%; background: #1a3e5c; }
+        .hero-banner img { display: block; width: 100%; max-width: 1100px; height: auto; margin: 0 auto; }
+
+        /* ARTICLE HEADER (H1 lives here, below the hero) */
+        .article-header { max-width: 780px; margin: 0 auto; padding: 36px 24px 0; }
+        .article-header h1 { font-weight: 300; font-size: 38px; line-height: 1.2; color: #1a3e5c; letter-spacing: -0.5px; margin-bottom: 16px; }
+        .article-header .subhead { font-size: 19px; font-weight: 300; color: #5a6470; line-height: 1.5; font-style: italic; }
+        @media (max-width: 640px) { .article-header h1 { font-size: 28px; } .article-header .subhead { font-size: 16px; } }
+
+        /* KEY TAKEAWAYS */
+        .takeaways { max-width: 780px; margin: 16px auto 0; padding: 0 24px; }
+        .takeaways .box { background: #1a3e5c; color: #fff; border-radius: 8px; padding: 34px 38px; }
+        .takeaways h3 { font-size: 14px; letter-spacing: 3px; text-transform: uppercase; color: #00a8e1; margin-bottom: 20px; font-weight: 600; }
+        .takeaways ul { list-style: none; }
+        .takeaways li { font-size: 16px; line-height: 1.6; color: rgba(255,255,255,0.92); padding: 10px 0 10px 26px; position: relative; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .takeaways li:last-child { border-bottom: none; }
+        .takeaways li::before { content: ''; position: absolute; left: 0; top: 18px; width: 9px; height: 9px; background: #00a8e1; border-radius: 50%; }
+        .takeaways li strong { color: #fff; font-weight: 600; }
+        @media (max-width: 640px) { .takeaways .box { padding: 26px 24px; } }
+
+        /* META BAR */
+        .meta-bar {
+            max-width: 780px; margin: 0 auto; padding: 30px 24px 0;
+            font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #6b7785; font-weight: 500;
+            display: flex; flex-wrap: wrap; gap: 14px; align-items: center;
+        }
+        .meta-bar .cat { color: #00a8e1; }
+        .meta-bar .dot { color: #cdd4dc; }
+
+        /* KEY STATS */
+        .stats { max-width: 780px; margin: 36px auto 0; padding: 0 24px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+        .stat-card { border-left: 4px solid #00a8e1; padding: 18px 20px; background: #f4f6f8; }
+        .stat-card .num { font-size: 30px; font-weight: 700; color: #1a3e5c; line-height: 1.1; }
+        .stat-card .lbl { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: #5a6470; margin-top: 8px; font-weight: 500; }
+        @media (max-width: 640px) { .stats { grid-template-columns: 1fr; } }
+
+        /* ARTICLE */
+        article { max-width: 780px; margin: 0 auto; padding: 50px 24px 70px; }
+        article p { margin-bottom: 24px; font-size: 17px; color: #2a2a2a; }
+        article p .lead-in { font-weight: 600; color: #1a3e5c; }
+        article h2 { font-weight: 300; font-size: 30px; letter-spacing: -0.3px; color: #1a3e5c; margin: 56px 0 24px; line-height: 1.3; }
+        article h2::after { content: ''; display: block; width: 60px; height: 2px; background: #00a8e1; margin-top: 16px; }
+        article em { font-style: italic; }
+        article strong { font-weight: 600; }
+
+        .pull-quote { border-left: 5px solid #00a8e1; padding: 18px 30px; margin: 40px 0; font-size: 22px; font-weight: 300; font-style: italic; color: #1a3e5c; line-height: 1.5; }
+
+        .callout { background: #f4f6f8; border-radius: 6px; padding: 26px 30px; margin: 32px 0; }
+        .callout .row { font-size: 16px; margin-bottom: 10px; color: #2a2a2a; }
+        .callout .row:last-child { margin-bottom: 0; }
+
+        .infobox { background: #fff; border: 1px solid #e3e8ee; border-top: 4px solid #1a3e5c; border-radius: 6px; padding: 28px 30px; margin: 36px 0; }
+        .infobox h3 { font-size: 15px; letter-spacing: 1px; text-transform: uppercase; color: #1a3e5c; margin-bottom: 18px; font-weight: 600; }
+        .infobox .item { margin-bottom: 16px; font-size: 16px; line-height: 1.6; }
+        .infobox .item:last-child { margin-bottom: 0; }
+        .infobox .item strong { color: #1a3e5c; }
+
+        /* COMMUNITY TABLE */
+        .commwrap { max-width: 880px; margin: 10px auto 0; padding: 0 24px; }
+        .range-callout { background: #1a3e5c; color: #fff; border-radius: 6px; padding: 22px 28px; margin: 0 0 28px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; }
+        .range-callout .lbl { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #8fc4dd; }
+        .range-callout .val { font-size: 26px; font-weight: 700; }
+        .range-callout .note { width: 100%; font-size: 13px; color: rgba(255,255,255,0.75); font-weight: 300; margin-top: 4px; }
+        table.comm { width: 100%; border-collapse: collapse; font-size: 15px; }
+        table.comm th { background: #1a3e5c; color: #fff; text-align: left; padding: 12px 14px; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; }
+        table.comm th.c, table.comm td.c { text-align: center; }
+        table.comm td { padding: 11px 14px; border-bottom: 1px solid #eceff3; color: #2a2a2a; }
+        table.comm tr:nth-child(even) td { background: #f8fafb; }
+        table.comm td.name { font-weight: 600; color: #1a3e5c; }
+        .tag { display: inline-block; padding: 3px 11px; border-radius: 20px; font-size: 11px; font-weight: 600; letter-spacing: 0.5px; }
+        .tag.sell { background: #e3f4fa; color: #0a7ea8; }
+        .tag.bal { background: #eef1f4; color: #5a6470; }
+        .tag.buy { background: #fdf2e3; color: #b07d28; }
+        .tag.na { background: #f4f4f4; color: #aab2bc; }
+        .comm-foot { font-size: 13px; color: #8a94a0; margin: 16px 0 0; line-height: 1.6; }
+        @media (max-width: 640px) { table.comm { font-size: 13px; } table.comm th, table.comm td { padding: 9px 8px; } }
+
+        /* ST ANDREWS LINEUP */
+        .lineup { background: #f4f6f8; padding: 64px 24px; }
+        .lineup-inner { max-width: 1100px; margin: 0 auto; }
+        .lineup .eyebrow { text-align: center; font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: #00a8e1; font-weight: 600; margin-bottom: 14px; }
+        .lineup h2 { text-align: center; color: #1a3e5c; font-weight: 300; font-size: 32px; margin-bottom: 14px; }
+        .lineup .sub { text-align: center; color: #5a6470; font-size: 15px; max-width: 620px; margin: 0 auto 14px; font-weight: 300; line-height: 1.6; }
+        .lineup .strip { text-align: center; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; color: #1a3e5c; font-weight: 600; margin-bottom: 40px; }
+        .lineup .strip span { color: #cdd4dc; margin: 0 8px; }
+        .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+        @media (max-width: 900px) { .cards { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .cards { grid-template-columns: 1fr; } }
+        .card { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 12px rgba(26,62,92,0.08); display: flex; flex-direction: column; }
+        .card .top { background: #1a3e5c; color: #fff; padding: 18px 20px; position: relative; }
+        .card .price { font-size: 24px; font-weight: 700; letter-spacing: -0.5px; }
+        .card .badge { position: absolute; top: 14px; right: 16px; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; font-weight: 700; padding: 4px 9px; border-radius: 12px; }
+        .card .badge.new { background: #00a8e1; color: #fff; }
+        .card .badge.reduced { background: #f0a830; color: #fff; }
+        .card .body { padding: 18px 20px; flex: 1; display: flex; flex-direction: column; }
+        .card .addr { font-size: 15px; font-weight: 600; color: #1a3e5c; line-height: 1.4; margin-bottom: 12px; }
+        .card .specs { font-size: 14px; color: #3a4550; line-height: 1.7; margin-bottom: 12px; }
+        .card .feats { margin-bottom: 14px; }
+        .card .feat { display: inline-block; font-size: 10px; letter-spacing: 0.5px; text-transform: uppercase; font-weight: 600; padding: 3px 9px; border-radius: 12px; margin: 0 5px 5px 0; background: #eef4f7; color: #0a7ea8; }
+        .card .feat.nc { background: #eaf7ee; color: #2e8b57; }
+        .card .mls { font-size: 11px; color: #9aa3ad; letter-spacing: 0.5px; margin-bottom: 4px; }
+        .card .courtesy { font-size: 11px; color: #9aa3ad; font-style: italic; margin-bottom: 16px; line-height: 1.4; }
+        .card .link { margin-top: auto; display: block; text-align: center; background: #00a8e1; color: #fff; text-decoration: none; padding: 11px; border-radius: 3px; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
+        .card .link:hover { background: #0093c4; }
+        .lineup .idx-disc { font-size: 12px; color: #8a94a0; text-align: center; max-width: 820px; margin: 36px auto 0; line-height: 1.6; }
+
+        /* CTA */
+        .cta { background: #1a3e5c; color: #fff; text-align: center; padding: 64px 24px; }
+        .cta h2 { color: #fff; font-weight: 300; font-size: 30px; margin-bottom: 18px; }
+        .cta p { max-width: 560px; margin: 0 auto 30px; color: rgba(255,255,255,0.85); font-size: 17px; font-weight: 300; }
+        .cta a { display: inline-block; background: #00a8e1; color: #fff; text-transform: uppercase; letter-spacing: 0.1em; padding: 16px 44px; border-radius: 2px; font-weight: 500; text-decoration: none; font-size: 14px; }
+        .cta a:hover { background: #0093c4; }
+
+        /* BIO */
+        .bio { max-width: 780px; margin: 0 auto; padding: 56px 24px; display: flex; gap: 28px; align-items: flex-start; border-bottom: 1px solid #eee; }
+        .bio .photo { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; flex-shrink: 0; background: #e3e8ee; }
+        .bio h4 { color: #1a3e5c; font-size: 18px; font-weight: 600; margin-bottom: 10px; }
+        .bio p { font-size: 14px; color: #555; line-height: 1.7; }
+        @media (max-width: 640px) { .bio { flex-direction: column; } }
+
+        /* FOOTER */
+        footer { background: #f4f6f8; padding: 40px 24px; text-align: center; }
+        footer p { font-size: 11px; letter-spacing: 1px; color: #8a94a0; line-height: 1.8; max-width: 760px; margin: 0 auto 8px; text-transform: uppercase; }
+        footer .top { color: #1a3e5c; font-weight: 600; font-size: 13px; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">The Edmund Bogen Team</div>
+        <div class="nav-links">
+            <a href="https://edmundbogen.github.io/market-dashboard/">Dashboard</a>
+            <a href="https://bogenhomes.com">Properties</a>
+            <a href="mailto:edmund@bogenhomes.com">Contact</a>
+        </div>
+    </nav>
+
+    <!-- HERO BANNER (finished image with title + subhead + AI disclosure baked in) -->
+    <div class="hero-banner">
+        <img src="hero.png" alt="Why Club Life May Add Years to Your Life — the surprising longevity benefits of golf, tennis, friendship, and showing up. The Edmund Bogen Team at Douglas Elliman.">
+        <p style="font-size:11px;color:#8a8a8a;font-style:italic;text-align:center;margin:8px 0 0;padding:0 16px;">Hero image generated with the assistance of artificial intelligence. Portions of this article were researched, drafted, or refined with AI; final editorial decisions were made by the author.</p>
+    </div>
+
+    <!-- ARTICLE HEADER (H1 below the hero — hero already carries baked-in title/subhead/AI disclosure) -->
+    <div class="article-header">
+        <h1>Why Club Life May Add Years to Your Life</h1>
+        <p class="subhead">The surprising longevity benefits of golf, tennis, friendship, and showing up.</p>
+    </div>
+
+    <!-- META -->
+    <div class="meta-bar">
+        <span class="cat">Longevity &amp; Community Wellness</span>
+        <span class="dot">&bull;</span>
+        <span>By Edmund Bogen</span>
+        <span class="dot">&bull;</span>
+        <span>June 20, 2026</span>
+        <span class="dot">&bull;</span>
+        <span>6 min read</span>
+    </div>
+
+    <!-- KEY STATS -->
+    <div class="stats">
+        <div class="stat-card">
+            <div class="num">50%–91%</div>
+            <div class="lbl">Higher survival likelihood for people with strong social relationships (Holt-Lunstad meta-analysis, 308,849 people)</div>
+        </div>
+        <div class="stat-card">
+            <div class="num">15</div>
+            <div class="lbl">Cigarettes a day — the mortality risk the Surgeon General likens chronic isolation to (2023 advisory)</div>
+        </div>
+        <div class="stat-card">
+            <div class="num">~40%</div>
+            <div class="lbl">Lower mortality <em>associated with</em> golf in a study of nearly 300,000 — about five additional years of life</div>
+        </div>
+    </div>
+
+    <!-- ARTICLE -->
+    <article>
+
+        <p>We spend fortunes on longevity. The supplements, the trainers, the concierge physicians, the wearables tracking every heartbeat. Yet one of the most powerful longevity interventions ever measured costs nothing, requires no prescription, and for many residents of Boca Raton's club communities, is already woven into daily life: other people.</p>
+
+        <p>The evidence is now overwhelming. In the largest analysis of its kind — 148 studies and more than 300,000 people — researchers found that individuals with strong social relationships had a <strong>50% higher likelihood of survival</strong> over the study periods than those who were more isolated. For the richest measures of social integration, the survival advantage climbed toward <strong>91%</strong>. To put that in perspective, the protective effect rivals quitting smoking and exceeds the benefit of most things we obsess over at the doctor's office.</p>
+
+        <p>In 2023, the U.S. Surgeon General took the unusual step of issuing a formal advisory on loneliness, warning that chronic social isolation carries a mortality risk <strong>comparable to smoking roughly 15 cigarettes a day</strong>. Two years later, a World Health Organization commission put a number on the global toll: social disconnection is now linked to an estimated <strong>871,000 deaths a year</strong> — roughly one hundred lives every hour.</p>
+
+        <div class="pull-quote">The protective effect of strong relationships rivals quitting smoking — and most of us are walking past it every day.</div>
+
+        <h2>Busy Is Not the Same as Connected</h2>
+
+        <p>Here is where the research gets interesting for our community — and where it issues a quiet warning. A packed calendar is not the same thing as a rich social life.</p>
+
+        <p>The data is clear that <strong>frequency of contact, on its own, barely moves the needle.</strong> You can attend every event, play in every scramble, and sit at every dinner and still register as lonely if those interactions stay on the surface. What actually predicts longevity is two things: <em>depth</em> and <em>variety</em>.</p>
+
+        <p>On depth: a small circle of trusted confidants — people with whom you share worries, not just small talk — is one of the most reliably protective factors science has found. The flip side is sobering. One study found that <strong>negative relationship quality, particularly a critical spouse or partner, raised five-year mortality risk by about 20%.</strong> The absence of friction may matter as much as the presence of warmth.</p>
+
+        <p>On variety: a 2024 study following more than 5,000 older adults found that engaging in a <em>diversity</em> of social roles — a club, a volunteer post, a faith community, a mentoring relationship — was associated with a <strong>22% lower risk of death</strong>, independent of how often people socialized. And the effect grew <em>stronger</em> with age. It isn't the number of interactions. It's the number of different ways you belong.</p>
+
+        <div class="pull-quote">It isn't how often you socialize. It's how many different ways you belong.</div>
+
+        <h2>The Club as Longevity Infrastructure</h2>
+
+        <p>Sociologists have a name for the spaces that aren't home and aren't work, where community is built through repeated, unforced contact: the <strong>"third place."</strong> For generations these were the corner caf&eacute; and the neighborhood pub. In South Florida, the country club has quietly become one of the most effective third places in American life — a single setting that delivers depth <em>and</em> variety on the same campus.</p>
+
+        <p>Consider what longevity researchers prescribe, and then consider a club calendar. The Okinawan tradition of the <em>moai</em> — a lifelong circle of friends who show up for one another — has a natural analog in the standing foursome and the bridge group. The "right tribe" that Blue Zones research credits for long life is, functionally, a membership of people who reinforce healthy habits. The variety of roles that the data rewards — committees, charitable boards, learning groups, intergenerational events — is precisely what a well-run club programs week after week.</p>
+
+        <p>And then there is the golf itself. A landmark study of nearly 300,000 golfers found a death rate roughly <strong>40% lower</strong> than non-golfers of the same age, sex, and economic standing — an effect the researchers estimated at about <strong>five additional years of life.</strong> The relationship is associative, not proven cause-and-effect — golfers tend to be healthier to begin with — but the combination of gentle movement, time outdoors, and standing social ties maps almost perfectly onto everything else we know about healthy aging.</p>
+
+        <p>This is not a coincidence of luxury. It is, in effect, longevity infrastructure that residents bought into without necessarily realizing what they were buying.</p>
+
+        <h2>Why Where You Live Is a Health Decision</h2>
+
+        <p>For those of us who advise families on where to live, this reframes the entire conversation. A home is shelter and an asset. But a <em>community</em> — the kind with a clubhouse, a calendar, and a culture of showing up — is something closer to a health intervention.</p>
+
+        <p>It is worth being honest about the limits. Most of this evidence is observational; affluent, well-connected people also tend to have better healthcare, less financial stress, and longer baseline life expectancy, and untangling cause from correlation is genuinely hard. Palm Beach County already enjoys a life expectancy above the national average. The point is not that a membership guarantees a longer life. The point is that the ingredients science keeps pointing to — trusted friendships, varied belonging, daily movement, a reason to leave the house — are unusually concentrated in the way these communities are built.</p>
+
+        <p>So the takeaway is both simple and strategic. Use what you have. Trade three surface conversations for one real one. Say yes to the committee, the new group, the mentoring ask — the variety is the medicine. And when you think about your next move, weigh the social fabric of a community as seriously as you weigh the square footage. It may be the most valuable amenity on the property.</p>
+
+        <div class="pull-quote">A home is an asset. A community is a health decision.</div>
+
+    </article>
+
+    <!-- KEY TAKEAWAYS -->
+    <div class="takeaways">
+        <div class="box">
+            <h3>Key Takeaways</h3>
+            <ul>
+                <li>Strong social ties are associated with a <strong>50% higher survival rate</strong>; the richest measures of social integration approach <strong>91%</strong>.</li>
+                <li>The Surgeon General likens chronic isolation to <strong>smoking ~15 cigarettes a day</strong>; the WHO links disconnection to <strong>871,000 deaths a year</strong>.</li>
+                <li><strong>Busyness isn't connection.</strong> Depth (a few trusted confidants) and <em>variety</em> of social roles (<strong>~22% lower mortality</strong>) matter far more than frequency.</li>
+                <li>A <strong>critical relationship</strong> can raise mortality risk by ~20% — the absence of friction matters.</li>
+                <li>Country clubs function as "third places" that concentrate the exact social ingredients longevity research rewards; golfers in one large study showed <strong>~40% lower mortality</strong>.</li>
+                <li>Where you live is, in part, a <strong>health decision</strong> — weigh community social fabric alongside the real estate.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta">
+        <h2>Thinking about your next move?</h2>
+        <p>If the social fabric of a community matters as much as its square footage — and the research says it does — let's talk about which of Boca's clubs fits the life you actually want to live. No pressure, no hype.</p>
+        <a href="mailto:edmund@bogenhomes.com?subject=Club%20communities%20and%20my%20next%20move">Start the Conversation &rarr;</a>
+    </div>
+
+    <!-- BIO -->
+    <div class="bio">
+        <img class="photo" src="bio.png" alt="Edmund Bogen">
+        <div>
+            <h4>About Edmund Bogen</h4>
+            <p>Edmund Bogen is the founder of The Edmund Bogen Team at Douglas Elliman Real Estate, specializing in luxury residential properties from Miami Beach to Palm Beach. A resident of St. Andrews Country Club in Boca Raton, Edmund brings an insider's perspective to South Florida's most prestigious communities, pairing market expertise with a deep understanding of the financial nuances of luxury home ownership. Contact Edmund at (561) 235-7575 or visit bogenhomes.com.</p>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p class="top">The Edmund Bogen Team | Douglas Elliman Real Estate | (561) 235-7575</p>
+        <p>444 E Palmetto Park Rd, Boca Raton, FL 33432 &bull; 561.235.7575</p>
+        <p>Market data courtesy of BeachesMLS. Information is deemed reliable but not guaranteed. Longevity and health figures are drawn from published research, including the Holt-Lunstad et al. meta-analysis, the 2023 U.S. Surgeon General Advisory on social isolation, the 2025 WHO Commission on Social Connection, and peer-reviewed studies on social roles and golf. This article is general consumer education and is not medical, financial, tax, insurance, or legal advice. Equal Housing Opportunity.</p>
+        <p>&copy; 2026 Douglas Elliman Real Estate. All material presented herein is intended for information purposes only. While this information is believed to be correct, it is represented subject to errors, omissions, changes or withdrawal without notice. All property information, including but not limited to square footage, room count, number of bedrooms and the school district, should be independently verified. If your property is currently listed with another broker, this is not a solicitation of that listing.</p>
+    </footer>
+
+</body>
+</html>
