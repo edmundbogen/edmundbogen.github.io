@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Prompt to Close: 30-Day Challenge — Edmund Bogen</title>
+<meta name="description" content="A 30-day gamified challenge that teaches real estate agents one AI prompt category a day — from listing descriptions to closing scripts. Build the streak, earn the rank, finish a Closer." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  /* ============================================================
+     BRAND TOKENS — Edmund Bogen (navy / cyan / ink / gold)
+     ============================================================ */
+  :root {
+    --navy-900: #0d2540;
+    --navy-700: #1a3e5c;   /* PRIMARY brand navy */
+    --navy-600: #244d6e;
+    --navy-500: #2f5c80;
+    --cyan:     #00a8e1;   /* accent — fills, bars, CTAs */
+    --cyan-hi:  #1bb6e8;
+    --cyan-dk:  #0080ab;
+    --ink:      #0a6d9c;   /* small blue text on white (AA) */
+    --gold:     #e6b450;
+    --green:    #2ec27e;
+    --white:    #ffffff;
+    --gray-100: #f4f6f8;
+    --gray-200: #e6eaee;
+    --gray-500: #6b6b6b;
+    --ink-body: #333333;
+
+    --shadow-sm: 0 2px 8px rgba(13,37,64,.10);
+    --shadow-md: 0 10px 30px rgba(13,37,64,.18);
+    --shadow-lg: 0 24px 60px rgba(13,37,64,.30);
+    --radius: 4px;
+    --wrap: 1120px;
+    --font-sans: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --ease: cubic-bezier(.22,.61,.36,1);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-sans);
+    color: var(--ink-body);
+    background: var(--navy-900);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,h2,h3,h4 { font-weight: 400; line-height: 1.2; }
+  .eyebrow {
+    font-size: 12px; letter-spacing: .22em; text-transform: uppercase;
+    font-weight: 600; color: var(--cyan);
+  }
+  .allcaps { text-transform: uppercase; letter-spacing: .1em; }
+  button { font-family: var(--font-sans); cursor: pointer; border: none; }
+  a { color: var(--ink); }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    background: var(--cyan); color: #fff; text-transform: uppercase;
+    letter-spacing: .12em; font-weight: 600; font-size: 14px;
+    padding: 16px 40px; border-radius: var(--radius);
+    transition: background .18s var(--ease), transform .18s var(--ease);
+  }
+  .btn:hover { background: var(--cyan-hi); transform: translateY(-1px); }
+  .btn:active { background: var(--cyan-dk); transform: translateY(0); }
+  .btn[disabled] { background: var(--navy-500); cursor: not-allowed; opacity: .55; transform: none; }
+  .btn-ghost {
+    background: transparent; border: 1.5px solid var(--cyan); color: var(--cyan);
+  }
+  .btn-ghost:hover { background: rgba(0,168,225,.12); }
+  .btn-sm { padding: 11px 22px; font-size: 12px; }
+
+  /* Layout shell */
+  .view { display: none; }
+  .view.active { display: block; animation: fade .4s var(--ease); }
+  @keyframes fade { from { opacity: 0; transform: translateY(8px);} to { opacity:1; transform:none; } }
+  .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
+
+  /* ============================================================
+     WELCOME
+     ============================================================ */
+  #welcome {
+    min-height: 100vh; display: flex; align-items: center;
+    background:
+      radial-gradient(1200px 600px at 80% -10%, rgba(0,168,225,.22), transparent 60%),
+      linear-gradient(160deg, var(--navy-900), var(--navy-700));
+    color: #fff; padding: 60px 0;
+  }
+  .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 60px; align-items: center; }
+  .hero h1 {
+    font-size: clamp(40px, 6vw, 74px); text-transform: uppercase;
+    letter-spacing: .06em; font-weight: 300; margin: 18px 0 10px;
+  }
+  .hero h1 b { font-weight: 700; color: var(--cyan); }
+  .hero .sub { font-size: 19px; color: #cfe0ec; max-width: 560px; margin-bottom: 34px; font-weight: 300; }
+  .accent-bar { width: 54px; height: 4px; background: var(--cyan); border-radius: 2px; }
+  .enroll-card {
+    background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14);
+    border-radius: 8px; padding: 34px; backdrop-filter: blur(6px); box-shadow: var(--shadow-md);
+  }
+  .enroll-card label { display:block; font-size: 12px; letter-spacing:.14em; text-transform:uppercase; color:#9fc3d8; margin-bottom: 10px; font-weight:600; }
+  .enroll-card input {
+    width: 100%; padding: 16px 18px; font-size: 17px; font-family: var(--font-sans);
+    border: 1.5px solid rgba(255,255,255,.2); background: rgba(0,0,0,.2); color:#fff;
+    border-radius: var(--radius); outline: none; transition: border-color .18s;
+  }
+  .enroll-card input:focus { border-color: var(--cyan); }
+  .enroll-card input::placeholder { color: rgba(255,255,255,.4); }
+  .enroll-card .btn { width: 100%; margin-top: 22px; }
+  .hero-stats { display: flex; gap: 30px; margin-top: 40px; flex-wrap: wrap; }
+  .hero-stat b { display:block; font-size: 34px; font-weight: 700; color:#fff; line-height:1; }
+  .hero-stat span { font-size: 12px; letter-spacing:.12em; text-transform:uppercase; color:#9fc3d8; }
+
+  /* ============================================================
+     APP HUD
+     ============================================================ */
+  #app { display: none; min-height: 100vh; background: var(--gray-100); }
+  #app.show { display: block; }
+  .hud {
+    position: sticky; top: 0; z-index: 40;
+    background: linear-gradient(120deg, var(--navy-900), var(--navy-700));
+    color:#fff; box-shadow: var(--shadow-md);
+  }
+  .hud-inner { max-width: var(--wrap); margin: 0 auto; padding: 16px 24px; display:flex; align-items:center; gap: 26px; flex-wrap: wrap; }
+  .brand-mark { display:flex; align-items:center; gap:12px; cursor:pointer; }
+  .eb-badge {
+    width: 42px; height: 42px; border-radius: 50%; background: var(--cyan);
+    display:flex; align-items:center; justify-content:center; font-weight:700; letter-spacing:.04em;
+    color:#fff; font-size:16px; box-shadow: 0 0 0 3px rgba(0,168,225,.25);
+  }
+  .brand-mark small { display:block; font-size:10px; letter-spacing:.2em; color:#9fc3d8; text-transform:uppercase; }
+  .brand-mark strong { font-size:14px; letter-spacing:.14em; text-transform:uppercase; font-weight:600; }
+  .hud-spacer { flex: 1; }
+  .hud-metric { text-align:center; min-width: 66px; }
+  .hud-metric b { display:block; font-size: 22px; font-weight:700; line-height:1; }
+  .hud-metric span { font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:#9fc3d8; }
+  .flame { font-size: 20px; filter: drop-shadow(0 0 6px rgba(230,120,40,.6)); }
+  .streak-num.hot { color: var(--gold); }
+  .rank-pill {
+    display:flex; flex-direction:column; gap:6px; min-width: 210px;
+  }
+  .rank-pill .rank-top { display:flex; justify-content:space-between; align-items:baseline; }
+  .rank-pill .rank-name { font-size:13px; letter-spacing:.14em; text-transform:uppercase; font-weight:600; }
+  .rank-pill .rank-next { font-size:10px; color:#9fc3d8; letter-spacing:.06em; }
+  .bar { height: 7px; background: rgba(255,255,255,.16); border-radius: 4px; overflow:hidden; }
+  .bar > i { display:block; height:100%; background: linear-gradient(90deg, var(--cyan), var(--cyan-hi)); border-radius:4px; transition: width .5s var(--ease); }
+
+  /* ============================================================
+     DASHBOARD
+     ============================================================ */
+  .section-head { display:flex; align-items:center; gap:16px; margin: 48px 0 8px; }
+  .section-head .vbar { width:5px; height: 34px; background: var(--cyan); border-radius: 2px; }
+  .section-head h2 { font-size: 26px; text-transform:uppercase; letter-spacing:.1em; color: var(--navy-700); font-weight: 400; }
+  .section-sub { color: var(--gray-500); margin: 0 0 26px 21px; font-size: 15px; }
+
+  .overall-bar { margin: 0 0 8px; display:flex; justify-content:space-between; align-items:baseline; }
+  .overall-bar .lbl { font-size:12px; letter-spacing:.14em; text-transform:uppercase; color: var(--ink); font-weight:600; }
+  .overall-bar .val { font-size:12px; color: var(--gray-500); }
+
+  .grid {
+    display:grid; grid-template-columns: repeat(auto-fill, minmax(232px, 1fr));
+    gap: 18px; margin-bottom: 60px;
+  }
+  .m-card {
+    background:#fff; border-radius: 8px; padding: 22px; box-shadow: var(--shadow-sm);
+    border-left: 4px solid var(--gray-200); position: relative; overflow:hidden;
+    transition: transform .18s var(--ease), box-shadow .18s var(--ease);
+    display:flex; flex-direction:column; gap:8px; min-height: 168px;
+  }
+  .m-card.available { cursor:pointer; border-left-color: var(--cyan); }
+  .m-card.available:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+  .m-card.completed { border-left-color: var(--green); cursor:pointer; }
+  .m-card.locked { opacity:.62; }
+  .m-day { font-size: 11px; letter-spacing:.16em; text-transform:uppercase; color: var(--ink); font-weight:700; }
+  .m-card.locked .m-day { color: var(--gray-500); }
+  .m-title { font-size: 17px; font-weight: 600; color: var(--navy-700); line-height:1.3; }
+  .m-cat { font-size: 12px; color: var(--gray-500); text-transform:uppercase; letter-spacing:.08em; margin-top:auto; }
+  .m-status { position:absolute; top:16px; right:16px; font-size: 20px; }
+  .m-xp { font-size: 11px; font-weight:700; color: var(--gold); letter-spacing:.08em; }
+  .m-card .lock-ic { position:absolute; top:16px; right:16px; opacity:.5; }
+  .check { color: var(--green); }
+
+  /* ============================================================
+     MISSION DETAIL
+     ============================================================ */
+  #mission .wrap { max-width: 820px; padding-top: 34px; padding-bottom: 80px; }
+  .back-link { background:none; color: var(--ink); font-size:13px; letter-spacing:.1em; text-transform:uppercase; font-weight:600; display:inline-flex; gap:8px; align-items:center; padding: 10px 0; }
+  .m-detail-head { margin: 12px 0 4px; }
+  .m-detail-head .day-tag { font-size:12px; letter-spacing:.18em; text-transform:uppercase; color: var(--ink); font-weight:700; }
+  .m-detail-head h2 { font-size: clamp(26px,4vw,38px); color: var(--navy-700); text-transform:uppercase; letter-spacing:.04em; font-weight:400; margin: 8px 0; }
+  .m-detail-head .cat-tag { display:inline-block; background: rgba(0,168,225,.12); color: var(--ink); font-size:11px; letter-spacing:.12em; text-transform:uppercase; font-weight:600; padding:6px 14px; border-radius: 20px; }
+  .panel { background:#fff; border-radius: 10px; padding: 30px 32px; box-shadow: var(--shadow-sm); margin-top: 24px; }
+  .panel h3 { font-size: 14px; letter-spacing:.16em; text-transform:uppercase; color: var(--navy-700); font-weight:700; margin-bottom: 14px; display:flex; align-items:center; gap:10px; }
+  .panel h3::before { content:""; width:5px; height:18px; background:var(--cyan); border-radius:2px; display:inline-block; }
+  .panel p.lesson { font-size: 17px; color: var(--ink-body); line-height: 1.75; }
+  .code-wrap { background: var(--navy-900); border-radius: 8px; padding: 24px; position:relative; }
+  .code-wrap textarea {
+    width:100%; min-height: 230px; background: transparent; border: none; resize: vertical;
+    color: #dcecf6; font-family: var(--font-mono); font-size: 14px; line-height: 1.7; outline: none;
+  }
+  .code-hint { font-size: 12px; color: var(--gray-500); margin-top: 12px; }
+  .code-hint b { color: var(--ink); }
+  .m-actions { display:flex; gap:14px; margin-top: 26px; flex-wrap: wrap; }
+  .done-flag { display:flex; align-items:center; gap:10px; color: var(--green); font-weight:600; letter-spacing:.06em; }
+
+  /* ============================================================
+     CERTIFICATE
+     ============================================================ */
+  #cert { background: linear-gradient(160deg, var(--navy-900), var(--navy-700)); min-height:100vh; padding: 50px 0; color:#fff; }
+  .cert-tools { max-width: 900px; margin: 0 auto 24px; display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; padding: 0 24px; }
+  .certificate {
+    max-width: 900px; margin: 0 auto; background:#fff; color: var(--navy-700);
+    border: 2px solid var(--cyan); border-radius: 6px; padding: 64px 60px; text-align:center;
+    box-shadow: var(--shadow-lg); position: relative;
+  }
+  .certificate::before { content:""; position:absolute; inset:14px; border:1px solid var(--gray-200); border-radius: 4px; pointer-events:none; }
+  .cert-seal { width: 78px; height:78px; border-radius:50%; margin: 0 auto 20px; background: radial-gradient(circle at 35% 30%, var(--gold), #c99329); display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; box-shadow: 0 8px 20px rgba(201,147,41,.4); font-size: 26px; }
+  .certificate .eyebrow { color: var(--ink); }
+  .certificate h1 { font-size: clamp(30px,5vw,46px); text-transform:uppercase; letter-spacing:.08em; margin: 10px 0 6px; font-weight:300; }
+  .cert-name { font-size: clamp(34px,6vw,52px); font-weight:700; color: var(--navy-700); margin: 22px 0 6px; }
+  .cert-rank { display:inline-block; background: var(--navy-700); color:#fff; letter-spacing:.2em; text-transform:uppercase; font-size:13px; font-weight:600; padding: 8px 22px; border-radius: 22px; margin: 8px 0 24px; }
+  .cert-body { max-width: 560px; margin: 0 auto 26px; color: var(--ink-body); font-size: 16px; }
+  .cert-foot { display:flex; justify-content:space-between; align-items:flex-end; margin-top: 34px; gap: 24px; }
+  .cert-sig { text-align:left; }
+  .cert-sig .sig-name { font-size: 22px; font-weight:600; color: var(--navy-700); border-bottom: 2px solid var(--navy-700); padding-bottom: 6px; display:inline-block; }
+  .cert-sig small, .cert-date small { font-size: 11px; letter-spacing:.1em; text-transform:uppercase; color: var(--gray-500); }
+  .cert-date { text-align:right; }
+  .cert-date b { display:block; font-size: 18px; color: var(--navy-700); }
+
+  /* Toast */
+  #toast { position: fixed; left:50%; bottom: 34px; transform: translateX(-50%) translateY(120px); z-index: 90;
+    background: var(--navy-700); color:#fff; padding: 16px 26px; border-radius: 8px; box-shadow: var(--shadow-lg);
+    display:flex; align-items:center; gap:14px; border-left: 4px solid var(--cyan); opacity:0; transition: transform .4s var(--ease), opacity .4s var(--ease); max-width: 90vw; }
+  #toast.show { transform: translateX(-50%) translateY(0); opacity:1; }
+  #toast .t-xp { color: var(--gold); font-weight:700; }
+  #toast .t-title { font-weight:600; letter-spacing:.04em; }
+  #toast .t-sub { font-size:12px; color:#9fc3d8; }
+
+  /* Footer */
+  .app-foot { text-align:center; padding: 40px 24px 60px; color: var(--gray-500); font-size: 13px; }
+  .app-foot a { color: var(--ink); text-decoration: none; font-weight:600; }
+  .app-foot .reset { background:none; color: var(--gray-500); text-decoration: underline; font-size:12px; margin-top: 10px; }
+  .foot-brand { color: var(--navy-700); font-weight:600; letter-spacing:.06em; }
+
+  /* Responsive */
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .hud-inner { gap: 16px; }
+    .rank-pill { order: 5; width:100%; min-width: 0; }
+    .hud-spacer { display:none; }
+  }
+  @media (max-width: 520px) {
+    .certificate { padding: 40px 24px; }
+    .cert-foot { flex-direction: column; align-items:center; text-align:center; }
+    .cert-date { text-align:center; }
+  }
+
+  /* Print — certificate only */
+  @media print {
+    body { background:#fff; }
+    #welcome, #app > .hud, #app .section-head, #app .grid, #mission, #dashboard, .cert-tools, .app-foot, #toast { display:none !important; }
+    #cert { background:#fff; padding:0; }
+    .certificate { box-shadow:none; border-color: var(--navy-700); max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================== WELCOME ============================== -->
+<section id="welcome" class="view active">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero">
+        <span class="eyebrow">Edmund Bogen &middot; AI for Real Estate</span>
+        <h1>Prompt to <b>Close</b></h1>
+        <div class="accent-bar"></div>
+        <p class="sub" style="margin-top:22px;">A 30-day challenge that turns you into an AI-fluent agent — one prompt category a day. Write sharper listings, stronger CMAs, and closing scripts that convert. Build the streak. Earn the rank. Finish a <b style="color:#fff;">Closer</b>.</p>
+        <div class="hero-stats">
+          <div class="hero-stat"><b>30</b><span>Daily Missions</span></div>
+          <div class="hero-stat"><b>4</b><span>Rank Tiers</span></div>
+          <div class="hero-stat"><b>10</b><span>Min a Day</span></div>
+        </div>
+      </div>
+      <div class="enroll-card">
+        <span class="eyebrow" style="color:var(--cyan);">Start Free</span>
+        <h3 class="allcaps" style="color:#fff; font-size:20px; margin:8px 0 22px;">Enroll in the Challenge</h3>
+        <label for="nameInput">Your Name</label>
+        <input id="nameInput" type="text" placeholder="e.g. Jordan Reyes" autocomplete="name" />
+        <button class="btn" id="enrollBtn">Start the Challenge &rarr;</button>
+        <p style="font-size:12px; color:#9fc3d8; margin-top:16px; text-align:center;">No signup. Progress saves to this device.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== APP ============================== -->
+<div id="app">
+  <!-- HUD -->
+  <div class="hud">
+    <div class="hud-inner">
+      <div class="brand-mark" onclick="go('dashboard')">
+        <div class="eb-badge">EB</div>
+        <div><small>Edmund Bogen</small><strong>Prompt to Close</strong></div>
+      </div>
+      <div class="hud-spacer"></div>
+      <div class="hud-metric">
+        <b id="hudXp">0</b><span>XP</span>
+      </div>
+      <div class="hud-metric">
+        <b><span class="flame">🔥</span> <span class="streak-num" id="hudStreak">0</span></b><span>Day Streak</span>
+      </div>
+      <div class="hud-metric">
+        <b id="hudDone">0<span style="font-size:14px;color:#9fc3d8;">/30</span></b><span>Missions</span>
+      </div>
+      <div class="rank-pill">
+        <div class="rank-top">
+          <span class="rank-name" id="hudRank">Rookie Agent</span>
+          <span class="rank-next" id="hudRankNext"></span>
+        </div>
+        <div class="bar"><i id="hudRankBar" style="width:0%"></i></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <section id="dashboard" class="view">
+    <div class="wrap">
+      <div class="section-head"><div class="vbar"></div><h2 id="greeting">Your Missions</h2></div>
+      <p class="section-sub">Complete one mission a day to keep your streak alive. Each mission teaches one AI prompt you can use on a real deal today.</p>
+
+      <div class="overall-bar">
+        <span class="lbl">Overall Progress</span>
+        <span class="val" id="overallVal">0 of 30 complete</span>
+      </div>
+      <div class="bar" style="height:9px; background:var(--gray-200); margin-bottom:8px;"><i id="overallBar" style="width:0%"></i></div>
+
+      <div class="grid" id="missionGrid"></div>
+    </div>
+    <div class="app-foot">
+      <p><span class="foot-brand">Edmund Bogen</span> — AI Consultant, Speaker &amp; Coach for Real Estate Professionals</p>
+      <p style="margin-top:6px;">Part of the Edmund Bogen Mastermind. Learn more at <a href="https://bogen.ai" target="_blank" rel="noopener">bogen.ai</a></p>
+      <button class="reset" onclick="resetProgress()">Reset my progress</button>
+    </div>
+  </section>
+
+  <!-- MISSION DETAIL -->
+  <section id="mission" class="view">
+    <div class="wrap">
+      <button class="back-link" onclick="go('dashboard')">&larr; Back to Missions</button>
+      <div class="m-detail-head">
+        <span class="day-tag" id="mDay">Day 1</span>
+        <h2 id="mTitle">Mission Title</h2>
+        <span class="cat-tag" id="mCat">Category</span>
+      </div>
+
+      <div class="panel">
+        <h3>The Lesson</h3>
+        <p class="lesson" id="mLesson"></p>
+      </div>
+
+      <div class="panel">
+        <h3>Your Prompt Template</h3>
+        <p style="font-size:14px; color:var(--gray-500); margin-bottom:16px;">Fill in the <b style="color:var(--ink);">[BRACKETED]</b> blanks with your real deal details, then copy it into Claude or ChatGPT.</p>
+        <div class="code-wrap">
+          <textarea id="mPrompt" spellcheck="false"></textarea>
+        </div>
+        <p class="code-hint">Tip: the more specific your details, the better the output. Replace every <b>[BRACKET]</b> before you run it.</p>
+        <div class="m-actions">
+          <button class="btn btn-ghost btn-sm" id="copyBtn" onclick="copyPrompt()">📋 Copy Prompt</button>
+          <button class="btn" id="completeBtn" onclick="completeCurrent()">Mark Complete &amp; Earn 100 XP</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================== CERTIFICATE ============================== -->
+<section id="cert" class="view">
+  <div class="cert-tools">
+    <button class="back-link" style="color:#9fc3d8;" onclick="go('dashboard')">&larr; Back to Missions</button>
+    <button class="btn btn-sm" onclick="window.print()">🖨️ Print / Save PDF</button>
+  </div>
+  <div class="certificate">
+    <div class="cert-seal">★</div>
+    <span class="eyebrow">Certificate of Completion</span>
+    <h1>Prompt to Close</h1>
+    <p style="letter-spacing:.14em; text-transform:uppercase; font-size:12px; color:var(--gray-500);">30-Day AI Challenge for Real Estate Agents</p>
+    <div class="cert-name" id="certName">Your Name</div>
+    <div class="cert-rank">Rank Achieved: Closer</div>
+    <p class="cert-body">Has completed all 30 daily missions of the Prompt to Close Challenge — mastering AI prompts across listings, pricing, client communication, negotiation, and business growth — and has earned the rank of <b>Closer</b>.</p>
+    <div class="cert-foot">
+      <div class="cert-sig">
+        <span class="sig-name">Edmund Bogen</span><br />
+        <small>AI Consultant, Speaker &amp; Coach</small>
+      </div>
+      <div class="cert-date">
+        <b id="certDate">—</b>
+        <small>Date Completed</small>
+      </div>
+    </div>
+  </div>
+  <div class="app-foot" style="color:#9fc3d8;">
+    <p>Ready to go deeper? The Edmund Bogen Mastermind takes agents from prompts to a full AI operating system.</p>
+    <p style="margin-top:6px;"><a href="https://bogen.ai" target="_blank" rel="noopener" style="color:var(--cyan);">bogen.ai</a></p>
+  </div>
+</section>
+
+<!-- Toast -->
+<div id="toast">
+  <span class="t-xp" id="toastXp">+100 XP</span>
+  <div><div class="t-title" id="toastTitle">Mission Complete</div><div class="t-sub" id="toastSub"></div></div>
+</div>
+
+<script>
+/* ============================================================
+   PROMPT TO CLOSE — game engine
+   Streak / XP / storage patterns adapted from the Bogen Method.
+   ============================================================ */
+
+/* ---- storage shim (works in sandboxed iframes) ---- */
+const STATE_KEY = "promptToClose_v1";
+const _mem = {};
+const store = {
+  get(k){ try { const s = window["local"+"Storage"]; if(s) return s.getItem(k); } catch(e){} return _mem[k] ?? null; },
+  set(k,v){ try { const s = window["local"+"Storage"]; if(s){ s.setItem(k,v); return; } } catch(e){} _mem[k]=v; },
+  remove(k){ try { const s = window["local"+"Storage"]; if(s){ s.removeItem(k); return; } } catch(e){} delete _mem[k]; }
+};
+
+const XP_PER_MISSION = 100;
+
+/* ---- rank tiers (by XP) ---- */
+const RANKS = [
+  { name: "Rookie Agent",  min: 0 },
+  { name: "Prompt Pro",    min: 700 },
+  { name: "AI Integrator", min: 1500 },
+  { name: "Closer",        min: 2400 }
+];
+
+/* ---- 30 daily missions ---- */
+const MISSIONS = [
+  { cat:"Listing & Marketing", title:"The Perfect Listing Description",
+    lesson:"AI writes a polished MLS description in seconds — but only if you feed it the specifics. Lead with the features that make this home different, name the lifestyle a buyer is really buying, and let AI turn your bullet points into flowing, benefit-driven copy. Always fact-check every number before it goes live.",
+    prompt:"Write a compelling 150-word MLS listing description for a property.\n\nAddress/Area: [NEIGHBORHOOD, CITY]\nType: [SINGLE-FAMILY / CONDO / TOWNHOME]\nBeds/Baths: [# BEDS] / [# BATHS]\nSquare feet: [SQ FT]\nStandout features: [3-5 KEY FEATURES, e.g. chef's kitchen, pool, waterfront]\nLifestyle / who it's for: [e.g. growing family, downsizer, entertainer]\nTone: warm, aspirational, professional. Avoid hype and fair-housing-sensitive language." },
+
+  { cat:"Listing & Marketing", title:"Luxury Listing Rewrite",
+    lesson:"A luxury buyer reads differently. Take an ordinary description and have AI elevate the voice — evocative, confident, understated. The trick is to describe the experience of living there, not just the finishes. Give AI your draft and a clear instruction on tone.",
+    prompt:"Rewrite the following listing description in an elevated, luxury tone for a high-end buyer. Keep every fact accurate, make it evocative and confident (not flowery), and emphasize the lifestyle and craftsmanship.\n\nOriginal description:\n[PASTE YOUR CURRENT DESCRIPTION]\n\nPrice point: [PRICE]\nSignature detail to highlight: [ONE STANDOUT FEATURE]" },
+
+  { cat:"Listing & Marketing", title:"Neighborhood & Community Story",
+    lesson:"Buyers buy a neighborhood as much as a house. Use AI to draft a compelling community narrative — schools, lifestyle, dining, commute — that you can reuse across listings in the same area. Verify facts and keep it fair-housing compliant (describe amenities, not demographics).",
+    prompt:"Write a 120-word neighborhood overview I can add to listings and buyer packets.\n\nCommunity/Area: [NEIGHBORHOOD NAME]\nCity/Region: [CITY]\nKey lifestyle draws: [e.g. golf, waterfront, walkable downtown, top schools]\nDining/shopping/recreation to mention: [EXAMPLES]\nBuyer profile: [e.g. professionals, families, second-home buyers]\nKeep it factual and fair-housing compliant — describe amenities and lifestyle, never demographics." },
+
+  { cat:"Listing & Marketing", title:"Open House Promo Kit",
+    lesson:"One prompt can generate everything you need to fill an open house: an email invite, two social captions, and a text blast. Batch your marketing so you spend your time with people, not your keyboard.",
+    prompt:"Create an open house promotion kit for this property.\n\nAddress: [ADDRESS]\nDate/Time: [DAY, DATE, TIME WINDOW]\nBeds/Baths/SqFt: [DETAILS]\nPrice: [PRICE]\nTop 3 features: [FEATURES]\n\nGive me: (1) a short email invite with subject line, (2) one Instagram caption with hashtags, (3) one Facebook post, (4) a 1-sentence text-blast reminder. Tone: inviting and professional." },
+
+  { cat:"Listing & Marketing", title:"Just-Listed Social Captions",
+    lesson:"Speed wins on social. Have AI generate a batch of platform-specific captions the moment a listing goes live, then pick your favorite. Vary the hook — some lead with the price, some with the lifestyle, some with a question.",
+    prompt:"Write 5 distinct 'Just Listed' social media captions for this property, each with a different hook (price, lifestyle, feature, question, urgency).\n\nProperty: [BEDS/BATHS, TYPE] in [NEIGHBORHOOD]\nPrice: [PRICE]\nWow factor: [BEST FEATURE]\nCall to action: [e.g. DM me, link in bio, call to tour]\nInclude 5-8 relevant hashtags at the end. Keep each caption under 40 words." },
+
+  { cat:"Listing & Marketing", title:"Property Video Script",
+    lesson:"A 60-second walkthrough script keeps your reels tight and your message on-point. Give AI the flow of the home and the feeling you want to leave, and it will hand you a shot-by-shot narration you can read straight to camera.",
+    prompt:"Write a 60-second property video script (voiceover + shot notes) for a walkthrough reel.\n\nProperty: [BEDS/BATHS] [TYPE] in [AREA]\nPrice: [PRICE]\nSequence of spaces to feature: [e.g. entry, kitchen, primary suite, backyard]\nEmotional payoff to end on: [e.g. sunset by the pool]\nFormat as: [SHOT] — 'spoken line'. Keep the tone warm and confident, roughly 150 words of narration." },
+
+  { cat:"Listing & Marketing", title:"Sphere Email Blast",
+    lesson:"Your past clients and sphere are your best source of business. Use AI to write a short, personal-feeling email announcing a new listing or a market update — the kind people actually open and forward.",
+    prompt:"Write a warm, personal email to my sphere of past clients and friends announcing a new listing (and inviting referrals).\n\nMy name: [YOUR NAME]\nListing: [BEDS/BATHS, AREA, PRICE]\nWhy it's special: [1-2 REASONS]\nAsk: know anyone who'd love this home, or thinking of a move themselves?\nKeep it under 150 words, friendly, first-person, and not salesy. Include a subject line." },
+
+  { cat:"Listing & Marketing", title:"Print Flyer Copy",
+    lesson:"Print still converts at open houses and in mailers. AI can structure clean flyer copy — headline, feature bullets, and a call to action — that a designer (or Canva) can drop straight in.",
+    prompt:"Write copy for a one-page property flyer.\n\nProperty: [ADDRESS], [BEDS/BATHS], [SQFT]\nPrice: [PRICE]\nHeadline goal: [e.g. luxury, value, location]\nTop 6 features as bullets: [LIST]\nAgent: [YOUR NAME], [PHONE], [EMAIL]\n\nGive me: a bold headline, a one-line subhead, 6 punchy feature bullets, and a short call-to-action line. Keep it scannable." },
+
+  { cat:"Pricing & Analysis", title:"The CMA Narrative",
+    lesson:"Numbers persuade, but the story sells the price. Once you have your comps, use AI to translate the data into a clear, confident narrative that explains to a seller exactly why your recommended price is right — without jargon.",
+    prompt:"Write a clear, confident CMA summary narrative for a seller explaining my recommended list price.\n\nSubject property: [ADDRESS], [BEDS/BATHS], [SQFT]\nRecommended list price: [PRICE]\nComparable sales (address — price — key difference): \n1) [COMP 1]\n2) [COMP 2]\n3) [COMP 3]\nCurrent market condition: [e.g. low inventory, rising rates]\nExplain in plain English why this price is right. 150-200 words, reassuring and data-driven." },
+
+  { cat:"Pricing & Analysis", title:"Pricing Strategy Rationale",
+    lesson:"Sellers often want more than the data supports. Use AI to build a balanced case for your pricing strategy — including the risks of overpricing — so you can have a calm, evidence-based conversation.",
+    prompt:"Help me build a pricing strategy talking-points sheet for a seller who wants to list higher than the comps support.\n\nMy recommended price: [PRICE]\nSeller's desired price: [PRICE]\nComps support range: [LOW]–[HIGH]\nMarket condition: [DETAILS]\n\nGive me: 4 talking points explaining the risks of overpricing (days on market, stale listing, low appraisal, price-drop signaling) and a respectful script to recommend the right price. Keep it empathetic, not pushy." },
+
+  { cat:"Pricing & Analysis", title:"Monthly Market Update",
+    lesson:"A consistent market update keeps you top-of-mind and positions you as the expert. Feed AI a few local stats and it will turn them into a readable summary for your email and social — no economics degree required.",
+    prompt:"Turn these local market stats into a short, readable monthly market update for my clients.\n\nArea: [CITY / NEIGHBORHOOD]\nMonth: [MONTH, YEAR]\nMedian sale price: [PRICE] ([UP/DOWN X%] YoY)\nMonths of inventory: [NUMBER]\nAvg days on market: [DAYS]\nNotable trend: [ONE OBSERVATION]\n\nWrite ~150 words explaining what this means for buyers and for sellers, in plain language. End with a soft call to action to reach out." },
+
+  { cat:"Pricing & Analysis", title:"Inventory & Absorption Explainer",
+    lesson:"'Months of inventory' and 'absorption rate' confuse most clients. Have AI translate these concepts into a simple explanation tied to your local numbers, so you sound like the smartest agent in the room without lecturing.",
+    prompt:"Explain the current market conditions to a client using simple language and my local numbers.\n\nArea: [AREA]\nActive listings: [NUMBER]\nHomes sold last month: [NUMBER]\nMonths of inventory: [NUMBER]\n\nExplain in plain English: (1) whether this is a buyer's or seller's market and why, (2) what 'months of inventory' means, (3) what it means for their specific decision to [BUY / SELL]. Keep it under 150 words, no jargon." },
+
+  { cat:"Pricing & Analysis", title:"Price Reduction Conversation",
+    lesson:"A price reduction is a delicate conversation. Use AI to prepare a script grounded in the listing's own data — showings, feedback, days on market — so the recommendation feels like a partnership, not a retreat.",
+    prompt:"Help me prepare for a price reduction conversation with a seller.\n\nListing: [ADDRESS], listed at [PRICE]\nDays on market: [DAYS]\nShowings: [NUMBER]\nFeedback themes: [e.g. priced high, dated kitchen]\nRecommended new price: [PRICE]\n\nGive me a calm, data-driven script that reviews the market response, explains the recommendation, and frames it as the fastest path to their goal. Include one line to address likely pushback." },
+
+  { cat:"Client Comms & Objections", title:"Buyer Objection Handling",
+    lesson:"Objections aren't rejections — they're requests for information. Use AI to rehearse thoughtful, non-defensive responses to the objections you hear most, so you're calm and ready in the moment.",
+    prompt:"Give me 3 professional, non-defensive responses to this buyer objection.\n\nObjection: [e.g. 'The price is too high' / 'We want to wait for rates to drop' / 'We need to think about it']\nContext: [BRIEF SITUATION]\nMy goal: [e.g. keep them engaged, book a second showing]\n\nFor each response: acknowledge the concern, add perspective or data, and end with a question that moves things forward. Keep the tone warm and consultative." },
+
+  { cat:"Client Comms & Objections", title:"Seller Objection Handling",
+    lesson:"Sellers push back on commission, timing, and price. Prepare with AI so you can respond with confidence and value — never desperation. The best responses reframe the objection around the seller's own goal.",
+    prompt:"Help me respond to this seller objection with confidence and value.\n\nObjection: [e.g. 'Why is your commission so high?' / 'Another agent said they'd list it higher']\nMy value points: [2-3 THINGS YOU DO DIFFERENTLY]\nSeller's real goal: [e.g. net the most, sell fast]\n\nGive me a respectful response that reframes the objection around their goal and highlights my value — without getting defensive or discounting reflexively. 2-3 short paragraphs." },
+
+  { cat:"Client Comms & Objections", title:"The Follow-Up Sequence",
+    lesson:"Most deals are lost to silence, not to 'no.' Use AI to draft a multi-touch follow-up sequence so no lead goes cold. Space the messages, vary the angle, and always give a reason to reply.",
+    prompt:"Write a 4-message follow-up sequence for a lead who went quiet.\n\nLead type: [BUYER / SELLER]\nLast interaction: [e.g. toured a home, requested a valuation]\nTime since contact: [DAYS/WEEKS]\nMy goal: [e.g. re-book a call]\n\nGive me 4 short messages (text or email) spaced over 2 weeks, each with a different angle: value-add, new info, soft check-in, and a clear final ask. Keep each under 60 words and never guilt-trip." },
+
+  { cat:"Client Comms & Objections", title:"Cold-Lead Re-Engagement",
+    lesson:"Old leads in your database are gold you already paid for. Craft an AI re-engagement message that feels personal and gives them an easy, low-pressure reason to respond after months of silence.",
+    prompt:"Write a friendly re-engagement message to a lead who's been cold for months.\n\nLead: [NAME / TYPE]\nOriginal interest: [e.g. looking in a specific area, thinking of selling]\nWhat's new I can offer: [e.g. new listings, changed market, home value update]\n\nWrite a short, warm message (under 70 words) that references their original goal, offers something genuinely useful, and asks one easy yes/no question. No pressure, no salesy language." },
+
+  { cat:"Client Comms & Objections", title:"Showing Feedback Request",
+    lesson:"Feedback from buyer's agents is the data that drives your pricing conversations. AI can help you write a quick, courteous request that actually gets responses — short, specific, and easy to answer.",
+    prompt:"Write a brief, courteous message requesting feedback from a buyer's agent after a showing.\n\nProperty: [ADDRESS]\nShowing date: [DATE]\n\nAsk 3 quick questions: overall impression, thoughts on price, and likelihood of an offer. Keep it under 60 words, friendly and easy to reply to. Offer a quick reply option (a scale or one line is fine)." },
+
+  { cat:"Client Comms & Objections", title:"Offer Presentation Script",
+    lesson:"Presenting an offer well can add real dollars to your seller's bottom line. Use AI to structure a clear presentation that frames the offer's strengths and weaknesses and guides the seller to a confident decision.",
+    prompt:"Help me structure a script to present an offer to my seller.\n\nList price: [PRICE]\nOffer price: [PRICE]\nTerms: [FINANCING, CONTINGENCIES, CLOSE DATE, EARNEST MONEY]\nBuyer strength: [e.g. pre-approved, cash, flexible]\nSeller's priorities: [e.g. price, certainty, timing]\n\nGive me a script that summarizes the offer, highlights its strengths against their priorities, flags any concerns honestly, and ends by guiding them toward accept / counter / reject. Calm and advisory." },
+
+  { cat:"Client Comms & Objections", title:"Counter-Offer Explainer",
+    lesson:"Counter-offers stall when clients don't understand the trade-offs. Have AI lay out the options in plain language — price vs. terms vs. speed — so your client can decide clearly and quickly.",
+    prompt:"Explain the counter-offer options to my client in simple terms.\n\nCurrent offer: [PRICE + KEY TERMS]\nWhat my client wants to change: [e.g. higher price, faster close, fewer contingencies]\nMarket leverage: [e.g. multiple offers, slow market]\n\nLay out 2-3 counter strategies with the trade-offs of each (risk of losing the buyer vs. potential gain). Recommend one and explain why. Keep it clear and under 200 words." },
+
+  { cat:"Client Comms & Objections", title:"The 'Why Me' Differentiator",
+    lesson:"At a listing appointment, you have seconds to explain why you. Use AI to sharpen your unique value proposition into a confident, specific pitch — no generic 'I work hard' clichés.",
+    prompt:"Help me craft a sharp 'why choose me' pitch for a listing appointment.\n\nMy experience: [YEARS, SALES VOLUME, AREA]\nWhat I actually do differently: [e.g. pro photography, AI marketing, pricing strategy, negotiation record]\nThis seller's priority: [e.g. top dollar, fast sale, white-glove service]\n\nWrite a confident 45-second spoken pitch (about 120 words) that ties my specific strengths to this seller's priority. Specific and genuine — no clichés like 'I go above and beyond.'" },
+
+  { cat:"Transactions & Ops", title:"Inspection Issue Negotiation",
+    lesson:"Inspection findings can blow up a deal or become a routine negotiation. Use AI to draft a measured response that separates real safety issues from nitpicks and proposes a fair path forward.",
+    prompt:"Help me draft a negotiation strategy after a home inspection.\n\nProperty: [ADDRESS], under contract at [PRICE]\nKey inspection findings: [LIST 2-4 ITEMS]\nMy client is the: [BUYER / SELLER]\nMy client's goal: [e.g. keep the deal together, credit vs. repair]\n\nCategorize the findings (safety/major vs. cosmetic/minor), recommend which to push on, and draft a professional message to the other side proposing a resolution. Reasonable and deal-preserving." },
+
+  { cat:"Transactions & Ops", title:"Closing Timeline Update",
+    lesson:"Anxiety during closing comes from uncertainty. A proactive AI-drafted status update — what's done, what's next, what they need to do — keeps clients calm and makes you look organized.",
+    prompt:"Write a clear closing-timeline update email for my client.\n\nClient: [NAME], [BUYER / SELLER]\nClosing date: [DATE]\nCompleted so far: [e.g. inspection, appraisal ordered]\nStill pending: [e.g. loan approval, final walkthrough]\nWhat they need to do: [ACTION ITEMS]\n\nWrite a reassuring email that lists what's done, what's next with dates, and their action items in a simple checklist. Confident and organized, under 180 words." },
+
+  { cat:"Transactions & Ops", title:"The Referral Request",
+    lesson:"The best time to ask for a referral is right after a win. Use AI to write a natural, no-pressure ask that makes it easy for a happy client to send you their next lead.",
+    prompt:"Write a natural, no-pressure referral request to a happy client after closing.\n\nClient: [NAME]\nWhat we just accomplished: [e.g. sold above asking, found their dream home]\nRelationship tone: [WARM / PROFESSIONAL]\n\nWrite a short message (under 80 words) that celebrates the win, expresses genuine gratitude, and asks them to keep me in mind for anyone thinking of buying or selling. Make it easy and pressure-free." },
+
+  { cat:"Transactions & Ops", title:"Review & Testimonial Ask",
+    lesson:"Online reviews are your reputation on autopilot. AI can write a friendly review request — and even a suggested draft the client can edit — to remove the friction that stops most people from leaving one.",
+    prompt:"Write a friendly request asking a client to leave an online review.\n\nClient: [NAME]\nHighlight of working together: [e.g. smooth process, tough negotiation win]\nReview platform: [GOOGLE / ZILLOW / FACEBOOK]\n\nGive me: (1) a warm request message under 70 words with the review link placeholder, and (2) a short suggested testimonial draft they can personalize, so it's effortless for them to post." },
+
+  { cat:"Transactions & Ops", title:"Vendor & Referral Intros",
+    lesson:"Being the hub of a trusted vendor network makes you indispensable. Use AI to write clean introduction emails connecting clients to your lender, inspector, or contractor — building goodwill on both sides.",
+    prompt:"Write a warm email introducing my client to one of my trusted vendors.\n\nClient: [NAME], needs: [e.g. mortgage pre-approval, home inspection]\nVendor: [NAME], [ROLE / COMPANY]\nWhy I recommend them: [ONE LINE]\n\nWrite a short double-intro email that connects them, explains why each is a great fit, and hands off next steps. Professional and warm, under 120 words." },
+
+  { cat:"Business Growth", title:"Your Personal Brand Bio",
+    lesson:"A strong bio works while you sleep — on your website, in listing packets, on social. Use AI to craft a bio that balances credibility with personality, in both a short and long version.",
+    prompt:"Write a professional real estate agent bio in two lengths.\n\nName: [YOUR NAME]\nTeam/Brokerage: [BROKERAGE]\nMarket: [AREA]\nExperience: [YEARS / VOLUME / SPECIALTY]\nWhat clients say about me: [1-2 QUALITIES]\nPersonal touch: [e.g. lifelong local, family, hobby]\n\nGive me: (1) a 40-word short bio for social, and (2) a 120-word long bio for my website. Confident, warm, and specific — third person for the long version." },
+
+  { cat:"Business Growth", title:"Weekly Content Calendar",
+    lesson:"Consistency beats intensity on social media. Have AI plan a full week of content themes and captions so you never stare at a blank screen — batch it once, post all week.",
+    prompt:"Create a 7-day social media content calendar for my real estate business.\n\nMarket: [AREA]\nAudience: [e.g. first-time buyers, luxury, sellers]\nMy strengths/topics: [e.g. market updates, neighborhood tours, tips]\nPlatform focus: [INSTAGRAM / FACEBOOK / etc.]\n\nFor each day give me: a content theme, a post idea, and a one-line caption starter. Mix educational, listing, personal, and engagement posts. Keep it realistic for a busy agent." },
+
+  { cat:"Business Growth", title:"The Prospecting Farm Letter",
+    lesson:"Geographic farming builds long-term dominance in a neighborhood. Use AI to write a farm letter that leads with value — a market update or recent sale — rather than a generic 'I want your listing' pitch.",
+    prompt:"Write a value-first farming letter to homeowners in a neighborhood I want to dominate.\n\nNeighborhood: [NAME]\nRecent local activity: [e.g. a home just sold for X, low inventory]\nMy hook: [e.g. free home valuation, market report]\nMy name/contact: [YOUR NAME], [PHONE]\n\nWrite a warm, non-pushy letter (under 180 words) that leads with useful local insight, offers something valuable, and gives a low-pressure reason to reach out. No hard sell." },
+
+  { cat:"Business Growth", title:"Build Your Prompt Library — Capstone",
+    lesson:"You've now got 30 proven prompts. The final skill is systematizing them: turn your best templates into a personal, reusable library so AI becomes a repeatable part of your workflow — not a one-off trick. This is what separates agents who dabble from agents who scale. Finish this and you're a Closer.",
+    prompt:"Help me organize my real estate AI prompts into a reusable personal library.\n\nMy most-used tasks: [e.g. listings, follow-ups, market updates, CMAs]\nMy voice/tone: [e.g. warm, professional, concise]\nMy market: [AREA]\n\nCreate a categorized prompt-library template with sections for each task, a reusable 'house style' instruction I can paste at the top of any prompt to keep my voice consistent, and 3 tips for saving and reusing prompts efficiently. This is my AI operating system — make it practical." }
+];
+
+/* ---- state ---- */
+const DEFAULT_STATE = {
+  name: "", enrolledAt: null, xp: 0, streak: 0,
+  lastActiveDate: null, streakDays: [], missions: {}, certificateName: ""
+};
+let state = loadState();
+let currentMission = null;
+
+function loadState(){
+  try {
+    const raw = store.get(STATE_KEY);
+    if(raw){ return Object.assign({}, DEFAULT_STATE, JSON.parse(raw)); }
+  } catch(e){}
+  return Object.assign({}, DEFAULT_STATE);
+}
+function saveState(){ store.set(STATE_KEY, JSON.stringify(state)); }
+
+/* ---- streak (local-timezone, adapted from Bogen Method) ---- */
+function localISO(d = new Date()){
+  const off = d.getTimezoneOffset() * 60000;
+  return new Date(d.getTime() - off).toISOString().slice(0,10);
+}
+function todayISO(){ return localISO(); }
+function bumpStreak(){
+  const today = todayISO();
+  if(state.lastActiveDate === today){ return; }
+  const yesterday = localISO(new Date(Date.now() - 86400000));
+  if(state.lastActiveDate === yesterday) state.streak += 1;
+  else state.streak = 1;
+  state.lastActiveDate = today;
+  if(!state.streakDays.includes(today)) state.streakDays.push(today);
+  if(state.streakDays.length > 30) state.streakDays = state.streakDays.slice(-30);
+  saveState();
+}
+/* re-check streak validity on load (reset to 0 display if a day was missed and today not active) */
+function activeStreak(){
+  if(!state.lastActiveDate) return 0;
+  const today = todayISO();
+  const yesterday = localISO(new Date(Date.now() - 86400000));
+  if(state.lastActiveDate === today || state.lastActiveDate === yesterday) return state.streak;
+  return 0; // streak broken
+}
+
+/* ---- ranks ---- */
+function currentRank(){
+  let r = RANKS[0];
+  for(const rank of RANKS){ if(state.xp >= rank.min) r = rank; }
+  return r;
+}
+function nextRank(){
+  for(const rank of RANKS){ if(state.xp < rank.min) return rank; }
+  return null;
+}
+
+/* ---- completion count ---- */
+function doneCount(){ return Object.values(state.missions).filter(m => m && m.completed).length; }
+function isCompleted(i){ return !!(state.missions[i] && state.missions[i].completed); }
+function isAvailable(i){ return i === 0 || isCompleted(i-1); }
+
+/* ============================================================
+   RENDER
+   ============================================================ */
+function refreshHUD(){
+  document.getElementById("hudXp").textContent = state.xp.toLocaleString();
+  const s = activeStreak();
+  const streakEl = document.getElementById("hudStreak");
+  streakEl.textContent = s;
+  streakEl.classList.toggle("hot", s >= 3);
+  document.getElementById("hudDone").innerHTML = doneCount() + '<span style="font-size:14px;color:#9fc3d8;">/30</span>';
+
+  const rank = currentRank();
+  const next = nextRank();
+  document.getElementById("hudRank").textContent = rank.name;
+  const bar = document.getElementById("hudRankBar");
+  const nextLbl = document.getElementById("hudRankNext");
+  if(next){
+    const span = next.min - rank.min;
+    const into = state.xp - rank.min;
+    bar.style.width = Math.min(100, Math.round(into/span*100)) + "%";
+    nextLbl.textContent = (next.min - state.xp) + " XP → " + next.name;
+  } else {
+    bar.style.width = "100%";
+    nextLbl.textContent = "Max rank";
+  }
+}
+
+function renderDashboard(){
+  const first = (state.name || "").trim().split(" ")[0];
+  document.getElementById("greeting").textContent = first ? (first + "'s Missions") : "Your Missions";
+
+  const done = doneCount();
+  document.getElementById("overallVal").textContent = done + " of 30 complete";
+  document.getElementById("overallBar").style.width = Math.round(done/30*100) + "%";
+
+  const grid = document.getElementById("missionGrid");
+  grid.innerHTML = "";
+  MISSIONS.forEach((m, i) => {
+    const completed = isCompleted(i);
+    const available = isAvailable(i);
+    const state_cls = completed ? "completed" : (available ? "available" : "locked");
+    const card = document.createElement("div");
+    card.className = "m-card " + state_cls;
+    let status = "";
+    if(completed) status = '<div class="m-status check">✓</div>';
+    else if(!available) status = '<div class="lock-ic">🔒</div>';
+    card.innerHTML =
+      '<div class="m-day">Day ' + (i+1) + '</div>' +
+      '<div class="m-title">' + m.title + '</div>' +
+      '<div class="m-cat">' + m.cat + '</div>' +
+      (completed ? '<div class="m-xp">+100 XP earned</div>' : (available ? '<div class="m-xp">Earn 100 XP</div>' : '')) +
+      status;
+    if(available || completed){ card.onclick = () => openMission(i); }
+    grid.appendChild(card);
+  });
+
+  // Certificate card if all done
+  if(done === 30){
+    const c = document.createElement("div");
+    c.className = "m-card completed";
+    c.style.borderLeftColor = "var(--gold)";
+    c.innerHTML = '<div class="m-day" style="color:var(--gold);">Finale</div><div class="m-title">🏆 Your Certificate</div><div class="m-cat">Rank: Closer</div><div class="m-xp">View & Print</div>';
+    c.onclick = () => go('cert');
+    grid.appendChild(c);
+  }
+}
+
+function openMission(i){
+  currentMission = i;
+  const m = MISSIONS[i];
+  document.getElementById("mDay").textContent = "Day " + (i+1) + " of 30";
+  document.getElementById("mTitle").textContent = m.title;
+  document.getElementById("mCat").textContent = m.cat;
+  document.getElementById("mLesson").textContent = m.lesson;
+  document.getElementById("mPrompt").value = m.prompt;
+
+  const btn = document.getElementById("completeBtn");
+  if(isCompleted(i)){
+    btn.outerHTML = '<div class="done-flag" id="completeBtn">✓ Mission Complete — 100 XP earned</div>';
+  } else {
+    // ensure it's a button again if re-opened
+    const cur = document.getElementById("completeBtn");
+    if(cur && cur.tagName !== "BUTTON"){
+      cur.outerHTML = '<button class="btn" id="completeBtn" onclick="completeCurrent()">Mark Complete &amp; Earn 100 XP</button>';
+    }
+  }
+  go('mission');
+  window.scrollTo(0,0);
+}
+
+function completeCurrent(){
+  const i = currentMission;
+  if(i === null || isCompleted(i)) return;
+  state.missions[i] = { completed: true, completedAt: Date.now() };
+  const before = currentRank().name;
+  state.xp += XP_PER_MISSION;
+  bumpStreak();
+  saveState();
+  const after = currentRank().name;
+
+  refreshHUD();
+  const promoted = before !== after;
+  showToast("+100 XP", promoted ? ("RANK UP → " + after + "!") : "Mission Complete", promoted ? "You reached a new tier" : ("Day streak: " + activeStreak() + " 🔥"));
+
+  const done = doneCount();
+  setTimeout(() => {
+    if(done === 30){ go('cert'); renderCertificate(); }
+    else { renderDashboard(); go('dashboard'); window.scrollTo(0,0); }
+  }, 900);
+}
+
+function copyPrompt(){
+  const txt = document.getElementById("mPrompt").value;
+  const done = () => { const b = document.getElementById("copyBtn"); const o = b.innerHTML; b.innerHTML = "✓ Copied!"; setTimeout(()=> b.innerHTML = o, 1600); };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(done).catch(fallbackCopy);
+  } else { fallbackCopy(); }
+  function fallbackCopy(){ const ta = document.getElementById("mPrompt"); ta.select(); try{ document.execCommand("copy"); }catch(e){} done(); }
+}
+
+function renderCertificate(){
+  document.getElementById("certName").textContent = state.certificateName || state.name || "Real Estate Professional";
+  document.getElementById("certDate").textContent = new Date().toLocaleDateString("en-US", { year:"numeric", month:"long", day:"numeric" });
+}
+
+/* ---- toast ---- */
+let toastTimer = null;
+function showToast(xp, title, sub){
+  document.getElementById("toastXp").textContent = xp;
+  document.getElementById("toastTitle").textContent = title;
+  document.getElementById("toastSub").textContent = sub || "";
+  const t = document.getElementById("toast");
+  t.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=> t.classList.remove("show"), 2600);
+}
+
+/* ============================================================
+   ROUTING
+   ============================================================ */
+function go(view){
+  document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
+  if(view === "welcome"){
+    document.getElementById("app").classList.remove("show");
+    document.getElementById("welcome").classList.add("active");
+    return;
+  }
+  document.getElementById("welcome").classList.remove("active");
+  if(view === "cert"){
+    document.getElementById("app").classList.remove("show");
+    renderCertificate();
+    document.getElementById("cert").classList.add("active");
+    return;
+  }
+  document.getElementById("app").classList.add("show");
+  document.getElementById(view).classList.add("active");
+}
+
+/* ---- enroll ---- */
+function enroll(){
+  const name = document.getElementById("nameInput").value.trim();
+  if(!name){ document.getElementById("nameInput").focus(); document.getElementById("nameInput").style.borderColor = "var(--gold)"; return; }
+  state.name = name;
+  state.certificateName = name;
+  if(!state.enrolledAt) state.enrolledAt = Date.now();
+  bumpStreak();
+  saveState();
+  refreshHUD();
+  renderDashboard();
+  go('dashboard');
+  window.scrollTo(0,0);
+}
+
+function resetProgress(){
+  if(!confirm("Reset all progress? This clears your XP, streak, and completed missions on this device.")) return;
+  store.remove(STATE_KEY);
+  state = Object.assign({}, DEFAULT_STATE);
+  currentMission = null;
+  document.getElementById("nameInput").value = "";
+  go('welcome');
+  window.scrollTo(0,0);
+}
+
+/* ---- boot ---- */
+document.getElementById("enrollBtn").addEventListener("click", enroll);
+document.getElementById("nameInput").addEventListener("keydown", e => { if(e.key === "Enter") enroll(); });
+
+(function boot(){
+  if(state.name && state.enrolledAt){
+    document.getElementById("nameInput").value = state.name;
+    refreshHUD();
+    renderDashboard();
+    if(doneCount() === 30){ go('dashboard'); } // returning finisher lands on dashboard; cert card visible
+    else go('dashboard');
+  } else {
+    go('welcome');
+  }
+})();
+</script>
+</body>
+</html>
