@@ -55,6 +55,9 @@
   .cancelb { background:rgba(255,255,255,0.12); color:#fff; }
   .routecard .done { font-size:14px; line-height:1.7; }
   .routecard .done a { color:var(--cyan); }
+  .emfield { width:100%; margin-top:4px; padding:10px 12px; font-family:inherit; font-size:14px; color:#fff; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); border-radius:8px; outline:none; }
+  .emfield:focus { border-color:var(--gold); }
+  textarea.emfield { resize:vertical; line-height:1.5; }
   .toast { text-align:center; font-size:14px; color:var(--cyan); height:20px; margin-top:12px; opacity:0; transition:opacity .2s; }
   .toast.show { opacity:1; }
   .today { margin-top:26px; flex:1 1 auto; overflow-y:auto; padding-bottom:20px; }
@@ -264,6 +267,22 @@
 
   window.renderProposal = function(res){
     var p = res.proposal;
+    if(p.kind==="draft_email"){
+      var to = p.email || (res.matches && res.matches.length ? res.matches[0].email : "");
+      var e = '<h3>Draft email</h3>';
+      e += '<div class="kv"><b>In:</b> Gmail drafts · edmund@bogenhomes.com</div>';
+      if(res.matches && res.matches.length>1){
+        e += '<div class="kv" style="margin-top:6px"><b>Matches found — tap one:</b></div>';
+        res.matches.forEach(function(m){ e += '<label class="match"><input type="radio" name="topick" value="'+esc(m.email)+'"'+(m.email===to?' checked':'')+'>'+esc(m.title)+'<div class="addr">'+esc(m.email)+'</div></label>'; });
+      }
+      e += '<div class="kv" style="margin-top:8px"><b>To:</b></div><input id="emTo" class="emfield" value="'+esc(to)+'" placeholder="recipient@email.com">';
+      e += '<div class="kv" style="margin-top:8px"><b>Subject:</b></div><input id="emSub" class="emfield" value="'+esc(p.subject||"")+'">';
+      e += '<div class="kv" style="margin-top:8px"><b>Body:</b></div><textarea id="emBody" class="emfield" style="min-height:150px">'+esc(p.emailBody||"")+'</textarea>';
+      e += '<div class="btns"><button class="cancelb" onclick="closeRoute()">Cancel</button><button class="confirmb" onclick="routeExecute()">Create Draft</button></div>';
+      routeCard.innerHTML=e; routeCard.style.display="block";
+      routeCard.querySelectorAll('input[name=topick]').forEach(function(rb){ rb.addEventListener('change',function(){ document.getElementById('emTo').value=rb.value; }); });
+      return;
+    }
     var h = '<h3>'+(p.kind==="create_contact"?"Create contact":"Log to contact")+'</h3>';
     h += '<div class="kv"><b>Database:</b> '+esc(res.db_label)+'</div>';
     h += '<div class="kv"><b>Name:</b> '+esc(p.name)+'</div>';
@@ -290,24 +309,36 @@
   window.routeExecute = function(){
     if(!pending) return;
     var p = pending.proposal;
-    var action = { kind:p.kind, database:p.database, name:p.name, email:p.email, phone:p.phone, note:p.note };
-    if(p.kind==="log_touch"){
-      var sel = document.querySelector('input[name=match]:checked');
-      if(!sel){ alert("Pick which person this is first."); return; }
-      action.page_id = sel.value;
+    var action;
+    if(p.kind==="draft_email"){
+      var toV = (document.getElementById("emTo")||{}).value || "";
+      if(!toV.trim()){ alert("Add a recipient email address."); return; }
+      action = { kind:"draft_email", to:toV.trim(), subject:(document.getElementById("emSub")||{}).value||"", body:(document.getElementById("emBody")||{}).value||"" };
+    } else {
+      action = { kind:p.kind, database:p.database, name:p.name, email:p.email, phone:p.phone, note:p.note };
+      if(p.kind==="log_touch"){
+        var sel = document.querySelector('input[name=match]:checked');
+        if(!sel){ alert("Pick which person this is first."); return; }
+        action.page_id = sel.value;
+      }
     }
     var cb = routeCard.querySelector(".confirmb");
-    if(cb){ cb.disabled=true; cb.textContent="Writing…"; }
+    var lbl = cb ? cb.textContent : "";
+    if(cb){ cb.disabled=true; cb.textContent="Working…"; }
     fetch(ROUTE,{ method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({mode:"execute",action:action}) })
     .then(function(r){return r.json();}).then(function(res){
       if(res.ok){
-        routeCard.innerHTML='<h3>Done ✓</h3><div class="done">'+(res.action==="created"?"Contact created":"Logged")+' in '+esc(res.db)+'.<br><a href="'+res.url+'" target="_blank">Open in Notion →</a></div><div class="btns"><button class="cancelb" onclick="closeRoute()">Close</button></div>';
+        var verb = res.action==="created"?"Contact created":(res.action==="drafted"?"Draft created":"Logged");
+        var link = res.action==="drafted"
+          ? '<a href="'+res.url+'" target="_blank">Open Gmail drafts →</a>'
+          : '<a href="'+res.url+'" target="_blank">Open in Notion →</a>';
+        routeCard.innerHTML='<h3>Done ✓</h3><div class="done">'+verb+' in '+esc(res.db)+'.<br>'+link+'</div><div class="btns"><button class="cancelb" onclick="closeRoute()">Close</button></div>';
         ta.value=""; pending=null;
       } else {
-        alert("Write failed: "+(res.error||"unknown"));
-        if(cb){ cb.disabled=false; cb.textContent="Confirm & Write"; }
+        alert("Failed: "+(res.error||"unknown"));
+        if(cb){ cb.disabled=false; cb.textContent=lbl; }
       }
-    }).catch(function(){ alert("Write failed — try again"); if(cb){ cb.disabled=false; cb.textContent="Confirm & Write"; } });
+    }).catch(function(){ alert("Failed — try again"); if(cb){ cb.disabled=false; cb.textContent=lbl; } });
   };
 
   routeBtn.addEventListener("click", routePropose);
