@@ -58,6 +58,17 @@
   .emfield { width:100%; margin-top:4px; padding:10px 12px; font-family:inherit; font-size:14px; color:#fff; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); border-radius:8px; outline:none; }
   .emfield:focus { border-color:var(--gold); }
   textarea.emfield { resize:vertical; line-height:1.5; }
+  .pgroup { font-size:11px; letter-spacing:0.08em; text-transform:uppercase; margin:14px 0 4px; font-weight:700; }
+  .pgroup.od { color:#ff7a7a; }
+  .pgroup.td { color:var(--gold); }
+  .pgroup.up, .pgroup.nd { color:rgba(255,255,255,0.5); }
+  .pitem { display:flex; justify-content:space-between; gap:10px; padding:7px 0; border-bottom:1px solid rgba(255,255,255,0.07); font-size:14px; }
+  .pitem a { color:#fff; text-decoration:none; }
+  .pmeta { color:rgba(255,255,255,0.45); font-size:12px; white-space:nowrap; }
+  .lkcard { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.15); border-radius:10px; padding:12px 14px; margin:8px 0; }
+  .lktitle { font-size:16px; font-weight:600; }
+  .lktitle a { color:var(--cyan); text-decoration:none; }
+  .lkmeta { font-size:11px; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:6px; }
   .toast { text-align:center; font-size:14px; color:var(--cyan); height:20px; margin-top:12px; opacity:0; transition:opacity .2s; }
   .toast.show { opacity:1; }
   .today { margin-top:26px; flex:1 1 auto; overflow-y:auto; padding-bottom:20px; }
@@ -99,6 +110,7 @@
   <textarea id="thought" placeholder="Dictate or type…" autocomplete="off"></textarea>
   <button class="save" id="saveBtn">Save</button>
   <button class="route" id="routeBtn">⚡ Route to CRM</button>
+  <button class="route" id="plateBtn" style="border-color:rgba(255,255,255,0.3);color:#fff;background:rgba(255,255,255,0.08)">📋 What's on my plate</button>
   <div class="toast" id="toast"></div>
   <div id="routeCard" class="routecard" style="display:none"></div>
 
@@ -280,6 +292,25 @@
 
   window.renderProposal = function(res){
     var p = res.proposal;
+    if(p.kind==="lookup"){
+      var L = res.lookup || [];
+      var lh = '<h3>Lookup: '+esc(p.name||"")+'</h3>';
+      if(!L.length){ lh += '<div class="kv">No match found in either CRM.</div>'; }
+      L.forEach(function(c){
+        lh += '<div class="lkcard"><div class="lktitle"><a href="'+c.url+'" target="_blank">'+esc(c.title)+'</a></div><div class="lkmeta">'+esc(c.db)+'</div>';
+        if(c.address) lh += '<div class="kv">🏠 '+esc(c.address)+'</div>';
+        if(c.phone) lh += '<div class="kv">📞 '+esc(c.phone)+'</div>';
+        if(c.email) lh += '<div class="kv">✉️ '+esc(c.email)+'</div>';
+        if(c.lastContact) lh += '<div class="kv">Last contact: '+esc(c.lastContact)+'</div>';
+        var badges=[c.temperature,c.dealStage].filter(Boolean).join(' · ');
+        if(badges) lh += '<div class="kv"><b>'+esc(badges)+'</b></div>';
+        if(c.notes) lh += '<div class="kv" style="color:rgba(255,255,255,0.6);margin-top:4px">'+esc(c.notes)+(c.notes.length>=400?'…':'')+'</div>';
+        lh += '</div>';
+      });
+      lh += '<div class="btns"><button class="cancelb" onclick="closeRoute()">Close</button></div>';
+      routeCard.innerHTML=lh; routeCard.style.display="block";
+      return;
+    }
     if(p.kind==="add_task"){
       var t = '<h3>New task / reminder</h3>';
       t += '<div class="kv"><b>In:</b> Notion Tasks</div>';
@@ -374,6 +405,42 @@
   };
 
   routeBtn.addEventListener("click", routePropose);
+
+  // ---- What's on my plate (open tasks) ----
+  var plateBtn = document.getElementById("plateBtn");
+  function renderPlate(res){
+    var today = res.today, tasks = res.plate || [];
+    var overdue=[], todayT=[], upcoming=[], noDate=[];
+    tasks.forEach(function(t){
+      if(!t.due) noDate.push(t);
+      else if(t.due < today) overdue.push(t);
+      else if(t.due === today) todayT.push(t);
+      else upcoming.push(t);
+    });
+    function line(t){
+      var meta = (t.due?t.due:'') + (t.priority?(' · '+t.priority):'');
+      return '<div class="pitem"><a href="'+t.url+'" target="_blank">'+esc(t.name)+'</a><span class="pmeta">'+esc(meta)+'</span></div>';
+    }
+    var h = '<h3>What\'s on my plate</h3>';
+    if(!tasks.length){ h += '<div class="kv">Nothing open — you\'re clear.</div>'; }
+    if(overdue.length){ h += '<div class="pgroup od">⚠️ Overdue ('+overdue.length+')</div>' + overdue.map(line).join(''); }
+    if(todayT.length){ h += '<div class="pgroup td">Due today ('+todayT.length+')</div>' + todayT.map(line).join(''); }
+    if(upcoming.length){ h += '<div class="pgroup up">Upcoming ('+upcoming.length+')</div>' + upcoming.slice(0,15).map(line).join(''); if(upcoming.length>15) h += '<div class="kv">…and '+(upcoming.length-15)+' more</div>'; }
+    if(noDate.length){ h += '<div class="pgroup nd">No due date ('+noDate.length+')</div>' + noDate.slice(0,10).map(line).join(''); if(noDate.length>10) h += '<div class="kv">…and '+(noDate.length-10)+' more</div>'; }
+    h += '<div class="btns"><button class="cancelb" onclick="closeRoute()">Close</button></div>';
+    routeCard.innerHTML=h; routeCard.style.display="block";
+  }
+  function plate(){
+    plateBtn.disabled=true; plateBtn.textContent="Loading…"; routeCard.style.display="none";
+    fetch(ROUTE,{ method:"POST", headers:ccHeaders(), body:JSON.stringify({mode:"plate"}) })
+    .then(function(r){return r.json();}).then(function(res){
+      if(ccUnauth(res)){ return; }
+      if(res.error){ flash("Error: "+res.error); return; }
+      renderPlate(res);
+    }).catch(function(){ flash("Couldn't load your plate"); })
+    .finally(function(){ plateBtn.disabled=false; plateBtn.textContent="📋 What's on my plate"; });
+  }
+  plateBtn.addEventListener("click", plate);
 
   var emailBriefBtn = document.getElementById("emailBriefBtn");
   function emailBrief(){
