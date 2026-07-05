@@ -39,6 +39,22 @@
   }
   .save:active { background:#00a6db; }
   .save:disabled { opacity:0.5; }
+  .route { width:100%; margin-top:10px; padding:16px; border:1px solid var(--gold); border-radius:16px; background:rgba(201,162,75,0.12); color:var(--gold); font-family:inherit; font-size:16px; font-weight:700; letter-spacing:0.03em; cursor:pointer; }
+  .route:active { background:rgba(201,162,75,0.25); }
+  .route:disabled { opacity:0.5; }
+  .routecard { margin-top:14px; background:rgba(255,255,255,0.06); border:1px solid rgba(201,162,75,0.45); border-radius:14px; padding:16px; }
+  .routecard h3 { font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
+  .routecard .kv { font-size:14px; line-height:1.6; }
+  .routecard .kv b { color:#fff; }
+  .routecard .match { display:block; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.15); border-radius:10px; padding:10px 12px; margin:6px 0; font-size:14px; cursor:pointer; }
+  .routecard .match input { margin-right:8px; }
+  .routecard .addr { color:rgba(255,255,255,0.5); font-size:12px; margin-left:22px; }
+  .routecard .btns { display:flex; gap:10px; margin-top:14px; }
+  .routecard .btns button { flex:1; padding:14px; border:none; border-radius:12px; font-family:inherit; font-size:15px; font-weight:700; cursor:pointer; }
+  .confirmb { background:var(--gold); color:#221800; }
+  .cancelb { background:rgba(255,255,255,0.12); color:#fff; }
+  .routecard .done { font-size:14px; line-height:1.7; }
+  .routecard .done a { color:var(--cyan); }
   .toast { text-align:center; font-size:14px; color:var(--cyan); height:20px; margin-top:12px; opacity:0; transition:opacity .2s; }
   .toast.show { opacity:1; }
   .today { margin-top:26px; flex:1 1 auto; overflow-y:auto; padding-bottom:20px; }
@@ -79,7 +95,9 @@
 
   <textarea id="thought" placeholder="Dictate or type…" autocomplete="off"></textarea>
   <button class="save" id="saveBtn">Save</button>
+  <button class="route" id="routeBtn">⚡ Route to CRM</button>
   <div class="toast" id="toast"></div>
+  <div id="routeCard" class="routecard" style="display:none"></div>
 
   <div class="today">
     <div class="dayrow">
@@ -220,6 +238,79 @@
     .then(function(r){ if(!r.ok) throw new Error(r.status); refresh(); buildDays(); })
     .catch(function(){ flash("Couldn't delete — try again"); });
   };
+
+  // ---- Route to CRM (propose -> confirm -> execute) ----
+  var ROUTE = "https://fvtltzxnjnpudkslyqzd.supabase.co/functions/v1/command-route";
+  var routeBtn = document.getElementById("routeBtn");
+  var routeCard = document.getElementById("routeCard");
+  var pending = null;
+  function esc(s){ return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+  function routePropose(){
+    var text = ta.value.trim();
+    if(!text){ flash("Dictate a command first"); return; }
+    routeBtn.disabled=true; routeBtn.textContent="Reading…"; routeCard.style.display="none";
+    fetch(ROUTE,{ method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({mode:"propose",text:text}) })
+    .then(function(r){return r.json();}).then(function(res){
+      if(res.error){ flash("Error: "+res.error); return; }
+      if(!res.proposal || res.proposal.kind==="unknown"){
+        routeCard.innerHTML='<div class="kv">That didn\'t look like a CRM command. Try: "Log a call with Stuart Benson…" or "Add a new contact…"</div><div class="btns"><button class="cancelb" onclick="closeRoute()">OK</button></div>';
+        routeCard.style.display="block"; return;
+      }
+      pending = res; renderProposal(res);
+    }).catch(function(){ flash("Couldn't reach CRM"); })
+    .finally(function(){ routeBtn.disabled=false; routeBtn.textContent="⚡ Route to CRM"; });
+  }
+
+  window.renderProposal = function(res){
+    var p = res.proposal;
+    var h = '<h3>'+(p.kind==="create_contact"?"Create contact":"Log to contact")+'</h3>';
+    h += '<div class="kv"><b>Database:</b> '+esc(res.db_label)+'</div>';
+    h += '<div class="kv"><b>Name:</b> '+esc(p.name)+'</div>';
+    if(p.email) h += '<div class="kv"><b>Email:</b> '+esc(p.email)+'</div>';
+    if(p.phone) h += '<div class="kv"><b>Phone:</b> '+esc(p.phone)+'</div>';
+    if(p.note) h += '<div class="kv"><b>Note:</b> '+esc(p.note)+'</div>';
+    if(p.kind==="log_touch"){
+      if(!res.matches || !res.matches.length){
+        h += '<div class="kv" style="color:#f2a">No match for that name. Cancel and check the spelling, or say "add a new contact" instead.</div>';
+        h += '<div class="btns"><button class="cancelb" onclick="closeRoute()">Cancel</button></div>';
+        routeCard.innerHTML=h; routeCard.style.display="block"; return;
+      }
+      h += '<div class="kv" style="margin-top:8px"><b>Which person? Tap the right one:</b></div>';
+      res.matches.forEach(function(m){
+        h += '<label class="match"><input type="radio" name="match" value="'+m.id+'">'+esc(m.title)+(m.address?'<div class="addr">'+esc(m.address)+'</div>':'')+'</label>';
+      });
+    }
+    h += '<div class="btns"><button class="cancelb" onclick="closeRoute()">Cancel</button><button class="confirmb" onclick="routeExecute()">Confirm &amp; Write</button></div>';
+    routeCard.innerHTML=h; routeCard.style.display="block";
+  };
+
+  window.closeRoute = function(){ routeCard.style.display="none"; pending=null; };
+
+  window.routeExecute = function(){
+    if(!pending) return;
+    var p = pending.proposal;
+    var action = { kind:p.kind, database:p.database, name:p.name, email:p.email, phone:p.phone, note:p.note };
+    if(p.kind==="log_touch"){
+      var sel = document.querySelector('input[name=match]:checked');
+      if(!sel){ alert("Pick which person this is first."); return; }
+      action.page_id = sel.value;
+    }
+    var cb = routeCard.querySelector(".confirmb");
+    if(cb){ cb.disabled=true; cb.textContent="Writing…"; }
+    fetch(ROUTE,{ method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({mode:"execute",action:action}) })
+    .then(function(r){return r.json();}).then(function(res){
+      if(res.ok){
+        routeCard.innerHTML='<h3>Done ✓</h3><div class="done">'+(res.action==="created"?"Contact created":"Logged")+' in '+esc(res.db)+'.<br><a href="'+res.url+'" target="_blank">Open in Notion →</a></div><div class="btns"><button class="cancelb" onclick="closeRoute()">Close</button></div>';
+        ta.value=""; pending=null;
+      } else {
+        alert("Write failed: "+(res.error||"unknown"));
+        if(cb){ cb.disabled=false; cb.textContent="Confirm & Write"; }
+      }
+    }).catch(function(){ alert("Write failed — try again"); if(cb){ cb.disabled=false; cb.textContent="Confirm & Write"; } });
+  };
+
+  routeBtn.addEventListener("click", routePropose);
 
   btn.addEventListener("click", save);
   syncBtn.addEventListener("click", syncNow);
