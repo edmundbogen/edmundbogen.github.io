@@ -222,12 +222,23 @@
 
   var syncBtn = document.getElementById("syncBtn");
   var syncToast = document.getElementById("syncToast");
+  function ccHeaders(){
+    var p = localStorage.getItem("cc_pass");
+    if(!p){ p = (prompt("Enter your Central Command passcode:")||"").trim(); if(p) localStorage.setItem("cc_pass", p); }
+    return { "Content-Type":"application/json", "x-app-pass": localStorage.getItem("cc_pass")||"" };
+  }
+  function ccUnauth(res){
+    if(res && res.error==="unauthorized"){ localStorage.removeItem("cc_pass"); alert("Wrong or missing passcode — tap the button again to re-enter it."); return true; }
+    return false;
+  }
+
   function syncNow(){
     syncBtn.disabled = true; syncBtn.textContent = "Building…";
     fetch(SYNTH, {
-      method:"POST", headers:{"Content-Type":"application/json"},
+      method:"POST", headers:ccHeaders(),
       body: JSON.stringify({ date: selectedDate })
     }).then(function(r){return r.json();}).then(function(res){
+      if(ccUnauth(res)){ return; }
       if(res && res.ok){ syncToast.textContent="Done ✓ "+res.captures+" items synthesized"; loadDigest(); buildDays(); }
       else if(res && res.skipped){ syncToast.textContent="Nothing new to synthesize for this day"; }
       else { syncToast.textContent="Couldn't build — try again"; }
@@ -254,8 +265,9 @@
     var text = ta.value.trim();
     if(!text){ flash("Dictate a command first"); return; }
     routeBtn.disabled=true; routeBtn.textContent="Reading…"; routeCard.style.display="none";
-    fetch(ROUTE,{ method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({mode:"propose",text:text}) })
+    fetch(ROUTE,{ method:"POST", headers:ccHeaders(), body:JSON.stringify({mode:"propose",text:text}) })
     .then(function(r){return r.json();}).then(function(res){
+      if(ccUnauth(res)){ return; }
       if(res.error){ flash("Error: "+res.error); return; }
       if(!res.proposal || res.proposal.kind==="unknown"){
         routeCard.innerHTML='<div class="kv">That didn\'t look like a CRM command. Try: "Log a call with Stuart Benson…" or "Add a new contact…"</div><div class="btns"><button class="cancelb" onclick="closeRoute()">OK</button></div>';
@@ -344,8 +356,9 @@
     var cb = routeCard.querySelector(".confirmb");
     var lbl = cb ? cb.textContent : "";
     if(cb){ cb.disabled=true; cb.textContent="Working…"; }
-    fetch(ROUTE,{ method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({mode:"execute",action:action}) })
+    fetch(ROUTE,{ method:"POST", headers:ccHeaders(), body:JSON.stringify({mode:"execute",action:action}) })
     .then(function(r){return r.json();}).then(function(res){
+      if(ccUnauth(res)){ if(cb){ cb.disabled=false; cb.textContent=lbl; } return; }
       if(res.ok){
         var verb = res.action==="created"?"Contact created":(res.action==="drafted"?"Draft created":(res.action==="tasked"?"Task created":"Logged"));
         var link = res.action==="drafted"
@@ -365,8 +378,9 @@
   var emailBriefBtn = document.getElementById("emailBriefBtn");
   function emailBrief(){
     emailBriefBtn.disabled=true; emailBriefBtn.textContent="Emailing…";
-    fetch(SYNTH,{ method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({date:selectedDate, email:true}) })
+    fetch(SYNTH,{ method:"POST", headers:ccHeaders(), body:JSON.stringify({date:selectedDate, email:true}) })
     .then(function(r){return r.json();}).then(function(res){
+      if(ccUnauth(res)){ return; }
       if(res && res.ok && res.emailed){ syncToast.textContent="Emailed to your inbox ✓"; loadDigest(); }
       else if(res && res.skipped){ syncToast.textContent="Nothing to email for this day"; }
       else if(res && res.ok){ syncToast.textContent="Built, but email failed — try again"; }
