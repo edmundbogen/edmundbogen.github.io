@@ -18,7 +18,7 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: https://edmundbogen.github.io/
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -29,6 +29,24 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: '.'
-      - name: Deploy to GitHub Pages
-        id: deployment
+      # Up to 3 attempts with backoff — GitHub's Pages deploy step fails
+      # transiently ("try again later"); this self-heals so it only emails
+      # on a real, sustained failure (all 3 attempts fail).
+      - name: Deploy to GitHub Pages (attempt 1)
+        id: d1
+        continue-on-error: true
+        uses: actions/deploy-pages@v4
+      - name: Wait before retry
+        if: steps.d1.outcome == 'failure'
+        run: sleep 20
+      - name: Deploy to GitHub Pages (attempt 2)
+        id: d2
+        if: steps.d1.outcome == 'failure'
+        continue-on-error: true
+        uses: actions/deploy-pages@v4
+      - name: Wait before final retry
+        if: steps.d1.outcome == 'failure' && steps.d2.outcome == 'failure'
+        run: sleep 30
+      - name: Deploy to GitHub Pages (final attempt)
+        if: steps.d1.outcome == 'failure' && steps.d2.outcome == 'failure'
         uses: actions/deploy-pages@v4
