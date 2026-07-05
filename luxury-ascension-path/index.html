@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Luxury Ascension Path — The Edmund Bogen Team</title>
+<meta name="description" content="A 6-level path to breaking into luxury real estate. Mindset, communities, marketing, HNW communication, trophy pricing, and winning the luxury listing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1a3e5c;
+  --navy-deep:#12293d;
+  --cyan:#00a8e1;
+  --cyan-dark:#0092c7;
+  --ink:#0a6d9c;
+  --white:#ffffff;
+  --black:#000000;
+  --gray-dark:#333333;
+  --gray-muted:#6b6b6b;
+  --gray-light:#f4f4f4;
+  --gray-med:#cccccc;
+  --font:'Montserrat',Arial,Helvetica,sans-serif;
+  --space-xs:8px; --space-sm:16px; --space-md:24px; --space-lg:32px;
+  --space-xl:48px; --space-2xl:64px; --space-3xl:80px; --space-4xl:120px;
+  --maxtext:720px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font);
+  color:var(--gray-dark);
+  background:var(--white);
+  line-height:1.7;
+  font-size:17px;
+  -webkit-font-smoothing:antialiased;
+}
+.view{display:none}
+.view.active{display:block}
+a{color:var(--ink);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-block;background:var(--cyan);color:var(--white);border:none;
+  padding:16px 40px;border-radius:3px;font-family:var(--font);font-weight:600;
+  font-size:15px;text-transform:uppercase;letter-spacing:0.08em;cursor:pointer;
+  transition:background .18s ease, transform .18s ease;
+}
+.btn:hover{background:var(--cyan-dark);text-decoration:none}
+.btn:disabled{background:var(--gray-med);cursor:not-allowed;color:#eee}
+.btn-ghost{
+  background:transparent;border:2px solid var(--cyan);color:var(--cyan);
+  padding:14px 38px;
+}
+.btn-ghost:hover{background:rgba(0,168,225,.1)}
+.btn-light{background:var(--white);color:var(--navy)}
+.btn-light:hover{background:#eaf6fc}
+
+.eyebrow{
+  text-transform:uppercase;letter-spacing:0.18em;font-size:12px;font-weight:600;
+  color:var(--ink);
+}
+.eyebrow.on-dark{color:var(--cyan)}
+
+/* ---------- Hero / Gate ---------- */
+#gate{
+  min-height:100vh;
+  background:linear-gradient(160deg,var(--navy) 0%,var(--navy-deep) 100%);
+  color:var(--white);
+  display:flex;align-items:center;justify-content:center;
+  padding:var(--space-3xl) var(--space-md);
+  position:relative;overflow:hidden;
+}
+#gate::before{
+  content:"";position:absolute;top:-120px;right:-120px;width:420px;height:420px;
+  border:2px solid rgba(0,168,225,.18);border-radius:50%;
+}
+#gate::after{
+  content:"";position:absolute;bottom:-160px;left:-100px;width:360px;height:360px;
+  border:2px solid rgba(0,168,225,.12);border-radius:50%;
+}
+.gate-inner{max-width:640px;width:100%;text-align:center;position:relative;z-index:2}
+.gate-inner .eyebrow{margin-bottom:var(--space-lg)}
+.gate-inner h1{
+  font-weight:300;text-transform:uppercase;letter-spacing:0.12em;line-height:1.15;
+  font-size:clamp(34px,6vw,60px);margin-bottom:var(--space-md);
+}
+.gate-inner h1 strong{font-weight:600;color:var(--cyan)}
+.gate-sub{
+  font-size:18px;color:#cfe1ee;max-width:520px;margin:0 auto var(--space-xl);
+  font-weight:300;
+}
+.gate-card{
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+  border-radius:6px;padding:var(--space-xl);max-width:460px;margin:0 auto;
+  backdrop-filter:blur(4px);
+}
+.gate-card label{
+  display:block;text-align:left;font-size:12px;text-transform:uppercase;
+  letter-spacing:0.12em;color:#cfe1ee;margin-bottom:var(--space-xs);font-weight:500;
+}
+.gate-card input{
+  width:100%;padding:14px 16px;margin-bottom:var(--space-md);border-radius:3px;
+  border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.95);
+  font-family:var(--font);font-size:16px;color:var(--gray-dark);
+}
+.gate-card input:focus{outline:2px solid var(--cyan);border-color:var(--cyan)}
+.gate-card .btn{width:100%;margin-top:var(--space-xs)}
+.gate-err{color:#ffd2d2;font-size:14px;min-height:20px;text-align:left;margin-bottom:8px}
+.gate-legal{font-size:12px;color:#9db6c8;margin-top:var(--space-md);line-height:1.5}
+.pillars{
+  display:flex;gap:var(--space-md);justify-content:center;flex-wrap:wrap;
+  margin-top:var(--space-2xl);
+}
+.pillar{font-size:12px;text-transform:uppercase;letter-spacing:0.1em;color:#9db6c8}
+.pillar b{color:var(--cyan);display:block;font-size:22px;font-weight:600;letter-spacing:0}
+
+/* ---------- Map ---------- */
+#map{background:var(--white)}
+.map-head{
+  background:var(--navy);color:var(--white);padding:var(--space-2xl) var(--space-md);
+  text-align:center;
+}
+.map-head .eyebrow{color:var(--cyan);margin-bottom:var(--space-sm)}
+.map-head h2{
+  font-weight:300;text-transform:uppercase;letter-spacing:0.1em;
+  font-size:clamp(26px,4vw,40px);
+}
+.map-head .welcome{color:#cfe1ee;font-weight:300;margin-top:var(--space-sm);font-size:16px}
+.map-progress{
+  max-width:520px;margin:var(--space-lg) auto 0;
+}
+.map-progress .bar{
+  height:6px;border-radius:3px;background:rgba(255,255,255,.15);overflow:hidden;
+}
+.map-progress .bar span{display:block;height:100%;background:var(--cyan);width:0;transition:width .5s ease}
+.map-progress .lbl{font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#9db6c8;margin-top:10px}
+
+.path-wrap{
+  max-width:820px;margin:0 auto;padding:var(--space-3xl) var(--space-md) var(--space-4xl);
+  position:relative;
+}
+.node{
+  position:relative;display:flex;align-items:center;gap:var(--space-lg);
+  padding:var(--space-md) 0;
+}
+.node:nth-child(even){flex-direction:row-reverse;text-align:right}
+.node .marker{
+  flex:0 0 76px;width:76px;height:76px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:26px;font-weight:600;position:relative;z-index:3;
+  border:3px solid var(--gray-med);background:var(--white);color:var(--gray-muted);
+  transition:all .25s ease;
+}
+.node.unlocked .marker{border-color:var(--cyan);color:var(--cyan)}
+.node.current .marker{border-color:var(--cyan);color:var(--white);background:var(--cyan);box-shadow:0 0 0 6px rgba(0,168,225,.18);animation:pulse 2s infinite}
+.node.done .marker{border-color:var(--cyan);background:var(--cyan);color:var(--white)}
+@keyframes pulse{0%{box-shadow:0 0 0 6px rgba(0,168,225,.18)}50%{box-shadow:0 0 0 12px rgba(0,168,225,.06)}100%{box-shadow:0 0 0 6px rgba(0,168,225,.18)}}
+.node .card{
+  flex:1;background:var(--white);border:1px solid var(--gray-med);border-radius:6px;
+  padding:var(--space-lg);cursor:pointer;transition:box-shadow .2s ease,border-color .2s ease,transform .2s ease;
+  border-left:4px solid var(--cyan);
+}
+.node:nth-child(even) .card{border-left:1px solid var(--gray-med);border-right:4px solid var(--cyan)}
+.node .card:hover{box-shadow:0 12px 30px rgba(26,62,92,.12);transform:translateY(-2px)}
+.node.locked .card{cursor:not-allowed;opacity:.6;border-left-color:var(--gray-med);border-right-color:var(--gray-med);background:var(--gray-light)}
+.node.locked .card:hover{box-shadow:none;transform:none}
+.node .card .lvl-eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:0.14em;color:var(--ink);font-weight:600}
+.node .card h3{font-size:20px;font-weight:600;color:var(--navy);margin:6px 0 8px}
+.node .card p{font-size:14px;color:var(--gray-muted);line-height:1.6}
+.node .card .status{
+  display:inline-block;margin-top:12px;font-size:11px;text-transform:uppercase;
+  letter-spacing:0.1em;font-weight:600;padding:5px 12px;border-radius:20px;
+}
+.status.s-locked{background:#eee;color:var(--gray-muted)}
+.status.s-open{background:rgba(0,168,225,.12);color:var(--ink)}
+.status.s-done{background:var(--cyan);color:var(--white)}
+/* connector line */
+.path-line{
+  position:absolute;left:50%;top:120px;bottom:160px;width:3px;
+  background:repeating-linear-gradient(var(--cyan),var(--cyan) 10px,transparent 10px,transparent 18px);
+  transform:translateX(-50%);z-index:1;
+}
+@media(max-width:768px){.path-line{display:none}}
+
+/* ---------- Level view ---------- */
+#level{background:var(--gray-light);min-height:100vh}
+.lvl-hero{background:var(--navy);color:var(--white);padding:var(--space-2xl) var(--space-md)}
+.lvl-hero .wrap{max-width:var(--maxtext);margin:0 auto}
+.backlink{background:none;border:none;color:var(--cyan);font-family:var(--font);font-size:13px;
+  text-transform:uppercase;letter-spacing:0.1em;cursor:pointer;margin-bottom:var(--space-md);font-weight:600}
+.backlink:hover{text-decoration:underline}
+.lvl-hero .eyebrow{color:var(--cyan)}
+.lvl-hero h2{font-weight:300;text-transform:uppercase;letter-spacing:0.08em;font-size:clamp(26px,4vw,40px);margin:10px 0}
+.lvl-hero .tagline{color:#cfe1ee;font-weight:300}
+.lvl-body{max-width:var(--maxtext);margin:0 auto;padding:var(--space-2xl) var(--space-md) var(--space-4xl)}
+.teach{background:var(--white);border-radius:6px;padding:var(--space-xl);margin-bottom:var(--space-xl);border-left:4px solid var(--cyan)}
+.teach h3{color:var(--navy);font-size:22px;font-weight:600;margin-bottom:var(--space-md);letter-spacing:0.02em}
+.teach h4{color:var(--navy);font-size:16px;font-weight:600;margin:var(--space-lg) 0 var(--space-xs);letter-spacing:0.03em}
+.teach p{margin-bottom:var(--space-md)}
+.teach ul{margin:0 0 var(--space-md) var(--space-lg)}
+.teach li{margin-bottom:8px}
+.teach .pullquote{border-left:3px solid var(--cyan);padding-left:var(--space-md);margin:var(--space-lg) 0;
+  font-style:italic;color:var(--navy);font-size:18px;font-weight:500}
+
+.section-label{text-transform:uppercase;letter-spacing:0.12em;font-size:13px;font-weight:600;color:var(--ink);
+  margin-bottom:var(--space-md);border-left:4px solid var(--cyan);padding-left:var(--space-md)}
+
+/* Quiz */
+.quiz{background:var(--white);border-radius:6px;padding:var(--space-xl);margin-bottom:var(--space-xl)}
+.quiz .q{margin-bottom:var(--space-xl)}
+.quiz .q:last-of-type{margin-bottom:var(--space-md)}
+.quiz .q .qtext{font-weight:600;color:var(--navy);margin-bottom:var(--space-md);font-size:16px}
+.quiz .q .qtext .num{color:var(--cyan);margin-right:8px}
+.opt{
+  display:block;width:100%;text-align:left;padding:14px 18px;margin-bottom:10px;border-radius:4px;
+  border:1.5px solid var(--gray-med);background:var(--white);font-family:var(--font);font-size:15px;
+  color:var(--gray-dark);cursor:pointer;transition:all .15s ease;line-height:1.5;
+}
+.opt:hover{border-color:var(--cyan)}
+.opt.selected{border-color:var(--cyan);background:rgba(0,168,225,.06)}
+.opt.correct{border-color:#1f9d55;background:rgba(31,157,85,.1);color:#136e3a}
+.opt.wrong{border-color:#c0392b;background:rgba(192,57,43,.08);color:#a5281c}
+.opt:disabled{cursor:default}
+.quiz-actions{display:flex;gap:var(--space-md);align-items:center;flex-wrap:wrap;margin-top:var(--space-lg)}
+.quiz-result{font-weight:600;font-size:16px}
+.quiz-result.pass{color:#136e3a}
+.quiz-result.fail{color:#a5281c}
+
+/* Mission */
+.mission{background:var(--white);border-radius:6px;padding:var(--space-xl);margin-bottom:var(--space-xl);
+  border-left:4px solid var(--cyan)}
+.mission h3{color:var(--navy);font-size:20px;font-weight:600;margin-bottom:var(--space-sm)}
+.mission .m-desc{color:var(--gray-dark);margin-bottom:var(--space-lg)}
+.mission-check{display:flex;align-items:flex-start;gap:14px;padding:var(--space-md);border:1.5px dashed var(--gray-med);
+  border-radius:5px;cursor:pointer;transition:all .18s ease}
+.mission-check:hover{border-color:var(--cyan);background:rgba(0,168,225,.04)}
+.mission-check.done{border-style:solid;border-color:var(--cyan);background:rgba(0,168,225,.06)}
+.mission-check input{width:22px;height:22px;accent-color:var(--cyan);margin-top:2px;flex:0 0 auto;cursor:pointer}
+.mission-check .mc-label{font-weight:500;color:var(--navy)}
+.mission-check .mc-sub{font-size:13px;color:var(--gray-muted);font-weight:400}
+
+/* Level footer / unlock */
+.lvl-footer{background:var(--white);border-radius:6px;padding:var(--space-xl);text-align:center}
+.lvl-footer .lock-msg{color:var(--gray-muted);font-size:15px;margin-bottom:var(--space-md)}
+.lvl-footer .done-msg{color:#136e3a;font-weight:600;font-size:17px;margin-bottom:var(--space-md)}
+.gate-item{display:inline-flex;align-items:center;gap:8px;margin:6px 14px;font-size:14px;color:var(--gray-muted)}
+.gate-item.ok{color:#136e3a}
+.gate-item .dot{width:10px;height:10px;border-radius:50%;background:var(--gray-med)}
+.gate-item.ok .dot{background:#1f9d55}
+
+/* ---------- Certificate ---------- */
+#done{min-height:100vh;background:linear-gradient(160deg,var(--navy) 0%,var(--navy-deep) 100%);
+  color:var(--white);padding:var(--space-3xl) var(--space-md);text-align:center}
+.cert{max-width:760px;margin:0 auto;background:var(--white);color:var(--gray-dark);border-radius:8px;
+  padding:var(--space-3xl) var(--space-xl);border-top:6px solid var(--cyan);box-shadow:0 30px 60px rgba(0,0,0,.3)}
+.cert .eyebrow{color:var(--ink)}
+.cert .seal{width:72px;height:72px;border-radius:50%;background:var(--cyan);color:var(--white);
+  display:flex;align-items:center;justify-content:center;font-size:34px;margin:0 auto var(--space-lg)}
+.cert h2{font-weight:300;text-transform:uppercase;letter-spacing:0.12em;color:var(--navy);font-size:30px;margin-bottom:var(--space-sm)}
+.cert .awardee{font-size:34px;font-weight:600;color:var(--cyan);margin:var(--space-md) 0;letter-spacing:0.02em}
+.cert .cert-line{width:220px;height:1px;background:var(--gray-med);margin:var(--space-sm) auto}
+.cert p{max-width:520px;margin:var(--space-md) auto;color:var(--gray-muted)}
+.cert .cta-row{margin-top:var(--space-xl);display:flex;gap:var(--space-md);justify-content:center;flex-wrap:wrap}
+
+/* ---------- Footer ---------- */
+.site-footer{background:var(--navy-deep);color:#9db6c8;padding:var(--space-xl) var(--space-md);text-align:center;font-size:13px;line-height:1.7}
+.site-footer strong{color:var(--white);font-weight:600;letter-spacing:0.06em}
+.site-footer .db{color:#cfe1ee;text-transform:uppercase;letter-spacing:0.1em;font-size:11px;margin-top:6px}
+
+@media(max-width:768px){
+  .node,.node:nth-child(even){flex-direction:column;text-align:center}
+  .node .card,.node:nth-child(even) .card{border-left:4px solid var(--cyan);border-right:1px solid var(--gray-med)}
+  .node .marker{margin-bottom:var(--space-xs)}
+  .gate-card{padding:var(--space-lg)}
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== GATE ===================== -->
+<section id="gate" class="view active">
+  <div class="gate-inner">
+    <div class="eyebrow on-dark">The Edmund Bogen Team &nbsp;·&nbsp; Luxury Training</div>
+    <h1>The Luxury<br><strong>Ascension Path</strong></h1>
+    <p class="gate-sub">Six levels. One outcome: the skill, language, and standard to break into luxury real estate and win the trophy listing.</p>
+    <div class="gate-card">
+      <label for="g-name">Your Name</label>
+      <input id="g-name" type="text" placeholder="First and last name" autocomplete="name">
+      <label for="g-email">Email</label>
+      <input id="g-email" type="email" placeholder="you@email.com" autocomplete="email">
+      <div class="gate-err" id="g-err"></div>
+      <button class="btn" id="g-start">Begin the Ascent</button>
+      <p class="gate-legal">Your progress saves to this device. We'll only use your email to support your training and share luxury-market resources.</p>
+    </div>
+    <div class="pillars">
+      <div class="pillar"><b>6</b> Levels</div>
+      <div class="pillar"><b>30</b> Quiz Questions</div>
+      <div class="pillar"><b>6</b> Field Missions</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MAP ===================== -->
+<section id="map" class="view">
+  <div class="map-head">
+    <div class="eyebrow">Your Journey</div>
+    <h2>The Luxury Ascension Path</h2>
+    <p class="welcome" id="map-welcome"></p>
+    <div class="map-progress">
+      <div class="bar"><span id="map-bar"></span></div>
+      <div class="lbl" id="map-lbl">0 of 6 levels complete</div>
+    </div>
+  </div>
+  <div class="path-wrap">
+    <div class="path-line"></div>
+    <div id="nodes"></div>
+  </div>
+  <div class="site-footer">
+    <strong>THE EDMUND BOGEN TEAM</strong>
+    <div class="db">at Douglas Elliman Real Estate</div>
+  </div>
+</section>
+
+<!-- ===================== LEVEL ===================== -->
+<section id="level" class="view">
+  <div class="lvl-hero">
+    <div class="wrap">
+      <button class="backlink" onclick="goMap()">&larr; Back to the Path</button>
+      <div class="eyebrow" id="lvl-eyebrow"></div>
+      <h2 id="lvl-title"></h2>
+      <p class="tagline" id="lvl-tagline"></p>
+    </div>
+  </div>
+  <div class="lvl-body">
+    <div class="teach" id="lvl-teach"></div>
+
+    <div class="section-label">Knowledge Check &nbsp;·&nbsp; 4 of 5 to pass</div>
+    <div class="quiz" id="lvl-quiz"></div>
+
+    <div class="section-label">Field Mission</div>
+    <div class="mission" id="lvl-mission"></div>
+
+    <div class="lvl-footer" id="lvl-footer"></div>
+  </div>
+  <div class="site-footer">
+    <strong>THE EDMUND BOGEN TEAM</strong>
+    <div class="db">at Douglas Elliman Real Estate</div>
+  </div>
+</section>
+
+<!-- ===================== CERTIFICATE ===================== -->
+<section id="done" class="view">
+  <div class="cert">
+    <div class="eyebrow">Certificate of Completion</div>
+    <div class="seal">&#10003;</div>
+    <h2>The Luxury Ascension Path</h2>
+    <p style="text-transform:uppercase;letter-spacing:0.1em;font-size:12px;color:var(--gray-muted)">This certifies that</p>
+    <div class="awardee" id="cert-name"></div>
+    <div class="cert-line"></div>
+    <p>has completed all six levels — mastering luxury mindset, community knowledge, marketing standards, high-net-worth communication, trophy-property pricing, and the luxury listing interview.</p>
+    <p style="font-size:13px;color:var(--gray-med)">The Edmund Bogen Team &nbsp;·&nbsp; at Douglas Elliman Real Estate</p>
+    <div class="cta-row">
+      <a class="btn" href="https://www.edmundbogen.com" target="_blank" rel="noopener">Explore the Mastermind</a>
+      <button class="btn btn-ghost" onclick="goMap()">Review the Path</button>
+    </div>
+  </div>
+</section>
+
+<script>
+/* ============================================================
+   THE LUXURY ASCENSION PATH
+   Single-file gamified course. Zero dependencies.
+   Lead capture -> set LEAD_ENDPOINT below (Formspree form ID).
+   ============================================================ */
+
+// TODO(Ed): paste your Formspree endpoint, e.g. "https://formspree.io/f/xxxxxxx"
+const LEAD_ENDPOINT = "";
+
+const STATE_KEY = "luxuryAscension_v1";
+const PASS = 4; // 4 of 5 = 80%
+
+let memoryOnly = false;
+let state = defaultState();
+
+function defaultState(){
+  const levels = {};
+  for(let i=1;i<=6;i++) levels[i] = {quizPassed:false, quizBest:0, missionDone:false};
+  return { user:{name:"",email:""}, enrolled:false, levels };
+}
+function loadState(){
+  try{
+    const raw = localStorage.getItem(STATE_KEY);
+    if(raw){ const p = JSON.parse(raw); state = Object.assign(defaultState(), p);
+      state.levels = Object.assign(defaultState().levels, p.levels||{}); }
+  }catch(e){ memoryOnly = true; }
+}
+function saveState(){
+  if(memoryOnly) return;
+  try{ localStorage.setItem(STATE_KEY, JSON.stringify(state)); }
+  catch(e){ memoryOnly = true; }
+}
+
+function levelComplete(n){ const l = state.levels[n]; return !!(l && l.quizPassed && l.missionDone); }
+function isUnlocked(n){ return n===1 || levelComplete(n-1); }
+function completedCount(){ let c=0; for(let i=1;i<=6;i++) if(levelComplete(i)) c++; return c; }
+function firstIncomplete(){ for(let i=1;i<=6;i++) if(!levelComplete(i)) return i; return 6; }
+
+/* ---------------- CONTENT ---------------- */
+const LEVELS = [
+{
+  n:1, title:"The Luxury Mindset & Positioning",
+  eyebrow:"Level 1",
+  tagline:"Luxury is a decision before it is a listing. This is where you make it.",
+  teach:`
+    <h3>You don't break into luxury. You decide into it.</h3>
+    <p>The agents who win at the top of the market are rarely the most experienced — they are the most <em>convinced</em>. Before a single seller trusts you with an $8M home, you have to carry yourself like the person who belongs in that room. Luxury is a standard you set for yourself first.</p>
+    <div class="pullquote">"The buyer of a trophy home is buying certainty. You cannot sell certainty you do not have."</div>
+    <h4>Abundance beats scarcity</h4>
+    <p>Scarcity thinking chases every lead, discounts every commission, and apologizes for its price. Abundance thinking is selective, calm, and priced with conviction. High-net-worth clients read that posture in the first ninety seconds. Operate from the belief that there is more than enough — because at this tier, there is.</p>
+    <h4>Own a niche, not a zip code</h4>
+    <ul>
+      <li><strong>Go narrow to go big.</strong> "The country-club specialist for St. Andrews" beats "a luxury agent serving South Florida." Specificity signals depth.</li>
+      <li><strong>Become the local authority.</strong> Know the streets, the builders, the HOA quirks, the sale histories. Authority is just accumulated specificity.</li>
+      <li><strong>Repeat your positioning until it's boring to you.</strong> That's roughly when the market starts to remember it.</li>
+    </ul>
+    <h4>Show up at the tier</h4>
+    <p>Dress, communicate, and present at the level of the home you want to represent. Your car, your collateral, your calendar, your follow-through — every touchpoint is either reinforcing or undercutting the price you're asking a seller to trust. Consistency <em>is</em> the brand.</p>
+    <h4>The internal shift</h4>
+    <p>Stop asking "Am I ready for luxury?" and start asking "What would the luxury version of me do next?" Then do that — one listing, one preview, one conversation at a time.</p>
+  `,
+  quiz:[
+    {q:"What most reliably separates agents who win at the luxury tier?",
+     o:["The number of years they've had a license","Their conviction and how they carry themselves","The size of their brokerage","How many open houses they hold"], a:1},
+    {q:"Abundance thinking, applied to luxury, looks like:",
+     o:["Chasing every lead and discounting to win","Being selective, calm, and priced with conviction","Never talking about price","Only working with past clients"], a:1},
+    {q:"Why niche down instead of marketing to a whole region?",
+     o:["It's cheaper to advertise","Specificity signals depth and builds local authority","Regulations require it","Buyers dislike specialists"], a:1},
+    {q:"“Showing up at the tier” primarily means:",
+     o:["Spending as much money as possible","Aligning every client touchpoint with the level of home you represent","Only wearing designer labels","Avoiding smaller clients"], a:1},
+    {q:"The more useful internal question is:",
+     o:["“Am I ready for luxury yet?”","“What would the luxury version of me do next?”","“Who will give me a shot?”","“Is the market too hard right now?”"], a:1}
+  ],
+  mission:{ title:"Publish your luxury positioning",
+    desc:"Write one sharp positioning line that names your niche and the standard you hold — then publish it (bio, headline, or signature). Example: “I represent country-club homes in St. Andrews with a marketing standard the rest of the market copies.”",
+    label:"I've written and published my luxury positioning line.",
+    sub:"Bio, social headline, or email signature all count." }
+},
+{
+  n:2, title:"Country Clubs & Gated Communities",
+  eyebrow:"Level 2",
+  tagline:"In South Florida luxury, you're not just selling a home — you're selling access.",
+  teach:`
+    <h3>The membership is part of the deal.</h3>
+    <p>At the trophy tier, a buyer is rarely just buying square footage. They're buying a lifestyle gated behind a membership, a board, and a set of rules most agents never learn. Master this and you become indispensable — because you can answer the questions that make or break a sale.</p>
+    <h4>Equity vs. non-equity memberships</h4>
+    <ul>
+      <li><strong>Equity membership:</strong> the member owns a share of the club; the membership is an asset that can often be sold or transferred, sometimes with a wait list and transfer fees.</li>
+      <li><strong>Non-equity membership:</strong> the member pays for access but owns nothing; typically no resale value.</li>
+      <li><strong>Why it matters:</strong> whether membership conveys, is mandatory, or must be re-applied for can swing a deal by six figures. Never guess — verify with the club.</li>
+    </ul>
+    <h4>Mandatory vs. optional membership</h4>
+    <p>Some communities require club membership as a condition of ownership (a mandatory initiation fee at closing). Others make it optional. A buyer who assumes "optional" and discovers a mandatory six-figure initiation at the closing table is a buyer you've lost — and a reputation you've dented.</p>
+    <div class="pullquote">"The fastest way to lose a luxury buyer is a surprise fee you should have known about."</div>
+    <h4>HOA / POA nuance</h4>
+    <ul>
+      <li>Know the dues, the reserves, and any pending special assessments.</li>
+      <li>Understand approval processes — some communities interview and approve buyers.</li>
+      <li>Read the rules on rentals, renovations, and guests; ultra-high-end buyers care deeply about privacy and control.</li>
+    </ul>
+    <h4>Gate & showing protocol</h4>
+    <p>Respect the gate. Register showings correctly, arrive on time, follow the club's dress and conduct standards, and never treat security or staff as an obstacle. In these communities, staff talk — and their impression of you travels to the very sellers you want to represent.</p>
+  `,
+  quiz:[
+    {q:"An equity country-club membership means the member:",
+     o:["Pays only for access and owns nothing","Owns a share of the club that may be transferable or salable","Is exempt from HOA dues","Automatically owns the home's land"], a:1},
+    {q:"Why does mandatory vs. optional membership matter so much?",
+     o:["It changes the paint colors allowed","A surprise mandatory initiation fee can cost six figures and kill the deal","It only affects the seller's taxes","It has no real financial impact"], a:1},
+    {q:"Before telling a buyer a membership is optional, you should:",
+     o:["Assume it's optional to keep them excited","Verify the requirement directly with the club","Ask a neighbor","Wait until the closing table"], a:1},
+    {q:"Which is essential HOA/POA due diligence at the luxury tier?",
+     o:["Ignoring reserves and assessments","Checking dues, reserves, pending special assessments, and approval processes","Only reading the amenities list","Assuming rules are identical across all communities"], a:1},
+    {q:"Proper gate and showing conduct matters because:",
+     o:["Staff impressions travel to the sellers you want to win","It has no effect on your reputation","Guards decide the sale price","Buyers never notice the gate"], a:0}
+  ],
+  mission:{ title:"Map one community's membership model",
+    desc:"Pick one local country-club or gated community. Document its membership structure: equity or non-equity, mandatory or optional, approximate initiation, dues, and any transfer or approval process. Save it to your notes as a reference sheet.",
+    label:"I've researched and documented one community's membership model.",
+    sub:"One page of real, verified detail is enough." }
+},
+{
+  n:3, title:"Luxury Marketing Standards",
+  eyebrow:"Level 3",
+  tagline:"At this tier, average marketing doesn't underperform — it disqualifies you.",
+  teach:`
+    <h3>The marketing is the audition.</h3>
+    <p>When a seller of a $5M home looks at your last three listings, they are deciding whether their home is safe in your hands. Luxury marketing isn't about spending the most; it's about a relentless standard where nothing looks amateur. One weak photo undoes ten strong ones.</p>
+    <h4>The photography & video bar</h4>
+    <ul>
+      <li><strong>Professional only.</strong> Wide-angle interiors, elevated and drone exteriors, twilight and golden-hour shots. Minimum 1920px, warm and inviting, enhanced blues in pools and sky.</li>
+      <li><strong>Video and motion.</strong> Cinematic walkthroughs and lifestyle films — the home as a story, not a slideshow.</li>
+      <li><strong>Never</strong> cheap stock, phone snapshots, or low-resolution images at this tier.</li>
+    </ul>
+    <h4>Storytelling &amp; exclusivity</h4>
+    <p>Trophy buyers buy a narrative: the light at 5pm, the way the loggia opens to the water, the pedigree of the builder. Write the property's story. Use scarcity honestly — "rarely available," "one of few" — only when it's true. Accuracy is non-negotiable; a single misleading claim can cost you the trust the whole brand runs on.</p>
+    <div class="pullquote">"Luxury needs space. Crowded design reads as cheap — on a page and in a home."</div>
+    <h4>Print & collateral</h4>
+    <p>Brochures at 300dpi, generous white space, restrained type, one clear voice. Every piece of collateral should feel like it belongs to the same refined family — because your brand consistency is the seller's proof you can be trusted with theirs.</p>
+    <h4>The Douglas Elliman co-brand standard</h4>
+    <p>Represent the co-brand correctly: show Douglas Elliman alongside The Edmund Bogen Team where space allows, keep the marks clean and unaltered, and never crowd or distort a logo. The co-brand is credibility — protect it.</p>
+  `,
+  quiz:[
+    {q:"At the luxury tier, weak marketing does what?",
+     o:["Slightly underperforms but is fine","Effectively disqualifies you from the listing","Only matters for buyers, not sellers","Saves money with no downside"], a:1},
+    {q:"Which meets the luxury photography standard?",
+     o:["Phone snapshots in low light","Professional wide-angle, drone, and twilight imagery at high resolution","Cropped stock photos","Whatever the seller already has"], a:1},
+    {q:"Using scarcity language (“rarely available”) is appropriate when:",
+     o:["It sounds impressive, true or not","It is genuinely and verifiably true","Never, under any circumstance","Only on print, not online"], a:1},
+    {q:"Why does generous white space matter in luxury design?",
+     o:["It fills the page cheaply","Crowded design reads as cheap; space signals luxury","It's required by MLS","Buyers prefer dense pages"], a:1},
+    {q:"Correct use of the Douglas Elliman co-brand means:",
+     o:["Stretching or recoloring the logo to fit","Keeping marks clean, unaltered, and shown where space allows","Hiding the co-brand entirely","Placing it over busy photos"], a:1}
+  ],
+  mission:{ title:"Audit one piece against the standard",
+    desc:"Take one of your current listings or marketing pieces. Audit it honestly against the luxury standard above, and write down three specific upgrades you'd make (e.g., reshoot twilight exteriors, rewrite the property story, add white space to the brochure).",
+    label:"I've audited one piece and listed three concrete upgrades.",
+    sub:"Be specific — “better photos” doesn't count." }
+},
+{
+  n:4, title:"High-Net-Worth Communication",
+  eyebrow:"Level 4",
+  tagline:"How you communicate is the first proof of how you'll represent them.",
+  teach:`
+    <h3>White-glove is a behavior, not a slogan.</h3>
+    <p>High-net-worth clients are surrounded by people who want something from them. What earns their trust is the rare professional who is discreet, prepared, responsive, and completely unrushed. Your communication is a live demonstration of the service they can expect.</p>
+    <h4>Discretion first</h4>
+    <ul>
+      <li>Protect privacy relentlessly — names, prices, schedules, and reasons for selling are confidential by default.</li>
+      <li>Never name-drop other clients to impress. It signals you'll do the same with them.</li>
+      <li>Use private showings, NDAs when appropriate, and controlled information flow for sensitive listings.</li>
+    </ul>
+    <h4>Responsiveness &amp; calm</h4>
+    <p>Respond quickly, but never frantically. Acknowledge fast, then deliver thoroughly. The tone to hold is "I have this handled" — the opposite of eager or anxious. Matching their energy — measured, precise, warm but not effusive — builds rapport faster than enthusiasm.</p>
+    <div class="pullquote">"Speed shows respect. Composure shows competence. You need both."</div>
+    <h4>Match energy, don't perform</h4>
+    <p>Read the client. Some want brief and efficient; some want relationship and detail. Adapt. The goal is to feel like the most competent, least needy person in their contacts — a peer who happens to be an expert, not a vendor seeking approval.</p>
+    <h4>Referral &amp; relationship etiquette</h4>
+    <p>Thoughtful follow-up, genuine value with no ask attached, and impeccable handling of introductions is how one HNW client becomes a network. At this tier the business is referral-driven — every interaction is either building or spending that trust.</p>
+  `,
+  quiz:[
+    {q:"What most earns a high-net-worth client's trust?",
+     o:["Enthusiasm and frequent updates about yourself","Discretion, preparation, and calm responsiveness","Name-dropping other wealthy clients","Being available 24/7 and appearing eager"], a:1},
+    {q:"Name-dropping other clients to impress a prospect signals:",
+     o:["That you're well-connected and safe","That you'll be indiscreet with their information too","Strong marketing instincts","Nothing important"], a:1},
+    {q:"The ideal communication tone with HNW clients is:",
+     o:["Eager and effusive","Measured, warm, and ‘I have this handled’","Formal and distant","Slow and hard to reach"], a:1},
+    {q:"“Matching energy” means:",
+     o:["Always being high-energy","Reading the client and adapting brief vs. detailed to their style","Copying their vocabulary exactly","Only emailing, never calling"], a:1},
+    {q:"Why treat every HNW interaction carefully?",
+     o:["It has no downstream effect","The business is referral-driven; each touch builds or spends trust","Only the closing matters","Referrals happen automatically"], a:1}
+  ],
+  mission:{ title:"Draft a white-glove first contact",
+    desc:"Write a first-contact message (email or text) to a hypothetical high-net-worth prospect. It should be discreet, composed, and value-forward — no pressure, no eagerness, clearly signaling “I have this handled.” Save it as your reusable template.",
+    label:"I've drafted a white-glove first-contact message.",
+    sub:"Read it aloud — does it sound composed or eager?" }
+},
+{
+  n:5, title:"Pricing Trophy Properties",
+  eyebrow:"Level 5",
+  tagline:"When comps are thin and egos are high, pricing becomes strategy — and narrative.",
+  teach:`
+    <h3>Pricing a trophy home is judgment, not a formula.</h3>
+    <p>At the top of the market, there are few true comparables, every property is unique, and the seller often has an emotional and aspirational number in mind. Your job is to combine rigorous analysis with a pricing <em>narrative</em> the market and the seller can both accept.</p>
+    <h4>Valuing with thin comps</h4>
+    <ul>
+      <li><strong>Widen thoughtfully.</strong> Expand geography and time carefully, then adjust for differences rather than pretending they don't exist.</li>
+      <li><strong>Adjust for what matters here:</strong> waterfront and view, lot and privacy, finish level, club membership, and provenance (builder/architect).</li>
+      <li><strong>Use active and pending listings,</strong> not just closed sales — at this tier the current competitive set shapes buyer perception.</li>
+    </ul>
+    <h4>Days-on-market psychology</h4>
+    <p>Overpricing at launch is expensive. A trophy home that lingers gets stigmatized — buyers ask "what's wrong with it?" and the eventual sale often lands <em>below</em> where correct pricing would have. The first few weeks are the moment of maximum attention; price to capture it.</p>
+    <div class="pullquote">"You don't get a second chance at a first impression — and neither does a listing."</div>
+    <h4>The pricing narrative</h4>
+    <p>Give the number a story: comparable evidence, unique value drivers, and current competition, framed with confidence. A defensible narrative lets you hold price in negotiation and gives the seller language to believe in.</p>
+    <h4>The aspirational seller</h4>
+    <p>Many luxury sellers anchor high. Don't win the listing by agreeing to a fantasy price you'll fight to reduce later — that erodes trust and wastes the launch window. Lead with data, honesty, and a clear strategy. The professional who prices right earns more respect than the one who flatters.</p>
+  `,
+  quiz:[
+    {q:"Valuing a trophy property with few comps requires you to:",
+     o:["Pick the highest recent sale and match it","Widen carefully and adjust for real differences","Use only one closed comp","Ignore active and pending listings"], a:1},
+    {q:"Beyond closed sales, what else should shape a luxury price?",
+     o:["Nothing — only closed sales matter","Active and pending listings that form the competitive set","The seller's mortgage balance","The agent's commission goal"], a:1},
+    {q:"The risk of overpricing a trophy home at launch is:",
+     o:["There is no real risk","It lingers, gets stigmatized, and often sells below correct pricing","It always sells for more eventually","Buyers never notice the price"], a:1},
+    {q:"A “pricing narrative” is:",
+     o:["A random guess dressed up","Evidence + unique value + competition, framed with confidence","A way to avoid showing data","Only for the seller, never buyers"], a:1},
+    {q:"With an aspirational seller who anchors high, you should:",
+     o:["Agree to the fantasy price to win the listing","Lead with data, honesty, and a clear strategy","Refuse to discuss price","Quietly plan to reduce it later without telling them"], a:1}
+  ],
+  mission:{ title:"Build a mini price opinion",
+    desc:"Choose one real $2M+ property. Pull three comparables, make honest adjustments for the value drivers that matter (view, lot, finish, membership, provenance), and write a one-paragraph pricing narrative supporting your number.",
+    label:"I've built a 3-comp price opinion with a written narrative.",
+    sub:"The narrative is the part most agents skip — don't." }
+},
+{
+  n:6, title:"Winning the Luxury Listing Interview",
+  eyebrow:"Level 6 · Capstone",
+  tagline:"Everything you've built comes down to one conversation. Win it.",
+  teach:`
+    <h3>The listing interview is where it's won or lost.</h3>
+    <p>You've built the mindset, the community knowledge, the marketing standard, the communication, and the pricing skill. The luxury listing appointment is where they converge. Walk in prepared to lead, and you convert; walk in hoping, and you don't.</p>
+    <h4>The pre-listing package</h4>
+    <ul>
+      <li>Send a refined pre-listing package <em>before</em> the meeting: your positioning, marketing samples, relevant sales, and a clear process.</li>
+      <li>It pre-frames you as the professional and does half the selling before you arrive.</li>
+    </ul>
+    <h4>Lead with discovery</h4>
+    <p>Don't open by pitching. Ask: Why sell, and why now? What's the ideal timeline and outcome? What would make this a great experience? Sellers trust the agent who understands them before proposing anything. Listening is the most persuasive thing you'll do in the room.</p>
+    <div class="pullquote">"Amateurs present. Professionals diagnose, then prescribe."</div>
+    <h4>Objections &amp; the commission conversation</h4>
+    <ul>
+      <li><strong>Price objection:</strong> return to evidence and the launch-window strategy from Level 5 — calm, not defensive.</li>
+      <li><strong>Commission objection:</strong> don't flinch and don't discount reflexively. Anchor on value: the marketing standard, the buyer network, the outcome. A discounted fee quietly signals a discounted effort.</li>
+      <li><strong>“Why you?”:</strong> your niche authority and standard — everything from Levels 1–5 — is the answer.</li>
+    </ul>
+    <h4>The close</h4>
+    <p>Ask for the business directly and confidently: “I'd be honored to represent your home, and here's exactly how we begin.” Then hand them a clear next step. Certainty closes. You've earned the right to be certain — now show it.</p>
+  `,
+  quiz:[
+    {q:"A strong pre-listing package sent before the meeting:",
+     o:["Wastes the seller's time","Pre-frames you and does half the selling before you arrive","Should reveal nothing about your process","Is only for lower-priced homes"], a:1},
+    {q:"How should you open the listing interview?",
+     o:["With your full marketing pitch immediately","With discovery — understanding why they're selling and their goals","By quoting the lowest commission","By touring the house silently"], a:1},
+    {q:"“Amateurs present. Professionals ___.”",
+     o:["talk more","diagnose, then prescribe","discount faster","avoid questions"], a:1},
+    {q:"Facing a commission objection, the professional move is to:",
+     o:["Discount reflexively to keep the deal","Anchor on value — marketing, network, and outcome","Get defensive","Refuse to discuss it"], a:1},
+    {q:"An effective luxury close is:",
+     o:["Passive — wait for them to decide","A direct, confident ask plus a clear next step","A hard-sell ultimatum","Leaving without asking for the business"], a:1}
+  ],
+  mission:{ title:"Preview one $2M+ listing in person",
+    desc:"The capstone. Schedule and preview a $2M+ property in person. Walk it as if you'll represent it: note the story, the value drivers, the pricing signals, and how you'd market it. This is where the path becomes real.",
+    label:"I've previewed a $2M+ listing in person.",
+    sub:"The whole path leads here — go stand in the room." }
+}
+];
+
+/* ---------------- VIEWS ---------------- */
+function show(id){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+/* Gate */
+document.getElementById('g-start').addEventListener('click', submitGate);
+document.getElementById('g-email').addEventListener('keydown', e=>{ if(e.key==='Enter') submitGate(); });
+function submitGate(){
+  const name = document.getElementById('g-name').value.trim();
+  const email = document.getElementById('g-email').value.trim();
+  const err = document.getElementById('g-err');
+  if(name.length < 2){ err.textContent = "Please enter your name."; return; }
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ err.textContent = "Please enter a valid email."; return; }
+  err.textContent = "";
+  state.user = {name, email};
+  state.enrolled = true;
+  saveState();
+  sendLead(name, email);
+  goMap();
+}
+function sendLead(name, email){
+  if(!LEAD_ENDPOINT) return; // graceful no-op until endpoint is set
+  try{
+    fetch(LEAD_ENDPOINT, {
+      method:"POST",
+      headers:{"Content-Type":"application/json","Accept":"application/json"},
+      body:JSON.stringify({name, email, source:"Luxury Ascension Path"})
+    }).catch(()=>{});
+  }catch(e){}
+}
+
+/* Map */
+function goMap(){ renderMap(); show('map'); }
+function renderMap(){
+  const done = completedCount();
+  document.getElementById('map-welcome').textContent =
+    state.user.name ? `Welcome, ${state.user.name.split(' ')[0]}. Your ascent begins below.` : "";
+  document.getElementById('map-bar').style.width = (done/6*100) + "%";
+  document.getElementById('map-lbl').textContent = `${done} of 6 levels complete`;
+
+  const cur = firstIncomplete();
+  const wrap = document.getElementById('nodes');
+  wrap.innerHTML = "";
+  LEVELS.forEach(lv=>{
+    const n = lv.n;
+    const unlocked = isUnlocked(n);
+    const complete = levelComplete(n);
+    let cls = "node";
+    let marker, statusHTML;
+    if(complete){ cls+=" done"; marker="&#10003;"; statusHTML='<span class="status s-done">Complete</span>'; }
+    else if(unlocked){ marker=n; if(n===cur){ cls+=" current"; } else { cls+=" unlocked"; }
+      statusHTML='<span class="status s-open">'+(state.levels[n].quizPassed||state.levels[n].missionDone?'In progress':'Ready')+'</span>'; }
+    else { cls+=" locked"; marker="&#128274;"; statusHTML='<span class="status s-locked">Locked</span>'; }
+
+    const node = document.createElement('div');
+    node.className = cls;
+    node.innerHTML = `
+      <div class="marker">${marker}</div>
+      <div class="card" data-n="${n}">
+        <div class="lvl-eyebrow">${lv.eyebrow}</div>
+        <h3>${lv.title}</h3>
+        <p>${lv.tagline}</p>
+        ${statusHTML}
+      </div>`;
+    const card = node.querySelector('.card');
+    if(unlocked){ card.addEventListener('click', ()=>openLevel(n)); }
+    wrap.appendChild(node);
+  });
+}
+
+/* Level */
+let activeLevel = null;
+function openLevel(n){
+  if(!isUnlocked(n)) return;
+  activeLevel = n;
+  const lv = LEVELS[n-1];
+  document.getElementById('lvl-eyebrow').textContent = lv.eyebrow;
+  document.getElementById('lvl-title').textContent = lv.title;
+  document.getElementById('lvl-tagline').textContent = lv.tagline;
+  document.getElementById('lvl-teach').innerHTML = lv.teach;
+  renderQuiz(lv);
+  renderMission(lv);
+  renderLevelFooter(lv);
+  show('level');
+}
+
+function renderQuiz(lv){
+  const passed = state.levels[lv.n].quizPassed;
+  const box = document.getElementById('lvl-quiz');
+  let html = "";
+  lv.quiz.forEach((item, qi)=>{
+    html += `<div class="q" data-qi="${qi}"><div class="qtext"><span class="num">${qi+1}.</span>${item.q}</div>`;
+    item.o.forEach((opt, oi)=>{
+      html += `<button class="opt" data-qi="${qi}" data-oi="${oi}">${opt}</button>`;
+    });
+    html += `</div>`;
+  });
+  html += `<div class="quiz-actions">
+      <button class="btn" id="quiz-submit">${passed?'Retake Quiz':'Submit Answers'}</button>
+      <span class="quiz-result" id="quiz-result"></span>
+    </div>`;
+  box.innerHTML = html;
+
+  const answers = {};
+  let graded = false;
+  box.querySelectorAll('.opt').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      if(graded) return;
+      const qi = btn.dataset.qi;
+      box.querySelectorAll(`.opt[data-qi="${qi}"]`).forEach(b=>b.classList.remove('selected'));
+      btn.classList.add('selected');
+      answers[qi] = parseInt(btn.dataset.oi,10);
+    });
+  });
+
+  const submitBtn = document.getElementById('quiz-submit');
+  const resultEl = document.getElementById('quiz-result');
+  submitBtn.addEventListener('click', ()=>{
+    // If already graded, this button re-takes the quiz fresh.
+    if(graded){ renderQuiz(lv); return; }
+
+    if(Object.keys(answers).length < lv.quiz.length){
+      resultEl.className = "quiz-result fail";
+      resultEl.textContent = "Answer all five questions first.";
+      return;
+    }
+    graded = true;
+    let score = 0;
+    lv.quiz.forEach((item, qi)=>{
+      const chosen = answers[qi];
+      box.querySelectorAll(`.opt[data-qi="${qi}"]`).forEach(b=>{
+        b.disabled = true;
+        const oi = parseInt(b.dataset.oi,10);
+        if(oi === item.a) b.classList.add('correct');
+        else if(oi === chosen) b.classList.add('wrong');
+      });
+      if(chosen === item.a) score++;
+    });
+    const st = state.levels[lv.n];
+    st.quizBest = Math.max(st.quizBest, score);
+    if(score >= PASS){ st.quizPassed = true; }
+    saveState();
+    if(score >= PASS){
+      resultEl.className = "quiz-result pass";
+      resultEl.textContent = `${score}/5 — Passed. Well done.`;
+    } else {
+      resultEl.className = "quiz-result fail";
+      resultEl.textContent = `${score}/5 — Need 4 to pass. Review and retry.`;
+    }
+    submitBtn.textContent = "Retake Quiz";
+    renderLevelFooter(lv);
+  });
+}
+
+function renderMission(lv){
+  const st = state.levels[lv.n];
+  const box = document.getElementById('lvl-mission');
+  box.innerHTML = `
+    <h3>${lv.mission.title}</h3>
+    <p class="m-desc">${lv.mission.desc}</p>
+    <label class="mission-check ${st.missionDone?'done':''}" id="mission-lbl">
+      <input type="checkbox" id="mission-cb" ${st.missionDone?'checked':''}>
+      <span>
+        <span class="mc-label">${lv.mission.label}</span><br>
+        <span class="mc-sub">${lv.mission.sub}</span>
+      </span>
+    </label>`;
+  document.getElementById('mission-cb').addEventListener('change', (e)=>{
+    st.missionDone = e.target.checked;
+    saveState();
+    document.getElementById('mission-lbl').classList.toggle('done', e.target.checked);
+    renderLevelFooter(lv);
+  });
+}
+
+function renderLevelFooter(lv){
+  const st = state.levels[lv.n];
+  const box = document.getElementById('lvl-footer');
+  const complete = levelComplete(lv.n);
+  const quizItem = `<span class="gate-item ${st.quizPassed?'ok':''}"><span class="dot"></span>Quiz passed (4/5)</span>`;
+  const missItem = `<span class="gate-item ${st.missionDone?'ok':''}"><span class="dot"></span>Field mission complete</span>`;
+  if(complete){
+    if(lv.n === 6){
+      box.innerHTML = `<p class="done-msg">Level 6 complete — you've finished the path.</p>
+        <div style="margin-bottom:16px">${quizItem}${missItem}</div>
+        <button class="btn" onclick="finishCourse()">View Your Certificate</button>`;
+    } else {
+      box.innerHTML = `<p class="done-msg">Level ${lv.n} complete — Level ${lv.n+1} is unlocked.</p>
+        <div style="margin-bottom:16px">${quizItem}${missItem}</div>
+        <button class="btn" onclick="openLevel(${lv.n+1})">Continue to Level ${lv.n+1} &rarr;</button>
+        <button class="btn btn-ghost" onclick="goMap()" style="margin-left:12px">Back to the Path</button>`;
+    }
+  } else {
+    box.innerHTML = `<p class="lock-msg">Complete both to unlock the next level:</p>
+      <div style="margin-bottom:16px">${quizItem}${missItem}</div>
+      <button class="btn btn-ghost" onclick="goMap()">Back to the Path</button>`;
+  }
+}
+
+function finishCourse(){
+  document.getElementById('cert-name').textContent = state.user.name || "Luxury Agent";
+  show('done');
+}
+
+/* ---------------- INIT ---------------- */
+(function init(){
+  loadState();
+  if(state.enrolled){
+    document.getElementById('g-name').value = state.user.name || "";
+    document.getElementById('g-email').value = state.user.email || "";
+    goMap();
+  } else {
+    show('gate');
+  }
+})();
+</script>
+</body>
+</html>
