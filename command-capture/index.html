@@ -50,7 +50,10 @@
     background:rgba(255,255,255,0.06); border-left:3px solid var(--cyan);
     border-radius:8px; padding:12px 14px; margin-bottom:10px; font-size:15px; line-height:1.5;
   }
+  .entry { position:relative; padding-right:38px; }
   .entry .t { display:block; font-size:11px; color:rgba(255,255,255,0.4); margin-bottom:4px; }
+  .del { position:absolute; top:8px; right:8px; width:26px; height:26px; border:none; border-radius:8px; background:rgba(255,255,255,0.08); color:rgba(255,255,255,0.5); font-size:16px; line-height:1; cursor:pointer; }
+  .del:active { background:rgba(255,80,80,0.35); color:#fff; }
   .empty { font-size:14px; color:rgba(255,255,255,0.4); font-style:italic; }
   .syncnow { width:100%; margin-top:24px; padding:13px; border:1px solid rgba(0,194,255,0.5); border-radius:12px; background:rgba(0,194,255,0.12); color:var(--cyan); font-family:inherit; font-size:14px; font-weight:600; cursor:pointer; }
   .syncnow:active { background:rgba(0,194,255,0.22); }
@@ -161,7 +164,7 @@
       list.innerHTML = rows.map(function(row){
         var t = new Date(row.created_at).toLocaleTimeString([], {hour:"numeric",minute:"2-digit"});
         var safe = row.body.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
-        return '<div class="entry"><span class="t">'+t+'</span>'+safe+'</div>';
+        return '<div class="entry"><button class="del" onclick="delCap(\''+row.id+'\')">&times;</button><span class="t">'+t+'</span>'+safe+'</div>';
       }).join("");
     }).catch(function(){ document.getElementById("list").innerHTML='<div class="empty">Couldn\'t load the list.</div>'; });
   }
@@ -210,6 +213,13 @@
     }).catch(function(){ syncToast.textContent="Couldn't build — try again"; syncToast.classList.add("show"); setTimeout(function(){syncToast.classList.remove("show");},3500); })
     .finally(function(){ syncBtn.disabled=false; syncBtn.textContent="⚡ Build my brief for this day"; });
   }
+
+  window.delCap = function(id){
+    if(!confirm("Delete this capture?")) return;
+    fetch(URL+"?id=eq."+id+"&owner=eq."+OWNER, { method:"DELETE", headers:Object.assign({"Prefer":"return=minimal"},H) })
+    .then(function(r){ if(!r.ok) throw new Error(r.status); refresh(); buildDays(); })
+    .catch(function(){ flash("Couldn't delete — try again"); });
+  };
 
   btn.addEventListener("click", save);
   syncBtn.addEventListener("click", syncNow);
