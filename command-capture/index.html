@@ -267,20 +267,34 @@
 
   window.renderProposal = function(res){
     var p = res.proposal;
+    if(p.kind==="add_task"){
+      var t = '<h3>New task / reminder</h3>';
+      t += '<div class="kv"><b>In:</b> Notion Tasks</div>';
+      t += '<div class="kv" style="margin-top:8px"><b>Task:</b></div><input id="tkName" class="emfield" value="'+esc(p.task||"")+'">';
+      t += '<div class="kv" style="margin-top:8px"><b>Due:</b></div><input id="tkDue" class="emfield" type="date" value="'+esc(p.due||"")+'">';
+      t += '<div class="kv" style="margin-top:8px"><b>Priority:</b></div><select id="tkPri" class="emfield">'
+        + '<option'+(p.priority==="High"?" selected":"")+'>High</option>'
+        + '<option'+((!p.priority||p.priority==="Medium")?" selected":"")+'>Medium</option>'
+        + '<option'+(p.priority==="Low"?" selected":"")+'>Low</option></select>';
+      t += '<div class="btns"><button class="cancelb" onclick="closeRoute()">Cancel</button><button class="confirmb" onclick="routeExecute()">Create Task</button></div>';
+      routeCard.innerHTML=t; routeCard.style.display="block";
+      return;
+    }
     if(p.kind==="draft_email"){
       var to = p.email || (res.matches && res.matches.length ? res.matches[0].email : "");
       var e = '<h3>Draft email</h3>';
       e += '<div class="kv"><b>In:</b> Gmail drafts · edmund@bogenhomes.com</div>';
-      if(res.matches && res.matches.length>1){
-        e += '<div class="kv" style="margin-top:6px"><b>Matches found — tap one:</b></div>';
+      if(res.matches && res.matches.length){
+        e += '<div class="kv" style="margin-top:6px"><b>Recipient — tap one:</b></div>';
         res.matches.forEach(function(m){ e += '<label class="match"><input type="radio" name="topick" value="'+esc(m.email)+'"'+(m.email===to?' checked':'')+'>'+esc(m.title)+'<div class="addr">'+esc(m.email)+'</div></label>'; });
+        e += '<label class="match"><input type="radio" name="topick" value="__blank__">✎ None of these — I’ll type the address below</label>';
       }
       e += '<div class="kv" style="margin-top:8px"><b>To:</b></div><input id="emTo" class="emfield" value="'+esc(to)+'" placeholder="recipient@email.com">';
       e += '<div class="kv" style="margin-top:8px"><b>Subject:</b></div><input id="emSub" class="emfield" value="'+esc(p.subject||"")+'">';
       e += '<div class="kv" style="margin-top:8px"><b>Body:</b></div><textarea id="emBody" class="emfield" style="min-height:150px">'+esc(p.emailBody||"")+'</textarea>';
       e += '<div class="btns"><button class="cancelb" onclick="closeRoute()">Cancel</button><button class="confirmb" onclick="routeExecute()">Create Draft</button></div>';
       routeCard.innerHTML=e; routeCard.style.display="block";
-      routeCard.querySelectorAll('input[name=topick]').forEach(function(rb){ rb.addEventListener('change',function(){ document.getElementById('emTo').value=rb.value; }); });
+      routeCard.querySelectorAll('input[name=topick]').forEach(function(rb){ rb.addEventListener('change',function(){ var f=document.getElementById('emTo'); if(rb.value==='__blank__'){ f.value=''; f.focus(); } else { f.value=rb.value; } }); });
       return;
     }
     var h = '<h3>'+(p.kind==="create_contact"?"Create contact":"Log to contact")+'</h3>';
@@ -310,7 +324,11 @@
     if(!pending) return;
     var p = pending.proposal;
     var action;
-    if(p.kind==="draft_email"){
+    if(p.kind==="add_task"){
+      var tkN=(document.getElementById("tkName")||{}).value || "";
+      if(!tkN.trim()){ alert("Add a task description."); return; }
+      action = { kind:"add_task", task:tkN.trim(), due:(document.getElementById("tkDue")||{}).value||"", priority:(document.getElementById("tkPri")||{}).value||"Medium" };
+    } else if(p.kind==="draft_email"){
       var toV = (document.getElementById("emTo")||{}).value || "";
       if(!toV.trim()){ alert("Add a recipient email address."); return; }
       action = { kind:"draft_email", to:toV.trim(), subject:(document.getElementById("emSub")||{}).value||"", body:(document.getElementById("emBody")||{}).value||"" };
@@ -328,7 +346,7 @@
     fetch(ROUTE,{ method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({mode:"execute",action:action}) })
     .then(function(r){return r.json();}).then(function(res){
       if(res.ok){
-        var verb = res.action==="created"?"Contact created":(res.action==="drafted"?"Draft created":"Logged");
+        var verb = res.action==="created"?"Contact created":(res.action==="drafted"?"Draft created":(res.action==="tasked"?"Task created":"Logged"));
         var link = res.action==="drafted"
           ? '<a href="'+res.url+'" target="_blank">Open Gmail drafts →</a>'
           : '<a href="'+res.url+'" target="_blank">Open in Notion →</a>';
