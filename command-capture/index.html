@@ -111,6 +111,7 @@
   </div>
 
   <button class="syncnow" id="syncBtn">⚡ Build my brief for this day</button>
+  <button class="syncnow" id="emailBriefBtn">📧 Email me this brief</button>
   <div class="toast" id="syncToast"></div>
 
   <div class="digest" id="digestWrap" style="display:none">
@@ -360,6 +361,21 @@
   };
 
   routeBtn.addEventListener("click", routePropose);
+
+  var emailBriefBtn = document.getElementById("emailBriefBtn");
+  function emailBrief(){
+    emailBriefBtn.disabled=true; emailBriefBtn.textContent="Emailing…";
+    fetch(SYNTH,{ method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({date:selectedDate, email:true}) })
+    .then(function(r){return r.json();}).then(function(res){
+      if(res && res.ok && res.emailed){ syncToast.textContent="Emailed to your inbox ✓"; loadDigest(); }
+      else if(res && res.skipped){ syncToast.textContent="Nothing to email for this day"; }
+      else if(res && res.ok){ syncToast.textContent="Built, but email failed — try again"; }
+      else { syncToast.textContent="Couldn't email — try again"; }
+      syncToast.classList.add("show"); setTimeout(function(){syncToast.classList.remove("show");},3500);
+    }).catch(function(){ syncToast.textContent="Couldn't email — try again"; syncToast.classList.add("show"); setTimeout(function(){syncToast.classList.remove("show");},3500); })
+    .finally(function(){ emailBriefBtn.disabled=false; emailBriefBtn.textContent="📧 Email me this brief"; });
+  }
+  emailBriefBtn.addEventListener("click", emailBrief);
 
   btn.addEventListener("click", save);
   syncBtn.addEventListener("click", syncNow);
