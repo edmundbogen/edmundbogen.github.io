@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luxury Communities Market Intelligence Dashboard | The Edmund Bogen Team</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Georgia&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Montserrat',-apple-system,sans-serif;background:#f4f4f4;color:#2a2a2a;}
+  a{text-decoration:none;}
+  .head{background:linear-gradient(135deg,#1a3e5c 0%,#0d2137 100%);padding:40px 28px 34px;text-align:center;color:#fff;}
+  .head .brand{font-size:14px;letter-spacing:3px;text-transform:uppercase;font-weight:300;margin-bottom:14px;}
+  .head .brand strong{font-weight:600;letter-spacing:4px;}
+  .head h1{font-family:Georgia,serif;font-weight:400;font-size:30px;letter-spacing:0.5px;margin-bottom:8px;}
+  .head .sub{color:#8cb4d5;font-size:12px;letter-spacing:2px;text-transform:uppercase;}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 20px;}
+  .sa-cta{background:#fff;border-left:4px solid #00a8e1;margin:24px auto 0;padding:18px 22px;box-shadow:0 2px 12px rgba(0,0,0,.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+  .sa-cta .t{color:#1a3e5c;font-weight:600;font-size:14px;}
+  .sa-cta a{color:#00a8e1;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:600;}
+  .feat{background:#fff;margin:24px 0;box-shadow:0 2px 14px rgba(0,0,0,.07);border-radius:3px;overflow:hidden;}
+  .feat img{display:block;width:100%;height:auto;}
+  .feat .body{padding:26px 28px;}
+  .feat .eb{color:#00a8e1;font-size:10px;letter-spacing:4px;text-transform:uppercase;font-weight:600;margin-bottom:10px;}
+  .feat h2{font-family:Georgia,serif;font-weight:400;color:#1a3e5c;font-size:24px;line-height:1.3;margin-bottom:12px;}
+  .feat p{font-size:15px;line-height:1.7;color:#444;margin-bottom:16px;}
+  .feat a.btn{display:inline-block;background:#1a3e5c;color:#fff;padding:12px 28px;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:600;border-radius:2px;}
+  .sec-title{color:#1a3e5c;font-size:12px;letter-spacing:3px;text-transform:uppercase;font-weight:600;border-left:3px solid #00a8e1;padding-left:12px;margin:34px 0 18px;}
+  .exec{display:flex;gap:14px;flex-wrap:wrap;}
+  .exec .stat{flex:1;min-width:160px;background:#fff;border-left:4px solid #00a8e1;padding:20px;box-shadow:0 2px 10px rgba(0,0,0,.05);}
+  .exec .num{font-size:22px;font-weight:700;color:#1a3e5c;font-family:Georgia,serif;}
+  .exec .lbl{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#666;margin-top:5px;}
+  .chart-box{background:#fff;padding:24px;margin-top:18px;box-shadow:0 2px 10px rgba(0,0,0,.05);border-radius:3px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;margin-bottom:20px;}
+  .ccard{background:#fff;border-radius:3px;padding:16px 18px;box-shadow:0 2px 8px rgba(0,0,0,.05);border-top:3px solid #ccc;}
+  .ccard.hot{border-top-color:#c8102e;}
+  .ccard.bal{border-top-color:#00a8e1;}
+  .ccard.slow{border-top-color:#8aa0b2;}
+  .ccard .cn{font-size:15px;font-weight:600;color:#1a3e5c;margin-bottom:10px;}
+  .ccard.sa .cn{color:#c8102e;}
+  .ccard .row{display:flex;justify-content:space-between;font-size:12px;color:#666;padding:3px 0;}
+  .ccard .row b{color:#1a3e5c;}
+  .ccard .temp{margin-top:8px;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;}
+  .ccard.hot .temp{color:#c8102e;}
+  .ccard.bal .temp{color:#0088b8;}
+  .ccard.slow .temp{color:#7a8a99;}
+  .mm-cta{background:#1a3e5c;padding:36px 28px;text-align:center;border-radius:3px;margin:10px 0 30px;}
+  .mm-cta .eb{color:#00a8e1;font-size:10px;letter-spacing:4px;text-transform:uppercase;font-weight:600;margin-bottom:10px;}
+  .mm-cta h3{color:#fff;font-weight:300;font-size:22px;margin-bottom:18px;}
+  .mm-cta a{display:inline-block;background:#00a8e1;color:#fff;padding:12px 30px;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:600;border-radius:2px;}
+  footer{background:#0d2137;padding:28px;text-align:center;color:#8cb4d5;font-size:10px;line-height:1.6;}
+  @media(max-width:600px){.head h1{font-size:23px;}.feat h2{font-size:20px;}}
+</style>
+</head>
+<body>
+
+<div class="head">
+  <div class="brand">THE <strong>EDMUND BOGEN</strong> TEAM</div>
+  <h1>Luxury Communities Market Intelligence</h1>
+  <div class="sub">Boca Raton &amp; Delray Country Clubs &middot; July 9, 2026</div>
+</div>
+
+<div class="wrap">
+
+  <div class="sa-cta">
+    <div class="t">St. Andrews Country Club &middot; 10 Active &middot; $1.89M&ndash;$19.975M</div>
+    <a href="st-andrews-listings.html">View St. Andrews Listings &rarr;</a>
+  </div>
+
+  <!-- Featured article -->
+  <div class="feat">
+    <a href="https://edmundbogen.github.io/off-market-boca-raton/" target="_blank">
+      <img src="https://edmundbogen.github.io/off-market-boca-raton/hero.png" alt="What Off-Market Really Means in Boca Raton Luxury Real Estate">
+    </a>
+    <div class="body">
+      <div class="eb">This Week's Article</div>
+      <h2>What &ldquo;Off-Market&rdquo; Really Means in Boca Raton Luxury Real Estate</h2>
+      <p>It doesn&rsquo;t mean secret, and it doesn&rsquo;t mean rule-free. A plain-English guide to the four marketing paths every seller can choose from &mdash; full MLS, Coming Soon, delayed marketing, and office exclusive &mdash; what privacy honestly costs, and the five questions to ask any agent pitching an off-market sale.</p>
+      <a class="btn" href="https://edmundbogen.github.io/off-market-boca-raton/" target="_blank">Read the Full Article &rarr;</a>
+    </div>
+  </div>
+
+  <!-- Executive summary -->
+  <div class="sec-title">Executive Market Summary &middot; July 9, 2026</div>
+  <div class="exec">
+    <div class="stat"><div class="num">$1.89M&ndash;$19.975M</div><div class="lbl">St. Andrews Range</div></div>
+    <div class="stat"><div class="num">10 <span style="font-size:12px;color:#888;">/ 18 sold</span></div><div class="lbl">St. Andrews Active</div></div>
+    <div class="stat"><div class="num">200</div><div class="lbl">Total Active &middot; 21 Communities</div></div>
+    <div class="stat"><div class="num">540</div><div class="lbl">Total Sold YTD</div></div>
+    <div class="stat"><div class="num">~2.3 mo</div><div class="lbl">Portfolio Inventory</div></div>
+  </div>
+
+  <!-- Chart -->
+  <div class="sec-title">Months of Inventory by Community &middot; Lower = Hotter</div>
+  <div class="chart-box"><canvas id="invChart" height="150"></canvas></div>
+
+  <!-- Community grid -->
+  <div class="sec-title">21 Luxury Communities &middot; Active / Sold YTD / Months of Inventory</div>
+  <div class="grid" id="ccGrid"></div>
+
+  <!-- Mastermind CTA -->
+  <div class="mm-cta">
+    <div class="eb">For Real Estate Professionals</div>
+    <h3>Edmund's Mastermind</h3>
+    <a href="https://www.bogen.ai" target="_blank">Learn More &rarr;</a>
+  </div>
+
+</div>
+
+<footer>
+  <div style="color:#fff;font-weight:700;font-size:13px;margin-bottom:4px;">The Edmund Bogen Team at Douglas Elliman</div>
+  <div>444 E Palmetto Park Rd, Boca Raton, FL 33432 &middot; 561-235-7575</div>
+  <div style="margin-top:8px;">Market data courtesy of BeachesMLS. Information is deemed reliable but not guaranteed. Market data as of July 9, 2026. If your property is currently listed with another broker, this is not a solicitation of that listing. Equal Housing Opportunity.</div>
+  <div style="margin-top:8px;font-style:italic;">Hero image and selected content developed with the assistance of artificial intelligence.</div>
+</footer>
+
+<script>
+  // name, active, sold YTD, months of inventory (active / (sold/6.3)); Le Lac has no sales -> null
+  var C = [
+    ["Polo Club",5,58,0.5],["Stonebridge",2,17,0.7],["The Bridges",3,22,0.9],
+    ["Addison Reserve",6,28,1.4],["Broken Sound",18,73,1.6],["Boca West CC",30,111,1.7],
+    ["Delaire CC",2,7,1.8],["The Oaks",9,28,2.0],["Seven Bridges",6,18,2.1],
+    ["Woodfield",15,42,2.3],["Seasons",3,7,2.7],["Boca Bridges",9,19,3.0],
+    ["Mizner CC",5,9,3.5],["St. Andrews CC",10,18,3.5],["Bocaire CC",10,18,3.5],
+    ["Long Lake Estates",2,3,4.2],["Lotus",19,24,5.0],["Royal Palm YC",25,29,5.4],
+    ["Boca Grove",13,8,10.2],["The Sanctuary",7,1,44.1],["Le Lac",1,0,null]
+  ];
+  function tier(m){ if(m===null) return "slow"; if(m<3) return "hot"; if(m<=6) return "bal"; return "slow"; }
+  function tempLabel(m){ if(m===null) return "No Sales YTD"; if(m<3) return "Seller's Market"; if(m<=6) return "Balanced"; return "Buyer's Market"; }
+  var g = document.getElementById("ccGrid");
+  C.forEach(function(c){
+    var t = tier(c[3]); var isSA = c[0]==="St. Andrews CC";
+    var mi = c[3]===null ? "N/A" : c[3].toFixed(1)+" mo";
+    g.innerHTML += '<div class="ccard '+t+(isSA?" sa":"")+'">'+
+      '<div class="cn">'+c[0]+'</div>'+
+      '<div class="row"><span>Active</span><b>'+c[1]+'</b></div>'+
+      '<div class="row"><span>Sold YTD</span><b>'+c[2]+'</b></div>'+
+      '<div class="row"><span>Inventory</span><b>'+mi+'</b></div>'+
+      '<div class="temp">'+tempLabel(c[3])+'</div></div>';
+  });
+  var labels = C.map(function(c){return c[0];});
+  var data = C.map(function(c){return c[3]===null?0:c[3];});
+  var colors = C.map(function(c){var t=tier(c[3]);return t==="hot"?"#c8102e":t==="bal"?"#00a8e1":"#8aa0b2";});
+  new Chart(document.getElementById("invChart"),{
+    type:"bar",
+    data:{labels:labels,datasets:[{label:"Months of Inventory",data:data,backgroundColor:colors}]},
+    options:{indexAxis:"y",plugins:{legend:{display:false}},
+      scales:{x:{title:{display:true,text:"Months of Inventory (lower = tighter market)"}}},
+      responsive:true,maintainAspectRatio:false}
+  });
+</script>
+
+</body>
+</html>
