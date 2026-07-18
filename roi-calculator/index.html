@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entrepreneur ROI Calculator</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  /* ---------- Theme tokens ---------- */
+  :root {
+    --gold: #cba14a;
+    --gold-2: #e2c374;
+    --gold-soft: rgba(203,161,74,0.14);
+    --good: #46a877;
+    --bad: #d1605e;
+
+    /* light theme (default light-mode surfaces) */
+    --bg: #eef1f6;
+    --bg-2: #e4e9f0;
+    --panel: #ffffff;
+    --panel-2: #f6f8fb;
+    --text: #16202e;
+    --muted: #64748b;
+    --border: #e2e8f0;
+    --input-bg: #ffffff;
+    --shadow: 0 20px 45px -20px rgba(15,30,55,0.35);
+  }
+  body.dark {
+    --bg: #0a1420;
+    --bg-2: #060d16;
+    --panel: #0f1f31;
+    --panel-2: #13273c;
+    --text: #e9f0f8;
+    --muted: #8ba0b6;
+    --border: #1e3550;
+    --input-bg: #0c1c2d;
+    --shadow: 0 24px 50px -22px rgba(0,0,0,0.7);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    min-height: 100vh;
+    background:
+      radial-gradient(1200px 500px at 80% -10%, rgba(203,161,74,0.10), transparent 60%),
+      linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+    background-attachment: fixed;
+    color: var(--text);
+    padding: 22px 16px 60px;
+    transition: background .3s, color .3s;
+  }
+
+  .wrap { max-width: 1000px; margin: 0 auto; }
+
+  /* ---------- Header ---------- */
+  .topbar {
+    background: linear-gradient(135deg, #0c1a2b 0%, #0a1420 100%);
+    border: 1px solid #1c314b;
+    border-radius: 20px;
+    padding: 22px 26px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: var(--shadow);
+  }
+
+  .logo-mark {
+    width: 56px; height: 56px;
+    flex: 0 0 56px;
+    border-radius: 15px;
+    background: #ffffff;
+    border: 1.5px solid var(--gold);
+    display: grid;
+    place-items: center;
+    box-shadow: 0 0 0 4px rgba(203,161,74,0.10);
+    overflow: hidden;
+  }
+  .logo-mark svg { width: 46px; height: 46px; }
+
+  .brand { display: flex; flex-direction: column; line-height: 1.15; }
+  .brand h1 {
+    font-size: clamp(1.15rem, 2.6vw, 1.6rem);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: #f2f6fb;
+  }
+  .brand h1 .accent { color: var(--gold); }
+
+  .divider {
+    width: 1px; align-self: stretch;
+    background: #24405f;
+    margin: 2px 4px;
+  }
+  .tagline {
+    color: #9fb3c8;
+    font-size: 0.9rem;
+    max-width: 340px;
+    line-height: 1.4;
+  }
+  .tagline strong { color: var(--gold-2); font-weight: 600; }
+
+  .theme-toggle {
+    margin-left: auto;
+    display: flex;
+    background: #0a1726;
+    border: 1px solid #24405f;
+    border-radius: 999px;
+    padding: 4px;
+    flex: 0 0 auto;
+  }
+  .theme-toggle button {
+    border: none;
+    background: transparent;
+    color: #9fb3c8;
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 7px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    display: flex; align-items: center; gap: 6px;
+    transition: all .2s;
+  }
+  .theme-toggle button.active {
+    background: var(--gold);
+    color: #10233a;
+  }
+
+  /* ---------- Section cards ---------- */
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 26px 24px;
+    margin-top: 20px;
+    box-shadow: var(--shadow);
+    transition: background .3s, border-color .3s;
+  }
+
+  .sec-head { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+  .sec-num {
+    width: 28px; height: 28px; flex: 0 0 28px;
+    border-radius: 8px;
+    background: var(--gold-soft);
+    color: var(--gold);
+    font-weight: 800;
+    font-size: 0.9rem;
+    display: grid; place-items: center;
+    border: 1px solid rgba(203,161,74,0.3);
+  }
+  .sec-title { font-size: 1.05rem; font-weight: 700; color: var(--text); }
+  .sec-title small { display: block; font-size: 0.78rem; font-weight: 400; color: var(--muted); margin-top: 2px; }
+
+  .group-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 22px 0 12px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .group-label:first-of-type { margin-top: 0; }
+  .group-label::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+  .group-label .hint { text-transform: none; letter-spacing: 0; font-weight: 400; color: var(--muted); opacity: .8; }
+
+  .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+
+  .field { display: flex; flex-direction: column; }
+  .field label { font-size: 0.82rem; font-weight: 600; color: var(--muted); margin-bottom: 7px; }
+  .field label .opt { font-weight: 500; color: var(--muted); opacity: .75; font-size: 0.72rem; }
+
+  .input-wrap { position: relative; }
+  .input-wrap .prefix, .input-wrap .suffix {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    color: var(--muted); font-weight: 600; pointer-events: none; font-size: .95rem;
+  }
+  .input-wrap .prefix { left: 13px; }
+  .input-wrap .suffix { right: 13px; }
+
+  .field input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 11px;
+    font-size: 1rem;
+    color: var(--text);
+    background: var(--input-bg);
+    transition: border-color .15s, box-shadow .15s, background .3s;
+  }
+  .input-wrap.has-prefix input { padding-left: 28px; }
+  .input-wrap.has-suffix input { padding-right: 32px; }
+  .field input::placeholder { color: var(--muted); opacity: .55; }
+  .field input:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 4px var(--gold-soft);
+  }
+  .field input.invalid { border-color: var(--bad); box-shadow: 0 0 0 4px rgba(209,96,94,0.15); }
+  .error-msg { color: var(--bad); font-size: 0.74rem; margin-top: 5px; min-height: 14px; font-weight: 500; }
+
+  .buttons { display: flex; gap: 13px; margin-top: 24px; }
+  button.action {
+    flex: 1; padding: 14px 20px; border: none; border-radius: 11px;
+    font-size: 1rem; font-weight: 700; cursor: pointer;
+    transition: transform .1s, box-shadow .2s, background .2s;
+  }
+  button.action:active { transform: translateY(1px); }
+  .btn-calc {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-2) 100%);
+    color: #16233a;
+    box-shadow: 0 12px 24px -10px rgba(203,161,74,0.7);
+  }
+  .btn-calc:hover { box-shadow: 0 16px 30px -10px rgba(203,161,74,0.85); }
+  .btn-reset {
+    background: transparent; color: var(--muted);
+    border: 1.5px solid var(--border); flex: 0 0 130px;
+  }
+  .btn-reset:hover { color: var(--text); border-color: var(--gold); }
+
+  /* ---------- Results ---------- */
+  .results { display: none; }
+  .results.show { display: block; animation: fade .4s ease; }
+  @keyframes fade { from { opacity: 0; transform: translateY(10px);} to { opacity: 1; transform: translateY(0);} }
+
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .stat {
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 16px;
+  }
+  .stat .stat-label {
+    font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.05em; color: var(--muted); margin-bottom: 9px;
+  }
+  .stat .stat-value {
+    font-size: clamp(1.1rem, 2.6vw, 1.55rem);
+    font-weight: 800; letter-spacing: -0.02em; color: var(--text); word-break: break-word;
+  }
+  .stat .stat-value.pos { color: var(--good); }
+  .stat .stat-value.neg { color: var(--bad); }
+
+  .chart-sub { font-size: 0.82rem; color: var(--muted); margin: -8px 0 16px; }
+  .chart-canvas-wrap { position: relative; height: 340px; }
+
+  /* ---------- Footer ---------- */
+  .footer-bar {
+    margin-top: 22px;
+    background: linear-gradient(135deg, #0c1a2b 0%, #0a1420 100%);
+    border: 1px solid #1c314b;
+    border-radius: 18px;
+    padding: 18px 24px;
+    display: flex; align-items: center; gap: 14px;
+    color: #9fb3c8; font-size: 0.86rem;
+  }
+  .footer-bar .fb-strong { color: #eef3f8; font-weight: 700; }
+  .footer-bar .fb-gold { color: var(--gold-2); }
+  .footer-bar .mini-mark {
+    width: 36px; height: 36px; flex: 0 0 36px; border-radius: 10px;
+    background: #ffffff; border: 1px solid var(--gold);
+    display: grid; place-items: center; overflow: hidden;
+  }
+  .footer-bar .mini-mark svg { width: 30px; height: 30px; }
+
+  @media (max-width: 700px) {
+    .topbar { flex-wrap: wrap; padding: 18px; }
+    .divider { display: none; }
+    .tagline { max-width: 100%; order: 4; flex-basis: 100%; }
+    .theme-toggle { margin-left: auto; order: 3; }
+    .form-grid { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .buttons { flex-direction: column; }
+    .btn-reset { flex: 1; }
+    .chart-canvas-wrap { height: 280px; }
+  }
+</style>
+</head>
+<body class="dark">
+<div class="wrap">
+
+  <!-- Header -->
+  <div class="topbar">
+    <div class="logo-mark" id="logoMain" aria-label="Edmund Bogen logo" role="img"></div>
+    <div class="brand">
+      <h1>Entrepreneur <span class="accent">ROI Calculator</span></h1>
+    </div>
+    <div class="divider"></div>
+    <div class="tagline"><strong>Know your numbers. Grow your business.</strong> Model real growth, not flat guesses — see when the investment pays back.</div>
+    <div class="theme-toggle" role="group" aria-label="Theme">
+      <button id="lightBtn" type="button">☀ Light</button>
+      <button id="darkBtn" type="button" class="active">🌙 Dark</button>
+    </div>
+  </div>
+
+  <!-- 1. Inputs -->
+  <div class="panel">
+    <div class="sec-head">
+      <div class="sec-num">1</div>
+      <div class="sec-title">Your Numbers<small>Enter the assumptions that drive the model.</small></div>
+    </div>
+
+    <div class="group-label">The Basics</div>
+    <div class="form-grid">
+      <div class="field">
+        <label for="investment">Initial Investment ($)</label>
+        <div class="input-wrap has-prefix"><span class="prefix">$</span>
+          <input type="number" id="investment" placeholder="50,000" min="0" step="any" inputmode="decimal"></div>
+        <div class="error-msg" id="err-investment"></div>
+      </div>
+      <div class="field">
+        <label for="months">Time Period (months)</label>
+        <div class="input-wrap">
+          <input type="number" id="months" placeholder="12" min="1" step="1" inputmode="numeric"></div>
+        <div class="error-msg" id="err-months"></div>
+      </div>
+      <div class="field">
+        <label for="revenue">Starting Monthly Revenue ($)</label>
+        <div class="input-wrap has-prefix"><span class="prefix">$</span>
+          <input type="number" id="revenue" placeholder="15,000" min="0" step="any" inputmode="decimal"></div>
+        <div class="error-msg" id="err-revenue"></div>
+      </div>
+      <div class="field">
+        <label for="costs">Starting Monthly Costs ($)</label>
+        <div class="input-wrap has-prefix"><span class="prefix">$</span>
+          <input type="number" id="costs" placeholder="8,000" min="0" step="any" inputmode="decimal"></div>
+        <div class="error-msg" id="err-costs"></div>
+      </div>
+    </div>
+
+    <div class="group-label">Growth Assumptions <span class="hint">— leave at 0 for a flat model</span></div>
+    <div class="form-grid">
+      <div class="field">
+        <label for="revGrowth">Monthly Revenue Growth <span class="opt">(% / mo, optional)</span></label>
+        <div class="input-wrap has-suffix">
+          <input type="number" id="revGrowth" placeholder="5" step="any" inputmode="decimal"><span class="suffix">%</span></div>
+        <div class="error-msg" id="err-revGrowth"></div>
+      </div>
+      <div class="field">
+        <label for="costGrowth">Monthly Cost Growth <span class="opt">(% / mo, optional)</span></label>
+        <div class="input-wrap has-suffix">
+          <input type="number" id="costGrowth" placeholder="2" step="any" inputmode="decimal"><span class="suffix">%</span></div>
+        <div class="error-msg" id="err-costGrowth"></div>
+      </div>
+    </div>
+
+    <div class="group-label">One-Time Revenue Boost <span class="hint">— e.g. a launch, seasonal spike, or big deal (optional)</span></div>
+    <div class="form-grid">
+      <div class="field">
+        <label for="boostAmt">Boost Amount ($) <span class="opt">(optional)</span></label>
+        <div class="input-wrap has-prefix"><span class="prefix">$</span>
+          <input type="number" id="boostAmt" placeholder="20,000" min="0" step="any" inputmode="decimal"></div>
+        <div class="error-msg" id="err-boostAmt"></div>
+      </div>
+      <div class="field">
+        <label for="boostMonth">Applies in Month # <span class="opt">(optional)</span></label>
+        <div class="input-wrap">
+          <input type="number" id="boostMonth" placeholder="6" min="1" step="1" inputmode="numeric"></div>
+        <div class="error-msg" id="err-boostMonth"></div>
+      </div>
+    </div>
+
+    <div class="buttons">
+      <button class="action btn-calc" id="calcBtn">Calculate ROI</button>
+      <button class="action btn-reset" id="resetBtn">Reset</button>
+    </div>
+  </div>
+
+  <!-- 2. Results -->
+  <div class="results" id="results">
+    <div class="panel">
+      <div class="sec-head">
+        <div class="sec-num">2</div>
+        <div class="sec-title">The Numbers That Matter<small>At-a-glance performance for your investment.</small></div>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="stat-label">Total Profit</div><div class="stat-value" id="out-profit">$0</div></div>
+        <div class="stat"><div class="stat-label">ROI Percentage</div><div class="stat-value" id="out-roi">0%</div></div>
+        <div class="stat"><div class="stat-label">Payback Period</div><div class="stat-value" id="out-payback">—</div></div>
+        <div class="stat"><div class="stat-label" id="lbl-monthly">Monthly Net Profit</div><div class="stat-value" id="out-monthly">$0</div></div>
+      </div>
+    </div>
+
+    <!-- 3. Chart -->
+    <div class="panel">
+      <div class="sec-head">
+        <div class="sec-num">3</div>
+        <div class="sec-title">Cumulative Profit Over Time<small>Watch the investment climb toward — and past — break-even.</small></div>
+      </div>
+      <div class="chart-sub" id="chart-sub">Bars show running profit after recovering your initial investment. The dashed line marks break-even ($0).</div>
+      <div class="chart-canvas-wrap"><canvas id="roiChart"></canvas></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer-bar">
+    <div class="mini-mark" id="logoFoot" aria-hidden="true"></div>
+    <div><span class="fb-strong">Built for founders who run on real math.</span> <span class="fb-gold">Better inputs. Clearer decisions. More profitable moves.</span></div>
+  </div>
+
+</div>
+
+<script>
+  /* ---------- EB logo (inline SVG rendition of the brand mark) ---------- */
+  function buildLogo() {
+    const NAVY = "#2b3f6b";
+    const cx = 100, cy = 100;
+    let ticks = "";
+    // circuit ring: radial stalks with node dots, varied length for the "circuit board" feel
+    const N = 46;
+    for (let i = 0; i < N; i++) {
+      const ang = (i / N) * Math.PI * 2 - Math.PI / 2;
+      const pat = [10, 4, 16, 7, 12][i % 5];        // deterministic length variation
+      const r0 = 74;
+      const r1 = r0 + pat;
+      const x0 = cx + Math.cos(ang) * r0, y0 = cy + Math.sin(ang) * r0;
+      const x1 = cx + Math.cos(ang) * r1, y1 = cy + Math.sin(ang) * r1;
+      const dot = (i % 3 === 0) ? 3.4 : 2.2;
+      ticks += `<line x1="${x0.toFixed(1)}" y1="${y0.toFixed(1)}" x2="${x1.toFixed(1)}" y2="${y1.toFixed(1)}" stroke="${NAVY}" stroke-width="2.2"/>`;
+      ticks += `<circle cx="${x1.toFixed(1)}" cy="${y1.toFixed(1)}" r="${dot}" fill="${NAVY}"/>`;
+    }
+    return `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <g>${ticks}</g>
+      <circle cx="${cx}" cy="${cy}" r="70" fill="none" stroke="${NAVY}" stroke-width="3" stroke-dasharray="6 5"/>
+      <circle cx="${cx}" cy="${cy}" r="61" fill="${NAVY}"/>
+      <text x="${cx}" y="${cy + 1}" text-anchor="middle" dominant-baseline="central"
+        font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="62" fill="#ffffff"
+        letter-spacing="1">EB</text>
+    </svg>`;
+  }
+  (function mountLogos(){
+    const svg = buildLogo();
+    const main = document.getElementById("logoMain");
+    const foot = document.getElementById("logoFoot");
+    if (main) main.innerHTML = svg;
+    if (foot) foot.innerHTML = svg;
+  })();
+
+  const fmtCurrency = (n) => {
+    const sign = n < 0 ? "-" : "";
+    return sign + "$" + Math.abs(n).toLocaleString("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+  };
+
+  // theme toggle
+  const body = document.body;
+  document.getElementById("lightBtn").addEventListener("click", () => setTheme("light"));
+  document.getElementById("darkBtn").addEventListener("click", () => setTheme("dark"));
+  function setTheme(mode) {
+    const dark = mode === "dark";
+    body.classList.toggle("dark", dark);
+    document.getElementById("darkBtn").classList.toggle("active", dark);
+    document.getElementById("lightBtn").classList.toggle("active", !dark);
+    if (chart) drawChart(lastRows);   // recolor axes/grid for the theme
+  }
+
+  const fields = {
+    investment: { el: id("investment"), err: id("err-investment"), min: 0, label: "Initial investment" },
+    months:     { el: id("months"),     err: id("err-months"),     min: 1, label: "Time period" },
+    revenue:    { el: id("revenue"),    err: id("err-revenue"),    min: 0, label: "Monthly revenue" },
+    costs:      { el: id("costs"),      err: id("err-costs"),      min: 0, label: "Monthly costs" }
+  };
+  const growthFields = {
+    revGrowth:  { el: id("revGrowth"),  err: id("err-revGrowth")  },
+    costGrowth: { el: id("costGrowth"), err: id("err-costGrowth") }
+  };
+  function id(x){ return document.getElementById(x); }
+
+  let chart = null;
+  let lastRows = null;
+
+  function validate() {
+    let valid = true;
+    const v = {};
+
+    for (const key in fields) {
+      const f = fields[key];
+      const raw = f.el.value.trim();
+      clearErr(f);
+      if (raw === "") { setErr(f, f.label + " is required."); valid = false; continue; }
+      const num = Number(raw);
+      if (!isFinite(num)) { setErr(f, "Enter a valid number."); valid = false; continue; }
+      if (num < f.min) { setErr(f, key === "months" ? "Use at least 1 month." : "Cannot be negative."); valid = false; continue; }
+      if (key === "months" && !Number.isInteger(num)) { setErr(f, "Use whole months."); valid = false; continue; }
+      v[key] = num;
+    }
+
+    for (const key in growthFields) {
+      const f = growthFields[key];
+      const raw = f.el.value.trim();
+      clearErr(f);
+      if (raw === "") { v[key] = 0; continue; }
+      const num = Number(raw);
+      if (!isFinite(num)) { setErr(f, "Enter a valid number."); valid = false; continue; }
+      if (num < -100) { setErr(f, "Can't drop more than 100%."); valid = false; continue; }
+      v[key] = num;
+    }
+
+    // one-time boost (both optional but paired)
+    const boostAmtF = { el: id("boostAmt"), err: id("err-boostAmt") };
+    const boostMonF = { el: id("boostMonth"), err: id("err-boostMonth") };
+    clearErr(boostAmtF); clearErr(boostMonF);
+    const aRaw = boostAmtF.el.value.trim();
+    const mRaw = boostMonF.el.value.trim();
+    v.boostAmt = 0; v.boostMonth = 0;
+    if (aRaw !== "" || mRaw !== "") {
+      const a = Number(aRaw), m = Number(mRaw);
+      if (aRaw === "" || !isFinite(a) || a < 0) { setErr(boostAmtF, "Enter a boost amount."); valid = false; }
+      else v.boostAmt = a;
+      if (mRaw === "" || !isFinite(m) || !Number.isInteger(m) || m < 1) { setErr(boostMonF, "Whole month ≥ 1."); valid = false; }
+      else if (v.months && m > v.months) { setErr(boostMonF, "Beyond the time period."); valid = false; }
+      else v.boostMonth = m;
+    }
+
+    return valid ? v : null;
+  }
+  function setErr(f, msg){ f.err.textContent = msg; f.el.classList.add("invalid"); }
+  function clearErr(f){ f.err.textContent = ""; f.el.classList.remove("invalid"); }
+
+  // month-by-month with compounding growth + optional one-time boost
+  function buildSeries(v) {
+    const rg = v.revGrowth / 100, cg = v.costGrowth / 100;
+    const rows = [];
+    let cum = 0;
+    for (let m = 1; m <= v.months; m++) {
+      const rev = v.revenue * Math.pow(1 + rg, m - 1);
+      const cost = v.costs * Math.pow(1 + cg, m - 1);
+      let net = rev - cost;
+      if (v.boostAmt && v.boostMonth === m) net += v.boostAmt;
+      cum += net;
+      rows.push({ m, net, cumNet: cum, cumProfit: cum - v.investment });
+    }
+    return rows;
+  }
+
+  function calculate() {
+    const v = validate();
+    if (!v) { id("results").classList.remove("show"); return; }
+
+    const rows = buildSeries(v);
+    lastRows = rows;
+    const last = rows[rows.length - 1];
+    const totalProfit = last.cumProfit;
+    const avgMonthlyNet = last.cumNet / v.months;
+    const roi = v.investment > 0 ? (totalProfit / v.investment) * 100 : (totalProfit > 0 ? Infinity : 0);
+
+    let paybackText = "Never";
+    for (let i = 0; i < rows.length; i++) {
+      if (rows[i].cumProfit >= 0) {
+        const prevCum = i === 0 ? -v.investment : rows[i - 1].cumProfit;
+        const thisNet = rows[i].cumProfit - prevCum;
+        const frac = thisNet > 0 ? (0 - prevCum) / thisNet : 0;
+        const payback = i + Math.max(0, Math.min(1, frac));
+        paybackText = payback.toFixed(1) + " mo";
+        break;
+      }
+    }
+
+    const growthOn = v.revGrowth !== 0 || v.costGrowth !== 0 || v.boostAmt !== 0;
+
+    setStat("out-profit", fmtCurrency(Math.round(totalProfit)), totalProfit);
+    const roiEl = id("out-roi");
+    roiEl.textContent = roi === Infinity ? "∞" : (Math.round(roi * 10) / 10).toLocaleString("en-US") + "%";
+    roiEl.className = "stat-value " + cls(totalProfit);
+    id("out-payback").textContent = paybackText;
+    id("lbl-monthly").textContent = growthOn ? "Avg Monthly Net" : "Monthly Net Profit";
+    setStat("out-monthly", fmtCurrency(Math.round(avgMonthlyNet)), avgMonthlyNet);
+
+    id("chart-sub").textContent = growthOn
+      ? "Running profit with your growth assumptions applied. The dashed line marks break-even ($0)."
+      : "Bars show running profit after recovering your initial investment. The dashed line marks break-even ($0).";
+
+    id("results").classList.add("show");
+    drawChart(rows);
+  }
+  function cls(n){ return n > 0 ? "pos" : n < 0 ? "neg" : ""; }
+  function setStat(elId, text, n){ const e = id(elId); e.textContent = text; e.className = "stat-value " + cls(n); }
+
+  function drawChart(rows) {
+    if (!rows) return;
+    const dark = body.classList.contains("dark");
+    const labels = rows.map(r => "M" + r.m);
+    const data = rows.map(r => r.cumProfit);
+    const colors = data.map(val => val >= 0
+      ? "rgba(203,161,74,0.92)"          // gold for positive
+      : (dark ? "rgba(209,96,94,0.85)" : "rgba(209,96,94,0.8)"));
+    const gridColor = dark ? "rgba(255,255,255,0.07)" : "rgba(15,30,55,0.08)";
+    const tickColor = dark ? "#8ba0b6" : "#64748b";
+    const lineColor = dark ? "#e2c374" : "#a97f22";
+
+    const ctx = id("roiChart");
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: { labels, datasets: [{ label: "Cumulative Profit", data, backgroundColor: colors, borderRadius: 5, maxBarThickness: 46 }] },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: (c) => " " + fmtCurrency(Math.round(c.parsed.y)) } }
+        },
+        scales: {
+          y: { ticks: { callback: (val) => fmtCurrency(val), color: tickColor }, grid: { color: gridColor } },
+          x: { ticks: { color: tickColor }, grid: { display: false } }
+        }
+      },
+      plugins: [{
+        id: "breakEven",
+        afterDraw(c) {
+          const yScale = c.scales.y;
+          if (yScale.min > 0 || yScale.max < 0) return;
+          const y = yScale.getPixelForValue(0);
+          const { left, right } = c.chartArea;
+          const g = c.ctx;
+          g.save();
+          g.beginPath(); g.setLineDash([6, 5]); g.lineWidth = 2; g.strokeStyle = lineColor;
+          g.moveTo(left, y); g.lineTo(right, y); g.stroke();
+          g.setLineDash([]);
+          g.fillStyle = lineColor; g.font = "600 11px sans-serif";
+          g.fillText("Break-even", left + 6, y - 6);
+          g.restore();
+        }
+      }]
+    });
+  }
+
+  function reset() {
+    [...Object.values(fields), ...Object.values(growthFields),
+     { el: id("boostAmt"), err: id("err-boostAmt") }, { el: id("boostMonth"), err: id("err-boostMonth") }]
+      .forEach(f => { f.el.value = ""; clearErr(f); });
+    id("results").classList.remove("show");
+    if (chart) { chart.destroy(); chart = null; }
+    lastRows = null;
+  }
+
+  id("calcBtn").addEventListener("click", calculate);
+  id("resetBtn").addEventListener("click", reset);
+  document.querySelectorAll("input").forEach(inp =>
+    inp.addEventListener("keydown", (e) => { if (e.key === "Enter") calculate(); }));
+</script>
+</body>
+</html>
