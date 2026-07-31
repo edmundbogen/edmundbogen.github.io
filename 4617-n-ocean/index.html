@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>4617 N Ocean Blvd — Investment Underwriting | The Edmund Bogen Team</title>
+<meta name="robots" content="noindex,nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1a3e5c; --navy-d:#122b40;
+  --cyan:#00a8e1; --cyan-d:#0090c2;
+  --white:#ffffff; --gray:#f4f4f4; --gray2:#e8e8e8; --ink:#333333;
+  --good:#1e7a5c; --warn:#8a6100; --bad:#a02c1f;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Montserrat',system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+h1,h2,h3,h4{font-weight:400;letter-spacing:.04em}
+section{padding:56px 0;border-bottom:1px solid var(--gray2)}
+.sec-title{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);font-weight:600;margin-bottom:8px}
+.sec-h{font-size:30px;font-weight:300;color:var(--navy);letter-spacing:.03em;margin-bottom:6px}
+.sec-sub{color:#5d6b78;font-size:15px;max-width:760px;margin-bottom:28px}
+
+/* HERO */
+header{background:linear-gradient(150deg,var(--navy) 0%,var(--navy-d) 100%);color:#fff;padding:0}
+.hdrbar{display:flex;justify-content:space-between;align-items:center;padding:20px 0;border-bottom:1px solid rgba(255,255,255,.14)}
+.logo{display:flex;align-items:center;gap:12px}
+.mono{width:42px;height:42px;border-radius:50%;border:1.5px solid #fff;display:flex;align-items:center;justify-content:center;font-size:14px;letter-spacing:.08em;font-weight:500}
+.logo .lt1{font-size:12px;letter-spacing:.16em;text-transform:uppercase;line-height:1.3}
+.logo .lt2{font-size:9px;letter-spacing:.14em;text-transform:uppercase;opacity:.68}
+.de{font-size:10px;letter-spacing:.22em;text-transform:uppercase;opacity:.8;text-align:right;line-height:1.5}
+.hero{padding:54px 0 60px}
+.eyebrow{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--cyan);font-weight:600;margin-bottom:14px}
+.hero h1{font-size:48px;font-weight:300;letter-spacing:.02em;line-height:1.12}
+.hero .sub{font-size:16px;opacity:.78;margin-top:10px;font-weight:300}
+.verdict{margin-top:32px;border-left:4px solid var(--cyan);padding:18px 22px;background:rgba(255,255,255,.07);max-width:860px}
+.verdict .vl{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);font-weight:600;margin-bottom:8px}
+.verdict p{font-size:16px;font-weight:300;opacity:.95}
+.verdict strong{font-weight:600}
+.hstats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:rgba(255,255,255,.16);margin-top:34px}
+.hstat{background:var(--navy);padding:18px 20px}
+.hstat .k{font-size:10px;letter-spacing:.14em;text-transform:uppercase;opacity:.6;margin-bottom:6px}
+.hstat .v{font-size:24px;font-weight:400;letter-spacing:.01em}
+.hstat .v small{font-size:12px;opacity:.65;font-weight:300}
+
+/* SCENARIO BAR */
+.scenbar{position:sticky;top:0;z-index:50;background:var(--navy-d);color:#fff;padding:12px 0;box-shadow:0 2px 14px rgba(0,0,0,.18)}
+.scenbar .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:14px;justify-content:space-between}
+.scenlabel{font-size:10px;letter-spacing:.16em;text-transform:uppercase;opacity:.6}
+.scens{display:flex;gap:8px;flex-wrap:wrap}
+.scen{background:transparent;border:1px solid rgba(255,255,255,.3);color:#fff;padding:8px 16px;font-family:inherit;font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;cursor:pointer;transition:.15s}
+.scen:hover{background:rgba(255,255,255,.1)}
+.scen.on{background:var(--cyan);border-color:var(--cyan)}
+.livecap{display:flex;gap:22px;align-items:center}
+.lc{text-align:right}
+.lc .k{font-size:9px;letter-spacing:.13em;text-transform:uppercase;opacity:.55}
+.lc .v{font-size:19px;font-weight:500;letter-spacing:.01em}
+
+/* GRID / CARDS */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{border:1px solid var(--gray2);padding:24px}
+.card h4{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--navy);font-weight:600;margin-bottom:16px;padding-left:12px;border-left:3px solid var(--cyan)}
+
+/* SLIDERS */
+.ctl{margin-bottom:18px}
+.ctl .row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.ctl label{font-size:13px;color:#4a5865}
+.ctl .val{font-size:15px;font-weight:600;color:var(--navy);font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;-webkit-appearance:none;height:3px;background:var(--gray2);outline:none;border-radius:0}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;background:var(--cyan);cursor:pointer;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px var(--cyan)}
+input[type=range]::-moz-range-thumb{width:16px;height:16px;background:var(--cyan);cursor:pointer;border-radius:50%;border:2px solid #fff}
+.hint{font-size:11px;color:#8a97a3;margin-top:3px}
+
+/* TABLE */
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#7a8792;font-weight:600;padding:10px 8px;border-bottom:2px solid var(--navy)}
+td{padding:9px 8px;border-bottom:1px solid var(--gray2);font-variant-numeric:tabular-nums}
+td.n,th.n{text-align:right}
+tr.tot td{font-weight:700;color:var(--navy);border-top:2px solid var(--navy);border-bottom:none;font-size:15px}
+tr.sub td{color:#6d7a86;font-size:13px}
+tr.hl td{background:var(--gray)}
+
+/* KPI */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
+.kpi{border:1px solid var(--gray2);border-top:3px solid var(--cyan);padding:18px 20px}
+.kpi .k{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#7a8792;font-weight:600}
+.kpi .v{font-size:30px;font-weight:300;color:var(--navy);letter-spacing:0;margin:6px 0 2px;font-variant-numeric:tabular-nums}
+.kpi .n{font-size:11px;color:#8a97a3}
+.kpi.g{border-top-color:var(--good)} .kpi.g .v{color:var(--good)}
+.kpi.w{border-top-color:#c08a00} .kpi.w .v{color:var(--warn)}
+.kpi.b{border-top-color:var(--bad)} .kpi.b .v{color:var(--bad)}
+
+/* BARS */
+.bar{height:26px;background:var(--gray);position:relative;margin:6px 0 2px;overflow:hidden}
+.bar span{position:absolute;left:0;top:0;bottom:0;background:var(--cyan);transition:width .3s}
+.bar.navy span{background:var(--navy)}
+.barlab{display:flex;justify-content:space-between;font-size:12px;color:#5d6b78}
+
+/* FLAGS */
+.flag{border-left:4px solid;padding:16px 20px;margin-bottom:14px;background:var(--gray)}
+.flag.red{border-color:var(--bad)}
+.flag.amber{border-color:#c08a00}
+.flag.blue{border-color:var(--cyan)}
+.flag .ft{font-weight:600;color:var(--navy);font-size:15px;margin-bottom:5px;letter-spacing:.01em}
+.flag .fb{font-size:14px;color:#4a5865}
+.sev{display:inline-block;font-size:9px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;padding:2px 8px;margin-right:9px;vertical-align:2px;color:#fff}
+.sev.red{background:var(--bad)} .sev.amber{background:#c08a00} .sev.blue{background:var(--cyan)}
+
+/* CHECKLIST */
+.chk{display:flex;gap:14px;padding:13px 0;border-bottom:1px solid var(--gray2);align-items:flex-start}
+.chk input{margin-top:5px;width:17px;height:17px;accent-color:var(--cyan);cursor:pointer;flex-shrink:0}
+.chk .ct{font-size:14px;color:var(--ink)}
+.chk .cw{font-size:12px;color:#8a97a3;margin-top:2px}
+.chk.done .ct{text-decoration:line-through;color:#aab4bd}
+
+.pill{display:inline-block;font-size:10px;letter-spacing:.11em;text-transform:uppercase;font-weight:600;padding:3px 10px;border:1px solid var(--cyan);color:var(--cyan);margin-right:6px}
+.note{font-size:12px;color:#8a97a3;font-style:normal;margin-top:12px;line-height:1.6}
+a{color:var(--cyan);text-decoration:none;border-bottom:1px solid rgba(0,168,225,.3)}
+a:hover{border-bottom-color:var(--cyan)}
+footer{background:var(--navy);color:#fff;padding:44px 0;font-size:13px}
+footer .fg{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;align-items:flex-start}
+footer .dis{font-size:11px;opacity:.6;max-width:640px;line-height:1.7;margin-top:20px}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.btn{background:var(--cyan);color:#fff;border:none;padding:13px 28px;font-family:inherit;font-size:10px;letter-spacing:.15em;text-transform:uppercase;font-weight:600;cursor:pointer;transition:.15s}
+.btn:hover{background:var(--cyan-d)}
+.btn.ghost{background:transparent;border:1px solid var(--cyan);color:var(--cyan)}
+.btn.ghost:hover{background:rgba(0,168,225,.08)}
+@media(max-width:900px){.grid2,.grid3{grid-template-columns:1fr}.hero h1{font-size:32px}.sec-h{font-size:24px}.livecap{width:100%;justify-content:space-between}}
+@media print{.scenbar{position:static}.btnrow{display:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="hdrbar">
+      <div class="logo">
+        <div class="mono">EB</div>
+        <div>
+          <div class="lt1">The Edmund Bogen Team</div>
+          <div class="lt2">At Douglas Elliman Real Estate</div>
+        </div>
+      </div>
+      <div class="de">Douglas Elliman<br>Real Estate</div>
+    </div>
+    <div class="hero">
+      <div class="eyebrow">Investment Underwriting &nbsp;•&nbsp; July 31, 2026</div>
+      <h1>4617 N Ocean Blvd</h1>
+      <div class="sub">Boynton Beach, FL 33435 &nbsp;·&nbsp; 9 Units &nbsp;·&nbsp; Offered at $3,280,000 &nbsp;·&nbsp; Coldwell Banker</div>
+
+      <div class="verdict">
+        <div class="vl">Bottom Line</div>
+        <p>At $3,280,000 this is <strong>$364,444 per unit for eight studios and one 2/1</strong>. On market-supported rents the deal underwrites to a <strong>2.0% going-in cap and negative cash flow</strong>, against a market of high-5s to 6s for older coastal stock. Push every assumption to the seller's most flattering defensible case and it reaches <strong>5.7% — with a 1.10x DSCR that still fails the 1.25x lender minimum</strong>. It does not pencil as an income asset at ask. It works only as a <strong>land and coastal-scarcity play</strong> — and the seller has produced no operating statement to argue otherwise. Model it below, then ask for the T-12 before anything else.</p>
+      </div>
+
+      <div class="hstats">
+        <div class="hstat"><div class="k">Asking Price</div><div class="v">$3.28<small>M</small></div></div>
+        <div class="hstat"><div class="k">Price / Unit</div><div class="v">$364<small>K</small></div></div>
+        <div class="hstat"><div class="k">Unit Count</div><div class="v">9 <small>(8 studio + 1× 2/1)</small></div></div>
+        <div class="hstat"><div class="k">To Beach</div><div class="v">~175 <small>yds</small></div></div>
+        <div class="hstat"><div class="k">STR Legal?</div><div class="v" style="color:#ffc94d">Unverified</div></div>
+        <div class="hstat"><div class="k">T-12 Provided</div><div class="v" style="color:#ff8f80">No</div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- STICKY SCENARIO BAR -->
+<div class="scenbar">
+  <div class="wrap">
+    <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+      <span class="scenlabel">Scenario</span>
+      <div class="scens">
+        <button class="scen" data-s="broker">Broker Pitch</button>
+        <button class="scen on" data-s="base">Base Case</button>
+        <button class="scen" data-s="cons">Conservative</button>
+        <button class="scen" data-s="allltr">All Long-Term</button>
+      </div>
+    </div>
+    <div class="livecap">
+      <div class="lc"><div class="k">NOI</div><div class="v" id="hNOI">—</div></div>
+      <div class="lc"><div class="k">Cap Rate</div><div class="v" id="hCap">—</div></div>
+      <div class="lc"><div class="k">DSCR</div><div class="v" id="hDSCR">—</div></div>
+      <div class="lc"><div class="k">Cash-on-Cash</div><div class="v" id="hCoC">—</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ASSUMPTIONS ===== -->
+<section>
+  <div class="wrap">
+    <div class="sec-title">Live Model</div>
+    <h2 class="sec-h">Drag the assumptions. Everything recalculates.</h2>
+    <p class="sec-sub">Defaults are Base Case: market-supported rents from Boynton Beach comps and Delray STR data, discounted for studio size. Nothing here comes from the seller — no rent roll or T-12 was supplied. Every figure is yours to move.</p>
+
+    <div class="grid3">
+
+      <div class="card">
+        <h4>Revenue — Short-Term Units</h4>
+        <div class="ctl">
+          <div class="row"><label>Units run as nightly STR</label><span class="val" id="v_strUnits">4</span></div>
+          <input type="range" id="strUnits" min="0" max="9" step="1" value="4">
+          <div class="hint">Agent: 4 front units built for nightly stays</div>
+        </div>
+        <div class="ctl">
+          <div class="row"><label>Average daily rate</label><span class="val" id="v_adr">$185</span></div>
+          <input type="range" id="adr" min="90" max="450" step="5" value="185">
+          <div class="hint">Delray market-wide ADR is $407 — but that is skewed by 2–3BR homes. Studio-level ADR is materially lower.</div>
+        </div>
+        <div class="ctl">
+          <div class="row"><label>Occupancy</label><span class="val" id="v_occ">55%</span></div>
+          <input type="range" id="occ" min="25" max="90" step="1" value="55">
+          <div class="hint">Delray market average: 46.1%. Seasonal — Feb peak ~65%, Sept trough ~40%.</div>
+        </div>
+        <div class="ctl">
+          <div class="row"><label>Platform + booking fees</label><span class="val" id="v_plat">3%</span></div>
+          <input type="range" id="plat" min="0" max="20" step="0.5" value="3">
+        </div>
+      </div>
+
+      <div class="card">
+        <h4>Revenue — Annual Units</h4>
+        <div class="ctl">
+          <div class="row"><label>Studio rent / month</label><span class="val" id="v_ltrStudio">$1,650</span></div>
+          <input type="range" id="ltrStudio" min="1000" max="3200" step="25" value="1650">
+          <div class="hint">Boynton Beach studio average: $1,428/mo. Premium applied for renovation + beach proximity.</div>
+        </div>
+        <div class="ctl">
+          <div class="row"><label>2BR / 1BA rent / month</label><span class="val" id="v_two">$2,600</span></div>
+          <input type="range" id="two" min="1600" max="5000" step="50" value="2600">
+          <div class="hint">Boynton Beach 2BR average: $2,383/mo.</div>
+        </div>
+        <div class="ctl">
+          <div class="row"><label>Vacancy &amp; credit loss (annual units)</label><span class="val" id="v_vac">5%</span></div>
+          <input type="range" id="vac" min="0" max="20" step="0.5" value="5">
+        </div>
+        <div class="ctl">
+          <div class="row"><label>Annual rent growth (yrs 2–5)</label><span class="val" id="v_growth">3.0%</span></div>
+          <input type="range" id="growth" min="0" max="8" step="0.5" value="3">
+        </div>
+      </div>
+
+      <div class="card">
+        <h4>Operating Expenses</h4>
+        <div class="ctl">
+          <div class="row"><label>Property tax rate (of purchase price)</label><span class="val" id="v_tax">1.90%</span></div>
+          <input type="range" id="tax" min="1.0" max="2.6" step="0.05" value="1.90">
+          <div class="hint"><strong>Critical:</strong> Florida reassesses to sale price. Do not use the seller's current bill.</div>
+        </div>
+        <div class="ctl">
+          <div class="row"><label>Insurance — property, wind &amp; flood</label><span class="val" id="v_ins">$32,000</span></div>
+          <input type="range" id="ins" min="12000" max="90000" step="1000" value="32000">
+          <div class="hint">Miami–WPB metro blended average is ~$2,175/unit/yr. Older coastal frame stock runs far above that.</div>
+        </div>
+        <div class="ctl">
+          <div class="row"><label>Management (% of effective income)</label><span class="val" id="v_mgmt">15%</span></div>
+          <input type="range" id="mgmt" min="0" max="30" step="0.5" value="15">
+          <div class="hint">STR management runs 20–25%; annual rentals 8–10%. Blended.</div>
+        </div>
+        <div class="ctl">
+          <div class="row"><label>Utilities, internet, trash (owner-paid)</label><span class="val" id="v_util">$18,000</span></div>
+          <input type="range" id="util" min="0" max="45000" step="1000" value="18000">
+        </div>
+        <div class="ctl">
+          <div class="row"><label>All other opex &amp; reserves</label><span class="val" id="v_other">$32,500</span></div>
+          <input type="range" id="other" min="10000" max="90000" step="500" value="32500">
+          <div class="hint">Maintenance, linens/supplies, landscaping, pest, septic service, licensing, accounting, capital reserves.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="grid2" style="margin-top:20px">
+      <div class="card">
+        <h4>Price &amp; Financing</h4>
+        <div class="ctl">
+          <div class="row"><label>Purchase price</label><span class="val" id="v_price">$3,280,000</span></div>
+          <input type="range" id="price" min="1500000" max="3800000" step="20000" value="3280000">
+          <div class="hint">Drag left to find the price where this actually clears your return hurdle.</div>
+        </div>
+        <div class="ctl">
+          <div class="row"><label>Down payment</label><span class="val" id="v_down">30%</span></div>
+          <input type="range" id="down" min="20" max="100" step="1" value="30">
+        </div>
+        <div class="ctl">
+          <div class="row"><label>Interest rate</label><span class="val" id="v_rate">6.18%</span></div>
+          <input type="range" id="rate" min="4.5" max="9.5" step="0.01" value="6.18">
+          <div class="hint">Small-balance apartment 5-yr fixed quoted at 6.18% on 7/31/2026.</div>
+        </div>
+        <div class="ctl">
+          <div class="row"><label>Amortization</label><span class="val" id="v_amort">30 yrs</span></div>
+          <input type="range" id="amort" min="15" max="30" step="1" value="30">
+        </div>
+        <div class="ctl">
+          <div class="row"><label>Closing costs + immediate capital</label><span class="val" id="v_close">$95,000</span></div>
+          <input type="range" id="close" min="0" max="500000" step="5000" value="95000">
+        </div>
+      </div>
+
+      <div class="card">
+        <h4>Income Composition</h4>
+        <div id="mixbars"></div>
+        <div style="margin-top:22px">
+          <div class="barlab"><span>Operating expense ratio</span><span id="oerTxt">—</span></div>
+          <div class="bar navy"><span id="oerBar" style="width:0%"></span></div>
+          <div class="hint">Stabilized small multifamily typically runs 40–50%. Heavy STR mixes push 55–70% because of management, utilities, turnover and supplies.</div>
+        </div>
+        <div style="margin-top:22px">
+          <div class="barlab"><span>Break-even occupancy (STR units)</span><span id="beTxt">—</span></div>
+          <div class="bar"><span id="beBar" style="width:0%"></span></div>
+          <div class="hint">Occupancy at which cash flow after debt service hits zero, holding all else constant.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RESULTS ===== -->
+<section style="background:var(--gray)">
+  <div class="wrap">
+    <div class="sec-title">Output</div>
+    <h2 class="sec-h">What the deal returns</h2>
+
+    <div class="kpis" style="margin-bottom:32px">
+      <div class="kpi" id="k_noi"><div class="k">Net Operating Income</div><div class="v" id="oNOI">—</div><div class="n" id="nNOI">&nbsp;</div></div>
+      <div class="kpi" id="k_cap"><div class="k">Going-In Cap Rate</div><div class="v" id="oCap">—</div><div class="n" id="nCap">&nbsp;</div></div>
+      <div class="kpi" id="k_dscr"><div class="k">DSCR</div><div class="v" id="oDSCR">—</div><div class="n" id="nDSCR">&nbsp;</div></div>
+      <div class="kpi" id="k_cf"><div class="k">Annual Cash Flow</div><div class="v" id="oCF">—</div><div class="n" id="nCF">&nbsp;</div></div>
+      <div class="kpi" id="k_coc"><div class="k">Cash-on-Cash</div><div class="v" id="oCoC">—</div><div class="n" id="nCoC">&nbsp;</div></div>
+      <div class="kpi" id="k_grm"><div class="k">Gross Rent Multiplier</div><div class="v" id="oGRM">—</div><div class="n" id="nGRM">&nbsp;</div></div>
+    </div>
+
+    <div class="grid2">
+      <div class="card" style="background:#fff">
+        <h4>Pro Forma — Year 1</h4>
+        <table id="pf"></table>
+      </div>
+      <div class="card" style="background:#fff">
+        <h4>Value Test — What price clears the hurdle</h4>
+        <table id="pt"></table>
+        <div class="note">Palm Beach County asking cap rates in 2026: stabilized newer product east of I-95 trades high-4s to mid-5s; <strong>older value-add stock high-5s into the 6s</strong>. That is the correct comparison set for a renovated 1950s-era coastal 9-unit — not the newer-vintage band.</div>
+      </div>
+    </div>
+
+    <div class="card" style="background:#fff;margin-top:20px">
+      <h4>Scenario Spread — All Four Side by Side</h4>
+      <table id="cmp"></table>
+      <div class="note"><strong>Read the spread, not any single column.</strong> The distance between Broker Pitch and Conservative is the width of your ignorance — and it exists entirely because no financials were provided. Note that even the optimistic column fails the 1.25x DSCR test, which means the lender resizes the loan and your real cash-in climbs above what the model shows.</div>
+    </div>
+
+    <div class="card" style="background:#fff;margin-top:20px">
+      <h4>Five-Year Hold — Cash Flow &amp; Equity</h4>
+      <table id="fy"></table>
+      <div class="note">Exit assumes disposition at the same cap rate you underwrote going in, less 6% cost of sale. Rent growth per the slider; expenses grown at 4%/yr to reflect Florida insurance and tax escalation, which have outrun general inflation across the last five renewal cycles.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RISK ===== -->
+<section>
+  <div class="wrap">
+    <div class="sec-title">Diligence</div>
+    <h2 class="sec-h">What has to be verified before this is real</h2>
+    <p class="sec-sub">Ranked by how much damage each one does if the assumption fails. The first two can move value by seven figures.</p>
+
+    <div class="flag red">
+      <div class="ft"><span class="sev red">Critical</span>The unincorporated status is the entire thesis — and it is unverified</div>
+      <div class="fb">Every dollar of STR premium in this price rests on one claim: that the parcel sits in unincorporated Palm Beach County rather than Gulf Stream, Briny Breezes, or Ocean Ridge. The 4600 block of N Ocean Blvd sits in the seam between those jurisdictions — Briny Breezes town hall is at 5000 N Ocean, Gulf Stream runs to the south, and third-party records label this parcel's area "Gulf Stream." <strong>Pull the parcel from the Palm Beach County Property Appraiser and get written zoning confirmation from PBC Planning &amp; Zoning before spending another hour on this.</strong> If it falls inside a municipality, the nightly-rental income disappears and the value with it.</div>
+    </div>
+
+    <div class="flag red">
+      <div class="ft"><span class="sev red">Critical</span>No T-12, no rent roll, no operating statements</div>
+      <div class="fb">The package is a photo gallery and a renovation list. There is no trailing twelve, no rent roll, no leases, no STR booking history, no tax bill, no insurance declarations page, no utility statements. You are being asked to price a 9-unit income property entirely on adjectives. Nothing in this model is the seller's number — every figure is a market estimate. Request the full financial package in writing and treat continued silence as information.</div>
+    </div>
+
+    <div class="flag amber">
+      <div class="ft"><span class="sev amber">High</span>Property taxes reset to your purchase price</div>
+      <div class="fb">Florida reassesses on transfer, and non-homestead investment property has no Save Our Homes cap. At roughly 1.9% of a $3.28M basis that is about <strong>$62,000 a year</strong>. If the seller has held long, their current bill could be a third of that — and any cap rate quoted off their historical tax line is fiction. Model it at your basis, not theirs.</div>
+    </div>
+
+    <div class="flag amber">
+      <div class="ft"><span class="sev amber">High</span>Insurance on a nine-unit coastal building 175 yards from the ocean</div>
+      <div class="fb">Impact windows and new stucco help. Construction type, roof age, and elevation drive the rest. Coastal frame stock can carry premiums that erase a full point of cap rate on their own, and Flood Zone AE or VE exposure sits on top of the wind policy. <strong>Get three real quotes with the property schedule and loss runs before you go hard on deposit</strong> — not an agent's estimate.</div>
+    </div>
+
+    <div class="flag amber">
+      <div class="ft"><span class="sev amber">High</span>Septic on a nine-unit income property</div>
+      <div class="fb">The listing calls the septic system "updated," which is not the same as permitted for nine units of density including four high-turnover nightly rentals. Confirm the permitted capacity with the Florida Department of Health in Palm Beach County, pull the permit history, and ask whether a sewer connection is available or mandated. Palm Beach County has been pushing coastal septic-to-sewer conversion; an assessment landing post-close is a five- or six-figure surprise.</div>
+    </div>
+
+    <div class="flag blue">
+      <div class="ft"><span class="sev blue">Verify</span>Three different agents are attached to this listing</div>
+      <div class="fb">The email came from Gabriella Matire at Coldwell Banker, but the branded property tour lists Zachary Mazur (Coldwell Banker Main Group) and Josh Weinraub (Luxury Collective) as the contacts. Confirm who actually holds the listing agreement and what the co-broke is before you invest time. Not a deal issue — a get-it-in-writing issue.</div>
+    </div>
+
+    <div class="flag blue">
+      <div class="ft"><span class="sev blue">Verify</span>Tax layer sits on top of nightly revenue, not inside it</div>
+      <div class="fb">Palm Beach County Tourist Development Tax is 6% on stays of six months or less, on top of 6.5% state and county sales tax — 12.5% combined, and it applies to mandatory cleaning and pet fees too. Platforms collect much of this in Florida, but the registration, remittance and audit obligation is the owner's. Confirm who remits what before you underwrite gross revenue.</div>
+    </div>
+
+    <div class="flag blue">
+      <div class="ft"><span class="sev blue">Verify</span>Legal unit count and certificates of occupancy</div>
+      <div class="fb">Nine units, three buildings, 10–11 parking spaces. Confirm all nine units are legally permitted and reflected in the property record — not converted or added without permit — and that parking satisfies the zoning requirement for the use. Unpermitted units are unfinanceable and uninsurable, and lenders check.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MARKET ===== -->
+<section style="background:var(--gray)">
+  <div class="wrap">
+    <div class="sec-title">Evidence</div>
+    <h2 class="sec-h">The comps behind the defaults</h2>
+    <div class="grid2">
+      <div class="card" style="background:#fff">
+        <h4>Rent &amp; STR Data</h4>
+        <table>
+          <tr><th>Metric</th><th class="n">Figure</th></tr>
+          <tr><td>Boynton Beach studio — average rent</td><td class="n">$1,428/mo</td></tr>
+          <tr><td>Boynton Beach 1BR — average rent</td><td class="n">$2,008/mo</td></tr>
+          <tr><td>Boynton Beach 2BR — average rent</td><td class="n">$2,383/mo</td></tr>
+          <tr><td>Boynton Beach rent growth, trailing 12mo</td><td class="n">+2.6%</td></tr>
+          <tr class="hl"><td>Delray Beach STR — market ADR</td><td class="n">$407</td></tr>
+          <tr class="hl"><td>Delray Beach STR — occupancy</td><td class="n">46.1%</td></tr>
+          <tr class="hl"><td>Delray Beach STR — RevPAR</td><td class="n">$206</td></tr>
+          <tr><td>Peak season (Feb–Mar) occupancy</td><td class="n">~65%</td></tr>
+          <tr><td>Low season (Aug–Oct) occupancy</td><td class="n">~40.5%</td></tr>
+          <tr><td>Boynton Beach active STR listings</td><td class="n">~76</td></tr>
+        </table>
+        <div class="note">The Delray ADR is market-wide and dominated by 2–3BR units, which make up 54% of listings. A renovated studio with a kitchenette will not clear $407. The model defaults to a studio-adjusted $185 — move it if your own comps say otherwise.</div>
+      </div>
+      <div class="card" style="background:#fff">
+        <h4>Capital Markets &amp; Cost Basis</h4>
+        <table>
+          <tr><th>Metric</th><th class="n">Figure</th></tr>
+          <tr class="hl"><td>PBC cap rates — older value-add stock</td><td class="n">5.5% – 6.5%</td></tr>
+          <tr><td>PBC cap rates — stabilized newer, east of I-95</td><td class="n">4.7% – 5.5%</td></tr>
+          <tr><td>Small-balance apartment loan, 5-yr fixed</td><td class="n">6.18%</td></tr>
+          <tr><td>Small-balance apartment loan, 10-yr fixed</td><td class="n">6.28%</td></tr>
+          <tr><td>Typical LTV, purchase</td><td class="n">up to 80%</td></tr>
+          <tr><td>Lender minimum DSCR</td><td class="n">1.25x</td></tr>
+          <tr><td>PBC practical leverage, DSCR-constrained</td><td class="n">55% – 65%</td></tr>
+          <tr class="hl"><td>Insurance — Miami/WPB metro, blended per unit</td><td class="n">$181/mo</td></tr>
+          <tr><td>PBC Tourist Development Tax</td><td class="n">6%</td></tr>
+          <tr><td>Combined transient rental tax</td><td class="n">12.5%</td></tr>
+          <tr><td>State DBPR vacation rental license</td><td class="n">~$230/yr</td></tr>
+        </table>
+        <div class="note">Note the leverage constraint. At a 1.25x DSCR minimum and a 6.18% coupon, the loan this property supports is sized off NOI — not off the 30% down payment you would like to make. Run the DSCR output above; if it lands below 1.25x, the lender will shrink the loan and your true cash-in rises.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ACTIONS ===== -->
+<section>
+  <div class="wrap">
+    <div class="sec-title">Execution</div>
+    <h2 class="sec-h">Next actions</h2>
+    <p class="sec-sub">Sequenced so the two cheapest questions kill the deal fastest if it deserves to die. Check them off as you go — your progress saves nothing, so screenshot before you close.</p>
+    <div class="grid2">
+      <div>
+        <div class="chk"><input type="checkbox"><div><div class="ct">Pull the parcel on the PBC Property Appraiser — confirm jurisdiction, legal unit count, building sq ft, lot size, year built, last sale, and current assessed value</div><div class="cw">Free. 10 minutes. Answers the single biggest question.</div></div></div>
+        <div class="chk"><input type="checkbox"><div><div class="ct">Get written zoning and use confirmation from PBC Planning, Zoning &amp; Building that transient rental is a permitted use on this parcel</div><div class="cw">Email confirmation, not a phone call. This is the thesis.</div></div></div>
+        <div class="chk"><input type="checkbox"><div><div class="ct">Request the full financial package in writing: T-12, current rent roll, all leases, STR booking and revenue history by unit, 2025 tax bill, insurance declarations, utility statements</div><div class="cw">If it does not arrive within 72 hours, price the deal as if the income is zero.</div></div></div>
+        <div class="chk"><input type="checkbox"><div><div class="ct">Confirm FEMA flood zone and base flood elevation; get an elevation certificate</div><div class="cw">Drives both the flood premium and the lender's requirements.</div></div></div>
+        <div class="chk"><input type="checkbox"><div><div class="ct">Order three insurance quotes — wind, property and flood — with the actual property schedule</div><div class="cw">This line item alone can swing the cap rate by a full point.</div></div></div>
+      </div>
+      <div>
+        <div class="chk"><input type="checkbox"><div><div class="ct">Verify septic permit capacity with the Florida DOH in Palm Beach County and check for any sewer connection mandate or pending assessment</div><div class="cw">Nine units on septic with nightly turnover is a real question, not a formality.</div></div></div>
+        <div class="chk"><input type="checkbox"><div><div class="ct">Confirm all nine units are legally permitted with certificates of occupancy; verify permit history on the renovation work</div><div class="cw">Unpermitted work is a financing and insurance problem, not a cosmetic one.</div></div></div>
+        <div class="chk"><input type="checkbox"><div><div class="ct">Confirm who holds the listing and the co-broke in writing — Matire, Mazur, or Weinraub</div><div class="cw">Three names are attached to one property.</div></div></div>
+        <div class="chk"><input type="checkbox"><div><div class="ct">Pull closed sales of 5–20 unit multifamily in the coastal PBC corridor over the last 18 months; build a price-per-unit and cap rate comp set</div><div class="cw">This is your negotiating leverage. $364K/unit needs a comp or it needs a discount.</div></div></div>
+        <div class="chk"><input type="checkbox"><div><div class="ct">Price the land and redevelopment alternative — density, height, setbacks, and what a coastal parcel of this size supports</div><div class="cw">If the income never works, the only remaining case is what you can build.</div></div></div>
+      </div>
+    </div>
+    <div class="btnrow">
+      <button class="btn" onclick="window.print()">Print / Save as PDF</button>
+      <button class="btn ghost" onclick="reset()">Reset to Base Case</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fg">
+      <div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <div class="mono" style="width:38px;height:38px;font-size:13px">EB</div>
+          <div>
+            <div style="font-size:12px;letter-spacing:.16em;text-transform:uppercase">The Edmund Bogen Team</div>
+            <div style="font-size:9px;letter-spacing:.14em;text-transform:uppercase;opacity:.68">At Douglas Elliman Real Estate</div>
+          </div>
+        </div>
+        <div style="margin-top:14px;opacity:.8">edmund@bogenhomes.com</div>
+      </div>
+      <div style="text-align:right;font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.7;line-height:2">
+        Prepared July 31, 2026<br>4617 N Ocean Blvd, Boynton Beach FL 33435<br>Confidential — Internal Underwriting
+      </div>
+    </div>
+    <div class="dis">
+      This analysis is prepared for internal investment evaluation. No operating statements, rent roll, or leases were provided by the seller; all income and expense figures are market-derived estimates and independent projections, not represented or verified financials. Cap rates, returns, and projections are illustrative and are not a prediction or guarantee of performance. Jurisdiction, zoning, permitted use, legal unit count, flood zone, septic capacity, tax liability, and insurance cost must be independently verified before reliance. Nothing here constitutes legal, tax, accounting, or investment advice; consult qualified counsel and a CPA on entity structure, transient rental licensing, and tax treatment.
+    </div>
+  </div>
+</footer>
+
+<script>
+const F={
+  strUnits:{f:v=>v, s:''}, adr:{f:v=>'$'+(+v).toLocaleString()}, occ:{f:v=>v+'%'},
+  plat:{f:v=>v+'%'}, ltrStudio:{f:v=>'$'+(+v).toLocaleString()}, two:{f:v=>'$'+(+v).toLocaleString()},
+  vac:{f:v=>v+'%'}, growth:{f:v=>(+v).toFixed(1)+'%'}, tax:{f:v=>(+v).toFixed(2)+'%'},
+  ins:{f:v=>'$'+(+v).toLocaleString()}, mgmt:{f:v=>v+'%'}, util:{f:v=>'$'+(+v).toLocaleString()},
+  other:{f:v=>'$'+(+v).toLocaleString()}, price:{f:v=>'$'+(+v).toLocaleString()},
+  down:{f:v=>v+'%'}, rate:{f:v=>(+v).toFixed(2)+'%'}, amort:{f:v=>v+' yrs'}, close:{f:v=>'$'+(+v).toLocaleString()}
+};
+const IDS=Object.keys(F);
+const $=id=>document.getElementById(id);
+const g=id=>parseFloat($(id).value);
+const m=n=>(n<0?'-':'')+'$'+Math.round(Math.abs(n)).toLocaleString();
+const pct=n=>(n*100).toFixed(2)+'%';
+
+const SCEN={
+  broker:{strUnits:4,adr:255,occ:62,plat:3,ltrStudio:1900,two:2950,vac:4,growth:4,tax:1.70,ins:24000,mgmt:12,util:13000,other:26000,price:3280000,down:30,rate:6.18,amort:30,close:95000},
+  base:{strUnits:4,adr:185,occ:55,plat:3,ltrStudio:1650,two:2600,vac:5,growth:3,tax:1.90,ins:32000,mgmt:15,util:18000,other:32500,price:3280000,down:30,rate:6.18,amort:30,close:95000},
+  cons:{strUnits:4,adr:155,occ:45,plat:3,ltrStudio:1500,two:2400,vac:8,growth:2,tax:2.00,ins:45000,mgmt:18,util:22000,other:40000,price:3280000,down:30,rate:6.18,amort:30,close:95000},
+  allltr:{strUnits:0,adr:185,occ:55,plat:3,ltrStudio:1650,two:2600,vac:6,growth:3,tax:1.90,ins:32000,mgmt:9,util:9000,other:22000,price:3280000,down:30,rate:6.18,amort:30,close:95000}
+};
+
+function pmt(P,r,n){ if(r===0) return P/n; return P*r/(1-Math.pow(1+r,-n)); }
+
+function model(o){
+  const nSTR=o.strUnits;
+  const nStudioLTR=Math.max(0,8-nSTR);
+  const nTwo=nSTR>8?0:1;
+  const strGross = nSTR*365*o.adr*(o.occ/100);
+  const strNet   = strGross*(1-o.plat/100);
+  const ltrGross = nStudioLTR*o.ltrStudio*12 + nTwo*o.two*12;
+  const ltrNet   = ltrGross*(1-o.vac/100);
+  const gsi = strGross + ltrGross;
+  const egi = strNet + ltrNet;
+
+  const taxes=o.price*(o.tax/100);
+  const mgmt=egi*(o.mgmt/100);
+  const opex=taxes+o.ins+mgmt+o.util+o.other;
+  const noi=egi-opex;
+
+  const loan=o.price*(1-o.down/100);
+  const ds=pmt(loan,o.rate/100/12,o.amort*12)*12;
+  const cf=noi-ds;
+  const cash=o.price*(o.down/100)+o.close;
+  const cap=noi/o.price;
+  const dscr= ds>0? noi/ds : Infinity;
+  const coc= cash>0? cf/cash : 0;
+  const grm= gsi>0? o.price/gsi : 0;
+  const oer= egi>0? opex/egi : 0;
+
+  // break-even STR occupancy
+  let be=null;
+  if(nSTR>0){
+    const fixedEGI = ltrNet;
+    const perOccDollar = nSTR*365*o.adr;
+    // egi(x) = ltrNet + perOcc*x*(1-plat) ; noi = egi - taxes - ins - util - other - mgmt%*egi
+    const k=1-o.mgmt/100;
+    const fixedCosts=taxes+o.ins+o.util+o.other;
+    // k*(fixedEGI + perOcc*x*(1-plat)) - fixedCosts - ds = 0
+    const num=fixedCosts+ds-k*fixedEGI;
+    const den=k*perOccDollar*(1-o.plat/100);
+    be= den>0? num/den : null;
+  }
+  return {strGross,strNet,ltrGross,ltrNet,gsi,egi,taxes,mgmt,opex,noi,loan,ds,cf,cash,cap,dscr,coc,grm,oer,be,nSTR,nStudioLTR,nTwo};
+}
+
+function kpiClass(el,state){ el.className='kpi'+(state?' '+state:''); }
+
+function render(){
+  const o={}; IDS.forEach(k=>o[k]=g(k));
+  IDS.forEach(k=>$('v_'+k).textContent=F[k].f($(k).value));
+  const r=model(o);
+
+  // header live
+  $('hNOI').textContent=m(r.noi);
+  $('hCap').textContent=pct(r.cap);
+  $('hDSCR').textContent=isFinite(r.dscr)?r.dscr.toFixed(2)+'x':'n/a';
+  $('hCoC').textContent=pct(r.coc);
+
+  // KPIs
+  $('oNOI').textContent=m(r.noi); $('nNOI').textContent=m(r.noi/9)+' per unit';
+  $('oCap').textContent=pct(r.cap);
+  $('nCap').textContent = r.cap>=0.055 ? 'At or above the 5.5–6.5% value-add band' : 'Below the 5.5–6.5% value-add band';
+  $('oDSCR').textContent=isFinite(r.dscr)?r.dscr.toFixed(2)+'x':'All cash';
+  $('nDSCR').textContent = !isFinite(r.dscr)?'No debt':(r.dscr>=1.25?'Clears the 1.25x lender minimum':'Fails the 1.25x lender minimum — loan will be resized');
+  $('oCF').textContent=m(r.cf); $('nCF').textContent=m(r.cf/12)+' per month';
+  $('oCoC').textContent=pct(r.coc); $('nCoC').textContent=m(r.cash)+' cash invested';
+  $('oGRM').textContent=r.grm.toFixed(1); $('nGRM').textContent='Price ÷ gross scheduled income';
+
+  kpiClass($('k_cap'), r.cap>=0.055?'g':(r.cap>=0.04?'w':'b'));
+  kpiClass($('k_dscr'), !isFinite(r.dscr)?'':(r.dscr>=1.25?'g':(r.dscr>=1.0?'w':'b')));
+  kpiClass($('k_cf'), r.cf>0?'g':'b');
+  kpiClass($('k_coc'), r.coc>=0.06?'g':(r.coc>=0?'w':'b'));
+  kpiClass($('k_noi'),'');
+  kpiClass($('k_grm'), r.grm<=12?'g':(r.grm<=16?'w':'b'));
+
+  // pro forma
+  const rows=[
+    ['Short-term rental revenue — '+r.nSTR+' units', r.strGross,''],
+    ['Less platform &amp; booking fees', -(r.strGross-r.strNet),'sub'],
+    ['Annual rental revenue — '+r.nStudioLTR+' studios + '+r.nTwo+'× 2BR', r.ltrGross,''],
+    ['Less vacancy &amp; credit loss', -(r.ltrGross-r.ltrNet),'sub'],
+    ['__EGI__', r.egi,'tot'],
+    ['Property taxes (reassessed at purchase price)', -r.taxes,''],
+    ['Insurance — property, wind &amp; flood', -o.ins,''],
+    ['Management', -r.mgmt,''],
+    ['Utilities, internet &amp; trash', -o.util,''],
+    ['Maintenance, supplies, grounds, reserves &amp; admin', -o.other,''],
+    ['__OPEX__', -r.opex,'tot'],
+    ['__NOI__', r.noi,'tot'],
+    ['Annual debt service', -r.ds,''],
+    ['__CF__', r.cf,'tot']
+  ];
+  let h='<tr><th>Year 1 Pro Forma</th><th class="n">Amount</th></tr>';
+  rows.forEach(([l,v,c])=>{
+    let lab=l;
+    if(l==='__EGI__') lab='Effective Gross Income';
+    if(l==='__OPEX__') lab='Total Operating Expenses';
+    if(l==='__NOI__') lab='Net Operating Income';
+    if(l==='__CF__') lab='Cash Flow Before Tax';
+    h+='<tr class="'+c+'"><td>'+lab+'</td><td class="n">'+m(v)+'</td></tr>';
+  });
+  $('pf').innerHTML=h;
+
+  // price test
+  const caps=[0.045,0.05,0.055,0.06,0.065,0.07];
+  let p='<tr><th>If you buy at this cap rate…</th><th class="n">Justified Price</th><th class="n">Δ vs Ask</th></tr>';
+  caps.forEach(c=>{
+    const v=r.noi/c; const d=v-3280000;
+    const col=d>=0?'var(--good)':'var(--bad)';
+    p+='<tr><td>'+(c*100).toFixed(1)+'%</td><td class="n">'+m(v)+'</td><td class="n" style="color:'+col+'">'+m(d)+'</td></tr>';
+  });
+  p+='<tr class="tot"><td>Asking price</td><td class="n">$3,280,000</td><td class="n">$364,444/unit</td></tr>';
+  $('pt').innerHTML=p;
+
+  // 5 yr
+  let f='<tr><th>Year</th><th class="n">EGI</th><th class="n">OpEx</th><th class="n">NOI</th><th class="n">Debt Svc</th><th class="n">Cash Flow</th><th class="n">Cum. Cash</th></tr>';
+  let cum=0, bal=r.loan, mr=o.rate/100/12, mp=pmt(r.loan,mr,o.amort*12);
+  for(let y=1;y<=5;y++){
+    const gf=Math.pow(1+o.growth/100,y-1), ef=Math.pow(1.04,y-1);
+    const egiY=r.egi*gf;
+    const opexY=(r.taxes+o.ins+o.util+o.other)*ef + egiY*(o.mgmt/100);
+    const noiY=egiY-opexY, cfY=noiY-r.ds; cum+=cfY;
+    for(let k=0;k<12;k++){ bal=bal-(mp-bal*mr); }
+    f+='<tr><td>'+y+'</td><td class="n">'+m(egiY)+'</td><td class="n">'+m(opexY)+'</td><td class="n">'+m(noiY)+'</td><td class="n">'+m(r.ds)+'</td><td class="n" style="color:'+(cfY>=0?'var(--good)':'var(--bad)')+'">'+m(cfY)+'</td><td class="n">'+m(cum)+'</td></tr>';
+    if(y===5){
+      const exitNOI=noiY*(1+o.growth/100);
+      const exitVal= r.cap>0? exitNOI/r.cap : 0;
+      const netSale=exitVal*0.94-Math.max(bal,0);
+      const total=cum+netSale-r.cash;
+      const mult= r.cash>0? (cum+netSale)/r.cash : 0;
+      f+='<tr class="hl"><td colspan="7" style="padding-top:14px"><strong>Year 5 Exit</strong> — at a '+pct(r.cap)+' exit cap on forward NOI of '+m(exitNOI)+': gross value '+m(exitVal)+', less 6% cost of sale and '+m(Math.max(bal,0))+' loan payoff = <strong>'+m(netSale)+' net proceeds</strong>.</td></tr>';
+      f+='<tr class="tot"><td colspan="4">Total profit on '+m(r.cash)+' invested</td><td class="n" colspan="2" style="color:'+(total>=0?'var(--good)':'var(--bad)')+'">'+m(total)+'</td><td class="n">'+mult.toFixed(2)+'x</td></tr>';
+    }
+  }
+  $('fy').innerHTML=f;
+
+  // scenario comparison (static, uses current price/financing)
+  const NAMES={broker:'Broker Pitch',base:'Base Case',cons:'Conservative',allltr:'All Long-Term'};
+  const keys=['broker','base','cons','allltr'];
+  const res=keys.map(k=>{
+    const s=Object.assign({},SCEN[k],{price:o.price,down:o.down,rate:o.rate,amort:o.amort,close:o.close});
+    return model(s);
+  });
+  let c='<tr><th>Metric</th>'+keys.map(k=>'<th class="n">'+NAMES[k]+'</th>').join('')+'</tr>';
+  const line=(lab,fn,color)=>{
+    c+='<tr><td>'+lab+'</td>'+res.map(x=>{
+      const st=color?color(x):'';
+      return '<td class="n" style="'+st+'">'+fn(x)+'</td>';
+    }).join('')+'</tr>';
+  };
+  line('Effective gross income',x=>m(x.egi));
+  line('Total operating expenses',x=>m(x.opex));
+  line('Operating expense ratio',x=>(x.oer*100).toFixed(0)+'%');
+  line('Net operating income',x=>m(x.noi),x=>'font-weight:600;color:'+(x.noi>0?'var(--navy)':'var(--bad)'));
+  line('Going-in cap rate',x=>pct(x.cap),x=>'font-weight:700;color:'+(x.cap>=0.055?'var(--good)':(x.cap>=0.04?'var(--warn)':'var(--bad)')));
+  line('DSCR',x=>isFinite(x.dscr)?x.dscr.toFixed(2)+'x':'n/a',x=>'color:'+(x.dscr>=1.25?'var(--good)':'var(--bad)'));
+  line('Annual cash flow',x=>m(x.cf),x=>'color:'+(x.cf>0?'var(--good)':'var(--bad)'));
+  line('Cash-on-cash',x=>pct(x.coc),x=>'color:'+(x.coc>=0.06?'var(--good)':(x.coc>=0?'var(--warn)':'var(--bad)')));
+  line('Value at a 6.0% cap',x=>x.noi>0?m(x.noi/0.06):'n/a');
+  c+='<tr class="tot"><td>Gap to the $3,280,000 ask</td>'+res.map(x=>{
+    const v=x.noi>0?x.noi/0.06:0; const d=v-3280000;
+    return '<td class="n" style="color:'+(d>=0?'var(--good)':'var(--bad)')+'">'+(x.noi>0?m(d):'—')+'</td>';
+  }).join('')+'</tr>';
+  $('cmp').innerHTML=c;
+
+  // mix bars
+  const tot=r.strGross+r.ltrGross||1;
+  $('mixbars').innerHTML=
+    '<div class="barlab"><span>Short-term rental revenue</span><span>'+m(r.strGross)+' &nbsp;·&nbsp; '+Math.round(r.strGross/tot*100)+'%</span></div>'+
+    '<div class="bar"><span style="width:'+(r.strGross/tot*100)+'%"></span></div>'+
+    '<div class="barlab" style="margin-top:14px"><span>Annual rental revenue</span><span>'+m(r.ltrGross)+' &nbsp;·&nbsp; '+Math.round(r.ltrGross/tot*100)+'%</span></div>'+
+    '<div class="bar navy"><span style="width:'+(r.ltrGross/tot*100)+'%"></span></div>'+
+    '<div class="hint" style="margin-top:10px">The higher the blue bar, the more of your return depends on the unincorporated-jurisdiction claim holding up.</div>';
+
+  $('oerTxt').textContent=(r.oer*100).toFixed(1)+'%';
+  $('oerBar').style.width=Math.min(100,r.oer*100)+'%';
+  if(r.be===null){ $('beTxt').textContent='n/a — no STR units'; $('beBar').style.width='0%'; }
+  else if(r.be>1){ $('beTxt').textContent='Unreachable — over 100%'; $('beBar').style.width='100%'; $('beBar').style.background='var(--bad)'; }
+  else if(r.be<0){ $('beTxt').textContent='0% — cash flows with STR units empty'; $('beBar').style.width='0%'; }
+  else {
+    $('beTxt').textContent=(r.be*100).toFixed(1)+'% vs '+o.occ+'% underwritten';
+    $('beBar').style.width=(r.be*100)+'%';
+    $('beBar').style.background = r.be<(o.occ/100) ? 'var(--cyan)' : 'var(--bad)';
+  }
+}
+
+function load(name){
+  const s=SCEN[name]; IDS.forEach(k=>$(k).value=s[k]);
+  document.querySelectorAll('.scen').forEach(b=>b.classList.toggle('on',b.dataset.s===name));
+  render();
+}
+function reset(){ load('base'); window.scrollTo({top:0,behavior:'smooth'}); }
+
+IDS.forEach(k=>$(k).addEventListener('input',()=>{document.querySelectorAll('.scen').forEach(b=>b.classList.remove('on'));render();}));
+document.querySelectorAll('.scen').forEach(b=>b.addEventListener('click',()=>load(b.dataset.s)));
+document.querySelectorAll('.chk input').forEach(c=>c.addEventListener('change',e=>e.target.closest('.chk').classList.toggle('done',e.target.checked)));
+render();
+</script>
+</body>
+</html>
