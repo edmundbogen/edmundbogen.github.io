@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Living Longer in the Sunshine | The Edmund Bogen Team</title>
+<meta name="description" content="U.S. life expectancy hit a record 79.0 years in 2024 — and Palm Beach County runs well above the national average. What the longevity boom means for retirement planning and what a home is really for.">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Georgia&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:Georgia,'Times New Roman',serif;background:#fff;color:#1a1a1a;}
+  a{color:#00a8e1;text-decoration:none;}
+  .nav{background:#1a3e5c;padding:16px 28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
+  .nav .logo{color:#fff;font-family:'Montserrat',sans-serif;font-size:13px;letter-spacing:3px;text-transform:uppercase;font-weight:300;}
+  .nav .logo strong{font-weight:600;letter-spacing:4px;}
+  .nav a{color:#8cb4d5;font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:600;}
+  .hero{position:relative;max-height:560px;overflow:hidden;}
+  .hero img{display:block;width:100%;height:auto;}
+  .imgnote{font-family:'Montserrat',sans-serif;font-size:10px;color:#999;font-style:italic;text-align:center;padding:8px 16px;background:#fafafa;border-bottom:1px solid #f0f0f0;}
+  .article{max-width:720px;margin:0 auto;padding:48px 24px 20px;}
+  .eyebrow{font-family:'Montserrat',sans-serif;color:#c8102e;font-size:11px;letter-spacing:4px;text-transform:uppercase;font-weight:600;margin-bottom:16px;}
+  h1{font-weight:400;font-size:44px;line-height:1.15;color:#1a3e5c;margin-bottom:14px;letter-spacing:0.5px;}
+  .dek{font-size:20px;line-height:1.5;color:#555;font-style:italic;margin-bottom:24px;}
+  .byline{font-family:'Montserrat',sans-serif;font-size:12px;color:#888;letter-spacing:1px;text-transform:uppercase;border-top:1px solid #e6e6e6;border-bottom:1px solid #e6e6e6;padding:14px 0;margin-bottom:36px;}
+  .byline b{color:#1a3e5c;}
+  .article p{font-size:18px;line-height:1.8;margin-bottom:24px;color:#222;}
+  .article h2{font-family:'Montserrat',sans-serif;font-weight:600;font-size:20px;color:#1a3e5c;letter-spacing:0.5px;margin:44px 0 20px;}
+  .pull{border-left:4px solid #00a8e1;background:#f8f9fb;padding:24px 28px;margin:32px 0;font-style:italic;font-size:20px;line-height:1.6;color:#1a3e5c;}
+  .stats3{display:flex;gap:14px;flex-wrap:wrap;margin:32px 0;font-family:'Montserrat',sans-serif;}
+  .stats3 .s{flex:1;min-width:160px;background:#fafafa;border-left:4px solid #00a8e1;padding:20px;}
+  .stats3 .n{font-size:26px;font-weight:700;color:#1a3e5c;font-family:Georgia,serif;}
+  .stats3 .l{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#666;margin-top:6px;line-height:1.5;}
+  table.data{width:100%;border-collapse:collapse;margin:28px 0;font-family:'Montserrat',sans-serif;font-size:13px;}
+  table.data th{background:#1a3e5c;color:#fff;text-align:left;padding:12px 14px;font-weight:600;letter-spacing:1px;text-transform:uppercase;font-size:10px;}
+  table.data td{padding:12px 14px;border-bottom:1px solid #eee;vertical-align:top;line-height:1.5;}
+  table.data td:first-child{font-weight:600;color:#1a3e5c;white-space:nowrap;}
+  table.data tr.hl td{background:#f4fafd;}
+  .tablenote{font-family:'Montserrat',sans-serif;font-size:11px;color:#888;font-style:italic;margin-top:-16px;margin-bottom:28px;line-height:1.6;}
+  .sources{background:#fafafa;border-top:3px solid #00a8e1;padding:32px 28px;margin:48px 0 0;font-family:'Montserrat',sans-serif;}
+  .sources h3{color:#1a3e5c;font-size:12px;letter-spacing:3px;text-transform:uppercase;font-weight:600;margin-bottom:16px;}
+  .sources li{font-size:12px;color:#555;line-height:1.7;margin:0 0 6px 18px;}
+  .cta{background:#1a3e5c;padding:40px 28px;text-align:center;border-radius:3px;margin:44px 0;font-family:'Montserrat',sans-serif;}
+  .cta .eb{color:#00a8e1;font-size:11px;letter-spacing:4px;text-transform:uppercase;font-weight:600;margin-bottom:10px;}
+  .cta h3{color:#fff;font-weight:300;font-size:24px;margin-bottom:20px;}
+  .cta a{display:inline-block;background:#00a8e1;color:#fff;padding:13px 32px;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:600;border-radius:2px;}
+  .bio{max-width:720px;margin:0 auto;padding:36px 24px;display:flex;gap:24px;align-items:center;border-top:3px solid #00a8e1;flex-wrap:wrap;font-family:'Montserrat',sans-serif;}
+  .bio img{width:130px;height:130px;border-radius:50%;object-fit:cover;}
+  .bio h3{color:#1a3e5c;font-size:18px;margin-bottom:6px;}
+  .bio p{font-size:13px;color:#555;line-height:1.6;}
+  .disc{max-width:720px;margin:0 auto;padding:28px 24px;font-family:'Montserrat',sans-serif;font-size:11px;color:#888;line-height:1.7;border-top:1px solid #eee;}
+  footer{background:#0d2137;padding:28px;text-align:center;color:#8cb4d5;font-family:'Montserrat',sans-serif;font-size:10px;line-height:1.7;}
+  @media(max-width:600px){h1{font-size:32px;}.dek{font-size:17px;}.article p{font-size:16px;}}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <div class="logo">THE EDMUND <strong>BOGEN</strong> TEAM</div>
+  <a href="https://edmundbogen.github.io/market-dashboard/">Market Dashboard &rarr;</a>
+</div>
+
+<div class="hero"><img src="https://edmundbogen.github.io/living-longer/hero.png" alt="An active couple walking at golden hour along a palm-lined path in a South Florida country club community"></div>
+<div class="imgnote">This image was created with artificial intelligence.</div>
+
+<div class="article">
+
+  <div class="eyebrow">Longevity &amp; Real Estate &middot; Market Intelligence</div>
+  <h1>Living Longer in the Sunshine</h1>
+  <div class="dek">Americans are living longer than ever &mdash; and Palm Beach County residents longer still. What the longevity boom means for how we plan, how we buy, and what a home is really for.</div>
+  <div class="byline">By <b>Edmund Bogen</b> &middot; August 19, 2026 &middot; Written with the assistance of artificial intelligence &mdash; figures independently verified against the sources listed below</div>
+
+  <p>In January, the CDC published its final mortality numbers for 2024, and buried in the tables was a genuine milestone: American life expectancy reached <strong>79.0 years</strong> &mdash; a record high, up from 78.4 in 2023 and fully recovered from the pandemic low of 76.4 in 2021.</p>
+  <p>That number will get quoted a lot. But for most of the people reading this newsletter, it's actually the <em>wrong</em> number &mdash; and the right ones are far more interesting.</p>
+
+  <div class="stats3">
+    <div class="s"><div class="n">79.0</div><div class="l">U.S. Life Expectancy at Birth, 2024 &middot; Record High (CDC)</div></div>
+    <div class="s"><div class="n">19.7</div><div class="l">Additional Years Expected at Age 65 (CDC, 2024)</div></div>
+    <div class="s"><div class="n">~80.7</div><div class="l">Palm Beach County Life Expectancy &middot; Well Above U.S. &amp; Florida Averages</div></div>
+  </div>
+
+  <h2>The number that actually matters at 65</h2>
+  <p>"Life expectancy at birth" is a population snapshot, not a personal forecast &mdash; it averages in mortality at every age. The more useful figure for anyone planning a retirement is <strong>remaining life expectancy at your current age</strong>. And here the CDC's 2024 data is striking: a 65-year-old American can now expect, on average, <strong>19.7 more years</strong> &mdash; 20.8 for women, 18.4 for men.</p>
+  <p>Averages understate the tail. Roughly one in four people who reach 65 will live past 90, and financial planners commonly model that for a married couple at 65, there is close to a coin-flip chance that at least one spouse reaches their early 90s. The practical takeaway: a retirement that begins at 65 is no longer a 10- or 15-year project. It is a <strong>two-to-three-decade</strong> chapter of life &mdash; and it deserves to be planned, and housed, like one.</p>
+
+  <div class="pull">"A retirement that begins at 65 is no longer a 10- or 15-year project. It is a two-to-three-decade chapter of life &mdash; and it deserves to be housed like one."</div>
+
+  <h2>The Palm Beach County advantage</h2>
+  <p>Geography shows up clearly in the longevity data. In the CDC's most recent state life tables, Florida sits at 77.9 years &mdash; 19th among the states and slightly above the national figure. But the county-level picture is where it gets interesting for our readers: <strong>Palm Beach County comes in at approximately 80.7 years</strong> in the County Health Rankings &mdash; several years above the Florida statewide average and among the longest-lived counties in the state. Collier County (Naples) ranks first in Florida, and the rest of the top tier is dominated by coastal counties along both shores.</p>
+
+  <table class="data">
+    <tr><th>Place</th><th>Life Expectancy</th><th>Source / Vintage</th></tr>
+    <tr><td>United States</td><td>79.0 years</td><td>CDC final data, 2024</td></tr>
+    <tr><td>Florida (statewide)</td><td>77.9 years</td><td>CDC State Life Tables, 2022</td></tr>
+    <tr class="hl"><td>Palm Beach County</td><td>~80.7 years</td><td>County Health Rankings</td></tr>
+    <tr><td>Hawaii (highest state)</td><td>80.0 years</td><td>CDC State Life Tables, 2022</td></tr>
+  </table>
+  <p class="tablenote">Figures come from different data vintages and methodologies and are shown for general context only. County figures are also influenced by who moves there: affluent, healthy retirees relocating to places like Palm Beach County lift the local numbers &mdash; a selection effect, not proof that any particular address adds years to life. These are population statistics, not predictions for any individual, household, or neighborhood.</p>
+
+  <p>Why do places like this do so well? The research consistently points to the same ingredients: year-round weather that keeps people moving outdoors, strong healthcare access, higher average incomes and education (the landmark Chetty study in <em>JAMA</em> and the Case&ndash;Deaton work at Princeton both document how strongly longevity tracks affluence and education nationally), and &mdash; maybe most underrated &mdash; <strong>social connection</strong>. Loneliness is a documented mortality risk; a community built around golf groups, card rooms, fitness classes, and dinner reservations is, quite literally, longevity infrastructure.</p>
+
+  <h2>The $12.5 trillion longevity economy</h2>
+  <p>Longevity is not just a health story &mdash; it has become one of the largest economic forces in the country. AARP's newly released Longevity Economy Outlook found that Americans age 50-plus generated <strong>$12.5 trillion of economic activity in 2024 &mdash; 43% of U.S. GDP</strong> &mdash; enough that, standing alone, they would be the world's third-largest economy. That's up from $8.3 trillion in 2018, and it's projected to reach $24 trillion by 2060. The 50-plus population now numbers 123 million, drives 56% of U.S. consumer spending &mdash; and housing makes up more than one-fifth of what they spend.</p>
+  <p>Real estate is responding. The U.S. active-adult (55+) community market was valued at roughly <strong>$635 billion in 2024</strong> and is projected to approach $907 billion by 2033. Industry research finds that about nine out of ten master-planned communities now market health and wellness programming, and the sector has proven notably recession-resilient. Developers are, in effect, trying to build the ingredients of long life into the site plan: walkability, fitness, social "third places," and a sense of purpose.</p>
+
+  <h2>Aging in place &mdash; and the homes that make it possible</h2>
+  <p>The strongest preference in the data is also the simplest: people want to stay home. AARP's 2024 Home and Community Preferences Survey found that <strong>75% of adults 50-plus want to remain in their current home as they age</strong>, and 73% want to remain in their community. Yet 44% expect they'll have to relocate anyway &mdash; usually because the house itself doesn't fit the next chapter: too many stairs, too much maintenance, bathrooms and doorways designed for a different decade of life.</p>
+  <p>That gap &mdash; between the home people have and the home a 30-year retirement requires &mdash; is quietly reshaping what buyers in our market ask for: single-story living, first-floor primary suites, low-maintenance lock-and-leave construction, wider doorways and walk-in showers, smart-home monitoring, and flexible space for visiting children and grandchildren. A house that supports two more decades of active living is no longer a "senior" feature list. It's simply good design &mdash; and it's increasingly what holds value.</p>
+
+  <h2>Why "55+" is legal &mdash; a 60-second explainer</h2>
+  <p>Readers sometimes ask how age-restricted communities square with fair housing law. The answer is a specific federal carve-out: the <strong>Housing for Older Persons Act of 1995 (HOPA)</strong>. Under HOPA, a community may lawfully operate as age-restricted if either 100% of residents are 62 or older, or &mdash; the common route &mdash; <strong>at least 80% of occupied units include at least one resident age 55 or older</strong>, and the community publishes and follows policies demonstrating its intent to operate as 55+ housing and verifies ages. This exemption applies <em>only</em> to familial status (families with children). Every other Fair Housing Act protection &mdash; race, color, religion, sex, national origin, and disability &mdash; applies fully in every community, always. That's why South Florida's many 55+ communities can legally market as age-restricted, and why nothing else about who is welcome ever changes.</p>
+
+  <h2>The home as a longevity asset</h2>
+  <p>Put the pieces together and a different picture of a house emerges. For a buyer at 60 or 65 with two or three active decades ahead, a home in a longevity-friendly community is not just shelter and not just an investment &mdash; it is a piece of health infrastructure and a multigenerational wealth vehicle at the same time. It's where the daily walking happens, where the social calendar lives, where the grandchildren visit, and &mdash; held in one of the country's most durable luxury markets &mdash; where a meaningful share of the estate compounds.</p>
+  <p>Longer lives raise the stakes on every housing decision: more years to enjoy a great choice, more years to regret a poor one. The good news is that the data all points the same direction &mdash; and the sunshine helps.</p>
+
+  <div class="cta">
+    <div class="eb">Straight Answers, Real Numbers</div>
+    <h3>Planning the next 20&ndash;30 years? Let's talk about where.</h3>
+    <a href="https://www.bogen.ai/contact?tab=client" target="_blank">Contact Edmund</a>
+  </div>
+
+  <div class="sources">
+    <h3>Sources</h3>
+    <ul>
+      <li>CDC/NCHS, "Mortality in the United States, 2024," Data Brief No. 548 (final 2024 data; released January 2026) &mdash; life expectancy 79.0 (81.4 female / 76.5 male); 19.7 years remaining at age 65</li>
+      <li>CDC/NCHS, U.S. State Life Tables, 2022 &mdash; Florida 77.9 (19th); Hawaii 80.0 (highest)</li>
+      <li>County Health Rankings &amp; Roadmaps (University of Wisconsin Population Health Institute) &mdash; Palm Beach County ~80.7 years; Collier County highest in Florida</li>
+      <li>AARP, Longevity Economy&reg; Outlook (released June 2, 2026) &mdash; $12.5T / 43% of GDP in 2024; $24T projected by 2060; 56% of consumer spending; $1.2T in unpaid caregiving and volunteering</li>
+      <li>AARP, 2024 Home and Community Preferences Survey &mdash; 75% of adults 50+ wish to age in place; 44% expect to relocate</li>
+      <li>Grand View Research &mdash; U.S. active-adult (55+) community market, $635.5B (2024), projected $906.6B by 2033</li>
+      <li>Chetty et al., "The Association Between Income and Life Expectancy in the United States, 2001&ndash;2014," <em>JAMA</em> (2016); Case &amp; Deaton, Brookings Papers on Economic Activity (2023)</li>
+      <li>Housing for Older Persons Act of 1995 (HOPA); HUD Fair Housing Act guidance, 24 CFR Part 100</li>
+    </ul>
+  </div>
+
+</div>
+
+<div class="bio">
+  <img src="https://edmundbogen.github.io/living-longer/bio.png" alt="Edmund Bogen">
+  <div>
+    <h3>About the Author</h3>
+    <p>Edmund Bogen leads The Edmund Bogen Team at Douglas Elliman Real Estate in Boca Raton, Florida. He is a member and resident of St. Andrews Country Club, the author of <em>Prompt to Close</em>, and speaks nationally on artificial intelligence and its effect on how professionals think and work.</p>
+    <p style="margin-top:8px;"><a href="mailto:edmund@bogenhomes.com">edmund@bogenhomes.com</a> &middot; 561-235-7575</p>
+  </div>
+</div>
+
+<div class="disc">
+  This article reports national, statewide, and county-level public-health and economic data for general information. It is not medical, legal, or housing advice and should not be used to infer the health, suitability, or demographic character of any neighborhood or community. Population statistics are not predictions for any individual. The Edmund Bogen Team supports equal housing opportunity. If your property is currently listed with another broker, this is not a solicitation of that listing. This article was written with the assistance of artificial intelligence; all figures were verified against the sources listed above. The hero image was created with artificial intelligence.
+</div>
+
+<footer>
+  <div style="color:#fff;font-weight:700;font-size:13px;margin-bottom:4px;">The Edmund Bogen Team at Douglas Elliman</div>
+  <div>444 E Palmetto Park Rd, Boca Raton, FL 33432 &middot; 561-235-7575</div>
+  <div style="margin-top:8px;">Market data courtesy of BeachesMLS. Information is deemed reliable but not guaranteed. Equal Housing Opportunity.</div>
+</footer>
+
+</body>
+</html>
