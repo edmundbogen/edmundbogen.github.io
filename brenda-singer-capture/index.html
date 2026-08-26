@@ -7,10 +7,10 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Brenda's Thoughts">
-<meta name="theme-color" content="#2b1b3d">
+<meta name="theme-color" content="#14291f">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <style>
-  :root { --navy:#2b1b3d; --cyan:#e08cb6; }
+  :root { --navy:#14291f; --cyan:#9dc183; --sand:#e8dcc3; }
   * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
   body {
     font-family:-apple-system,'Montserrat',Helvetica,Arial,sans-serif;
@@ -19,7 +19,7 @@
     display:flex; flex-direction:column;
   }
   header { padding:22px 0 14px; text-align:center; }
-  .brand { font-size:13px; letter-spacing:0.18em; text-transform:uppercase; color:var(--cyan); font-weight:600; }
+  .brand { font-size:13px; letter-spacing:0.18em; text-transform:uppercase; color:var(--sand); font-weight:600; }
   h1 { font-size:22px; font-weight:300; letter-spacing:0.04em; margin-top:6px; }
   h1 b { font-weight:600; }
   .hint { font-size:13px; color:rgba(255,255,255,0.55); margin-top:8px; line-height:1.5; }
@@ -33,10 +33,10 @@
   textarea::placeholder { color:rgba(255,255,255,0.35); }
   .save {
     width:100%; margin-top:14px; padding:18px; border:none; border-radius:16px;
-    background:var(--cyan); color:#2b1226; font-family:inherit; font-size:17px; font-weight:700;
+    background:var(--cyan); color:#14291f; font-family:inherit; font-size:17px; font-weight:700;
     letter-spacing:0.04em; cursor:pointer;
   }
-  .save:active { background:#c9749f; }
+  .save:active { background:#86a86d; }
   .save:disabled { opacity:0.5; }
   .toast { text-align:center; font-size:14px; color:var(--cyan); height:20px; margin-top:12px; opacity:0; transition:opacity .2s; }
   .toast.show { opacity:1; }
@@ -54,12 +54,12 @@
   .del { position:absolute; top:8px; right:8px; width:26px; height:26px; border:none; border-radius:8px; background:rgba(255,255,255,0.08); color:rgba(255,255,255,0.5); font-size:16px; line-height:1; cursor:pointer; }
   .del:active { background:rgba(255,80,80,0.35); color:#fff; }
   .empty { font-size:14px; color:rgba(255,255,255,0.4); font-style:italic; }
-  .syncnow { width:100%; margin-top:24px; padding:13px; border:1px solid rgba(224,140,182,0.5); border-radius:12px; background:rgba(224,140,182,0.12); color:var(--cyan); font-family:inherit; font-size:14px; font-weight:600; cursor:pointer; }
-  .syncnow:active { background:rgba(224,140,182,0.22); }
+  .syncnow { width:100%; margin-top:24px; padding:13px; border:1px solid rgba(157,193,131,0.5); border-radius:12px; background:rgba(157,193,131,0.12); color:var(--cyan); font-family:inherit; font-size:14px; font-weight:600; cursor:pointer; }
+  .syncnow:active { background:rgba(157,193,131,0.22); }
   .syncnow:disabled { opacity:0.5; }
   .digest { margin-top:30px; }
   .digest h2 { font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--cyan); margin-bottom:12px; }
-  .digest-card { background:rgba(224,140,182,0.08); border:1px solid rgba(224,140,182,0.25); border-radius:12px; padding:16px 18px; font-size:15px; line-height:1.6; }
+  .digest-card { background:rgba(157,193,131,0.08); border:1px solid rgba(157,193,131,0.25); border-radius:12px; padding:16px 18px; font-size:15px; line-height:1.6; }
   .digest-card h3 { font-size:13px; letter-spacing:0.08em; text-transform:uppercase; color:var(--cyan); margin:14px 0 6px; }
   .digest-card h3:first-child { margin-top:0; }
   .digest-card strong { color:#fff; }
@@ -71,8 +71,8 @@
 </head>
 <body>
   <header>
-    <div class="brand">Bogen.ai</div>
-    <h1>Brenda's <b>Thoughts</b></h1>
+    <div class="brand">Miami Brenda</div>
+    <h1>🌿 Brenda's <b>Thoughts</b></h1>
     <div class="hint">Say it out loud — dictate any thought, task, or idea. Tap Save. At 5pm it all gets synthesized for you.</div>
   </header>
 
@@ -89,6 +89,7 @@
   </div>
 
   <button class="syncnow" id="syncBtn">⚡ Synthesize this day now</button>
+  <button class="syncnow" id="emailBtn">📧 Email me this synthesis</button>
   <div class="toast" id="syncToast"></div>
 
   <div class="digest" id="digestWrap" style="display:none">
@@ -219,6 +220,22 @@
     }).catch(function(){ syncToast.textContent="Couldn't synthesize — try again"; syncToast.classList.add("show"); setTimeout(function(){syncToast.classList.remove("show");},3500); })
     .finally(function(){ syncBtn.disabled=false; syncBtn.textContent="⚡ Synthesize this day now"; });
   }
+
+  var emailBtn = document.getElementById("emailBtn");
+  function emailNow(){
+    emailBtn.disabled=true; emailBtn.textContent="Emailing…";
+    fetch(SYNTH,{ method:"POST", headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({ date: selectedDate, email:true }) })
+    .then(function(r){return r.json();}).then(function(res){
+      if(res && res.ok && res.emailed){ syncToast.textContent="Emailed to your inbox ✓"; loadDigest(); }
+      else if(res && res.skipped){ syncToast.textContent="Nothing to email for this day"; }
+      else if(res && res.ok){ syncToast.textContent="Built, but email failed — try again"; }
+      else { syncToast.textContent="Couldn't email — try again"; }
+      syncToast.classList.add("show"); setTimeout(function(){syncToast.classList.remove("show");},3500);
+    }).catch(function(){ syncToast.textContent="Couldn't email — try again"; syncToast.classList.add("show"); setTimeout(function(){syncToast.classList.remove("show");},3500); })
+    .finally(function(){ emailBtn.disabled=false; emailBtn.textContent="📧 Email me this synthesis"; });
+  }
+  emailBtn.addEventListener("click", emailNow);
 
   btn.addEventListener("click", save);
   syncBtn.addEventListener("click", syncNow);
