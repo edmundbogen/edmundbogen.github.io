@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>St. Andrews Country Club — Available Listings | The Edmund Bogen Team</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Georgia&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Montserrat',-apple-system,sans-serif;background:#f4f4f4;color:#2a2a2a;}
+  a{text-decoration:none;}
+  .ai-note{font-size:10px;color:#999;font-style:italic;text-align:center;padding:8px 16px;background:#fff;border-bottom:1px solid #f0f0f0;}
+  .nav{background:#1a3e5c;padding:16px 28px;}
+  .nav a{color:#8cb4d5;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:600;}
+  .head{background:linear-gradient(135deg,#1a3e5c 0%,#0d2137 100%);padding:48px 28px 40px;text-align:center;color:#fff;}
+  .head .eyebrow{color:#00a8e1;font-size:11px;letter-spacing:4px;text-transform:uppercase;font-weight:600;margin-bottom:12px;}
+  .head h1{font-family:Georgia,serif;font-weight:400;font-size:34px;letter-spacing:0.5px;margin-bottom:8px;}
+  .head .sub{color:#8cb4d5;font-size:13px;letter-spacing:1px;}
+  .stats{max-width:1000px;margin:-26px auto 0;padding:0 20px;display:flex;gap:14px;flex-wrap:wrap;}
+  .stat{flex:1;min-width:150px;background:#fff;border-left:4px solid #00a8e1;padding:20px;box-shadow:0 2px 12px rgba(0,0,0,.06);}
+  .stat .num{font-size:24px;font-weight:700;color:#1a3e5c;font-family:Georgia,serif;}
+  .stat .lbl{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#666;margin-top:5px;}
+  .grid{max-width:1000px;margin:36px auto;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;}
+  .card{background:#fff;border:1px solid #e6e6e6;border-radius:3px;overflow:hidden;display:flex;flex-direction:column;}
+  .card .top{background:#1a3e5c;padding:16px 18px;position:relative;}
+  .card .addr{color:#fff;font-size:15px;font-weight:600;line-height:1.35;}
+  .card .city{color:#8cb4d5;font-size:11px;letter-spacing:1px;margin-top:3px;}
+  .badge{position:absolute;top:14px;right:14px;background:#00a8e1;color:#fff;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;padding:4px 9px;border-radius:2px;}
+  .badge.new{background:#c8102e;}
+  .badge.cut{background:#2e8b57;}
+  .price{padding:18px 18px 8px;font-size:24px;font-weight:700;color:#1a3e5c;font-family:Georgia,serif;}
+  .was{padding:0 18px 4px;font-size:12px;color:#999;text-decoration:line-through;}
+  .attrs{display:flex;flex-wrap:wrap;padding:6px 18px 16px;gap:14px;}
+  .attr{font-size:12px;color:#555;}
+  .attr b{display:block;color:#1a3e5c;font-size:15px;font-weight:600;}
+  .meta{padding:0 18px 14px;font-size:11px;color:#999;letter-spacing:0.5px;}
+  .card .cta{margin-top:auto;padding:14px 18px;border-top:1px solid #f0f0f0;display:flex;justify-content:space-between;align-items:center;}
+  .card .cta a{color:#0a6d9c;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:600;}
+  .status{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#2e8b57;font-weight:600;}
+  .fn{max-width:1000px;margin:-14px auto 30px;padding:0 20px;font-size:11px;color:#888;font-style:italic;line-height:1.6;}
+  .contact{max-width:1000px;margin:0 auto 40px;padding:0 20px;}
+  .contact .box{background:#1a3e5c;padding:40px 28px;text-align:center;border-radius:3px;}
+  .contact .box .eb{color:#00a8e1;font-size:11px;letter-spacing:4px;text-transform:uppercase;font-weight:600;margin-bottom:10px;}
+  .contact .box h2{color:#fff;font-weight:300;font-size:24px;margin-bottom:20px;}
+  .btn{display:inline-block;background:#00a8e1;color:#fff;padding:13px 32px;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:600;border-radius:2px;}
+  .bio{max-width:1000px;margin:0 auto 40px;padding:0 20px;}
+  .bio .box{background:#fff;border-top:3px solid #00a8e1;padding:28px;display:flex;gap:24px;align-items:center;flex-wrap:wrap;box-shadow:0 2px 10px rgba(0,0,0,.05);border-radius:3px;}
+  .bio img{width:130px;height:130px;border-radius:50%;object-fit:cover;}
+  .bio h3{color:#1a3e5c;font-size:18px;margin-bottom:6px;}
+  .bio p{font-size:13px;color:#555;line-height:1.6;}
+  .bio a{color:#0a6d9c;}
+  footer{background:#0d2137;padding:26px;text-align:center;color:#8cb4d5;font-size:10px;line-height:1.6;}
+  @media(max-width:600px){.head h1{font-size:26px;}}
+</style>
+</head>
+<body>
+
+<div class="ai-note">This email and artwork and photographs were created with the assistance of artificial intelligence.</div>
+
+<div class="nav"><a href="index.html">&larr; Back to Market Dashboard</a></div>
+
+<div class="head">
+  <div class="eyebrow">The Edmund Bogen Team &middot; Douglas Elliman</div>
+  <h1>St. Andrews Country Club</h1>
+  <div class="sub">Available Listings &middot; Updated October 6, 2026 &middot; 8 Active Homes</div>
+</div>
+
+<div class="stats">
+  <div class="stat"><div class="num">$2.5M&ndash;$19.975M</div><div class="lbl">Price Range</div></div>
+  <div class="stat"><div class="num">8</div><div class="lbl">Active Listings</div></div>
+  <div class="stat"><div class="num">22</div><div class="lbl">Sold Year-to-Date</div></div>
+  <div class="stat"><div class="num">N/A</div><div class="lbl">Absorption</div></div>
+</div>
+
+<div class="grid">
+
+  <!-- 1 -->
+  <div class="card">
+    <div class="top"><div class="addr">6960 Lake Estates Court</div><div class="city">Boca Raton, FL 33496</div></div>
+    <div class="price">$19,975,000</div>
+    <div class="attrs"><div class="attr"><b>5</b>Beds</div><div class="attr"><b>6/2</b>Baths</div><div class="attr"><b>7,784</b>Living SqFt</div><div class="attr"><b>2022</b>Built</div></div>
+    <div class="meta">127 days on market &middot; MLS# B26035087 &middot; Listing courtesy of Compass Florida LLC</div>
+    <div class="cta"><span class="status">&#9679; Active</span><a href="https://bogenhomes.com/homes-for-sale-details/6960-LAKE-ESTATES-COURT-BOCA-RATON-FL-33496/B26035087/43/" target="_blank">View Details &rarr;</a></div>
+  </div>
+
+  <!-- 2 -->
+  <div class="card">
+    <div class="top"><span class="badge new">New Construction</span><div class="addr">17903 Foxborough Lane</div><div class="city">Boca Raton, FL 33496</div></div>
+    <div class="price">$10,150,000</div>
+    <div class="attrs"><div class="attr"><b>6</b>Beds</div><div class="attr"><b>6/2</b>Baths</div><div class="attr"><b>7,616</b>Living SqFt</div><div class="attr"><b>2026</b>Built</div></div>
+    <div class="meta">52 days on market &middot; MLS# B26064587 &middot; Listing courtesy of Lang Realty/ BR</div>
+    <div class="cta"><span class="status">&#9679; Active</span><a href="https://bogenhomes.com/homes-for-sale-details/17903-FOXBOROUGH-LANE-BOCA-RATON-FL-33496/B26064587/43/" target="_blank">View Details &rarr;</a></div>
+  </div>
+
+  <!-- 3 -->
+  <div class="card">
+    <div class="top"><span class="badge new">New Construction</span><div class="addr">17591 Scarsdale Way</div><div class="city">Boca Raton, FL 33496</div></div>
+    <div class="price">$9,999,000</div>
+    <div class="attrs"><div class="attr"><b>6</b>Beds</div><div class="attr"><b>7/1</b>Baths</div><div class="attr"><b>&mdash;</b>Living SqFt</div><div class="attr"><b>2027</b>Delivery</div></div>
+    <div class="meta">13 days on market &middot; MLS# A11989389 &middot; Listing courtesy of All Nations Realty of Florida, LLC</div>
+    <div class="cta"><span class="status">&#9679; Active</span><a href="https://bogenhomes.com/community/st-andrews-2/" target="_blank">View Details &rarr;</a></div>
+  </div>
+
+  <!-- 4 -->
+  <div class="card">
+    <div class="top"><span class="badge cut">Price Reduced</span><div class="addr">7027 Queenferry Circle</div><div class="city">Boca Raton, FL 33496</div></div>
+    <div class="price">$7,999,999</div>
+    <div class="was">Was $8,250,000</div>
+    <div class="attrs"><div class="attr"><b>7</b>Beds</div><div class="attr"><b>5/2</b>Baths</div><div class="attr"><b>7,553</b>Living SqFt</div><div class="attr"><b>1990</b>Built</div></div>
+    <div class="meta">36 days on market &middot; MLS# B26037727 &middot; Listing courtesy of Compass Florida LLC</div>
+    <div class="cta"><span class="status">&#9679; Active</span><a href="https://bogenhomes.com/homes-for-sale-details/7027-QUEENFERRY-CIRCLE-BOCA-RATON-FL-33496/B26037727/43/" target="_blank">View Details &rarr;</a></div>
+  </div>
+
+  <!-- 5 -->
+  <div class="card">
+    <div class="top"><div class="addr">7359 Ballantrae Court</div><div class="city">Boca Raton, FL 33496</div></div>
+    <div class="price">$7,950,000</div>
+    <div class="attrs"><div class="attr"><b>5</b>Beds</div><div class="attr"><b>6/1</b>Baths</div><div class="attr"><b>6,006</b>Living SqFt</div><div class="attr"><b>1988</b>Built</div></div>
+    <div class="meta">25 days on market &middot; MLS# B26075065 &middot; Listing courtesy of One Sotheby's International Realty</div>
+    <div class="cta"><span class="status">&#9679; Active</span><a href="https://bogenhomes.com/homes-for-sale-details/7359-BALLANTRAE-COURT-BOCA-RATON-FL-33496/B26075065/43/" target="_blank">View Details &rarr;</a></div>
+  </div>
+
+  <!-- 6 -->
+  <div class="card">
+    <div class="top"><span class="badge cut">Price Reduced</span><div class="addr">17661 Scarsdale Way</div><div class="city">Boca Raton, FL 33496</div></div>
+    <div class="price">$7,900,000</div>
+    <div class="was">Was $8,400,000</div>
+    <div class="attrs"><div class="attr"><b>5</b>Beds</div><div class="attr"><b>6/2</b>Baths</div><div class="attr"><b>6,380</b>Living SqFt</div><div class="attr"><b>2019</b>Built</div></div>
+    <div class="meta">137 days on market &middot; MLS# B26031007 &middot; Listing courtesy of Luxury Partners Realty</div>
+    <div class="cta"><span class="status">&#9679; Active</span><a href="https://bogenhomes.com/homes-for-sale-details/17661-SCARSDALE-WAY-BOCA-RATON-FL-33496/B26031007/43/" target="_blank">View Details &rarr;</a></div>
+  </div>
+
+  <!-- 7 -->
+  <div class="card">
+    <div class="top"><div class="addr">17771 Foxborough Lane</div><div class="city">Boca Raton, FL 33496</div></div>
+    <div class="price">$3,995,000</div>
+    <div class="attrs"><div class="attr"><b>5</b>Beds</div><div class="attr"><b>5/0</b>Baths</div><div class="attr"><b>3,337</b>Living SqFt</div><div class="attr"><b>1984</b>Built</div></div>
+    <div class="meta">91 days on market &middot; MLS# B26049501 &middot; Listing courtesy of Luxury Partners Realty</div>
+    <div class="cta"><span class="status">&#9679; Active</span><a href="https://bogenhomes.com/homes-for-sale-details/17771-FOXBOROUGH-LANE-BOCA-RATON-FL-33496/B26049501/43/" target="_blank">View Details &rarr;</a></div>
+  </div>
+
+  <!-- 8 -->
+  <div class="card">
+    <div class="top"><div class="addr">7946 Shelby Circle</div><div class="city">Boca Raton, FL 33496</div></div>
+    <div class="price">$2,500,000</div>
+    <div class="attrs"><div class="attr"><b>3</b>Beds</div><div class="attr"><b>2/1</b>Baths</div><div class="attr"><b>2,656</b>Living SqFt</div><div class="attr"><b>1991</b>Built</div></div>
+    <div class="meta">11 days on market &middot; MLS# B26080704 &middot; Listing courtesy of Keyes Company</div>
+    <div class="cta"><span class="status">&#9679; Active</span><a href="https://bogenhomes.com/homes-for-sale-details/7946-SHELBY-CIRCLE-BOCA-RATON-FL-33496/B26080704/43/" target="_blank">View Details &rarr;</a></div>
+  </div>
+
+</div>
+
+<div class="fn">17591 Scarsdale Way is new construction with a 2027 planned delivery; no completed living area is on record in the MLS. Living square footage shown for all properties is as reported in the MLS. Days on market as reported by the MLS as of October 6, 2026.</div>
+
+<div class="contact">
+  <div class="box">
+    <div class="eb">Questions About St. Andrews?</div>
+    <h2>Let's Find Your Home Inside the Gates</h2>
+    <a class="btn" href="https://www.bogen.ai/contact?tab=client" target="_blank">Contact Edmund</a>
+  </div>
+</div>
+
+<div class="bio">
+  <div class="box">
+    <img src="https://edmundbogen.github.io/palm-beach-divergence/bio.png" alt="Edmund Bogen">
+    <div>
+      <h3>Edmund Bogen</h3>
+      <p style="color:#666;">Broker Associate &middot; REALTOR&reg;<br>The Edmund Bogen Team at Douglas Elliman Real Estate</p>
+      <p style="margin-top:8px;">Member and resident of St. Andrews Country Club. Weekly market intelligence for buyers and sellers across the Boca / Delray / Palm Beach luxury corridor.</p>
+      <p style="margin-top:8px;"><a href="mailto:edmund@bogenhomes.com">edmund@bogenhomes.com</a> &middot; (561) 235-7575</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div style="color:#fff;font-weight:700;font-size:13px;margin-bottom:4px;">The Edmund Bogen Team at Douglas Elliman Real Estate</div>
+  <div>444 E Palmetto Park Rd, Boca Raton, FL 33432 | 561-235-7575</div>
+  <div style="margin-top:8px;">Market data courtesy of BeachesMLS. Information is deemed reliable but not guaranteed. Market data as of October 6, 2026. If your property is currently listed with another broker, this is not a solicitation of that listing. Equal Housing Opportunity.</div>
+  <div style="margin-top:8px;font-style:italic;">This email and artwork and photographs were created with the assistance of artificial intelligence.</div>
+  <div style="margin-top:10px;font-size:9px;color:#6a8fad;line-height:1.6;">&copy; 2026 DOUGLAS ELLIMAN REAL ESTATE. ALL MATERIAL PRESENTED HEREIN IS INTENDED FOR INFORMATION PURPOSES ONLY. WHILE, THIS INFORMATION IS BELIEVED TO BE CORRECT, IT IS REPRESENTED SUBJECT TO ERRORS, OMISSIONS, CHANGES OR WITHDRAWAL WITHOUT NOTICE. ALL PROPERTY INFORMATION, INCLUDING, BUT NOT LIMITED TO SQUARE FOOTAGE, ROOM COUNT, NUMBER OF BEDROOMS AND THE SCHOOL DISTRICT IN PROPERTY LISTINGS SHOULD BE VERIFIED BY YOUR OWN ATTORNEY, ARCHITECT OR ZONING EXPERT. IF YOUR PROPERTY IS CURRENTLY LISTED WITH ANOTHER REAL ESTATE BROKER, PLEASE DISREGARD THIS OFFER. IT IS NOT OUR INTENTION TO SOLICIT THE OFFERINGS OF OTHER REAL ESTATE BROKERS. WE COOPERATE WITH THEM FULLY. EQUAL HOUSING OPPORTUNITY.</div>
+</footer>
+
+</body>
+</html>
